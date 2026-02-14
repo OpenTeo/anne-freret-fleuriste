@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 const slides = [
@@ -36,8 +37,10 @@ const slides = [
 ];
 
 export default function HeroSlider() {
+  const router = useRouter();
   const [current, setCurrent] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const touchMoved = useRef(false);
 
   const goTo = useCallback((index: number) => {
     if (isTransitioning) return;
@@ -60,10 +63,15 @@ export default function HeroSlider() {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
+    touchMoved.current = false;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     touchEndX.current = e.touches[0].clientX;
+    if (Math.abs(touchStartX.current - touchEndX.current) > 10) {
+      touchMoved.current = true;
+    }
   };
 
   const handleTouchEnd = () => {
@@ -71,6 +79,12 @@ export default function HeroSlider() {
     if (Math.abs(diff) > 50) {
       if (diff > 0) next();
       else prev();
+    }
+  };
+
+  const handleSlideClick = (href: string) => {
+    if (!touchMoved.current) {
+      router.push(href);
     }
   };
 
@@ -89,10 +103,10 @@ export default function HeroSlider() {
     >
       {/* Slides */}
       {slides.map((slide, i) => (
-        <Link
+        <div
           key={slide.href}
-          href={slide.href}
-          className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+          onClick={() => handleSlideClick(slide.href)}
+          className={`absolute inset-0 cursor-pointer transition-all duration-700 ease-in-out ${
             i === current 
               ? 'opacity-100 scale-100' 
               : 'opacity-0 scale-105'
@@ -169,7 +183,7 @@ export default function HeroSlider() {
               </div>
             </>
           )}
-        </Link>
+        </div>
       ))}
 
       {/* Dots - Plus petits et subtils */}
