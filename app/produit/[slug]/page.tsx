@@ -8,7 +8,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/ui/ProductCard';
 import { mockProducts } from '@/lib/mock-data';
-import { Heart, ShoppingCart, Minus, Plus, Truck, Gift, Shield, Star } from 'lucide-react';
+import { Heart, ShoppingCart, Minus, Plus, Truck, Gift, Shield, Star, ChevronDown } from 'lucide-react';
 
 interface ProductPageProps {
   params: { slug: string };
@@ -25,6 +25,9 @@ export default function ProductPage({ params }: ProductPageProps) {
     chocolats: false,
     bougie: false
   });
+
+  // État pour les accordéons
+  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
 
   const product = mockProducts.find(p => p.slug === params.slug);
 
@@ -60,38 +63,71 @@ export default function ProductPage({ params }: ProductPageProps) {
     }));
   };
 
+  const toggleAccordion = (section: string) => {
+    setOpenAccordion(openAccordion === section ? null : section);
+  };
+
   const relatedProducts = mockProducts
     .filter(p => p.category === product.category && p.id !== product.id)
     .slice(0, 3);
 
   const productImages = product.images || [product.image];
 
+  // Composant accordéon
+  const AccordionItem = ({ id, title, children }: { id: string; title: string; children: React.ReactNode }) => {
+    const isOpen = openAccordion === id;
+    return (
+      <div className="border-b border-[#e8e0d8]">
+        <button
+          onClick={() => toggleAccordion(id)}
+          className="w-full flex items-center justify-between py-4 text-left hover:bg-[#f5f0eb] px-4 rounded transition-colors"
+        >
+          <span className="font-medium text-[#2d2a26]">{title}</span>
+          <ChevronDown 
+            className={`w-5 h-5 text-[#2d2a26] transition-transform duration-200 ${
+              isOpen ? 'rotate-180' : ''
+            }`}
+          />
+        </button>
+        <div
+          className={`overflow-hidden transition-all duration-200 ${
+            isOpen ? 'max-h-[1000px] pb-4' : 'max-h-0'
+          }`}
+        >
+          <div className="px-4">
+            {children}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-secondary">
-        {/* Breadcrumb */}
-        <div className="bg-primary text-secondary py-4">
+      <main className="min-h-screen bg-[#faf8f5]">
+        {/* Breadcrumb - FOND CRÈME */}
+        <div className="bg-[#faf8f5] border-b border-[#e8e0d8] py-4">
           <div className="container mx-auto px-4">
             <nav className="text-sm">
-              <Link href="/" className="hover:text-accent transition-colors">Accueil</Link>
-              <span className="mx-2">/</span>
-              <Link href="/boutique" className="hover:text-accent transition-colors">Boutique</Link>
-              <span className="mx-2">/</span>
-              <Link href={`/boutique?category=${product.category}`} className="hover:text-accent transition-colors">
+              <Link href="/" className="text-[#2d2a26] hover:text-[#b8956a] transition-colors">Accueil</Link>
+              <span className="mx-2 text-[#2d2a26]">/</span>
+              <Link href="/boutique" className="text-[#2d2a26] hover:text-[#b8956a] transition-colors">Boutique</Link>
+              <span className="mx-2 text-[#2d2a26]">/</span>
+              <Link href={`/boutique?category=${product.category}`} className="text-[#2d2a26] hover:text-[#b8956a] transition-colors">
                 {product.category}
               </Link>
-              <span className="mx-2">/</span>
-              <span className="text-accent">{product.name}</span>
+              <span className="mx-2 text-[#2d2a26]">/</span>
+              <span className="text-[#b8956a]">{product.name}</span>
             </nav>
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-            {/* Product Images */}
-            <div>
-              <div className="relative aspect-square mb-4 rounded-lg overflow-hidden">
+        <div className="container mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+            {/* IMAGES (colonne gauche) */}
+            <div className="order-1 lg:order-1">
+              <div className="relative aspect-square lg:aspect-square aspect-[3/4] mb-4 rounded-lg overflow-hidden bg-white">
                 <Image
                   src={productImages[selectedImageIndex]}
                   alt={product.name}
@@ -100,20 +136,25 @@ export default function ProductPage({ params }: ProductPageProps) {
                   priority
                 />
                 {product.originalPrice && (
-                  <div className="absolute top-4 left-4 bg-accent text-primary text-sm font-bold px-3 py-1 rounded-full">
+                  <div className="absolute top-4 left-4 bg-[#b8956a] text-white text-sm font-bold px-3 py-1 rounded-full">
                     PROMO
+                  </div>
+                )}
+                {product.featured && (
+                  <div className="absolute top-4 right-4 bg-[#b8956a] text-white text-sm font-bold px-3 py-1 rounded-full">
+                    Best-seller
                   </div>
                 )}
               </div>
               
               {productImages.length > 1 && (
-                <div className="flex space-x-2">
+                <div className="flex space-x-2 overflow-x-auto">
                   {productImages.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`relative w-20 h-20 rounded-lg overflow-hidden ${
-                        selectedImageIndex === index ? 'ring-2 ring-accent' : ''
+                      className={`relative w-16 h-16 lg:w-20 lg:h-20 rounded-lg overflow-hidden bg-white flex-shrink-0 ${
+                        selectedImageIndex === index ? 'ring-2 ring-[#b8956a]' : 'border border-[#e8e0d8]'
                       }`}
                     >
                       <Image
@@ -128,250 +169,90 @@ export default function ProductPage({ params }: ProductPageProps) {
               )}
             </div>
 
-            {/* Product Details */}
-            <div>
-              <div className="mb-4">
-                <span className="text-accent font-medium uppercase tracking-wider text-sm">
+            {/* INFOS PRODUIT (colonne droite) - ORDRE OPTIMISÉ */}
+            <div className="order-2 lg:order-2 space-y-6">
+              
+              {/* 2. Catégorie */}
+              <div>
+                <span className="text-[#b8956a] font-medium uppercase tracking-wide text-sm">
                   {product.category}
                 </span>
-                <h1 className="font-serif text-3xl md:text-4xl font-bold text-primary mt-2 mb-4">
-                  {product.name}
-                </h1>
-                
-                {/* Rating (mock) */}
-                <div className="flex items-center space-x-2 mb-4">
-                  <div className="flex space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 text-accent fill-current"
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm text-muted">(27 avis)</span>
-                </div>
               </div>
 
-              {/* Price */}
-              <div className="mb-6">
-                <div className="flex items-center space-x-3">
-                  <span className="font-bold text-3xl text-primary">
-                    {(product.sizes || product.variants) && !selectedSize ? 'à partir de ' : ''}{currentPrice}€
+              {/* 3. Nom produit */}
+              <div>
+                <h1 className="font-serif text-3xl lg:text-4xl font-bold text-[#2d2a26] leading-tight">
+                  {product.name}
+                </h1>
+              </div>
+
+              {/* 4. Avis - étoiles dorées */}
+              <div className="flex items-center space-x-2">
+                <div className="flex space-x-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-5 h-5 text-[#b8956a] fill-current"
+                    />
+                  ))}
+                </div>
+                <span className="text-[#2d2a26] text-sm">(27 avis)</span>
+              </div>
+
+              {/* 5. Prix - gros, gras */}
+              <div>
+                <div className="flex items-baseline space-x-3">
+                  <span className="font-bold text-3xl lg:text-4xl text-[#2d2a26]">
+                    {(product.sizes && product.sizes.length > 1) ? 'Dès ' : ''}{currentPrice.toFixed(2)}€
                   </span>
                   {product.originalPrice && (
-                    <span className="text-lg text-muted line-through">
+                    <span className="text-xl text-gray-500 line-through">
                       {product.originalPrice}€
                     </span>
                   )}
                 </div>
                 {product.originalPrice && (
-                  <p className="text-accent text-sm font-medium">
-                    Économisez {product.originalPrice - currentPrice}€
+                  <p className="text-[#b8956a] text-sm font-medium mt-1">
+                    Économisez {(product.originalPrice - currentPrice).toFixed(2)}€
                   </p>
                 )}
               </div>
 
-              {/* Description */}
-              <div className="mb-8">
-                <p className="text-muted leading-relaxed">
-                  {product.description}
-                </p>
-              </div>
-
-              {/* Complétez votre cadeau section */}
-              <div className="mb-8 p-6 bg-[#faf8f5] rounded-lg border border-[#e8e0d8]">
-                <h3 className="text-primary font-serif font-bold text-xl mb-6 text-center">
-                  Complétez votre cadeau
-                </h3>
-                <div className="space-y-4">
-                  {/* Carte message personnalisée */}
-                  <div className="bg-white p-4 rounded-lg border border-[#e8e0d8]">
-                    <div className="flex items-start space-x-3">
-                      <div className="flex items-center">
-                        <input
-                          type="checkbox"
-                          id="carte-message"
-                          defaultChecked
-                          disabled
-                          className="w-5 h-5 text-[#b8956a] bg-gray-100 border-[#e8e0d8] rounded focus:ring-[#b8956a] focus:ring-2"
-                        />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2 mb-2">
-                          <span className="text-2xl">💌</span>
-                          <span className="font-semibold text-primary">Carte message personnalisée</span>
-                          <span className="text-sm bg-[#b8956a] text-white px-2 py-1 rounded-full">Inclus</span>
-                        </div>
-                        <p className="text-sm text-muted mb-3">
-                          Écrivez un message qui sera imprimé et livré avec votre bouquet
-                        </p>
-                        <textarea
-                          placeholder="Votre message personnalisé..."
-                          value={personalMessage}
-                          onChange={(e) => setPersonalMessage(e.target.value)}
-                          className="w-full p-3 text-sm border border-[#e8e0d8] rounded-md focus:ring-2 focus:ring-[#b8956a] focus:border-[#b8956a]"
-                          rows={3}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Autres add-ons */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
-                    <div className="bg-white p-4 rounded-lg border border-[#e8e0d8]">
-                      <label className="flex items-center space-x-3 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={selectedAddOns.vase}
-                          onChange={() => handleAddOnChange('vase')}
-                          className="w-5 h-5 text-[#b8956a] bg-gray-100 border-[#e8e0d8] rounded focus:ring-[#b8956a] focus:ring-2"
-                        />
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-1">
-                            <div className="flex items-center space-x-2">
-                              <span className="text-xl">🏺</span>
-                              <span className="font-semibold text-primary text-sm lg:text-base">Vase en verre artisanal</span>
-                            </div>
-                            <span className="font-bold text-[#b8956a]">+19,90€</span>
-                          </div>
-                          <p className="text-xs lg:text-sm text-muted">Vase élégant soufflé à la main</p>
-                        </div>
-                      </label>
-                    </div>
-
-                    <div className="bg-white p-4 rounded-lg border border-[#e8e0d8]">
-                      <label className="flex items-center space-x-3 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={selectedAddOns.chocolats}
-                          onChange={() => handleAddOnChange('chocolats')}
-                          className="w-5 h-5 text-[#b8956a] bg-gray-100 border-[#e8e0d8] rounded focus:ring-[#b8956a] focus:ring-2"
-                        />
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-1">
-                            <div className="flex items-center space-x-2">
-                              <span className="text-xl">🍫</span>
-                              <span className="font-semibold text-primary text-sm lg:text-base">Boîte de chocolats</span>
-                            </div>
-                            <span className="font-bold text-[#b8956a]">+14,90€</span>
-                          </div>
-                          <p className="text-xs lg:text-sm text-muted">Assortiment de chocolats fins français</p>
-                        </div>
-                      </label>
-                    </div>
-
-                    <div className="bg-white p-4 rounded-lg border border-[#e8e0d8] md:col-span-2 lg:col-span-1 xl:col-span-2">
-                      <label className="flex items-center space-x-3 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          checked={selectedAddOns.bougie}
-                          onChange={() => handleAddOnChange('bougie')}
-                          className="w-5 h-5 text-[#b8956a] bg-gray-100 border-[#e8e0d8] rounded focus:ring-[#b8956a] focus:ring-2"
-                        />
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-1">
-                            <div className="flex items-center space-x-2">
-                              <span className="text-xl">🕯️</span>
-                              <span className="font-semibold text-primary text-sm lg:text-base">Bougie parfumée</span>
-                            </div>
-                            <span className="font-bold text-[#b8956a]">+12,90€</span>
-                          </div>
-                          <p className="text-xs lg:text-sm text-muted">Bougie artisanale aux senteurs florales</p>
-                        </div>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Info livraison section */}
-              <div className="mb-8 p-6 bg-[#faf8f5] rounded-lg border border-[#e8e0d8]">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <h3 className="text-primary font-serif font-bold text-lg mb-4">Informations livraison</h3>
-                    <div className="space-y-3">
-                      <div className="flex items-center space-x-3">
-                        <span className="text-xl">🚚</span>
-                        <span className="text-sm text-primary">Livraison partout en France</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <span className="text-xl">🌿</span>
-                        <span className="text-sm text-primary">Fraîcheur garantie 72h</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <span className="text-xl">↩️</span>
-                        <span className="text-sm text-primary">Satisfait ou remplacé</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-primary font-semibold text-sm mb-3 flex items-center space-x-2">
-                      <span className="text-lg">📦</span>
-                      <span>Emballage spécial fleurs fraîches</span>
-                    </h4>
-                    <div className="relative aspect-video rounded-lg overflow-hidden bg-white border border-[#e8e0d8]">
-                      <Image
-                        src="https://cdn.shopify.com/s/files/1/0295/6292/9231/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798?v=1747399798"
-                        alt="Emballage spécial fleurs fraîches"
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Tags */}
-              {product.tags && product.tags.length > 0 && (
-                <div className="mb-8">
-                  <div className="flex flex-wrap gap-2">
-                    {product.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 bg-primary text-secondary text-sm rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Size Selection */}
+              {/* 6. Sélection de taille - JUSTE APRÈS le prix */}
               {product.sizes && (
-                <div className="mb-6">
-                  <h3 className="text-primary font-medium mb-3">Taille :</h3>
+                <div>
+                  <h3 className="text-[#2d2a26] font-medium mb-3 text-lg">Taille :</h3>
                   <div className="flex flex-wrap gap-2">
                     {product.sizes.map((size) => (
                       <button
                         key={size.name}
                         onClick={() => setSelectedSize(size)}
-                        className={`px-4 py-2 rounded-full border-2 transition-all ${
+                        className={`px-4 py-3 rounded-full border-2 transition-all font-medium ${
                           selectedSize?.name === size.name
-                            ? 'border-accent bg-accent text-primary'
-                            : 'border-primary text-primary hover:border-accent'
+                            ? 'border-[#b8956a] bg-[#b8956a] text-white'
+                            : 'border-[#e8e0d8] text-[#2d2a26] hover:border-[#b8956a] bg-white'
                         }`}
                       >
-                        {size.name} - {size.price}€
+                        {size.name}
                       </button>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Variant Selection */}
+              {/* Variantes si existantes */}
               {product.variants && (
-                <div className="mb-6">
-                  <h3 className="text-primary font-medium mb-3">Variante :</h3>
+                <div>
+                  <h3 className="text-[#2d2a26] font-medium mb-3 text-lg">Variante :</h3>
                   <div className="flex flex-wrap gap-2">
                     {product.variants.map((variant) => (
                       <button
                         key={variant.name}
                         onClick={() => setSelectedVariant(variant)}
-                        className={`px-4 py-2 rounded-full border-2 transition-all ${
+                        className={`px-4 py-3 rounded-full border-2 transition-all font-medium ${
                           selectedVariant?.name === variant.name
-                            ? 'border-accent bg-accent text-primary'
-                            : 'border-primary text-primary hover:border-accent'
+                            ? 'border-[#b8956a] bg-[#b8956a] text-white'
+                            : 'border-[#e8e0d8] text-[#2d2a26] hover:border-[#b8956a] bg-white'
                         }`}
                       >
                         {variant.name}
@@ -381,66 +262,259 @@ export default function ProductPage({ params }: ProductPageProps) {
                 </div>
               )}
 
-              {/* Quantity and Add to Cart */}
-              <div className="mb-8">
-                <div className="flex items-center space-x-4 mb-4">
-                  <span className="text-primary font-medium">Quantité :</span>
-                  <div className="flex items-center space-x-3 bg-primary rounded-full p-1">
+              {/* 7. Description courte - 2-3 lignes max */}
+              <div>
+                <p className="text-[#2d2a26] text-lg leading-relaxed">
+                  {product.description.length > 150 
+                    ? product.description.substring(0, 150) + '...'
+                    : product.description
+                  }
+                </p>
+              </div>
+
+              {/* 8. Quantité + Bouton "Ajouter au panier" */}
+              <div className="space-y-4">
+                <div className="flex items-center space-x-4">
+                  <span className="text-[#2d2a26] font-medium text-lg">Quantité :</span>
+                  <div className="flex items-center space-x-3 bg-white rounded-full border border-[#e8e0d8] p-1">
                     <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="w-10 h-10 rounded-full bg-secondary text-primary flex items-center justify-center hover:bg-accent hover:text-primary transition-colors"
+                      className="w-10 h-10 rounded-full bg-[#f5f0eb] text-[#2d2a26] flex items-center justify-center hover:bg-[#e8e0d8] transition-colors"
                     >
                       <Minus size={16} />
                     </button>
-                    <span className="w-12 text-center text-secondary font-semibold">
+                    <span className="w-12 text-center text-[#2d2a26] font-semibold">
                       {quantity}
                     </span>
                     <button
                       onClick={() => setQuantity(quantity + 1)}
-                      className="w-10 h-10 rounded-full bg-secondary text-primary flex items-center justify-center hover:bg-accent hover:text-primary transition-colors"
+                      className="w-10 h-10 rounded-full bg-[#f5f0eb] text-[#2d2a26] flex items-center justify-center hover:bg-[#e8e0d8] transition-colors"
                     >
                       <Plus size={16} />
                     </button>
                   </div>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <button className="w-full sm:flex-1 bg-accent text-primary font-semibold py-4 px-6 rounded-full hover:bg-accent/90 transition-colors flex items-center justify-center space-x-2">
+                <div className="flex flex-col lg:flex-row gap-3">
+                  <button className="w-full bg-[#b8956a] text-white font-semibold py-4 px-6 rounded-full hover:bg-[#a07d5a] transition-colors flex items-center justify-center space-x-2 text-lg">
                     <ShoppingCart size={20} />
                     <span>Ajouter au panier</span>
                   </button>
                   
-                  <button className="w-full sm:w-auto border-2 border-primary text-primary p-4 rounded-full hover:bg-primary hover:text-secondary transition-colors flex items-center justify-center">
+                  <button className="lg:w-auto w-full border-2 border-[#b8956a] text-[#b8956a] p-4 rounded-full hover:bg-[#b8956a] hover:text-white transition-colors flex items-center justify-center">
                     <Heart size={20} />
                   </button>
                 </div>
               </div>
 
-              {/* Product Features */}
-              <div className="space-y-3 text-sm">
-                <div className="flex items-center space-x-3">
-                  <Truck className="text-accent" size={18} />
-                  <span>Livraison gratuite dès 50€</span>
+              {/* 9. Badges confiance - grille 2x2 compacte */}
+              <div className="bg-white rounded-lg border border-[#e8e0d8] p-4">
+                <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-lg">🚚</span>
+                    <span className="text-[#2d2a26]">Livraison France</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-lg">🌿</span>
+                    <span className="text-[#2d2a26]">Fraîcheur 72h</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-lg">✨</span>
+                    <span className="text-[#2d2a26]">Emballage cadeau offert</span>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-lg">🔒</span>
+                    <span className="text-[#2d2a26]">Paiement sécurisé</span>
+                  </div>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <Gift className="text-accent" size={18} />
-                  <span>Emballage cadeau offert</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Shield className="text-accent" size={18} />
-                  <span>Fraîcheur garantie 7 jours</span>
-                </div>
+              </div>
+
+              {/* 10. Accordéon dépliable */}
+              <div className="bg-white rounded-lg border border-[#e8e0d8] divide-y divide-[#e8e0d8]">
+                
+                {/* Description complète */}
+                <AccordionItem id="description" title="📝 Description complète">
+                  <div className="space-y-4">
+                    <p className="text-[#2d2a26] leading-relaxed">
+                      {product.description}
+                    </p>
+                    {product.tags && product.tags.length > 0 && (
+                      <div className="flex flex-wrap gap-2 pt-4 border-t border-[#e8e0d8]">
+                        {product.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-3 py-1 bg-[#f5f0eb] text-[#2d2a26] text-sm rounded-full border border-[#e8e0d8]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </AccordionItem>
+
+                {/* Carte message gratuite */}
+                <AccordionItem id="message" title="💌 Carte message gratuite">
+                  <div className="space-y-4">
+                    <p className="text-[#2d2a26] text-sm">
+                      Écrivez un message qui sera imprimé et livré avec votre bouquet
+                    </p>
+                    <textarea
+                      placeholder="Votre message personnalisé..."
+                      value={personalMessage}
+                      onChange={(e) => setPersonalMessage(e.target.value)}
+                      className="w-full p-3 text-sm border border-[#e8e0d8] rounded-md focus:ring-2 focus:ring-[#b8956a] focus:border-[#b8956a] bg-[#faf8f5]"
+                      rows={3}
+                    />
+                  </div>
+                </AccordionItem>
+
+                {/* Complétez votre cadeau */}
+                <AccordionItem id="addons" title="🎁 Complétez votre cadeau">
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 gap-3">
+                      <div className="bg-[#faf8f5] p-3 rounded-lg border border-[#e8e0d8]">
+                        <label className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={selectedAddOns.vase}
+                            onChange={() => handleAddOnChange('vase')}
+                            className="w-5 h-5 text-[#b8956a] bg-gray-100 border-[#e8e0d8] rounded focus:ring-[#b8956a] focus:ring-2"
+                          />
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center space-x-2">
+                                <span className="text-xl">🏺</span>
+                                <span className="font-medium text-[#2d2a26]">Vase en verre artisanal</span>
+                              </div>
+                              <span className="font-bold text-[#b8956a]">+19,90€</span>
+                            </div>
+                            <p className="text-sm text-gray-600 ml-7">Vase élégant soufflé à la main</p>
+                          </div>
+                        </label>
+                      </div>
+
+                      <div className="bg-[#faf8f5] p-3 rounded-lg border border-[#e8e0d8]">
+                        <label className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={selectedAddOns.chocolats}
+                            onChange={() => handleAddOnChange('chocolats')}
+                            className="w-5 h-5 text-[#b8956a] bg-gray-100 border-[#e8e0d8] rounded focus:ring-[#b8956a] focus:ring-2"
+                          />
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center space-x-2">
+                                <span className="text-xl">🍫</span>
+                                <span className="font-medium text-[#2d2a26]">Boîte de chocolats</span>
+                              </div>
+                              <span className="font-bold text-[#b8956a]">+14,90€</span>
+                            </div>
+                            <p className="text-sm text-gray-600 ml-7">Assortiment de chocolats fins français</p>
+                          </div>
+                        </label>
+                      </div>
+
+                      <div className="bg-[#faf8f5] p-3 rounded-lg border border-[#e8e0d8]">
+                        <label className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={selectedAddOns.bougie}
+                            onChange={() => handleAddOnChange('bougie')}
+                            className="w-5 h-5 text-[#b8956a] bg-gray-100 border-[#e8e0d8] rounded focus:ring-[#b8956a] focus:ring-2"
+                          />
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center space-x-2">
+                                <span className="text-xl">🕯️</span>
+                                <span className="font-medium text-[#2d2a26]">Bougie parfumée</span>
+                              </div>
+                              <span className="font-bold text-[#b8956a]">+12,90€</span>
+                            </div>
+                            <p className="text-sm text-gray-600 ml-7">Bougie artisanale aux senteurs florales</p>
+                          </div>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </AccordionItem>
+
+                {/* Livraison */}
+                <AccordionItem id="shipping" title="🚚 Livraison">
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-3">
+                        <div className="flex items-center space-x-3">
+                          <span className="text-lg">🚚</span>
+                          <span className="text-sm text-[#2d2a26]">Livraison partout en France</span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <span className="text-lg">🌿</span>
+                          <span className="text-sm text-[#2d2a26]">Fraîcheur garantie 72h</span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <span className="text-lg">↩️</span>
+                          <span className="text-sm text-[#2d2a26]">Satisfait ou remplacé</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="relative aspect-video rounded-lg overflow-hidden bg-[#f5f0eb] border border-[#e8e0d8]">
+                          <Image
+                            src="https://cdn.shopify.com/s/files/1/0295/6292/9231/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798?v=1747399798"
+                            alt="Emballage spécial fleurs fraîches"
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </AccordionItem>
+
+                {/* Entretien */}
+                <AccordionItem id="care" title="🌿 Entretien">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-[#f5f0eb] rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span className="text-[#b8956a] text-xl">💧</span>
+                      </div>
+                      <h4 className="font-medium text-[#2d2a26] mb-2">Hydratation</h4>
+                      <p className="text-sm text-gray-600">
+                        Changez l'eau tous les 2 jours et recoupez les tiges en biais.
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-[#f5f0eb] rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span className="text-[#b8956a] text-xl">🌡️</span>
+                      </div>
+                      <h4 className="font-medium text-[#2d2a26] mb-2">Température</h4>
+                      <p className="text-sm text-gray-600">
+                        Évitez les sources de chaleur et les courants d'air.
+                      </p>
+                    </div>
+                    <div className="text-center">
+                      <div className="w-12 h-12 bg-[#f5f0eb] rounded-full flex items-center justify-center mx-auto mb-3">
+                        <span className="text-[#b8956a] text-xl">✂️</span>
+                      </div>
+                      <h4 className="font-medium text-[#2d2a26] mb-2">Entretien</h4>
+                      <p className="text-sm text-gray-600">
+                        Retirez les fleurs fanées pour prolonger la durée de vie.
+                      </p>
+                    </div>
+                  </div>
+                </AccordionItem>
+
               </div>
             </div>
           </div>
 
-          {/* Related Products */}
+          {/* Produits similaires */}
           {relatedProducts.length > 0 && (
-            <section>
-              <h2 className="font-serif text-3xl font-bold text-primary mb-8 text-center">
+            <section className="mt-16">
+              <h2 className="font-serif text-3xl font-bold text-[#2d2a26] mb-8 text-center">
                 Produits similaires
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {relatedProducts.map((relatedProduct) => (
                   <ProductCard key={relatedProduct.id} product={relatedProduct} />
                 ))}
@@ -449,45 +523,13 @@ export default function ProductPage({ params }: ProductPageProps) {
           )}
         </div>
 
-        {/* Product Care Section */}
-        <section className="bg-primary text-secondary py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="font-serif text-3xl font-bold mb-6">
-                Conseils d'entretien
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-accent text-2xl">💧</span>
-                  </div>
-                  <h3 className="font-semibold mb-2">Hydratation</h3>
-                  <p className="text-sm text-secondary/80">
-                    Changez l'eau tous les 2 jours et recoupez les tiges en biais.
-                  </p>
-                </div>
-                <div>
-                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-accent text-2xl">🌡️</span>
-                  </div>
-                  <h3 className="font-semibold mb-2">Température</h3>
-                  <p className="text-sm text-secondary/80">
-                    Évitez les sources de chaleur et les courants d'air.
-                  </p>
-                </div>
-                <div>
-                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-accent text-2xl">✂️</span>
-                  </div>
-                  <h3 className="font-semibold mb-2">Entretien</h3>
-                  <p className="text-sm text-secondary/80">
-                    Retirez les fleurs fanées pour prolonger la durée de vie.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* Bouton panier sticky sur mobile */}
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 p-4 bg-[#faf8f5] border-t border-[#e8e0d8] z-50">
+          <button className="w-full bg-[#b8956a] text-white font-semibold py-4 px-6 rounded-full hover:bg-[#a07d5a] transition-colors flex items-center justify-center space-x-2 text-lg">
+            <ShoppingCart size={20} />
+            <span>Ajouter au panier - {currentPrice.toFixed(2)}€</span>
+          </button>
+        </div>
       </main>
       <Footer />
     </>
