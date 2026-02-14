@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,7 +16,6 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
     setIsSubmitted(true);
     setTimeout(() => setIsSubmitted(false), 3000);
     setFormData({
@@ -39,93 +37,106 @@ export default function Contact() {
   return (
     <>
       <Header />
-      <main className="min-h-screen">
-        {/* Hero section */}
-        <section className="bg-primary text-secondary py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h1 className="font-serif text-4xl md:text-6xl font-bold mb-4">
-              Contactez-nous
+      <main className="bg-[#faf8f5] min-h-screen pt-20">
+        
+        {/* Hero Section */}
+        <section className="py-24 md:py-32">
+          <div className="container mx-auto px-6 lg:px-8 text-center">
+            
+            <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
+              Contact
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2d2a26] mb-8 leading-tight">
+              Parlons de Votre Projet
             </h1>
-            <p className="text-lg text-secondary/80 max-w-2xl mx-auto">
+
+            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+
+            <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
               Nous sommes là pour vous accompagner dans tous vos projets floraux. 
               N'hésitez pas à nous contacter pour un devis personnalisé.
             </p>
           </div>
         </section>
 
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-6 lg:px-8 pb-24 md:pb-32">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Contact Information */}
+            
+            {/* Informations de Contact */}
             <div>
-              <h2 className="font-serif text-3xl font-bold text-primary mb-8">
-                Informations de contact
-              </h2>
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+                Informations
+              </div>
               
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="text-accent" size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-primary mb-1">Adresse</h3>
-                    <p className="text-muted">
-                      Place de l'Église<br />
-                      50270 Saint-Pair-sur-Mer, France
-                    </p>
-                  </div>
+              <h2 className="text-3xl md:text-4xl font-serif text-[#2d2a26] mb-8">
+                Nous Trouver
+              </h2>
+
+              <div className="w-16 h-px bg-[#c4a47a] mb-12"></div>
+              
+              <div className="space-y-12">
+                <div>
+                  <h3 className="text-xl font-serif text-[#2d2a26] mb-3">Adresse</h3>
+                  <p className="text-[#2d2a26] font-light leading-relaxed">
+                    Place de l'Église<br />
+                    50270 Saint-Pair-sur-Mer<br />
+                    France
+                  </p>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone className="text-accent" size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-primary mb-1">Téléphone</h3>
-                    <p className="text-muted">01 23 45 67 89</p>
-                  </div>
+                <div>
+                  <h3 className="text-xl font-serif text-[#2d2a26] mb-3">Téléphone</h3>
+                  <a 
+                    href="tel:0233502615" 
+                    className="text-[#c4a47a] font-light hover:text-[#b8956a] transition-colors"
+                  >
+                    02 33 50 26 15
+                  </a>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Mail className="text-accent" size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-primary mb-1">Email</h3>
-                    <p className="text-muted">contact@annefreret.com</p>
-                  </div>
+                <div>
+                  <h3 className="text-xl font-serif text-[#2d2a26] mb-3">Email</h3>
+                  <a 
+                    href="mailto:contact@annefreret.com" 
+                    className="text-[#c4a47a] font-light hover:text-[#b8956a] transition-colors"
+                  >
+                    contact@annefreret.com
+                  </a>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Clock className="text-accent" size={20} />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-primary mb-1">Horaires</h3>
-                    <div className="text-muted space-y-1">
-                      <p>Lundi - Samedi : 9h00 - 19h00</p>
-                      <p>Dimanche : 10h00 - 17h00</p>
-                      <p className="text-sm italic">Fermé les jours fériés</p>
-                    </div>
+                <div>
+                  <h3 className="text-xl font-serif text-[#2d2a26] mb-3">Horaires</h3>
+                  <div className="text-[#2d2a26] font-light leading-relaxed space-y-1">
+                    <p>Lundi - Samedi : 9h00 - 19h00</p>
+                    <p>Dimanche : 10h00 - 17h00</p>
+                    <p className="text-sm text-[#c4a47a]">Fermé les jours fériés</p>
                   </div>
                 </div>
               </div>
 
-              {/* Map placeholder */}
-              <div className="mt-8 h-64 bg-gray-200 rounded-lg flex items-center justify-center">
-                <p className="text-gray-600">Carte Google Maps</p>
+              {/* Carte placeholder */}
+              <div className="mt-12 h-64 bg-white border border-[#c4a47a]/20 flex items-center justify-center">
+                <p className="text-[#2d2a26] font-light">Carte de localisation</p>
               </div>
             </div>
 
-            {/* Contact Form */}
+            {/* Formulaire de Contact */}
             <div>
-              <h2 className="font-serif text-3xl font-bold text-primary mb-8">
-                Envoyez-nous un message
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+                Message
+              </div>
+              
+              <h2 className="text-3xl md:text-4xl font-serif text-[#2d2a26] mb-8">
+                Écrivez-nous
               </h2>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="w-16 h-px bg-[#c4a47a] mb-12"></div>
+
+              <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-primary mb-2">
+                    <label htmlFor="name" className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
                       Nom *
                     </label>
                     <input
@@ -135,12 +146,12 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                      className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-primary mb-2">
+                    <label htmlFor="phone" className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
                       Téléphone
                     </label>
                     <input
@@ -149,13 +160,13 @@ export default function Contact() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                      className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-primary mb-2">
+                  <label htmlFor="email" className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
                     Email *
                   </label>
                   <input
@@ -165,12 +176,12 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                    className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-primary mb-2">
+                  <label htmlFor="subject" className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
                     Sujet *
                   </label>
                   <select
@@ -179,7 +190,7 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+                    className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors"
                   >
                     <option value="">Sélectionnez un sujet</option>
                     <option value="devis">Demande de devis</option>
@@ -192,7 +203,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-primary mb-2">
+                  <label htmlFor="message" className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
                     Message *
                   </label>
                   <textarea
@@ -202,54 +213,61 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent resize-none"
+                    className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors resize-none"
                     placeholder="Décrivez votre projet, vos besoins, la date souhaitée..."
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={isSubmitted}
-                  className="w-full bg-accent text-primary font-semibold py-4 px-6 rounded-lg hover:bg-accent/90 transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50"
-                >
-                  {isSubmitted ? (
-                    <span>Message envoyé ✓</span>
-                  ) : (
-                    <>
-                      <span>Envoyer le message</span>
-                      <Send size={18} />
-                    </>
-                  )}
-                </button>
-              </form>
+                <div className="text-center pt-6">
+                  <button
+                    type="submit"
+                    disabled={isSubmitted}
+                    className="bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300 disabled:opacity-50"
+                  >
+                    {isSubmitted ? 'Message envoyé ✓' : 'Envoyer le message'}
+                  </button>
 
-              <p className="text-sm text-muted mt-4">
-                * Champs obligatoires. Nous nous engageons à répondre sous 24h.
-              </p>
+                  <p className="text-[#2d2a26] text-sm font-light mt-6">
+                    * Champs obligatoires. Nous nous engageons à répondre sous 24h.
+                  </p>
+                </div>
+              </form>
             </div>
           </div>
         </div>
 
         {/* CTA Section */}
-        <section className="bg-primary text-secondary py-16">
-          <div className="container mx-auto px-4 text-center">
-            <h2 className="font-serif text-3xl font-bold mb-4">
-              Besoin d'un conseil personnalisé ?
+        <section className="py-24 md:py-32 bg-white">
+          <div className="container mx-auto px-6 lg:px-8 text-center">
+            
+            <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              Conseil Personnalisé
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl font-serif text-[#2d2a26] mb-8">
+              Besoin d'un Accompagnement ?
             </h2>
-            <p className="text-lg text-secondary/80 mb-8 max-w-2xl mx-auto">
+            
+            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+            
+            <p className="text-xl text-[#2d2a26] font-light mb-12 max-w-2xl mx-auto leading-relaxed">
               Nos experts sont disponibles pour vous accompagner dans votre projet. 
               Appelez-nous directement ou prenez rendez-vous en boutique.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            
+            <div className="flex flex-col sm:flex-row gap-8 justify-center">
               <a
-                href="tel:0123456789"
-                className="bg-accent text-primary px-8 py-3 rounded-full font-semibold hover:bg-accent/90 transition-colors"
+                href="tel:0233502615"
+                className="bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
               >
                 Appeler maintenant
               </a>
-              <button className="border-2 border-secondary text-secondary px-8 py-3 rounded-full font-semibold hover:bg-secondary hover:text-primary transition-colors">
-                Prendre rendez-vous
-              </button>
+              <a
+                href="/boutique"
+                className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors py-4"
+              >
+                Découvrir nos créations
+              </a>
             </div>
           </div>
         </section>

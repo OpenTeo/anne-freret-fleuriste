@@ -26,33 +26,48 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-      <main className="pt-20">
+      <main className="bg-[#faf8f5] min-h-screen pt-20">
         
         {/* Hero Section */}
-        <section className="py-16 md:py-20 bg-[#faf8f5]">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#2d2a26] mb-4">
+        <section className="py-24 md:py-32">
+          <div className="container mx-auto px-6 lg:px-8 text-center">
+            
+            <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
               Le Journal Floral
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2d2a26] mb-8 leading-tight">
+              Conseils & Inspirations
             </h1>
-            <p className="text-[#6b6560] text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+            
+            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+            
+            <p className="text-xl text-[#2d2a26] font-light leading-relaxed max-w-2xl mx-auto">
               Découvrez nos conseils d'experts, nos inspirations saisonnières et les secrets 
               de l'art floral normand à travers nos articles passionnés.
             </p>
           </div>
         </section>
 
-        {/* Filters */}
-        <section className="py-8 bg-[#ffffff] border-b border-[#e8e0d8]">
-          <div className="max-w-6xl mx-auto px-4 md:px-6">
-            <div className="flex flex-wrap gap-2 md:gap-4 justify-center">
+        {/* Filtres */}
+        <section className="py-12 border-b border-[#c4a47a]/20">
+          <div className="container mx-auto px-6 lg:px-8">
+            
+            <div className="text-center mb-8">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-4">
+                Filtrer par catégorie
+              </div>
+            </div>
+            
+            <div className="flex flex-wrap gap-3 justify-center">
               {CATEGORIES.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 text-sm md:text-base rounded-full transition-all ${
+                  className={`px-4 py-2 rounded-full transition-all duration-300 border text-sm ${
                     selectedCategory === category
-                      ? 'bg-[#b8956a] text-white'
-                      : 'bg-[#faf8f5] text-[#2d2a26] hover:bg-[#e8e0d8] border border-[#e8e0d8]'
+                      ? 'bg-[#c4a47a] text-white border-[#c4a47a]'
+                      : 'bg-transparent text-[#2d2a26] border-[#c4a47a]/30 hover:bg-[#c4a47a] hover:text-white hover:border-[#c4a47a]'
                   }`}
                 >
                   {category}
@@ -63,65 +78,66 @@ export default function BlogPage() {
         </section>
 
         {/* Articles Grid */}
-        <section className="py-12 md:py-16 bg-[#faf8f5]">
-          <div className="max-w-6xl mx-auto px-4 md:px-6">
+        <section className="py-24 md:py-32">
+          <div className="container mx-auto px-6 lg:px-8">
             
             {filteredPosts.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-[#6b6560] text-lg">
+                <p className="text-[#2d2a26] font-light text-lg">
                   Aucun article trouvé dans cette catégorie.
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 {filteredPosts.map((post) => (
                   <Link 
                     key={post.id} 
                     href={`/blog/${post.slug}`}
-                    className="group bg-[#ffffff] rounded-lg overflow-hidden border border-[#e8e0d8] hover:shadow-lg transition-all duration-300"
+                    className="group bg-white overflow-hidden hover:bg-[#faf8f5] transition-all duration-300"
                   >
                     {/* Image */}
-                    <div className="aspect-[4/3] overflow-hidden">
+                    <div className="aspect-[4/3] overflow-hidden mb-6">
                       <img
                         src={post.image}
                         alt={post.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                       />
                     </div>
 
                     {/* Content */}
                     <div className="p-6">
-                      {/* Category Badge */}
-                      <div className="mb-3">
-                        <span className="inline-block px-3 py-1 text-xs font-medium text-[#b8956a] bg-[#b8956a]/10 rounded-full">
-                          {post.category}
-                        </span>
+                      {/* Category */}
+                      <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-4">
+                        {post.category}
                       </div>
 
                       {/* Title */}
-                      <h3 className="font-serif text-xl md:text-2xl text-[#2d2a26] mb-3 group-hover:text-[#b8956a] transition-colors line-clamp-2">
+                      <h3 className="text-xl md:text-2xl font-serif text-[#2d2a26] mb-4 leading-tight group-hover:text-[#c4a47a] transition-colors">
                         {post.title}
                       </h3>
 
                       {/* Excerpt */}
-                      <p className="text-[#6b6560] text-sm md:text-base leading-relaxed mb-4 line-clamp-3">
+                      <p className="text-[#2d2a26] font-light leading-relaxed mb-6">
                         {post.excerpt}
                       </p>
 
                       {/* Meta */}
-                      <div className="flex items-center justify-between text-xs md:text-sm text-[#999]">
-                        <div className="flex items-center gap-4">
-                          <span>
-                            {new Date(post.date).toLocaleDateString('fr-FR', {
-                              day: 'numeric',
-                              month: 'long',
-                              year: 'numeric'
-                            })}
-                          </span>
-                          <span>{post.readTime}</span>
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="text-[#2d2a26] font-light">
+                          {new Date(post.date).toLocaleDateString('fr-FR', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric'
+                          })}
                         </div>
-                        <span className="text-[#b8956a] group-hover:underline">
-                          Lire la suite →
+                        <div className="text-[#2d2a26] font-light">
+                          {post.readTime}
+                        </div>
+                      </div>
+
+                      <div className="mt-6 pt-6 border-t border-[#c4a47a]/20">
+                        <span className="text-[#c4a47a] group-hover:text-[#b8956a] transition-colors underline">
+                          Lire la suite
                         </span>
                       </div>
                     </div>
@@ -132,6 +148,42 @@ export default function BlogPage() {
           </div>
         </section>
 
+        {/* Newsletter CTA */}
+        <section className="py-24 md:py-32 bg-white">
+          <div className="container mx-auto px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto">
+              
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+                Newsletter
+              </div>
+              
+              <h2 className="text-3xl md:text-4xl font-serif text-[#2d2a26] mb-8">
+                Restez Inspiré
+              </h2>
+              
+              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              
+              <p className="text-xl text-[#2d2a26] font-light mb-12 leading-relaxed">
+                Recevez nos derniers conseils floraux et inspirations directement dans votre boîte mail.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-4">
+                <input
+                  type="email"
+                  placeholder="Votre adresse email"
+                  className="flex-1 px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors"
+                />
+                <button className="bg-[#c4a47a] text-white px-8 py-3 hover:bg-[#b8956a] transition-colors duration-300 whitespace-nowrap">
+                  S'abonner
+                </button>
+              </div>
+              
+              <p className="text-[#2d2a26] font-light text-sm mt-4">
+                Pas de spam, juste des conseils floraux de qualité.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>

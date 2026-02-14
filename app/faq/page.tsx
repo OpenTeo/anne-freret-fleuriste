@@ -4,7 +4,6 @@ import { useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
-import { ChevronRight, ChevronDown, HelpCircle } from 'lucide-react';
 
 interface FAQItem {
   id: number;
@@ -16,7 +15,7 @@ const faqData: FAQItem[] = [
   {
     id: 1,
     question: "Comment passer commande ?",
-    answer: "Vous pouvez passer commande de plusieurs façons : directement en magasin (Place de l'Église, 50270 Saint-Pair-sur-Mer), par téléphone (02 33 50 26 15), sur notre site internet annefreret.fr, ou par email (contact@annefreret.fr). Pour les commandes urgentes, nous recommandons le téléphone pour vérifier la disponibilité en temps réel."
+    answer: "Vous pouvez passer commande de plusieurs façons : directement en magasin (Place de l'Église, 50270 Saint-Pair-sur-Mer), par téléphone (02 33 50 26 15), sur notre site internet, ou par email (contact@annefreret.fr). Pour les commandes urgentes, nous recommandons le téléphone pour vérifier la disponibilité en temps réel."
   },
   {
     id: 2,
@@ -26,52 +25,52 @@ const faqData: FAQItem[] = [
   {
     id: 3,
     question: "Livrez-vous partout en France ?",
-    answer: "Oui, nous livrons sur toute la France métropolitaine. Notre zone de livraison prioritaire couvre la Normandie avec des délais raccourcis. Pour la Corse et les DOM-TOM, des conditions particulières s'appliquent - n'hésitez pas à nous contacter pour plus d'informations sur les modalités et tarifs spécifiques."
+    answer: "Oui, nous livrons sur toute la France métropolitaine. Notre zone de livraison prioritaire couvre la Normandie avec des délais raccourcis. Pour la Corse et les DOM-TOM, des conditions particulières s'appliquent - n'hésitez pas à nous contacter pour plus d'informations."
   },
   {
     id: 4,
     question: "Puis-je choisir une date de livraison ?",
-    answer: "Absolument ! Nous proposons un service de livraison à date choisie, particulièrement apprécié pour les anniversaires, fêtes et événements spéciaux. Lors de votre commande, indiquez simplement la date souhaitée. Nous recommandons de commander au moins 48h à l'avance pour garantir la disponibilité du créneau."
+    answer: "Absolument ! Nous proposons un service de livraison à date choisie, particulièrement apprécié pour les anniversaires, fêtes et événements spéciaux. Lors de votre commande, indiquez simplement la date souhaitée. Nous recommandons de commander au moins 48h à l'avance."
   },
   {
     id: 5,
     question: "Comment sont emballées les fleurs ?",
-    answer: "Nos fleurs sont emballées avec le plus grand soin dans des contenants spécialisés avec réserve d'eau pour maintenir leur fraîcheur pendant le transport. Nous utilisons des matériaux de protection adaptés et un emballage isotherme si nécessaire. Chaque bouquet est accompagné d'instructions d'entretien pour maximiser sa durée de vie."
+    answer: "Nos fleurs sont emballées avec le plus grand soin dans des contenants spécialisés avec réserve d'eau pour maintenir leur fraîcheur pendant le transport. Nous utilisons des matériaux de protection adaptés et un emballage isotherme si nécessaire."
   },
   {
     id: 6,
     question: "Que faire si mon bouquet arrive endommagé ?",
-    answer: "Si vous constatez que vos fleurs sont fanées ou endommagées à la réception, contactez-nous immédiatement (dans les 24h) avec des photos à l'appui. Nous nous engageons à remplacer gratuitement tout bouquet qui ne correspondrait pas à nos standards de qualité. Votre satisfaction est notre priorité."
+    answer: "Si vous constatez que vos fleurs sont fanées ou endommagées à la réception, contactez-nous immédiatement (dans les 24h) avec des photos à l'appui. Nous nous engageons à remplacer gratuitement tout bouquet qui ne correspondrait pas à nos standards de qualité."
   },
   {
     id: 7,
     question: "Puis-je ajouter un message personnalisé ?",
-    answer: "Bien sûr ! Nous incluons gratuitement une carte avec votre message personnalisé avec chaque commande. Vous pouvez rédiger votre message lors de la commande en ligne, ou nous le communiquer par téléphone ou email. Nos cartes élégantes s'harmonisent parfaitement avec nos créations florales."
+    answer: "Bien sûr ! Nous incluons gratuitement une carte avec votre message personnalisé avec chaque commande. Vous pouvez rédiger votre message lors de la commande en ligne, ou nous le communiquer par téléphone ou email."
   },
   {
     id: 8,
     question: "Quels sont les moyens de paiement acceptés ?",
-    answer: "Nous acceptons tous les moyens de paiement courants : carte bancaire (Visa, Mastercard, American Express) en ligne et en magasin, espèces et chèques pour les achats en boutique, et virement bancaire pour les commandes importantes. Tous nos paiements en ligne sont sécurisés par protocole SSL."
+    answer: "Nous acceptons tous les moyens de paiement courants : carte bancaire (Visa, Mastercard, American Express) en ligne et en magasin, espèces et chèques pour les achats en boutique, et virement bancaire pour les commandes importantes."
   },
   {
     id: 9,
     question: "Peut-on annuler ou modifier une commande ?",
-    answer: "Les modifications et annulations sont possibles jusqu'à 24h avant la date de livraison prévue. Pour les livraisons le jour même, contactez-nous avant 10h du matin. Après ces délais, nous ne pouvons plus garantir les modifications car la préparation est souvent en cours. Les fleurs fraîches étant périssables, les remboursements ne sont possibles qu'en cas de force majeure."
+    answer: "Les modifications et annulations sont possibles jusqu'à 24h avant la date de livraison prévue. Pour les livraisons le jour même, contactez-nous avant 10h du matin. Après ces délais, nous ne pouvons plus garantir les modifications car la préparation est souvent en cours."
   },
   {
     id: 10,
     question: "Comment entretenir mon bouquet ?",
-    answer: "Pour prolonger la vie de vos fleurs : coupez les tiges en biseau sous l'eau froide, placez-les dans un vase propre avec de l'eau fraîche, changez l'eau tous les 2-3 jours, retirez les feuilles qui trempent dans l'eau, et gardez votre bouquet loin des sources de chaleur. Consultez notre guide complet d'entretien pour plus de conseils détaillés."
+    answer: "Pour prolonger la vie de vos fleurs : coupez les tiges en biseau sous l'eau froide, placez-les dans un vase propre avec de l'eau fraîche, changez l'eau tous les 2-3 jours, retirez les feuilles qui trempent dans l'eau, et gardez votre bouquet loin des sources de chaleur."
   },
   {
     id: 11,
     question: "Proposez-vous des services pour les mariages ?",
-    answer: "Oui ! Nous sommes spécialisés dans les décorations florales de mariage. Nous proposons : bouquet de mariée, boutonnières et corsages, centres de table, décoration de cérémonie et de réception, arches florales. Nous offrons une consultation gratuite pour discuter de vos souhaits et établir un devis personnalisé selon votre budget et vos goûts."
+    answer: "Oui ! Nous sommes spécialisés dans les décorations florales de mariage. Nous proposons : bouquet de mariée, boutonnières et corsages, centres de table, décoration de cérémonie et de réception, arches florales. Consultation gratuite disponible."
   },
   {
     id: 12,
     question: "Y a-t-il un minimum de commande ?",
-    answer: "Il n'y a pas de montant minimum pour les commandes en magasin. Pour les livraisons, un montant minimum peut s'appliquer selon la zone géographique (généralement 30€). Pour les livraisons gratuites, le seuil est fixé à 60€. Ces conditions sont clairement indiquées lors de votre commande."
+    answer: "Il n'y a pas de montant minimum pour les commandes en magasin. Pour les livraisons, un montant minimum peut s'appliquer selon la zone géographique (généralement 30€). Pour les livraisons gratuites, le seuil est fixé à 60€."
   }
 ];
 
@@ -89,55 +88,59 @@ export default function FAQ() {
   return (
     <>
       <Header />
-      <main className="min-h-screen">
+      <main className="bg-[#faf8f5] min-h-screen pt-20">
+        
         {/* Breadcrumb */}
-        <section className="bg-gray py-6">
-          <div className="container mx-auto px-4">
+        <section className="py-6 border-b border-[#c4a47a]/20">
+          <div className="container mx-auto px-6 lg:px-8">
             <nav className="flex items-center space-x-2 text-sm">
-              <Link href="/" className="text-muted hover:text-accent transition-colors">
+              <Link href="/" className="text-[#c4a47a] hover:text-[#b8956a] transition-colors">
                 Accueil
               </Link>
-              <ChevronRight size={16} className="text-muted" />
-              <span className="text-primary">FAQ</span>
+              <span className="text-[#c4a47a]">/</span>
+              <span className="text-[#2d2a26] font-light">FAQ</span>
             </nav>
           </div>
         </section>
 
         {/* Hero section */}
-        <section className="bg-primary text-secondary py-16">
-          <div className="container mx-auto px-4 text-center">
-            <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center">
-                <HelpCircle size={32} className="text-accent" />
-              </div>
+        <section className="py-24 md:py-32">
+          <div className="container mx-auto px-6 lg:px-8 text-center">
+            
+            <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
+              Questions Fréquentes
             </div>
-            <h1 className="font-serif text-4xl md:text-6xl font-bold mb-4">
-              Questions fréquentes
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2d2a26] mb-8 leading-tight">
+              Toutes les Réponses à Vos Questions
             </h1>
-            <p className="text-lg text-secondary/80 max-w-2xl mx-auto">
+            
+            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+            
+            <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
               Trouvez rapidement les réponses à vos questions sur nos services, nos livraisons et l'entretien de vos fleurs.
             </p>
           </div>
         </section>
 
         {/* Introduction */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
+        <section className="pb-12">
+          <div className="container mx-auto px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
-              <p className="text-lg text-muted mb-8">
+              <p className="text-lg text-[#2d2a26] font-light mb-8 leading-relaxed">
                 Vous trouverez ci-dessous les réponses aux questions les plus fréquemment posées. 
                 Si vous ne trouvez pas l'information recherchée, n'hésitez pas à nous contacter directement.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-8 justify-center">
                 <Link
                   href="/contact"
-                  className="bg-accent text-white px-6 py-3 rounded-full font-semibold hover:bg-accent/90 transition-colors inline-flex items-center justify-center"
+                  className="bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
                 >
-                  Nous contacter
+                  Nous Contacter
                 </Link>
                 <Link
-                  href="tel:0233XXXXXX"
-                  className="border-2 border-accent text-accent px-6 py-3 rounded-full font-semibold hover:bg-accent hover:text-white transition-colors inline-flex items-center justify-center"
+                  href="tel:0233502615"
+                  className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors py-4"
                 >
                   02 33 50 26 15
                 </Link>
@@ -147,29 +150,33 @@ export default function FAQ() {
         </section>
 
         {/* FAQ Accordion */}
-        <section className="pb-16">
-          <div className="container mx-auto px-4">
+        <section className="py-24 md:py-32 bg-white">
+          <div className="container mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
-              <div className="space-y-4">
+              <div className="space-y-2">
                 {faqData.map((item) => (
                   <div
                     key={item.id}
-                    className="bg-white border border-light-gray rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                    className="border border-[#c4a47a]/20 hover:border-[#c4a47a]/40 transition-colors"
                   >
                     <button
                       onClick={() => toggleItem(item.id)}
-                      className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-gray/30 transition-colors"
+                      className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-[#faf8f5] transition-colors"
                     >
-                      <h3 className="font-serif text-lg font-semibold text-primary pr-4">
+                      <h3 className="text-lg font-serif text-[#2d2a26] pr-4 leading-tight">
                         {item.question}
                       </h3>
                       <div className="flex-shrink-0">
-                        <ChevronDown
-                          size={20}
-                          className={`text-accent transition-transform duration-300 ${
+                        <svg
+                          className={`w-5 h-5 text-[#c4a47a] transition-transform duration-300 ${
                             openItems.includes(item.id) ? 'rotate-180' : ''
                           }`}
-                        />
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
                       </div>
                     </button>
                     
@@ -178,9 +185,9 @@ export default function FAQ() {
                         openItems.includes(item.id) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                       }`}
                     >
-                      <div className="px-6 pb-5 pt-2">
-                        <div className="border-t border-light-gray pt-4">
-                          <p className="text-muted leading-relaxed">
+                      <div className="px-8 pb-6">
+                        <div className="border-t border-[#c4a47a]/20 pt-6">
+                          <p className="text-[#2d2a26] font-light leading-relaxed">
                             {item.answer}
                           </p>
                         </div>
@@ -194,59 +201,68 @@ export default function FAQ() {
         </section>
 
         {/* Additional Help Section */}
-        <section className="bg-gray py-16">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h2 className="font-serif text-3xl font-bold text-primary mb-6">
-                Besoin d'aide supplémentaire ?
+        <section className="py-24 md:py-32">
+          <div className="container mx-auto px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+                Aide Supplémentaire
+              </div>
+              
+              <h2 className="text-3xl md:text-4xl font-serif text-[#2d2a26] mb-8">
+                Besoin d'un Conseil Personnalisé ?
               </h2>
-              <p className="text-lg text-muted mb-8">
+              
+              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              
+              <p className="text-xl text-[#2d2a26] font-light leading-relaxed">
                 Notre équipe est disponible pour répondre à toutes vos questions spécifiques 
                 et vous accompagner dans votre projet floral.
               </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-accent font-serif font-bold text-xl">?</span>
-                  </div>
-                  <h3 className="font-serif font-semibold text-primary mb-2">Questions techniques</h3>
-                  <p className="text-sm text-muted mb-4">Entretien, conservation, conseils de pro</p>
-                  <Link 
-                    href="/entretien" 
-                    className="text-accent font-medium hover:underline"
-                  >
-                    Guide d'entretien →
-                  </Link>
-                </div>
+              <div className="bg-white p-8 text-center">
+                <h3 className="text-xl font-serif text-[#2d2a26] mb-4">Questions Techniques</h3>
+                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <p className="text-[#2d2a26] font-light mb-6 leading-relaxed">
+                  Entretien, conservation, conseils de pro
+                </p>
+                <Link 
+                  href="/entretien" 
+                  className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                >
+                  Guide d'entretien
+                </Link>
+              </div>
 
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-accent font-serif font-bold text-xl">💡</span>
-                  </div>
-                  <h3 className="font-serif font-semibold text-primary mb-2">Conseils personnalisés</h3>
-                  <p className="text-sm text-muted mb-4">Projets spéciaux, mariages, événements</p>
-                  <Link 
-                    href="/contact" 
-                    className="text-accent font-medium hover:underline"
-                  >
-                    Nous consulter →
-                  </Link>
-                </div>
+              <div className="bg-white p-8 text-center">
+                <h3 className="text-xl font-serif text-[#2d2a26] mb-4">Conseils Personnalisés</h3>
+                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <p className="text-[#2d2a26] font-light mb-6 leading-relaxed">
+                  Projets spéciaux, mariages, événements
+                </p>
+                <Link 
+                  href="/contact" 
+                  className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                >
+                  Nous consulter
+                </Link>
+              </div>
 
-                <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span className="text-accent font-serif font-bold text-xl">📞</span>
-                  </div>
-                  <h3 className="font-serif font-semibold text-primary mb-2">Support direct</h3>
-                  <p className="text-sm text-muted mb-4">Lun-Sam 9h-19h, Dim 10h-17h</p>
-                  <Link 
-                    href="tel:0233XXXXXX" 
-                    className="text-accent font-medium hover:underline"
-                  >
-                    02 33 50 26 15 →
-                  </Link>
-                </div>
+              <div className="bg-white p-8 text-center">
+                <h3 className="text-xl font-serif text-[#2d2a26] mb-4">Support Direct</h3>
+                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <p className="text-[#2d2a26] font-light mb-6 leading-relaxed">
+                  Lun-Sam 9h-19h, Dim 10h-17h
+                </p>
+                <Link 
+                  href="tel:0233502615" 
+                  className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                >
+                  02 33 50 26 15
+                </Link>
               </div>
             </div>
           </div>
