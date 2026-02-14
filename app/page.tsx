@@ -2,6 +2,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import FeaturedProducts from '@/components/sections/FeaturedProducts';
 import Testimonials from '@/components/sections/Testimonials';
+import HeroSlider from '@/components/sections/HeroSlider';
 import { blogPosts } from '@/lib/mock-data';
 import Link from 'next/link';
 
@@ -101,49 +102,9 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Mobile: Hero image + scrollable category pills */}
+            {/* Mobile: Slider plein écran avec catégories */}
             <div className="md:hidden">
-              {/* Hero image principale */}
-              <Link 
-                href="/boutique" 
-                className="group relative block aspect-[4/3] overflow-hidden rounded-xl mb-6"
-              >
-                <img 
-                  src="https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454"
-                  alt="Nos Bouquets" 
-                  className="w-full h-full object-cover" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white/80 text-xs tracking-[0.2em] uppercase mb-1">Fleuriste artisanal</p>
-                  <h2 className="text-white font-serif text-2xl font-bold mb-2">Découvrir nos créations</h2>
-                  <span className="inline-block text-white text-xs font-medium px-4 py-2 rounded-full" style={{ backgroundColor: 'rgba(184,149,106,0.9)' }}>
-                    Voir la boutique →
-                  </span>
-                </div>
-              </Link>
-
-              {/* Catégories horizontales scrollables */}
-              <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4" style={{ scrollbarWidth: 'none' }}>
-                {[
-                  { href: '/boutique', label: 'Bouquets', icon: '💐' },
-                  { href: '/mariages', label: 'Mariages', icon: '💒' },
-                  { href: '/boutique?cat=deuil', label: 'Deuil', icon: '🕊️' },
-                  { href: '/livraison', label: 'Livraison', icon: '🚚' },
-                  { href: '/blog', label: 'Blog', icon: '📝' },
-                  { href: '/entretien', label: 'Entretien', icon: '🌿' },
-                ].map((cat) => (
-                  <Link 
-                    key={cat.href}
-                    href={cat.href} 
-                    className="flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors"
-                    style={{ backgroundColor: '#ffffff', border: '1px solid #e8e0d8', color: '#2d2a26' }}
-                  >
-                    <span>{cat.icon}</span>
-                    <span>{cat.label}</span>
-                  </Link>
-                ))}
-              </div>
+              <HeroSlider />
             </div>
           </div>
         </section>
