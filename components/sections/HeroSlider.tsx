@@ -20,7 +20,7 @@ const slides = [
   },
   {
     href: '/boutique',
-    image: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=1400&q=85',
     subtitle: 'Composition unique du jour',
     title: 'Le choix du fleuriste',
     cta: 'Découvrir →',
@@ -141,7 +141,7 @@ export default function HeroSlider() {
               />
               {/* Text content — bandeau blanc en bas pour lisibilité */}
               <div className="absolute bottom-0 left-0 right-0">
-                <div className="bg-white/90 backdrop-blur-sm p-8 md:p-12 pb-16 md:pb-20">
+                <div className="bg-white/90 backdrop-blur-sm p-6 md:p-10 pb-14 md:pb-16">
                   <div className="max-w-4xl">
                     <p 
                       className={`text-[#c4a47a] text-[11px] md:text-xs tracking-[0.25em] uppercase mb-2 md:mb-3 transition-all duration-700 delay-100 ${
