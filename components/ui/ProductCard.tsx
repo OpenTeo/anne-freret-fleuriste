@@ -19,40 +19,24 @@ const ProductCard = ({ product, className = '' }: ProductCardProps) => {
       className={`group block ${className}`}
     >
       {/* Image */}
-      <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-transparent mb-4 group-hover:shadow-lg transition-all duration-700">
+      <div className="relative aspect-[3/4] overflow-hidden mb-6 md:mb-8">
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-500"
           loading="lazy"
         />
-        {product.featured && (
-          <span className="absolute top-3 left-3 bg-[#c4a47a] text-white text-[10px] font-medium px-2.5 py-1 tracking-[0.2em] uppercase">
-            Coup de cœur
-          </span>
-        )}
       </div>
 
-      {/* Content */}
-      {product.category && (
-        <div className="mb-1">
-          <span className="luxury-label text-[#c4a47a] text-[10px]">
-            {product.category}
-          </span>
-        </div>
-      )}
-      
-      <h3 className="font-serif text-lg text-[#2d2a26] mb-2 group-hover:text-[#c4a47a] transition-colors leading-tight">
-        {product.name}
-      </h3>
-      
-      <div className="flex items-center gap-1">
-        <span className="luxury-label text-[#c4a47a] text-[11px]">
-          {product.sizes ? 'Dès' : ''}
-        </span>
-        <span className="text-[#2d2a26] text-base luxury-price font-light">
-          {formatPrice(product.price)} €
-        </span>
+      {/* Content - Très espacé */}
+      <div className="space-y-3 md:space-y-4">
+        <h3 className="font-serif text-lg md:text-xl lg:text-2xl text-[#2d2a26] group-hover:text-[#c4a47a] transition-colors leading-tight font-light">
+          {product.name}
+        </h3>
+        
+        <p className="text-[#2d2a26]/70 text-sm md:text-base font-light">
+          dès {formatPrice(product.price)} €
+        </p>
       </div>
     </Link>
   );

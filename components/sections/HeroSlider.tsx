@@ -6,31 +6,31 @@ import Link from 'next/link';
 const slides = [
   {
     href: '/boutique',
-    image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454',
+    image: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1200',
     subtitle: 'Créations florales d\'exception',
     title: 'Nos Bouquets',
-    cta: 'Découvrir la collection',
+    cta: 'Découvrir →',
   },
   {
     href: '/mariages',
-    image: 'https://fleuriste-annefreret.com/cdn/shop/files/1_2898336f-1c54-4008-a6e6-cfed21832288.png',
+    image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200',
     subtitle: 'Votre jour, nos fleurs',
     title: 'Mariages',
-    cta: 'Voir nos prestations',
+    cta: 'Découvrir →',
   },
   {
     href: '/boutique?cat=fleuriste',
-    image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
+    image: 'https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=1200',
     subtitle: 'Composition unique du jour',
     title: 'Le choix du fleuriste',
-    cta: 'Se laisser surprendre',
+    cta: 'Découvrir →',
   },
   {
-    href: '/boutique?cat=deuil',
-    image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/9D21A555-DA13-4A1B-B926-909320B670FB.jpg?v=1729195556',
-    subtitle: 'Avec respect et délicatesse',
-    title: 'Deuil & Hommages',
-    cta: 'Voir les compositions',
+    href: '/boutique?cat=sur-mesure',
+    image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=1200',
+    subtitle: 'Créations personnalisées',
+    title: 'Sur mesure',
+    cta: 'Découvrir →',
   },
 ];
 
@@ -49,14 +49,14 @@ export default function HeroSlider() {
     goTo((current + 1) % slides.length);
   }, [current, goTo]);
 
-  // Auto-advance every 5s
+  // Auto-advance every 6s
   useEffect(() => {
-    const timer = setInterval(next, 5000);
+    const timer = setInterval(next, 6000);
     return () => clearInterval(timer);
   }, [next]);
 
   return (
-    <div className="relative w-full aspect-[3/4] overflow-hidden rounded-xl">
+    <div className="relative w-full aspect-[2/3] md:h-[85vh] md:aspect-auto overflow-hidden">
       {/* Slides */}
       {slides.map((slide, i) => (
         <Link
@@ -78,51 +78,47 @@ export default function HeroSlider() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20" />
           
           {/* Text content */}
-          <div className="absolute bottom-0 left-0 right-0 p-8 pb-16">
-            <p 
-              className={`text-white/70 text-[11px] tracking-[0.25em] uppercase mb-2 transition-all duration-700 delay-100 ${
-                i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-            >
-              {slide.subtitle}
-            </p>
-            <h2 
-              className={`text-white font-serif text-3xl font-bold mb-4 transition-all duration-700 delay-200 ${
-                i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-            >
-              {slide.title}
-            </h2>
-            <span 
-              className={`inline-block text-white text-[13px] font-medium tracking-wide border border-white/40 px-5 py-2.5 rounded-full backdrop-blur-sm transition-all duration-700 delay-300 ${
-                i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-              style={{ backgroundColor: 'rgba(255,255,255,0.1)' }}
-            >
-              {slide.cta} →
-            </span>
+          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 pb-20 md:pb-24">
+            <div className="max-w-4xl">
+              <p 
+                className={`text-white/80 text-[10px] tracking-[0.2em] uppercase mb-4 md:mb-6 transition-all duration-700 delay-100 font-light ${
+                  i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+              >
+                {slide.subtitle}
+              </p>
+              <h1 
+                className={`text-white font-serif text-4xl md:text-6xl lg:text-8xl font-light mb-8 md:mb-12 transition-all duration-700 delay-200 leading-tight ${
+                  i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+              >
+                {slide.title}
+              </h1>
+              <span 
+                className={`inline-block text-white text-sm md:text-base font-light underline underline-offset-4 hover:text-[#c4a47a] transition-all duration-700 delay-300 ${
+                  i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+              >
+                {slide.cta}
+              </span>
+            </div>
           </div>
         </Link>
       ))}
 
-      {/* Dots */}
-      <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2">
+      {/* Dots - Plus petits et subtils */}
+      <div className="absolute bottom-8 md:bottom-12 left-8 md:left-16 flex gap-3">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); goTo(i); }}
-            className={`transition-all duration-500 rounded-full ${
+            className={`transition-all duration-500 ${
               i === current 
-                ? 'w-6 h-2 bg-white' 
-                : 'w-2 h-2 bg-white/40'
+                ? 'w-8 h-1 bg-white' 
+                : 'w-1 h-1 bg-white/40 hover:bg-white/60'
             }`}
           />
         ))}
-      </div>
-
-      {/* Subtle top-right category count */}
-      <div className="absolute top-4 right-4 text-white/50 text-[11px] tracking-wider font-light">
-        {String(current + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
       </div>
     </div>
   );
