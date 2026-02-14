@@ -13,7 +13,7 @@ const slides = [
   },
   {
     href: '/mariages',
-    image: 'https://images.unsplash.com/photo-1572454591674-2739f30d8c40?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=85',
     subtitle: 'Votre jour, nos fleurs',
     title: 'Mariages',
     cta: 'Découvrir →',
@@ -26,11 +26,11 @@ const slides = [
     cta: 'Découvrir →',
   },
   {
-    href: '/la-marque',
-    image: 'https://images.unsplash.com/photo-1494972308805-463bc619d34e?w=1400&q=85',
-    subtitle: 'Savoir-faire artisanal',
-    title: 'Notre atelier',
-    cta: 'Découvrir →',
+    href: '/abonnement',
+    image: 'https://images.unsplash.com/photo-1546842931-886c185b4c8c?w=1400&q=85',
+    subtitle: 'Recevez des fleurs fraîches chaque mois',
+    title: 'L\'Abonnement Floral',
+    cta: 'Découvrir nos formules →',
   },
 ];
 
