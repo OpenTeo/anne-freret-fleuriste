@@ -20,7 +20,7 @@ const slides = [
   },
   {
     href: '/boutique',
-    image: 'https://images.unsplash.com/photo-1533616688419-b7a585564566?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1400&q=85',
     subtitle: 'Composition unique du jour',
     title: 'Le choix du fleuriste',
     cta: 'Découvrir →',
@@ -82,7 +82,7 @@ export default function HeroSlider() {
 
   return (
     <div 
-      className="relative w-full aspect-[2/3] md:h-[85vh] md:aspect-auto overflow-hidden"
+      className="relative w-full aspect-[9/16] md:h-[85vh] md:aspect-auto overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
