@@ -20,7 +20,7 @@ const slides = [
   },
   {
     href: '/boutique',
-    image: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=1400&q=85',
+    image: 'https://images.pexels.com/photos/4466260/pexels-photo-4466260.jpeg?auto=compress&cs=tinysrgb&w=1400',
     subtitle: 'Composition unique du jour',
     title: 'Le choix du fleuriste',
     cta: 'Découvrir →',
