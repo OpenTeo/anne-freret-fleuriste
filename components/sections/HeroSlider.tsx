@@ -6,7 +6,7 @@ import Link from 'next/link';
 const slides = [
   {
     href: '/boutique',
-    image: 'https://images.unsplash.com/photo-1471696035578-3d8c78d99571?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1400&q=85',
     subtitle: 'Créations florales d\'exception',
     title: 'Nos Bouquets',
     cta: 'Découvrir →',
@@ -20,7 +20,7 @@ const slides = [
   },
   {
     href: '/boutique?cat=fleuriste',
-    image: 'https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1469259943454-aa100abba749?w=1400&q=85',
     subtitle: 'Composition unique du jour',
     title: 'Le choix du fleuriste',
     cta: 'Découvrir →',
