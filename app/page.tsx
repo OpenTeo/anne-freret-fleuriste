@@ -42,7 +42,7 @@ export default function Home() {
         {/* SECTION ATELIER - Photo pleine largeur avec texte overlay */}
         <section className="relative h-[60vh] md:h-[70vh] overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=1400&q=85"
+            src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=1400&q=85"
             alt="L'art floral depuis 2020"
             className="w-full h-full object-cover"
           />
