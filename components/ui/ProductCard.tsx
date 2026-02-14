@@ -19,7 +19,7 @@ const ProductCard = ({ product, className = '' }: ProductCardProps) => {
       className={`group block ${className}`}
     >
       {/* Image */}
-      <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-[#ffffff] border border-[#e8e0d8] mb-3">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-transparent mb-4 group-hover:shadow-lg transition-all duration-700">
         <img
           src={product.image}
           alt={product.name}
@@ -27,20 +27,33 @@ const ProductCard = ({ product, className = '' }: ProductCardProps) => {
           loading="lazy"
         />
         {product.featured && (
-          <span className="absolute top-3 left-3 bg-[#b8956a] text-white text-[10px] font-semibold px-2.5 py-1 tracking-wider uppercase">
+          <span className="absolute top-3 left-3 bg-[#c4a47a] text-white text-[10px] font-medium px-2.5 py-1 tracking-[0.2em] uppercase">
             Coup de cœur
           </span>
         )}
       </div>
 
       {/* Content */}
-      <h3 className="font-serif text-base text-[#2d2a26] mb-1 group-hover:text-[#b8956a] transition-colors">
+      {product.category && (
+        <div className="mb-1">
+          <span className="luxury-label text-[#c4a47a] text-[10px]">
+            {product.category}
+          </span>
+        </div>
+      )}
+      
+      <h3 className="font-serif text-lg text-[#2d2a26] mb-2 group-hover:text-[#c4a47a] transition-colors leading-tight">
         {product.name}
       </h3>
       
-      <span className="text-[#b8956a] text-sm">
-        {product.sizes ? 'À partir de ' : ''}{formatPrice(product.price)} €
-      </span>
+      <div className="flex items-center gap-1">
+        <span className="luxury-label text-[#c4a47a] text-[11px]">
+          {product.sizes ? 'Dès' : ''}
+        </span>
+        <span className="text-[#2d2a26] text-base luxury-price font-light">
+          {formatPrice(product.price)} €
+        </span>
+      </div>
     </Link>
   );
 };

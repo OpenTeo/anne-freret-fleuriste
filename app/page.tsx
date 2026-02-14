@@ -166,19 +166,19 @@ export default function Home() {
         </section>
 
         {/* BARRE DE RECHERCHE RAPIDE */}
-        <section className="py-8 bg-[#ffffff]">
+        <section className="py-12 bg-[#ffffff]">
           <div className="max-w-4xl mx-auto px-4 md:px-6">
             <form className="flex flex-col md:flex-row gap-4 md:gap-3">
               <div className="flex-1">
                 <input
                   type="text"
                   placeholder="Votre code postal ou ville..."
-                  className="w-full px-4 py-3 border border-[#e8e0d8] rounded-md focus:outline-none focus:border-[#b8956a] transition-colors text-sm"
+                  className="w-full px-4 py-3 border border-[#c4a47a]/30 rounded-sm focus:outline-none focus:border-[#c4a47a] transition-all duration-500 text-sm font-light italic font-serif"
                 />
               </div>
               <div className="flex-1">
-                <select className="w-full px-4 py-3 border border-[#e8e0d8] rounded-md focus:outline-none focus:border-[#b8956a] transition-colors text-sm bg-white">
-                  <option value="">Occasion</option>
+                <select className="w-full px-4 py-3 border border-[#c4a47a]/30 rounded-sm focus:outline-none focus:border-[#c4a47a] transition-all duration-500 text-sm bg-white font-light font-serif">
+                  <option value="" className="font-serif italic">Occasion</option>
                   <option value="anniversaire">Anniversaire</option>
                   <option value="fete-des-meres">Fête des mères</option>
                   <option value="mariage">Mariage</option>
@@ -190,7 +190,7 @@ export default function Home() {
               <div className="md:flex-none">
                 <button
                   type="submit"
-                  className="w-full md:w-auto px-6 md:px-8 py-3 bg-[#b8956a] text-white font-medium text-sm uppercase tracking-wider hover:bg-[#a08354] transition-colors rounded-md"
+                  className="btn-luxury w-full md:w-auto bg-[#c4a47a] text-white hover:bg-[#b8956a]"
                 >
                   VOIR LA SÉLECTION
                 </button>
@@ -203,43 +203,48 @@ export default function Home() {
         <FeaturedProducts />
         
         {/* SECTION ENGAGEMENT */}
-        <section className="py-16 md:py-20 bg-[#ffffff]">
-          <div className="max-w-2xl mx-auto px-4 md:px-6 text-center">
-            <p className="text-[#b8956a] text-xs tracking-[0.25em] uppercase mb-3">Notre engagement</p>
-            <h2 className="font-serif text-2xl md:text-3xl text-[#2d2a26] mb-5 leading-snug">
+        <section className="py-20 md:py-24 bg-[#ffffff] relative">
+          {/* Subtle texture overlay */}
+          <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(45deg,transparent_25%,rgba(196,164,122,0.5)_25%,rgba(196,164,122,0.5)_50%,transparent_50%,transparent_75%,rgba(196,164,122,0.5)_75%)] bg-[length:20px_20px]"></div>
+          
+          <div className="max-w-2xl mx-auto px-4 md:px-6 text-center relative">
+            <p className="text-[#c4a47a] luxury-label mb-3">Notre engagement</p>
+            <h2 className="font-serif text-2xl md:text-3xl text-[#2d2a26] mb-6 leading-snug">
               Des fleurs fraîches,<br />un savoir-faire artisanal
             </h2>
-            <p className="text-[#6b6560] text-sm leading-relaxed mb-10">
+            <div className="gold-separator mb-8"></div>
+            <p className="text-[#6b6560] text-sm leading-relaxed mb-12 font-light">
               Chaque bouquet est composé avec soin par nos fleuristes passionnés. 
               Nous sélectionnons les plus belles fleurs de saison pour vous offrir 
               des créations uniques, livrées en toute fraîcheur.
             </p>
-            <div className="flex justify-center gap-8 md:gap-14">
-              <div>
-                <p className="text-[#b8956a] font-serif text-2xl md:text-3xl mb-1">72h</p>
-                <p className="text-[#6b6560] text-[10px] md:text-xs uppercase tracking-wider">Fraîcheur</p>
+            <div className="flex justify-center gap-12 md:gap-16">
+              <div className="fade-in">
+                <p className="text-[#c4a47a] font-serif text-3xl md:text-4xl mb-2 font-light">72h</p>
+                <p className="text-[#6b6560] luxury-label">Fraîcheur</p>
               </div>
-              <div>
-                <p className="text-[#b8956a] font-serif text-2xl md:text-3xl mb-1">17</p>
-                <p className="text-[#6b6560] text-[10px] md:text-xs uppercase tracking-wider">Avis 5★</p>
+              <div className="fade-in">
+                <p className="text-[#c4a47a] font-serif text-3xl md:text-4xl mb-2 font-light">17</p>
+                <p className="text-[#6b6560] luxury-label">Avis 5★</p>
               </div>
-              <div>
-                <p className="text-[#b8956a] font-serif text-2xl md:text-3xl mb-1">100%</p>
-                <p className="text-[#6b6560] text-[10px] md:text-xs uppercase tracking-wider">Artisanal</p>
+              <div className="fade-in">
+                <p className="text-[#c4a47a] font-serif text-3xl md:text-4xl mb-2 font-light">100%</p>
+                <p className="text-[#6b6560] luxury-label">Artisanal</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* SECTION BLOG - Le Journal Floral */}
-        <section className="py-16 md:py-20 bg-[#faf8f5]">
+        <section className="py-20 md:py-24 bg-[#faf8f5]">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
-            <div className="text-center mb-10 md:mb-12">
-              <p className="text-[#b8956a] text-xs tracking-[0.25em] uppercase mb-3">Notre journal</p>
-              <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-[#2d2a26] mb-4">
+            <div className="text-center mb-12 md:mb-16">
+              <p className="text-[#c4a47a] luxury-label mb-3">Notre journal</p>
+              <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-[#2d2a26] mb-6 font-light">
                 Le Journal Floral
               </h2>
-              <p className="text-[#6b6560] text-lg leading-relaxed max-w-2xl mx-auto">
+              <div className="gold-separator mb-6"></div>
+              <p className="text-[#6b6560] text-lg leading-relaxed max-w-2xl mx-auto font-light">
                 Découvrez nos conseils d'experts et nos inspirations florales
               </p>
             </div>
@@ -249,14 +254,14 @@ export default function Home() {
                 <Link 
                   key={post.id} 
                   href={`/blog/${post.slug}`}
-                  className="group bg-[#ffffff] rounded-lg overflow-hidden border border-[#e8e0d8] hover:shadow-lg transition-all duration-300"
+                  className="group bg-[#ffffff] rounded-sm overflow-hidden luxury-lift transition-all duration-700"
                 >
                   {/* Image */}
                   <div className="aspect-[4/3] overflow-hidden">
                     <img
                       src={post.image}
                       alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-700"
                     />
                   </div>
 
@@ -264,33 +269,33 @@ export default function Home() {
                   <div className="p-6">
                     {/* Category Badge */}
                     <div className="mb-3">
-                      <span className="inline-block px-3 py-1 text-xs font-medium text-[#b8956a] bg-[#b8956a]/10 rounded-full">
+                      <span className="luxury-label text-[#c4a47a]">
                         {post.category}
                       </span>
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-serif text-xl md:text-2xl text-[#2d2a26] mb-3 group-hover:text-[#b8956a] transition-colors line-clamp-2">
+                    <h3 className="font-serif text-xl md:text-2xl text-[#2d2a26] mb-4 group-hover:text-[#c4a47a] transition-colors line-clamp-2 font-light leading-tight">
                       {post.title}
                     </h3>
 
                     {/* Excerpt */}
-                    <p className="text-[#6b6560] text-sm md:text-base leading-relaxed mb-4 line-clamp-3">
+                    <p className="text-[#6b6560] text-sm md:text-base leading-relaxed mb-6 line-clamp-3 font-light">
                       {post.excerpt}
                     </p>
 
                     {/* Meta */}
                     <div className="flex items-center justify-between text-xs md:text-sm text-[#999]">
                       <div className="flex items-center gap-4">
-                        <span>
+                        <span className="font-light">
                           {new Date(post.date).toLocaleDateString('fr-FR', {
                             day: 'numeric',
                             month: 'short'
                           })}
                         </span>
-                        <span>{post.readTime}</span>
+                        <span className="font-light">{post.readTime}</span>
                       </div>
-                      <span className="text-[#b8956a] group-hover:underline">
+                      <span className="text-[#c4a47a] group-hover:underline luxury-label">
                         Lire →
                       </span>
                     </div>
@@ -300,10 +305,10 @@ export default function Home() {
             </div>
 
             {/* Link to all articles */}
-            <div className="text-center mt-10">
+            <div className="text-center mt-12">
               <Link 
                 href="/blog"
-                className="inline-flex items-center gap-2 bg-[#b8956a] text-white px-8 py-3 rounded-full font-medium hover:bg-[#a08354] transition-colors"
+                className="btn-luxury inline-flex items-center gap-3 bg-[#c4a47a] text-white hover:bg-[#b8956a]"
               >
                 Tous nos articles
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

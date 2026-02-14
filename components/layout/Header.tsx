@@ -39,17 +39,17 @@ const Header = () => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'bg-[#faf8f5]/95 backdrop-blur-sm border-b border-[#b8956a]/20' : 'bg-[#faf8f5] md:bg-transparent'
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
+        isScrolled ? 'bg-[#faf8f5]/95 backdrop-blur-md border-b border-[#c4a47a]/20' : 'bg-[#faf8f5] md:bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           
           {/* Top bar - desktop */}
           <div className="hidden md:flex items-center justify-between h-20">
             {/* Left nav */}
-            <nav className="flex items-center gap-6">
+            <nav className="flex items-center gap-8">
               {navLinks.slice(0, 3).map(link => (
-                <Link key={link.href} href={link.href} className="text-[#2d2a26]/80 text-[13px] tracking-wide hover:text-[#b8956a] transition-colors">
+                <Link key={link.href} href={link.href} className="text-[#2d2a26]/80 text-[11px] tracking-[0.15em] uppercase hover:text-[#c4a47a] transition-all duration-500">
                   {link.label}
                 </Link>
               ))}
@@ -57,17 +57,18 @@ const Header = () => {
 
             {/* Center logo */}
             <Link href="/" className="flex-shrink-0">
-              <img src={LOGO_URL} alt="Anne Freret Fleuriste" className="h-14 w-auto object-contain " />
+              <img src={LOGO_URL} alt="Anne Freret Fleuriste" className="h-16 w-auto object-contain transition-all duration-500" />
             </Link>
 
             {/* Right nav */}
-            <nav className="flex items-center gap-6">
+            <nav className="flex items-center gap-8">
               {navLinks.slice(3).map(link => (
-                <Link key={link.href} href={link.href} className="text-[#2d2a26]/80 text-[13px] tracking-wide hover:text-[#b8956a] transition-colors">
+                <Link key={link.href} href={link.href} className="text-[#2d2a26]/80 text-[11px] tracking-[0.15em] uppercase hover:text-[#c4a47a] transition-all duration-500">
                   {link.label}
                 </Link>
               ))}
-              <Link href="/panier" className="text-[#2d2a26]/80 hover:text-[#b8956a] transition-colors ml-2">
+              <div className="w-px h-4 bg-[#c4a47a]/30 ml-2"></div>
+              <Link href="/panier" className="text-[#2d2a26]/80 hover:text-[#c4a47a] transition-all duration-500 ml-4">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
@@ -107,7 +108,7 @@ const Header = () => {
         <div className="fixed inset-0 z-40 bg-[#faf8f5]">
           <div className="pt-20 px-6">
             <nav className="flex flex-col">
-              <Link href="/" onClick={closeMenu} className="text-[#2d2a26] text-[15px] py-4 border-b border-[#b8956a]/20">
+              <Link href="/" onClick={closeMenu} className="text-[#2d2a26] text-[15px] py-4 border-b border-[#c4a47a]/20">
                 Accueil
               </Link>
               {navLinks.map(link => (
@@ -115,10 +116,10 @@ const Header = () => {
                   key={link.href} 
                   href={link.href} 
                   onClick={closeMenu}
-                  className="text-[#2d2a26] text-[15px] py-4 border-b border-[#b8956a]/20 flex justify-between items-center"
+                  className="text-[#2d2a26] text-[15px] py-4 border-b border-[#c4a47a]/20 flex justify-between items-center transition-colors hover:text-[#c4a47a]"
                 >
                   {link.label}
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#b8956a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>

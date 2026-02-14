@@ -31,13 +31,14 @@ function BoutiqueContent() {
       <main className="bg-[#faf8f5] min-h-screen pt-20">
         
         {/* Hero Section */}
-        <section className="py-16 bg-[#f5f0eb]">
+        <section className="py-20 bg-[#f5f0eb]">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center">
-              <h1 className="text-4xl md:text-6xl text-[#2d2a26] mb-6 font-serif">
+              <h1 className="text-4xl md:text-6xl text-[#2d2a26] mb-8 font-serif font-light">
                 Notre Boutique
               </h1>
-              <p className="text-xl text-[#6b6560] max-w-2xl mx-auto">
+              <div className="gold-separator mb-8"></div>
+              <p className="text-xl text-[#6b6560] max-w-2xl mx-auto font-light leading-relaxed">
                 Découvrez toutes nos créations florales, bouquets et arrangements 
                 pour chaque occasion de la vie.
               </p>
@@ -46,17 +47,17 @@ function BoutiqueContent() {
         </section>
 
         {/* Category Filter */}
-        <section className="py-8 border-b border-[#e8e0d8]">
+        <section className="py-12 border-b border-[#c4a47a]/20">
           <div className="container mx-auto px-6 lg:px-8">
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap justify-center gap-3">
               {allCategories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-3 rounded-lg transition-colors border ${
+                  className={`px-4 py-2 rounded-full transition-all duration-500 border luxury-label ${
                     selectedCategory === category
-                      ? 'bg-[#b8956a] text-white border-[#b8956a]'
-                      : 'bg-[#faf8f5] text-[#2d2a26] border-[#b8956a] hover:bg-[#b8956a] hover:text-white'
+                      ? 'bg-[#c4a47a] text-white border-[#c4a47a]'
+                      : 'bg-transparent text-[#2d2a26] border-[#c4a47a]/30 hover:bg-[#c4a47a] hover:text-white hover:border-[#c4a47a]'
                   }`}
                 >
                   {category}
@@ -67,36 +68,37 @@ function BoutiqueContent() {
         </section>
 
         {/* Products Grid */}
-        <section className="py-16">
+        <section className="py-20">
           <div className="container mx-auto px-6 lg:px-8">
             {filteredProducts.length > 0 ? (
               <>
-                <div className="flex items-center justify-between mb-8">
-                  <h2 className="text-2xl font-serif text-[#2d2a26]">
+                <div className="flex items-center justify-between mb-12">
+                  <h2 className="text-2xl font-serif text-[#2d2a26] font-light">
                     {selectedCategory === 'Tous' ? 'Toutes nos créations' : selectedCategory}
                   </h2>
-                  <div className="text-[#6b6560]">
+                  <div className="text-[#6b6560] luxury-label">
                     {filteredProducts.length} produit{filteredProducts.length > 1 ? 's' : ''}
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10">
                   {filteredProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
                   ))}
                 </div>
               </>
             ) : (
-              <div className="text-center py-16">
-                <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
+              <div className="text-center py-20">
+                <h3 className="text-2xl font-serif text-[#2d2a26] mb-6 font-light">
                   Aucun produit trouvé
                 </h3>
-                <p className="text-[#6b6560] mb-8">
+                <div className="gold-separator mb-6"></div>
+                <p className="text-[#6b6560] mb-10 font-light">
                   Aucun produit ne correspond à votre sélection actuelle.
                 </p>
                 <button
                   onClick={() => setSelectedCategory('Tous')}
-                  className="btn btn-primary"
+                  className="btn-luxury bg-[#c4a47a] text-white hover:bg-[#b8956a]"
                 >
                   Voir tous les produits
                 </button>
