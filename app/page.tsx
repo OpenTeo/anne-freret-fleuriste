@@ -101,90 +101,48 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Mobile: 1 colonne, cards horizontales */}
-            <div className="md:hidden space-y-4">
-              {/* Nos Bouquets */}
+            {/* Mobile: Hero image + scrollable category pills */}
+            <div className="md:hidden">
+              {/* Hero image principale */}
               <Link 
                 href="/boutique" 
-                className="group relative aspect-[3/2] overflow-hidden rounded-lg flex"
+                className="group relative block aspect-[4/3] overflow-hidden rounded-xl mb-6"
               >
                 <img 
                   src="https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454"
                   alt="Nos Bouquets" 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                  className="w-full h-full object-cover" 
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-start px-6">
-                  <h2 className="text-white font-serif text-2xl font-bold">Nos Bouquets</h2>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <p className="text-white/80 text-xs tracking-[0.2em] uppercase mb-1">Fleuriste artisanal</p>
+                  <h2 className="text-white font-serif text-2xl font-bold mb-2">Découvrir nos créations</h2>
+                  <span className="inline-block text-white text-xs font-medium px-4 py-2 rounded-full" style={{ backgroundColor: 'rgba(184,149,106,0.9)' }}>
+                    Voir la boutique →
+                  </span>
                 </div>
               </Link>
 
-              <div className="grid grid-cols-2 gap-3">
-                {/* Mariages */}
-                <Link 
-                  href="/mariages" 
-                  className="group relative aspect-[3/4] overflow-hidden rounded-lg"
-                >
-                  <img 
-                    src="https://fleuriste-annefreret.com/cdn/shop/files/1_2898336f-1c54-4008-a6e6-cfed21832288.png"
-                    alt="Mariages" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <span className="text-white font-serif text-sm font-bold">Mariages</span>
-                  </div>
-                </Link>
-
-                {/* Deuil & Hommages */}
-                <Link 
-                  href="/boutique?cat=deuil" 
-                  className="group relative aspect-[3/4] overflow-hidden rounded-lg"
-                >
-                  <img 
-                    src="https://cdn.shopify.com/s/files/1/0295/6292/9231/files/9D21A555-DA13-4A1B-B926-909320B670FB.jpg?v=1729195556"
-                    alt="Deuil & Hommages" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <span className="text-white font-serif text-xs font-bold">Deuil & Hommages</span>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                {/* Le choix du fleuriste */}
-                <Link 
-                  href="/boutique?cat=fleuriste" 
-                  className="group relative aspect-[3/4] overflow-hidden rounded-lg"
-                >
-                  <img 
-                    src="https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798"
-                    alt="Le choix du fleuriste" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <span className="text-white font-serif text-xs font-bold">Le choix du fleuriste</span>
-                  </div>
-                </Link>
-
-                {/* Livraison */}
-                <Link 
-                  href="/livraison" 
-                  className="group relative aspect-[3/4] overflow-hidden rounded-lg"
-                >
-                  <img 
-                    src="https://cdn.shopify.com/s/files/1/0295/6292/9231/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798"
-                    alt="Livraison" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <span className="text-white font-serif text-sm font-bold">Livraison</span>
-                  </div>
-                </Link>
+              {/* Catégories horizontales scrollables */}
+              <div className="flex gap-3 overflow-x-auto pb-2 -mx-4 px-4" style={{ scrollbarWidth: 'none' }}>
+                {[
+                  { href: '/boutique', label: 'Bouquets', icon: '💐' },
+                  { href: '/mariages', label: 'Mariages', icon: '💒' },
+                  { href: '/boutique?cat=deuil', label: 'Deuil', icon: '🕊️' },
+                  { href: '/livraison', label: 'Livraison', icon: '🚚' },
+                  { href: '/blog', label: 'Blog', icon: '📝' },
+                  { href: '/entretien', label: 'Entretien', icon: '🌿' },
+                ].map((cat) => (
+                  <Link 
+                    key={cat.href}
+                    href={cat.href} 
+                    className="flex-shrink-0 flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-colors"
+                    style={{ backgroundColor: '#ffffff', border: '1px solid #e8e0d8', color: '#2d2a26' }}
+                  >
+                    <span>{cat.icon}</span>
+                    <span>{cat.label}</span>
+                  </Link>
+                ))}
               </div>
             </div>
           </div>
