@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      <main className="pt-14 md:pt-20">
         {/* NOUVEAU HERO - Grille visuelle de catégories */}
-        <section className="py-8 md:py-12 bg-[#faf8f5]">
+        <section className="py-6 md:py-12 bg-[#faf8f5]">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
             {/* Desktop: 50% + 50% (2x2 grille) */}
             <div className="hidden md:grid md:grid-cols-2 gap-6">

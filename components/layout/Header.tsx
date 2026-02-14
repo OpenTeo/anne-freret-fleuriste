@@ -40,7 +40,7 @@ const Header = () => {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'bg-[#faf8f5]/95 backdrop-blur-sm border-b border-[#b8956a]/20' : 'bg-transparent'
+        isScrolled ? 'bg-[#faf8f5]/95 backdrop-blur-sm border-b border-[#b8956a]/20' : 'bg-[#faf8f5] md:bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           
@@ -76,7 +76,7 @@ const Header = () => {
           </div>
 
           {/* Mobile bar */}
-          <div className="flex md:hidden items-center justify-between h-16">
+          <div className="flex md:hidden items-center justify-between h-14 border-b border-[#e8e0d8]">
             <button onClick={toggleMenu} className="text-[#2d2a26] p-1">
               {isMenuOpen ? (
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -90,7 +90,7 @@ const Header = () => {
             </button>
 
             <Link href="/" className="flex-shrink-0" onClick={closeMenu}>
-              <img src={LOGO_URL} alt="Anne Freret" className="h-10 w-auto object-contain " />
+              <img src={LOGO_URL} alt="Anne Freret" className="h-8 w-auto object-contain" />
             </Link>
 
             <Link href="/panier" className="text-[#2d2a26]/80 p-1">
