@@ -43,7 +43,7 @@ export default function Mariages() {
           <div 
             className="absolute inset-0 w-full h-screen"
             style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&q=85)',
+              backgroundImage: 'url(https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=1400&q=85)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundAttachment: 'fixed'
@@ -143,12 +143,12 @@ export default function Mariages() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {[
-                'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=85',
-                'https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?w=600&q=85',
-                'https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600&q=85',
-                'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=600&q=85',
-                'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=600&q=85',
-                'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&q=85'
+                'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=85',
+                'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&q=85',
+                'https://images.unsplash.com/photo-1510076857177-7470076d4098?w=600&q=85',
+                'https://images.unsplash.com/photo-1478146059778-26028b07395a?w=600&q=85',
+                'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=85',
+                'https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600&q=85'
               ].map((image, index) => (
                 <div 
                   key={index}
@@ -156,7 +156,7 @@ export default function Mariages() {
                 >
                   <img
                     src={image}
-                    alt={`Mariage ${index + 1}`}
+                    alt={['Table champêtre fleurie', 'Allée cérémonie fleurs roses', 'Salle de réception décorée', 'Table desserts fleurie', 'Chaises mariés décorées', 'Bouquet de mariée'][index]}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
