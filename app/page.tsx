@@ -17,15 +17,15 @@ export default function Home() {
         </section>
 
         {/* SECTION PROMESSE — accroche entre hero et créations */}
-        <section className="py-20 md:py-28">
+        <section className="py-12 md:py-20">
           <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-            <div className="flex justify-center mb-8">
+            <div className="flex justify-center mb-6">
               <div className="w-12 h-px bg-[#c4a47a]"></div>
             </div>
-            <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-[#2d2a26] mb-6 leading-relaxed">
+            <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl text-[#2d2a26] mb-4 leading-relaxed">
               Des fleurs fraîches, cueillies avec soin,<br className="hidden md:block" /> livrées partout en France
             </h2>
-            <p className="text-[#2d2a26]/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+            <p className="text-[#2d2a26]/60 text-base md:text-lg max-w-2xl mx-auto leading-relaxed mb-6">
               Depuis notre atelier à Saint-Pair-sur-Mer, nous composons chaque bouquet à la main avec des fleurs de saison sélectionnées chez les meilleurs producteurs.
             </p>
             <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-[#2d2a26]/50 text-[11px] tracking-[0.2em] uppercase">
