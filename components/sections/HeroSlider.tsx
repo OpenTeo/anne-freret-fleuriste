@@ -6,7 +6,7 @@ import Link from 'next/link';
 const slides = [
   {
     href: '/boutique',
-    image: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=1400&q=85',
     subtitle: 'Créations florales d\'exception',
     title: 'Nos Bouquets',
     cta: 'Découvrir →',
@@ -20,7 +20,7 @@ const slides = [
   },
   {
     href: '/boutique?cat=fleuriste',
-    image: 'https://images.unsplash.com/photo-1469259943454-aa100abba749?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=1400&q=85',
     subtitle: 'Composition unique du jour',
     title: 'Le choix du fleuriste',
     cta: 'Découvrir →',
@@ -74,29 +74,28 @@ export default function HeroSlider() {
             alt={slide.title}
             className="w-full h-full object-cover"
           />
-          {/* Gradient overlay — plus fort pour lisibilité */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+          {/* Overlay léger pour lisibilité sans casser la lumière */}
+          <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
           
-          {/* Text content */}
+          {/* Text content — texte foncé sur photos claires */}
           <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 pb-20 md:pb-24">
             <div className="max-w-4xl">
               <p 
-                className={`text-white/90 text-[11px] md:text-xs tracking-[0.25em] uppercase mb-3 md:mb-5 transition-all duration-700 delay-100 ${
+                className={`text-[#2d2a26]/70 text-[11px] md:text-xs tracking-[0.25em] uppercase mb-3 md:mb-5 transition-all duration-700 delay-100 ${
                   i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
                 {slide.subtitle}
               </p>
               <h1 
-                className={`text-white font-serif text-4xl md:text-6xl lg:text-7xl mb-6 md:mb-10 transition-all duration-700 delay-200 leading-tight ${
+                className={`text-[#2d2a26] font-serif text-4xl md:text-6xl lg:text-7xl mb-6 md:mb-10 transition-all duration-700 delay-200 leading-tight ${
                   i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
-                style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}
               >
                 {slide.title}
               </h1>
               <span 
-                className={`inline-block text-white text-sm md:text-base tracking-wide underline underline-offset-8 decoration-white/50 hover:decoration-[#c4a47a] hover:text-[#c4a47a] transition-all duration-500 delay-300 ${
+                className={`inline-block text-[#2d2a26] text-sm md:text-base tracking-wide underline underline-offset-8 decoration-[#c4a47a] hover:text-[#c4a47a] transition-all duration-500 delay-300 ${
                   i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
@@ -115,8 +114,8 @@ export default function HeroSlider() {
             onClick={(e) => { e.preventDefault(); e.stopPropagation(); goTo(i); }}
             className={`transition-all duration-500 ${
               i === current 
-                ? 'w-8 h-1 bg-white' 
-                : 'w-1 h-1 bg-white/40 hover:bg-white/60'
+                ? 'w-8 h-1 bg-[#2d2a26]' 
+                : 'w-1 h-1 bg-[#2d2a26]/30 hover:bg-[#2d2a26]/50'
             }`}
           />
         ))}
