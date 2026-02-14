@@ -139,33 +139,32 @@ export default function HeroSlider() {
                 alt={slide.title}
                 className="w-full h-full object-cover"
               />
-              {/* Overlay léger pour lisibilité sans casser la lumière */}
-              <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
-              
-              {/* Text content — texte foncé sur photos claires */}
-              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 pb-20 md:pb-24">
-                <div className="max-w-4xl">
-                  <p 
-                    className={`text-[#2d2a26]/70 text-[11px] md:text-xs tracking-[0.25em] uppercase mb-3 md:mb-5 transition-all duration-700 delay-100 ${
-                      i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                    }`}
-                  >
-                    {slide.subtitle}
-                  </p>
-                  <h1 
-                    className={`text-[#2d2a26] font-serif text-4xl md:text-6xl lg:text-7xl mb-6 md:mb-10 transition-all duration-700 delay-200 leading-tight ${
-                      i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                    }`}
-                  >
-                    {slide.title}
-                  </h1>
-                  <span 
-                    className={`inline-block text-[#2d2a26] text-sm md:text-base tracking-wide underline underline-offset-8 decoration-[#c4a47a] hover:text-[#c4a47a] transition-all duration-500 delay-300 ${
-                      i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                    }`}
-                  >
-                    {slide.cta}
-                  </span>
+              {/* Text content — bandeau blanc en bas pour lisibilité */}
+              <div className="absolute bottom-0 left-0 right-0">
+                <div className="bg-white/90 backdrop-blur-sm p-8 md:p-12 pb-16 md:pb-20">
+                  <div className="max-w-4xl">
+                    <p 
+                      className={`text-[#c4a47a] text-[11px] md:text-xs tracking-[0.25em] uppercase mb-2 md:mb-3 transition-all duration-700 delay-100 ${
+                        i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                      }`}
+                    >
+                      {slide.subtitle}
+                    </p>
+                    <h1 
+                      className={`text-[#2d2a26] font-serif text-3xl md:text-5xl lg:text-6xl mb-4 md:mb-6 transition-all duration-700 delay-200 leading-tight ${
+                        i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                      }`}
+                    >
+                      {slide.title}
+                    </h1>
+                    <span 
+                      className={`inline-block text-[#2d2a26] text-sm tracking-wide underline underline-offset-8 decoration-[#c4a47a] hover:text-[#c4a47a] transition-all duration-500 delay-300 ${
+                        i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                      }`}
+                    >
+                      {slide.cta}
+                    </span>
+                  </div>
                 </div>
               </div>
             </>
@@ -174,7 +173,7 @@ export default function HeroSlider() {
       ))}
 
       {/* Dots - Plus petits et subtils */}
-      <div className="absolute bottom-8 md:bottom-12 left-8 md:left-16 flex gap-3">
+      <div className="absolute bottom-4 md:bottom-6 left-8 md:left-12 flex gap-3 z-10">
         {slides.map((_, i) => (
           <button
             key={i}
