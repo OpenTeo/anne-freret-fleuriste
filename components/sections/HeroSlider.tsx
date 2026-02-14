@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Link from 'next/link';
 
 const slides = [
@@ -49,6 +49,30 @@ export default function HeroSlider() {
     goTo((current + 1) % slides.length);
   }, [current, goTo]);
 
+  const prev = useCallback(() => {
+    goTo((current - 1 + slides.length) % slides.length);
+  }, [current, goTo]);
+
+  // Touch swipe support
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) next();
+      else prev();
+    }
+  };
+
   // Auto-advance every 6s
   useEffect(() => {
     const timer = setInterval(next, 6000);
@@ -56,7 +80,12 @@ export default function HeroSlider() {
   }, [next]);
 
   return (
-    <div className="relative w-full aspect-[2/3] md:h-[85vh] md:aspect-auto overflow-hidden">
+    <div 
+      className="relative w-full aspect-[2/3] md:h-[85vh] md:aspect-auto overflow-hidden"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Slides */}
       {slides.map((slide, i) => (
         <Link
