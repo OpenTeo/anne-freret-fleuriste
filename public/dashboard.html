@@ -1,0 +1,3074 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Téo — Cash AI v2</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  /* Colors - Dark Enterprise Theme */
+  --bg-primary:#0a0a0f;
+  --bg-secondary:#12121a;
+  --bg-tertiary:#1a1a24;
+  --sidebar-bg:#08080c;
+  --sidebar-bg-hover:#14141e;
+  --border-primary:#2a2a3a;
+  --border-secondary:#1e1e2e;
+  --text-primary:#e8e8f0;
+  --text-secondary:#9898a8;
+  --text-tertiary:#6a6a7a;
+  --text-inverse:#0a0a0f;
+  --accent:#2563eb;
+  --accent-hover:#1d4ed8;
+  --accent-light:#1a2040;
+  --success:#00e676;
+  --success-light:#0a2a1a;
+  --warning:#ffab00;
+  --warning-light:#2a2010;
+  --error:#ff5252;
+  --error-light:#2a1010;
+  --purple:#8b5cf6;
+  --purple-light:#1a1030;
+  
+  /* Typography */
+  --font-sans:-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Inter',system-ui,sans-serif;
+  
+  /* Spacing */
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:20px;
+  --space-6:24px;
+  --space-8:32px;
+  --space-10:40px;
+  --space-12:48px;
+  --space-16:64px;
+  
+  /* Shadows */
+  --shadow-sm:0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  /* Radii */
+  --radius-sm:6px;
+  --radius-md:8px;
+  --radius-lg:12px;
+  --radius-xl:16px;
+}
+
+body{
+  font-family:var(--font-sans);
+  background:var(--bg-primary);
+  color:var(--text-primary);
+  line-height:1.5;
+  font-size:14px;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ═══ SIDEBAR ═══ */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:0;
+  height:100vh;
+  width:60px;
+  background:var(--sidebar-bg);
+  border-right:1px solid var(--border-primary);
+  z-index:100;
+  transition:width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow:hidden;
+}
+
+.sidebar.expanded{
+  width:240px;
+}
+
+.sidebar-header{
+  height:64px;
+  display:flex;
+  align-items:center;
+  padding:0 var(--space-4);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-logo{
+  display:flex;
+  align-items:center;
+  gap:var(--space-3);
+  opacity:0;
+  transition:opacity 0.2s;
+}
+
+.sidebar.expanded .sidebar-logo{
+  opacity:1;
+}
+
+.logo-icon{
+  width:28px;
+  height:28px;
+  background:linear-gradient(135deg, var(--accent), var(--purple));
+  border-radius:var(--radius-sm);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-weight:600;
+  font-size:12px;
+}
+
+.logo-text{
+  color:#e8e8f0;
+  font-weight:600;
+  font-size:16px;
+  white-space:nowrap;
+}
+
+.sidebar-toggle{
+  position:absolute;
+  top:var(--space-4);
+  right:var(--space-4);
+  width:24px;
+  height:24px;
+  background:none;
+  border:none;
+  color:var(--text-tertiary);
+  cursor:pointer;
+  transition:color 0.2s;
+}
+
+.sidebar-toggle:hover{
+  color:#e8e8f0;
+}
+
+.sidebar-nav{
+  padding:var(--space-6) 0;
+}
+
+.nav-section{
+  margin-bottom:var(--space-6);
+}
+
+.nav-section-title{
+  color:var(--text-tertiary);
+  font-size:12px;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  padding:0 var(--space-4);
+  margin-bottom:var(--space-2);
+  opacity:0;
+  transition:opacity 0.2s;
+}
+
+.sidebar.expanded .nav-section-title{
+  opacity:1;
+}
+
+.nav-item{
+  display:flex;
+  align-items:center;
+  gap:var(--space-3);
+  height:36px;
+  margin:0 var(--space-2);
+  padding:0 var(--space-2);
+  border-radius:var(--radius-sm);
+  color:var(--text-tertiary);
+  cursor:pointer;
+  transition:all 0.2s;
+  position:relative;
+  text-decoration:none;
+}
+
+.nav-item:hover{
+  background:var(--sidebar-bg-hover);
+  color:#e8e8f0;
+}
+
+.nav-item.active{
+  background:var(--accent);
+  color:white;
+}
+
+.nav-item.active::before{
+  content:'';
+  position:absolute;
+  left:-var(--space-2);
+  top:50%;
+  transform:translateY(-50%);
+  width:2px;
+  height:16px;
+  background:white;
+  border-radius:1px;
+}
+
+.nav-icon{
+  width:20px;
+  height:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
+.nav-label{
+  font-size:14px;
+  font-weight:500;
+  white-space:nowrap;
+  opacity:0;
+  transition:opacity 0.2s;
+}
+
+.sidebar.expanded .nav-label{
+  opacity:1;
+}
+
+.nav-badge{
+  background:var(--error);
+  color:white;
+  font-size:11px;
+  font-weight:600;
+  padding:1px 6px;
+  border-radius:10px;
+  min-width:18px;
+  text-align:center;
+  margin-left:auto;
+  opacity:0;
+  transition:opacity 0.2s;
+}
+
+.sidebar.expanded .nav-badge{
+  opacity:1;
+}
+
+/* ═══ MAIN LAYOUT ═══ */
+.main-content{
+  margin-left:60px;
+  min-height:100vh;
+  transition:margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar.expanded + .main-content{
+  margin-left:240px;
+}
+
+.header{
+  height:64px;
+  background:var(--bg-secondary);
+  border-bottom:1px solid var(--border-primary);
+  display:flex;
+  align-items:center;
+  padding:0 var(--space-6);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.breadcrumb{
+  display:flex;
+  align-items:center;
+  gap:var(--space-2);
+  font-size:14px;
+  color:var(--text-secondary);
+}
+
+.breadcrumb-separator{
+  color:var(--text-tertiary);
+}
+
+.header-title{
+  font-size:20px;
+  font-weight:600;
+  color:var(--text-primary);
+}
+
+.header-actions{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:var(--space-3);
+}
+
+.header-button{
+  background:none;
+  border:1px solid var(--border-primary);
+  color:var(--text-secondary);
+  padding:var(--space-2) var(--space-3);
+  border-radius:var(--radius-sm);
+  font-size:13px;
+  font-weight:500;
+  cursor:pointer;
+  transition:all 0.2s;
+}
+
+.header-button:hover{
+  border-color:var(--border-secondary);
+  background:var(--bg-tertiary);
+}
+
+.header-button.primary{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:white;
+}
+
+.header-button.primary:hover{
+  background:var(--accent-hover);
+}
+
+.content{
+  padding:var(--space-6);
+  max-width:1400px;
+  margin:0 auto;
+}
+
+/* ═══ SECTIONS ═══ */
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+  animation:fadeIn 0.3s ease;
+}
+
+/* ═══ CARDS ═══ */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+  gap:var(--space-6);
+  margin-bottom:var(--space-6);
+}
+
+.grid.cols-2{
+  grid-template-columns:repeat(auto-fit, minmax(400px, 1fr));
+}
+
+.grid.cols-3{
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.grid.cols-4{
+  grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.card{
+  background:var(--bg-secondary);
+  border:1px solid var(--border-primary);
+  border-radius:var(--radius-lg);
+  padding:var(--space-6);
+  box-shadow:var(--shadow-sm);
+  transition:all 0.2s;
+}
+
+.card:hover{
+  box-shadow:var(--shadow-md);
+  border-color:var(--border-secondary);
+}
+
+.card-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:var(--space-5);
+}
+
+.card-title{
+  font-size:16px;
+  font-weight:600;
+  color:var(--text-primary);
+  display:flex;
+  align-items:center;
+  gap:var(--space-2);
+}
+
+.card-subtitle{
+  font-size:13px;
+  color:var(--text-secondary);
+  margin-top:var(--space-1);
+}
+
+.card-action{
+  color:var(--text-secondary);
+  font-size:13px;
+  cursor:pointer;
+  transition:color 0.2s;
+}
+
+.card-action:hover{
+  color:var(--accent);
+}
+
+.card-full{
+  grid-column:1 / -1;
+}
+
+/* ═══ KPI CARDS ═══ */
+.kpi-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+  gap:var(--space-4);
+  margin-bottom:var(--space-8);
+}
+
+.kpi-card{
+  background:var(--bg-secondary);
+  border:1px solid var(--border-primary);
+  border-radius:var(--radius-lg);
+  padding:var(--space-5);
+  transition:all 0.2s;
+  position:relative;
+}
+
+.kpi-card:hover{
+  box-shadow:var(--shadow-md);
+  transform:translateY(-1px);
+}
+
+.kpi-label{
+  font-size:13px;
+  color:var(--text-secondary);
+  font-weight:500;
+  margin-bottom:var(--space-2);
+}
+
+.kpi-value{
+  font-size:28px;
+  font-weight:700;
+  color:var(--text-primary);
+  margin-bottom:var(--space-1);
+}
+
+.kpi-change{
+  font-size:12px;
+  font-weight:500;
+  display:flex;
+  align-items:center;
+  gap:var(--space-1);
+}
+
+.kpi-change.positive{color:var(--success)}
+.kpi-change.negative{color:var(--error)}
+.kpi-change.neutral{color:var(--text-secondary)}
+
+.status-dot{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  display:inline-block;
+}
+
+.status-dot.success{background:var(--success)}
+.status-dot.warning{background:var(--warning)}
+.status-dot.error{background:var(--error)}
+.status-dot.info{background:var(--accent)}
+
+/* ═══ TABLES ═══ */
+.table-container{
+  border:1px solid var(--border-primary);
+  border-radius:var(--radius-md);
+  overflow:hidden;
+  background:var(--bg-secondary);
+}
+
+.table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.table th{
+  background:var(--bg-tertiary);
+  border-bottom:1px solid var(--border-primary);
+  padding:var(--space-3) var(--space-4);
+  font-size:12px;
+  font-weight:600;
+  color:var(--text-secondary);
+  text-align:left;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+}
+
+.table td{
+  border-bottom:1px solid var(--border-primary);
+  padding:var(--space-3) var(--space-4);
+  font-size:14px;
+  color:var(--text-primary);
+}
+
+.table tbody tr:hover{
+  background:var(--bg-tertiary);
+}
+
+.table tbody tr:last-child td{
+  border-bottom:none;
+}
+
+/* ═══ BADGES ═══ */
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:var(--space-1);
+  padding:var(--space-1) var(--space-2);
+  border-radius:var(--radius-sm);
+  font-size:12px;
+  font-weight:500;
+  text-transform:capitalize;
+}
+
+.badge.success{background:var(--success-light);color:var(--success)}
+.badge.warning{background:var(--warning-light);color:var(--warning)}
+.badge.error{background:var(--error-light);color:var(--error)}
+.badge.info{background:var(--accent-light);color:var(--accent)}
+.badge.purple{background:var(--purple-light);color:var(--purple)}
+
+/* ═══ BUTTONS ═══ */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:var(--space-2);
+  padding:var(--space-2) var(--space-4);
+  border:1px solid var(--border-primary);
+  border-radius:var(--radius-sm);
+  font-size:13px;
+  font-weight:500;
+  cursor:pointer;
+  transition:all 0.2s;
+  text-decoration:none;
+  background:var(--bg-secondary);
+  color:var(--text-primary);
+}
+
+.btn:hover{
+  border-color:var(--border-secondary);
+  box-shadow:var(--shadow-sm);
+}
+
+.btn.primary{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:white;
+}
+
+.btn.primary:hover{
+  background:var(--accent-hover);
+  border-color:var(--accent-hover);
+}
+
+.btn.ghost{
+  border:none;
+  background:none;
+  color:var(--text-secondary);
+}
+
+.btn.ghost:hover{
+  background:var(--bg-tertiary);
+  color:var(--text-primary);
+}
+
+.btn.sm{
+  padding:var(--space-1) var(--space-2);
+  font-size:12px;
+}
+
+/* ═══ FORMS ═══ */
+.form-group{
+  margin-bottom:var(--space-4);
+}
+
+.form-label{
+  display:block;
+  font-size:13px;
+  font-weight:500;
+  color:var(--text-primary);
+  margin-bottom:var(--space-1);
+}
+
+.form-input{
+  width:100%;
+  padding:var(--space-2) var(--space-3);
+  border:1px solid var(--border-primary);
+  border-radius:var(--radius-sm);
+  font-size:14px;
+  color:var(--text-primary);
+  background:var(--bg-secondary);
+  transition:all 0.2s;
+}
+
+.form-input:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px var(--accent-light);
+}
+
+.form-select{
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position:right var(--space-2) center;
+  background-repeat:no-repeat;
+  background-size:16px;
+  padding-right:var(--space-8);
+}
+
+.form-textarea{
+  resize:vertical;
+  min-height:80px;
+}
+
+/* ═══ PROGRESS ═══ */
+.progress-bar{
+  height:6px;
+  background:var(--bg-tertiary);
+  border-radius:3px;
+  overflow:hidden;
+  margin:var(--space-2) 0;
+}
+
+.progress-fill{
+  height:100%;
+  background:var(--accent);
+  border-radius:3px;
+  transition:width 1s ease;
+}
+
+.progress-fill.success{background:var(--success)}
+.progress-fill.warning{background:var(--warning)}
+.progress-fill.error{background:var(--error)}
+
+/* ═══ PROJECTS ═══ */
+.project-item{
+  border:1px solid var(--border-primary);
+  border-radius:var(--radius-md);
+  padding:var(--space-4);
+  margin-bottom:var(--space-4);
+  background:var(--bg-secondary);
+  transition:all 0.2s;
+}
+
+.project-item:hover{
+  border-color:var(--border-secondary);
+  box-shadow:var(--shadow-sm);
+}
+
+.project-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:var(--space-3);
+}
+
+.project-title{
+  font-size:15px;
+  font-weight:600;
+  color:var(--text-primary);
+}
+
+.project-progress{
+  font-size:13px;
+  font-weight:600;
+  color:var(--accent);
+}
+
+.project-meta{
+  display:flex;
+  align-items:center;
+  gap:var(--space-3);
+  margin-bottom:var(--space-3);
+  font-size:12px;
+  color:var(--text-secondary);
+}
+
+.project-tasks{
+  margin-top:var(--space-4);
+  padding-top:var(--space-3);
+  border-top:1px solid var(--border-primary);
+}
+
+.task-item{
+  display:flex;
+  align-items:center;
+  gap:var(--space-2);
+  padding:var(--space-1) 0;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.task-item.done{
+  color:var(--text-tertiary);
+  text-decoration:line-through;
+}
+
+.task-checkbox{
+  width:16px;
+  height:16px;
+  border:1px solid var(--border-primary);
+  border-radius:var(--radius-sm);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:all 0.2s;
+}
+
+.task-checkbox:hover{
+  border-color:var(--accent);
+}
+
+.task-checkbox.checked{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:white;
+}
+
+/* ═══ MOBILE ═══ */
+@media (max-width: 768px) {
+  .sidebar{
+    transform:translateX(-100%);
+    width:280px !important;
+    z-index:200;
+  }
+  
+  .sidebar.expanded{
+    transform:translateX(-100%);
+    width:280px !important;
+  }
+  
+  .sidebar.mobile-open{
+    transform:translateX(0) !important;
+  }
+  
+  .sidebar-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.5);
+    z-index:199;
+  }
+  
+  .sidebar-overlay.active{
+    display:block;
+  }
+  
+  .main-content{
+    margin-left:0 !important;
+  }
+  
+  .sidebar.expanded + .main-content{
+    margin-left:0 !important;
+  }
+  
+  .content{
+    padding:var(--space-3);
+  }
+  
+  .kpi-grid{
+    grid-template-columns:repeat(2, 1fr);
+    gap:var(--space-2);
+  }
+  
+  .grid{
+    grid-template-columns:1fr;
+    gap:var(--space-3);
+  }
+  
+  .grid.cols-2, .grid.cols-3, .grid.cols-4{
+    grid-template-columns:1fr;
+  }
+  
+  .header{
+    padding:0 var(--space-3);
+  }
+  
+  .header-title{
+    font-size:16px;
+  }
+  
+  .breadcrumb{
+    display:none;
+  }
+  
+  .mobile-menu-toggle{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:36px;
+    height:36px;
+    background:var(--bg-tertiary);
+    border:1px solid var(--border-primary);
+    border-radius:var(--radius-sm);
+    cursor:pointer;
+    margin-right:var(--space-3);
+    color:var(--text-primary);
+    font-size:18px;
+  }
+  
+  .card{
+    padding:var(--space-4);
+  }
+  
+  .kpi-card{
+    padding:var(--space-3);
+  }
+  
+  .kpi-value{
+    font-size:24px;
+  }
+  
+  .table-container{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  
+  .table{
+    font-size:12px;
+    min-width:600px;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-menu-toggle{
+    display:none;
+  }
+}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeIn{
+  from { opacity:0; transform:translateY(10px) }
+  to { opacity:1; transform:translateY(0) }
+}
+
+@keyframes slideIn{
+  from { transform:translateX(-10px); opacity:0 }
+  to { transform:translateX(0); opacity:1 }
+}
+
+/* ═══ CHART STYLES ═══ */
+.chart-container{
+  margin:var(--space-4) 0;
+  padding:var(--space-4);
+  background:var(--bg-tertiary);
+  border-radius:var(--radius-md);
+}
+
+canvas{
+  max-width:100%;
+  height:auto;
+}
+
+/* ═══ UTILITIES ═══ */
+.text-success { color:var(--success) }
+.text-warning { color:var(--warning) }
+.text-error { color:var(--error) }
+.text-muted { color:var(--text-secondary) }
+
+.bg-success { background:var(--success-light) }
+.bg-warning { background:var(--warning-light) }
+.bg-error { background:var(--error-light) }
+
+.border-success { border-color:var(--success) }
+.border-warning { border-color:var(--warning) }
+.border-error { border-color:var(--error) }
+
+.hidden { display:none }
+.flex { display:flex }
+.items-center { align-items:center }
+.justify-between { justify-content:space-between }
+.gap-2 { gap:var(--space-2) }
+.gap-3 { gap:var(--space-3) }
+.mb-4 { margin-bottom:var(--space-4) }
+.mt-4 { margin-top:var(--space-4) }
+
+/* ═══ DARK MODE TOGGLE (future) ═══ */
+.theme-toggle{
+  width:20px;
+  height:20px;
+  color:var(--text-tertiary);
+  cursor:pointer;
+  transition:color 0.2s;
+}
+
+.theme-toggle:hover{
+  color:var(--text-inverse);
+}
+</style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="logo-icon">T</div>
+      <div class="logo-text">Dashboard</div>
+    </div>
+    <button class="sidebar-toggle" onclick="toggleSidebar()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12h18M3 6h18M3 18h18"/>
+      </svg>
+    </button>
+  </div>
+  
+  <div class="sidebar-nav">
+    <div class="nav-section">
+      <div class="nav-section-title">Overview</div>
+      <a class="nav-item active" onclick="showSection('home')">
+        <div class="nav-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9,22 9,12 15,12 15,22"/>
+          </svg>
+        </div>
+        <div class="nav-label">Accueil</div>
+      </a>
+      
+      <a class="nav-item" onclick="showSection('twitter')">
+        <div class="nav-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <div class="nav-label">Veille</div>
+        <div class="nav-badge">3</div>
+      </a>
+    </div>
+    
+    <div class="nav-section">
+      <div class="nav-section-title">Business</div>
+      <a class="nav-item" onclick="showSection('projects')">
+        <div class="nav-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <div class="nav-label">Projets</div>
+        <div class="nav-badge">6</div>
+      </a>
+      
+      <a class="nav-item" onclick="showSection('api')">
+        <div class="nav-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <div class="nav-label">Budget API</div>
+      </a>
+      
+      <a class="nav-item" onclick="showSection('budget')">
+        <div class="nav-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="23"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <div class="nav-label">Budget Perso</div>
+      </a>
+    </div>
+    
+    <div class="nav-section">
+      <div class="nav-section-title">Development</div>
+      <a class="nav-item" onclick="showSection('upgrades')">
+        <div class="nav-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9.26 13a2 2 0 0 1 0-2H7v-3a2 2 0 0 1 2-2h6l2 2h3a2 2 0 0 1 2 2v3h-2.26a2 2 0 0 1 0 2H20v3a2 2 0 0 1-2 2h-3l-2 2H9a2 2 0 0 1-2-2v-3h2.26z"/>
+          </svg>
+        </div>
+        <div class="nav-label">Améliorations</div>
+        <div class="nav-badge">2</div>
+      </a>
+      
+      <a class="nav-item" onclick="showSection('hacking')">
+        <div class="nav-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <circle cx="12" cy="16" r="1"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <div class="nav-label">Security</div>
+      </a>
+      
+      <a class="nav-item" onclick="showSection('learning')">
+        <div class="nav-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+          </svg>
+        </div>
+        <div class="nav-label">Learning</div>
+      </a>
+    </div>
+    
+    <div class="nav-section">
+      <div class="nav-section-title">Content</div>
+      <a class="nav-item" onclick="showSection('videos')">
+        <div class="nav-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="23 7 16 12 23 17 23 7"/>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+          </svg>
+        </div>
+        <div class="nav-label">Vidéos</div>
+      </a>
+      
+      <a class="nav-item" onclick="showSection('proposals')">
+        <div class="nav-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M13 4.1v1.8a10 10 0 0 1 7 7h1.8"/>
+            <path d="M3 12h1.8a10 10 0 0 1 7-7V3.2"/>
+            <path d="M10.9 20v-1.8a10 10 0 0 1-7-7H1.2"/>
+            <path d="M21 12h-1.8a10 10 0 0 1-7 7v1.8"/>
+          </svg>
+        </div>
+        <div class="nav-label">Idées</div>
+      </a>
+      
+      <a class="nav-item" onclick="showSection('journal')">
+        <div class="nav-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+          </svg>
+        </div>
+        <div class="nav-label">Journal</div>
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeMobileSidebar()"></div>
+
+<!-- Main Content -->
+<main class="main-content">
+  <header class="header">
+    <button class="mobile-menu-toggle" onclick="toggleMobileSidebar()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 12h18M3 6h18M3 18h18"/>
+      </svg>
+    </button>
+    
+    <div>
+      <div class="breadcrumb" id="breadcrumb">
+        <span>Dashboard</span>
+        <span class="breadcrumb-separator">/</span>
+        <span>Accueil</span>
+      </div>
+      <h1 class="header-title" id="headerTitle">Vue d'ensemble</h1>
+    </div>
+    
+    <div class="header-actions">
+      <button class="header-button" onclick="exportReport()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7,10 12,15 17,10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Exporter
+      </button>
+      <button class="header-button primary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14M5 12h14"/>
+        </svg>
+        Nouveau
+      </button>
+    </div>
+  </header>
+
+  <div class="content">
+    <!-- Section: Accueil -->
+    <section class="section active" id="home">
+      <!-- KPIs -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Coût API / mois</div>
+          <div class="kpi-value text-error" id="kpiCost">—</div>
+          <div class="kpi-change negative" id="kpiCostChange">
+            <span class="status-dot error"></span>
+            Budget surveillé
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-label">Revenus générés</div>
+          <div class="kpi-value text-success" id="kpiRevenue">—</div>
+          <div class="kpi-change positive">
+            <span class="status-dot success"></span>
+            En croissance
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-label">ROI Cash</div>
+          <div class="kpi-value" id="kpiRoi">—</div>
+          <div class="kpi-change neutral">
+            <span class="status-dot info"></span>
+            À optimiser
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-label">Projets actifs</div>
+          <div class="kpi-value" id="kpiProjects">—</div>
+          <div class="kpi-change positive">
+            <span class="status-dot success"></span>
+            En cours
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-label">Failles trouvées</div>
+          <div class="kpi-value" id="kpiVulns">—</div>
+          <div class="kpi-change neutral">
+            <span class="status-dot warning"></span>
+            Sécurité OK
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-label">Budget API restant</div>
+          <div class="kpi-value" id="kpiApiLeft">—</div>
+          <div class="kpi-change" id="kpiApiChange">
+            <span class="status-dot" id="kpiApiDot"></span>
+            <span id="kpiApiText">Monitoring</span>
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-label">Idées Cash</div>
+          <div class="kpi-value" id="kpiIdeas">—</div>
+          <div class="kpi-change neutral">
+            <span class="status-dot info"></span>
+            Innovation
+          </div>
+        </div>
+        
+        <div class="kpi-card">
+          <div class="kpi-label">Niveau Cash</div>
+          <div class="kpi-value" style="color:var(--warning)">Bronze</div>
+          <div class="kpi-change neutral">
+            <span class="status-dot warning"></span>
+            En progression
+          </div>
+        </div>
+      </div>
+
+      <div class="grid cols-2">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Projets en cours</div>
+              <div class="card-subtitle">Aperçu des projets actifs</div>
+            </div>
+            <a class="card-action" onclick="showSection('projects')">Voir tout →</a>
+          </div>
+          <div id="projectsPreview"></div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">Veille récente</div>
+              <div class="card-subtitle">Dernières trouvailles AI</div>
+            </div>
+            <a class="card-action" onclick="showSection('twitter')">Voir tout →</a>
+          </div>
+          <div id="veillePreview"></div>
+        </div>
+      </div>
+
+      <div class="grid cols-3">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Actions rapides</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-2)">
+            <button class="btn" onclick="showSection('projects')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+              Voir les projets
+            </button>
+            <button class="btn" onclick="showSection('api')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              Gérer le budget
+            </button>
+            <button class="btn" onclick="showSection('journal')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+              </svg>
+              Journal du jour
+            </button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Activité récente</div>
+          </div>
+          <div id="timelinePreview"></div>
+        </div>
+        
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Statut système</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:var(--space-3)">
+            <div class="flex items-center justify-between">
+              <span style="font-size:13px;color:var(--text-secondary)">OpenClaw API</span>
+              <div class="flex items-center gap-2">
+                <span class="status-dot success"></span>
+                <span style="font-size:13px;color:var(--success)">Opérationnel</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span style="font-size:13px;color:var(--text-secondary)">Brave Search</span>
+              <div class="flex items-center gap-2">
+                <span class="status-dot success"></span>
+                <span style="font-size:13px;color:var(--success)">Opérationnel</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <span style="font-size:13px;color:var(--text-secondary)">Gmail API</span>
+              <div class="flex items-center gap-2">
+                <span class="status-dot warning"></span>
+                <span style="font-size:13px;color:var(--warning)">Configuration requise</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Projets -->
+    <section class="section" id="projects">
+      <div class="card card-full">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Gestion des projets</div>
+            <div class="card-subtitle">Suivi des projets avec progression et sous-tâches</div>
+          </div>
+        </div>
+        <div id="projectList"></div>
+      </div>
+    </section>
+
+    <!-- Section: Veille -->
+    <section class="section" id="twitter">
+      <!-- Stats row -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-4);margin-bottom:var(--space-6)">
+        <div class="kpi-card"><div class="kpi-label">Articles trouvés</div><div class="kpi-value" style="color:var(--accent)" id="veilleTotal">0</div></div>
+        <div class="kpi-card"><div class="kpi-label">🤖 AI & Tech</div><div class="kpi-value text-success" id="veilleAI">0</div></div>
+        <div class="kpi-card"><div class="kpi-label">💼 Business</div><div class="kpi-value text-warning" id="veilleBiz">0</div></div>
+        <div class="kpi-card"><div class="kpi-label">🔒 Sécurité</div><div class="kpi-value text-error" id="veilleSec">0</div></div>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="flex gap-2 mb-4">
+        <button class="btn sm" id="veilleFilterAll" onclick="filterVeille('all')">Tout</button>
+        <button class="btn ghost sm" id="veilleFilterAi" onclick="filterVeille('ai')">🤖 AI & Tech</button>
+        <button class="btn ghost sm" id="veilleFilterBusiness" onclick="filterVeille('business')">💼 Business</button>
+        <button class="btn ghost sm" id="veilleFilterSecurity" onclick="filterVeille('security')">🔒 Sécurité</button>
+        <button class="btn ghost sm" id="veilleFilterTech" onclick="filterVeille('tech')">⚙️ Tech</button>
+      </div>
+
+      <!-- Main veille feed -->
+      <div id="veilleFeed"></div>
+
+      <!-- Twitter section (compact) -->
+      <div class="card" style="margin-top:var(--space-6)">
+        <div class="card-header">
+          <div>
+            <div class="card-title">🐦 Twitter / X — Comptes suivis</div>
+            <div class="card-subtitle">Derniers tweets analysés par Cash</div>
+          </div>
+        </div>
+        <div id="twitterFeed"></div>
+      </div>
+    </section>
+
+    <!-- Section: Améliorations Cash -->
+    <section class="section" id="upgrades">
+      <div class="card card-full">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Améliorations Cash</div>
+            <div class="card-subtitle">Upgrades système — Priorité, Impact, Status</div>
+          </div>
+        </div>
+        
+        <!-- Stats -->
+        <div class="grid cols-4" style="margin-bottom:var(--space-6)">
+          <div class="kpi-card"><div class="kpi-label">Proposées</div><div class="kpi-value text-warning" id="upgProposed">0</div></div>
+          <div class="kpi-card"><div class="kpi-label">Approuvées</div><div class="kpi-value text-success" id="upgApproved">0</div></div>
+          <div class="kpi-card"><div class="kpi-label">Terminées</div><div class="kpi-value" style="color:var(--accent)" id="upgDone">0</div></div>
+          <div class="kpi-card"><div class="kpi-label">Rejetées</div><div class="kpi-value text-error" id="upgRejected">0</div></div>
+        </div>
+
+        <div id="upgradeList"></div>
+      </div>
+    </section>
+
+    <!-- Section: Budget API -->
+    <section class="section" id="api">
+      <div class="card card-full">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Budget API</div>
+            <div class="card-subtitle">Suivi des dépenses et historique mensuel</div>
+          </div>
+        </div>
+        <div class="grid cols-2">
+          <div>
+            <div style="text-align:center;margin-bottom:var(--space-6)">
+              <div id="apiRemaining" style="font-size:48px;font-weight:700;margin-bottom:var(--space-2)">—</div>
+              <div style="color:var(--text-secondary);font-size:14px">Budget restant ce mois</div>
+            </div>
+            
+            <div class="progress-bar" style="height:12px;margin-bottom:var(--space-4)">
+              <div class="progress-fill" id="apiBarFill" style="width:0%"></div>
+            </div>
+            
+            <div id="apiAlert" class="hidden" style="background:var(--error-light);color:var(--error);padding:var(--space-3);border-radius:var(--radius-md);margin-bottom:var(--space-4);text-align:center;font-weight:500">
+              ⚠️ Attention : 80% du budget API atteint
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Budget mensuel</label>
+              <div class="flex gap-2">
+                <input type="number" id="apiBudgetInput" class="form-input" value="150" onchange="updateApiBudget()">
+                <span style="padding:var(--space-2);color:var(--text-secondary);font-size:13px;display:flex;align-items:center">$ CAD</span>
+              </div>
+            </div>
+            
+            <div style="margin-top:var(--space-4)">
+              <h4 style="font-size:14px;font-weight:600;margin-bottom:var(--space-3);color:var(--text-secondary)">Services</h4>
+              <div id="apiBreakdown"></div>
+              <div class="flex gap-2 mt-4">
+                <input type="text" id="apiServiceName" placeholder="Service" class="form-input">
+                <input type="number" id="apiServiceCost" placeholder="Coût $" class="form-input">
+                <button class="btn primary" onclick="addApiService()">Ajouter</button>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h4 style="font-size:14px;font-weight:600;margin-bottom:var(--space-4);color:var(--text-secondary)">Historique mensuel</h4>
+            <div class="chart-container">
+              <canvas id="apiHistoryChart" width="500" height="200"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Ethical Hacking -->
+    <section class="section" id="hacking">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Cybersécurité — Consulting Défensif</div>
+            <div class="card-subtitle">Audits avec consentement, conformité Loi 25, monitoring — 100% légal Québec</div>
+          </div>
+        </div>
+        
+        <!-- KPIs row -->
+        <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:var(--space-3);margin-bottom:var(--space-6)">
+          <div class="kpi-card">
+            <div class="kpi-label">Sites scannés</div>
+            <div class="kpi-value text-success" id="hackScans">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Failles trouvées</div>
+            <div class="kpi-value text-error" id="hackVulns">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Rapports livrés</div>
+            <div class="kpi-value" id="hackReports" style="color:var(--accent)">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Clients convertis</div>
+            <div class="kpi-value" id="hackClients" style="color:var(--purple)">0</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Revenus</div>
+            <div class="kpi-value text-success" id="hackRevenue">0$</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Temps moy/scan</div>
+            <div class="kpi-value" id="hackAvgTime" style="font-size:18px">—</div>
+          </div>
+        </div>
+
+        <!-- Pipeline -->
+        <div style="margin-bottom:var(--space-6)">
+          <h4 style="font-size:14px;font-weight:600;margin-bottom:var(--space-3);color:var(--text-secondary)">📊 Pipeline Prospects Security</h4>
+          <div id="hackPipeline"></div>
+          <div class="flex gap-2" style="margin-top:var(--space-3)">
+            <input type="text" id="pipeTarget" placeholder="Nom de la cible..." class="form-input">
+            <select id="pipeStage" class="form-select" style="max-width:150px">
+              <option value="identified">Identifié</option>
+              <option value="contact">Contacté</option>
+              <option value="scan">En scan</option>
+              <option value="reported">Rapport envoyé</option>
+              <option value="converted">Converti ✓</option>
+            </select>
+            <input type="text" id="pipeValue" placeholder="Valeur $" class="form-input" style="max-width:120px">
+            <input type="date" id="pipeDeadline" class="form-input" style="max-width:150px">
+            <button class="btn primary" onclick="addPipelineItem()">Ajouter</button>
+          </div>
+        </div>
+
+        <!-- Scan history -->
+        <div style="margin-bottom:var(--space-6)">
+          <h4 style="font-size:14px;font-weight:600;margin-bottom:var(--space-3);color:var(--text-secondary)">🔍 Historique des scans</h4>
+          <div class="table-container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Cible</th>
+                  <th>Type</th>
+                  <th>Failles</th>
+                  <th>Sévérité</th>
+                  <th>Status</th>
+                  <th>Revenu potentiel</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody id="scanLog"></tbody>
+            </table>
+          </div>
+          <div class="flex gap-2" style="margin-top:var(--space-3)">
+            <input type="text" id="scanTarget" placeholder="Cible..." class="form-input">
+            <select id="scanType" class="form-select" style="max-width:120px">
+              <option value="web">Web</option>
+              <option value="infra">Infra</option>
+              <option value="api">API</option>
+              <option value="training">Training</option>
+            </select>
+            <input type="number" id="scanVulns" placeholder="Failles" class="form-input" style="max-width:90px">
+            <select id="scanSev" class="form-select" style="max-width:120px">
+              <option value="none">Aucune</option>
+              <option value="low">Low</option>
+              <option value="med">Medium</option>
+              <option value="high">High</option>
+              <option value="critical">Critical</option>
+            </select>
+            <input type="text" id="scanRevPot" placeholder="Rev. pot. $" class="form-input" style="max-width:120px">
+            <input type="text" id="scanNotes" placeholder="Notes..." class="form-input">
+            <button class="btn primary" onclick="addScan()">Log scan</button>
+          </div>
+        </div>
+
+        <!-- Roadmap Phases -->
+        <div style="margin-bottom:var(--space-6)">
+          <h4 style="font-size:14px;font-weight:600;margin-bottom:var(--space-3);color:var(--text-secondary)">🗺️ Roadmap — Phases de développement</h4>
+          <div id="hackPhases"></div>
+        </div>
+
+        <!-- Tools inventory -->
+        <div>
+          <h4 style="font-size:14px;font-weight:600;margin-bottom:var(--space-3);color:var(--text-secondary)">🛠️ Arsenal — Outils installés</h4>
+          <div id="hackTools" style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-3)"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Budget Personnel -->
+    <section class="section" id="budget">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Budget personnel</div>
+            <div class="card-subtitle">Suivi des dépenses mensuelles</div>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-3 mb-4">
+          <button class="btn ghost" onclick="changeMonth(-1)">←</button>
+          <span id="budgetMonthLabel" style="font-weight:600"></span>
+          <button class="btn ghost" onclick="changeMonth(1)">→</button>
+        </div>
+        
+        <div class="grid cols-2">
+          <div style="display:flex;align-items:center;justify-content:center">
+            <canvas id="pieChart" width="280" height="280"></canvas>
+          </div>
+          <div>
+            <div id="pieLegend" style="margin-bottom:var(--space-4)"></div>
+            <div id="budgetTotal" style="font-size:24px;font-weight:700;text-align:center;color:var(--accent)"></div>
+          </div>
+        </div>
+        
+        <div style="margin-top:var(--space-6)">
+          <h4 style="font-size:14px;font-weight:600;margin-bottom:var(--space-3);color:var(--text-secondary)">Dépenses du mois</h4>
+          <div id="budgetEntries" style="max-height:300px;overflow-y:auto;margin-bottom:var(--space-4)"></div>
+          
+          <div class="grid cols-3 mb-4">
+            <select id="budgetCat" class="form-select"></select>
+            <input type="number" id="budgetAmt" placeholder="Montant $" class="form-input">
+            <input type="text" id="budgetNote" placeholder="Note" class="form-input">
+          </div>
+          
+          <div class="flex gap-2">
+            <button class="btn primary" onclick="addBudgetEntry()">Ajouter dépense</button>
+            <button class="btn" onclick="toggleCatManager()">Nouvelle catégorie</button>
+          </div>
+          
+          <div id="catManager" class="hidden" style="margin-top:var(--space-3)">
+            <div class="flex gap-2">
+              <input type="text" id="newCatInput" placeholder="Nom de la catégorie" class="form-input">
+              <button class="btn" onclick="addCategory()">Ajouter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Vidéos -->
+    <section class="section" id="videos">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Recréer des vidéos</div>
+            <div class="card-subtitle">Vidéos trending à reproduire</div>
+          </div>
+        </div>
+        <div id="videoList"></div>
+        <div style="margin-top:var(--space-4)">
+          <div class="form-group">
+            <input type="text" id="videoLink" placeholder="Lien de la vidéo..." class="form-input">
+          </div>
+          <div class="form-group">
+            <textarea id="videoDesc" placeholder="Description du concept à reproduire..." class="form-input form-textarea"></textarea>
+          </div>
+          <div class="flex gap-2">
+            <select id="videoStatus" class="form-select">
+              <option value="attente">En attente</option>
+              <option value="en-cours">En cours</option>
+              <option value="fait">Terminé</option>
+            </select>
+            <button class="btn primary" onclick="addVideo()">Ajouter vidéo</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Propositions -->
+    <section class="section" id="proposals">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Propositions Cash</div>
+            <div class="card-subtitle">Évaluation des opportunités — Coût, ROI, Temps, Impact</div>
+          </div>
+        </div>
+        
+        <!-- Stats bar -->
+        <div class="grid cols-4" style="margin-bottom:var(--space-6)">
+          <div class="kpi-card"><div class="kpi-label">Total</div><div class="kpi-value" id="propTotal">0</div></div>
+          <div class="kpi-card"><div class="kpi-label">Approuvées</div><div class="kpi-value text-success" id="propApproved">0</div></div>
+          <div class="kpi-card"><div class="kpi-label">En attente</div><div class="kpi-value text-warning" id="propPending">0</div></div>
+          <div class="kpi-card"><div class="kpi-label">Impact moyen</div><div class="kpi-value" id="propAvgImpact" style="color:var(--accent)">0</div></div>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="flex gap-2 mb-4">
+          <button class="btn sm" id="propFilterAll" onclick="filterProposals('all')" style="font-weight:600">Toutes</button>
+          <button class="btn ghost sm" id="propFilterProposed" onclick="filterProposals('proposed')">En attente</button>
+          <button class="btn ghost sm" id="propFilterApproved" onclick="filterProposals('approved')">Approuvées</button>
+          <button class="btn ghost sm" id="propFilterRejected" onclick="filterProposals('rejected')">Rejetées</button>
+        </div>
+
+        <div id="propList"></div>
+        
+        <div style="margin-top:var(--space-6);border-top:1px solid var(--border-primary);padding-top:var(--space-4)">
+          <div style="font-weight:600;margin-bottom:var(--space-3)">Nouvelle proposition</div>
+          <div class="grid cols-2 mb-3">
+            <input type="text" id="propInput" placeholder="Titre de l'idée..." class="form-input">
+            <input type="text" id="propDesc" placeholder="Description..." class="form-input">
+          </div>
+          <div class="grid cols-4 mb-3">
+            <select id="propPriority" class="form-select">
+              <option value="high">🔴 Haute</option>
+              <option value="med" selected>🟡 Moyenne</option>
+              <option value="low">🟢 Basse</option>
+            </select>
+            <input type="text" id="propCost" placeholder="Coût (ex: 0$)" class="form-input">
+            <input type="text" id="propRoi" placeholder="ROI estimé" class="form-input">
+            <input type="text" id="propTime" placeholder="Délai (ex: 1 sem)" class="form-input">
+          </div>
+          <div class="flex gap-2 items-center">
+            <label style="font-size:13px;color:var(--text-secondary)">Impact /10:</label>
+            <input type="range" id="propImpact" min="1" max="10" value="5" style="flex:1">
+            <span id="propImpactVal" style="font-weight:700;min-width:24px;text-align:center">5</span>
+            <button class="btn primary" onclick="addProposal()">Ajouter</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Journal -->
+    <section class="section" id="journal">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Journal d'activités</div>
+            <div class="card-subtitle">Timeline des actions de Cash</div>
+          </div>
+        </div>
+        <div id="timeline" style="margin-bottom:var(--space-4)"></div>
+        <div class="flex gap-2">
+          <input type="text" id="tlInput" placeholder="Qu'est-ce que j'ai fait?" class="form-input">
+          <button class="btn primary" onclick="addTimelineEntry()">Ajouter</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Learning -->
+    <section class="section" id="learning">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Learning Goals</div>
+            <div class="card-subtitle">Progression des compétences Cash</div>
+          </div>
+        </div>
+        <div id="learningList"></div>
+      </div>
+    </section>
+
+    <div style="text-align:center;color:var(--text-tertiary);font-size:12px;margin-top:var(--space-8);padding:var(--space-4)">
+      Dernière mise à jour: <span id="timestamp"></span>
+    </div>
+  </div>
+</main>
+
+<script>
+// ═══════════════════════════════════════════════════
+//  📝 CONFIG DATA (unchanged)
+// ═══════════════════════════════════════════════════
+
+const CONFIG = {
+  apiCostPerMonth: 0,
+  revenueGenerated: 0,
+
+  // API Budget
+  apiBudget: 150,
+  apiServices: [
+    { name: "Claude API (Claude Max)", cost: 0, color: "#6366f1" },
+    { name: "Brave Search API (Free)", cost: 0, color: "#2563eb" },
+    { name: "OpenClaw (inclus)", cost: 0, color: "#16a34a" },
+  ],
+  apiHistory: [
+    { month: "2024-09", spent: 80 },
+    { month: "2024-10", spent: 95 },
+    { month: "2024-11", spent: 110 },
+    { month: "2024-12", spent: 125 },
+    { month: "2025-01", spent: 140 },
+    { month: "2025-02", spent: 150 },
+  ],
+
+  projects: [
+    {
+      name: "Service ERP Odoo pour PME", pct: 5, status: "en-cours",
+      start: "2026-02-11", deadline: "2026-06-01", assignee: "both",
+      link: "formation-odoo-plan.md",
+      subtasks: [
+        { text: "Recherche marché PME Québec", done: true },
+        { text: "Plan de formation 6 semaines", done: true },
+        { text: "Installer Odoo Community en local (Docker)", done: false },
+        { text: "Créer template de démo", done: false },
+        { text: "Certification Odoo v17", done: false },
+      ]
+    },
+    {
+      name: "Quick Cash — AI Automation", pct: 25, status: "en-cours",
+      start: "2026-02-11", deadline: "2026-03-15", assignee: "both",
+      link: "prospection/demo-chatbot.html",
+      subtasks: [
+        { text: "Recherche marché", done: true },
+        { text: "Chatbot démo fonctionnel", done: true },
+        { text: "Kit prospection (scripts, emails)", done: true },
+        { text: "Connecter Gmail pour prospection", done: false },
+        { text: "Premier client payant (200$+)", done: false },
+      ]
+    },
+    {
+      name: "Anne Freret Fleuriste", pct: 50, status: "en-cours",
+      start: "2026-02-11", deadline: "2026-03-01", assignee: "cash",
+      link: "http://localhost:3000",
+      subtasks: [
+        { text: "Site V3 Premium (11 pages)", done: true },
+        { text: "22 vrais produits intégrés", done: true },
+        { text: "Design noir/luxe validé par Téo", done: false },
+        { text: "Stripe (paiements réels)", done: false },
+        { text: "Sanity CMS (gestion produits)", done: false },
+        { text: "Emailing (Brevo)", done: false },
+        { text: "Déploiement Vercel", done: false },
+      ]
+    },
+    {
+      name: "Web Agency", pct: 10, status: "en-cours",
+      start: "2026-02-11", deadline: "2026-07-01", assignee: "both",
+      link: "research-quick-cash.md",
+      subtasks: [
+        { text: "Business plan", done: true },
+        { text: "Portfolio (Anne Freret)", done: false },
+        { text: "Landing pages par service", done: false },
+        { text: "Premiers prospects", done: false },
+      ]
+    },
+    {
+      name: "Vidéos Short-Form", pct: 0, status: "pas-commence",
+      start: "—", deadline: "2026-05-01", assignee: "both",
+      link: null,
+      subtasks: [
+        { text: "Setup compte YouTube/TikTok", done: false },
+        { text: "Script premier batch", done: false },
+        { text: "Pipeline génération automatique", done: false },
+      ]
+    },
+    {
+      name: "Ethical Hacking", pct: 15, status: "en-cours",
+      start: "2026-02-11", deadline: "—", assignee: "cash",
+      link: "guide-ethical-hacking.md",
+      subtasks: [
+        { text: "Guide complet + cadre légal", done: true },
+        { text: "Outils installés (nmap, nikto)", done: true },
+        { text: "Premier scan passif", done: false },
+        { text: "Premier contact prospect", done: false },
+      ]
+    },
+  ],
+
+  hacking: {
+    totalScans: 2,
+    vulnsFound: 2,
+    bountyRevenue: 0,
+    clientsConverted: 0,
+    reportsDelivered: 0,
+    avgScanTime: "—",
+    scans: [
+      { date: "2026-02-13", target: "anne-freret (notre site)", vulns: 0, severity: "none", type: "web", status: "clean", cost: "0$", potentialRevenue: "—", notes: "Audit interne — site e-commerce fleurs" },
+      { date: "2026-02-11", target: "lab HackTheBox (training)", vulns: 2, severity: "med", type: "web", status: "training", cost: "0$", potentialRevenue: "—", notes: "Lab d'entraînement autorisé" },
+    ],
+    tools: [
+      { name: "nmap", version: "7.98", status: "installed" },
+      { name: "nikto", version: "2.5.0", status: "installed" },
+      { name: "burp suite", version: "—", status: "not installed" },
+      { name: "sqlmap", version: "—", status: "not installed" },
+    ],
+    pipeline: [],
+    phases: [
+      { name: "Phase 1 — Formation & Certifications", cost: "~400$", timeline: "Sem 1-4", tasks: [
+        { text: "Formation cybersécurité défensive (cours en ligne)", done: false },
+        { text: "CompTIA Security+ certification (~400$ USD)", done: false },
+        { text: "Maîtriser les outils d'audit (avec labs autorisés)", done: false },
+        { text: "Étudier les normes: ISO 27001, SOC 2, RGPD/Loi 25", done: false },
+        { text: "Créer template rapport d'audit PDF pro", done: false },
+      ]},
+      { name: "Phase 2 — Offre de services (100% légal)", cost: "0$", timeline: "Mois 2", tasks: [
+        { text: "Packages: Audit basique 500$ / Complet 1500$ / Monitoring 500$/mois", done: false },
+        { text: "Contrats clients avec autorisation écrite obligatoire", done: false },
+        { text: "Landing page 'Audit Cybersécurité PME'", done: false },
+        { text: "3 rapports de démonstration (sur nos propres sites)", done: false },
+        { text: "Pitch email pour prospection PME québécoises", done: false },
+      ]},
+      { name: "Phase 3 — Premiers clients", cost: "0$", timeline: "Mois 2-3", revenue: "1500-5000$/mois", tasks: [
+        { text: "Consultation gratuite 30 min → vente audit", done: false },
+        { text: "Premiers 3 clients payants", done: false },
+        { text: "Formation sécurité employés (add-on 300$/session)", done: false },
+        { text: "Conformité Loi 25 Québec (service à forte demande)", done: false },
+      ]},
+      { name: "Phase 4 — Scale", cost: "Variable", timeline: "Mois 4+", revenue: "5000-10000$/mois", tasks: [
+        { text: "Monitoring mensuel automatisé pour clients", done: false },
+        { text: "Dashboard client avec statut sécurité", done: false },
+        { text: "Combo sécurité + ERP Odoo (package premium)", done: false },
+        { text: "10+ clients actifs en monitoring", done: false },
+      ]},
+    ]
+  },
+
+  veille: [
+    { tag: "ai", title: "Marché des AI Agents: 8B$ → 11.8B$ en 2026", desc: "Le marché des agents AI explose de 47% en un an. Les entreprises passent de l'expérimentation à l'automatisation complète des workflows. Exactement notre niche.", date: "2026-02-13", source: "nucamp.co" },
+    { tag: "business", title: "Odoo valorisé à 5.3B$, 8023 employés, 225M€ de revenus", desc: "Odoo en croissance massive. Le marché ERP global atteint 78.4B$ en 2026. La demande d'intégrateurs Odoo explose — parfait timing pour notre service.", date: "2026-02-13", source: "tracxn.com" },
+    { tag: "security", title: "Cybersécurité PME: le marché atteint 44.5B$ d'ici 2030", desc: "Croissance de 19.6%/an. Les PME sont les plus vulnérables et les moins protégées. Demande massive de services d'audit accessibles. Notre créneau exact.", date: "2026-02-13", source: "einpresswire.com" },
+    { tag: "ai", title: "10 prédictions AI 2026: des dizaines de petits agents spécialisés", desc: "Les gagnants en 2026 construisent des dizaines d'agents spécialisés, pas un seul agent généraliste. Cash = déjà dans cette logique.", date: "2026-02-13", source: "aibusiness.com" },
+    { tag: "business", title: "Coût site web en 2026: 500$ à 20,000$+", desc: "Sites simples: 500-2000$, e-commerce: 2000-10000$, custom: 10-20K$+. Notre pricing (2000-5000€) est pile dans le sweet spot PME.", date: "2026-02-13", source: "webyking.com" },
+    { tag: "tech", title: "Odoo 19: réduction des coûts opérationnels de 30%", desc: "Odoo évolue d'ERP vers 'Enterprise Operating System'. Les PME qui adoptent Odoo 19 voient -30% de coûts opérationnels. Argument de vente massif.", date: "2026-02-13", source: "gritxi.com" },
+    { tag: "security", title: "Les PME américaines face aux cybermenaces croissantes en 2026", desc: "Cibles #1 des hackers: PME sans budget sécu. Dossiers médicaux, données financières, IP. Une seule brèche coûte des milliers. Notre pitch: 'audit gratuit → on trouve, on corrige'.", date: "2026-02-13", source: "cyberunit.com" },
+    { tag: "business", title: "Shopify alternatives en 2026: les commerçants fuient les coûts", desc: "Frustration croissante avec Shopify: coûts élevés, flexibilité limitée, dépendance aux apps payantes. Les alternatives headless/custom gagnent du terrain. Pile notre offre pour Anne Freret.", date: "2026-02-13", source: "optinmonster.com" },
+    { tag: "ai", title: "Physical AI + robots dans le manufacturing", desc: "L'AI physique (bras robotiques, cobots) comble les pénuries de main-d'œuvre. Le manufacturing est notre cible #3 pour Odoo — combo ERP + automatisation.", date: "2026-02-13", source: "manufacturingdive.com" },
+    { tag: "business", title: "5 business safe contre l'AI en 2026", desc: "Custom workflow automation identifié comme business résistant à l'AI. Les entreprises ont besoin de jugement humain + contexte local. C'est exactement ce qu'on vend.", date: "2026-02-13", source: "entrepreneur.com" },
+    { tag: "ai", title: "Anthropic lève 30B$ — valorisation 380B$ (aujourd'hui!)", desc: "Record absolu pour une startup AI. 14B$ de revenue annuel. Claude reste sans pub, contrairement à ChatGPT. Cash tourne sur cette tech — on est dans le bon camp.", date: "2026-02-13", source: "yahoo finance" },
+    { tag: "ai", title: "Claude Opus 4.6 lancé le 5 février 2026", desc: "Dernier modèle Anthropic avec capacités agentiques améliorées. C'est exactement le modèle que Cash utilise. Plus puissant pour le code, l'analyse et l'automatisation.", date: "2026-02-13", source: "wikipedia" },
+    { tag: "security", title: "Loi 25 QC: 'les organisations sont perdues' — Les Affaires", desc: "Article récent du journal Les Affaires: les PME ne comprennent pas la Loi 25. Amendes jusqu'à 25M$. ÉNORME opportunité pour nous: service de mise en conformité clé en main.", date: "2026-02-13", source: "lesaffaires.com" },
+    { tag: "security", title: "Amendes Loi 25: jusqu'à 34.8M$ ou 4% du CA mondial", desc: "Les PME québécoises sont obligées: responsable désigné, registre incidents, programme gouvernance, gestion consentements, droit à l'effacement. On peut offrir tout ça.", date: "2026-02-13", source: "alieninformatique.com" },
+    { tag: "tech", title: "Next.js = framework #1 pour e-commerce headless en 2026", desc: "BigCommerce, Prismic, et tous les experts confirment: Next.js est le standard pour le e-commerce haute performance. Notre stack pour Anne Freret est exactement la bonne.", date: "2026-02-13", source: "bigcommerce.com" },
+    { tag: "business", title: "E-commerce trends 2026: headless commerce explose", desc: "Les commerçants migrent vers le headless (séparation frontend/backend). Plus rapide, plus flexible que Shopify. Frontend-as-a-Service en forte croissance. Notre offre de migration est pile dans la tendance.", date: "2026-02-13", source: "woosellservices.com" },
+  ],
+
+  timeline: [
+    { time: "19:45", text: "🔑 Ajout section Budget API + Recréer vidéo au dashboard" },
+    { time: "19:30", text: "🎨 Dashboard v2 — Ajout de toutes les nouvelles sections" },
+    { time: "18:00", text: "🛡️ Premier scan de test sur un lab HTB" },
+    { time: "15:30", text: "📋 Planification des projets avec sous-tâches" },
+  ],
+
+  proposals: [
+    { title: "Créer un bot Discord qui fait du scraping de deals", desc: "Peut générer des revenus en affiliation", priority: "high", status: "proposed", cost: "0$", roi: "200-500$/mois", time: "1 semaine", impact: 8 },
+    { title: "Offrir des audits de sécurité gratuits pour bâtir le portfolio", desc: "Bon pour la crédibilité + leads", priority: "high", status: "proposed", cost: "0$", roi: "500-2000$/mois indirect", time: "3 jours", impact: 9 },
+    { title: "Lancer un newsletter AI hebdomadaire", desc: "Monétisable via sponsors après 500+ abonnés", priority: "med", status: "proposed", cost: "0$", roi: "100-300$/mois", time: "2 semaines", impact: 5 },
+    { title: "Créer des templates Odoo et les vendre", desc: "Revenus passifs une fois créés", priority: "med", status: "proposed", cost: "0$", roi: "50-200$/mois passif", time: "3 semaines", impact: 4 },
+    { title: "Faire du live coding sur Twitch/YouTube", desc: "Visibilité + communauté", priority: "low", status: "proposed", cost: "0$", roi: "Indirect (audience)", time: "Ongoing", impact: 3 },
+    { title: "Service conformité Loi 25 Québec", desc: "Toutes les PME québécoises doivent être conformes à la Loi 25 (protection données). Très peu le sont. Service: audit + mise en conformité + documentation.", priority: "high", status: "proposed", cost: "0$", roi: "1000-3000$/client", time: "1-2 semaines/client", impact: 9 },
+    { title: "Pack 'PME Starter' — Site + Chatbot + Email", desc: "Bundle tout-en-un pour PME: site vitrine + chatbot IA + setup email pro. Package à 1500$ au lieu de 3000$ séparément. Attractif et facile à vendre.", priority: "high", status: "proposed", cost: "0$", roi: "1500$/vente", time: "1 semaine/client", impact: 8 },
+    { title: "Automatisation Notion/Airtable pour PME", desc: "Les PME utilisent des spreadsheets partout. Offrir migration vers Notion/Airtable + automatisations Zapier/Make. Récurrent et sticky.", priority: "med", status: "proposed", cost: "0$", roi: "500-1000$/setup + 200$/mois", time: "3-5 jours", impact: 6 },
+    { title: "Service migration Shopify → Next.js", desc: "Profiter de la frustration Shopify (coûts montants, limitations). Offrir migration clé en main. Anne Freret = preuve vivante.", priority: "high", status: "proposed", cost: "0$", roi: "2000-5000$/migration", time: "2-3 semaines", impact: 8 },
+    { title: "Monitoring cybersécurité mensuel (MRR)", desc: "Après un audit, offrir monitoring continu: scans automatisés, rapports mensuels, alertes. Revenu récurrent = stabilité financière.", priority: "med", status: "proposed", cost: "0$", roi: "300-500$/mois/client", time: "Setup 1 jour", impact: 7 },
+    { title: "Formation cybersécurité pour employés PME", desc: "Sessions de 2h: phishing, mots de passe, bonnes pratiques. Les PME en ont besoin pour la Loi 25. Facile à vendre après un audit.", priority: "med", status: "proposed", cost: "0$", roi: "300-500$/session", time: "2h/session", impact: 6 },
+    { title: "Templates Gumroad: Dashboard Notion + AI Kit", desc: "Créer des templates vendables: Dashboard business Notion, Kit AI pour PME, Pack démarrage entrepreneur. Revenus passifs.", priority: "low", status: "proposed", cost: "0$", roi: "50-200$/mois passif", time: "1 semaine", impact: 4 },
+    { title: "Partenariat avec comptables/avocats locaux", desc: "Les comptables et avocats ont des clients PME qui ont besoin de sites web et de sécurité. Référencement croisé = leads gratuits.", priority: "med", status: "proposed", cost: "0$", roi: "Indirect (leads)", time: "2-3 semaines", impact: 7 },
+    { title: "Service de veille concurrentielle pour PME", desc: "Surveiller les concurrents de nos clients: prix, produits, réseaux sociaux, SEO. Rapport mensuel automatisé par Cash.", priority: "low", status: "proposed", cost: "0$", roi: "200-400$/mois/client", time: "Setup 2 jours", impact: 5 },
+  ],
+
+  videos: [
+    { link: "https://x.com/example/status/123", desc: "Vidéo trending avec effet glitch + texte animé — style tech/hacker", status: "attente" },
+  ],
+
+  budgetCategories: ["Loyer", "Nourriture", "Transport", "Loisirs", "API / Outils", "Épargne", "Vêtements", "Santé", "Autre"],
+  budgetData: {},
+  currentMonth: new Date().toISOString().slice(0, 7),
+  pieColors: ["#2563eb","#dc2626","#16a34a","#d97706","#8b5cf6","#06b6d4","#ec4899","#64748b","#374151"],
+
+  twitterFeed: [
+    {
+      author: "Matthew Berman", handle: "@MatthewBerman", date: "2026-02-13",
+      content: "\"Something big IS happening\" — Vidéo breakdown d'un article de Matt Shumer sur l'accélération AI. Anthropic vient de lever $30B, OpenClaw a 180K+ stars GitHub.",
+      summary: "LE MONDE AI EXPLOSE. Anthropic $30B levés, $14B revenue (10x/an). OpenClaw 180K stars, meetups partout.",
+      impacts: ["skill", "tool", "revenue"],
+      verdict: "go",
+      verdictText: "✅ On est dans le bon train — l'AI explose et on a les outils",
+      link: "https://x.com/MatthewBerman/status/2022024857022869672",
+      avatar: "🔥"
+    },
+  ],
+
+  upgrades: [
+    {
+      title: "Connecter Gmail pour prospection automatique",
+      desc: "Permettrait à Cash d'envoyer des emails de prospection personnalisés, suivre les réponses, et relancer automatiquement.",
+      status: "proposed",
+      impact: "🔥 Critique — Bloque toute la prospection",
+      category: "outreach",
+      date: "2026-02-11"
+    },
+    {
+      title: "Accès X/Twitter pour veille automatique",
+      desc: "Cash pourrait scanner les tendances AI/business, sauvegarder les tweets intéressants, et alimenter le dashboard automatiquement.",
+      status: "done",
+      impact: "⚡ Important — Veille 10x plus rapide",
+      category: "intelligence",
+      date: "2026-02-11"
+    },
+    {
+      title: "Installer OWASP ZAP + outils d'audit défensif",
+      desc: "Outils pour audits de sécurité AVEC CONSENTEMENT client uniquement. ZAP = scanner OWASP, tests de conformité, analyse de configuration. Usage légal Québec avec contrat signé.",
+      status: "proposed",
+      impact: "🔥 Critique — Nécessaire pour service security pro",
+      category: "security",
+      date: "2026-02-13"
+    },
+    {
+      title: "Créer des templates de rapports PDF brandés",
+      desc: "Rapports de sécurité, propositions commerciales, études de marché — tous au format PDF pro avec logo, couleurs, mise en page agence. Impression pro instantanée.",
+      status: "proposed",
+      impact: "⚡ Important — Crédibilité +200%",
+      category: "branding",
+      date: "2026-02-13"
+    },
+    {
+      title: "Setup LinkedIn automation + profil Téo optimisé",
+      desc: "Optimiser le profil LinkedIn de Téo pour attirer des PME. Poster du contenu AI/business 3x/semaine. Connecter avec des décideurs PME ciblés automatiquement.",
+      status: "proposed",
+      impact: "⚡ Important — Canal de prospection B2B #1",
+      category: "outreach",
+      date: "2026-02-13"
+    },
+    {
+      title: "Ajouter la voix (ElevenLabs TTS)",
+      desc: "Cash pourrait envoyer des messages audio, raconter des résumés, faire des présentations vocales. Plus engageant pour les démos clients.",
+      status: "proposed",
+      impact: "💡 Nice-to-have — Wow factor pour les clients",
+      category: "features",
+      date: "2026-02-11"
+    },
+    {
+      title: "Installer Odoo Community en Docker",
+      desc: "Commencer l'apprentissage Odoo en local. Tester les modules, comprendre l'architecture, préparer les démos clients. Formation autodidacte pendant que Téo travaille.",
+      status: "proposed",
+      impact: "🔥 Critique — Fondation du business principal ERP",
+      category: "learning",
+      date: "2026-02-13"
+    },
+    {
+      title: "Créer un système de cold email automatisé",
+      desc: "Templates personnalisés par industrie, séquences de relance automatiques (J+3, J+7, J+14), tracking des ouvertures/clics. Besoin Gmail API d'abord.",
+      status: "proposed",
+      impact: "⚡ Important — Scale la prospection x10",
+      category: "outreach",
+      date: "2026-02-13"
+    },
+    {
+      title: "Landing pages pour chaque service",
+      desc: "Pages dédiées : AI Automation, Web Design, Audit Sécurité, ERP Odoo. Chacune avec pricing, témoignages, formulaire de contact. SEO optimisé.",
+      status: "proposed",
+      impact: "⚡ Important — Conversion prospects",
+      category: "marketing",
+      date: "2026-02-13"
+    },
+    {
+      title: "Setup Stripe pour paiements en ligne",
+      desc: "Permettre aux clients de payer directement : devis accepté → lien Stripe → paiement. Aussi pour le site fleurs. Gratuit à setup, 2.9% par transaction.",
+      status: "proposed",
+      impact: "💡 Nice-to-have — Facilite le closing",
+      category: "monetization",
+      date: "2026-02-13"
+    },
+    {
+      title: "Installer Macrocosmos AI (revenu passif crypto)",
+      desc: "Mine des tokens IOTA/TAO en arrière-plan sur le Mac Mini. ~30-40$/mois passif sans effort. Risque: consommation CPU/RAM à surveiller.",
+      status: "proposed",
+      impact: "💡 Nice-to-have — 30-40$/mois passif",
+      category: "monetization",
+      date: "2026-02-11"
+    },
+    {
+      title: "Dashboard client avec résultats de scans",
+      desc: "Interface web où les clients voient leurs résultats de scan en temps réel. Upsell vers monitoring mensuel. Différenciateur vs concurrents.",
+      status: "proposed",
+      impact: "💡 Nice-to-have — Scale phase 3",
+      category: "security",
+      date: "2026-02-13"
+    },
+  ],
+
+  learning: [
+    { name: "Odoo ERP", pct: 10 },
+    { name: "Web Dev", pct: 25 },
+    { name: "Marketing", pct: 5 },
+    { name: "DevOps", pct: 15 },
+    { name: "Cybersec", pct: 8 },
+    { name: "Trading", pct: 5 },
+  ],
+};
+
+// Init budget data
+CONFIG.budgetData[CONFIG.currentMonth] = [
+  { cat: "Loyer", amount: 800, note: "Février", date: "2025-02-01" },
+  { cat: "Nourriture", amount: 120, note: "Épicerie sem 1", date: "2025-02-03" },
+  { cat: "API / Outils", amount: 150, note: "OpenClaw + APIs", date: "2025-02-01" },
+];
+
+// ═══════════════════════════════════════════════════
+//  🎯 NAVIGATION & STATE
+// ═══════════════════════════════════════════════════
+
+let currentSection = 'home';
+let sidebarExpanded = true;
+
+const sectionInfo = {
+  home: { title: 'Vue d\'ensemble', breadcrumb: ['Dashboard', 'Accueil'] },
+  projects: { title: 'Gestion des projets', breadcrumb: ['Dashboard', 'Projets'] },
+  twitter: { title: 'Veille & Intelligence', breadcrumb: ['Dashboard', 'Veille'] },
+  upgrades: { title: 'Améliorations Cash', breadcrumb: ['Dashboard', 'Améliorations'] },
+  api: { title: 'Budget API', breadcrumb: ['Dashboard', 'Budget API'] },
+  hacking: { title: 'Ethical Hacking', breadcrumb: ['Dashboard', 'Security'] },
+  budget: { title: 'Budget Personnel', breadcrumb: ['Dashboard', 'Budget'] },
+  videos: { title: 'Gestion Vidéos', breadcrumb: ['Dashboard', 'Vidéos'] },
+  proposals: { title: 'Propositions & Idées', breadcrumb: ['Dashboard', 'Idées'] },
+  journal: { title: 'Journal d\'Activités', breadcrumb: ['Dashboard', 'Journal'] },
+  learning: { title: 'Learning Goals', breadcrumb: ['Dashboard', 'Learning'] },
+};
+
+function showSection(sectionId) {
+  // Hide all sections
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  
+  // Show target section
+  const section = document.getElementById(sectionId);
+  if (section) section.classList.add('active');
+  
+  // Update navigation
+  document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+  document.querySelector(`[onclick*="'${sectionId}'"]`)?.classList.add('active');
+  
+  // Update header
+  const info = sectionInfo[sectionId];
+  if (info) {
+    document.getElementById('headerTitle').textContent = info.title;
+    document.getElementById('breadcrumb').innerHTML = info.breadcrumb.map((crumb, i) => 
+      i === info.breadcrumb.length - 1 ? `<span>${crumb}</span>` : 
+      `<span>${crumb}</span><span class="breadcrumb-separator">/</span>`
+    ).join('');
+  }
+  
+  currentSection = sectionId;
+  
+  // Close mobile sidebar
+  closeMobileSidebar();
+}
+
+function toggleSidebar() {
+  sidebarExpanded = !sidebarExpanded;
+  document.getElementById('sidebar').classList.toggle('expanded', sidebarExpanded);
+}
+
+function toggleMobileSidebar() {
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebarOverlay');
+  sb.classList.toggle('mobile-open');
+  if (ov) ov.classList.toggle('active');
+}
+
+function closeMobileSidebar() {
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sidebarOverlay');
+  sb.classList.remove('mobile-open');
+  if (ov) ov.classList.remove('active');
+}
+
+// ═══════════════════════════════════════════════════
+//  💾 PERSISTENCE
+// ═══════════════════════════════════════════════════
+
+const STORAGE_KEY = 'dashboard-teo-pro-v1';
+
+function saveState() {
+  const state = {
+    projects: CONFIG.projects,
+    timeline: CONFIG.timeline,
+    proposals: CONFIG.proposals,
+    budgetData: CONFIG.budgetData,
+    budgetCategories: CONFIG.budgetCategories,
+    hacking: CONFIG.hacking,
+    apiServices: CONFIG.apiServices,
+    apiBudget: CONFIG.apiBudget,
+    apiHistory: CONFIG.apiHistory,
+    videos: CONFIG.videos,
+    twitterFeed: CONFIG.twitterFeed,
+    upgrades: CONFIG.upgrades,
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+function loadState() {
+  try {
+    const s = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (s) {
+      Object.keys(s).forEach(key => {
+        if (CONFIG[key] !== undefined) CONFIG[key] = s[key];
+      });
+    }
+  } catch(e) {
+    console.warn('Could not load state:', e);
+  }
+}
+
+loadState();
+
+// ═══════════════════════════════════════════════════
+//  📊 RENDERING FUNCTIONS
+// ═══════════════════════════════════════════════════
+
+function renderKPIs() {
+  const totalApiSpent = CONFIG.apiServices.reduce((s, v) => s + v.cost, 0);
+  const apiLeft = CONFIG.apiBudget - totalApiSpent;
+  
+  document.getElementById("kpiCost").textContent = `${totalApiSpent}$`;
+  document.getElementById("kpiRevenue").textContent = `${CONFIG.revenueGenerated}$`;
+  
+  const roi = totalApiSpent > 0 ? ((CONFIG.revenueGenerated - totalApiSpent) / totalApiSpent * 100).toFixed(0) : 0;
+  document.getElementById("kpiRoi").textContent = `${roi}%`;
+  
+  const activeProjects = CONFIG.projects.filter(p => p.status === 'en-cours').length;
+  document.getElementById("kpiProjects").textContent = activeProjects;
+  document.getElementById("kpiVulns").textContent = CONFIG.hacking.vulnsFound;
+  
+  const kpiApiLeft = document.getElementById("kpiApiLeft");
+  kpiApiLeft.textContent = `${apiLeft}$`;
+  
+  // Update API status
+  const apiPct = CONFIG.apiBudget > 0 ? (totalApiSpent / CONFIG.apiBudget) : 0;
+  const apiDot = document.getElementById("kpiApiDot");
+  const apiText = document.getElementById("kpiApiText");
+  const apiChange = document.getElementById("kpiApiChange");
+  
+  if (apiPct >= 0.8) {
+    apiDot.className = 'status-dot error';
+    apiText.textContent = 'Critique';
+    apiChange.className = 'kpi-change negative';
+  } else if (apiPct >= 0.6) {
+    apiDot.className = 'status-dot warning';
+    apiText.textContent = 'Attention';
+    apiChange.className = 'kpi-change neutral';
+  } else {
+    apiDot.className = 'status-dot success';
+    apiText.textContent = 'OK';
+    apiChange.className = 'kpi-change positive';
+  }
+  
+  document.getElementById("kpiIdeas").textContent = CONFIG.proposals.length;
+}
+
+function statusLabel(s) {
+  const map = { 
+    'en-cours': 'En cours', 
+    'en-pause': 'En pause', 
+    'pas-commence': 'Pas commencé', 
+    'complete': 'Complété' 
+  };
+  return map[s] || s;
+}
+
+function assigneeLabel(a) {
+  const map = { cash: 'Cash', teo: 'Téo', both: 'Cash & Téo' };
+  return map[a] || a;
+}
+
+function renderProjectsPreview() {
+  const activeProjects = CONFIG.projects.filter(p => p.status === 'en-cours').slice(0, 3);
+  document.getElementById("projectsPreview").innerHTML = activeProjects.map(p => `
+    <div style="padding:var(--space-3) 0;border-bottom:1px solid var(--border-primary);font-size:14px">
+      <div class="flex items-center justify-between">
+        <div style="font-weight:600">${p.name}</div>
+        <div style="color:var(--accent);font-weight:600">${p.pct}%</div>
+      </div>
+      <div style="font-size:12px;color:var(--text-secondary);margin-top:var(--space-1)">
+        ${assigneeLabel(p.assignee)} • ${p.deadline}
+      </div>
+    </div>
+  `).join('') || '<div style="color:var(--text-secondary);font-size:14px">Aucun projet actif</div>';
+}
+
+function renderVeillePreview() {
+  document.getElementById("veillePreview").innerHTML = CONFIG.veille.slice(0, 3).map(v => `
+    <div style="padding:var(--space-3) 0;border-bottom:1px solid var(--border-primary)">
+      <div class="badge ${v.tag === 'ai' ? 'info' : v.tag === 'business' ? 'success' : 'purple'}" style="margin-bottom:var(--space-2)">${v.tag}</div>
+      <div style="font-weight:600;font-size:13px;margin-bottom:var(--space-1)">${v.title}</div>
+      <div style="font-size:12px;color:var(--text-secondary)">${v.date}</div>
+    </div>
+  `).join('');
+}
+
+function renderTimelinePreview() {
+  document.getElementById("timelinePreview").innerHTML = CONFIG.timeline.slice(0, 3).map(t => `
+    <div style="padding:var(--space-2) 0;border-bottom:1px solid var(--border-primary);font-size:13px">
+      <div style="color:var(--text-secondary);font-size:12px">${t.time}</div>
+      <div>${t.text}</div>
+    </div>
+  `).join('');
+}
+
+function renderProjects() {
+  const el = document.getElementById("projectList");
+  el.innerHTML = CONFIG.projects.map((p, pi) => `
+    <div class="project-item">
+      <div class="project-header">
+        <div class="project-title">
+          ${p.link ? `<a href="${p.link}" target="_blank" style="color:var(--accent);text-decoration:none">${p.name}</a>` : p.name}
+        </div>
+        <div class="flex items-center gap-3">
+          ${p.link ? `<a href="${p.link}" target="_blank" class="btn sm">Ouvrir</a>` : ''}
+          <div class="project-progress">${p.pct}%</div>
+        </div>
+      </div>
+      <div class="project-meta">
+        <span class="badge ${p.status === 'en-cours' ? 'info' : p.status === 'complete' ? 'success' : 'warning'}">${statusLabel(p.status)}</span>
+        <span class="badge purple">${assigneeLabel(p.assignee)}</span>
+        <span>${p.start} → ${p.deadline}</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill ${p.pct >= 100 ? 'success' : ''}" style="width:${Math.max(p.pct, 2)}%"></div>
+      </div>
+      <div class="project-tasks">
+        ${(p.subtasks||[]).map((st, si) => `
+          <div class="task-item ${st.done ? 'done' : ''}" onclick="toggleSubtask(${pi},${si})">
+            <div class="task-checkbox ${st.done ? 'checked' : ''}">
+              ${st.done ? '✓' : ''}
+            </div>
+            <span>${st.text}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleSubtask(pi, si) {
+  CONFIG.projects[pi].subtasks[si].done = !CONFIG.projects[pi].subtasks[si].done;
+  const p = CONFIG.projects[pi];
+  const total = p.subtasks.length;
+  const done = p.subtasks.filter(s => s.done).length;
+  p.pct = total > 0 ? Math.round(done / total * 100) : 0;
+  if (p.pct === 100) p.status = 'complete';
+  saveState();
+  renderProjects();
+  renderProjectsPreview();
+  renderKPIs();
+}
+
+// ═══ API Budget ═══
+function renderApiBudget() {
+  const totalSpent = CONFIG.apiServices.reduce((s, v) => s + v.cost, 0);
+  const remaining = CONFIG.apiBudget - totalSpent;
+  const pct = CONFIG.apiBudget > 0 ? Math.min((totalSpent / CONFIG.apiBudget) * 100, 100) : 0;
+
+  document.getElementById("apiRemaining").textContent = `${remaining}$ CAD`;
+  
+  const barFill = document.getElementById("apiBarFill");
+  barFill.style.width = pct + '%';
+  
+  if (pct < 50) barFill.className = 'progress-fill';
+  else if (pct < 80) barFill.className = 'progress-fill warning';
+  else barFill.className = 'progress-fill error';
+
+  document.getElementById("apiAlert").classList.toggle('hidden', pct < 80);
+  document.getElementById("apiBudgetInput").value = CONFIG.apiBudget;
+
+  document.getElementById("apiBreakdown").innerHTML = CONFIG.apiServices.map((s, i) => `
+    <div class="flex items-center justify-between" style="padding:var(--space-2) 0;border-bottom:1px solid var(--border-primary)">
+      <div class="flex items-center gap-2">
+        <div class="status-dot" style="background:${s.color}"></div>
+        <span style="font-size:13px">${s.name}</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span style="font-weight:600;color:${s.color}">${s.cost}$</span>
+        <button class="btn ghost sm" onclick="removeApiService(${i})">×</button>
+      </div>
+    </div>
+  `).join('');
+
+  drawApiHistory();
+}
+
+function updateApiBudget() {
+  CONFIG.apiBudget = parseFloat(document.getElementById("apiBudgetInput").value) || 150;
+  saveState();
+  renderApiBudget();
+  renderKPIs();
+}
+
+function addApiService() {
+  const name = document.getElementById("apiServiceName").value.trim();
+  const cost = parseFloat(document.getElementById("apiServiceCost").value);
+  if (!name || !cost) return;
+  
+  const colors = ['#2563eb','#dc2626','#16a34a','#d97706','#8b5cf6','#06b6d4'];
+  CONFIG.apiServices.push({ 
+    name, 
+    cost, 
+    color: colors[CONFIG.apiServices.length % colors.length] 
+  });
+  
+  document.getElementById("apiServiceName").value = '';
+  document.getElementById("apiServiceCost").value = '';
+  saveState();
+  renderApiBudget();
+  renderKPIs();
+}
+
+function removeApiService(i) {
+  CONFIG.apiServices.splice(i, 1);
+  saveState();
+  renderApiBudget();
+  renderKPIs();
+}
+
+function drawApiHistory() {
+  const canvas = document.getElementById("apiHistoryChart");
+  const ctx = canvas.getContext("2d");
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const data = CONFIG.apiHistory;
+  if (data.length < 2) return;
+
+  const maxVal = Math.max(...data.map(d => d.spent), CONFIG.apiBudget) * 1.15;
+  const padL = 50, padR = 20, padT = 20, padB = 40;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+
+  // Grid
+  ctx.strokeStyle = '#e1e5e9';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 4; i++) {
+    const y = padT + (chartH / 4) * i;
+    ctx.beginPath(); 
+    ctx.moveTo(padL, y); 
+    ctx.lineTo(W - padR, y); 
+    ctx.stroke();
+    
+    ctx.fillStyle = '#8b949e';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(Math.round(maxVal - (maxVal / 4) * i) + '$', padL - 8, y + 4);
+  }
+
+  // Budget line
+  const budgetY = padT + chartH * (1 - CONFIG.apiBudget / maxVal);
+  ctx.strokeStyle = '#dc2626';
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath(); 
+  ctx.moveTo(padL, budgetY); 
+  ctx.lineTo(W - padR, budgetY); 
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Line chart
+  ctx.beginPath();
+  ctx.strokeStyle = '#2563eb';
+  ctx.lineWidth = 3;
+  
+  data.forEach((d, i) => {
+    const x = padL + (chartW / (data.length - 1)) * i;
+    const y = padT + chartH * (1 - d.spent / maxVal);
+    if (i === 0) ctx.moveTo(x, y); 
+    else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  // Points & labels
+  data.forEach((d, i) => {
+    const x = padL + (chartW / (data.length - 1)) * i;
+    const y = padT + chartH * (1 - d.spent / maxVal);
+    
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = d.spent > CONFIG.apiBudget ? '#dc2626' : '#2563eb';
+    ctx.fill();
+
+    ctx.fillStyle = '#6b7280';
+    ctx.font = '10px sans-serif';
+    ctx.textAlign = 'center';
+    const monthNames = ['Jan','Fév','Mar','Avr','Mai','Jun','Jul','Aoû','Sep','Oct','Nov','Déc'];
+    const monthShort = d.month.split('-')[1];
+    ctx.fillText(monthNames[parseInt(monthShort) - 1], x, padT + chartH + 16);
+  });
+}
+
+// ═══ Other render functions ═══
+function renderHacking() {
+  const h = CONFIG.hacking;
+  document.getElementById("hackScans").textContent = h.totalScans;
+  document.getElementById("hackVulns").textContent = h.vulnsFound;
+  document.getElementById("hackRevenue").textContent = h.bountyRevenue + '$';
+  document.getElementById("hackReports").textContent = h.reportsDelivered || 0;
+  document.getElementById("hackClients").textContent = h.clientsConverted || 0;
+  document.getElementById("hackAvgTime").textContent = h.avgScanTime || '—';
+  
+  // Scan log table
+  const sevColors = { critical: 'error', high: 'error', med: 'warning', low: 'info', none: 'success' };
+  const statusLabels = { clean: ['Clean', 'success'], reported: ['Signalé', 'warning'], training: ['Training', 'info'], fixed: ['Corrigé', 'success'], converted: ['Client ✓', 'purple'] };
+  
+  document.getElementById("scanLog").innerHTML = h.scans.map(s => {
+    const [stLabel, stCls] = statusLabels[s.status] || [s.status, 'info'];
+    return `
+    <tr>
+      <td style="white-space:nowrap">${s.date}</td>
+      <td><strong>${s.target}</strong></td>
+      <td><span class="badge info">${s.type || 'web'}</span></td>
+      <td style="text-align:center;font-weight:600;color:${s.vulns > 0 ? 'var(--error)' : 'var(--success)'}">${s.vulns}</td>
+      <td>${s.severity !== 'none' ? `<span class="badge ${sevColors[s.severity] || 'info'}">${s.severity}</span>` : '<span style="color:var(--text-tertiary)">—</span>'}</td>
+      <td><span class="badge ${stCls}">${stLabel}</span></td>
+      <td style="font-weight:500;color:var(--success)">${s.potentialRevenue || '—'}</td>
+      <td style="font-size:12px;color:var(--text-secondary);max-width:200px">${s.notes || ''}</td>
+    </tr>`;
+  }).join('');
+
+  // Pipeline
+  const stageOrder = ['identified', 'contact', 'scan', 'reported', 'converted'];
+  const stageLabels = { identified: '🔎 Identifié', contact: '📧 Contacté', scan: '🔍 En scan', reported: '📄 Rapport envoyé', converted: '✅ Converti' };
+  const stageColors = { identified: 'var(--text-tertiary)', contact: 'var(--accent)', scan: 'var(--warning)', reported: 'var(--purple)', converted: 'var(--success)' };
+  
+  document.getElementById("hackPipeline").innerHTML = (h.pipeline || []).length === 0 
+    ? '<div style="padding:var(--space-4);text-align:center;color:var(--text-tertiary)">Aucun prospect dans le pipeline</div>'
+    : (h.pipeline || []).map((p, i) => {
+    const stageIdx = stageOrder.indexOf(p.stage);
+    const progressPct = ((stageIdx + 1) / stageOrder.length) * 100;
+    return `
+    <div style="border:1px solid var(--border-primary);border-left:3px solid ${stageColors[p.stage] || 'var(--text-tertiary)'};border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-3);background:var(--bg-secondary)">
+      <div class="flex items-center justify-between mb-2">
+        <div style="font-weight:600">${p.target}</div>
+        <div class="flex items-center gap-3">
+          <span style="font-weight:600;color:var(--success)">${p.value || '—'}</span>
+          <span class="badge ${p.stage === 'converted' ? 'success' : 'info'}">${stageLabels[p.stage] || p.stage}</span>
+        </div>
+      </div>
+      <div style="background:var(--bg-tertiary);border-radius:4px;height:4px;overflow:hidden;margin-bottom:var(--space-2)">
+        <div style="height:100%;width:${progressPct}%;background:${stageColors[p.stage]};border-radius:4px;transition:width 0.3s"></div>
+      </div>
+      <div class="flex items-center justify-between" style="font-size:12px;color:var(--text-tertiary)">
+        <span>Deadline: ${p.deadline || '—'}</span>
+        <div class="flex gap-2">
+          ${stageIdx < stageOrder.length - 1 ? `<button class="btn primary sm" onclick="advancePipeline(${i})">→ ${stageLabels[stageOrder[stageIdx + 1]] || 'Next'}</button>` : ''}
+          <button class="btn ghost sm" onclick="removePipeline(${i})" style="color:var(--error)">✕</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Phases roadmap
+  document.getElementById("hackPhases").innerHTML = (h.phases || []).map((phase, pi) => {
+    const doneCount = phase.tasks.filter(t => t.done).length;
+    const totalCount = phase.tasks.length;
+    const phasePct = totalCount > 0 ? Math.round((doneCount / totalCount) * 100) : 0;
+    const phaseColor = phasePct === 100 ? 'var(--success)' : phasePct > 0 ? 'var(--accent)' : 'var(--text-tertiary)';
+    return `
+    <div style="border:1px solid var(--border-primary);border-left:3px solid ${phaseColor};border-radius:var(--radius-md);padding:var(--space-5);margin-bottom:var(--space-4);background:var(--bg-secondary)">
+      <div class="flex items-center justify-between mb-3">
+        <div style="font-weight:600;font-size:15px">${phase.name}</div>
+        <div class="flex items-center gap-3" style="font-size:13px">
+          <span style="background:var(--bg-tertiary);padding:2px 8px;border-radius:4px">💰 ${phase.cost}</span>
+          <span style="background:var(--bg-tertiary);padding:2px 8px;border-radius:4px">⏱ ${phase.timeline}</span>
+          ${phase.revenue ? `<span style="background:var(--success-light);padding:2px 8px;border-radius:4px;color:var(--success);font-weight:600">📈 ${phase.revenue}</span>` : ''}
+          <span style="font-weight:700;color:${phaseColor}">${phasePct}%</span>
+        </div>
+      </div>
+      <div style="background:var(--bg-tertiary);border-radius:4px;height:4px;overflow:hidden;margin-bottom:var(--space-3)">
+        <div style="height:100%;width:${phasePct}%;background:${phaseColor};border-radius:4px;transition:width 0.3s"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-2)">
+        ${phase.tasks.map((t, ti) => `
+          <label style="display:flex;align-items:center;gap:var(--space-2);font-size:13px;cursor:pointer;padding:var(--space-1) 0;${t.done ? 'color:var(--text-tertiary);text-decoration:line-through' : ''}">
+            <input type="checkbox" ${t.done ? 'checked' : ''} onchange="togglePhaseTask(${pi},${ti})" style="accent-color:var(--success)">
+            ${t.text}
+          </label>
+        `).join('')}
+      </div>
+    </div>`;
+  }).join('');
+
+  // Tools
+  document.getElementById("hackTools").innerHTML = (h.tools || []).map(t => `
+    <div style="border:1px solid var(--border-primary);border-radius:var(--radius-md);padding:var(--space-3);background:var(--bg-secondary);text-align:center">
+      <div style="font-weight:600;font-size:14px;margin-bottom:var(--space-1)">${t.name}</div>
+      <div style="font-size:12px;color:var(--text-tertiary);margin-bottom:var(--space-2)">${t.version}</div>
+      <span class="badge ${t.status === 'installed' ? 'success' : 'error'}">${t.status === 'installed' ? '✓ Installé' : '✕ Manquant'}</span>
+    </div>
+  `).join('');
+}
+
+function advancePipeline(i) {
+  const stages = ['identified', 'contact', 'scan', 'reported', 'converted'];
+  const cur = stages.indexOf(CONFIG.hacking.pipeline[i].stage);
+  if (cur < stages.length - 1) {
+    CONFIG.hacking.pipeline[i].stage = stages[cur + 1];
+    if (stages[cur + 1] === 'converted') CONFIG.hacking.clientsConverted = (CONFIG.hacking.clientsConverted || 0) + 1;
+    saveState(); renderHacking();
+  }
+}
+
+function removePipeline(i) {
+  CONFIG.hacking.pipeline.splice(i, 1);
+  saveState(); renderHacking();
+}
+
+function addPipelineItem() {
+  const target = document.getElementById("pipeTarget");
+  const stage = document.getElementById("pipeStage").value;
+  const value = document.getElementById("pipeValue");
+  const deadline = document.getElementById("pipeDeadline");
+  if (!target.value.trim()) return;
+  if (!CONFIG.hacking.pipeline) CONFIG.hacking.pipeline = [];
+  CONFIG.hacking.pipeline.push({ target: target.value.trim(), stage, value: value.value.trim() ? value.value.trim() + '$' : '—', deadline: deadline.value || '—' });
+  target.value = ''; value.value = ''; deadline.value = '';
+  saveState(); renderHacking();
+}
+
+function togglePhaseTask(phaseIdx, taskIdx) {
+  CONFIG.hacking.phases[phaseIdx].tasks[taskIdx].done = !CONFIG.hacking.phases[phaseIdx].tasks[taskIdx].done;
+  saveState();
+  renderHacking();
+}
+
+function addScan() {
+  const target = document.getElementById("scanTarget");
+  const type = document.getElementById("scanType").value;
+  const vulns = parseInt(document.getElementById("scanVulns").value) || 0;
+  const sev = document.getElementById("scanSev").value;
+  const revPot = document.getElementById("scanRevPot");
+  const notes = document.getElementById("scanNotes");
+  if (!target.value.trim()) return;
+  const today = new Date().toISOString().slice(0, 10);
+  CONFIG.hacking.scans.unshift({ date: today, target: target.value.trim(), type, vulns, severity: sev, status: vulns > 0 ? 'reported' : 'clean', potentialRevenue: revPot.value.trim() || '0$', notes: notes.value.trim() });
+  CONFIG.hacking.totalScans++;
+  CONFIG.hacking.vulnsFound += vulns;
+  target.value = ''; document.getElementById("scanVulns").value = ''; revPot.value = ''; notes.value = '';
+  saveState(); renderHacking();
+}
+
+function renderVeille() {
+  const tagColors = { ai: 'info', business: 'success', tech: 'purple', security: 'error' };
+  const tagLabels = { ai: '🤖 AI & Tech', business: '💼 Business', tech: '⚙️ Tech', security: '🔒 Sécurité' };
+  const tagBorders = { ai: 'var(--accent)', business: 'var(--success)', tech: 'var(--purple)', security: 'var(--error)' };
+  
+  // Stats
+  document.getElementById("veilleTotal").textContent = CONFIG.veille.length;
+  document.getElementById("veilleAI").textContent = CONFIG.veille.filter(v => v.tag === 'ai').length;
+  document.getElementById("veilleBiz").textContent = CONFIG.veille.filter(v => v.tag === 'business').length;
+  document.getElementById("veilleSec").textContent = CONFIG.veille.filter(v => v.tag === 'security').length;
+
+  // Filter
+  let filtered = CONFIG.veille;
+  if (veilleFilter !== 'all') filtered = filtered.filter(v => v.tag === veilleFilter);
+
+  document.getElementById("veilleFeed").innerHTML = filtered.length === 0
+    ? '<div style="text-align:center;padding:var(--space-8);color:var(--text-tertiary)">Aucun article dans cette catégorie</div>'
+    : '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:var(--space-4)">' + filtered.map(v => `
+    <div style="border:1px solid var(--border-primary);border-left:3px solid ${tagBorders[v.tag] || 'var(--accent)'};border-radius:var(--radius-md);padding:var(--space-5);background:var(--bg-secondary)">
+      <div class="flex items-center justify-between" style="margin-bottom:var(--space-3)">
+        <span class="badge ${tagColors[v.tag] || 'info'}">${tagLabels[v.tag] || v.tag}</span>
+        <span style="font-size:11px;color:var(--text-tertiary)">${v.date}</span>
+      </div>
+      <div style="font-weight:600;font-size:15px;margin-bottom:var(--space-2);line-height:1.3">${v.title}</div>
+      <div style="font-size:13px;color:var(--text-secondary);line-height:1.5;margin-bottom:var(--space-3)">${v.desc}</div>
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="font-size:11px;color:var(--text-tertiary);background:var(--bg-tertiary);padding:2px 8px;border-radius:4px">📰 ${v.source || '—'}</span>
+      </div>
+    </div>
+  `).join('') + '</div>';
+}
+
+function renderTwitterFeed() {
+  const el = document.getElementById("twitterFeed");
+  const impactLabels = {
+    revenue: ['Revenu', 'success'],
+    skill: ['Skill', 'info'],
+    tool: ['Outil', 'purple'],
+    passive: ['Passif', 'warning'],
+    network: ['Réseau', 'info'],
+  };
+  
+  el.innerHTML = CONFIG.twitterFeed.map(t => `
+    <div style="border:1px solid var(--border-primary);border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-4);background:var(--bg-secondary)">
+      <div class="flex items-center gap-3 mb-3">
+        <div style="width:32px;height:32px;border-radius:50%;background:var(--bg-tertiary);display:flex;align-items:center;justify-content:center">${t.avatar}</div>
+        <div>
+          <div style="font-weight:600;font-size:14px">${t.author}</div>
+          <div style="color:var(--text-secondary);font-size:12px">${t.handle}</div>
+        </div>
+        <div style="margin-left:auto;color:var(--text-tertiary);font-size:12px">${t.date}</div>
+      </div>
+      <div style="font-size:14px;margin-bottom:var(--space-3);line-height:1.5">${t.content}</div>
+      <div style="background:var(--bg-tertiary);padding:var(--space-3);border-radius:var(--radius-sm);margin-bottom:var(--space-3)">
+        <div style="font-size:11px;font-weight:600;color:var(--accent);margin-bottom:var(--space-1);text-transform:uppercase">Résumé Cash</div>
+        <div style="font-size:13px;line-height:1.4">${t.summary}</div>
+      </div>
+      <div class="flex gap-2 mb-3">
+        ${(t.impacts||[]).map(imp => {
+          const [label, cls] = impactLabels[imp] || [imp, 'info'];
+          return `<span class="badge ${cls}">${label}</span>`;
+        }).join('')}
+      </div>
+      <div class="badge ${t.verdict === 'go' ? 'success' : 'info'}" style="margin-bottom:var(--space-2)">${t.verdictText}</div>
+      ${t.link ? `<div><a href="${t.link}" target="_blank" style="color:var(--accent);text-decoration:none;font-size:13px">Voir le post original →</a></div>` : ''}
+    </div>
+  `).join('');
+}
+
+function renderUpgrades() {
+  const el = document.getElementById("upgradeList");
+  const statusLabels = {
+    proposed: ['En attente', 'warning'],
+    approved: ['Approuvé', 'success'],
+    done: ['Terminé', 'success'],
+    rejected: ['Rejeté', 'error'],
+  };
+  
+  // Update stats
+  const counts = { proposed: 0, approved: 0, done: 0, rejected: 0 };
+  CONFIG.upgrades.forEach(u => { counts[u.status] = (counts[u.status] || 0) + 1; });
+  document.getElementById("upgProposed").textContent = counts.proposed;
+  document.getElementById("upgApproved").textContent = counts.approved;
+  document.getElementById("upgDone").textContent = counts.done;
+  document.getElementById("upgRejected").textContent = counts.rejected;
+  
+  el.innerHTML = CONFIG.upgrades.map((u, i) => {
+    const [statusText, statusCls] = statusLabels[u.status] || [u.status, 'info'];
+    const priorityBar = u.impact.includes('Critique') ? 'var(--error)' : u.impact.includes('Important') ? 'var(--warning)' : 'var(--text-tertiary)';
+    return `
+    <div style="border-left:3px solid ${priorityBar};border:1px solid var(--border-primary);border-left:3px solid ${priorityBar};border-radius:var(--radius-md);padding:var(--space-5);margin-bottom:var(--space-4);background:var(--bg-secondary)">
+      <div class="flex items-center justify-between mb-3">
+        <div style="font-weight:600;font-size:15px">${u.title}</div>
+        <span class="badge ${statusCls}">${statusText}</span>
+      </div>
+      <div style="font-size:13px;color:var(--text-secondary);margin-bottom:var(--space-3);line-height:1.5">${u.desc}</div>
+      <div class="flex items-center gap-3 mb-3" style="font-size:12px">
+        <span style="background:var(--bg-tertiary);padding:2px 8px;border-radius:4px;font-weight:500">${u.impact}</span>
+        <span style="color:var(--text-tertiary)">📅 ${u.date}</span>
+      </div>
+      ${u.status === 'proposed' ? `
+      <div class="flex gap-2" style="margin-top:var(--space-3)">
+        <button class="btn primary sm" onclick="upgradeAction(${i},'approved')">✓ Approuver</button>
+        <button class="btn sm" onclick="upgradeAction(${i},'done')">✅ Marquer terminé</button>
+        <button class="btn ghost sm" onclick="upgradeAction(${i},'rejected')" style="color:var(--error)">✕ Rejeter</button>
+      </div>` : u.status === 'approved' ? `
+      <div class="flex gap-2" style="margin-top:var(--space-3)">
+        <button class="btn primary sm" onclick="upgradeAction(${i},'done')">✅ Marquer terminé</button>
+      </div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function upgradeAction(i, status) {
+  CONFIG.upgrades[i].status = status;
+  saveState();
+  renderUpgrades();
+}
+
+// ═══ Timeline ═══
+function renderTimeline() {
+  document.getElementById("timeline").innerHTML = CONFIG.timeline.map(t => `
+    <div style="position:relative;padding:var(--space-3) 0;padding-left:var(--space-6);border-left:2px solid var(--border-primary)">
+      <div style="position:absolute;left:-5px;top:var(--space-4);width:8px;height:8px;background:var(--accent);border-radius:50%"></div>
+      <div style="color:var(--text-secondary);font-size:12px;margin-bottom:var(--space-1)">${t.time}</div>
+      <div style="font-size:14px">${t.text}</div>
+    </div>
+  `).join('');
+}
+
+function addTimelineEntry() {
+  const inp = document.getElementById("tlInput");
+  if (!inp.value.trim()) return;
+  const now = new Date();
+  CONFIG.timeline.unshift({ 
+    time: now.toTimeString().slice(0,5), 
+    text: inp.value.trim() 
+  });
+  inp.value = '';
+  saveState();
+  renderTimeline();
+  renderTimelinePreview();
+}
+
+// ═══ Veille Filters ═══
+let veilleFilter = 'all';
+
+function filterVeille(filter) {
+  veilleFilter = filter;
+  ['All','Ai','Business','Security','Tech'].forEach(f => {
+    const btn = document.getElementById('veilleFilter' + f);
+    if (btn) btn.className = (f.toLowerCase() === filter || (filter === 'all' && f === 'All')) ? 'btn sm' : 'btn ghost sm';
+  });
+  renderVeille();
+}
+
+// ═══ Proposals ═══
+let propFilter = 'all';
+
+function filterProposals(filter) {
+  propFilter = filter;
+  ['All','Proposed','Approved','Rejected'].forEach(f => {
+    const btn = document.getElementById('propFilter' + f);
+    if (btn) { btn.className = f.toLowerCase() === filter || (filter === 'all' && f === 'All') ? 'btn sm' : 'btn ghost sm'; }
+  });
+  renderProposals();
+}
+
+function renderProposals() {
+  // Stats
+  const total = CONFIG.proposals.length;
+  const approved = CONFIG.proposals.filter(p => p.status === 'approved').length;
+  const pending = CONFIG.proposals.filter(p => p.status === 'proposed').length;
+  const avgImpact = total ? (CONFIG.proposals.reduce((s, p) => s + (p.impact || 0), 0) / total).toFixed(1) : 0;
+  
+  document.getElementById("propTotal").textContent = total;
+  document.getElementById("propApproved").textContent = approved;
+  document.getElementById("propPending").textContent = pending;
+  document.getElementById("propAvgImpact").textContent = avgImpact + '/10';
+
+  // Filter
+  let filtered = CONFIG.proposals;
+  if (propFilter !== 'all') filtered = filtered.filter(p => p.status === propFilter);
+  
+  // Sort by impact desc
+  const sorted = [...filtered].sort((a, b) => (b.impact || 0) - (a.impact || 0));
+  
+  document.getElementById("propList").innerHTML = sorted.length === 0 
+    ? '<div style="text-align:center;padding:var(--space-8);color:var(--text-tertiary)">Aucune proposition dans cette catégorie</div>'
+    : sorted.map((p) => {
+    const origIdx = CONFIG.proposals.indexOf(p);
+    const priorityColor = p.priority === 'high' ? 'var(--error)' : p.priority === 'med' ? 'var(--warning)' : 'var(--success)';
+    const impactColor = (p.impact || 0) >= 7 ? 'var(--success)' : (p.impact || 0) >= 4 ? 'var(--warning)' : 'var(--text-tertiary)';
+    const statusLabels = { proposed: ['En attente', 'warning'], approved: ['Approuvé ✓', 'success'], rejected: ['Rejeté', 'error'], done: ['Terminé', 'success'] };
+    const [stLabel, stClass] = statusLabels[p.status] || ['—', ''];
+    
+    // Impact bar visual
+    const impactPct = ((p.impact || 0) / 10) * 100;
+    
+    return `
+    <div style="border-left:3px solid ${priorityColor};border:1px solid var(--border-primary);border-left:3px solid ${priorityColor};border-radius:var(--radius-md);padding:var(--space-5);margin-bottom:var(--space-4);background:var(--bg-secondary)">
+      <div class="flex items-center justify-between mb-3">
+        <div style="font-weight:600;font-size:15px">${p.title}</div>
+        <span class="badge ${stClass}">${stLabel}</span>
+      </div>
+      ${p.desc ? `<div style="font-size:13px;color:var(--text-secondary);margin-bottom:var(--space-3);line-height:1.5">${p.desc}</div>` : ''}
+      
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-3);margin-bottom:var(--space-3)">
+        <div style="background:var(--bg-tertiary);padding:var(--space-2) var(--space-3);border-radius:6px;text-align:center">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-tertiary);margin-bottom:2px">Coût</div>
+          <div style="font-weight:600;font-size:14px">${p.cost || '—'}</div>
+        </div>
+        <div style="background:var(--bg-tertiary);padding:var(--space-2) var(--space-3);border-radius:6px;text-align:center">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-tertiary);margin-bottom:2px">ROI estimé</div>
+          <div style="font-weight:600;font-size:14px;color:var(--success)">${p.roi || '—'}</div>
+        </div>
+        <div style="background:var(--bg-tertiary);padding:var(--space-2) var(--space-3);border-radius:6px;text-align:center">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-tertiary);margin-bottom:2px">Délai</div>
+          <div style="font-weight:600;font-size:14px">${p.time || '—'}</div>
+        </div>
+        <div style="background:var(--bg-tertiary);padding:var(--space-2) var(--space-3);border-radius:6px;text-align:center">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-tertiary);margin-bottom:2px">Impact</div>
+          <div style="font-weight:700;font-size:14px;color:${impactColor}">${p.impact || 0}/10</div>
+        </div>
+      </div>
+
+      <div style="background:var(--bg-tertiary);border-radius:4px;height:6px;overflow:hidden;margin-bottom:var(--space-3)">
+        <div style="height:100%;width:${impactPct}%;background:${impactColor};border-radius:4px;transition:width 0.3s"></div>
+      </div>
+      
+      <div class="flex items-center justify-between">
+        <span class="badge ${p.priority === 'high' ? 'error' : p.priority === 'med' ? 'warning' : 'success'}">${p.priority === 'high' ? '🔴 Haute priorité' : p.priority === 'med' ? '🟡 Moyenne' : '🟢 Basse'}</span>
+        ${p.status === 'proposed' ? `
+        <div class="flex gap-2">
+          <button class="btn primary sm" onclick="proposalAction(${origIdx},'approved')">✓ Approuver</button>
+          <button class="btn ghost sm" onclick="proposalAction(${origIdx},'rejected')" style="color:var(--error)">✕ Rejeter</button>
+        </div>` : p.status === 'approved' ? `
+        <button class="btn primary sm" onclick="proposalAction(${origIdx},'done')">✅ Terminé</button>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function proposalAction(idx, status) {
+  CONFIG.proposals[idx].status = status;
+  saveState();
+  renderProposals();
+}
+
+function addProposal() {
+  const inp = document.getElementById("propInput");
+  const desc = document.getElementById("propDesc");
+  const prio = document.getElementById("propPriority").value;
+  const cost = document.getElementById("propCost");
+  const roi = document.getElementById("propRoi");
+  const time = document.getElementById("propTime");
+  const impact = document.getElementById("propImpact");
+  if (!inp.value.trim()) return;
+  CONFIG.proposals.push({ 
+    title: inp.value.trim(), 
+    desc: desc.value.trim(),
+    priority: prio, 
+    status: 'proposed',
+    cost: cost.value.trim() || '—',
+    roi: roi.value.trim() || '—',
+    time: time.value.trim() || '—',
+    impact: parseInt(impact.value) || 5
+  });
+  inp.value = ''; desc.value = ''; cost.value = ''; roi.value = ''; time.value = '';
+  impact.value = 5; document.getElementById("propImpactVal").textContent = '5';
+  saveState();
+  renderProposals();
+  renderKPIs();
+}
+
+// Impact slider live update
+document.addEventListener('DOMContentLoaded', () => {
+  const slider = document.getElementById('propImpact');
+  if (slider) slider.addEventListener('input', () => {
+    document.getElementById('propImpactVal').textContent = slider.value;
+  });
+});
+
+// ═══ Videos ═══
+function renderVideos() {
+  const el = document.getElementById("videoList");
+  const statusLabels = { 
+    attente: ['En attente', 'warning'], 
+    'en-cours': ['En cours', 'info'], 
+    fait: ['Terminé', 'success'] 
+  };
+  
+  el.innerHTML = CONFIG.videos.map((v, i) => `
+    <div style="border:1px solid var(--border-primary);border-radius:var(--radius-md);padding:var(--space-4);margin-bottom:var(--space-3);background:var(--bg-secondary)">
+      <div class="flex items-center justify-between mb-3">
+        <a href="${v.link}" target="_blank" style="color:var(--accent);text-decoration:none;font-size:13px;word-break:break-all">${v.link || '(pas de lien)'}</a>
+        <div class="flex items-center gap-2">
+          <select onchange="changeVideoStatus(${i}, this.value)" class="form-select" style="font-size:12px;padding:var(--space-1) var(--space-2)">
+            <option value="attente" ${v.status==='attente'?'selected':''}>En attente</option>
+            <option value="en-cours" ${v.status==='en-cours'?'selected':''}>En cours</option>
+            <option value="fait" ${v.status==='fait'?'selected':''}>Terminé</option>
+          </select>
+          <button class="btn ghost sm" onclick="deleteVideo(${i})">×</button>
+        </div>
+      </div>
+      <div style="font-size:14px;margin-bottom:var(--space-2)">${v.desc}</div>
+      <span class="badge ${statusLabels[v.status][1]}">${statusLabels[v.status][0]}</span>
+    </div>
+  `).join('') || '<div style="color:var(--text-secondary);font-size:14px">Aucune vidéo à recréer pour le moment</div>';
+}
+
+function addVideo() {
+  const link = document.getElementById("videoLink").value.trim();
+  const desc = document.getElementById("videoDesc").value.trim();
+  const status = document.getElementById("videoStatus").value;
+  if (!desc) return;
+  CONFIG.videos.push({ link, desc, status });
+  document.getElementById("videoLink").value = '';
+  document.getElementById("videoDesc").value = '';
+  saveState();
+  renderVideos();
+}
+
+function changeVideoStatus(i, status) {
+  CONFIG.videos[i].status = status;
+  saveState();
+  renderVideos();
+}
+
+function deleteVideo(i) {
+  CONFIG.videos.splice(i, 1);
+  saveState();
+  renderVideos();
+}
+
+// ═══ Budget ═══
+function getMonthEntries() { 
+  return CONFIG.budgetData[CONFIG.currentMonth] || []; 
+}
+
+function renderBudget() {
+  const monthNames = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const [y, m] = CONFIG.currentMonth.split('-');
+  document.getElementById("budgetMonthLabel").textContent = `${monthNames[parseInt(m)-1]} ${y}`;
+  
+  const catSel = document.getElementById("budgetCat");
+  catSel.innerHTML = CONFIG.budgetCategories.map(c => `<option>${c}</option>`).join('');
+  
+  const entries = getMonthEntries();
+  const el = document.getElementById("budgetEntries");
+  el.innerHTML = entries.map((e, i) => `
+    <div class="flex items-center justify-between" style="padding:var(--space-2) 0;border-bottom:1px solid var(--border-primary)">
+      <div>
+        <div style="font-weight:600;font-size:13px">${e.cat}</div>
+        <div style="color:var(--text-secondary);font-size:12px">${e.note || ''}</div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span style="font-weight:700;color:var(--error)">${e.amount}$</span>
+        <button class="btn ghost sm" onclick="deleteBudgetEntry(${i})">×</button>
+      </div>
+    </div>
+  `).join('') || '<div style="color:var(--text-secondary);font-size:14px;padding:var(--space-3) 0">Aucune dépense ce mois</div>';
+  
+  const total = entries.reduce((s, e) => s + e.amount, 0);
+  document.getElementById("budgetTotal").textContent = `Total: ${total}$`;
+  drawPie(entries);
+}
+
+function drawPie(entries) {
+  const canvas = document.getElementById("pieChart");
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, 280, 280);
+  
+  const grouped = {};
+  (entries || []).forEach(e => { 
+    grouped[e.cat] = (grouped[e.cat] || 0) + e.amount; 
+  });
+  const cats = Object.entries(grouped);
+  
+  if (cats.length === 0) {
+    ctx.fillStyle = '#f3f4f6'; 
+    ctx.beginPath(); 
+    ctx.arc(140,140,120,0,Math.PI*2); 
+    ctx.fill();
+    ctx.fillStyle = '#6b7280'; 
+    ctx.font = '16px sans-serif'; 
+    ctx.textAlign = 'center'; 
+    ctx.fillText('Aucune donnée', 140, 144);
+    document.getElementById("pieLegend").innerHTML = '';
+    return;
+  }
+  
+  const total = cats.reduce((s, c) => s + c[1], 0);
+  const cx = 140, cy = 140, r = 120;
+  let angle = -Math.PI / 2;
+  
+  cats.forEach(([cat, val], i) => {
+    const slice = (val / total) * Math.PI * 2;
+    ctx.beginPath(); 
+    ctx.moveTo(cx, cy); 
+    ctx.arc(cx, cy, r, angle, angle + slice); 
+    ctx.closePath();
+    ctx.fillStyle = CONFIG.pieColors[i % CONFIG.pieColors.length]; 
+    ctx.fill();
+    angle += slice;
+  });
+  
+  // Center circle
+  ctx.beginPath(); 
+  ctx.arc(cx, cy, 60, 0, Math.PI * 2); 
+  ctx.fillStyle = "#ffffff"; 
+  ctx.fill();
+  ctx.fillStyle = "#1f2937"; 
+  ctx.font = "bold 20px sans-serif"; 
+  ctx.textAlign = "center"; 
+  ctx.fillText(`${total}$`, cx, cy + 6);
+  
+  document.getElementById("pieLegend").innerHTML = cats.map(([cat, val], i) => `
+    <div class="flex items-center gap-2" style="margin-bottom:var(--space-2)">
+      <div style="width:12px;height:12px;border-radius:50%;background:${CONFIG.pieColors[i % CONFIG.pieColors.length]}"></div>
+      <span style="flex:1;font-size:13px">${cat}</span>
+      <span style="font-weight:600;font-size:13px">${val}$</span>
+      <span style="color:var(--text-secondary);font-size:12px">(${(val/total*100).toFixed(0)}%)</span>
+    </div>
+  `).join('');
+}
+
+function addBudgetEntry() {
+  const cat = document.getElementById("budgetCat").value;
+  const amt = parseFloat(document.getElementById("budgetAmt").value);
+  const note = document.getElementById("budgetNote").value;
+  if (!amt || amt <= 0) return;
+  if (!CONFIG.budgetData[CONFIG.currentMonth]) {
+    CONFIG.budgetData[CONFIG.currentMonth] = [];
+  }
+  CONFIG.budgetData[CONFIG.currentMonth].push({ 
+    cat, 
+    amount: amt, 
+    note, 
+    date: new Date().toISOString().slice(0,10) 
+  });
+  document.getElementById("budgetAmt").value = '';
+  document.getElementById("budgetNote").value = '';
+  saveState();
+  renderBudget();
+}
+
+function deleteBudgetEntry(i) {
+  CONFIG.budgetData[CONFIG.currentMonth].splice(i, 1);
+  saveState();
+  renderBudget();
+}
+
+function changeMonth(delta) {
+  const [y, m] = CONFIG.currentMonth.split('-').map(Number);
+  const d = new Date(y, m - 1 + delta, 1);
+  CONFIG.currentMonth = d.toISOString().slice(0, 7);
+  renderBudget();
+}
+
+function toggleCatManager() {
+  const el = document.getElementById("catManager");
+  el.classList.toggle('hidden');
+}
+
+function addCategory() {
+  const inp = document.getElementById("newCatInput");
+  if (!inp.value.trim()) return;
+  if (!CONFIG.budgetCategories.includes(inp.value.trim())) {
+    CONFIG.budgetCategories.push(inp.value.trim());
+    saveState();
+    renderBudget();
+  }
+  inp.value = '';
+}
+
+// ═══ Learning ═══
+function renderLearning() {
+  const el = document.getElementById("learningList");
+  el.innerHTML = CONFIG.learning.map(l => `
+    <div class="flex items-center gap-4" style="margin-bottom:var(--space-4)">
+      <div style="width:120px;font-size:14px;font-weight:500">${l.name}</div>
+      <div style="flex:1">
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:${Math.max(l.pct, 2)}%"></div>
+        </div>
+      </div>
+      <div style="font-size:14px;font-weight:600;color:var(--accent);width:40px;text-align:right">${l.pct}%</div>
+    </div>
+  `).join('');
+}
+
+// ═══ Export ═══
+function exportReport() {
+  const lines = ['=== RAPPORT DASHBOARD TÉO × CASH ===', `Date: ${new Date().toLocaleString('fr-CA')}`, ''];
+  lines.push('--- BUDGET API ---');
+  const totalApi = CONFIG.apiServices.reduce((s,v)=>s+v.cost,0);
+  lines.push(`Budget: ${CONFIG.apiBudget}$ | Dépensé: ${totalApi}$ | Restant: ${CONFIG.apiBudget - totalApi}$`);
+  CONFIG.apiServices.forEach(s => lines.push(`  ${s.name}: ${s.cost}$`));
+  
+  lines.push('', '--- PROJETS ---');
+  CONFIG.projects.forEach(p => {
+    lines.push(`${p.name} | ${p.pct}% | ${statusLabel(p.status)} | ${assigneeLabel(p.assignee)}`);
+    (p.subtasks||[]).forEach(s => lines.push(`  ${s.done ? '✅' : '⬜'} ${s.text}`));
+  });
+  
+  const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
+  const a = document.createElement('a'); 
+  a.href = URL.createObjectURL(blob);
+  a.download = `rapport-teo-${new Date().toISOString().slice(0,10)}.txt`;
+  a.click();
+}
+
+// ═══════════════════════════════════════════════════
+//  🚀 INITIALIZATION
+// ═══════════════════════════════════════════════════
+
+// Auto-expand sidebar on desktop
+if (window.innerWidth >= 768) {
+  document.getElementById('sidebar').classList.add('expanded');
+}
+
+// Update timestamp
+document.getElementById("timestamp").textContent = new Date().toLocaleString('fr-CA');
+
+// Keyboard shortcuts
+document.getElementById("tlInput").addEventListener('keydown', e => { 
+  if (e.key === 'Enter') addTimelineEntry(); 
+});
+document.getElementById("propInput").addEventListener('keydown', e => { 
+  if (e.key === 'Enter') addProposal(); 
+});
+
+// Initialize all sections
+renderKPIs();
+renderProjectsPreview();
+renderVeillePreview();
+renderTimelinePreview();
+renderProjects();
+renderTwitterFeed();
+renderUpgrades();
+renderApiBudget();
+renderHacking();
+renderVeille();
+renderTimeline();
+renderProposals();
+renderVideos();
+renderBudget();
+renderLearning();
+</script>
+</body>
+</html>
