@@ -6,30 +6,30 @@ import Link from 'next/link';
 const slides = [
   {
     href: '/boutique',
-    image: 'https://images.unsplash.com/photo-1508610048659-a06b669e3321?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=1400&q=85',
     subtitle: 'Créations florales d\'exception',
     title: 'Nos Bouquets',
     cta: 'Découvrir →',
   },
   {
     href: '/mariages',
-    image: 'https://images.unsplash.com/photo-1510076857177-7470076d4098?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1572454591674-2739f30d8c40?w=1400&q=85',
     subtitle: 'Votre jour, nos fleurs',
     title: 'Mariages',
     cta: 'Découvrir →',
   },
   {
     href: '/boutique?cat=fleuriste',
-    image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1567696153798-9111f9cd3d0d?w=1400&q=85',
     subtitle: 'Composition unique du jour',
     title: 'Le choix du fleuriste',
     cta: 'Découvrir →',
   },
   {
     href: '/la-marque',
-    image: 'https://images.unsplash.com/photo-1457089328109-e5d9bd499191?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1494972308805-463bc619d34e?w=1400&q=85',
     subtitle: 'Savoir-faire artisanal',
-    title: 'Notre histoire',
+    title: 'Notre atelier',
     cta: 'Découvrir →',
   },
 ];
