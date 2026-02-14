@@ -139,11 +139,12 @@ export default function DeliveryCalculator({
             onKeyDown={handleKeyDown}
             onFocus={() => input.length >= 2 && setShowSuggestions(suggestions.length > 0)}
             placeholder="Votre code postal ou ville..."
-            className="w-full px-4 py-4 pl-14 pr-4 rounded-xl border-2 border-[#e8e0d8] bg-[#faf8f5] text-[#2d2a26] placeholder-[#9a9490] focus:outline-none focus:border-[#b8956a] focus:bg-white transition-all duration-200"
+            className="w-full px-4 py-4 pl-12 pr-4 rounded-xl border-2 border-[#e8e0d8] bg-[#faf8f5] text-[#2d2a26] placeholder-[#9a9490] focus:outline-none focus:border-[#b8956a] focus:bg-white transition-all duration-200"
+            style={{ textIndent: '1.5rem' }}
           />
           <Search 
-            size={20} 
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#b8956a]" 
+            size={16} 
+            className="absolute left-5 top-1/2 transform -translate-y-1/2 text-[#b8956a] pointer-events-none" 
           />
         </div>
 
