@@ -27,10 +27,11 @@ const slides = [
   },
   {
     href: '/abonnement',
-    image: 'https://images.unsplash.com/photo-1523693916903-027d144a2b7d?w=1400&q=85',
-    subtitle: 'Dès 29.90€ par mois',
-    title: 'L\'Abonnement Floral',
-    cta: 'Découvrir nos formules →',
+    image: '',
+    subtitle: '',
+    title: '',
+    cta: '',
+    isGraphic: true,
   },
 ];
 
@@ -98,40 +99,77 @@ export default function HeroSlider() {
           }`}
           style={{ pointerEvents: i === current ? 'auto' : 'none' }}
         >
-          <img
-            src={slide.image}
-            alt={slide.title}
-            className="w-full h-full object-cover"
-          />
-          {/* Overlay léger pour lisibilité sans casser la lumière */}
-          <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
-          
-          {/* Text content — texte foncé sur photos claires */}
-          <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 pb-20 md:pb-24">
-            <div className="max-w-4xl">
-              <p 
-                className={`text-[#2d2a26]/70 text-[11px] md:text-xs tracking-[0.25em] uppercase mb-3 md:mb-5 transition-all duration-700 delay-100 ${
-                  i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}
-              >
-                {slide.subtitle}
-              </p>
-              <h1 
-                className={`text-[#2d2a26] font-serif text-4xl md:text-6xl lg:text-7xl mb-6 md:mb-10 transition-all duration-700 delay-200 leading-tight ${
-                  i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}
-              >
-                {slide.title}
-              </h1>
-              <span 
-                className={`inline-block text-[#2d2a26] text-sm md:text-base tracking-wide underline underline-offset-8 decoration-[#c4a47a] hover:text-[#c4a47a] transition-all duration-500 delay-300 ${
-                  i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}
-              >
-                {slide.cta}
-              </span>
+          {/* Slide graphique abonnement */}
+          {'isGraphic' in slide && slide.isGraphic ? (
+            <div className="w-full h-full bg-[#faf8f5] flex items-center justify-center px-6 md:px-16">
+              <div className={`max-w-4xl w-full text-center transition-all duration-700 ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                <p className="text-[#c4a47a] text-[10px] md:text-[11px] tracking-[0.3em] uppercase mb-4 md:mb-6">Nouveau</p>
+                <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-[#2d2a26] mb-4 md:mb-6">L'Abonnement Floral</h2>
+                <p className="text-[#2d2a26]/60 text-sm md:text-base mb-8 md:mb-12 max-w-lg mx-auto">Des fleurs fraîches de saison livrées chez vous, chaque mois</p>
+                
+                {/* 3 formules */}
+                <div className="grid grid-cols-3 gap-3 md:gap-6 max-w-2xl mx-auto mb-8 md:mb-12">
+                  <div className="border border-[#e8e0d8] p-4 md:p-6 bg-white">
+                    <p className="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-[#c4a47a] mb-2">Essentiel</p>
+                    <p className="font-serif text-2xl md:text-4xl text-[#2d2a26]">29<span className="text-lg md:text-2xl">.90€</span></p>
+                    <p className="text-[#2d2a26]/40 text-[10px] md:text-xs mt-1">/mois</p>
+                  </div>
+                  <div className="border-2 border-[#c4a47a] p-4 md:p-6 bg-white relative">
+                    <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#c4a47a] text-white text-[8px] md:text-[9px] tracking-[0.15em] uppercase px-3 py-0.5">Populaire</div>
+                    <p className="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-[#c4a47a] mb-2">Signature</p>
+                    <p className="font-serif text-2xl md:text-4xl text-[#2d2a26]">39<span className="text-lg md:text-2xl">.90€</span></p>
+                    <p className="text-[#2d2a26]/40 text-[10px] md:text-xs mt-1">/mois</p>
+                  </div>
+                  <div className="border border-[#e8e0d8] p-4 md:p-6 bg-white">
+                    <p className="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-[#c4a47a] mb-2">Prestige</p>
+                    <p className="font-serif text-2xl md:text-4xl text-[#2d2a26]">54<span className="text-lg md:text-2xl">.90€</span></p>
+                    <p className="text-[#2d2a26]/40 text-[10px] md:text-xs mt-1">/mois</p>
+                  </div>
+                </div>
+
+                <span className="inline-block text-[#2d2a26] text-sm tracking-wide underline underline-offset-8 decoration-[#c4a47a]">
+                  Découvrir nos formules →
+                </span>
+              </div>
             </div>
-          </div>
+          ) : (
+            <>
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="w-full h-full object-cover"
+              />
+              {/* Overlay léger pour lisibilité sans casser la lumière */}
+              <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent" />
+              
+              {/* Text content — texte foncé sur photos claires */}
+              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 pb-20 md:pb-24">
+                <div className="max-w-4xl">
+                  <p 
+                    className={`text-[#2d2a26]/70 text-[11px] md:text-xs tracking-[0.25em] uppercase mb-3 md:mb-5 transition-all duration-700 delay-100 ${
+                      i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                    }`}
+                  >
+                    {slide.subtitle}
+                  </p>
+                  <h1 
+                    className={`text-[#2d2a26] font-serif text-4xl md:text-6xl lg:text-7xl mb-6 md:mb-10 transition-all duration-700 delay-200 leading-tight ${
+                      i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                    }`}
+                  >
+                    {slide.title}
+                  </h1>
+                  <span 
+                    className={`inline-block text-[#2d2a26] text-sm md:text-base tracking-wide underline underline-offset-8 decoration-[#c4a47a] hover:text-[#c4a47a] transition-all duration-500 delay-300 ${
+                      i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                    }`}
+                  >
+                    {slide.cta}
+                  </span>
+                </div>
+              </div>
+            </>
+          )}
         </Link>
       ))}
 
