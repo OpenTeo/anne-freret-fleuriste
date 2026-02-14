@@ -12,6 +12,7 @@ export interface User {
   addressComplement?: string;
   postalCode?: string;
   city?: string;
+  isAdmin?: boolean;
   createdAt: string;
 }
 
@@ -39,6 +40,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Seed admin account if not exists
+    const users = JSON.parse(localStorage.getItem('af-users') || '[]');
+    const adminExists = users.some((u: { isAdmin?: boolean }) => u.isAdmin);
+    if (!adminExists) {
+      users.push({
+        id: 'admin-001',
+        firstName: 'Anne',
+        lastName: 'Freret',
+        email: 'admin@annefreret.fr',
+        phone: '02 33 50 26 15',
+        password: 'AnneFreret2026!',
+        isAdmin: true,
+        createdAt: new Date().toISOString(),
+      });
+      localStorage.setItem('af-users', JSON.stringify(users));
+    }
+
     const stored = localStorage.getItem('af-current-user');
     if (stored) {
       try { setUser(JSON.parse(stored)); } catch {}
