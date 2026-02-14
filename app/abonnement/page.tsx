@@ -118,7 +118,7 @@ export default function Abonnement() {
         <main className="bg-[#faf8f5] min-h-screen pt-14 md:pt-20">
           <section className="py-28 md:py-40 text-center">
             <div className="max-w-lg mx-auto px-4">
-              <div className="text-5xl mb-8">🌸</div>
+              <svg className="w-16 h-16 mx-auto mb-8 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
               <h1 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">Merci pour votre inscription !</h1>
               <div className="w-12 h-px bg-[#c4a47a] mx-auto mb-6"></div>
               <p className="text-[#2d2a26]/60 mb-8 leading-relaxed">
@@ -133,7 +133,7 @@ export default function Abonnement() {
                   <p><span className="text-[#2d2a26]">Durée :</span> {currentDuration.label}</p>
                   <p><span className="text-[#2d2a26]">Livraison :</span> {address}, {postalCode} {city}</p>
                   <p><span className="text-[#2d2a26]">Jour préféré :</span> {preferredDay}</p>
-                  {isGift && <p><span className="text-[#2d2a26]">🎁 Cadeau pour :</span> {deliveryFirstName} {deliveryLastName}</p>}
+                  {isGift && <p><span className="text-[#2d2a26]">Cadeau pour :</span> {deliveryFirstName} {deliveryLastName}</p>}
                 </div>
               </div>
               <p className="text-[#2d2a26]/40 text-xs">Un email de confirmation a été envoyé à {email}</p>
@@ -294,7 +294,7 @@ export default function Abonnement() {
                       >
                         {isGift && <span className="text-white text-xs">✓</span>}
                       </div>
-                      <span className="text-sm text-[#2d2a26]">🎁 C'est un cadeau</span>
+                      <span className="text-sm text-[#2d2a26]">C'est un cadeau</span>
                     </label>
                     {isGift && (
                       <div className="mt-4 ml-8">
@@ -329,7 +329,7 @@ export default function Abonnement() {
                   
                   {isGift && (
                     <div className="bg-[#c4a47a]/5 border border-[#c4a47a]/20 p-6">
-                      <p className="text-[10px] tracking-[0.15em] uppercase text-[#c4a47a] mb-4">🎁 Destinataire du cadeau</p>
+                      <p className="text-[10px] tracking-[0.15em] uppercase text-[#c4a47a] mb-4">Destinataire du cadeau</p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                           <label className={labelClass}>Prénom du destinataire *</label>
@@ -460,7 +460,7 @@ export default function Abonnement() {
                     <div className="flex items-center gap-3 mb-4">
                       <svg className="w-8 h-5 text-[#2d2a26]/30" viewBox="0 0 32 20" fill="currentColor"><rect width="32" height="20" rx="3"/></svg>
                       <svg className="w-8 h-5 text-[#2d2a26]/30" viewBox="0 0 32 20" fill="currentColor"><rect width="32" height="20" rx="3"/></svg>
-                      <span className="text-[10px] tracking-[0.1em] uppercase text-[#2d2a26]/40 ml-auto">🔒 Paiement sécurisé SSL</span>
+                      <span className="text-[10px] tracking-[0.1em] uppercase text-[#2d2a26]/40 ml-auto">Paiement sécurisé SSL</span>
                     </div>
                     
                     <div>
@@ -538,7 +538,7 @@ export default function Abonnement() {
                     {isGift && (
                       <div className="flex justify-between">
                         <span className="text-[#2d2a26]/60">Cadeau</span>
-                        <span className="text-[#2d2a26]">🎁 Oui</span>
+                        <span className="text-[#2d2a26]">Oui</span>
                       </div>
                     )}
                   </div>
@@ -557,8 +557,9 @@ export default function Abonnement() {
 
                   {/* Vase offert */}
                   {(selectedPlan === 'signature' || selectedPlan === 'prestige') && (
-                    <div className="mt-4 bg-[#c4a47a]/5 border border-[#c4a47a]/20 p-3 text-center">
-                      <p className="text-[10px] tracking-[0.15em] uppercase text-[#c4a47a]">🏺 Vase offert à la 1ère livraison</p>
+                    <div className="mt-4 bg-[#c4a47a]/5 border border-[#c4a47a]/20 p-3 flex items-center justify-center gap-2">
+                      <svg className="w-4 h-4 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg>
+                      <p className="text-[10px] tracking-[0.15em] uppercase text-[#c4a47a]">Vase offert à la 1ère livraison</p>
                     </div>
                   )}
                 </div>
@@ -566,15 +567,15 @@ export default function Abonnement() {
                 {/* Trust */}
                 <div className="mt-4 grid grid-cols-3 gap-2 text-center">
                   <div className="p-3">
-                    <p className="text-lg mb-1">🚚</p>
+                    <svg className="w-6 h-6 mx-auto mb-1.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>
                     <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/40">Livraison gratuite</p>
                   </div>
                   <div className="p-3">
-                    <p className="text-lg mb-1">🔒</p>
+                    <svg className="w-6 h-6 mx-auto mb-1.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
                     <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/40">Paiement sécurisé</p>
                   </div>
                   <div className="p-3">
-                    <p className="text-lg mb-1">✋</p>
+                    <svg className="w-6 h-6 mx-auto mb-1.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
                     <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/40">Sans engagement</p>
                   </div>
                 </div>

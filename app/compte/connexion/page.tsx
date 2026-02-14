@@ -75,12 +75,12 @@ export default function Connexion() {
                 />
               </div>
 
-              <div className="flex items-center justify-between">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input type="checkbox" className="accent-[#c4a47a]" />
-                  <span className="text-xs text-[#2d2a26]/60">Se souvenir de moi</span>
+              <div className="flex items-center justify-between gap-4">
+                <label className="flex items-center gap-2 cursor-pointer flex-shrink-0">
+                  <input type="checkbox" className="w-4 h-4 accent-[#c4a47a] flex-shrink-0" />
+                  <span className="text-xs text-[#2d2a26]/60 whitespace-nowrap">Se souvenir de moi</span>
                 </label>
-                <button type="button" className="text-xs text-[#c4a47a] hover:underline">
+                <button type="button" className="text-xs text-[#c4a47a] hover:underline whitespace-nowrap">
                   Mot de passe oublié ?
                 </button>
               </div>
