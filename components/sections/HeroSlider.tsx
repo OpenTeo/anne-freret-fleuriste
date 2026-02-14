@@ -74,28 +74,29 @@ export default function HeroSlider() {
             alt={slide.title}
             className="w-full h-full object-cover"
           />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/20" />
+          {/* Gradient overlay — plus fort pour lisibilité */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
           
           {/* Text content */}
           <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 pb-20 md:pb-24">
             <div className="max-w-4xl">
               <p 
-                className={`text-white/80 text-[10px] tracking-[0.2em] uppercase mb-4 md:mb-6 transition-all duration-700 delay-100 font-light ${
+                className={`text-white/90 text-[11px] md:text-xs tracking-[0.25em] uppercase mb-3 md:mb-5 transition-all duration-700 delay-100 ${
                   i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >
                 {slide.subtitle}
               </p>
               <h1 
-                className={`text-white font-serif text-4xl md:text-6xl lg:text-8xl font-light mb-8 md:mb-12 transition-all duration-700 delay-200 leading-tight ${
+                className={`text-white font-serif text-4xl md:text-6xl lg:text-7xl mb-6 md:mb-10 transition-all duration-700 delay-200 leading-tight ${
                   i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
+                style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}
               >
                 {slide.title}
               </h1>
               <span 
-                className={`inline-block text-white text-sm md:text-base font-light underline underline-offset-4 hover:text-[#c4a47a] transition-all duration-700 delay-300 ${
+                className={`inline-block text-white text-sm md:text-base tracking-wide underline underline-offset-8 decoration-white/50 hover:decoration-[#c4a47a] hover:text-[#c4a47a] transition-all duration-500 delay-300 ${
                   i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
               >

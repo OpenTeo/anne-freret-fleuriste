@@ -35,13 +35,14 @@ export default function Home() {
             alt="L'art floral depuis 2020"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/40" />
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center text-white max-w-2xl px-4 md:px-6">
-              <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl mb-6 font-light">
+              <p className="text-[11px] tracking-[0.25em] uppercase mb-6 text-white/80">Saint-Pair-sur-Mer</p>
+              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.3)' }}>
                 L'art floral depuis 2020
               </h2>
-              <p className="text-white/90 text-lg md:text-xl font-light max-w-lg mx-auto leading-relaxed">
+              <p className="text-white/90 text-base md:text-lg max-w-md mx-auto leading-relaxed">
                 Chaque création naît de notre passion pour les fleurs et notre savoir-faire artisanal
               </p>
             </div>
