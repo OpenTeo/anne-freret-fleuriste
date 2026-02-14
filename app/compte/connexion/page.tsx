@@ -25,7 +25,10 @@ export default function Connexion() {
     const result = await login(email, password);
     setLoading(false);
     if (result.success) {
-      router.push('/compte');
+      // Check if admin — redirect to admin panel
+      const stored = localStorage.getItem('af-current-user');
+      const userData = stored ? JSON.parse(stored) : null;
+      router.push(userData?.isAdmin ? '/admin' : '/compte');
     } else {
       setError(result.error || 'Erreur de connexion');
     }

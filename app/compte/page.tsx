@@ -69,6 +69,18 @@ export default function Compte() {
               ))}
             </div>
 
+            {/* Admin link */}
+            {user.isAdmin && (
+              <div className="text-center mb-6">
+                <button
+                  onClick={() => router.push('/admin')}
+                  className="px-8 py-3 bg-[#1a1714] text-white text-sm hover:bg-[#2d2a26] transition-colors"
+                >
+                  Accéder au panneau d'administration →
+                </button>
+              </div>
+            )}
+
             {/* Logout */}
             <div className="text-center">
               <button
