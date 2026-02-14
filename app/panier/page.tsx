@@ -33,9 +33,7 @@ export default function Panier() {
   const [promoCode, setPromoCode] = useState('');
   const [appliedPromo, setAppliedPromo] = useState('');
   const [cardMessage, setCardMessage] = useState('');
-  const [selectedGiftAmount, setSelectedGiftAmount] = useState<number | null>(null);
-  const [customGiftAmount, setCustomGiftAmount] = useState('');
-  const [giftCardEnabled, setGiftCardEnabled] = useState(false);
+  const [selectedCardDesign, setSelectedCardDesign] = useState<string | null>(null);
   const [deliveryFee, setDeliveryFee] = useState(8.90);
   const [deliveryTime, setDeliveryTime] = useState('');
   const [deliveryType, setDeliveryType] = useState<'local' | 'regional' | 'national'>('local');
@@ -61,12 +59,12 @@ export default function Panier() {
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const giftCardAmount = giftCardEnabled ? (selectedGiftAmount || parseFloat(customGiftAmount) || 0) : 0;
+  
   const discount = appliedPromo ? subtotal * 0.1 : 0;
-  const delivery = (subtotal + giftCardAmount) >= 50 ? 0 : deliveryFee;
-  const total = subtotal + giftCardAmount - discount + delivery;
-  const totalWithGift = subtotal + giftCardAmount;
-  const freeDeliveryRemaining = totalWithGift < 50 ? (50 - totalWithGift) : 0;
+  const delivery = subtotal >= 50 ? 0 : deliveryFee;
+  const total = subtotal - discount + delivery;
+  
+  const freeDeliveryRemaining = subtotal < 50 ? (50 - subtotal) : 0;
 
   if (cartItems.length === 0) {
     return (
@@ -143,13 +141,13 @@ export default function Panier() {
               <div className="w-full h-2 bg-[#e8e0d8]">
                 <div 
                   className="h-2 bg-[#c4a47a] transition-all duration-300"
-                  style={{ width: `${Math.min((totalWithGift / 50) * 100, 100)}%` }}
+                  style={{ width: `${Math.min((subtotal / 50) * 100, 100)}%` }}
                 />
               </div>
             </div>
           )}
 
-          {totalWithGift >= 50 && (
+          {subtotal >= 50 && (
             <div className="bg-white p-6 mb-8 border border-[#c4a47a]/20 text-center">
               <p className="text-[#c4a47a] font-light">
                 ✓ Livraison gratuite appliquée
@@ -249,98 +247,41 @@ export default function Panier() {
                 </p>
               </div>
 
-              {/* Gift Card */}
-              <div className="bg-white p-8 border-t border-[#e8e0d8]">
+              {/* Choix de la carte message */}
+              <div className="bg-white p-8">
                 <div className="mb-6">
-                  <h3 className="text-xl font-serif text-[#2d2a26] mb-2">Carte Cadeau</h3>
-                  <p className="text-[#2d2a26] font-light text-sm">Offrez un bon cadeau à utiliser sur notre boutique</p>
+                  <h3 className="text-xl font-serif text-[#2d2a26] mb-2">Modèle de Carte</h3>
+                  <p className="text-[#2d2a26] font-light text-sm">Gratuit — choisissez le design de votre carte message</p>
                 </div>
 
-                {/* Predefined amounts */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
-                  {[25, 50, 75, 100].map((amount) => (
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { id: 'floral', label: 'Florale', desc: 'Motifs fleurs aquarelle', color: '#f5e6e0' },
+                    { id: 'minimal', label: 'Élégante', desc: 'Sobre et raffinée', color: '#f0ebe6' },
+                    { id: 'festive', label: 'Festive', desc: 'Fête et célébration', color: '#e8e0d8' },
+                  ].map((card) => (
                     <button
-                      key={amount}
-                      onClick={() => {
-                        setSelectedGiftAmount(amount);
-                        setCustomGiftAmount('');
-                        setGiftCardEnabled(true);
-                      }}
-                      className={`py-3 px-4 border transition-all duration-300 font-light ${
-                        selectedGiftAmount === amount && giftCardEnabled
-                          ? 'bg-[#c4a47a] text-white border-[#c4a47a]'
-                          : 'bg-white text-[#2d2a26] border-[#c4a47a] hover:bg-[#c4a47a] hover:text-white'
+                      key={card.id}
+                      onClick={() => setSelectedCardDesign(selectedCardDesign === card.id ? null : card.id)}
+                      className={`p-3 border transition-all duration-300 text-center ${
+                        selectedCardDesign === card.id
+                          ? 'border-[#c4a47a] ring-1 ring-[#c4a47a]'
+                          : 'border-[#e8e0d8] hover:border-[#c4a47a]'
                       }`}
                     >
-                      {amount}€
+                      <div 
+                        className="w-full aspect-[3/4] rounded mb-3 flex items-center justify-center"
+                        style={{ backgroundColor: card.color }}
+                      >
+                        <span className="font-serif text-[#2d2a26]/30 text-2xl italic">A</span>
+                      </div>
+                      <p className="text-xs font-serif text-[#2d2a26] mb-0.5">{card.label}</p>
+                      <p className="text-[9px] text-[#2d2a26]/50">{card.desc}</p>
                     </button>
                   ))}
                 </div>
-
-                {/* Custom amount */}
-                <div className="mb-6">
-                  <div className="flex items-center gap-4">
-                    <button
-                      onClick={() => {
-                        setSelectedGiftAmount(null);
-                        setGiftCardEnabled(!!customGiftAmount);
-                      }}
-                      className={`py-3 px-6 border transition-all duration-300 font-light ${
-                        selectedGiftAmount === null && customGiftAmount && giftCardEnabled
-                          ? 'bg-[#c4a47a] text-white border-[#c4a47a]'
-                          : 'bg-white text-[#2d2a26] border-[#c4a47a] hover:bg-[#c4a47a] hover:text-white'
-                      }`}
-                    >
-                      Personnalisé
-                    </button>
-                    <div className="flex-1 relative">
-                      <input
-                        type="number"
-                        value={customGiftAmount}
-                        onChange={(e) => {
-                          setCustomGiftAmount(e.target.value);
-                          setSelectedGiftAmount(null);
-                          setGiftCardEnabled(!!e.target.value);
-                        }}
-                        placeholder="Montant"
-                        min="1"
-                        className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors"
-                      />
-                      <span className="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#2d2a26] font-light">€</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Add to cart button */}
-                {giftCardEnabled && (selectedGiftAmount || customGiftAmount) && (
-                  <div className="pt-4 border-t border-[#e8e0d8]">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <span className="text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] block mb-1">
-                          Carte cadeau sélectionnée
-                        </span>
-                        <span className="text-lg font-serif text-[#2d2a26]">
-                          {selectedGiftAmount || parseFloat(customGiftAmount) || 0}€
-                        </span>
-                      </div>
-                      <button
-                        onClick={() => {
-                          setGiftCardEnabled(false);
-                          setSelectedGiftAmount(null);
-                          setCustomGiftAmount('');
-                        }}
-                        className="bg-[#c4a47a] text-white px-6 py-3 hover:bg-[#b8956a] transition-colors duration-300 font-light"
-                      >
-                        Retirer
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {!giftCardEnabled && (
-                  <p className="text-[#2d2a26] font-light text-sm italic opacity-60">
-                    Sélectionnez un montant pour ajouter une carte cadeau à votre commande
-                  </p>
+                {selectedCardDesign && (
+                  <p className="text-xs text-[#c4a47a] mt-3">✓ Carte {selectedCardDesign === 'floral' ? 'florale' : selectedCardDesign === 'minimal' ? 'élégante' : 'festive'} sélectionnée</p>
                 )}
               </div>
 
@@ -411,12 +352,6 @@ export default function Panier() {
                     <span>Sous-total</span>
                     <span>{subtotal.toFixed(2)}€</span>
                   </div>
-                  {giftCardAmount > 0 && (
-                    <div className="flex justify-between text-[#c4a47a]">
-                      <span>Carte cadeau</span>
-                      <span>+{giftCardAmount.toFixed(2)}€</span>
-                    </div>
-                  )}
                   {discount > 0 && (
                     <div className="flex justify-between text-[#c4a47a]">
                       <span>Réduction</span>
