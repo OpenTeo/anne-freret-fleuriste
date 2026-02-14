@@ -8,7 +8,7 @@ const plans = [
   {
     id: 'essentiel',
     name: 'Essentiel',
-    price: 29.90,
+    price: 39.90,
     description: 'Le bouquet de saison',
     features: [
       'Bouquet de fleurs fraîches de saison',
@@ -20,7 +20,7 @@ const plans = [
   {
     id: 'signature',
     name: 'Signature',
-    price: 39.90,
+    price: 49.90,
     popular: true,
     description: 'Notre sélection premium',
     features: [
@@ -34,7 +34,7 @@ const plans = [
   {
     id: 'prestige',
     name: 'Prestige',
-    price: 54.90,
+    price: 69.90,
     description: 'L\'exception florale',
     features: [
       'Grande composition d\'exception',

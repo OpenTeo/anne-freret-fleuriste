@@ -125,18 +125,18 @@ export default function HeroSlider() {
                 <div className="grid grid-cols-3 gap-3 md:gap-6 max-w-2xl mx-auto mb-8 md:mb-12">
                   <div className="border border-[#e8e0d8] p-4 md:p-6 bg-white">
                     <p className="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-[#c4a47a] mb-2">Essentiel</p>
-                    <p className="font-serif text-2xl md:text-4xl text-[#2d2a26]">29<span className="text-lg md:text-2xl">.90€</span></p>
+                    <p className="font-serif text-2xl md:text-4xl text-[#2d2a26]">39<span className="text-lg md:text-2xl">.90€</span></p>
                     <p className="text-[#2d2a26]/40 text-[10px] md:text-xs mt-1">/mois</p>
                   </div>
                   <div className="border-2 border-[#c4a47a] p-4 md:p-6 bg-white relative">
                     <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#c4a47a] text-white text-[8px] md:text-[9px] tracking-[0.15em] uppercase px-3 py-0.5">Populaire</div>
                     <p className="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-[#c4a47a] mb-2">Signature</p>
-                    <p className="font-serif text-2xl md:text-4xl text-[#2d2a26]">39<span className="text-lg md:text-2xl">.90€</span></p>
+                    <p className="font-serif text-2xl md:text-4xl text-[#2d2a26]">49<span className="text-lg md:text-2xl">.90€</span></p>
                     <p className="text-[#2d2a26]/40 text-[10px] md:text-xs mt-1">/mois</p>
                   </div>
                   <div className="border border-[#e8e0d8] p-4 md:p-6 bg-white">
                     <p className="text-[9px] md:text-[10px] tracking-[0.2em] uppercase text-[#c4a47a] mb-2">Prestige</p>
-                    <p className="font-serif text-2xl md:text-4xl text-[#2d2a26]">54<span className="text-lg md:text-2xl">.90€</span></p>
+                    <p className="font-serif text-2xl md:text-4xl text-[#2d2a26]">69<span className="text-lg md:text-2xl">.90€</span></p>
                     <p className="text-[#2d2a26]/40 text-[10px] md:text-xs mt-1">/mois</p>
                   </div>
                 </div>
