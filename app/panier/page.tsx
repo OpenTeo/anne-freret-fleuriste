@@ -11,21 +11,12 @@ const initialCartItems = [
   {
     id: '1',
     name: 'Le Jullouvillais',
-    size: 'Grand',
-    price: 59.90,
+    size: 'Moyen',
+    price: 49.90,
     quantity: 1,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderose2.jpg?v=1625070100',
     category: 'Bouquets'
   },
-  {
-    id: '2',
-    name: 'Barneville-Carteret',
-    size: 'Très grand',
-    price: 99.90,
-    quantity: 2,
-    image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_2c1fb84c-0074-4dce-9d4b-7161370a1a30.png?v=1684428619',
-    category: 'Bouquets'
-  }
 ];
 
 type DeliveryMode = 'local' | 'national' | null;
