@@ -29,9 +29,11 @@ export interface Product {
 
 export const categories = [
   'Bouquets',
+  'Plantes',
+  'Fleurs séchées',
   'Mariages',
   'Deuil & Hommages',
-  'Le choix du fleuriste'
+  'Compositions',
 ];
 
 export const mockProducts: Product[] = [
@@ -272,7 +274,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
       'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
     ],
-    category: 'Le choix du fleuriste',
+    category: 'Compositions',
     description: 'Faites confiance à notre expertise ! Nous créons pour vous un bouquet unique selon nos inspirations du moment.',
     slug: 'le-choix-du-fleuriste',
     featured: true,
@@ -354,7 +356,7 @@ export const mockProducts: Product[] = [
       'https://fleuriste-annefreret.com/cdn/shop/files/279170543_782557459396911_8647938960483584919_n-min_1024x1024_crop_center.jpg',
       'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
     ],
-    category: 'Mariages',
+    category: 'Fleurs séchées',
     description: 'Nos "Box Mariage" se composent d\'un bouquet et d\'un peigne pour la mariée et d\'une boutonnière assortie pour le marié. Bouquet : 20cm de diamètre pour 25cm de hauteur, finition cordelette. Composition : Amarante, miscanthus, phalaris, grain d\'aneth, limonium, gypsophile, lagurus, stipa. Fleurs séchées.',
     slug: 'box-champetre-lila',
     featured: true,
@@ -374,7 +376,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_6af69be8-d1fe-44a6-9936-308639ed93d2.png?v=1684426912',
       'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
     ],
-    category: 'Mariages',
+    category: 'Fleurs séchées',
     description: 'Nos "Box Mariage" se composent d\'un bouquet et d\'un peigne pour la mariée et d\'une boutonnière assortie pour le marié. Bouquet : 25cm de diamètre pour 30cm de hauteur, finition cordelette. Une composition exotique et colorée pour un mariage dépaysant.',
     slug: 'box-mariage-exotique',
     featured: true,
@@ -394,7 +396,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_9527aac4-f297-4808-945b-908cf90e1a8e.png?v=1684426619',
       'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
     ],
-    category: 'Mariages',
+    category: 'Fleurs séchées',
     description: 'Nos "Box Mariage" se composent d\'un bouquet et d\'un peigne pour la mariée et d\'une boutonnière assortie pour le marié. Bouquet : 20cm de diamètre pour 25cm de hauteur, finition cordelette. Inspiration marine pour une cérémonie en bord de mer.',
     slug: 'box-mariage-sur-la-plage',
     featured: true,
@@ -604,7 +606,7 @@ export const blogPosts = [
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
     slug: 'art-composer-bouquet-champetre',
     date: '2024-02-10',
-    category: 'Conseils',
+    category: 'Compositions',
     readTime: '5 min de lecture',
     author: 'Anne Freret',
     content: '<p>L\'art de composer un bouquet champêtre réside dans la capacité à capturer l\'essence sauvage de la nature tout en créant une harmonie visuelle délicate. Cette approche florale, qui puise son inspiration dans les champs et les prairies, nécessite une compréhension fine des textures, des couleurs et des formes naturelles.</p>'
@@ -628,7 +630,7 @@ export const blogPosts = [
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
     slug: 'fleurs-saison-fevrier',
     date: '2024-02-01',
-    category: 'Saisons',
+    category: 'Bouquets',
     readTime: '3 min de lecture',
     author: 'Anne Freret',
     content: '<p>Le mois de février marque une transition douce vers le printemps, offrant aux fleuristes une palette florale riche et variée. Cette période de l\'année se caractérise par l\'apparition des premiers bulbes printaniers et la persistance de certaines variétés hivernales.</p>'
