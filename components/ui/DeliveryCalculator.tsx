@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Search, MapPin, Truck, Clock, Check } from 'lucide-react';
-import { getDeliveryInfo, getDeliveryZoneSuggestions, DELIVERY_ZONES, DeliveryZone } from '@/lib/delivery-zones';
+import { getDeliveryInfo, getDeliveryZoneSuggestions, DeliveryZone } from '@/lib/delivery-zones';
 
 interface DeliveryCalculatorProps {
   onDeliveryChange?: (fee: number, time: string, type: 'local' | 'regional' | 'national') => void;
@@ -23,7 +22,6 @@ export default function DeliveryCalculator({
   const inputRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
 
-  // Handle input changes and suggestions
   useEffect(() => {
     if (input.length >= 2) {
       const newSuggestions = getDeliveryZoneSuggestions(input);
@@ -37,7 +35,6 @@ export default function DeliveryCalculator({
     }
   }, [input]);
 
-  // Close suggestions when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (suggestionsRef.current && !suggestionsRef.current.contains(event.target as Node) &&
@@ -46,91 +43,52 @@ export default function DeliveryCalculator({
         setSelectedIndex(-1);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Handle delivery calculation
   const calculateDelivery = (searchInput: string) => {
     if (!searchInput.trim()) return;
-    
     const result = getDeliveryInfo(searchInput);
     setDeliveryResult(result);
-    
-    // Notify parent component
     onDeliveryChange?.(result.fee, result.time, result.type);
   };
 
-  // Handle suggestion selection
   const selectSuggestion = (zone: DeliveryZone) => {
     setInput(`${zone.postalCode} ${zone.city}`);
     setShowSuggestions(false);
     calculateDelivery(`${zone.postalCode} ${zone.city}`);
   };
 
-  // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!showSuggestions) {
-      if (e.key === 'Enter') {
-        calculateDelivery(input);
-        setShowSuggestions(false);
-      }
+      if (e.key === 'Enter') { calculateDelivery(input); setShowSuggestions(false); }
       return;
     }
-
     switch (e.key) {
-      case 'ArrowDown':
-        e.preventDefault();
-        setSelectedIndex(prev => 
-          prev < suggestions.length - 1 ? prev + 1 : prev
-        );
-        break;
-      case 'ArrowUp':
-        e.preventDefault();
-        setSelectedIndex(prev => prev > 0 ? prev - 1 : -1);
-        break;
-      case 'Enter':
-        e.preventDefault();
-        if (selectedIndex >= 0 && selectedIndex < suggestions.length) {
-          selectSuggestion(suggestions[selectedIndex]);
-        } else {
-          calculateDelivery(input);
-          setShowSuggestions(false);
-        }
-        break;
-      case 'Escape':
-        setShowSuggestions(false);
-        setSelectedIndex(-1);
-        break;
+      case 'ArrowDown': e.preventDefault(); setSelectedIndex(prev => prev < suggestions.length - 1 ? prev + 1 : prev); break;
+      case 'ArrowUp': e.preventDefault(); setSelectedIndex(prev => prev > 0 ? prev - 1 : -1); break;
+      case 'Enter': e.preventDefault(); selectedIndex >= 0 ? selectSuggestion(suggestions[selectedIndex]) : (calculateDelivery(input), setShowSuggestions(false)); break;
+      case 'Escape': setShowSuggestions(false); setSelectedIndex(-1); break;
     }
   };
 
-  // Zone color mapping
-  const getZoneColor = (type: 'local' | 'regional' | 'national') => {
+  const getZoneLabel = (type: 'local' | 'regional' | 'national') => {
     switch (type) {
-      case 'local': return '#4caf50';
-      case 'regional': return '#2196f3';
-      case 'national': return '#9e9e9e';
-      default: return '#9e9e9e';
+      case 'local': return 'Locale';
+      case 'regional': return 'Régionale';
+      case 'national': return 'Nationale';
     }
-  };
-
-  // Zone badge styling
-  const getZoneBadge = (type: 'local' | 'regional' | 'national') => {
-    const colors = {
-      local: { bg: 'bg-green-100', text: 'text-green-700', label: 'Local' },
-      regional: { bg: 'bg-blue-100', text: 'text-blue-700', label: 'Régional' },
-      national: { bg: 'bg-gray-100', text: 'text-gray-700', label: 'National' }
-    };
-    return colors[type];
   };
 
   return (
-    <div className={`delivery-calculator ${className}`}>
-      {/* Input Section */}
+    <div className={className}>
+      {/* Input */}
       <div className="relative">
         <div className="relative">
+          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#c4a47a] pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+          </svg>
           <input
             ref={inputRef}
             type="text"
@@ -138,39 +96,30 @@ export default function DeliveryCalculator({
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             onFocus={() => input.length >= 2 && setShowSuggestions(suggestions.length > 0)}
-            placeholder="Votre code postal ou ville..."
-            className="w-full px-4 py-4 pl-12 pr-4 rounded-xl border-2 border-[#e8e0d8] bg-[#faf8f5] text-[#2d2a26] placeholder-[#9a9490] focus:outline-none focus:border-[#b8956a] focus:bg-white transition-all duration-200"
-            style={{ textIndent: '1.5rem' }}
-          />
-          <Search 
-            size={16} 
-            className="absolute left-5 top-1/2 transform -translate-y-1/2 text-[#b8956a] pointer-events-none" 
+            placeholder="Code postal ou ville..."
+            className="w-full pl-9 pr-3 py-2.5 border border-[#e8e0d8] bg-white text-sm text-[#2d2a26] font-light placeholder:text-[#2d2a26]/25 focus:outline-none focus:border-[#c4a47a] transition-colors"
           />
         </div>
 
-        {/* Suggestions Dropdown */}
+        {/* Suggestions */}
         {showSuggestions && suggestions.length > 0 && (
-          <div 
-            ref={suggestionsRef}
-            className="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl border border-[#e8e0d8] shadow-lg z-50 max-h-64 overflow-y-auto"
-          >
+          <div ref={suggestionsRef} className="absolute top-full left-0 right-0 mt-1 bg-white border border-[#e8e0d8] z-50 max-h-48 overflow-y-auto">
             {suggestions.map((zone, index) => (
               <button
                 key={`${zone.postalCode}-${zone.city}`}
                 onClick={() => selectSuggestion(zone)}
-                className={`w-full px-4 py-3 text-left hover:bg-[#faf8f5] transition-colors border-b border-[#f5f0eb] last:border-b-0 ${index === selectedIndex ? 'bg-[#faf8f5]' : ''}`}
+                className={`w-full px-3 py-2.5 text-left transition-colors border-b border-[#e8e0d8]/30 last:border-0 ${
+                  index === selectedIndex ? 'bg-[#c4a47a]/5' : 'hover:bg-[#faf8f5]'
+                }`}
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <div className="font-medium text-[#2d2a26]">
-                      {zone.postalCode} {zone.city}
-                    </div>
-                    <div className="text-sm text-[#9a9490]">
-                      {zone.distance}km - {zone.deliveryFee}€
-                    </div>
+                    <span className="text-sm text-[#2d2a26]">{zone.city}</span>
+                    <span className="text-xs text-[#2d2a26]/30 ml-1.5">{zone.postalCode}</span>
                   </div>
-                  <div className="text-[#b8956a] text-sm font-medium">
-                    {zone.deliveryTime}
+                  <div className="text-right">
+                    <span className="text-xs text-[#2d2a26]/40">{zone.distance} km</span>
+                    <span className="text-xs text-[#c4a47a] ml-2 font-medium">{zone.deliveryFee}€</span>
                   </div>
                 </div>
               </button>
@@ -179,67 +128,52 @@ export default function DeliveryCalculator({
         )}
       </div>
 
-      {/* Results Section */}
+      {/* Result */}
       {deliveryResult && (
-        <div className="mt-6 bg-white rounded-2xl border border-[#e8e0d8] p-6 shadow-sm animate-[slideIn_0.3s_ease-out]">
-          <div className="flex items-start justify-between mb-4">
-            <div className="flex items-center space-x-3">
-              <div className="p-3 rounded-full" 
-                   style={{ backgroundColor: `${getZoneColor(deliveryResult.type)}20` }}>
-                <Truck size={20} style={{ color: getZoneColor(deliveryResult.type) }} />
+        <div className="mt-3 border border-[#e8e0d8] bg-white">
+          {/* Header */}
+          <div className="p-3 border-b border-[#e8e0d8]/50">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                <span className="text-sm text-[#2d2a26]">{deliveryResult.description}</span>
               </div>
-              <div>
-                <h3 className="font-serif text-xl text-[#2d2a26] mb-1">
-                  Livraison disponible
-                </h3>
-                <p className="text-[#9a9490] text-sm">
-                  {deliveryResult.description}
-                </p>
-              </div>
+              <span className="text-[9px] uppercase tracking-[0.15em] text-[#c4a47a] border border-[#c4a47a]/30 px-2 py-0.5">
+                {getZoneLabel(deliveryResult.type)}
+              </span>
             </div>
-            
-            {/* Zone Badge */}
-            <span className={`px-3 py-1 rounded-full text-xs font-medium ${getZoneBadge(deliveryResult.type).bg} ${getZoneBadge(deliveryResult.type).text}`}>
-              {getZoneBadge(deliveryResult.type).label}
-            </span>
           </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            {/* Price */}
-            <div className="text-center p-4 rounded-xl bg-[#faf8f5]">
-              <div className="text-2xl font-bold text-[#b8956a] mb-1">
-                {deliveryResult.fee.toFixed(2)}€
-              </div>
-              <div className="text-[#9a9490] text-sm">
-                Frais de livraison
-              </div>
+          
+          {/* Prix + Délai */}
+          <div className="grid grid-cols-2 divide-x divide-[#e8e0d8]/50">
+            <div className="p-3 text-center">
+              <p className="text-lg font-serif text-[#2d2a26]">{deliveryResult.fee.toFixed(0)}€</p>
+              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider">Livraison</p>
             </div>
-
-            {/* Time */}
-            <div className="text-center p-4 rounded-xl bg-[#faf8f5]">
-              <div className="flex items-center justify-center mb-1">
-                <Clock size={16} className="text-[#b8956a] mr-1" />
-                <span className="text-lg font-semibold text-[#2d2a26]">
-                  {deliveryResult.time}
-                </span>
+            <div className="p-3 text-center">
+              <div className="flex items-center justify-center gap-1">
+                <svg className="w-3.5 h-3.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p className="text-lg font-serif text-[#2d2a26]">{deliveryResult.time}</p>
               </div>
-              <div className="text-[#9a9490] text-sm">
-                Délai estimé
-              </div>
+              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider">Délai estimé</p>
             </div>
           </div>
         </div>
       )}
 
-      {/* Delivery Zone Map */}
+      {/* Map section */}
       {showMap && (
-        <div className="mt-8 bg-white rounded-2xl border border-[#e8e0d8] p-6">
-          <h3 className="font-serif text-xl text-[#2d2a26] mb-6 text-center">
+        <div className="mt-8">
+          <h3 className="text-base font-serif text-[#2d2a26] mb-4 text-center">
             Nos zones de livraison
           </h3>
 
-          {/* OpenStreetMap embed centered on Saint-Pair-sur-Mer */}
-          <div className="relative rounded-xl overflow-hidden border border-[#e8e0d8]" style={{ height: '400px' }}>
+          <div className="border border-[#e8e0d8] overflow-hidden" style={{ height: '350px' }}>
             <iframe
               src="https://www.openstreetmap.org/export/embed.html?bbox=-2.05%2C48.65%2C-1.1%2C48.98&layer=mapnik&marker=48.8167%2C-1.5667"
               width="100%"
@@ -248,82 +182,27 @@ export default function DeliveryCalculator({
               loading="lazy"
               title="Zones de livraison Anne Freret"
             />
-            
-            {/* Zone overlay legend on the map */}
-            <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg border border-[#e8e0d8]">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#4caf50' }} />
-                  <div>
-                    <div className="text-xs font-semibold" style={{ color: '#2d2a26' }}>0-5 km</div>
-                    <div className="text-xs font-bold" style={{ color: '#4caf50' }}>8€</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#ff9800' }} />
-                  <div>
-                    <div className="text-xs font-semibold" style={{ color: '#2d2a26' }}>5-10 km</div>
-                    <div className="text-xs font-bold" style={{ color: '#ff9800' }}>12€</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#2196f3' }} />
-                  <div>
-                    <div className="text-xs font-semibold" style={{ color: '#2d2a26' }}>10+ km</div>
-                    <div className="text-xs font-bold" style={{ color: '#2196f3' }}>18€</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#9e9e9e' }} />
-                  <div>
-                    <div className="text-xs font-semibold" style={{ color: '#2d2a26' }}>National</div>
-                    <div className="text-xs font-bold" style={{ color: '#9e9e9e' }}>12.90€</div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
-          {/* Cities list by zone */}
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="rounded-xl p-4" style={{ backgroundColor: '#f0faf0', border: '1px solid #c8e6c9' }}>
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#4caf50' }} />
-                <span className="text-sm font-semibold" style={{ color: '#2d2a26' }}>Zone locale (8€)</span>
-              </div>
-              <p className="text-xs" style={{ color: '#6b6560' }}>Saint-Pair, Granville, Donville, Jullouville, St-Planchers</p>
+          <div className="grid grid-cols-3 border border-t-0 border-[#e8e0d8] divide-x divide-[#e8e0d8]">
+            <div className="p-3 text-center">
+              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mb-1">0-5 km</p>
+              <p className="text-sm font-serif text-[#2d2a26]">6€</p>
+              <p className="text-[9px] text-[#2d2a26]/30 mt-1">Granville, Jullouville</p>
             </div>
-            <div className="rounded-xl p-4" style={{ backgroundColor: '#fff8f0', border: '1px solid #ffe0b2' }}>
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#ff9800' }} />
-                <span className="text-sm font-semibold" style={{ color: '#2d2a26' }}>Zone étendue (12€)</span>
-              </div>
-              <p className="text-xs" style={{ color: '#6b6560' }}>Bréhal, Cérences, Gavray, La Haye-Pesnel, Villedieu</p>
+            <div className="p-3 text-center">
+              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mb-1">5-10 km</p>
+              <p className="text-sm font-serif text-[#2d2a26]">8€</p>
+              <p className="text-[9px] text-[#2d2a26]/30 mt-1">Bréhal, Cérences</p>
             </div>
-            <div className="rounded-xl p-4" style={{ backgroundColor: '#f0f4ff', border: '1px solid #bbdefb' }}>
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#2196f3' }} />
-                <span className="text-sm font-semibold" style={{ color: '#2d2a26' }}>Zone régionale (18€)</span>
-              </div>
-              <p className="text-xs" style={{ color: '#6b6560' }}>Avranches, Sartilly, Pontorson, Coutances, Saint-Lô</p>
+            <div className="p-3 text-center">
+              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mb-1">10-35 km</p>
+              <p className="text-sm font-serif text-[#2d2a26]">10€</p>
+              <p className="text-[9px] text-[#2d2a26]/30 mt-1">Avranches, Villedieu</p>
             </div>
           </div>
         </div>
       )}
-
-      {/* CSS for animations */}
-      <style jsx>{`
-        @keyframes slideIn {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
     </div>
   );
 }
