@@ -3,7 +3,17 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const LOGO_URL = '/logo-transparent.png';
+// Logo texte style Bergamotte
+const Logo = ({ className = '' }: { className?: string }) => (
+  <div className={`text-center ${className}`}>
+    <div className="font-serif text-[#2d2a26] tracking-[0.35em] uppercase leading-none" style={{ fontWeight: 400 }}>
+      Anne Freret
+    </div>
+    <div className="text-[7px] md:text-[8px] tracking-[0.25em] uppercase text-[#2d2a26]/40 mt-0.5">
+      — fleuriste —
+    </div>
+  </div>
+);
 // Logo has white background, we use mix-blend-mode to blend it
 
 const Header = () => {
@@ -72,7 +82,7 @@ const Header = () => {
 
             {/* Center logo */}
             <Link href="/" className="flex-shrink-0">
-              <img src={LOGO_URL} alt="Anne Freret Fleuriste" className="h-16 w-auto object-contain transition-all duration-500" />
+              <Logo className="text-lg md:text-xl" />
             </Link>
 
             {/* Right nav */}
@@ -111,7 +121,7 @@ const Header = () => {
             </button>
 
             <Link href="/" className="flex-shrink-0" onClick={closeMenu}>
-              <img src={LOGO_URL} alt="Anne Freret" className="h-8 w-auto object-contain" />
+              <Logo className="text-base" />
             </Link>
 
             <div className="flex items-center gap-2">

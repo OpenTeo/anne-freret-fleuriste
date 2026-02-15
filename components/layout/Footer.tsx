@@ -13,15 +13,12 @@ const Footer = () => {
           
           {/* Brand & Contact */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-10 h-10 bg-[#c4a47a] rounded-full flex items-center justify-center">
-                <span className="text-white font-serif font-bold text-lg">A</span>
+            <div className="mb-6">
+              <div className="font-serif text-xl text-[#faf8f5] tracking-[0.35em] uppercase leading-none">
+                Anne Freret
               </div>
-              <div className="flex flex-col">
-                <span className="font-serif font-medium text-2xl text-[#faf8f5] tracking-wide">
-                  Anne Freret
-                </span>
-                <span className="text-sm text-[#c4a47a] luxury-label">Fleuriste artisanal depuis 2020 — Saint-Pair-sur-Mer</span>
+              <div className="text-[8px] tracking-[0.25em] uppercase text-[#faf8f5]/40 mt-1">
+                — fleuriste · Saint-Pair-sur-Mer —
               </div>
             </div>
             
