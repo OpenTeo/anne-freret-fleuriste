@@ -72,13 +72,13 @@ export default function DeuilPage() {
             <Link key={product.slug} href={`/produit/${product.slug}`} className="group">
               <div className="aspect-square overflow-hidden bg-[#f5f0eb] mb-3">
                 <img 
-                  src={product.images[0]} 
+                  src={product.images?.[0] || ''} 
                   alt={product.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
               <h3 className="font-serif text-sm md:text-base text-[#2d2a26] mb-1">{product.name}</h3>
-              <p className="text-[#c4a47a] text-sm">Dès {product.sizes[0]?.price.toFixed(2)}€</p>
+              <p className="text-[#c4a47a] text-sm">Dès {product.sizes?.[0]?.price.toFixed(2)}€</p>
             </Link>
           ))}
         </div>
