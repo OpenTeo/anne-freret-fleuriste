@@ -23,6 +23,9 @@ export default function ProductPageClient({ params }: ProductPageProps) {
   const [selectedSize, setSelectedSize] = useState<{ name: string; price: number } | null>(null);
   const [selectedVariant, setSelectedVariant] = useState<{ name: string; price?: number } | null>(null);
   const [personalMessage, setPersonalMessage] = useState('');
+  const [selectedCardTheme, setSelectedCardTheme] = useState<string | null>(null);
+  const [selectedCardModel, setSelectedCardModel] = useState<number | null>(null);
+  const [cardMessage, setCardMessage] = useState('');
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
   const { user } = useAuth();
@@ -373,18 +376,179 @@ export default function ProductPageClient({ params }: ProductPageProps) {
 
                 {/* Carte message gratuite */}
                 <AccordionItem id="message" title="Carte message offerte">
-                  <div className="space-y-4">
-                    <p className="text-[#2d2a26] text-sm">
-                      Écrivez un message qui sera imprimé et livré avec votre bouquet
-                    </p>
-                    <textarea
-                      placeholder="Votre message personnalisé..."
-                      value={personalMessage}
-                      onChange={(e) => setPersonalMessage(e.target.value)}
-                      className="w-full p-3 text-sm border border-[#e8e0d8] focus:outline-none focus:border-[#c4a47a] bg-white transition-colors"
-                      rows={3}
-                    />
-                  </div>
+                  {(() => {
+                    const cardThemes = [
+                      {
+                        id: 'anniversaire',
+                        name: 'Anniversaire',
+                        models: [
+                          { name: 'Floral doux', bg: '#f9f0f0', accent: '#d4a0a0', pattern: 'floral' },
+                          { name: 'Confettis dorés', bg: '#faf6ee', accent: '#c4a47a', pattern: 'confetti' },
+                        ],
+                      },
+                      {
+                        id: 'remerciement',
+                        name: 'Remerciement',
+                        models: [
+                          { name: 'Bouquet aquarelle', bg: '#f0f4f1', accent: '#7d8c6e', pattern: 'watercolor' },
+                          { name: 'Minimaliste', bg: '#faf8f5', accent: '#2d2a26', pattern: 'minimal' },
+                        ],
+                      },
+                      {
+                        id: 'amour',
+                        name: 'Amour',
+                        models: [
+                          { name: 'Petits coeurs', bg: '#fdf0f0', accent: '#c47a7a', pattern: 'hearts' },
+                          { name: 'Roses', bg: '#f8eff2', accent: '#b8758a', pattern: 'roses' },
+                        ],
+                      },
+                      {
+                        id: 'felicitations',
+                        name: 'Félicitations',
+                        models: [
+                          { name: 'Étoiles', bg: '#f5f3fa', accent: '#8a7ab8', pattern: 'stars' },
+                          { name: 'Champagne', bg: '#faf6ee', accent: '#c4a47a', pattern: 'champagne' },
+                        ],
+                      },
+                      {
+                        id: 'retablissement',
+                        name: 'Rétablissement',
+                        models: [
+                          { name: 'Fleurs douces', bg: '#f5f8f0', accent: '#8ca07d', pattern: 'softflowers' },
+                          { name: 'Soleil', bg: '#fef9ee', accent: '#c4a050', pattern: 'sun' },
+                        ],
+                      },
+                      {
+                        id: 'libre',
+                        name: 'Message libre',
+                        models: [
+                          { name: 'Kraft', bg: '#f0ebe4', accent: '#8a7a6a', pattern: 'kraft' },
+                          { name: 'Blanc élégant', bg: '#ffffff', accent: '#c4a47a', pattern: 'elegant' },
+                        ],
+                      },
+                    ];
+
+                    const activeTheme = cardThemes.find(t => t.id === selectedCardTheme);
+
+                    const renderSvgMotif = (pattern: string, accent: string) => {
+                      switch (pattern) {
+                        case 'floral':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-40"><circle cx="20" cy="14" r="4" fill={accent}/><circle cx="14" cy="22" r="4" fill={accent}/><circle cx="26" cy="22" r="4" fill={accent}/><circle cx="20" cy="20" r="3" fill={accent} opacity="0.6"/></svg>;
+                        case 'confetti':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-40"><rect x="5" y="8" width="4" height="4" rx="0.5" fill={accent} transform="rotate(15 7 10)"/><rect x="18" y="4" width="3" height="3" rx="0.5" fill={accent} transform="rotate(-20 19 5)"/><rect x="30" y="10" width="4" height="4" rx="0.5" fill={accent} transform="rotate(30 32 12)"/><rect x="10" y="28" width="3" height="3" rx="0.5" fill={accent} transform="rotate(-10 11 29)"/><rect x="28" y="26" width="4" height="4" rx="0.5" fill={accent} transform="rotate(25 30 28)"/></svg>;
+                        case 'watercolor':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-30"><circle cx="15" cy="20" r="10" fill={accent}/><circle cx="25" cy="18" r="8" fill={accent} opacity="0.5"/><circle cx="20" cy="26" r="6" fill={accent} opacity="0.3"/></svg>;
+                        case 'minimal':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-25"><line x1="8" y1="14" x2="32" y2="14" stroke={accent} strokeWidth="0.8"/><line x1="12" y1="20" x2="28" y2="20" stroke={accent} strokeWidth="0.8"/><line x1="16" y1="26" x2="24" y2="26" stroke={accent} strokeWidth="0.8"/></svg>;
+                        case 'hearts':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-35"><path d="M20 28 C20 28 10 20 10 15 C10 11 14 10 17 12 L20 15 L23 12 C26 10 30 11 30 15 C30 20 20 28 20 28Z" fill={accent}/></svg>;
+                        case 'roses':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-35"><circle cx="20" cy="18" r="6" fill="none" stroke={accent} strokeWidth="1.2"/><path d="M20 12 C22 14 24 16 22 20 C20 24 18 20 16 18 C14 16 18 12 20 12Z" fill={accent} opacity="0.4"/><line x1="20" y1="24" x2="20" y2="32" stroke={accent} strokeWidth="1"/></svg>;
+                        case 'stars':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-35"><polygon points="20,6 22.5,16 32,16 24.5,22 27,32 20,26 13,32 15.5,22 8,16 17.5,16" fill={accent}/></svg>;
+                        case 'champagne':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-35"><path d="M17 32 L17 20 L14 8 L26 8 L23 20 L23 32" fill="none" stroke={accent} strokeWidth="1.2"/><line x1="14" y1="32" x2="26" y2="32" stroke={accent} strokeWidth="1.2"/><circle cx="16" cy="5" r="1" fill={accent}/><circle cx="24" cy="4" r="1.2" fill={accent}/><circle cx="20" cy="3" r="0.8" fill={accent}/></svg>;
+                        case 'softflowers':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-30"><circle cx="20" cy="16" r="3" fill={accent}/><circle cx="16" cy="20" r="3" fill={accent} opacity="0.6"/><circle cx="24" cy="20" r="3" fill={accent} opacity="0.6"/><circle cx="20" cy="24" r="3" fill={accent} opacity="0.4"/><line x1="20" y1="27" x2="20" y2="34" stroke={accent} strokeWidth="1"/></svg>;
+                        case 'sun':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-35"><circle cx="20" cy="20" r="6" fill={accent}/><g stroke={accent} strokeWidth="1.2">{[0,45,90,135,180,225,270,315].map(a => <line key={a} x1={20+Math.cos(a*Math.PI/180)*9} y1={20+Math.sin(a*Math.PI/180)*9} x2={20+Math.cos(a*Math.PI/180)*12} y2={20+Math.sin(a*Math.PI/180)*12}/>)}</g></svg>;
+                        case 'kraft':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-20"><line x1="0" y1="10" x2="40" y2="10" stroke={accent} strokeWidth="0.5" strokeDasharray="2 3"/><line x1="0" y1="20" x2="40" y2="20" stroke={accent} strokeWidth="0.5" strokeDasharray="2 3"/><line x1="0" y1="30" x2="40" y2="30" stroke={accent} strokeWidth="0.5" strokeDasharray="2 3"/></svg>;
+                        case 'elegant':
+                          return <svg viewBox="0 0 40 40" className="w-8 h-8 opacity-25"><rect x="8" y="8" width="24" height="24" fill="none" stroke={accent} strokeWidth="0.8"/><rect x="12" y="12" width="16" height="16" fill="none" stroke={accent} strokeWidth="0.5"/></svg>;
+                        default:
+                          return null;
+                      }
+                    };
+
+                    return (
+                      <div className="space-y-4">
+                        <p className="text-[#2d2a26]/60 text-sm">
+                          Choisissez un thème, un modèle, puis rédigez votre message personnel.
+                        </p>
+
+                        {/* Étape 1 : Choix du thème */}
+                        {!selectedCardTheme && (
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                            {cardThemes.map(theme => (
+                              <button
+                                key={theme.id}
+                                onClick={() => { setSelectedCardTheme(theme.id); setSelectedCardModel(null); }}
+                                className="border border-[#e8e0d8]/60 hover:border-[#c4a47a] transition-colors p-3 text-left"
+                                style={{ backgroundColor: theme.models[0].bg }}
+                              >
+                                <div className="flex items-center justify-between mb-1">
+                                  {renderSvgMotif(theme.models[0].pattern, theme.models[0].accent)}
+                                </div>
+                                <span className="text-xs text-[#2d2a26]/70 font-serif">{theme.name}</span>
+                              </button>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* Étape 2 : Choix du modèle */}
+                        {selectedCardTheme && activeTheme && selectedCardModel === null && (
+                          <div>
+                            <div className="flex items-center justify-between mb-3">
+                              <span className="text-xs text-[#2d2a26]/50 uppercase tracking-[0.1em]">{activeTheme.name}</span>
+                              <button onClick={() => setSelectedCardTheme(null)} className="text-xs text-[#c4a47a] hover:underline">Changer de thème</button>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                              {activeTheme.models.map((model, idx) => (
+                                <button
+                                  key={idx}
+                                  onClick={() => setSelectedCardModel(idx)}
+                                  className="border border-[#e8e0d8]/60 hover:border-[#c4a47a] transition-colors p-4 text-center"
+                                  style={{ backgroundColor: model.bg }}
+                                >
+                                  <div className="flex justify-center mb-2">
+                                    {renderSvgMotif(model.pattern, model.accent)}
+                                  </div>
+                                  <span className="text-xs text-[#2d2a26]/60">{model.name}</span>
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Étape 3 : Message + aperçu */}
+                        {selectedCardTheme && activeTheme && selectedCardModel !== null && (
+                          <div className="space-y-4">
+                            <div className="flex items-center justify-between">
+                              <span className="text-xs text-[#2d2a26]/50 uppercase tracking-[0.1em]">{activeTheme.name} — {activeTheme.models[selectedCardModel].name}</span>
+                              <button onClick={() => setSelectedCardModel(null)} className="text-xs text-[#c4a47a] hover:underline">Changer de modèle</button>
+                            </div>
+
+                            <textarea
+                              placeholder="Votre message personnalisé..."
+                              value={cardMessage}
+                              onChange={(e) => { if (e.target.value.length <= 150) setCardMessage(e.target.value); }}
+                              className="w-full p-3 text-sm border border-[#e8e0d8] focus:outline-none focus:border-[#c4a47a] bg-white transition-colors"
+                              rows={3}
+                            />
+                            <p className="text-[10px] text-[#2d2a26]/30 text-right">{cardMessage.length}/150</p>
+
+                            {/* Aperçu de la carte */}
+                            <div>
+                              <p className="text-xs text-[#2d2a26]/40 mb-2">Aperçu</p>
+                              <div
+                                className="border border-[#e8e0d8]/40 p-5 relative overflow-hidden"
+                                style={{ backgroundColor: activeTheme.models[selectedCardModel].bg, minHeight: '120px' }}
+                              >
+                                <div className="absolute top-2 right-2 opacity-30">
+                                  {renderSvgMotif(activeTheme.models[selectedCardModel].pattern, activeTheme.models[selectedCardModel].accent)}
+                                </div>
+                                <p className="text-[10px] uppercase tracking-[0.15em] mb-3" style={{ color: activeTheme.models[selectedCardModel].accent }}>{activeTheme.name}</p>
+                                <p className="text-sm text-[#2d2a26]/70 leading-relaxed font-serif italic">
+                                  {cardMessage || 'Votre message apparaîtra ici...'}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })()}
                 </AccordionItem>
 
                 {/* Complétez votre cadeau */}
