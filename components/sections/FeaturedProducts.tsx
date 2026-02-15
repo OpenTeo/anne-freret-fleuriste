@@ -15,23 +15,19 @@ const FeaturedProducts = () => {
     .filter(g => g.items.length > 0);
 
   return (
-    <section className="py-24 md:py-32 bg-[#faf8f5]">
+    <section className="py-12 md:py-20 bg-[#faf8f5]">
       <div className="max-w-6xl mx-auto px-4 md:px-6">
         
         {/* Header */}
-        <div className="text-center mb-16 md:mb-20">
-          <p className="text-[#c4a47a] text-[10px] tracking-[0.2em] uppercase mb-4 font-light">
+        <div className="text-center mb-10 md:mb-14">
+          <p className="text-[#c4a47a] text-[10px] tracking-[0.2em] uppercase mb-3 font-light">
             Sélection
           </p>
-          <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl text-[#2d2a26] mb-8 font-light">
+          <h2 className="font-serif text-3xl md:text-5xl text-[#2d2a26] mb-4 font-light">
             Nos créations
           </h2>
-          <div className="flex justify-center mb-8">
-            <div className="w-16 h-px bg-[#c4a47a]"></div>
-          </div>
-          <p className="text-[#2d2a26]/70 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
-            Une sélection de nos bouquets les plus appréciés, 
-            créés avec passion par nos fleuristes
+          <p className="text-[#2d2a26]/50 text-sm md:text-base font-light max-w-lg mx-auto">
+            Des fleurs fraîches, cueillies avec soin, livrées partout en France
           </p>
         </div>
 

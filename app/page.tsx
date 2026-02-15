@@ -16,15 +16,6 @@ export default function Home() {
           <HeroSlider />
         </section>
 
-        {/* SECTION PROMESSE — compact */}
-        <section className="py-6 md:py-10">
-          <div className="max-w-4xl mx-auto px-4 md:px-6 text-center">
-            <p className="font-serif text-lg md:text-2xl text-[#2d2a26] leading-relaxed">
-              Des fleurs fraîches, cueillies avec soin, livrées partout en France
-            </p>
-          </div>
-        </section>
-
         {/* SECTION NOS CRÉATIONS */}
         <FeaturedProducts />
 
