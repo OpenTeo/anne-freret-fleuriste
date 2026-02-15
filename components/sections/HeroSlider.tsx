@@ -27,6 +27,13 @@ const slides = [
     cta: 'Découvrir →',
   },
   {
+    href: '/blog/art-composer-bouquet-champetre',
+    image: 'https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=1400',
+    subtitle: 'Le Journal Floral',
+    title: 'L\'art du bouquet champêtre',
+    cta: 'Lire l\'article →',
+  },
+  {
     href: '/abonnement',
     image: '',
     subtitle: '',
