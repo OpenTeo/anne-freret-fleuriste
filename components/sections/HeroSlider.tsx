@@ -7,10 +7,11 @@ import Link from 'next/link';
 const slides = [
   {
     href: '/boutique',
-    image: 'https://images.pexels.com/photos/1458282/pexels-photo-1458282.jpeg?auto=compress&cs=tinysrgb&w=1400',
+    image: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=1400&q=80',
     subtitle: 'Sélection de saison',
-    title: 'Le bouquet du mois',
+    title: 'Le bouquet\ndu mois',
     cta: 'Découvrir →',
+    textOnImage: true,
   },
   {
     href: '/mariages',
@@ -151,12 +152,30 @@ export default function HeroSlider() {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="w-full h-full object-cover object-bottom"
+                className="w-full h-full object-cover object-center"
               />
-              {/* Text content — bandeau blanc en bas pour lisibilité */}
+              {/* Text on image mode */}
+              {'textOnImage' in slide && slide.textOnImage ? (
+                <div className="absolute inset-0 flex flex-col justify-end">
+                  {/* Gradient overlay for text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                  <div className="relative px-6 md:px-12 pb-16 md:pb-20">
+                    <p className={`text-white/70 text-[11px] md:text-xs tracking-[0.25em] uppercase mb-2 md:mb-3 transition-all duration-700 delay-100 ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                      {slide.subtitle}
+                    </p>
+                    <h1 className={`text-white font-serif text-4xl md:text-6xl lg:text-7xl mb-4 md:mb-6 transition-all duration-700 delay-200 leading-[1.1] whitespace-pre-line ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                      {slide.title}
+                    </h1>
+                    <span className={`inline-block text-white text-sm tracking-wide underline underline-offset-8 decoration-[#c4a47a] hover:text-[#c4a47a] transition-all duration-500 delay-300 ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                      {slide.cta}
+                    </span>
+                  </div>
+                </div>
+              ) : (
+              /* Bandeau blanc classique */
               <div className="absolute bottom-0 left-0 right-0">
                 {/* Trust bar avis */}
-                <div className="flex items-center justify-center gap-2 py-2 bg-[#2d2a26] border-b border-[#2d2a26]">
+                <div className="flex items-center justify-center gap-2 py-2 bg-[#2d2a26]">
                   <span className="text-[9px] md:text-[10px] text-white/70">4.8 / 5</span>
                   <div className="flex">
                     {[1,2,3,4,5].map(s => (
@@ -193,6 +212,7 @@ export default function HeroSlider() {
                   </div>
                 </div>
               </div>
+              )}
             </>
           )}
         </div>
