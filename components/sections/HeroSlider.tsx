@@ -7,9 +7,9 @@ import Link from 'next/link';
 const slides = [
   {
     href: '/boutique',
-    image: 'https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=1400&q=85',
-    subtitle: 'Créations florales d\'exception',
-    title: 'Nos Bouquets',
+    image: 'https://images.pexels.com/photos/4466260/pexels-photo-4466260.jpeg?auto=compress&cs=tinysrgb&w=1400',
+    subtitle: 'Sélection de saison',
+    title: 'Le bouquet du mois',
     cta: 'Découvrir →',
   },
   {
@@ -17,13 +17,6 @@ const slides = [
     image: 'https://images.unsplash.com/photo-1550005809-91ad75fb315f?w=1400&q=85',
     subtitle: 'Votre jour, nos fleurs',
     title: 'Mariages',
-    cta: 'Découvrir →',
-  },
-  {
-    href: '/boutique',
-    image: 'https://images.pexels.com/photos/4466260/pexels-photo-4466260.jpeg?auto=compress&cs=tinysrgb&w=1400',
-    subtitle: 'Sélection de saison',
-    title: 'Le bouquet du mois',
     cta: 'Découvrir →',
   },
   {
