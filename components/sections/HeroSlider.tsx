@@ -7,7 +7,7 @@ import Link from 'next/link';
 const slides = [
   {
     href: '/boutique',
-    image: 'https://images.pexels.com/photos/4466260/pexels-photo-4466260.jpeg?auto=compress&cs=tinysrgb&w=1400',
+    image: 'https://images.pexels.com/photos/1458282/pexels-photo-1458282.jpeg?auto=compress&cs=tinysrgb&w=1400',
     subtitle: 'Sélection de saison',
     title: 'Le bouquet du mois',
     cta: 'Découvrir →',
