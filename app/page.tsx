@@ -28,22 +28,42 @@ export default function Home() {
         {/* SECTION NOS CRÉATIONS */}
         <FeaturedProducts />
 
-        {/* BANNIÈRE LIVRAISON GRATUITE */}
-        <section className="bg-[#c4a47a] py-4">
-          <div className="max-w-4xl mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-8 text-center">
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>
-              <span className="text-white text-sm tracking-wide">Livraison offerte dès 60€ d'achat</span>
-            </div>
-            <div className="hidden md:block w-px h-4 bg-white/30"></div>
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
-              <span className="text-white text-sm tracking-wide">Bouquets préparés avec amour</span>
-            </div>
-            <div className="hidden md:block w-px h-4 bg-white/30"></div>
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
-              <span className="text-white text-sm tracking-wide">Fraîcheur garantie 7 jours</span>
+        {/* BANNIÈRE GARANTIES */}
+        <section className="py-10 md:py-14 border-y border-[#e8e0d8]">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
+              {[
+                {
+                  icon: <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />,
+                  title: 'Livraison offerte',
+                  desc: 'Dès 60€ d\'achat',
+                },
+                {
+                  icon: <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />,
+                  title: 'Expédition 24h',
+                  desc: 'Du lundi au samedi',
+                },
+                {
+                  icon: <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />,
+                  title: 'Fraîcheur garantie',
+                  desc: '7 jours minimum',
+                },
+                {
+                  icon: <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />,
+                  title: 'Fait main',
+                  desc: 'Avec passion',
+                },
+              ].map((item) => (
+                <div key={item.title} className="text-center">
+                  <div className="w-10 h-10 mx-auto mb-3 border border-[#c4a47a]/30 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      {item.icon}
+                    </svg>
+                  </div>
+                  <p className="text-xs md:text-sm text-[#2d2a26] font-medium mb-0.5">{item.title}</p>
+                  <p className="text-[10px] md:text-xs text-[#2d2a26]/40">{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
