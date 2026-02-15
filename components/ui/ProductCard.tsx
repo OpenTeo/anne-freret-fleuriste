@@ -28,13 +28,13 @@ const ProductCard = ({ product, className = '' }: ProductCardProps) => {
         />
       </div>
 
-      {/* Content - Très espacé */}
-      <div className="space-y-3 md:space-y-4">
+      {/* Content */}
+      <div className="space-y-1 md:space-y-2">
+        <p className="text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-[#c4a47a]">{product.category}</p>
         <h3 className="font-serif text-sm md:text-xl lg:text-2xl text-[#2d2a26] group-hover:text-[#c4a47a] transition-colors leading-tight font-light">
           {product.name}
         </h3>
-        
-        <p className="text-[#2d2a26]/70 text-xs md:text-base font-light">
+        <p className="text-[#2d2a26]/50 text-[11px] md:text-sm font-light">
           À partir de {formatPrice(product.price)} €
         </p>
       </div>
