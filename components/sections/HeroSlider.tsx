@@ -97,7 +97,7 @@ export default function HeroSlider() {
 
   return (
     <div 
-      className="relative w-full aspect-[4/5] md:h-[80vh] md:aspect-auto overflow-hidden"
+      className="relative w-full h-[85vh] md:h-[90vh] overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
