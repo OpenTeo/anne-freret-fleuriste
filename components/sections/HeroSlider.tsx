@@ -7,7 +7,7 @@ import Link from 'next/link';
 const slides = [
   {
     href: '/boutique',
-    image: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=1400&q=80',
+    image: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1400&q=80',
     subtitle: 'Sélection de saison',
     title: 'Le bouquet du mois',
     cta: 'Découvrir →',
@@ -169,7 +169,7 @@ export default function HeroSlider() {
                 src={slide.image}
                 alt={slide.title}
                 className="w-full h-full object-cover"
-                style={{ objectPosition: i === 0 ? 'center 90%' : 'center center' }}
+                style={{ objectPosition: 'center center' }}
               />
               {/* Text on image mode */}
               {/* Bandeau blanc */}
