@@ -432,42 +432,62 @@ export default function ProductPageClient({ params }: ProductPageProps) {
 
                 {/* Livraison */}
                 <AccordionItem id="shipping" title="Livraison">
-                  <div className="space-y-3">
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-[#c4a47a] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25" />
-                      </svg>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center border border-[#e8e0d8] bg-[#faf8f5]">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M2 12h13m0 0l-3-3m3 3l-3 3M17 8V6a2 2 0 012-2h1a2 2 0 012 2v12a2 2 0 01-2 2h-1a2 2 0 01-2-2v-2" stroke="#b8a590" strokeWidth="0.8" strokeLinecap="round" />
+                          <path d="M7 8c0-1 .5-2 2-3s3-.5 3 .5-.5 2-2 2.5S7 9 7 8z" stroke="#b8a590" strokeWidth="0.6" fill="none" />
+                        </svg>
+                      </div>
                       <div>
-                        <p className="text-sm text-[#2d2a26] font-medium mb-0.5">Livraison partout en France</p>
-                        <p className="text-xs text-[#2d2a26]/50">Locale sous 24h · Nationale sous 48h via Colissimo</p>
+                        <p className="text-sm text-[#2d2a26] mb-0.5">Livraison partout en France</p>
+                        <p className="text-xs text-[#2d2a26]/40 font-light">Locale sous 24h · Nationale sous 48h via Colissimo</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-[#c4a47a] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                      </svg>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center border border-[#e8e0d8] bg-[#faf8f5]">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="8" stroke="#b8a590" strokeWidth="0.8" />
+                          <path d="M12 4c1 2 1.5 5 0 8s-1 5 0 8" stroke="#b8a590" strokeWidth="0.5" fill="none" />
+                          <path d="M8 7c1 .5 2.5.8 4 .8s3-.3 4-.8" stroke="#b8a590" strokeWidth="0.5" fill="none" />
+                          <path d="M7 12h10" stroke="#b8a590" strokeWidth="0.4" />
+                          <path d="M9 9l1.5 2L14 8" stroke="#b8a590" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
                       <div>
-                        <p className="text-sm text-[#2d2a26] font-medium mb-0.5">Fraîcheur garantie 7 jours</p>
-                        <p className="text-xs text-[#2d2a26]/50">Bouquet remplacé si vous n&#39;êtes pas satisfait</p>
+                        <p className="text-sm text-[#2d2a26] mb-0.5">Fraîcheur garantie 7 jours</p>
+                        <p className="text-xs text-[#2d2a26]/40 font-light">Bouquet remplacé si vous n&#39;êtes pas satisfait</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-[#c4a47a] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21" />
-                      </svg>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center border border-[#e8e0d8] bg-[#faf8f5]">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="4" y="8" width="16" height="12" rx="1" stroke="#b8a590" strokeWidth="0.8" />
+                          <path d="M4 8l8 5 8-5" stroke="#b8a590" strokeWidth="0.6" fill="none" />
+                          <path d="M9 4c0 0 .5-1 3-1s3 1 3 1v4H9V4z" stroke="#b8a590" strokeWidth="0.6" fill="none" />
+                          <path d="M10 6h4" stroke="#b8a590" strokeWidth="0.4" />
+                          <circle cx="12" cy="15" r="1.5" stroke="#b8a590" strokeWidth="0.6" fill="none" />
+                          <path d="M12 13.5v-1" stroke="#b8a590" strokeWidth="0.4" />
+                        </svg>
+                      </div>
                       <div>
-                        <p className="text-sm text-[#2d2a26] font-medium mb-0.5">Emballage soigné</p>
-                        <p className="text-xs text-[#2d2a26]/50">Protection sur mesure pour préserver la fraîcheur</p>
+                        <p className="text-sm text-[#2d2a26] mb-0.5">Emballage soigné</p>
+                        <p className="text-xs text-[#2d2a26]/40 font-light">Protection sur mesure pour préserver la fraîcheur</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <svg className="w-5 h-5 text-[#c4a47a] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635" />
-                      </svg>
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 flex-shrink-0 flex items-center justify-center border border-[#e8e0d8] bg-[#faf8f5]">
+                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 3v2M12 19v2M5 12H3M21 12h-2" stroke="#b8a590" strokeWidth="0.6" strokeLinecap="round" />
+                          <circle cx="12" cy="12" r="6" stroke="#b8a590" strokeWidth="0.8" fill="none" />
+                          <path d="M12 8v4l2.5 2.5" stroke="#b8a590" strokeWidth="0.7" strokeLinecap="round" />
+                          <path d="M8 5l1 2M16 5l-1 2M8 19l1-2M16 19l-1-2" stroke="#b8a590" strokeWidth="0.3" />
+                        </svg>
+                      </div>
                       <div>
-                        <p className="text-sm text-[#2d2a26] font-medium mb-0.5">Livraison offerte dès 60€</p>
-                        <p className="text-xs text-[#2d2a26]/50">Locale : 6-10€ · Nationale : 17.90€</p>
+                        <p className="text-sm text-[#2d2a26] mb-0.5">Livraison offerte dès 60€</p>
+                        <p className="text-xs text-[#2d2a26]/40 font-light">Locale : 6-10€ · Nationale : 17.90€</p>
                       </div>
                     </div>
                   </div>
