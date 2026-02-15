@@ -29,6 +29,7 @@ const Header = () => {
 
   const navLinks = [
     { href: '/boutique', label: 'Boutique' },
+    { href: '/abonnement', label: 'Abonnement' },
     { href: '/mariages', label: 'Mariages' },
     { href: '/livraison', label: 'Livraison' },
     { href: '/blog', label: 'Blog' },
@@ -48,7 +49,7 @@ const Header = () => {
           <div className="hidden md:flex items-center justify-between h-20">
             {/* Left nav */}
             <nav className="flex items-center gap-8">
-              {navLinks.slice(0, 3).map(link => (
+              {navLinks.slice(0, 4).map(link => (
                 <Link key={link.href} href={link.href} className="text-[#2d2a26]/80 text-[11px] tracking-[0.15em] uppercase hover:text-[#c4a47a] transition-all duration-500">
                   {link.label}
                 </Link>
@@ -62,7 +63,7 @@ const Header = () => {
 
             {/* Right nav */}
             <nav className="flex items-center gap-8">
-              {navLinks.slice(3).map(link => (
+              {navLinks.slice(4).map(link => (
                 <Link key={link.href} href={link.href} className="text-[#2d2a26]/80 text-[11px] tracking-[0.15em] uppercase hover:text-[#c4a47a] transition-all duration-500">
                   {link.label}
                 </Link>

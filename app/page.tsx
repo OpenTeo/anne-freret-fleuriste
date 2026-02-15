@@ -60,6 +60,63 @@ export default function Home() {
           </div>
         </section>
 
+        {/* SECTION ABONNEMENT */}
+        <section className="py-16 md:py-24 bg-white">
+          <div className="max-w-5xl mx-auto px-4 md:px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+              <div>
+                <p className="text-[#c4a47a] text-[10px] tracking-[0.3em] uppercase mb-4">Nouveau</p>
+                <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">
+                  L'Abonnement Floral
+                </h2>
+                <div className="w-12 h-px bg-[#c4a47a] mb-6"></div>
+                <p className="text-[#2d2a26]/60 text-base leading-relaxed mb-6">
+                  Recevez chaque mois un bouquet de saison composé avec soin par notre fleuriste. Une surprise florale livrée directement chez vous.
+                </p>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
+                    <svg className="w-5 h-5 text-[#c4a47a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    3 formules dès 39.90€/mois
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
+                    <svg className="w-5 h-5 text-[#c4a47a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    Livraison gratuite partout en France
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
+                    <svg className="w-5 h-5 text-[#c4a47a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    Sans engagement, annulation à tout moment
+                  </div>
+                </div>
+                <a href="/abonnement" className="inline-block text-[#2d2a26] text-sm tracking-wide underline underline-offset-8 decoration-[#c4a47a] hover:text-[#c4a47a] transition-colors">
+                  Découvrir nos formules →
+                </a>
+              </div>
+              <div className="bg-[#faf8f5] p-8 md:p-10">
+                <div className="space-y-4">
+                  {[
+                    { name: 'Essentiel', price: '39.90', desc: 'Bouquet de saison' },
+                    { name: 'Signature', price: '49.90', desc: 'Sélection premium', popular: true },
+                    { name: 'Prestige', price: '69.90', desc: "L'exception florale" },
+                  ].map((plan) => (
+                    <a key={plan.name} href="/abonnement" className={`block p-4 bg-white transition-all duration-300 hover:border-[#c4a47a] ${plan.popular ? 'border-2 border-[#c4a47a]' : 'border border-[#e8e0d8]'}`}>
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <p className="text-sm text-[#2d2a26]">{plan.name}</p>
+                            {plan.popular && <span className="text-[8px] tracking-[0.1em] uppercase bg-[#c4a47a] text-white px-2 py-0.5">Populaire</span>}
+                          </div>
+                          <p className="text-xs text-[#2d2a26]/40">{plan.desc}</p>
+                        </div>
+                        <p className="font-serif text-lg text-[#2d2a26]">{plan.price}€<span className="text-xs text-[#2d2a26]/40">/mois</span></p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION BLOG - Layout éditorial */}
         <section className="py-24 md:py-32 bg-[#faf8f5]">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
