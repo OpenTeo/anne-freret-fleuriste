@@ -86,9 +86,6 @@ export default function DeliveryCalculator({
       {/* Input */}
       <div className="relative">
         <div className="relative">
-          <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#c4a47a] pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-          </svg>
           <input
             ref={inputRef}
             type="text"
@@ -97,7 +94,7 @@ export default function DeliveryCalculator({
             onKeyDown={handleKeyDown}
             onFocus={() => input.length >= 2 && setShowSuggestions(suggestions.length > 0)}
             placeholder="Code postal ou ville..."
-            className="w-full pl-9 pr-3 py-2.5 border border-[#e8e0d8] bg-white text-sm text-[#2d2a26] font-light placeholder:text-[#2d2a26]/25 focus:outline-none focus:border-[#c4a47a] transition-colors"
+            className="w-full px-3 py-2.5 border border-[#e8e0d8] bg-white text-sm text-[#2d2a26] font-light placeholder:text-[#2d2a26]/25 focus:outline-none focus:border-[#c4a47a] transition-colors"
           />
         </div>
 
