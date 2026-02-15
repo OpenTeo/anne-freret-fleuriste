@@ -19,6 +19,7 @@ export default function DeliveryCalculator({
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [deliveryResult, setDeliveryResult] = useState<ReturnType<typeof getDeliveryInfo> | null>(null);
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [mapCenter, setMapCenter] = useState<{ lat: number; lon: number } | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
 
@@ -54,10 +55,19 @@ export default function DeliveryCalculator({
     onDeliveryChange?.(result.fee, result.time, result.type);
   };
 
+  const geocodeCity = async (city: string) => {
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city + ', France')}&limit=1`);
+      const data = await res.json();
+      if (data?.[0]) setMapCenter({ lat: parseFloat(data[0].lat), lon: parseFloat(data[0].lon) });
+    } catch { /* silently fail */ }
+  };
+
   const selectSuggestion = (zone: DeliveryZone) => {
     setInput(`${zone.postalCode} ${zone.city}`);
     setShowSuggestions(false);
     calculateDelivery(`${zone.postalCode} ${zone.city}`);
+    geocodeCity(zone.city);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -172,7 +182,10 @@ export default function DeliveryCalculator({
 
           <div className="border border-[#e8e0d8] overflow-hidden" style={{ height: '350px' }}>
             <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-2.05%2C48.65%2C-1.1%2C48.98&layer=mapnik&marker=48.8167%2C-1.5667"
+              src={mapCenter 
+                ? `https://www.openstreetmap.org/export/embed.html?bbox=${mapCenter.lon - 0.15}%2C${mapCenter.lat - 0.1}%2C${mapCenter.lon + 0.15}%2C${mapCenter.lat + 0.1}&layer=mapnik&marker=${mapCenter.lat}%2C${mapCenter.lon}`
+                : 'https://www.openstreetmap.org/export/embed.html?bbox=-2.05%2C48.65%2C-1.1%2C48.98&layer=mapnik&marker=48.8167%2C-1.5667'
+              }
               width="100%"
               height="100%"
               style={{ border: 0 }}
