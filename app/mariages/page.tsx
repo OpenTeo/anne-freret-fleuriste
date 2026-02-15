@@ -303,10 +303,11 @@ export default function Mariages() {
                       className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#c4a47a] focus:outline-none transition-colors font-light"
                     >
                       <option value="">Sélectionner un budget</option>
-                      <option value="100-200">100€ - 200€</option>
-                      <option value="200-400">200€ - 400€</option>
-                      <option value="400-800">400€ - 800€</option>
-                      <option value="800+">800€ et plus</option>
+                      <option value="500-1000">500€ - 1 000€</option>
+                      <option value="1000-2000">1 000€ - 2 000€</option>
+                      <option value="2000-3500">2 000€ - 3 500€</option>
+                      <option value="3500-5000">3 500€ - 5 000€</option>
+                      <option value="5000+">5 000€ et plus</option>
                     </select>
                   </div>
                 </div>
