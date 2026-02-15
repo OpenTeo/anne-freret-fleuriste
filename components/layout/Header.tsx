@@ -40,8 +40,8 @@ const Header = () => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
-        isScrolled ? 'bg-[#faf8f5]/95 backdrop-blur-md border-b border-[#c4a47a]/20' : 'bg-[#faf8f5] md:bg-transparent'
+      <header className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled ? 'top-0 bg-[#faf8f5]/95 backdrop-blur-md border-b border-[#c4a47a]/20' : 'top-8 bg-[#faf8f5] md:bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           
