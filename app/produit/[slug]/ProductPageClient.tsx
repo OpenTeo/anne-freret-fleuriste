@@ -312,19 +312,19 @@ export default function ProductPageClient({ params }: ProductPageProps) {
               <div className="bg-white rounded-lg border border-[#e8e0d8] p-4">
                 <div className="grid grid-cols-2 gap-3 text-sm">
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg">🚚</span>
+                    <svg className="w-5 h-5 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25m0 0V4.875c0-.621-.504-1.125-1.125-1.125H8.25" /></svg>
                     <span className="text-[#2d2a26]">Livraison France</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg">🌿</span>
-                    <span className="text-[#2d2a26]">Fraîcheur 72h</span>
+                    <svg className="w-5 h-5 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
+                    <span className="text-[#2d2a26]">Fraîcheur 7 jours</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg">✨</span>
-                    <span className="text-[#2d2a26]">Emballage cadeau offert</span>
+                    <svg className="w-5 h-5 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg>
+                    <span className="text-[#2d2a26]">Carte message offerte</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <span className="text-lg">🔒</span>
+                    <svg className="w-5 h-5 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
                     <span className="text-[#2d2a26]">Paiement sécurisé</span>
                   </div>
                 </div>
@@ -334,7 +334,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
               <div className="bg-white rounded-lg border border-[#e8e0d8] divide-y divide-[#e8e0d8]">
                 
                 {/* Description complète */}
-                <AccordionItem id="description" title="📝 Description complète">
+                <AccordionItem id="description" title="Description complète">
                   <div className="space-y-4">
                     <p className="text-[#2d2a26] leading-relaxed">
                       {product.description}
@@ -441,16 +441,16 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 </AccordionItem>
 
                 {/* Livraison */}
-                <AccordionItem id="shipping" title="🚚 Livraison">
+                <AccordionItem id="shipping" title="Livraison">
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="space-y-3">
                         <div className="flex items-center space-x-3">
-                          <span className="text-lg">🚚</span>
+                          <svg className="w-4 h-4 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25" /></svg>
                           <span className="text-sm text-[#2d2a26]">Livraison partout en France</span>
                         </div>
                         <div className="flex items-center space-x-3">
-                          <span className="text-lg">🌿</span>
+                          <svg className="w-4 h-4 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
                           <span className="text-sm text-[#2d2a26]">Fraîcheur garantie 72h</span>
                         </div>
                         <div className="flex items-center space-x-3">
@@ -473,7 +473,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 </AccordionItem>
 
                 {/* Entretien */}
-                <AccordionItem id="care" title="🌿 Entretien">
+                <AccordionItem id="care" title="Entretien">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div className="text-center">
                       <div className="w-12 h-12 bg-[#f5f0eb] rounded-full flex items-center justify-center mx-auto mb-3">

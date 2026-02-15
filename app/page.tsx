@@ -32,42 +32,96 @@ export default function Home() {
         {/* SECTION NOS CRÉATIONS */}
         <FeaturedProducts />
 
-        {/* BANNIÈRE GARANTIES */}
-        <section className="py-10 md:py-14 border-y border-[#e8e0d8]">
+        {/* BANNIÈRE GARANTIES — illustrations ligne fine artisanales */}
+        <section className="py-12 md:py-16 border-y border-[#e8e0d8]">
           <div className="max-w-5xl mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
-              {[
-                {
-                  icon: <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />,
-                  title: 'Livraison offerte',
-                  desc: 'Dès 60€ d\'achat',
-                },
-                {
-                  icon: <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />,
-                  title: 'Expédition 24h',
-                  desc: 'Du lundi au samedi',
-                },
-                {
-                  icon: <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />,
-                  title: 'Fraîcheur garantie',
-                  desc: '7 jours minimum',
-                },
-                {
-                  icon: <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />,
-                  title: 'Fait main',
-                  desc: 'Avec passion',
-                },
-              ].map((item) => (
-                <div key={item.title} className="text-center">
-                  <div className="w-10 h-10 mx-auto mb-3 border border-[#c4a47a]/30 rounded-full flex items-center justify-center">
-                    <svg className="w-5 h-5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                      {item.icon}
-                    </svg>
-                  </div>
-                  <p className="text-xs md:text-sm text-[#2d2a26] font-medium mb-0.5">{item.title}</p>
-                  <p className="text-[10px] md:text-xs text-[#2d2a26]/40">{item.desc}</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6">
+              {/* Commandez en ligne */}
+              <div className="text-center">
+                <div className="h-14 flex items-center justify-center mb-4">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-[#b8a590]">
+                    {/* Écran avec petite fleur */}
+                    <rect x="10" y="8" width="28" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
+                    <line x1="20" y1="28" x2="28" y2="28" stroke="currentColor" strokeWidth="1" />
+                    <line x1="24" y1="28" x2="24" y2="33" stroke="currentColor" strokeWidth="1" />
+                    <line x1="19" y1="33" x2="29" y2="33" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+                    {/* Petite fleur sur l'écran */}
+                    <circle cx="24" cy="16" r="1.5" stroke="currentColor" strokeWidth="0.8" />
+                    <path d="M24 14.5C24 14.5 25.5 13 25.5 11.5" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+                    <path d="M24 14.5C24 14.5 22.5 13 22 11.8" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+                    <path d="M24 17.5V21" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+                    <path d="M24 19C25 18 26.5 18.5 26.5 18.5" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+                    {/* Petite souris curseur */}
+                    <path d="M30 20L32 22L30.5 22.5L31.5 24.5" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
                 </div>
-              ))}
+                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Commandez en ligne</p>
+                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Choisissez la création<br />qui vous ressemble.</p>
+              </div>
+
+              {/* Préparée avec amour */}
+              <div className="text-center">
+                <div className="h-14 flex items-center justify-center mb-4">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-[#b8a590]">
+                    {/* Tige avec fleur simple élégante */}
+                    <path d="M24 38V20" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+                    <path d="M24 22C22 20 21 17 22 14C23 11 24 10 24 10C24 10 25 11 26 14C27 17 26 20 24 22Z" stroke="currentColor" strokeWidth="0.8" fill="none" />
+                    {/* Pétales */}
+                    <path d="M24 14C22 12 19 12 18 14C17 16 18.5 18 20 18.5" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" fill="none" />
+                    <path d="M24 14C26 12 29 12 30 14C31 16 29.5 18 28 18.5" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" fill="none" />
+                    {/* Petit cœur au sommet */}
+                    <path d="M24 9C23.2 8.2 22 8 21.5 8.8C21 9.6 22 10.5 24 12C26 10.5 27 9.6 26.5 8.8C26 8 24.8 8.2 24 9Z" stroke="currentColor" strokeWidth="0.7" fill="none" />
+                    {/* Feuille tige */}
+                    <path d="M24 28C22 27 20 28 19 30" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+                    <path d="M24 32C26 31 28 32 29 34" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Préparée avec amour</p>
+                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Dans notre atelier<br />par nos artisans fleuristes.</p>
+              </div>
+
+              {/* Expédiée avec soin */}
+              <div className="text-center">
+                <div className="h-14 flex items-center justify-center mb-4">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-[#b8a590]">
+                    {/* Boîte cadeau ouverte avec fleur qui sort */}
+                    <rect x="12" y="22" width="24" height="16" rx="1" stroke="currentColor" strokeWidth="1" />
+                    <rect x="10" y="19" width="28" height="5" rx="1" stroke="currentColor" strokeWidth="1" />
+                    <line x1="24" y1="19" x2="24" y2="38" stroke="currentColor" strokeWidth="1" />
+                    {/* Ruban noeud */}
+                    <path d="M24 19C22 17 20 16 19 17C18 18 19 19.5 24 19" stroke="currentColor" strokeWidth="0.8" fill="none" />
+                    <path d="M24 19C26 17 28 16 29 17C30 18 29 19.5 24 19" stroke="currentColor" strokeWidth="0.8" fill="none" />
+                    {/* Petite fleur sortant de la boîte */}
+                    <path d="M24 19V13" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" />
+                    <circle cx="24" cy="11" r="2" stroke="currentColor" strokeWidth="0.7" fill="none" />
+                    <circle cx="24" cy="11" r="0.5" fill="currentColor" />
+                    {/* Petit cœur */}
+                    <path d="M28 14C27.5 13.5 27 13.4 26.7 13.8C26.5 14.1 27 14.6 28 15.3C29 14.6 29.5 14.1 29.3 13.8C29 13.4 28.5 13.5 28 14Z" stroke="currentColor" strokeWidth="0.5" fill="none" />
+                  </svg>
+                </div>
+                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Expédiée avec soin</p>
+                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Emballage sur mesure,<br />100% adapté aux fleurs.</p>
+              </div>
+
+              {/* Livrée en un éclair */}
+              <div className="text-center">
+                <div className="h-14 flex items-center justify-center mb-4">
+                  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="text-[#b8a590]">
+                    {/* Avion en papier avec traînée florale */}
+                    <path d="M8 28L38 14L28 30L24 26Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round" fill="none" />
+                    <path d="M24 26L28 30L26 38" stroke="currentColor" strokeWidth="1" strokeLinejoin="round" />
+                    <path d="M24 26L38 14" stroke="currentColor" strokeWidth="0.8" />
+                    {/* Petite fleur sur l'avion */}
+                    <circle cx="36" cy="12" r="1.5" stroke="currentColor" strokeWidth="0.6" fill="none" />
+                    <circle cx="36" cy="12" r="0.4" fill="currentColor" />
+                    {/* Traînée */}
+                    <path d="M10 30C12 29 13 30 14 29" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+                    <path d="M12 33C14 32 15 33 16 32" stroke="currentColor" strokeWidth="0.7" strokeLinecap="round" />
+                  </svg>
+                </div>
+                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Livrée en un éclair</p>
+                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">En quelques heures,<br />partout en France.</p>
+              </div>
             </div>
           </div>
         </section>
