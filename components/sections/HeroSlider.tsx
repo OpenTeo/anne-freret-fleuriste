@@ -193,6 +193,26 @@ export default function HeroSlider() {
         </div>
       ))}
 
+      {/* Arrows — desktop only */}
+      <button
+        onClick={(e) => { e.preventDefault(); prev(); }}
+        className="hidden md:flex absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white/60 hover:bg-white/90 backdrop-blur-sm transition-all duration-300 text-[#2d2a26]/50 hover:text-[#2d2a26]"
+        aria-label="Slide précédent"
+      >
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+      <button
+        onClick={(e) => { e.preventDefault(); next(); }}
+        className="hidden md:flex absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 items-center justify-center bg-white/60 hover:bg-white/90 backdrop-blur-sm transition-all duration-300 text-[#2d2a26]/50 hover:text-[#2d2a26]"
+        aria-label="Slide suivant"
+      >
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+
       {/* Dots - Plus petits et subtils */}
       <div className="absolute bottom-4 md:bottom-6 left-8 md:left-12 flex gap-3 z-10">
         {slides.map((_, i) => (

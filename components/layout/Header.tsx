@@ -61,28 +61,28 @@ const Header = () => {
           {/* Top bar - desktop */}
           <div className="hidden md:flex items-center justify-between h-20">
             {/* Left nav */}
-            <nav className="flex items-center gap-8">
+            <nav className="flex items-center gap-5 lg:gap-7">
               {navLinks.slice(0, 4).map(link => (
-                <Link key={link.href} href={link.href} className="text-[#2d2a26]/80 text-[11px] tracking-[0.15em] uppercase hover:text-[#c4a47a] transition-all duration-500">
+                <Link key={link.href} href={link.href} className="text-[#2d2a26]/70 text-[10px] lg:text-[11px] tracking-[0.12em] uppercase hover:text-[#c4a47a] transition-all duration-500 whitespace-nowrap">
                   {link.label}
                 </Link>
               ))}
             </nav>
 
             {/* Center logo */}
-            <Link href="/" className="flex-shrink-0">
+            <Link href="/" className="flex-shrink-0 mx-4 lg:mx-8">
               <Logo className="text-lg md:text-xl" />
             </Link>
 
             {/* Right nav */}
-            <nav className="flex items-center gap-8">
+            <nav className="flex items-center gap-5 lg:gap-7">
               {navLinks.slice(4).map(link => (
-                <Link key={link.href} href={link.href} className="text-[#2d2a26]/80 text-[11px] tracking-[0.15em] uppercase hover:text-[#c4a47a] transition-all duration-500">
+                <Link key={link.href} href={link.href} className="text-[#2d2a26]/70 text-[10px] lg:text-[11px] tracking-[0.12em] uppercase hover:text-[#c4a47a] transition-all duration-500 whitespace-nowrap">
                   {link.label}
                 </Link>
               ))}
-              <div className="w-px h-4 bg-[#c4a47a]/30 ml-2"></div>
-              <Link href="/compte" className="text-[#2d2a26]/80 hover:text-[#c4a47a] transition-all duration-500 ml-4">
+              <div className="w-px h-4 bg-[#c4a47a]/20 ml-1"></div>
+              <Link href="/compte" className="text-[#2d2a26]/70 hover:text-[#c4a47a] transition-all duration-500 ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
