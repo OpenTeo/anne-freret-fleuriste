@@ -169,7 +169,7 @@ export default function HeroSlider() {
                 src={slide.image}
                 alt={slide.title}
                 className="w-full h-full object-cover"
-                style={{ objectPosition: i === 0 ? 'center 70%' : 'center center' }}
+                style={{ objectPosition: i === 0 ? 'center 90%' : 'center center' }}
               />
               {/* Text on image mode */}
               {/* Bandeau blanc */}
