@@ -56,6 +56,14 @@ export default function RibbonConfigurator({ ribbonText, setRibbonText, ribbonCo
           {/* Satin sheen */}
           <rect x="10" y="10" width="380" height="50" rx="1" fill={`url(#sheen-${ribbonColor})`} />
 
+          {/* Relief edges — top highlight */}
+          <rect x="10" y="10" width="380" height="2" fill="white" opacity="0.15" />
+          {/* Relief edges — bottom shadow */}
+          <rect x="10" y="58" width="380" height="2" fill="black" opacity="0.1" />
+          {/* Inner relief — subtle center ridge */}
+          <rect x="10" y="33" width="380" height="1" fill="white" opacity="0.06" />
+          <rect x="10" y="36" width="380" height="1" fill="black" opacity="0.04" />
+
           {/* Top ornamental border */}
           <rect x="10" y="10" width="380" height="1.5" fill={scheme.border} opacity="0.6" />
           <rect x="10" y="14" width="380" height="0.5" fill={scheme.border} opacity="0.3" />
@@ -131,7 +139,7 @@ export default function RibbonConfigurator({ ribbonText, setRibbonText, ribbonCo
           value={ribbonText}
           onChange={(e) => setRibbonText(e.target.value.slice(0, 40))}
           placeholder="À notre père adoré"
-          className="w-full px-3 py-2.5 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors placeholder:text-[#2d2a26]/25"
+          className="w-full px-3 py-2.5 border border-[#e8e0d8] text-[16px] text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors placeholder:text-[#2d2a26]/25"
         />
         <p className="text-[10px] text-right mt-1 text-[#2d2a26]/30">{ribbonText.length}/40</p>
       </div>

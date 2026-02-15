@@ -375,7 +375,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                       placeholder="Votre message pour accompagner la composition..."
                       rows={3}
                       maxLength={200}
-                      className="w-full px-3 py-2.5 border border-[#e8e0d8] text-sm text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors resize-none placeholder:text-[#2d2a26]/25"
+                      className="w-full px-3 py-2.5 border border-[#e8e0d8] text-[16px] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors resize-none placeholder:text-[#2d2a26]/25"
                     />
                     <p className="text-[10px] text-right mt-1 text-[#2d2a26]/30">{personalMessage.length}/200</p>
                   </div>
