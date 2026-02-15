@@ -9,9 +9,8 @@ const slides = [
     href: '/boutique',
     image: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=1400&q=80',
     subtitle: 'Sélection de saison',
-    title: 'Le bouquet\ndu mois',
+    title: 'Le bouquet du mois',
     cta: 'Découvrir →',
-    textOnImage: true,
   },
   {
     href: '/mariages',
@@ -19,15 +18,13 @@ const slides = [
     subtitle: 'Votre jour, nos fleurs',
     title: 'Mariages',
     cta: 'Découvrir →',
-    textOnImage: true,
   },
   {
     href: '/blog/art-composer-bouquet-champetre',
     image: 'https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=1400',
     subtitle: 'Le Journal Floral',
-    title: 'L\'art du bouquet\nchampêtre',
+    title: 'L\'art du bouquet champêtre',
     cta: 'Lire l\'article →',
-    textOnImage: true,
   },
   {
     href: '/abonnement',
@@ -157,12 +154,10 @@ export default function HeroSlider() {
                 className="w-full h-full object-cover object-center"
               />
               {/* Text on image mode */}
-              {/* Text overlay on photo */}
-              <div className="absolute inset-0 flex flex-col justify-end">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-                {/* Trust bar */}
-                <div className="relative flex items-center justify-center gap-2 py-1.5 mb-1">
-                  <span className="text-[9px] md:text-[10px] text-white/60">4.8 / 5</span>
+              {/* Trust bar + bandeau blanc */}
+              <div className="absolute bottom-0 left-0 right-0">
+                <div className="flex items-center justify-center gap-2 py-2 bg-[#2d2a26]">
+                  <span className="text-[9px] md:text-[10px] text-white/70">4.8 / 5</span>
                   <div className="flex">
                     {[1,2,3,4,5].map(s => (
                       <svg key={s} className={`w-2.5 h-2.5 ${s <= 4 ? 'text-[#c4a47a]' : 'text-white/20'}`} fill="currentColor" viewBox="0 0 20 20">
@@ -170,18 +165,20 @@ export default function HeroSlider() {
                       </svg>
                     ))}
                   </div>
-                  <span className="text-[9px] md:text-[10px] text-white/60 uppercase tracking-wider">238 avis clients</span>
+                  <span className="text-[9px] md:text-[10px] text-white/70 uppercase tracking-wider">238 avis clients</span>
                 </div>
-                <div className="relative px-6 md:px-12 pb-14 md:pb-16">
-                  <p className={`text-white/70 text-[11px] md:text-xs tracking-[0.25em] uppercase mb-2 md:mb-3 transition-all duration-700 delay-100 ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    {slide.subtitle}
-                  </p>
-                  <h1 className={`text-white font-serif text-4xl md:text-6xl lg:text-7xl mb-4 md:mb-6 transition-all duration-700 delay-200 leading-[1.1] whitespace-pre-line ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    {slide.title}
-                  </h1>
-                  <span className={`inline-block text-white text-sm tracking-wide underline underline-offset-8 decoration-[#c4a47a] hover:text-[#c4a47a] transition-all duration-500 delay-300 ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-                    {slide.cta}
-                  </span>
+                <div className="bg-white/90 backdrop-blur-sm p-5 md:p-8 pb-12 md:pb-14">
+                  <div className="max-w-4xl">
+                    <p className={`text-[#c4a47a] text-[11px] md:text-xs tracking-[0.25em] uppercase mb-2 md:mb-3 transition-all duration-700 delay-100 ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                      {slide.subtitle}
+                    </p>
+                    <h1 className={`text-[#2d2a26] font-serif text-3xl md:text-5xl lg:text-6xl mb-4 md:mb-6 transition-all duration-700 delay-200 leading-tight ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                      {slide.title}
+                    </h1>
+                    <span className={`inline-block text-[#2d2a26] text-sm tracking-wide underline underline-offset-8 decoration-[#c4a47a] hover:text-[#c4a47a] transition-all duration-500 delay-300 ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+                      {slide.cta}
+                    </span>
+                  </div>
                 </div>
               </div>
             </>
