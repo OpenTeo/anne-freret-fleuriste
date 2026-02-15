@@ -25,7 +25,7 @@ export default function ConfirmationDemo() {
           size: 'Unique',
           price: 12.90,
           quantity: 1,
-          image: 'https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=300',
+          image: 'https://images.pexels.com/photos/374062/pexels-photo-374062.jpeg?auto=compress&cs=tinysrgb&w=300',
         },
       ],
       delivery: {
