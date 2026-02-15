@@ -29,7 +29,7 @@ const FeaturedProducts = () => {
         </div>
 
         {/* Products Grid - 3 colonnes avec beaucoup d'espace */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 mb-16 md:mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-16 mb-16 md:mb-20">
           {bestSellers.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
