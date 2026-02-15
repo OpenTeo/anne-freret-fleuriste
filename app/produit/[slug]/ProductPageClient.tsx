@@ -28,6 +28,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
   const [selectedCardImage, setSelectedCardImage] = useState<string | null>(null);
   const [ribbonText, setRibbonText] = useState('');
   const [ribbonColor, setRibbonColor] = useState('or');
+  const [ribbonEnabled, setRibbonEnabled] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
   const { user } = useAuth();
@@ -355,13 +356,29 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 {/* Ruban personnalisé — uniquement pour Deuil & Hommages (VISIBLE, pas dans accordéon) */}
                 {product.category === 'Deuil & Hommages' && (
                   <div className="py-6 border-b border-[#e8e0d8]/60">
-                    <h3 className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40 mb-4">Personnalisez votre ruban</h3>
-                    <RibbonConfigurator
-                      ribbonText={ribbonText}
-                      setRibbonText={setRibbonText}
-                      ribbonColor={ribbonColor}
-                      setRibbonColor={setRibbonColor}
-                    />
+                    <div className="flex items-center justify-between mb-4">
+                      <label className="flex items-center gap-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={ribbonEnabled}
+                          onChange={(e) => setRibbonEnabled(e.target.checked)}
+                          className="sr-only peer"
+                        />
+                        <div className="w-9 h-5 bg-[#e8e0d8] peer-checked:bg-[#c4a47a] relative transition-colors">
+                          <div className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white transition-transform ${ribbonEnabled ? 'translate-x-4' : ''}`} />
+                        </div>
+                        <span className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40">Ajouter un ruban personnalisé</span>
+                      </label>
+                      <span className="text-sm text-[#c4a47a]">+ 7,99 €</span>
+                    </div>
+                    {ribbonEnabled && (
+                      <RibbonConfigurator
+                        ribbonText={ribbonText}
+                        setRibbonText={setRibbonText}
+                        ribbonColor={ribbonColor}
+                        setRibbonColor={setRibbonColor}
+                      />
+                    )}
                   </div>
                 )}
 
