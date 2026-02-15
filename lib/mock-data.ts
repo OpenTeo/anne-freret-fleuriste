@@ -45,7 +45,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_2c1fb84c-0074-4dce-9d4b-7161370a1a30.png?v=1684428619'
     ],
     category: 'Bouquets',
-    description: 'Lisianthus aux pétales de soie, roses aux tons poudrés, dille aérienne et limonum vaporeux composent cette création toute en douceur, rehaussée d\'épis de blé dorés et d\'un feuillage délicat. Un bouquet qui évoque les matins calmes de la côte normande et s\'épanouit pleinement sous vos yeux en 3 à 5 jours. Idéal pour marquer une attention sincère ou illuminer un intérieur de sa grâce champêtre.',
+    description: 'Cette délicate composition s\'accompagne de lisianthus, de dille, de roses, de limonum, et blé le tout entouré d\'un délicat feuillage. Une invitation à la tendresse d\'un simple rêve, aussi furtif qu\'un éclair, qui déposera dans votre intérieur une ambiance aérienne et coquette. Composition : Lisianthus blanc, dille, rose blanche, limonum blanc, blé et feuillages mélangés.',
     slug: 'barneville-carteret',
     featured: true,
     inStock: true,
@@ -67,7 +67,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275'
     ],
     category: 'Bouquets',
-    description: 'Éclat de couleurs vives mêlant dahlias flamboyants, alstroemérias aux nuances solaires et feuillages d\'un vert profond, ce bouquet capture l\'énergie des falaises battues par le vent à la Pointe d\'Agon. Généreux et structuré, il tient en vase 7 à 10 jours et insuffle une vitalité immédiate à chaque pièce. Parfait pour célébrer une bonne nouvelle ou simplement se faire plaisir.',
+    description: 'Ce bouquet rafraîchissant, avec des teintes vives est parfait pour apporter une touche d\'énergie et de vivacité dans votre intérieur. Offrez un bouquet acidulé pour égayer le quotidien et surprendre vos proches. Composition : Rose frisée blanche, chardon sec blanc, phlox blanc, lisianthus blanc, dihlle graine, mélange de feuillages de saison.',
     slug: 'la-pointe-d-agon',
     featured: true,
     inStock: true,
@@ -89,7 +89,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-20250201-WA0008.jpg?v=1738607322'
     ],
     category: 'Bouquets',
-    description: 'Roses de jardin aux pétales froissés dans des tons rose poudré et pêche, ponctuées de matricaires champêtres et d\'un feuillage verdoyant et généreux. Ce bouquet respire la douceur des ruelles fleuries de Saint-Pair et dégage un parfum délicat, légèrement sucré. Livré en bouton, il révèle toute sa splendeur en 2 à 3 jours et accompagne avec grâce un anniversaire ou un geste de tendresse.',
+    description: 'Le Bouquet du fleuriste est le mélange parfait pour sublimer vos intérieurs ou bien même pour faire plaisir à vos proches. N\'hésitez plus pour l\'offrir à quelqu\'un d\'important à vos yeux. Composition : Bouquet frais composé de Rose branchue rose, Renoncule Clone du Var, Wax Flower, Lisianthus double rose, Graminée rose, Feuillages d\'hivers.',
     slug: 'le-saint-pairais',
     featured: false,
     inStock: true,
@@ -111,7 +111,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_3a2e9857-fa21-42db-b89a-47630ccdf35d.png?v=1684428237'
     ],
     category: 'Bouquets',
-    description: 'Roses pâles Sweet aux pétales veloutés, wax flowers délicates et tulipes dentelées aux bords finement ciselés composent cette harmonie tout en rosé. Les textures se répondent avec subtilité, entre la rondeur des roses et la légèreté aérienne du wax. Un bouquet frais et féminin, idéal pour offrir ou pour s\'offrir un instant de douceur au quotidien.',
+    description: 'Craquez pour cet ensemble de fleurs à vous faire tomber de bonheur. Avec ces couleurs dans les tonalités de rose qui viendront apporter de la fraicheur à votre intérieur. Composition : Rose pâle sweet, wax fleur, tulipe dentelé, renoncule rose pâle, lisianthus marbré, genet feuillages mélangés.',
     slug: 'grany',
     featured: true,
     inStock: true,
@@ -155,7 +155,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Rosegrosbouton2.jpg?v=1625149279'
     ],
     category: 'Bouquets',
-    description: 'Généreuse brassée de pivoines, roses et œillets dans un camaïeu de roses poudrés et de vieux rose, enveloppée d\'un feuillage argenté. L\'abondance des tiges et l\'homogénéité des tons créent un effet de masse saisissant, presque pictural. Son parfum subtil, mélange de rose ancienne et de notes vertes, emplit délicatement la pièce. Un bouquet d\'exception pour les grandes occasions.',
+    description: 'Tendrissime brassée de fleurs aux teintes roses. Travaillé en abondance, ce joli bouquet aux couleurs pastel séduit par son homogénéité de tons avant de subjuguer par le mariage de ses essences. Une essence innocente apportée avec douceur par la présence du bouquet la croix du lude. A offrir amoureusement, amicalement mais aussi tendrement aux êtres qui vous sont précieux. Composition : bouvardia, rose gros bouton, lisianthus double rose pâle, eucalypthus, feuillage de saison.',
     slug: 'la-croix-du-lude',
     featured: false,
     inStock: true,
@@ -177,7 +177,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798'
     ],
     category: 'Bouquets',
-    description: 'Roses frisées d\'un blanc nacré associées à des chardons sauvages aux reflets bleutés et à des graminées ondulantes : cette composition capture l\'authenticité brute des campagnes normandes. Le contraste entre la douceur des pétales et le caractère graphique des chardons crée une tension visuelle fascinante. Un bouquet de caractère qui se tient 7 à 9 jours et plaît autant aux amateurs de nature qu\'aux esthètes.',
+    description: 'Offrez un instant de douceur avec le Bouquet Douce Harmonie, une composition florale raffinée qui évoque la pureté et la délicatesse. Ses roses blanches Avalanche majestueuses, associées à des fleurs aux teintes subtiles et un feuillage aérien, en font le cadeau parfait pour transmettre un message de sérénité et d\'affection. Composition : Roses blanches Avalanche, lisianthus, graminées, gypsophile, hypericum, giroflée, phlox, hortensia, eucalyptus médaillon et statice vert.',
     slug: 'eveil-de-normandie',
     featured: false,
     inStock: true,
@@ -199,7 +199,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454'
     ],
     category: 'Bouquets',
-    description: 'Pivoines opulentes aux pétales froissés, renoncules d\'un rose tendre et eucalyptus argenté composent ce bouquet devenu incontournable de la collection Anne Freret. Ses tons rose clair, presque aquarellés, diffusent une douceur intemporelle et un parfum envoûtant de pivoine fraîche. Livré en bouton pour une floraison spectaculaire sous vos yeux, il est le cadeau idéal pour célébrer les moments heureux de la vie.',
+    description: 'Voici l\'un des chouchous de la collection Anne Freret. Nous on l\'adore parce qu\'avec ses ravissants tons rose clair, il nous rappelle les événements heureux de la vie. Soyez certains de faire plaisir avec cette jolie composition de roses. Composition : Rose sweat advance, pampa rose, wax blanc, statice rose, oeillet poudré, lisianthus rose pâle, feuillages mélangés.',
     slug: 'la-pointe-du-roc',
     featured: false,
     inStock: true,
@@ -221,7 +221,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/image00002_b6f2b70f-619d-4105-b4e8-f74941e8c689.jpg?v=1639823258'
     ],
     category: 'Bouquets',
-    description: 'Assemblage soigné de fleurs de saison aux teintes harmonieuses, ce bouquet mêle roses, lisianthus et feuillages texturés dans une palette choisie par notre fleuriste selon les arrivages du jour. Chaque création est unique, pensée pour sublimer votre intérieur ou toucher un proche avec élégance. Un bouquet généreux qui tient 7 jours et dont la composition varie au fil des saisons pour toujours surprendre.',
+    description: 'Le Bouquet du fleuriste est le mélange parfait pour sublimer vos intérieurs ou bien même pour faire plaisir à vos proches. N\'hésitez plus pour l\'offrir à quelqu\'un d\'important à vos yeux. Composition : Bouquet frais composé de Rose branchue rose, Renoncule Clone du Var, Wax Flower, Lisianthus double rose, Graminée rose, Feuillages d\'hivers.',
     slug: 'le-chausiais',
     featured: false,
     inStock: true,
@@ -243,7 +243,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798'
     ],
     category: 'Bouquets',
-    description: 'Laissez carte blanche à notre fleuriste : selon les arrivages, la saison et son inspiration du moment, elle compose pour vous un bouquet unique et généreux. Choisissez votre tonalité — blanc pur, rosé délicat ou teintes automnales — et laissez-vous surprendre par une création qui n\'existera qu\'une seule fois. La fraîcheur est garantie 7 jours, l\'émerveillement bien plus longtemps.',
+    description: 'Et pourquoi pas vivre une aventure ? Laissez libre choix à nos équipes ! Elles se chargeront du choix des fleurs. Composition : Choix libre du fleuriste. Photo non contractuelle.',
     slug: 'le-choix-du-fleuriste',
     featured: true,
     inStock: true,
@@ -270,7 +270,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdesaintvalentin2.jpg?v=1625151901'
     ],
     category: 'Bouquets',
-    description: 'Roses rouges à grosses têtes, profondes et veloutées, sublimées par des lisianthus pastel et des touches d\'eucalyptus cendrée. Le contraste entre l\'intensité du rouge et la douceur des tons clairs crée une composition dramatique et sophistiquée, chargée d\'émotion. Idéal pour une déclaration, un anniversaire de couple ou simplement pour dire ce que les mots ne suffisent pas à exprimer.',
+    description: 'Ce bouquet raffiné, composé de roses rouges intenses et de fleurs pastel délicates, incarne l\'élégance et l\'émotion. Parfait pour exprimer un amour profond, une gratitude sincère ou pour marquer un moment spécial, il allie romantisme et tendresse. Les nuances vibrantes des roses rouges se mêlent harmonieusement aux teintes douces des fleurs roses et blanches, créant une composition à la fois chaleureuse et apaisante. Offrez ce bouquet pour transmettre vos sentiments avec grâce et poésie. Composition : Roses Pink Mondial, Roses Red Naomi, Roses Espérances, Lisianthus, rose frisé, Wax rose.',
     slug: 'le-herel',
     featured: true,
     inStock: true,
@@ -292,7 +292,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderose2.jpg?v=1625070100'
     ],
     category: 'Bouquets',
-    description: 'Roses poudrées aux pétales de crêpe, scabieuses sauvages et graminées ondulantes se mêlent dans cette composition aérienne aux tons doux et naturels. Les feuillages délicats — pistache et eucalyptus baby blue — apportent profondeur et mouvement. Un bouquet qui capture l\'essence du charme champêtre normand tout en conservant une élégance raffinée, parfait pour un intérieur lumineux ou une table d\'été.',
+    description: 'Avec ses tons doux et ses textures aériennes, ce bouquet évoque la beauté naturelle et la sérénité. Composé de roses poudrées, de fleurs sauvages et de feuillages délicats, il capture l\'essence d\'un charme champêtre tout en restant raffiné. Idéal pour célébrer un moment d\'exception ou pour offrir une parenthèse de douceur, ce bouquet intemporel est une ode à la nature et à l\'élégance. Composition : Rose Sweat Advance, Limonium pêche, Miscanthus séché, Panicum, Bouvardia, Alstromère rose.',
     slug: 'le-jullouvillais',
     featured: true,
     inStock: true,
@@ -318,7 +318,7 @@ export const mockProducts: Product[] = [
       'https://fleuriste-annefreret.com/cdn/shop/files/279170543_782557459396911_8647938960483584919_n-min_1024x1024_crop_center.jpg'
     ],
     category: 'Bouquets',
-    description: 'Coffret nuptial en fleurs séchées aux tons lilas et lavande, composé d\'amarante, miscanthus, phalaris, grain d\'aneth, limonium, gypsophile, lagurus et stipa. Le bouquet de mariée (20 cm de diamètre, 25 cm de hauteur, finition cordelette) s\'accompagne d\'un peigne assorti et d\'une boutonnière pour le marié. Une harmonie champêtre et intemporelle qui se conserve des années comme souvenir de votre jour le plus précieux.',
+    description: 'Nos "Box Mariage" se composent d\'un bouquet et d\'un peigne pour la mariée et d\'une boutonnière assortie pour le marié. Bouquet : 20cm de diamètre pour 25cm de hauteur environ, finition de la poignée en cordelette. Boutonnière : montée sur épingle, 7cm environ. Peigne : 10cm environ. Composition : Amarante, miscanthus, phalaris, grain d\'aneth, limonium, gypsophile, lagurus, stipa. Fleurs séchées et stabilisées pour une longue conservation.',
     slug: 'box-champetre-lila',
     featured: true,
     inStock: true,
@@ -335,7 +335,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_6af69be8-d1fe-44a6-9936-308639ed93d2.png?v=1684426912'
     ],
     category: 'Bouquets',
-    description: 'Coffret nuptial aux accents exotiques : fleurs séchées tropicales dans des teintes corail, terracotta et or se déploient en un bouquet généreux de 25 cm de diamètre et 30 cm de hauteur, noué d\'une cordelette naturelle. Peigne de mariée et boutonnière assortie complètent l\'ensemble. Une composition audacieuse et solaire, pensée pour les mariages qui osent la couleur et l\'aventure.',
+    description: 'Nos "Box Mariage" se composent d\'un bouquet et d\'un peigne pour la mariée et d\'une boutonnière assortie pour le marié. Bouquet : 25cm de diamètre pour 30cm de hauteur environ, finition de la poignée en cordelette. Boutonnière : montée sur épingle, 7cm environ. Peigne : 10cm environ. Composition : Hortensia, feuille de palmier, immortelle, graine de dill, pampa, lagurus, phalaris, gypsophile, stipa, graine de nigelle, graminée. Fleurs séchées et stabilisées pour une longue conservation.',
     slug: 'box-mariage-exotique',
     featured: true,
     inStock: true,
@@ -352,7 +352,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_9527aac4-f297-4808-945b-908cf90e1a8e.png?v=1684426619'
     ],
     category: 'Bouquets',
-    description: 'Coffret nuptial d\'inspiration marine en fleurs séchées aux tons nacrés, blancs et bleu pâle, évoquant l\'écume et le sable fin. Le bouquet (20 cm de diamètre, 25 cm de hauteur, finition cordelette) est accompagné d\'un peigne délicat et d\'une boutonnière assortie. Pensé pour une cérémonie en bord de mer ou un mariage aux accents iodés, il se conserve indéfiniment en souvenir de ce jour unique.',
+    description: 'Nos "Box Mariage" se composent d\'un bouquet et d\'un peigne pour la mariée et d\'une boutonnière assortie pour le marié. Bouquet : 20cm de diamètre pour 25cm de hauteur environ, finition de la poignée en cordelette. Boutonnière : montée sur épingle, 7cm environ. Peigne : 10cm environ. Composition : Miscanthus, delphinium, graine de dill, hortensia, stipa, briza maxima, gypsophile. Fleurs séchées et stabilisées pour une longue conservation.',
     slug: 'box-mariage-sur-la-plage',
     featured: true,
     inStock: true,
@@ -371,7 +371,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Raquette.jpg?v=1737645211'
     ],
     category: 'Deuil & Hommages',
-    description: 'Raquette funéraire composée avec une attention particulière : roses, lys blancs et chrysanthèmes sont disposés en un chemin floral harmonieux, bordé de feuillages persistants. Disponible en blanc pur, rosé délicat ou tons colorés selon vos souhaits, elle témoigne avec sobriété de l\'affection qui perdure au-delà de l\'absence. Livraison assurée directement au lieu de cérémonie.',
+    description: 'Cet arrangement floral tout en longueur, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d\'un être cher, il est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d\'affection unique avec cet hommage floral. Disponible exclusivement en livraison locale.',
     slug: 'chemin-de-serenite',
     featured: true,
     inStock: true,
@@ -393,7 +393,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/9D21A555-DA13-4A1B-B926-909320B670FB.jpg?v=1729195556'
     ],
     category: 'Deuil & Hommages',
-    description: 'Ce cœur fleuri, réalisé sur mousse florale, associe roses à grosses têtes, germinis et œillets dans une composition dense et soignée. Sa forme universelle porte avec délicatesse les sentiments que les mots peinent parfois à exprimer. Disponible en blanc, rosé ou coloré, il honore la mémoire de l\'être cher avec dignité et tendresse. Dimensions : environ 40 cm.',
+    description: 'Cet arrangement floral en forme de cœur, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d\'un être cher, ce cœur fleuri est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d\'affection unique avec cet hommage floral. Disponible exclusivement en livraison locale.',
     slug: 'coeur',
     featured: false,
     inStock: true,
