@@ -25,10 +25,10 @@ export default function TopBanner() {
 
   return (
     <div 
-      className={`fixed top-0 left-0 right-0 z-[60] bg-[#2d2a26] text-white text-center py-2 px-8 transition-transform duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'}`}
+      className={`fixed top-0 left-0 right-0 z-[60] bg-[#2d2a26] text-white text-center py-1.5 px-8 transition-transform duration-300 ${hidden ? '-translate-y-full' : 'translate-y-0'}`}
     >
-      <p className="text-[10px] md:text-[11px] tracking-wide">
-        Livraison offerte dès 60€ d'achat · <span className="text-[#c4a47a]">-10% sur votre 1ère commande</span> — inscrivez-vous !
+      <p className="text-[10px] md:text-[11px] tracking-wide whitespace-nowrap overflow-hidden text-ellipsis">
+        Livraison offerte dès 60€ · <span className="text-[#c4a47a]">-10%</span> avec la newsletter
       </p>
       <button 
         onClick={() => setVisible(false)}
