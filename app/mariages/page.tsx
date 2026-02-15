@@ -145,8 +145,8 @@ export default function Mariages() {
               {[
                 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=85',
                 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&q=85',
-                'https://images.unsplash.com/photo-1510076857177-7470076d4098?w=600&q=85',
-                'https://images.unsplash.com/photo-1478146059778-26028b07395a?w=600&q=85',
+                'https://images.pexels.com/photos/1128782/pexels-photo-1128782.jpeg?auto=compress&cs=tinysrgb&w=600',
+                'https://images.pexels.com/photos/1114425/pexels-photo-1114425.jpeg?auto=compress&cs=tinysrgb&w=600',
                 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=85',
                 'https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600&q=85'
               ].map((image, index) => (
@@ -156,7 +156,7 @@ export default function Mariages() {
                 >
                   <img
                     src={image}
-                    alt={['Table champêtre fleurie', 'Allée cérémonie fleurs roses', 'Salle de réception décorée', 'Table desserts fleurie', 'Chaises mariés décorées', 'Bouquet de mariée'][index]}
+                    alt={['Table champêtre fleurie', 'Allée cérémonie fleurs roses', 'Centre de table bougies dorées', 'Table banquet eucalyptus', 'Chaises mariés décorées', 'Bouquet de mariée'][index]}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
