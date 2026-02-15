@@ -371,8 +371,8 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                             : 'border-[#e8e0d8]/50 hover:border-[#c4a47a]/50'
                         }`}
                       >
-                        <div className="aspect-square overflow-hidden bg-[#faf8f5]">
-                          <img src={addon.image} alt={addon.name} className="w-full h-full object-cover" />
+                        <div className="relative aspect-square overflow-hidden bg-[#f5f0eb]">
+                          <Image src={addon.image} alt={addon.name} fill className="object-cover" sizes="120px" />
                         </div>
                         <div className="p-2.5">
                           <p className="text-xs text-[#2d2a26] leading-tight mb-0.5">{addon.name}</p>
