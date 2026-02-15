@@ -37,6 +37,11 @@ export default function Panier() {
   const [deliveryFee, setDeliveryFee] = useState(8.90);
   const [deliveryTime, setDeliveryTime] = useState('');
   const [deliveryType, setDeliveryType] = useState<'local' | 'regional' | 'national'>('local');
+  const [selectedDate, setSelectedDate] = useState<string>('');
+  const [calendarMonth, setCalendarMonth] = useState(() => {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  });
 
   const updateQuantity = (id: string, newQuantity: number) => {
     if (newQuantity === 0) { removeItem(id); return; }
@@ -329,6 +334,105 @@ export default function Panier() {
               <div className="bg-white p-8 sticky top-24">
                 
                 <h2 className="text-2xl font-serif text-[#2d2a26] mb-8">Résumé</h2>
+
+                {/* Date de livraison */}
+                <div className="mb-8">
+                  <h3 className="text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-4">
+                    Date de livraison souhaitée
+                  </h3>
+                  {(() => {
+                    const today = new Date();
+                    today.setHours(0,0,0,0);
+                    const minDate = new Date(today);
+                    minDate.setDate(minDate.getDate() + 1); // minimum J+1
+                    
+                    const year = calendarMonth.getFullYear();
+                    const month = calendarMonth.getMonth();
+                    const firstDay = new Date(year, month, 1).getDay();
+                    const daysInMonth = new Date(year, month + 1, 0).getDate();
+                    const startDay = firstDay === 0 ? 6 : firstDay - 1; // lundi = 0
+                    
+                    const monthNames = ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'];
+                    
+                    return (
+                      <div className="border border-[#e8e0d8] p-4">
+                        {/* Header mois */}
+                        <div className="flex items-center justify-between mb-3">
+                          <button 
+                            onClick={() => setCalendarMonth(new Date(year, month - 1, 1))}
+                            className="p-1 text-[#2d2a26]/40 hover:text-[#c4a47a] transition-colors"
+                          >
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                            </svg>
+                          </button>
+                          <span className="text-sm text-[#2d2a26] font-serif">{monthNames[month]} {year}</span>
+                          <button 
+                            onClick={() => setCalendarMonth(new Date(year, month + 1, 1))}
+                            className="p-1 text-[#2d2a26]/40 hover:text-[#c4a47a] transition-colors"
+                          >
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                            </svg>
+                          </button>
+                        </div>
+                        {/* Jours header */}
+                        <div className="grid grid-cols-7 mb-1">
+                          {['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'].map(d => (
+                            <div key={d} className="text-center text-[9px] text-[#2d2a26]/30 uppercase tracking-wider py-1">{d}</div>
+                          ))}
+                        </div>
+                        {/* Jours */}
+                        <div className="grid grid-cols-7">
+                          {Array.from({ length: startDay }, (_, i) => (
+                            <div key={`empty-${i}`} />
+                          ))}
+                          {Array.from({ length: daysInMonth }, (_, i) => {
+                            const day = i + 1;
+                            const date = new Date(year, month, day);
+                            const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+                            const isSunday = date.getDay() === 0;
+                            const isPast = date < minDate;
+                            const isDisabled = isSunday || isPast;
+                            const isSelected = selectedDate === dateStr;
+                            const isToday = date.getTime() === today.getTime();
+                            
+                            return (
+                              <button
+                                key={day}
+                                disabled={isDisabled}
+                                onClick={() => setSelectedDate(isSelected ? '' : dateStr)}
+                                className={`aspect-square flex items-center justify-center text-xs transition-all duration-200 relative
+                                  ${isDisabled ? 'text-[#2d2a26]/15 cursor-not-allowed' : 'hover:bg-[#c4a47a]/10 cursor-pointer'}
+                                  ${isSelected ? 'bg-[#c4a47a] text-white' : 'text-[#2d2a26]/70'}
+                                  ${isToday && !isSelected ? 'font-medium text-[#c4a47a]' : ''}
+                                `}
+                              >
+                                {day}
+                              </button>
+                            );
+                          })}
+                        </div>
+                        {/* Légende */}
+                        <div className="flex items-center gap-3 mt-3 pt-3 border-t border-[#e8e0d8]/50">
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-2 h-2 bg-[#c4a47a]" />
+                            <span className="text-[9px] text-[#2d2a26]/40">Sélectionné</span>
+                          </div>
+                          <div className="flex items-center gap-1.5">
+                            <div className="w-2 h-2 border border-[#e8e0d8]" />
+                            <span className="text-[9px] text-[#2d2a26]/40">Dimanche (fermé)</span>
+                          </div>
+                        </div>
+                        {selectedDate && (
+                          <p className="text-xs text-[#c4a47a] mt-2">
+                            Livraison le {new Date(selectedDate + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })()}
+                </div>
 
                 {/* Delivery Calculator */}
                 <div className="mb-8">
