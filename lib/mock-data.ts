@@ -1,3 +1,12 @@
+export interface Review {
+  id: string;
+  author: string;
+  rating: number;
+  date: string;
+  text: string;
+  verified: boolean;
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -13,6 +22,9 @@ export interface Product {
   tags: string[];
   sizes?: { name: string; price: number }[];
   variants?: { name: string; price?: number }[];
+  rating?: number;
+  reviewCount?: number;
+  reviews?: Review[];
 }
 
 export const categories = [
@@ -40,6 +52,8 @@ export const mockProducts: Product[] = [
     slug: 'barneville-carteret',
     featured: false,
     inStock: true,
+    rating: 4.7,
+    reviewCount: 3,
     tags: ['lisianthus', 'roses', 'dille', 'tendresse'],
     sizes: [
       { name: 'Moyen', price: 49.90 },
@@ -63,6 +77,8 @@ export const mockProducts: Product[] = [
     slug: 'la-pointe-d-agon',
     featured: true,
     inStock: true,
+    rating: 4.8,
+    reviewCount: 10,
     tags: ['teintes vives', 'énergie', 'vivacité', 'rafraîchissant'],
     sizes: [
       { name: 'Moyen', price: 49.90 },
@@ -86,6 +102,8 @@ export const mockProducts: Product[] = [
     slug: 'le-saint-pairais',
     featured: false,
     inStock: true,
+    rating: 4.4,
+    reviewCount: 26,
     tags: ['roses délicates', 'pastel', 'champêtre', 'douceur'],
     sizes: [
       { name: 'Moyen', price: 49.90 },
@@ -109,6 +127,8 @@ export const mockProducts: Product[] = [
     slug: 'grany',
     featured: false,
     inStock: true,
+    rating: 4.3,
+    reviewCount: 26,
     tags: ['rose pâle', 'wax fleur', 'tulipe dentelé', 'fraîcheur'],
     sizes: [
       { name: 'Moyen', price: 49.90 },
@@ -132,6 +152,8 @@ export const mockProducts: Product[] = [
     slug: 'val-es-fleur',
     featured: true,
     inStock: true,
+    rating: 4.9,
+    reviewCount: 5,
     tags: ['lisianthus frisé', 'blanc', 'grâce', 'finesse'],
     sizes: [
       { name: 'Moyen', price: 39.90 },
@@ -155,6 +177,8 @@ export const mockProducts: Product[] = [
     slug: 'la-croix-du-lude',
     featured: false,
     inStock: true,
+    rating: 4.7,
+    reviewCount: 4,
     tags: ['teintes roses', 'pastel', 'homogène', 'abondant'],
     sizes: [
       { name: 'Moyen', price: 49.90 },
@@ -178,6 +202,8 @@ export const mockProducts: Product[] = [
     slug: 'eveil-de-normandie',
     featured: false,
     inStock: true,
+    rating: 4.2,
+    reviewCount: 9,
     tags: ['rose frisée', 'chardon', 'normandie', 'sauvage'],
     sizes: [
       { name: 'Moyen', price: 49.90 },
@@ -201,6 +227,8 @@ export const mockProducts: Product[] = [
     slug: 'la-pointe-du-roc',
     featured: false,
     inStock: true,
+    rating: 4.4,
+    reviewCount: 22,
     tags: ['chouchou', 'rose clair', 'événements heureux', 'vie'],
     sizes: [
       { name: 'Moyen', price: 59.90 },
@@ -224,6 +252,8 @@ export const mockProducts: Product[] = [
     slug: 'le-chausiais',
     featured: false,
     inStock: true,
+    rating: 4.2,
+    reviewCount: 9,
     tags: ['mélange parfait', 'sublimer', 'intérieurs', 'plaisir'],
     sizes: [
       { name: 'Moyen', price: 49.90 },
@@ -247,6 +277,8 @@ export const mockProducts: Product[] = [
     slug: 'le-choix-du-fleuriste',
     featured: true,
     inStock: true,
+    rating: 4.8,
+    reviewCount: 25,
     tags: ['surprise', 'expertise', 'unique'],
     variants: [
       { name: 'Blanc' },
@@ -275,6 +307,8 @@ export const mockProducts: Product[] = [
     slug: 'le-herel',
     featured: true,
     inStock: true,
+    rating: 4.6,
+    reviewCount: 10,
     tags: ['roses rouges', 'pastel', 'dramatique', 'premium'],
     sizes: [
       { name: 'Moyen', price: 49.90 },
@@ -298,6 +332,8 @@ export const mockProducts: Product[] = [
     slug: 'le-jullouvillais',
     featured: false,
     inStock: true,
+    rating: 4.6,
+    reviewCount: 11,
     tags: ['tons doux', 'textures aériennes', 'sérénité', 'raffiné'],
     sizes: [
       { name: 'Moyen', price: 49.90 },
@@ -323,6 +359,8 @@ export const mockProducts: Product[] = [
     slug: 'box-champetre-lila',
     featured: true,
     inStock: true,
+    rating: 4.8,
+    reviewCount: 3,
     tags: ['nuptial', 'champêtre', 'lila', 'harmonie']
   },
   {
@@ -341,6 +379,8 @@ export const mockProducts: Product[] = [
     slug: 'box-mariage-exotique',
     featured: true,
     inStock: true,
+    rating: 4.8,
+    reviewCount: 8,
     tags: ['tropical', 'orchidées', 'aventure', 'passion']
   },
   {
@@ -359,6 +399,8 @@ export const mockProducts: Product[] = [
     slug: 'box-mariage-sur-la-plage',
     featured: true,
     inStock: true,
+    rating: 4.8,
+    reviewCount: 13,
     tags: ['marin', 'nacrés', 'vagues', 'symphonie']
   },
 
@@ -379,6 +421,8 @@ export const mockProducts: Product[] = [
     slug: 'chemin-de-serenite',
     featured: false,
     inStock: true,
+    rating: 4.4,
+    reviewCount: 9,
     tags: ['raquette', 'paix', 'éternité', 'réconfort'],
     variants: [
       { name: 'Blanc' },
@@ -402,6 +446,8 @@ export const mockProducts: Product[] = [
     slug: 'coeur',
     featured: false,
     inStock: true,
+    rating: 5.0,
+    reviewCount: 13,
     tags: ['cœur fleuri', 'transcende', 'souvenirs', 'éternité'],
     variants: [
       { name: 'Blanc' },
@@ -425,6 +471,8 @@ export const mockProducts: Product[] = [
     slug: 'couronne',
     featured: false,
     inStock: true,
+    rating: 4.3,
+    reviewCount: 15,
     tags: ['majestueuse', 'intemporel', 'éternité', 'noblesse'],
     variants: [
       { name: 'Blanc' },
@@ -448,6 +496,8 @@ export const mockProducts: Product[] = [
     slug: 'coussin',
     featured: false,
     inStock: true,
+    rating: 4.3,
+    reviewCount: 14,
     tags: ['refuge', 'tendresse', 'havre de paix', 'précieux'],
     variants: [
       { name: 'Blanc' },
@@ -471,6 +521,8 @@ export const mockProducts: Product[] = [
     slug: 'croix-funeraire',
     featured: false,
     inStock: true,
+    rating: 4.7,
+    reviewCount: 28,
     tags: ['sacrée', 'foi', 'espérance', 'lumière'],
     variants: [
       { name: 'Blanc' },
@@ -494,6 +546,8 @@ export const mockProducts: Product[] = [
     slug: 'jardin-de-plantes',
     featured: false,
     inStock: true,
+    rating: 4.2,
+    reviewCount: 17,
     tags: ['éternité', 'persistant', 'renouveau', 'saisons'],
     variants: [
       { name: 'Blanc' },

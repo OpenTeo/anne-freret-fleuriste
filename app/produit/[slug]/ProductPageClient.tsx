@@ -8,6 +8,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/ui/ProductCard';
 import { mockProducts } from '@/lib/mock-data';
+import { getReviewsForProduct } from '@/lib/reviews-data';
 import { Heart, ShoppingCart, Minus, Plus, Truck, Gift, Shield, Star, ChevronDown } from 'lucide-react';
 
 interface ProductPageProps {
@@ -508,13 +509,64 @@ export default function ProductPageClient({ params }: ProductPageProps) {
             </div>
           </div>
 
+          {/* Avis clients */}
+          {(() => {
+            const reviews = getReviewsForProduct(product.slug);
+            const avgRating = product.rating || (reviews.reduce((s, r) => s + r.rating, 0) / reviews.length);
+            return (
+              <section className="mt-16 border-t border-[#e8e0d8] pt-12">
+                <div className="flex items-center justify-between mb-8">
+                  <div>
+                    <h2 className="font-serif text-2xl md:text-3xl text-[#2d2a26] mb-2">Avis clients</h2>
+                    <div className="flex items-center gap-2">
+                      <div className="flex">
+                        {[1,2,3,4,5].map(s => (
+                          <svg key={s} className={`w-4 h-4 ${s <= Math.round(avgRating) ? 'text-[#c4a47a]' : 'text-[#e8e0d8]'}`} fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <span className="text-sm text-[#2d2a26]/60">{avgRating.toFixed(1)} — {reviews.length} avis</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-6">
+                  {reviews.map((review) => (
+                    <div key={review.id} className="border-b border-[#e8e0d8]/50 pb-6 last:border-0">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-[#f5f0eb] rounded-full flex items-center justify-center text-xs text-[#c4a47a] font-medium">
+                            {review.author.charAt(0)}
+                          </div>
+                          <div>
+                            <p className="text-sm text-[#2d2a26] font-medium">{review.author}</p>
+                            {review.verified && <p className="text-[10px] text-[#c4a47a]">Achat vérifié</p>}
+                          </div>
+                        </div>
+                        <span className="text-xs text-[#2d2a26]/40">{new Date(review.date).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                      </div>
+                      <div className="flex mb-2 ml-11">
+                        {[1,2,3,4,5].map(s => (
+                          <svg key={s} className={`w-3 h-3 ${s <= review.rating ? 'text-[#c4a47a]' : 'text-[#e8e0d8]'}`} fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                        ))}
+                      </div>
+                      <p className="text-sm text-[#2d2a26]/70 leading-relaxed ml-11">{review.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          })()}
+
           {/* Produits similaires */}
           {relatedProducts.length > 0 && (
             <section className="mt-16">
               <h2 className="font-serif text-3xl font-bold text-[#2d2a26] mb-8 text-center">
                 Produits similaires
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                 {relatedProducts.map((relatedProduct) => (
                   <ProductCard key={relatedProduct.id} product={relatedProduct} />
                 ))}
