@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import DeliveryCalculator from '@/components/ui/DeliveryCalculator';
+import CardSelector from '@/components/ui/CardSelector';
 
 const initialCartItems = [
   {
@@ -25,8 +26,7 @@ export default function Panier() {
   const [cartItems, setCartItems] = useState(initialCartItems);
   const [promoCode, setPromoCode] = useState('');
   const [appliedPromo, setAppliedPromo] = useState('');
-  const [cardMessage, setCardMessage] = useState('');
-  const [selectedCardDesign, setSelectedCardDesign] = useState<string | null>(null);
+  const [selectedCardImage, setSelectedCardImage] = useState<string | null>(null);
   const [deliveryMode, setDeliveryMode] = useState<DeliveryMode>(null);
   const [localDeliveryFee, setLocalDeliveryFee] = useState(0);
   const [localDeliveryCity, setLocalDeliveryCity] = useState('');
@@ -220,41 +220,10 @@ export default function Panier() {
                   </svg>
                   <h3 className="text-sm font-serif text-[#2d2a26]">Carte message offerte</h3>
                 </div>
-                
-                {/* Card themes */}
-                <div className="grid grid-cols-3 gap-2 mb-4">
-                  {[
-                    { id: 'anniversaire', label: 'Anniversaire', color: '#f9f0f0', icon: '🎂' },
-                    { id: 'remerciement', label: 'Remerciement', color: '#f0f4f1', icon: '🌿' },
-                    { id: 'amour', label: 'Amour', color: '#fdf0f0', icon: '♥' },
-                    { id: 'felicitations', label: 'Félicitations', color: '#f5f3fa', icon: '✦' },
-                    { id: 'retablissement', label: 'Rétablissement', color: '#f5f8f0', icon: '☀' },
-                    { id: 'libre', label: 'Message libre', color: '#faf8f5', icon: '✎' },
-                  ].map((card) => (
-                    <button
-                      key={card.id}
-                      onClick={() => setSelectedCardDesign(selectedCardDesign === card.id ? null : card.id)}
-                      className={`p-2 border transition-all text-center ${
-                        selectedCardDesign === card.id ? 'border-[#c4a47a] bg-[#c4a47a]/5' : 'border-[#e8e0d8] hover:border-[#c4a47a]/50'
-                      }`}
-                    >
-                      <div className="w-full aspect-[4/3] mb-1.5 flex items-center justify-center" style={{ backgroundColor: card.color }}>
-                        <span className="text-lg opacity-40">{card.icon}</span>
-                      </div>
-                      <p className="text-[10px] text-[#2d2a26]/60">{card.label}</p>
-                    </button>
-                  ))}
-                </div>
-
-                <textarea
-                  value={cardMessage}
-                  onChange={(e) => setCardMessage(e.target.value)}
-                  placeholder="Votre message personnel (optionnel)..."
-                  rows={3}
-                  maxLength={200}
-                  className="w-full px-3 py-2.5 border border-[#e8e0d8] text-sm text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors resize-none placeholder:text-[#2d2a26]/25"
+                <CardSelector
+                  selectedCard={selectedCardImage}
+                  onSelect={setSelectedCardImage}
                 />
-                <p className="text-[10px] text-right mt-1 text-[#2d2a26]/30">{cardMessage.length}/200</p>
               </div>
 
               {/* Continue shopping */}
