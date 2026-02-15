@@ -331,9 +331,11 @@ export default function Panier() {
                               <p className="text-sm text-[#2d2a26] font-medium">Livraison en France</p>
                               <p className="text-sm text-[#c4a47a]">{subtotal >= 60 ? 'Offerte' : '17.90€'}</p>
                             </div>
-                            <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
-                              Colissimo · France métropolitaine · 48h
-                            </p>
+                            <div className="flex items-center gap-2 mt-1.5">
+                              <span className="text-[11px] font-semibold tracking-wide" style={{ color: '#003DA5' }}>COLISSIMO</span>
+                              <span className="text-[10px] text-[#2d2a26]/30">·</span>
+                              <span className="text-[10px] text-[#2d2a26]/40">France métropolitaine · 48h</span>
+                            </div>
                             {hasDeuil && (
                               <p className="text-[10px] text-red-400 mt-1">Les compositions de deuil sont livrées localement uniquement.</p>
                             )}
@@ -343,9 +345,17 @@ export default function Panier() {
                       {deliveryMode === 'national' && (
                         <div className="px-4 pb-4">
                           <div className="border-t border-[#c4a47a]/20 pt-3">
-                            <div className="text-center py-2 bg-white border border-[#e8e0d8]/50">
-                              <p className="text-[10px] text-[#2d2a26]/40 uppercase tracking-wider">Tarif unique</p>
-                              <p className="text-sm text-[#2d2a26] font-medium mt-0.5">{subtotal >= 60 ? <span className="text-[#c4a47a]">Offerte</span> : '17.90€'}</p>
+                            <div className="flex items-center justify-between py-3 px-4 bg-white border border-[#e8e0d8]/50">
+                              <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 flex items-center justify-center bg-[#003DA5] text-white">
+                                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M20 8H4l2-4h12l2 4zM20 8v10a2 2 0 01-2 2H6a2 2 0 01-2-2V8m8 0v12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>
+                                </div>
+                                <div>
+                                  <p className="text-xs font-semibold tracking-wide" style={{ color: '#003DA5' }}>COLISSIMO</p>
+                                  <p className="text-[10px] text-[#2d2a26]/40">La Poste · Suivi inclus</p>
+                                </div>
+                              </div>
+                              <p className="text-sm text-[#2d2a26] font-medium">{subtotal >= 60 ? <span className="text-[#c4a47a]">Offerte</span> : '17.90€'}</p>
                             </div>
                             {subtotal >= 60 && (
                               <p className="text-[10px] text-[#c4a47a] mt-2">Livraison offerte — votre commande dépasse 60€</p>
