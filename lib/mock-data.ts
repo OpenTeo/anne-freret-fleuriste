@@ -30,6 +30,7 @@ export interface Product {
 export const categories = [
   'Bouquets',
   'Plantes',
+  'Accessoires',
   'Deuil & Hommages',
 ];
 
@@ -642,6 +643,75 @@ export const mockProducts: Product[] = [
       { name: 'Trio premium (pot céramique)', price: 34.90 }
     ]
   }
+  // ACCESSOIRES & CADEAUX
+  {
+    id: '27',
+    name: 'Bougie parfumée',
+    price: 12.90,
+    image: 'https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=800',
+    images: [
+      'https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=800',
+    ],
+    category: 'Accessoires',
+    description: 'Bougie artisanale à la cire de soja, parfum fleur de coton. Durée de combustion : environ 40 heures. Mèche en coton naturel. Fabriquée en Normandie.',
+    slug: 'bougie-parfumee',
+    featured: false,
+    inStock: true,
+    rating: 4.8,
+    reviewCount: 19,
+    tags: ['bougie', 'soja', 'normande', 'cadeau'],
+  },
+  {
+    id: '28',
+    name: 'Vase en céramique',
+    price: 19.90,
+    image: 'https://images.pexels.com/photos/4207891/pexels-photo-4207891.jpeg?auto=compress&cs=tinysrgb&w=800',
+    images: [
+      'https://images.pexels.com/photos/4207891/pexels-photo-4207891.jpeg?auto=compress&cs=tinysrgb&w=800',
+    ],
+    category: 'Accessoires',
+    description: 'Vase en céramique artisanale, forme organique épurée. Parfait pour mettre en valeur vos bouquets. Coloris crème mat. Hauteur 18cm.',
+    slug: 'vase-ceramique',
+    featured: false,
+    inStock: true,
+    rating: 4.7,
+    reviewCount: 14,
+    tags: ['vase', 'céramique', 'artisanal', 'déco'],
+  },
+  {
+    id: '29',
+    name: 'Coffret chocolats belges',
+    price: 14.90,
+    image: 'https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&cs=tinysrgb&w=800',
+    images: [
+      'https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&cs=tinysrgb&w=800',
+    ],
+    category: 'Accessoires',
+    description: 'Coffret de 12 chocolats belges assortis : noir, lait et blanc. Praliné, ganache et caramel. L\'accompagnement parfait pour un bouquet.',
+    slug: 'coffret-chocolats',
+    featured: false,
+    inStock: true,
+    rating: 4.9,
+    reviewCount: 23,
+    tags: ['chocolat', 'belge', 'cadeau', 'coffret'],
+  },
+  {
+    id: '30',
+    name: 'Sachet de graines sauvages',
+    price: 8.90,
+    image: 'https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=800',
+    images: [
+      'https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=800',
+    ],
+    category: 'Accessoires',
+    description: 'Mélange de graines de fleurs sauvages à semer au printemps. Coquelicots, bleuets, marguerites et cosmos. Sachet kraft illustré, parfait en cadeau.',
+    slug: 'sachet-graines-sauvages',
+    featured: false,
+    inStock: true,
+    rating: 4.6,
+    reviewCount: 11,
+    tags: ['graines', 'sauvages', 'jardin', 'cadeau'],
+  },
 ];
 
 export const featuredProducts = mockProducts.filter(product => product.featured);

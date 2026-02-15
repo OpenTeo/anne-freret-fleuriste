@@ -61,10 +61,10 @@ export default function Panier() {
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   
   const discount = appliedPromo ? subtotal * 0.1 : 0;
-  const delivery = subtotal >= 50 ? 0 : deliveryFee;
+  const delivery = subtotal >= 60 ? 0 : deliveryFee;
   const total = subtotal - discount + delivery;
   
-  const freeDeliveryRemaining = subtotal < 50 ? (50 - subtotal) : 0;
+  const freeDeliveryRemaining = subtotal < 60 ? (60 - subtotal) : 0;
 
   if (cartItems.length === 0) {
     return (
@@ -141,17 +141,45 @@ export default function Panier() {
               <div className="w-full h-2 bg-[#e8e0d8]">
                 <div 
                   className="h-2 bg-[#c4a47a] transition-all duration-300"
-                  style={{ width: `${Math.min((subtotal / 50) * 100, 100)}%` }}
+                  style={{ width: `${Math.min((subtotal / 60) * 100, 100)}%` }}
                 />
               </div>
             </div>
           )}
 
-          {subtotal >= 50 && (
+          {subtotal >= 60 && (
             <div className="bg-white p-6 mb-8 border border-[#c4a47a]/20 text-center">
               <p className="text-[#c4a47a] font-light">
                 ✓ Livraison gratuite appliquée
               </p>
+            </div>
+          )}
+
+          {/* Produits complémentaires - incitatif livraison gratuite */}
+          {freeDeliveryRemaining > 0 && freeDeliveryRemaining < 30 && (
+            <div className="mb-8">
+              <p className="text-sm text-[#2d2a26]/60 mb-4 text-center">Ajoutez un petit extra pour profiter de la livraison gratuite</p>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {[
+                  { name: 'Bougie parfumée', price: 12.90, image: 'https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=400', desc: 'Senteur fleur de coton' },
+                  { name: 'Vase en céramique', price: 19.90, image: 'https://images.pexels.com/photos/4207891/pexels-photo-4207891.jpeg?auto=compress&cs=tinysrgb&w=400', desc: 'Artisanal, fait main' },
+                  { name: 'Chocolats belges', price: 14.90, image: 'https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&cs=tinysrgb&w=400', desc: 'Coffret 12 pièces' },
+                  { name: 'Sachet de graines', price: 8.90, image: 'https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=400', desc: 'Fleurs sauvages à semer' },
+                ].map((item) => (
+                  <button
+                    key={item.name}
+                    className="bg-white border border-[#e8e0d8] p-3 text-left hover:border-[#c4a47a] transition-colors group"
+                  >
+                    <img src={item.image} alt={item.name} className="w-full aspect-square object-cover mb-2" />
+                    <p className="text-xs text-[#2d2a26] font-medium leading-tight">{item.name}</p>
+                    <p className="text-[10px] text-[#2d2a26]/40">{item.desc}</p>
+                    <div className="flex items-center justify-between mt-2">
+                      <span className="text-xs text-[#c4a47a] font-medium">{item.price.toFixed(2)}€</span>
+                      <span className="text-[9px] uppercase tracking-wider text-[#c4a47a] opacity-0 group-hover:opacity-100 transition-opacity">+ Ajouter</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
           )}
 
