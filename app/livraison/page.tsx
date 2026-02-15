@@ -187,8 +187,8 @@ export default function Livraison() {
 
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&q=85"
-                  alt="Emballage spécial livraison"
+                  src="https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798"
+                  alt="Emballage protecteur Anne Freret"
                   className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
