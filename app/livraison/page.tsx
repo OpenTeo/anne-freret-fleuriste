@@ -148,7 +148,7 @@ export default function Livraison() {
               <div className="border border-[#e8e0d8] p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 flex items-center justify-center border border-[#e8e0d8] bg-[#faf8f5]">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M17.5 8C17.5 11.5 12 17 12 17S6.5 11.5 6.5 8a5.5 5.5 0 0111 0z" stroke="#b8a590" strokeWidth="0.8"/><circle cx="12" cy="8" r="2" stroke="#b8a590" strokeWidth="0.8"/></svg>
+                    <svg className="w-5 h-5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
                   </div>
                   <div>
                     <p className="text-sm text-[#2d2a26]">Livraison locale</p>
