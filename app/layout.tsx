@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Playfair_Display, Lato } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
+import TopBanner from "@/components/ui/TopBanner";
+import NewsletterPopup from "@/components/ui/NewsletterPopup";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -48,7 +50,11 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${lato.variable} antialiased`}
       >
-        <Providers>{children}</Providers>
+        <Providers>
+          <TopBanner />
+          {children}
+          <NewsletterPopup />
+        </Providers>
       </body>
     </html>
   );
