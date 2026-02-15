@@ -41,6 +41,7 @@ const Header = () => {
     { href: '/boutique', label: 'Boutique' },
     { href: '/abonnement', label: 'Abonnement' },
     { href: '/mariages', label: 'Mariages' },
+    { href: '/deuil', label: 'Deuil' },
     { href: '/livraison', label: 'Livraison' },
     { href: '/blog', label: 'Blog' },
     { href: '/la-marque', label: 'La marque' },
