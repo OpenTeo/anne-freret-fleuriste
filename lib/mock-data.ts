@@ -415,7 +415,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Couronne3.jpg?v=1743008466'
     ],
     category: 'Deuil & Hommages',
-    description: 'Couronne funéraire d\'environ 50 cm de diamètre, travaillée sur mousse florale avec roses, lys, chrysanthèmes et un feuillage dense de ruscus et lierre. Sa forme circulaire, symbole d\'éternité, s\'inscrit dans la tradition avec noblesse et respect. Disponible en tonalités blanches, rosées ou colorées selon votre souhait. Réalisée le jour même et livrée directement au lieu de cérémonie.',
+    description: 'Cet arrangement floral tout en rondeur, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d\'un être cher, il est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d\'affection unique avec cet hommage floral. Disponible exclusivement en livraison locale.',
     slug: 'couronne',
     featured: false,
     inStock: true,
@@ -437,7 +437,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_3.png?v=1729873535'
     ],
     category: 'Deuil & Hommages',
-    description: 'Coussin fleuri d\'environ 35 cm, composé sur mousse florale avec des roses, germinis et santinis délicatement assemblés. Sa forme douce et accueillante apporte un réconfort visuel dans les moments de recueillement. Disponible en blanc pur ou en rosé tendre, il accompagne la cérémonie avec sobriété et tendresse. Livraison directe au lieu de cérémonie assurée.',
+    description: 'Cet arrangement floral, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d\'un être cher, il est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d\'affection unique avec cet hommage floral. Disponible exclusivement en livraison locale.',
     slug: 'coussin',
     featured: false,
     inStock: true,
@@ -459,7 +459,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-9458.jpg?v=1729195833'
     ],
     category: 'Deuil & Hommages',
-    description: 'Croix funéraire réalisée sur structure florale, habillée de roses, lys orientaux et chrysanthèmes, ponctuée de gypsophile et de feuillages persistants. D\'environ 60 cm de hauteur, elle porte avec solennité un message de foi et d\'espérance. Disponible en blanc, rosé ou coloré, elle est composée le jour même et livrée directement au lieu de cérémonie.',
+    description: 'Cet arrangement floral en forme de croix, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d\'un être cher, il est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d\'affection unique avec cet hommage floral. Disponible exclusivement en livraison locale.',
     slug: 'croix-funeraire',
     featured: false,
     inStock: true,
@@ -481,7 +481,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_5_251d2d18-b531-457a-81d2-8a77a2151dbc.png?v=1729950268'
     ],
     category: 'Deuil & Hommages',
-    description: 'Composition de plantes vertes et fleuries dans une coupe décorative, pensée comme un jardin miniature pérenne. Fougères, lierres et plantes à fleurs se côtoient dans un ensemble harmonieux qui se conserve longtemps avec un entretien minimal. Un geste délicat pour accompagner le souvenir, offrant la promesse que la vie continue de fleurir. Disponible en tons blancs ou rosés.',
+    description: 'Cet arrangement floral en forme de cœur, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d\'un être cher, il est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d\'affection unique avec cet hommage floral. Plantes variables selon les saisons. Disponible exclusivement en livraison locale.',
     slug: 'jardin-de-plantes',
     featured: false,
     inStock: true,
