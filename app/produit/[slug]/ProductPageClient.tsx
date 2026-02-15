@@ -352,27 +352,47 @@ export default function ProductPageClient({ params }: ProductPageProps) {
               {/* 10. Accordéon dépliable */}
               <div className="border-t border-[#e8e0d8]/60">
                 
-                {/* Ruban personnalisé — uniquement pour Deuil & Hommages */}
+                {/* Ruban personnalisé — uniquement pour Deuil & Hommages (VISIBLE, pas dans accordéon) */}
                 {product.category === 'Deuil & Hommages' && (
-                  <AccordionItem id="ribbon" title="Personnalisez votre ruban">
+                  <div className="py-6 border-b border-[#e8e0d8]/60">
+                    <h3 className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40 mb-4">Personnalisez votre ruban</h3>
                     <RibbonConfigurator
                       ribbonText={ribbonText}
                       setRibbonText={setRibbonText}
                       ribbonColor={ribbonColor}
                       setRibbonColor={setRibbonColor}
                     />
+                  </div>
+                )}
+
+                {/* Message de condoléances — uniquement pour Deuil */}
+                {product.category === 'Deuil & Hommages' && (
+                  <div className="py-6 border-b border-[#e8e0d8]/60">
+                    <h3 className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40 mb-3">Message de condoléances</h3>
+                    <textarea
+                      value={personalMessage}
+                      onChange={(e) => setPersonalMessage(e.target.value)}
+                      placeholder="Votre message pour accompagner la composition..."
+                      rows={3}
+                      maxLength={200}
+                      className="w-full px-3 py-2.5 border border-[#e8e0d8] text-sm text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors resize-none placeholder:text-[#2d2a26]/25"
+                    />
+                    <p className="text-[10px] text-right mt-1 text-[#2d2a26]/30">{personalMessage.length}/200</p>
+                  </div>
+                )}
+
+                {/* Carte message offerte — SAUF Deuil */}
+                {product.category !== 'Deuil & Hommages' && (
+                  <AccordionItem id="message" title="Carte message offerte">
+                    <CardSelector
+                      selectedCard={selectedCardImage}
+                      onSelect={setSelectedCardImage}
+                    />
                   </AccordionItem>
                 )}
 
-                {/* Carte message offerte — avec visuels vintage normands */}
-                <AccordionItem id="message" title="Carte message offerte">
-                  <CardSelector
-                    selectedCard={selectedCardImage}
-                    onSelect={setSelectedCardImage}
-                  />
-                </AccordionItem>
-
-                {/* Complétez votre cadeau */}
+                {/* Complétez votre cadeau — SAUF Deuil */}
+                {product.category !== 'Deuil & Hommages' && (
                 <AccordionItem id="addons" title="Complétez votre cadeau">
                   <div className="grid grid-cols-3 gap-3">
                     {[
@@ -408,6 +428,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                     ))}
                   </div>
                 </AccordionItem>
+                )}
 
                 {/* Livraison */}
                 <AccordionItem id="shipping" title="Livraison">
