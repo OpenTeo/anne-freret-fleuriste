@@ -230,8 +230,19 @@ export default function Confirmation() {
               {/* Mode de livraison */}
               <div>
                 <p className="text-xs uppercase tracking-[0.15em] text-[#2d2a26] font-medium mb-2">Livraison</p>
-                <p className="text-sm text-[#2d2a26]/60">
-                  {order.delivery.mode === 'local' ? 'Livraison locale — Sous 24h' : 'Colissimo France — Sous 48h'}
+                <p className="text-sm text-[#2d2a26]/60 flex items-center gap-2">
+                  {order.delivery.mode === 'local' && (
+                    <><span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#c4a47a' }}>Locale</span> Livraison locale — Sous 24h</>
+                  )}
+                  {order.delivery.mode === 'colissimo' && (
+                    <><span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#003DA5' }}>Colissimo</span> La Poste — Sous 48h</>
+                  )}
+                  {order.delivery.mode === 'chronopost' && (
+                    <><span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#D4003C' }}>Chronopost</span> Express — Sous 24h</>
+                  )}
+                  {!['local', 'colissimo', 'chronopost'].includes(order.delivery.mode) && (
+                    <>Livraison — {order.delivery.mode}</>
+                  )}
                 </p>
                 {deliveryDateFormatted && (
                   <p className="text-sm text-[#2d2a26]/60">

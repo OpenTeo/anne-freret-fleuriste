@@ -20,7 +20,7 @@ const initialCartItems = [
   },
 ];
 
-type DeliveryMode = 'local' | 'national' | null;
+type DeliveryMode = 'local' | 'colissimo' | 'chronopost' | null;
 
 export default function Panier() {
   const [cartItems, setCartItems] = useState(initialCartItems);
@@ -55,13 +55,22 @@ export default function Panier() {
   
   const getDeliveryFee = () => {
     if (!deliveryMode) return 0;
-    if (subtotal >= 60) return 0;
-    return deliveryMode === 'local' ? localDeliveryFee : 17.90;
+    if (deliveryMode === 'local') {
+      return subtotal >= 60 ? 0 : localDeliveryFee;
+    }
+    if (deliveryMode === 'colissimo') {
+      return subtotal >= 60 ? 0 : 12.90;
+    }
+    if (deliveryMode === 'chronopost') {
+      return subtotal >= 90 ? 0 : 18.90;
+    }
+    return 0;
   };
   
   const delivery = getDeliveryFee();
   const total = subtotal - discount + delivery;
-  const freeDeliveryRemaining = subtotal < 60 ? (60 - subtotal) : 0;
+  const freeThreshold = deliveryMode === 'chronopost' ? 90 : 60;
+  const freeDeliveryRemaining = subtotal < freeThreshold ? (freeThreshold - subtotal) : 0;
 
   const hasDeuil = cartItems.some(item => item.category === 'Deuil & Hommages');
 
@@ -122,7 +131,7 @@ export default function Panier() {
                 </svg>
               </div>
               <div className="w-full h-1.5 bg-[#e8e0d8] rounded-full overflow-hidden">
-                <div className="h-full bg-[#c4a47a] rounded-full transition-all duration-500" style={{ width: `${Math.min((subtotal / 60) * 100, 100)}%` }} />
+                <div className="h-full bg-[#c4a47a] rounded-full transition-all duration-500" style={{ width: `${Math.min((subtotal / freeThreshold) * 100, 100)}%` }} />
               </div>
             </div>
           )}
@@ -263,11 +272,14 @@ export default function Panier() {
                           </div>
                           <div className="flex-grow">
                             <div className="flex items-center justify-between">
-                              <p className="text-sm text-[#2d2a26] font-medium">Livraison locale</p>
+                              <div className="flex items-center gap-2">
+                                <p className="text-sm text-[#2d2a26] font-medium">Livraison locale</p>
+                                <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#c4a47a' }}>24h</span>
+                              </div>
                               <p className="text-sm text-[#c4a47a]">{subtotal >= 60 ? 'Offerte' : 'Dès 6€'}</p>
                             </div>
                             <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
-                              Livrée à la main · Rayon 35 km · Sous 24h
+                              Livrée à la main · Rayon 35 km
                             </p>
                           </div>
                         </div>
@@ -308,57 +320,116 @@ export default function Panier() {
                       )}
                     </div>
 
-                    {/* National */}
+                    {/* Colissimo */}
                     <div className={`border transition-all ${
                       hasDeuil ? 'opacity-40 cursor-not-allowed border-[#e8e0d8]' :
-                      deliveryMode === 'national' 
-                        ? 'border-[#c4a47a] bg-[#c4a47a]/5' 
-                        : 'border-[#e8e0d8] hover:border-[#c4a47a]/50'
+                      deliveryMode === 'colissimo' 
+                        ? 'border-[#003DA5]/40 bg-[#003DA5]/5' 
+                        : 'border-[#e8e0d8] hover:border-[#003DA5]/30'
                     }`}>
                       <button
-                        onClick={() => !hasDeuil && setDeliveryMode('national')}
+                        onClick={() => !hasDeuil && setDeliveryMode('colissimo')}
                         disabled={hasDeuil}
                         className="w-full text-left p-4"
                       >
                         <div className="flex items-start gap-3">
                           <div className={`w-4 h-4 rounded-full border-2 mt-0.5 flex-shrink-0 flex items-center justify-center ${
-                            deliveryMode === 'national' ? 'border-[#c4a47a]' : 'border-[#e8e0d8]'
+                            deliveryMode === 'colissimo' ? 'border-[#003DA5]' : 'border-[#e8e0d8]'
                           }`}>
-                            {deliveryMode === 'national' && <div className="w-2 h-2 rounded-full bg-[#c4a47a]" />}
+                            {deliveryMode === 'colissimo' && <div className="w-2 h-2 rounded-full bg-[#003DA5]" />}
                           </div>
                           <div className="flex-grow">
                             <div className="flex items-center justify-between">
-                              <p className="text-sm text-[#2d2a26] font-medium">Livraison en France</p>
-                              <p className="text-sm text-[#c4a47a]">{subtotal >= 60 ? 'Offerte' : '17.90€'}</p>
+                              <div className="flex items-center gap-2">
+                                <span className="text-[11px] font-semibold tracking-wide" style={{ color: '#003DA5' }}>COLISSIMO</span>
+                                <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#003DA5' }}>48h</span>
+                              </div>
+                              <p className="text-sm" style={{ color: '#003DA5' }}>{subtotal >= 60 ? 'Offerte' : '12,90€'}</p>
                             </div>
-                            <div className="flex items-center gap-2 mt-1.5">
-                              <span className="text-[11px] font-semibold tracking-wide" style={{ color: '#003DA5' }}>COLISSIMO</span>
-                              <span className="text-[10px] text-[#2d2a26]/30">·</span>
-                              <span className="text-[10px] text-[#2d2a26]/40">France métropolitaine · 48h</span>
-                            </div>
+                            <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
+                              La Poste · Suivi inclus · France metropolitaine
+                            </p>
                             {hasDeuil && (
-                              <p className="text-[10px] text-red-400 mt-1">Les compositions de deuil sont livrées localement uniquement.</p>
+                              <p className="text-[10px] text-red-400 mt-1">Les compositions de deuil sont livrees localement uniquement.</p>
                             )}
                           </div>
                         </div>
                       </button>
-                      {deliveryMode === 'national' && (
+                      {deliveryMode === 'colissimo' && (
                         <div className="px-4 pb-4">
-                          <div className="border-t border-[#c4a47a]/20 pt-3">
+                          <div className="border-t border-[#003DA5]/20 pt-3">
                             <div className="flex items-center justify-between py-3 px-4 bg-white border border-[#e8e0d8]/50">
                               <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 flex items-center justify-center bg-[#003DA5] text-white">
-                                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M20 8H4l2-4h12l2 4zM20 8v10a2 2 0 01-2 2H6a2 2 0 01-2-2V8m8 0v12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>
+                                <div className="w-10 h-10 flex items-center justify-center text-white" style={{ backgroundColor: '#003DA5' }}>
+                                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>
                                 </div>
                                 <div>
                                   <p className="text-xs font-semibold tracking-wide" style={{ color: '#003DA5' }}>COLISSIMO</p>
-                                  <p className="text-[10px] text-[#2d2a26]/40">La Poste · Suivi inclus</p>
+                                  <p className="text-[10px] text-[#2d2a26]/40">La Poste · Suivi inclus · 48h</p>
                                 </div>
                               </div>
-                              <p className="text-sm text-[#2d2a26] font-medium">{subtotal >= 60 ? <span className="text-[#c4a47a]">Offerte</span> : '17.90€'}</p>
+                              <p className="text-sm text-[#2d2a26] font-medium">{subtotal >= 60 ? <span style={{ color: '#003DA5' }}>Offerte</span> : '12,90€'}</p>
                             </div>
                             {subtotal >= 60 && (
-                              <p className="text-[10px] text-[#c4a47a] mt-2">Livraison offerte — votre commande dépasse 60€</p>
+                              <p className="text-[10px] mt-2" style={{ color: '#003DA5' }}>Livraison offerte — votre commande depasse 60€</p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Chronopost */}
+                    <div className={`border transition-all ${
+                      hasDeuil ? 'opacity-40 cursor-not-allowed border-[#e8e0d8]' :
+                      deliveryMode === 'chronopost' 
+                        ? 'border-[#D4003C]/40 bg-[#D4003C]/5' 
+                        : 'border-[#e8e0d8] hover:border-[#D4003C]/30'
+                    }`}>
+                      <button
+                        onClick={() => !hasDeuil && setDeliveryMode('chronopost')}
+                        disabled={hasDeuil}
+                        className="w-full text-left p-4"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className={`w-4 h-4 rounded-full border-2 mt-0.5 flex-shrink-0 flex items-center justify-center ${
+                            deliveryMode === 'chronopost' ? 'border-[#D4003C]' : 'border-[#e8e0d8]'
+                          }`}>
+                            {deliveryMode === 'chronopost' && <div className="w-2 h-2 rounded-full bg-[#D4003C]" />}
+                          </div>
+                          <div className="flex-grow">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-2">
+                                <span className="text-[11px] font-semibold tracking-wide" style={{ color: '#D4003C' }}>CHRONOPOST</span>
+                                <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#D4003C' }}>Express 24h</span>
+                              </div>
+                              <p className="text-sm" style={{ color: '#D4003C' }}>{subtotal >= 90 ? 'Offerte' : '18,90€'}</p>
+                            </div>
+                            <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
+                              Livraison avant 18h · Suivi en temps reel
+                            </p>
+                            {hasDeuil && (
+                              <p className="text-[10px] text-red-400 mt-1">Les compositions de deuil sont livrees localement uniquement.</p>
+                            )}
+                          </div>
+                        </div>
+                      </button>
+                      {deliveryMode === 'chronopost' && (
+                        <div className="px-4 pb-4">
+                          <div className="border-t border-[#D4003C]/20 pt-3">
+                            <div className="flex items-center justify-between py-3 px-4 bg-white border border-[#e8e0d8]/50">
+                              <div className="flex items-center gap-3">
+                                <div className="w-10 h-10 flex items-center justify-center text-white" style={{ backgroundColor: '#D4003C' }}>
+                                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                                </div>
+                                <div>
+                                  <p className="text-xs font-semibold tracking-wide" style={{ color: '#D4003C' }}>CHRONOPOST</p>
+                                  <p className="text-[10px] text-[#2d2a26]/40">Express · Avant 18h · J+1</p>
+                                </div>
+                              </div>
+                              <p className="text-sm text-[#2d2a26] font-medium">{subtotal >= 90 ? <span style={{ color: '#D4003C' }}>Offerte</span> : '18,90€'}</p>
+                            </div>
+                            {subtotal >= 90 && (
+                              <p className="text-[10px] mt-2" style={{ color: '#D4003C' }}>Livraison offerte — votre commande depasse 90€</p>
                             )}
                           </div>
                         </div>
@@ -374,7 +445,7 @@ export default function Panier() {
                   {/* Estimation automatique */}
                   {deliveryMode && !selectedDate && (() => {
                     const est = new Date();
-                    est.setDate(est.getDate() + (deliveryMode === 'national' ? 2 : 1));
+                    est.setDate(est.getDate() + (deliveryMode === 'colissimo' ? 2 : 1));
                     if (est.getDay() === 0) est.setDate(est.getDate() + 1); // skip dimanche
                     return (
                       <div className="flex items-center gap-2 p-3 bg-[#faf8f5] border border-[#e8e0d8]/50 mb-3">
@@ -392,7 +463,7 @@ export default function Panier() {
                     const today = new Date();
                     today.setHours(0,0,0,0);
                     const minDate = new Date(today);
-                    minDate.setDate(minDate.getDate() + (deliveryMode === 'national' ? 2 : 1));
+                    minDate.setDate(minDate.getDate() + (deliveryMode === 'colissimo' ? 2 : 1));
                     
                     const year = calendarMonth.getFullYear();
                     const month = calendarMonth.getMonth();
@@ -464,7 +535,7 @@ export default function Panier() {
                             </svg>
                             <p className="text-[11px] text-[#2d2a26]">
                               Livraison le <span className="font-medium">{new Date(selectedDate + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</span>
-                              <span className="text-[#2d2a26]/40"> · {deliveryMode === 'local' ? 'Sous 24h' : 'Sous 48h'}</span>
+                              <span className="text-[#2d2a26]/40"> · {deliveryMode === 'colissimo' ? 'Sous 48h' : 'Sous 24h'}</span>
                             </p>
                           </div>
                         )}
@@ -505,7 +576,7 @@ export default function Panier() {
                     </div>
                   )}
                   <div className="flex justify-between text-sm text-[#2d2a26]/70">
-                    <span>Livraison {deliveryMode === 'local' ? '(locale)' : deliveryMode === 'national' ? '(France)' : ''}</span>
+                    <span>Livraison {deliveryMode === 'local' ? '(locale)' : deliveryMode === 'colissimo' ? '(Colissimo)' : deliveryMode === 'chronopost' ? '(Chronopost)' : ''}</span>
                     <span className={delivery === 0 && deliveryMode ? 'text-[#c4a47a]' : ''}>
                       {!deliveryMode ? '—' : delivery === 0 ? 'Offerte' : `${delivery.toFixed(2)}€`}
                     </span>

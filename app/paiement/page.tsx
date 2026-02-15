@@ -272,7 +272,12 @@ export default function Paiement() {
                           </div>
                         )}
                         <div className="flex justify-between text-sm text-[#2d2a26]/70">
-                          <span>Livraison ({deliveryInfo.mode === 'local' ? 'locale' : 'France'})</span>
+                          <span className="flex items-center gap-1.5">
+                            Livraison
+                            {deliveryInfo.mode === 'local' && <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#c4a47a' }}>Locale</span>}
+                            {deliveryInfo.mode === 'colissimo' && <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#003DA5' }}>Colissimo</span>}
+                            {deliveryInfo.mode === 'chronopost' && <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#D4003C' }}>Chronopost</span>}
+                          </span>
                           <span className={deliveryInfo.fee === 0 ? 'text-[#c4a47a]' : ''}>
                             {deliveryInfo.fee === 0 ? 'Offerte' : `${deliveryInfo.fee.toFixed(2)}€`}
                           </span>

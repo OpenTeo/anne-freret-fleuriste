@@ -143,7 +143,7 @@ export default function Livraison() {
             </div>
 
             {/* Modes de livraison */}
-            <div className="max-w-3xl mx-auto mt-16 grid md:grid-cols-2 gap-6">
+            <div className="max-w-5xl mx-auto mt-16 grid md:grid-cols-3 gap-6">
               {/* Local */}
               <div className="border border-[#e8e0d8] p-6">
                 <div className="flex items-center gap-3 mb-4">
@@ -152,32 +152,50 @@ export default function Livraison() {
                   </div>
                   <div>
                     <p className="text-sm text-[#2d2a26]">Livraison locale</p>
-                    <p className="text-[10px] text-[#2d2a26]/40">Rayon de 35 km · Sous 24h</p>
+                    <p className="text-[10px] text-[#2d2a26]/40">Rayon de 35 km · 24h (J+1)</p>
                   </div>
                 </div>
                 <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
-                  <div className="flex justify-between border-b border-[#e8e0d8]/50 pb-1"><span>0 à 5 km</span><span>6,00 €</span></div>
-                  <div className="flex justify-between border-b border-[#e8e0d8]/50 pb-1"><span>5 à 10 km</span><span>8,00 €</span></div>
-                  <div className="flex justify-between"><span>10 à 35 km</span><span>10,00 €</span></div>
+                  <div className="flex justify-between border-b border-[#e8e0d8]/50 pb-1"><span>0 a 5 km</span><span>6,00 €</span></div>
+                  <div className="flex justify-between border-b border-[#e8e0d8]/50 pb-1"><span>5 a 10 km</span><span>8,00 €</span></div>
+                  <div className="flex justify-between"><span>10 a 35 km</span><span>10,00 €</span></div>
                 </div>
-                <p className="text-[10px] text-[#c4a47a] mt-3">Offerte dès 60 € d&apos;achat</p>
+                <p className="text-[10px] text-[#c4a47a] mt-3">Offerte des 60 € d&apos;achat</p>
               </div>
 
-              {/* National Colissimo */}
+              {/* Colissimo */}
               <div className="border border-[#e8e0d8] p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 flex items-center justify-center text-white" style={{ backgroundColor: '#003DA5' }}>
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none"><path d="M20 8H4l2-4h12l2 4zM20 8v10a2 2 0 01-2 2H6a2 2 0 01-2-2V8m8 0v12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/></svg>
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>
                   </div>
                   <div>
                     <p className="text-xs font-semibold tracking-wide" style={{ color: '#003DA5' }}>COLISSIMO</p>
-                    <p className="text-[10px] text-[#2d2a26]/40">La Poste · Suivi inclus · 48h</p>
+                    <p className="text-[10px] text-[#2d2a26]/40">La Poste · Suivi inclus · 48h (J+2)</p>
                   </div>
                 </div>
                 <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
-                  <div className="flex justify-between"><span>France métropolitaine</span><span>17,90 €</span></div>
+                  <div className="flex justify-between"><span>France metropolitaine</span><span>12,90 €</span></div>
                 </div>
-                <p className="text-[10px] text-[#c4a47a] mt-3">Offerte dès 60 € d&apos;achat</p>
+                <p className="text-[10px] mt-3" style={{ color: '#003DA5' }}>Offerte des 60 € d&apos;achat</p>
+              </div>
+
+              {/* Chronopost */}
+              <div className="border border-[#e8e0d8] p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 flex items-center justify-center text-white" style={{ backgroundColor: '#D4003C' }}>
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold tracking-wide" style={{ color: '#D4003C' }}>CHRONOPOST</p>
+                    <p className="text-[10px] text-[#2d2a26]/40">Express · Avant 18h · 24h (J+1)</p>
+                  </div>
+                </div>
+                <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
+                  <div className="flex justify-between"><span>France metropolitaine</span><span>18,90 €</span></div>
+                  <div className="flex justify-between"><span>Suivi en temps reel</span><span className="text-[#c4a47a]">Inclus</span></div>
+                </div>
+                <p className="text-[10px] mt-3" style={{ color: '#D4003C' }}>Offerte des 90 € d&apos;achat</p>
               </div>
             </div>
           </div>
