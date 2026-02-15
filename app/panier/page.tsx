@@ -302,7 +302,7 @@ export default function Panier() {
                               <p className="text-sm text-[#c4a47a]">{subtotal >= 60 ? 'Offerte' : 'Dès 6€'}</p>
                             </div>
                             <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
-                              Livrée à la main · Rayon 35 km · Saint-Pair-sur-Mer
+                              Livrée à la main · Rayon 35 km · Sous 24h
                             </p>
                           </div>
                         </div>
@@ -367,7 +367,7 @@ export default function Panier() {
                               <p className="text-sm text-[#c4a47a]">{subtotal >= 60 ? 'Offerte' : '17.90€'}</p>
                             </div>
                             <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
-                              Colissimo · France métropolitaine · 24 à 48h
+                              Colissimo · France métropolitaine · 48h
                             </p>
                             {hasDeuil && (
                               <p className="text-[10px] text-red-400 mt-1">Les compositions de deuil sont livrées localement uniquement.</p>
@@ -394,7 +394,25 @@ export default function Panier() {
 
                 {/* ——— DATE PICKER ——— */}
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.15em] text-[#c4a47a] mb-3">Date de livraison</p>
+                  <p className="text-[10px] uppercase tracking-[0.15em] text-[#c4a47a] mb-3">Date de livraison souhaitée</p>
+                  
+                  {/* Estimation automatique */}
+                  {deliveryMode && !selectedDate && (() => {
+                    const est = new Date();
+                    est.setDate(est.getDate() + (deliveryMode === 'national' ? 2 : 1));
+                    if (est.getDay() === 0) est.setDate(est.getDate() + 1); // skip dimanche
+                    return (
+                      <div className="flex items-center gap-2 p-3 bg-[#faf8f5] border border-[#e8e0d8]/50 mb-3">
+                        <svg className="w-4 h-4 text-[#c4a47a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p className="text-xs text-[#2d2a26]/60">
+                          Estimation : livraison dès le <span className="text-[#2d2a26] font-medium">{est.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</span>
+                        </p>
+                      </div>
+                    );
+                  })()}
+
                   {(() => {
                     const today = new Date();
                     today.setHours(0,0,0,0);
@@ -465,9 +483,15 @@ export default function Panier() {
                           })}
                         </div>
                         {selectedDate && (
-                          <p className="text-[11px] text-[#c4a47a] mt-2 pt-2 border-t border-[#e8e0d8]/50">
-                            {new Date(selectedDate + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
-                          </p>
+                          <div className="mt-2 pt-2 border-t border-[#e8e0d8]/50 flex items-center gap-2">
+                            <svg className="w-3.5 h-3.5 text-[#c4a47a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                            <p className="text-[11px] text-[#2d2a26]">
+                              Livraison le <span className="font-medium">{new Date(selectedDate + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</span>
+                              <span className="text-[#2d2a26]/40"> · {deliveryMode === 'local' ? 'Sous 24h' : 'Sous 48h'}</span>
+                            </p>
+                          </div>
                         )}
                       </div>
                     );
