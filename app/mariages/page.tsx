@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { mockProducts } from '@/lib/mock-data';
@@ -110,6 +112,39 @@ export default function Mariages() {
               >
                 Discutons de votre projet
               </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Box Mariage */}
+        <section className="py-24 md:py-32 bg-[#faf8f5]">
+          <div className="container mx-auto px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <p className="text-[#c4a47a] text-[10px] tracking-[0.25em] uppercase mb-4">Nos créations</p>
+              <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">Box Mariage</h2>
+              <div className="w-12 h-px bg-[#c4a47a] mx-auto mb-6" />
+              <p className="text-sm text-[#2d2a26]/50 font-light max-w-lg mx-auto leading-relaxed">
+                Bouquet de mariée, peigne floral et boutonnière assortie — tout ce qu&#39;il faut pour le plus beau jour.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              {mockProducts
+                .filter(p => p.name.includes('Box Mariage') || p.name.includes('Box Champêtre'))
+                .map(product => (
+                  <Link key={product.id} href={`/produit/${product.slug}`} className="group">
+                    <div className="relative aspect-square overflow-hidden bg-[#f5f0eb] mb-4">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    </div>
+                    <h3 className="font-serif text-base text-[#2d2a26] group-hover:text-[#c4a47a] transition-colors mb-1">{product.name}</h3>
+                    <p className="text-sm font-serif text-[#2d2a26]/60">{product.price.toFixed(2)}€</p>
+                  </Link>
+                ))}
             </div>
           </div>
         </section>
