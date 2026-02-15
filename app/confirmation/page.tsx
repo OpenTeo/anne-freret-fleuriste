@@ -173,7 +173,7 @@ export default function Confirmation() {
               </div>
               <div>
                 <p className="text-xs text-[#2d2a26]/40 mb-1">Confirmation n° {order.orderId}</p>
-                <h1 className="font-serif text-xl md:text-2xl text-[#2d2a26] uppercase tracking-wide">
+                <h1 className="font-serif text-base md:text-lg text-[#2d2a26] uppercase tracking-[0.15em]">
                   Merci, {order.customer.firstName} !
                 </h1>
               </div>

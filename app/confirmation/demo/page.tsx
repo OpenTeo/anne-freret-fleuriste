@@ -17,7 +17,7 @@ export default function ConfirmationDemo() {
           size: 'Grand',
           price: 54.90,
           quantity: 1,
-          image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquet-champetre.jpg?v=1747399798',
+          image: 'https://fleuriste-annefreret.com/cdn/shop/files/1_2898336f-1c54-4008-a6e6-cfed21832288.png',
         },
         {
           id: 'bougie-parfumee',
