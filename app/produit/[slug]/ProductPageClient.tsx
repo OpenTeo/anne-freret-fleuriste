@@ -356,71 +356,38 @@ export default function ProductPageClient({ params }: ProductPageProps) {
 
                 {/* Complétez votre cadeau */}
                 <AccordionItem id="addons" title="Complétez votre cadeau">
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-1 gap-3">
-                      <div className="border border-[#e8e0d8]/50 p-3">
-                        <label className="flex items-center space-x-3 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={selectedAddOns.vase}
-                            onChange={() => handleAddOnChange('vase')}
-                            className="w-5 h-5 text-[#b8956a] bg-gray-100 border-[#e8e0d8] rounded focus:ring-[#b8956a] focus:ring-2"
-                          />
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center space-x-2">
-                                <svg className="w-5 h-5 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
-                                <span className="font-medium text-[#2d2a26]">Vase en verre artisanal</span>
-                              </div>
-                              <span className="font-bold text-[#b8956a]">+19,90€</span>
-                            </div>
-                            <p className="text-sm text-gray-600 ml-7">Vase élégant soufflé à la main</p>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { key: 'vase', name: 'Vase artisanal', price: 19.90, image: 'https://images.pexels.com/photos/4207891/pexels-photo-4207891.jpeg?auto=compress&cs=tinysrgb&w=300', desc: 'Céramique fait main' },
+                      { key: 'chocolats', name: 'Chocolats belges', price: 14.90, image: 'https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&cs=tinysrgb&w=300', desc: 'Coffret 12 pièces' },
+                      { key: 'bougie', name: 'Bougie parfumée', price: 12.90, image: 'https://images.pexels.com/photos/3270223/pexels-photo-3270223.jpeg?auto=compress&cs=tinysrgb&w=300', desc: 'Fleur de coton' },
+                    ].map(addon => (
+                      <button
+                        key={addon.key}
+                        onClick={() => handleAddOnChange(addon.key)}
+                        className={`text-left border transition-all ${
+                          selectedAddOns[addon.key as keyof typeof selectedAddOns]
+                            ? 'border-[#c4a47a] bg-[#c4a47a]/5'
+                            : 'border-[#e8e0d8]/50 hover:border-[#c4a47a]/50'
+                        }`}
+                      >
+                        <div className="aspect-square overflow-hidden bg-[#faf8f5]">
+                          <img src={addon.image} alt={addon.name} className="w-full h-full object-cover" />
+                        </div>
+                        <div className="p-2.5">
+                          <p className="text-xs text-[#2d2a26] leading-tight mb-0.5">{addon.name}</p>
+                          <p className="text-[10px] text-[#2d2a26]/30">{addon.desc}</p>
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="text-xs text-[#c4a47a] font-medium">+{addon.price.toFixed(2)}€</span>
+                            {selectedAddOns[addon.key as keyof typeof selectedAddOns] && (
+                              <svg className="w-3.5 h-3.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                              </svg>
+                            )}
                           </div>
-                        </label>
-                      </div>
-
-                      <div className="border border-[#e8e0d8]/50 p-3">
-                        <label className="flex items-center space-x-3 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={selectedAddOns.chocolats}
-                            onChange={() => handleAddOnChange('chocolats')}
-                            className="w-5 h-5 text-[#b8956a] bg-gray-100 border-[#e8e0d8] rounded focus:ring-[#b8956a] focus:ring-2"
-                          />
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center space-x-2">
-                                <svg className="w-5 h-5 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21" /></svg>
-                                <span className="font-medium text-[#2d2a26]">Boîte de chocolats</span>
-                              </div>
-                              <span className="font-bold text-[#b8956a]">+14,90€</span>
-                            </div>
-                            <p className="text-sm text-gray-600 ml-7">Assortiment de chocolats fins français</p>
-                          </div>
-                        </label>
-                      </div>
-
-                      <div className="border border-[#e8e0d8]/50 p-3">
-                        <label className="flex items-center space-x-3 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={selectedAddOns.bougie}
-                            onChange={() => handleAddOnChange('bougie')}
-                            className="w-5 h-5 text-[#b8956a] bg-gray-100 border-[#e8e0d8] rounded focus:ring-[#b8956a] focus:ring-2"
-                          />
-                          <div className="flex-1">
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center space-x-2">
-                                <svg className="w-5 h-5 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" /></svg>
-                                <span className="font-medium text-[#2d2a26]">Bougie parfumée</span>
-                              </div>
-                              <span className="font-bold text-[#b8956a]">+12,90€</span>
-                            </div>
-                            <p className="text-sm text-gray-600 ml-7">Bougie artisanale aux senteurs florales</p>
-                          </div>
-                        </label>
-                      </div>
-                    </div>
+                        </div>
+                      </button>
+                    ))}
                   </div>
                 </AccordionItem>
 
