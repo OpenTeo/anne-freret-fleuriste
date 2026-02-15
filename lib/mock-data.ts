@@ -25,29 +25,6 @@ export const categories = [
 export const mockProducts: Product[] = [
   // BOUQUETS
   {
-    id: '1',
-    name: 'Le Sublime',
-    price: 49.90,
-    image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Designsanstitre_35.png?v=1706808037',
-    images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Designsanstitre_35.png?v=1706808037',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Designsanstitre_35.png?v=1706808037',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Designsanstitre_35.png?v=1706808037',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
-    ],
-    category: 'Bouquets',
-    description: 'Ce bouquet somptueux allie roses poudrées, renoncules délicates et petites fleurs champêtres pour créer une composition à la fois raffinée et intemporelle. Enrichi de feuillages d\'eucalyptus.',
-    slug: 'le-sublime',
-    featured: true,
-    inStock: true,
-    tags: ['roses poudrées', 'renoncules', 'champêtre', 'eucalyptus'],
-    sizes: [
-      { name: 'Moyen', price: 49.90 },
-      { name: 'Grand', price: 59.90 },
-      { name: 'Très grand', price: 99.90 }
-    ]
-  },
-  {
     id: '2',
     name: 'Barneville-Carteret',
     price: 49.90,

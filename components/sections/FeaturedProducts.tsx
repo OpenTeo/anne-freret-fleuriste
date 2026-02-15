@@ -5,7 +5,7 @@ import { featuredProducts } from '@/lib/mock-data';
 import ProductCard from '@/components/ui/ProductCard';
 
 const FeaturedProducts = () => {
-  const bestSellers = featuredProducts.slice(0, 3);
+  const bestSellers = featuredProducts.slice(0, 6);
 
   return (
     <section className="py-24 md:py-32 bg-[#faf8f5]">
