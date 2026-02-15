@@ -42,10 +42,7 @@ export const mockProducts: Product[] = [
     price: 49.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_2c1fb84c-0074-4dce-9d4b-7161370a1a30.png?v=1684428619',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_2c1fb84c-0074-4dce-9d4b-7161370a1a30.png?v=1684428619',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_2c1fb84c-0074-4dce-9d4b-7161370a1a30.png?v=1684428619',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_2c1fb84c-0074-4dce-9d4b-7161370a1a30.png?v=1684428619',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_2c1fb84c-0074-4dce-9d4b-7161370a1a30.png?v=1684428619'
     ],
     category: 'Bouquets',
     description: 'Lisianthus aux pétales de soie, roses aux tons poudrés, dille aérienne et limonum vaporeux composent cette création toute en douceur, rehaussée d\'épis de blé dorés et d\'un feuillage délicat. Un bouquet qui évoque les matins calmes de la côte normande et s\'épanouit pleinement sous vos yeux en 3 à 5 jours. Idéal pour marquer une attention sincère ou illuminer un intérieur de sa grâce champêtre.',
@@ -67,10 +64,7 @@ export const mockProducts: Product[] = [
     price: 49.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275'
     ],
     category: 'Bouquets',
     description: 'Éclat de couleurs vives mêlant dahlias flamboyants, alstroemérias aux nuances solaires et feuillages d\'un vert profond, ce bouquet capture l\'énergie des falaises battues par le vent à la Pointe d\'Agon. Généreux et structuré, il tient en vase 7 à 10 jours et insuffle une vitalité immédiate à chaque pièce. Parfait pour célébrer une bonne nouvelle ou simplement se faire plaisir.',
@@ -92,10 +86,7 @@ export const mockProducts: Product[] = [
     price: 49.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-20250201-WA0008.jpg?v=1738607322',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-20250201-WA0008.jpg?v=1738607322',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-20250201-WA0008.jpg?v=1738607322',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-20250201-WA0008.jpg?v=1738607322',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-20250201-WA0008.jpg?v=1738607322'
     ],
     category: 'Bouquets',
     description: 'Roses de jardin aux pétales froissés dans des tons rose poudré et pêche, ponctuées de matricaires champêtres et d\'un feuillage verdoyant et généreux. Ce bouquet respire la douceur des ruelles fleuries de Saint-Pair et dégage un parfum délicat, légèrement sucré. Livré en bouton, il révèle toute sa splendeur en 2 à 3 jours et accompagne avec grâce un anniversaire ou un geste de tendresse.',
@@ -117,10 +108,7 @@ export const mockProducts: Product[] = [
     price: 49.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_3a2e9857-fa21-42db-b89a-47630ccdf35d.png?v=1684428237',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_3a2e9857-fa21-42db-b89a-47630ccdf35d.png?v=1684428237',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_3a2e9857-fa21-42db-b89a-47630ccdf35d.png?v=1684428237',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_3a2e9857-fa21-42db-b89a-47630ccdf35d.png?v=1684428237',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_3a2e9857-fa21-42db-b89a-47630ccdf35d.png?v=1684428237'
     ],
     category: 'Bouquets',
     description: 'Roses pâles Sweet aux pétales veloutés, wax flowers délicates et tulipes dentelées aux bords finement ciselés composent cette harmonie tout en rosé. Les textures se répondent avec subtilité, entre la rondeur des roses et la légèreté aérienne du wax. Un bouquet frais et féminin, idéal pour offrir ou pour s\'offrir un instant de douceur au quotidien.',
@@ -142,10 +130,7 @@ export const mockProducts: Product[] = [
     price: 39.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderoses.jpg?v=1737559058',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderoses.jpg?v=1737559058',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderoses.jpg?v=1737559058',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderoses.jpg?v=1737559058',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderoses.jpg?v=1737559058'
     ],
     category: 'Bouquets',
     description: 'Lisianthus frisés d\'un blanc immaculé, semblables à de fines dentelles, se mêlent à des touches de verdure tendre dans cette composition épurée et lumineuse. La texture vaporeuse des pétales ondulés apporte un volume généreux sans jamais perdre en élégance. Parfait pour un intérieur clair ou une occasion qui appelle la simplicité raffinée, ce bouquet tient magnifiquement 8 à 10 jours en vase.',
@@ -167,10 +152,7 @@ export const mockProducts: Product[] = [
     price: 49.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Rosegrosbouton2.jpg?v=1625149279',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Rosegrosbouton2.jpg?v=1625149279',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Rosegrosbouton2.jpg?v=1625149279',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Rosegrosbouton2.jpg?v=1625149279',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Rosegrosbouton2.jpg?v=1625149279'
     ],
     category: 'Bouquets',
     description: 'Généreuse brassée de pivoines, roses et œillets dans un camaïeu de roses poudrés et de vieux rose, enveloppée d\'un feuillage argenté. L\'abondance des tiges et l\'homogénéité des tons créent un effet de masse saisissant, presque pictural. Son parfum subtil, mélange de rose ancienne et de notes vertes, emplit délicatement la pièce. Un bouquet d\'exception pour les grandes occasions.',
@@ -192,10 +174,7 @@ export const mockProducts: Product[] = [
     price: 49.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798'
     ],
     category: 'Bouquets',
     description: 'Roses frisées d\'un blanc nacré associées à des chardons sauvages aux reflets bleutés et à des graminées ondulantes : cette composition capture l\'authenticité brute des campagnes normandes. Le contraste entre la douceur des pétales et le caractère graphique des chardons crée une tension visuelle fascinante. Un bouquet de caractère qui se tient 7 à 9 jours et plaît autant aux amateurs de nature qu\'aux esthètes.',
@@ -217,10 +196,7 @@ export const mockProducts: Product[] = [
     price: 59.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454'
     ],
     category: 'Bouquets',
     description: 'Pivoines opulentes aux pétales froissés, renoncules d\'un rose tendre et eucalyptus argenté composent ce bouquet devenu incontournable de la collection Anne Freret. Ses tons rose clair, presque aquarellés, diffusent une douceur intemporelle et un parfum envoûtant de pivoine fraîche. Livré en bouton pour une floraison spectaculaire sous vos yeux, il est le cadeau idéal pour célébrer les moments heureux de la vie.',
@@ -242,10 +218,7 @@ export const mockProducts: Product[] = [
     price: 49.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/image00002_b6f2b70f-619d-4105-b4e8-f74941e8c689.jpg?v=1639823258',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/image00002_b6f2b70f-619d-4105-b4e8-f74941e8c689.jpg?v=1639823258',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/image00002_b6f2b70f-619d-4105-b4e8-f74941e8c689.jpg?v=1639823258',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/image00002_b6f2b70f-619d-4105-b4e8-f74941e8c689.jpg?v=1639823258',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/image00002_b6f2b70f-619d-4105-b4e8-f74941e8c689.jpg?v=1639823258'
     ],
     category: 'Bouquets',
     description: 'Assemblage soigné de fleurs de saison aux teintes harmonieuses, ce bouquet mêle roses, lisianthus et feuillages texturés dans une palette choisie par notre fleuriste selon les arrivages du jour. Chaque création est unique, pensée pour sublimer votre intérieur ou toucher un proche avec élégance. Un bouquet généreux qui tient 7 jours et dont la composition varie au fil des saisons pour toujours surprendre.',
@@ -267,10 +240,7 @@ export const mockProducts: Product[] = [
     price: 39.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798'
     ],
     category: 'Bouquets',
     description: 'Laissez carte blanche à notre fleuriste : selon les arrivages, la saison et son inspiration du moment, elle compose pour vous un bouquet unique et généreux. Choisissez votre tonalité — blanc pur, rosé délicat ou teintes automnales — et laissez-vous surprendre par une création qui n\'existera qu\'une seule fois. La fraîcheur est garantie 7 jours, l\'émerveillement bien plus longtemps.',
@@ -297,10 +267,7 @@ export const mockProducts: Product[] = [
     price: 49.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdesaintvalentin2.jpg?v=1625151901',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdesaintvalentin2.jpg?v=1625151901',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdesaintvalentin2.jpg?v=1625151901',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdesaintvalentin2.jpg?v=1625151901',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdesaintvalentin2.jpg?v=1625151901'
     ],
     category: 'Bouquets',
     description: 'Roses rouges à grosses têtes, profondes et veloutées, sublimées par des lisianthus pastel et des touches d\'eucalyptus cendrée. Le contraste entre l\'intensité du rouge et la douceur des tons clairs crée une composition dramatique et sophistiquée, chargée d\'émotion. Idéal pour une déclaration, un anniversaire de couple ou simplement pour dire ce que les mots ne suffisent pas à exprimer.',
@@ -322,10 +289,7 @@ export const mockProducts: Product[] = [
     price: 49.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderose2.jpg?v=1625070100',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderose2.jpg?v=1625070100',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderose2.jpg?v=1625070100',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderose2.jpg?v=1625070100',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderose2.jpg?v=1625070100'
     ],
     category: 'Bouquets',
     description: 'Roses poudrées aux pétales de crêpe, scabieuses sauvages et graminées ondulantes se mêlent dans cette composition aérienne aux tons doux et naturels. Les feuillages délicats — pistache et eucalyptus baby blue — apportent profondeur et mouvement. Un bouquet qui capture l\'essence du charme champêtre normand tout en conservant une élégance raffinée, parfait pour un intérieur lumineux ou une table d\'été.',
@@ -351,8 +315,7 @@ export const mockProducts: Product[] = [
     images: [
       'https://fleuriste-annefreret.com/cdn/shop/files/1_2898336f-1c54-4008-a6e6-cfed21832288.png',
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/2_1eed40b5-fab8-414d-9819-7f2592160295.png?v=1684426098',
-      'https://fleuriste-annefreret.com/cdn/shop/files/279170543_782557459396911_8647938960483584919_n-min_1024x1024_crop_center.jpg',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://fleuriste-annefreret.com/cdn/shop/files/279170543_782557459396911_8647938960483584919_n-min_1024x1024_crop_center.jpg'
     ],
     category: 'Bouquets',
     description: 'Coffret nuptial en fleurs séchées aux tons lilas et lavande, composé d\'amarante, miscanthus, phalaris, grain d\'aneth, limonium, gypsophile, lagurus et stipa. Le bouquet de mariée (20 cm de diamètre, 25 cm de hauteur, finition cordelette) s\'accompagne d\'un peigne assorti et d\'une boutonnière pour le marié. Une harmonie champêtre et intemporelle qui se conserve des années comme souvenir de votre jour le plus précieux.',
@@ -369,10 +332,7 @@ export const mockProducts: Product[] = [
     price: 139.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_6af69be8-d1fe-44a6-9936-308639ed93d2.png?v=1684426912',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_6af69be8-d1fe-44a6-9936-308639ed93d2.png?v=1684426912',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_6af69be8-d1fe-44a6-9936-308639ed93d2.png?v=1684426912',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_6af69be8-d1fe-44a6-9936-308639ed93d2.png?v=1684426912',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_6af69be8-d1fe-44a6-9936-308639ed93d2.png?v=1684426912'
     ],
     category: 'Bouquets',
     description: 'Coffret nuptial aux accents exotiques : fleurs séchées tropicales dans des teintes corail, terracotta et or se déploient en un bouquet généreux de 25 cm de diamètre et 30 cm de hauteur, noué d\'une cordelette naturelle. Peigne de mariée et boutonnière assortie complètent l\'ensemble. Une composition audacieuse et solaire, pensée pour les mariages qui osent la couleur et l\'aventure.',
@@ -389,10 +349,7 @@ export const mockProducts: Product[] = [
     price: 118.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_9527aac4-f297-4808-945b-908cf90e1a8e.png?v=1684426619',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_9527aac4-f297-4808-945b-908cf90e1a8e.png?v=1684426619',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_9527aac4-f297-4808-945b-908cf90e1a8e.png?v=1684426619',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_9527aac4-f297-4808-945b-908cf90e1a8e.png?v=1684426619',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_9527aac4-f297-4808-945b-908cf90e1a8e.png?v=1684426619'
     ],
     category: 'Bouquets',
     description: 'Coffret nuptial d\'inspiration marine en fleurs séchées aux tons nacrés, blancs et bleu pâle, évoquant l\'écume et le sable fin. Le bouquet (20 cm de diamètre, 25 cm de hauteur, finition cordelette) est accompagné d\'un peigne délicat et d\'une boutonnière assortie. Pensé pour une cérémonie en bord de mer ou un mariage aux accents iodés, il se conserve indéfiniment en souvenir de ce jour unique.',
@@ -411,10 +368,7 @@ export const mockProducts: Product[] = [
     price: 170,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Raquette.jpg?v=1737645211',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Raquette.jpg?v=1737645211',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Raquette.jpg?v=1737645211',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Raquette.jpg?v=1737645211',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Raquette.jpg?v=1737645211'
     ],
     category: 'Deuil & Hommages',
     description: 'Raquette funéraire composée avec une attention particulière : roses, lys blancs et chrysanthèmes sont disposés en un chemin floral harmonieux, bordé de feuillages persistants. Disponible en blanc pur, rosé délicat ou tons colorés selon vos souhaits, elle témoigne avec sobriété de l\'affection qui perdure au-delà de l\'absence. Livraison assurée directement au lieu de cérémonie.',
@@ -436,10 +390,7 @@ export const mockProducts: Product[] = [
     price: 200,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/9D21A555-DA13-4A1B-B926-909320B670FB.jpg?v=1729195556',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/9D21A555-DA13-4A1B-B926-909320B670FB.jpg?v=1729195556',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/9D21A555-DA13-4A1B-B926-909320B670FB.jpg?v=1729195556',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/9D21A555-DA13-4A1B-B926-909320B670FB.jpg?v=1729195556',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/9D21A555-DA13-4A1B-B926-909320B670FB.jpg?v=1729195556'
     ],
     category: 'Deuil & Hommages',
     description: 'Ce cœur fleuri, réalisé sur mousse florale, associe roses à grosses têtes, germinis et œillets dans une composition dense et soignée. Sa forme universelle porte avec délicatesse les sentiments que les mots peinent parfois à exprimer. Disponible en blanc, rosé ou coloré, il honore la mémoire de l\'être cher avec dignité et tendresse. Dimensions : environ 40 cm.',
@@ -461,10 +412,7 @@ export const mockProducts: Product[] = [
     price: 250,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Couronne3.jpg?v=1743008466',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Couronne3.jpg?v=1743008466',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Couronne3.jpg?v=1743008466',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Couronne3.jpg?v=1743008466',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Couronne3.jpg?v=1743008466'
     ],
     category: 'Deuil & Hommages',
     description: 'Couronne funéraire d\'environ 50 cm de diamètre, travaillée sur mousse florale avec roses, lys, chrysanthèmes et un feuillage dense de ruscus et lierre. Sa forme circulaire, symbole d\'éternité, s\'inscrit dans la tradition avec noblesse et respect. Disponible en tonalités blanches, rosées ou colorées selon votre souhait. Réalisée le jour même et livrée directement au lieu de cérémonie.',
@@ -486,10 +434,7 @@ export const mockProducts: Product[] = [
     price: 120,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_3.png?v=1729873535',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_3.png?v=1729873535',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_3.png?v=1729873535',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_3.png?v=1729873535',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_3.png?v=1729873535'
     ],
     category: 'Deuil & Hommages',
     description: 'Coussin fleuri d\'environ 35 cm, composé sur mousse florale avec des roses, germinis et santinis délicatement assemblés. Sa forme douce et accueillante apporte un réconfort visuel dans les moments de recueillement. Disponible en blanc pur ou en rosé tendre, il accompagne la cérémonie avec sobriété et tendresse. Livraison directe au lieu de cérémonie assurée.',
@@ -511,10 +456,7 @@ export const mockProducts: Product[] = [
     price: 220,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-9458.jpg?v=1729195833',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-9458.jpg?v=1729195833',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-9458.jpg?v=1729195833',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-9458.jpg?v=1729195833',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-9458.jpg?v=1729195833'
     ],
     category: 'Deuil & Hommages',
     description: 'Croix funéraire réalisée sur structure florale, habillée de roses, lys orientaux et chrysanthèmes, ponctuée de gypsophile et de feuillages persistants. D\'environ 60 cm de hauteur, elle porte avec solennité un message de foi et d\'espérance. Disponible en blanc, rosé ou coloré, elle est composée le jour même et livrée directement au lieu de cérémonie.',
@@ -536,10 +478,7 @@ export const mockProducts: Product[] = [
     price: 60,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_5_251d2d18-b531-457a-81d2-8a77a2151dbc.png?v=1729950268',
     images: [
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_5_251d2d18-b531-457a-81d2-8a77a2151dbc.png?v=1729950268',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_5_251d2d18-b531-457a-81d2-8a77a2151dbc.png?v=1729950268',
-      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_5_251d2d18-b531-457a-81d2-8a77a2151dbc.png?v=1729950268',
-      'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
+      'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_5_251d2d18-b531-457a-81d2-8a77a2151dbc.png?v=1729950268'
     ],
     category: 'Deuil & Hommages',
     description: 'Composition de plantes vertes et fleuries dans une coupe décorative, pensée comme un jardin miniature pérenne. Fougères, lierres et plantes à fleurs se côtoient dans un ensemble harmonieux qui se conserve longtemps avec un entretien minimal. Un geste délicat pour accompagner le souvenir, offrant la promesse que la vie continue de fleurir. Disponible en tons blancs ou rosés.',
@@ -561,8 +500,7 @@ export const mockProducts: Product[] = [
     price: 34.90,
     image: 'https://images.pexels.com/photos/3125195/pexels-photo-3125195.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
-      'https://images.pexels.com/photos/3125195/pexels-photo-3125195.jpeg?auto=compress&cs=tinysrgb&w=800',
-      'https://images.pexels.com/photos/3125195/pexels-photo-3125195.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/3125195/pexels-photo-3125195.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
     category: 'Plantes',
     description: 'Feuilles découpées d\'un vert profond, port sculptural et allure résolument tropicale : le Monstera Deliciosa transforme chaque intérieur en jardin d\'hiver. Il apprécie une lumière vive indirecte et un arrosage modéré toutes les semaines, laissant le substrat sécher entre deux apports. Livré dans un pot en céramique artisanale, il purifie naturellement l\'air et gagne en majesté au fil des mois.',
@@ -584,7 +522,7 @@ export const mockProducts: Product[] = [
     price: 44.90,
     image: 'https://images.pexels.com/photos/4505166/pexels-photo-4505166.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
-      'https://images.pexels.com/photos/4505166/pexels-photo-4505166.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/4505166/pexels-photo-4505166.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
     category: 'Plantes',
     description: 'Tronc noueux patiné par le temps et feuillage argenté frémissant : cet olivier d\'ornement insuffle une élégance méditerranéenne à votre intérieur. Il aime la lumière directe, supporte la sécheresse passagère et demande un arrosage espacé toutes les 10 à 14 jours. Livré dans un cache-pot en terre cuite, il incarne la paix et la longévité, et devient au fil des ans une véritable pièce maîtresse.',
@@ -606,7 +544,7 @@ export const mockProducts: Product[] = [
     price: 39.90,
     image: 'https://images.pexels.com/photos/6208087/pexels-photo-6208087.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
-      'https://images.pexels.com/photos/6208087/pexels-photo-6208087.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/6208087/pexels-photo-6208087.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
     category: 'Plantes',
     description: 'Grandes feuilles vernissées en forme de lyre, port élancé et présence affirmée : le Ficus Lyrata est une véritable sculpture végétale vivante. Il s\'épanouit en lumière vive indirecte et apprécie un arrosage régulier lorsque le terreau est sec en surface, environ une fois par semaine. Évitez les courants d\'air et offrez-lui un emplacement stable — il vous le rendra par une croissance généreuse et un feuillage spectaculaire.',
@@ -628,7 +566,7 @@ export const mockProducts: Product[] = [
     price: 24.90,
     image: 'https://images.pexels.com/photos/1470171/pexels-photo-1470171.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
-      'https://images.pexels.com/photos/1470171/pexels-photo-1470171.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/1470171/pexels-photo-1470171.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
     category: 'Plantes',
     description: 'Trois succulentes aux formes graphiques et aux teintes allant du vert jade au mauve poudré, présentées dans de petits pots en béton brut au style contemporain. Quasi-indestructibles, elles ne demandent qu\'un rebord de fenêtre lumineux et un arrosage tous les 10 à 15 jours. Parfaites pour offrir à ceux qui n\'ont pas la main verte ou pour habiller un bureau, une étagère ou une table basse avec élégance.',
@@ -650,7 +588,7 @@ export const mockProducts: Product[] = [
     price: 12.90,
     image: 'https://images.pexels.com/photos/374062/pexels-photo-374062.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
-      'https://images.pexels.com/photos/374062/pexels-photo-374062.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/374062/pexels-photo-374062.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
     category: 'Accessoires',
     description: 'Coulée à la main en Normandie dans de la cire de soja naturelle, cette bougie au parfum délicat de fleur de coton diffuse une lumière douce et un sillage aérien dans toute la pièce. Sa mèche en coton naturel assure une combustion propre et régulière pendant environ 40 heures. Présentée dans un contenant en verre fumé réutilisable, elle accompagne idéalement un bouquet pour un cadeau complet et raffiné.',
@@ -667,7 +605,7 @@ export const mockProducts: Product[] = [
     price: 19.90,
     image: 'https://images.pexels.com/photos/4022205/pexels-photo-4022205.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
-      'https://images.pexels.com/photos/4022205/pexels-photo-4022205.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/4022205/pexels-photo-4022205.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
     category: 'Accessoires',
     description: 'Vase en céramique tourné à la main, aux lignes organiques et à la finition crème mat légèrement texturée au toucher. D\'une hauteur de 18 cm, sa silhouette épurée met en valeur aussi bien un bouquet généreux qu\'une branche unique. Chaque pièce est légèrement différente, témoignage du geste artisanal. Un objet décoratif à part entière, même sans fleurs.',
@@ -684,7 +622,7 @@ export const mockProducts: Product[] = [
     price: 14.90,
     image: 'https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
-      'https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
     category: 'Accessoires',
     description: 'Coffret élégant de 12 chocolats belges artisanaux, déclinés en noir intense, lait onctueux et blanc crémeux. Fourrages praliné noisette, ganache au cacao grand cru et caramel beurre salé se dévoilent sous des coques finement travaillées. L\'accompagnement parfait pour sublimer un bouquet et transformer une attention florale en cadeau gourmand d\'exception.',
@@ -701,7 +639,7 @@ export const mockProducts: Product[] = [
     price: 8.90,
     image: 'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=800',
     images: [
-      'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=800'
     ],
     category: 'Accessoires',
     description: 'Mélange de graines de fleurs sauvages — coquelicots écarlates, bleuets azur, marguerites lumineuses et cosmos aériens — à semer au printemps pour une floraison estivale généreuse. Présenté dans un sachet kraft illustré à la main, il fait un cadeau charmant et original pour les amoureux de nature. Couvre environ 2 m2 de prairie fleurie et attire papillons et abeilles au jardin.',

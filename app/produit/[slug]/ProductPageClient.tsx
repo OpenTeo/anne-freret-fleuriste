@@ -260,12 +260,9 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 </div>
               )}
 
-              {/* Description courte */}
+              {/* Description */}
               <p className="text-sm text-[#2d2a26]/60 font-light leading-relaxed">
-                {product.description.length > 150 
-                  ? product.description.substring(0, 150) + '...'
-                  : product.description
-                }
+                {product.description}
               </p>
 
               {/* 8. Quantité + Bouton "Ajouter au panier" */}
@@ -353,27 +350,6 @@ export default function ProductPageClient({ params }: ProductPageProps) {
               {/* 10. Accordéon dépliable */}
               <div className="border-t border-[#e8e0d8]/60">
                 
-                {/* Description complète */}
-                <AccordionItem id="description" title="Description complète">
-                  <div className="space-y-4">
-                    <p className="text-[#2d2a26] leading-relaxed">
-                      {product.description}
-                    </p>
-                    {product.tags && product.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2 pt-4 border-t border-[#e8e0d8]">
-                        {product.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 bg-[#f5f0eb] text-[#2d2a26] text-sm border border-[#e8e0d8]/50 text-xs"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </AccordionItem>
-
                 {/* Carte message gratuite */}
                 <AccordionItem id="message" title="Carte message offerte">
                   {(() => {
