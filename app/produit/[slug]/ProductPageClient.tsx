@@ -7,8 +7,10 @@ import { notFound } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/ui/ProductCard';
+import AuthPromptModal from '@/components/ui/AuthPromptModal';
 import { mockProducts } from '@/lib/mock-data';
 import { getReviewsForProduct } from '@/lib/reviews-data';
+import { useAuth } from '@/lib/auth-context';
 // No lucide imports — using inline SVGs for consistency
 
 interface ProductPageProps {
@@ -21,6 +23,9 @@ export default function ProductPageClient({ params }: ProductPageProps) {
   const [selectedSize, setSelectedSize] = useState<{ name: string; price: number } | null>(null);
   const [selectedVariant, setSelectedVariant] = useState<{ name: string; price?: number } | null>(null);
   const [personalMessage, setPersonalMessage] = useState('');
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(false);
+  const { user } = useAuth();
   const [selectedAddOns, setSelectedAddOns] = useState<Record<string, boolean>>({
     vase: false,
     chocolats: false,
@@ -284,8 +289,36 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                     Ajouter au panier — {currentPrice.toFixed(2)}€
                   </button>
                   
-                  <button className="w-12 border border-[#e8e0d8] flex items-center justify-center hover:border-[#c4a47a] hover:text-[#c4a47a] transition-colors text-[#2d2a26]/30">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <button
+                    onClick={() => {
+                      if (user) {
+                        const key = `favorites-${user.id}`;
+                        const favs: string[] = JSON.parse(localStorage.getItem(key) || '[]');
+                        if (favs.includes(product.id)) {
+                          localStorage.setItem(key, JSON.stringify(favs.filter(f => f !== product.id)));
+                          setIsFavorited(false);
+                        } else {
+                          favs.push(product.id);
+                          localStorage.setItem(key, JSON.stringify(favs));
+                          setIsFavorited(true);
+                        }
+                      } else {
+                        // Store as guest favorite
+                        const guestFavs: string[] = JSON.parse(localStorage.getItem('favorites-guest') || '[]');
+                        if (!guestFavs.includes(product.id)) {
+                          guestFavs.push(product.id);
+                          localStorage.setItem('favorites-guest', JSON.stringify(guestFavs));
+                        }
+                        setShowAuthModal(true);
+                      }
+                    }}
+                    className={`w-12 border flex items-center justify-center transition-colors ${
+                      isFavorited
+                        ? 'border-[#c4a47a] text-[#c4a47a]'
+                        : 'border-[#e8e0d8] text-[#2d2a26]/30 hover:border-[#c4a47a] hover:text-[#c4a47a]'
+                    }`}
+                  >
+                    <svg className="w-5 h-5" fill={isFavorited ? 'currentColor' : 'none'} viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                     </svg>
                   </button>
@@ -551,6 +584,13 @@ export default function ProductPageClient({ params }: ProductPageProps) {
         </div>
       </main>
       <Footer />
+
+      <AuthPromptModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        title="Sauvegardez vos favoris"
+        message="Connectez-vous pour sauvegarder vos favoris et retrouver votre selection a tout moment."
+      />
     </>
   );
 }

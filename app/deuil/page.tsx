@@ -25,6 +25,17 @@ export default function DeuilPage() {
 
   return (
     <main className="bg-[#faf8f5] pt-28 md:pt-32">
+      {/* Breadcrumb */}
+      <div className="max-w-6xl mx-auto px-4 md:px-6 mb-6">
+        <nav className="flex items-center gap-2 text-xs text-[#2d2a26]/40">
+          <Link href="/" className="hover:text-[#c4a47a] transition-colors">Accueil</Link>
+          <span>/</span>
+          <Link href="/boutique" className="hover:text-[#c4a47a] transition-colors">Boutique</Link>
+          <span>/</span>
+          <span className="text-[#2d2a26]/60">Deuil &amp; Hommages</span>
+        </nav>
+      </div>
+
       {/* Hero */}
       <section className="max-w-4xl mx-auto px-4 md:px-6 text-center mb-8 md:mb-12">
         <p className="text-[#c4a47a] text-[10px] tracking-[0.25em] uppercase mb-4">Accompagnement</p>

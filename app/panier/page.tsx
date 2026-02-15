@@ -543,16 +543,32 @@ export default function Panier() {
                 </div>
 
                 {/* Checkout button */}
-                <button 
-                  disabled={!deliveryMode || !selectedDate}
-                  className={`w-full py-3.5 text-sm uppercase tracking-[0.1em] transition-all ${
-                    deliveryMode && selectedDate
-                      ? 'bg-[#c4a47a] text-white hover:bg-[#b8956a]'
-                      : 'bg-[#e8e0d8] text-[#2d2a26]/30 cursor-not-allowed'
-                  }`}
-                >
-                  {!deliveryMode ? 'Choisissez un mode de livraison' : !selectedDate ? 'Choisissez une date' : 'Procéder au paiement'}
-                </button>
+                {deliveryMode && selectedDate ? (
+                  <Link
+                    href={`/paiement?mode=${deliveryMode}&date=${selectedDate}`}
+                    onClick={() => {
+                      localStorage.setItem('af-checkout-cart', JSON.stringify(cartItems));
+                      localStorage.setItem('af-checkout-delivery', JSON.stringify({
+                        mode: deliveryMode,
+                        date: selectedDate,
+                        fee: delivery,
+                        discount,
+                        subtotal,
+                        total,
+                      }));
+                    }}
+                    className="block w-full py-3.5 text-sm uppercase tracking-[0.1em] transition-all bg-[#c4a47a] text-white hover:bg-[#b8956a] text-center"
+                  >
+                    Proceder au paiement
+                  </Link>
+                ) : (
+                  <button
+                    disabled
+                    className="w-full py-3.5 text-sm uppercase tracking-[0.1em] bg-[#e8e0d8] text-[#2d2a26]/30 cursor-not-allowed"
+                  >
+                    {!deliveryMode ? 'Choisissez un mode de livraison' : 'Choisissez une date'}
+                  </button>
+                )}
 
                 {/* Trust badges */}
                 <div className="grid grid-cols-2 gap-3 pt-2">
