@@ -1,42 +1,5 @@
 'use client';
 
-/* ────────────────────────────────────────────────────
-   Configurateur de ruban deuil — effet satin réaliste
-   ──────────────────────────────────────────────────── */
-
-const RIBBON_COLORS = [
-  {
-    id: 'or',
-    name: 'Or',
-    base: '#c4a47a',
-    light: '#ddc9a3',
-    dark: '#9e7e56',
-    highlight: '#f0e0c0',
-    shadow: '#7a6040',
-    textColor: '#ffffff',
-  },
-  {
-    id: 'blanc',
-    name: 'Blanc',
-    base: '#f0ebe4',
-    light: '#faf8f5',
-    dark: '#d8d0c4',
-    highlight: '#ffffff',
-    shadow: '#b8b0a4',
-    textColor: '#c4a47a',
-  },
-  {
-    id: 'violet',
-    name: 'Violet',
-    base: '#4a3662',
-    light: '#6a5082',
-    dark: '#2e1e42',
-    highlight: '#8a70a2',
-    shadow: '#1a1028',
-    textColor: '#d4c4a0',
-  },
-] as const;
-
 interface RibbonConfiguratorProps {
   ribbonText: string;
   setRibbonText: (text: string) => void;
@@ -44,229 +7,133 @@ interface RibbonConfiguratorProps {
   setRibbonColor: (color: string) => void;
 }
 
-export default function RibbonConfigurator({
-  ribbonText,
-  setRibbonText,
-  ribbonColor,
-  setRibbonColor,
-}: RibbonConfiguratorProps) {
-  const c = RIBBON_COLORS.find(c => c.id === ribbonColor) || RIBBON_COLORS[0];
+const colorSchemes: Record<string, { base: string; light: string; dark: string; border: string; text: string; name: string }> = {
+  or: { base: '#c4a47a', light: '#ddc9a3', dark: '#a8885c', border: '#8a6d3b', text: '#4a3520', name: 'Or' },
+  blanc: { base: '#f5f0eb', light: '#ffffff', dark: '#e8e0d8', border: '#c4a47a', text: '#2d2a26', name: 'Blanc' },
+  violet: { base: '#4a3662', light: '#6b5283', dark: '#362648', border: '#c4a47a', text: '#f5f0eb', name: 'Violet' },
+};
 
-  const getFontSize = (text: string) => {
-    const len = text.length;
-    if (len <= 12) return 18;
-    if (len <= 20) return 16;
-    if (len <= 30) return 13;
-    return 11;
-  };
-
-  const uid = `rb-${c.id}`;
+export default function RibbonConfigurator({ ribbonText, setRibbonText, ribbonColor, setRibbonColor }: RibbonConfiguratorProps) {
+  const scheme = colorSchemes[ribbonColor] || colorSchemes.or;
+  const displayText = ribbonText || 'Votre message ici';
+  const fontSize = displayText.length > 30 ? 13 : displayText.length > 20 ? 15 : 18;
 
   return (
-    <div className="space-y-4">
-      <p className="text-[#2d2a26]/60 text-sm">
+    <div className="space-y-5">
+      <p className="text-xs text-[#2d2a26]/40 leading-relaxed">
         Ajoutez un ruban personnalisé à votre composition.
       </p>
 
-      {/* Ribbon Preview */}
-      <div className="flex justify-center py-6">
-        <div className="relative" style={{ width: 370, height: 90 }}>
-          <svg width="370" height="90" viewBox="0 0 370 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              {/* Satin multi-stop vertical gradient */}
-              <linearGradient id={`${uid}-satin`} x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={c.highlight} stopOpacity="0.4"/>
-                <stop offset="8%" stopColor={c.light}/>
-                <stop offset="20%" stopColor={c.base}/>
-                <stop offset="35%" stopColor={c.light} stopOpacity="0.9"/>
-                <stop offset="50%" stopColor={c.base}/>
-                <stop offset="65%" stopColor={c.dark} stopOpacity="0.95"/>
-                <stop offset="78%" stopColor={c.base}/>
-                <stop offset="90%" stopColor={c.light} stopOpacity="0.85"/>
-                <stop offset="100%" stopColor={c.dark} stopOpacity="0.7"/>
-              </linearGradient>
-              {/* Horizontal sheen */}
-              <linearGradient id={`${uid}-sheen`} x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0"/>
-                <stop offset="15%" stopColor="#ffffff" stopOpacity="0.06"/>
-                <stop offset="35%" stopColor="#ffffff" stopOpacity="0.18"/>
-                <stop offset="50%" stopColor="#ffffff" stopOpacity="0.08"/>
-                <stop offset="65%" stopColor="#ffffff" stopOpacity="0.15"/>
-                <stop offset="85%" stopColor="#ffffff" stopOpacity="0.05"/>
-                <stop offset="100%" stopColor="#ffffff" stopOpacity="0"/>
-              </linearGradient>
-              {/* Diagonal sheen for satin silk effect */}
-              <linearGradient id={`${uid}-diag`} x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stopColor="#ffffff" stopOpacity="0"/>
-                <stop offset="40%" stopColor="#ffffff" stopOpacity="0.12"/>
-                <stop offset="60%" stopColor="#ffffff" stopOpacity="0"/>
-                <stop offset="100%" stopColor="#ffffff" stopOpacity="0.05"/>
-              </linearGradient>
-              {/* Drop shadow */}
-              <filter id={`${uid}-shadow`} x="-5%" y="-10%" width="110%" height="130%">
-                <feDropShadow dx="0" dy="3" stdDeviation="4" floodColor="#000000" floodOpacity="0.18"/>
-              </filter>
-              {/* Subtle inner glow */}
-              <filter id={`${uid}-inner`}>
-                <feGaussianBlur in="SourceAlpha" stdDeviation="2" result="blur"/>
-                <feOffset dx="0" dy="1"/>
-                <feComposite in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1"/>
-                <feFlood floodColor="#000000" floodOpacity="0.08"/>
-                <feComposite operator="in" in2="blur"/>
-                <feMerge>
-                  <feMergeNode/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-              {/* Text gold emboss */}
-              <filter id={`${uid}-emboss`}>
-                <feDropShadow dx="0" dy="0.5" stdDeviation="0.3" floodColor="#000000" floodOpacity="0.25"/>
-                <feDropShadow dx="0" dy="-0.3" stdDeviation="0.2" floodColor="#ffffff" floodOpacity="0.15"/>
-              </filter>
-            </defs>
+      {/* Preview du ruban */}
+      <div className="flex justify-center py-4">
+        <svg viewBox="0 0 400 70" className="w-full max-w-[400px]" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            {/* Satin gradient */}
+            <linearGradient id={`satin-${ribbonColor}`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={scheme.light} stopOpacity="0.6" />
+              <stop offset="15%" stopColor={scheme.base} />
+              <stop offset="50%" stopColor={scheme.light} stopOpacity="0.3" />
+              <stop offset="55%" stopColor={scheme.base} />
+              <stop offset="100%" stopColor={scheme.dark} />
+            </linearGradient>
+            {/* Sheen overlay */}
+            <linearGradient id={`sheen-${ribbonColor}`} x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0" />
+              <stop offset="30%" stopColor="#ffffff" stopOpacity="0.08" />
+              <stop offset="50%" stopColor="#ffffff" stopOpacity="0.15" />
+              <stop offset="70%" stopColor="#ffffff" stopOpacity="0.08" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+            </linearGradient>
+            {/* Shadow */}
+            <filter id="ribbonShadow">
+              <feDropShadow dx="0" dy="2" stdDeviation="3" floodOpacity="0.15" />
+            </filter>
+          </defs>
 
-            {/* Main ribbon body — wavy/draped shape */}
-            <path
-              d={`
-                M 18 12
-                Q 50 6, 100 10
-                Q 185 18, 270 10
-                Q 320 6, 352 12
-                L 356 16
-                Q 340 14, 310 17
-                Q 185 28, 60 17
-                Q 30 14, 14 16
-                Z
-              `}
-              fill={`url(#${uid}-satin)`}
-              filter={`url(#${uid}-shadow)`}
-            />
-            <path
-              d={`
-                M 14 16
-                Q 30 14, 60 17
-                Q 185 28, 310 17
-                Q 340 14, 356 16
-                L 354 72
-                Q 330 76, 280 73
-                Q 185 65, 90 73
-                Q 40 76, 16 72
-                Z
-              `}
-              fill={`url(#${uid}-satin)`}
-            />
+          {/* Main ribbon body */}
+          <rect x="10" y="10" width="380" height="50" rx="1" fill={`url(#satin-${ribbonColor})`} filter="url(#ribbonShadow)" />
+          
+          {/* Satin sheen */}
+          <rect x="10" y="10" width="380" height="50" rx="1" fill={`url(#sheen-${ribbonColor})`} />
 
-            {/* Sheen overlays */}
-            <path
-              d="M 14 16 Q 30 14, 60 17 Q 185 28, 310 17 Q 340 14, 356 16 L 354 72 Q 330 76, 280 73 Q 185 65, 90 73 Q 40 76, 16 72 Z"
-              fill={`url(#${uid}-sheen)`}
-            />
-            <path
-              d="M 14 16 Q 30 14, 60 17 Q 185 28, 310 17 Q 340 14, 356 16 L 354 72 Q 330 76, 280 73 Q 185 65, 90 73 Q 40 76, 16 72 Z"
-              fill={`url(#${uid}-diag)`}
-            />
+          {/* Top ornamental border */}
+          <rect x="10" y="10" width="380" height="1.5" fill={scheme.border} opacity="0.6" />
+          <rect x="10" y="14" width="380" height="0.5" fill={scheme.border} opacity="0.3" />
+          {/* Ornamental pattern top */}
+          {Array.from({ length: 38 }).map((_, i) => (
+            <g key={`top-${i}`} opacity="0.35">
+              <circle cx={20 + i * 10} cy={16.5} r="1.2" fill="none" stroke={scheme.border} strokeWidth="0.4" />
+              <path d={`M${15 + i * 10},17.5 Q${20 + i * 10},15.5 ${25 + i * 10},17.5`} fill="none" stroke={scheme.border} strokeWidth="0.3" />
+            </g>
+          ))}
+          
+          {/* Bottom ornamental border */}
+          <rect x="10" y="58.5" width="380" height="1.5" fill={scheme.border} opacity="0.6" />
+          <rect x="10" y="55.5" width="380" height="0.5" fill={scheme.border} opacity="0.3" />
+          {/* Ornamental pattern bottom */}
+          {Array.from({ length: 38 }).map((_, i) => (
+            <g key={`bot-${i}`} opacity="0.35">
+              <circle cx={20 + i * 10} cy={53.5} r="1.2" fill="none" stroke={scheme.border} strokeWidth="0.4" />
+              <path d={`M${15 + i * 10},52.5 Q${20 + i * 10},54.5 ${25 + i * 10},52.5`} fill="none" stroke={scheme.border} strokeWidth="0.3" />
+            </g>
+          ))}
 
-            {/* Fold crease lines */}
-            <path d="M 90 17 Q 88 44, 90 73" stroke={c.shadow} strokeWidth="0.4" opacity="0.12" fill="none"/>
-            <path d="M 280 17 Q 282 44, 280 73" stroke={c.shadow} strokeWidth="0.4" opacity="0.12" fill="none"/>
-            {/* Subtle horizontal highlights */}
-            <path d="M 60 30 Q 185 24, 310 30" stroke={c.highlight} strokeWidth="0.5" opacity="0.15" fill="none"/>
-            <path d="M 60 58 Q 185 64, 310 58" stroke={c.highlight} strokeWidth="0.5" opacity="0.1" fill="none"/>
+          {/* Inner decorative lines */}
+          <rect x="15" y="19" width="370" height="0.3" fill={scheme.border} opacity="0.2" />
+          <rect x="15" y="51" width="370" height="0.3" fill={scheme.border} opacity="0.2" />
 
-            {/* Top fold band */}
-            <path
-              d="M 18 12 Q 50 6, 100 10 Q 185 18, 270 10 Q 320 6, 352 12 L 356 16 Q 340 14, 310 17 Q 185 28, 60 17 Q 30 14, 14 16 Z"
-              fill={`url(#${uid}-sheen)`}
-              opacity="0.5"
-            />
-
-            {/* Left V-cut fringe */}
-            <path d={`M 18 12 L 4 6 L 14 16 L 4 26 L 18 20`} fill={`url(#${uid}-satin)`} opacity="0.85"/>
-            <path d={`M 16 58 L 2 52 L 12 62 L 2 72 L 16 66`} fill={`url(#${uid}-satin)`} opacity="0.85"/>
-            <path d={`M 16 66 L 2 72 L 16 78`} fill={`url(#${uid}-satin)`} opacity="0.7"/>
-
-            {/* Right V-cut fringe */}
-            <path d={`M 352 12 L 366 6 L 356 16 L 366 26 L 352 20`} fill={`url(#${uid}-satin)`} opacity="0.85"/>
-            <path d={`M 354 58 L 368 52 L 358 62 L 368 72 L 354 66`} fill={`url(#${uid}-satin)`} opacity="0.85"/>
-            <path d={`M 354 66 L 368 72 L 354 78`} fill={`url(#${uid}-satin)`} opacity="0.7"/>
-
-            {/* Border highlight */}
-            <path
-              d="M 18 12 Q 50 6, 100 10 Q 185 18, 270 10 Q 320 6, 352 12"
-              stroke={c.highlight}
-              strokeWidth="0.6"
-              opacity="0.25"
-              fill="none"
-            />
-            <path
-              d="M 16 72 Q 40 76, 90 73 Q 185 65, 280 73 Q 330 76, 354 72"
-              stroke={c.shadow}
-              strokeWidth="0.5"
-              opacity="0.15"
-              fill="none"
-            />
-          </svg>
-
-          {/* Text overlay */}
-          <div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ paddingTop: 10, paddingLeft: 30, paddingRight: 30 }}
+          {/* Text */}
+          <text
+            x="200"
+            y="38"
+            textAnchor="middle"
+            dominantBaseline="central"
+            fontFamily="'Cormorant Garamond', Georgia, serif"
+            fontSize={fontSize}
+            fontWeight="600"
+            letterSpacing="3"
+            fill={scheme.text}
           >
-            <span
-              className="text-center leading-tight italic block overflow-hidden whitespace-nowrap"
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: getFontSize(ribbonText),
-                color: c.textColor,
-                textShadow: `0 1px 2px rgba(0,0,0,0.18), 0 0 4px ${c.id === 'blanc' ? 'rgba(196,164,122,0.2)' : 'rgba(255,255,255,0.08)'}`,
-                filter: `url(#${uid}-emboss)`,
-                maxWidth: 290,
-                textOverflow: 'ellipsis',
-              }}
-            >
-              {ribbonText || 'Votre message ici'}
-            </span>
-          </div>
-        </div>
+            {displayText.toUpperCase()}
+          </text>
+        </svg>
       </div>
 
-      {/* Color choice */}
+      {/* Choix couleur */}
       <div>
-        <p className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40 mb-2">Couleur du ruban</p>
-        <div className="flex gap-3">
-          {RIBBON_COLORS.map((color) => (
+        <p className="text-[10px] uppercase tracking-[0.15em] text-[#2d2a26]/40 mb-2">Couleur du ruban</p>
+        <div className="flex gap-2">
+          {Object.entries(colorSchemes).map(([key, val]) => (
             <button
-              key={color.id}
-              onClick={() => setRibbonColor(color.id)}
+              key={key}
+              onClick={() => setRibbonColor(key)}
               className={`flex items-center gap-2 px-4 py-2.5 border transition-all text-sm ${
-                ribbonColor === color.id
+                ribbonColor === key
                   ? 'border-[#c4a47a] bg-[#c4a47a]/5'
                   : 'border-[#e8e0d8] hover:border-[#c4a47a]/50'
               }`}
             >
               <span
                 className="w-4 h-4 border border-[#e8e0d8]"
-                style={{ backgroundColor: color.base }}
+                style={{ backgroundColor: val.base }}
               />
-              <span className="text-[#2d2a26]/70">{color.name}</span>
+              {val.name}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Text input */}
+      {/* Input texte */}
       <div>
-        <p className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40 mb-2">Texte du ruban</p>
+        <p className="text-[10px] uppercase tracking-[0.15em] text-[#2d2a26]/40 mb-2">Texte du ruban</p>
         <input
           type="text"
           value={ribbonText}
-          onChange={(e) => {
-            if (e.target.value.length <= 40) setRibbonText(e.target.value);
-          }}
+          onChange={(e) => setRibbonText(e.target.value.slice(0, 40))}
           placeholder="À notre père adoré"
-          className="w-full px-3 py-2.5 border border-[#e8e0d8] text-sm text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors placeholder:text-[#2d2a26]/25"
+          className="w-full px-3 py-2.5 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors placeholder:text-[#2d2a26]/25"
         />
-        <p className="text-[10px] text-[#2d2a26]/30 text-right mt-1">{ribbonText.length}/40</p>
+        <p className="text-[10px] text-right mt-1 text-[#2d2a26]/30">{ribbonText.length}/40</p>
       </div>
     </div>
   );
