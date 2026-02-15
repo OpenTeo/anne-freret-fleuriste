@@ -10,7 +10,7 @@ export default function TopBanner() {
   return (
     <div className="bg-[#2d2a26] text-white text-center py-2 px-4 relative z-[60]">
       <p className="text-[11px] md:text-xs tracking-wide">
-        Livraison offerte dès 60€ d'achat · Code <span className="text-[#c4a47a] font-medium">BIENVENUE10</span> = -10% sur votre 1ère commande
+        Livraison offerte dès 60€ d'achat · <span className="text-[#c4a47a]">-10% sur votre 1ère commande</span> — inscrivez-vous !
       </p>
       <button 
         onClick={() => setVisible(false)}
