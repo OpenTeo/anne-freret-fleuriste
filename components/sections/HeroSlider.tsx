@@ -96,7 +96,7 @@ export default function HeroSlider() {
 
   return (
     <div 
-      className="relative w-full h-[75vh] md:h-[85vh] overflow-hidden"
+      className="relative w-full h-[calc(100svh-7rem)] md:h-[calc(100vh-5rem)] overflow-hidden"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -115,8 +115,10 @@ export default function HeroSlider() {
         >
           {/* Slide graphique abonnement */}
           {'isGraphic' in slide && slide.isGraphic ? (
-            <div className="w-full h-full bg-[#faf8f5] flex items-center justify-center px-5 md:px-16">
-              <div className={`max-w-4xl w-full text-center transition-all duration-700 ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className="w-full h-full relative flex items-center justify-center px-5 md:px-16">
+              <img src="https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="" className="absolute inset-0 w-full h-full object-cover opacity-15" />
+              <div className="absolute inset-0 bg-[#faf8f5]/90" />
+              <div className={`relative z-10 max-w-4xl w-full text-center transition-all duration-700 ${i === current ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <p className="text-[#c4a47a] text-[10px] md:text-[11px] tracking-[0.3em] uppercase mb-3 md:mb-4">Nouveau</p>
                 <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-[#2d2a26] mb-3 md:mb-4">L&apos;Abonnement Floral</h2>
                 <p className="text-[#2d2a26]/50 text-sm md:text-base mb-6 md:mb-8 max-w-md mx-auto">Des fleurs fraîches de saison livrées chez vous, chaque mois</p>
