@@ -9,9 +9,30 @@ export default function NewsletterPopup() {
 
   useEffect(() => {
     const dismissed = localStorage.getItem('newsletter-dismissed');
-    if (dismissed) return;
-    const timer = setTimeout(() => setShow(true), 1500);
-    return () => clearTimeout(timer);
+    if (!dismissed) {
+      const timer = setTimeout(() => setShow(true), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  // Expose global function to reopen popup
+  useEffect(() => {
+    (window as unknown as Record<string, unknown>).__openNewsletter = () => {
+      setSubmitted(false);
+      setEmail('');
+      setShow(true);
+    };
+  }, []);
+
+  // Listen for custom event (from banner click)
+  useEffect(() => {
+    const handler = () => {
+      setSubmitted(false);
+      setEmail('');
+      setShow(true);
+    };
+    window.addEventListener('open-newsletter', handler);
+    return () => window.removeEventListener('open-newsletter', handler);
   }, []);
 
   const handleClose = () => {
@@ -31,12 +52,8 @@ export default function NewsletterPopup() {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={handleClose} />
-      
-      {/* Modal */}
       <div className="relative bg-[#faf8f5] max-w-md w-full p-8 md:p-10 shadow-2xl">
-        {/* Close */}
         <button 
           onClick={handleClose}
           className="absolute top-4 right-4 text-[#2d2a26]/40 hover:text-[#2d2a26] transition-colors"
@@ -48,7 +65,6 @@ export default function NewsletterPopup() {
 
         {!submitted ? (
           <>
-            {/* Icon */}
             <div className="text-center mb-6">
               <div className="w-16 h-16 mx-auto mb-4 bg-[#c4a47a]/10 rounded-full flex items-center justify-center">
                 <svg className="w-8 h-8 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -63,8 +79,6 @@ export default function NewsletterPopup() {
                 Inscrivez-vous à notre newsletter et recevez votre code promo par email. Conseils floraux et nouveautés en exclusivité.
               </p>
             </div>
-
-            {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-3">
               <input
                 type="email"
@@ -81,7 +95,6 @@ export default function NewsletterPopup() {
                 Recevoir mon code -10%
               </button>
             </form>
-
             <p className="text-[10px] text-[#2d2a26]/30 text-center mt-4">
               En vous inscrivant, vous acceptez de recevoir nos emails. Désabonnement possible à tout moment.
             </p>
