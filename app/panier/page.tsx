@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import DeliveryCalculator from '@/components/ui/DeliveryCalculator';
 
 const initialCartItems = [
   {
@@ -36,6 +37,8 @@ export default function Panier() {
   const [cardMessage, setCardMessage] = useState('');
   const [selectedCardDesign, setSelectedCardDesign] = useState<string | null>(null);
   const [deliveryMode, setDeliveryMode] = useState<DeliveryMode>(null);
+  const [localDeliveryFee, setLocalDeliveryFee] = useState(0);
+  const [localDeliveryCity, setLocalDeliveryCity] = useState('');
   const [selectedDate, setSelectedDate] = useState<string>('');
   const [calendarMonth, setCalendarMonth] = useState(() => {
     const now = new Date();
@@ -62,7 +65,7 @@ export default function Panier() {
   const getDeliveryFee = () => {
     if (!deliveryMode) return 0;
     if (subtotal >= 60) return 0;
-    return deliveryMode === 'local' ? 8 : 17.90;
+    return deliveryMode === 'local' ? localDeliveryFee : 17.90;
   };
   
   const delivery = getDeliveryFee();
@@ -278,63 +281,114 @@ export default function Panier() {
                   
                   <div className="space-y-2">
                     {/* Local */}
-                    <button
-                      onClick={() => setDeliveryMode('local')}
-                      className={`w-full text-left p-4 border transition-all ${
-                        deliveryMode === 'local' 
-                          ? 'border-[#c4a47a] bg-[#c4a47a]/5' 
-                          : 'border-[#e8e0d8] hover:border-[#c4a47a]/50'
-                      }`}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className={`w-4 h-4 rounded-full border-2 mt-0.5 flex-shrink-0 flex items-center justify-center ${
-                          deliveryMode === 'local' ? 'border-[#c4a47a]' : 'border-[#e8e0d8]'
-                        }`}>
-                          {deliveryMode === 'local' && <div className="w-2 h-2 rounded-full bg-[#c4a47a]" />}
-                        </div>
-                        <div className="flex-grow">
-                          <div className="flex items-center justify-between">
-                            <p className="text-sm text-[#2d2a26] font-medium">Livraison locale</p>
-                            <p className="text-sm text-[#c4a47a]">{subtotal >= 60 ? 'Gratuit' : 'Dès 6€'}</p>
+                    <div className={`border transition-all ${
+                      deliveryMode === 'local' 
+                        ? 'border-[#c4a47a] bg-[#c4a47a]/5' 
+                        : 'border-[#e8e0d8] hover:border-[#c4a47a]/50'
+                    }`}>
+                      <button
+                        onClick={() => setDeliveryMode('local')}
+                        className="w-full text-left p-4"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className={`w-4 h-4 rounded-full border-2 mt-0.5 flex-shrink-0 flex items-center justify-center ${
+                            deliveryMode === 'local' ? 'border-[#c4a47a]' : 'border-[#e8e0d8]'
+                          }`}>
+                            {deliveryMode === 'local' && <div className="w-2 h-2 rounded-full bg-[#c4a47a]" />}
                           </div>
-                          <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
-                            Livrée à la main dans un rayon de 35 km autour de Saint-Pair-sur-Mer. Livraison le jour même si commandé avant 14h.
-                          </p>
+                          <div className="flex-grow">
+                            <div className="flex items-center justify-between">
+                              <p className="text-sm text-[#2d2a26] font-medium">Livraison locale</p>
+                              <p className="text-sm text-[#c4a47a]">{subtotal >= 60 ? 'Offerte' : 'Dès 6€'}</p>
+                            </div>
+                            <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
+                              Livrée à la main · Rayon 35 km · Saint-Pair-sur-Mer
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </button>
+                      </button>
+                      
+                      {/* Tarifs locaux + calculateur */}
+                      {deliveryMode === 'local' && (
+                        <div className="px-4 pb-4 space-y-3">
+                          <div className="border-t border-[#c4a47a]/20 pt-3">
+                            {/* Grille tarifs */}
+                            <div className="grid grid-cols-3 gap-2 mb-3">
+                              {[
+                                { dist: '0-5 km', price: '6€' },
+                                { dist: '5-10 km', price: '8€' },
+                                { dist: '10-35 km', price: '10€' },
+                              ].map(t => (
+                                <div key={t.dist} className="text-center py-2 bg-white border border-[#e8e0d8]/50">
+                                  <p className="text-[10px] text-[#2d2a26]/40 uppercase tracking-wider">{t.dist}</p>
+                                  <p className="text-sm text-[#2d2a26] font-medium mt-0.5">{t.price}</p>
+                                </div>
+                              ))}
+                            </div>
+                            {subtotal >= 60 && (
+                              <p className="text-[10px] text-[#c4a47a] mb-3">Livraison offerte — votre commande dépasse 60€</p>
+                            )}
+                            {/* Recherche ville */}
+                            <p className="text-[10px] uppercase tracking-[0.1em] text-[#2d2a26]/30 mb-2">Vérifier votre ville</p>
+                            <DeliveryCalculator
+                              onDeliveryChange={(fee, _time, _type) => {
+                                setLocalDeliveryFee(fee);
+                                setLocalDeliveryCity('confirmed');
+                              }}
+                              showMap={false}
+                              className="text-sm"
+                            />
+                          </div>
+                        </div>
+                      )}
+                    </div>
 
                     {/* National */}
-                    <button
-                      onClick={() => !hasDeuil && setDeliveryMode('national')}
-                      disabled={hasDeuil}
-                      className={`w-full text-left p-4 border transition-all ${
-                        hasDeuil ? 'opacity-40 cursor-not-allowed border-[#e8e0d8]' :
-                        deliveryMode === 'national' 
-                          ? 'border-[#c4a47a] bg-[#c4a47a]/5' 
-                          : 'border-[#e8e0d8] hover:border-[#c4a47a]/50'
-                      }`}
-                    >
-                      <div className="flex items-start gap-3">
-                        <div className={`w-4 h-4 rounded-full border-2 mt-0.5 flex-shrink-0 flex items-center justify-center ${
-                          deliveryMode === 'national' ? 'border-[#c4a47a]' : 'border-[#e8e0d8]'
-                        }`}>
-                          {deliveryMode === 'national' && <div className="w-2 h-2 rounded-full bg-[#c4a47a]" />}
-                        </div>
-                        <div className="flex-grow">
-                          <div className="flex items-center justify-between">
-                            <p className="text-sm text-[#2d2a26] font-medium">Livraison en France</p>
-                            <p className="text-sm text-[#c4a47a]">{subtotal >= 60 ? 'Gratuit' : '17.90€'}</p>
+                    <div className={`border transition-all ${
+                      hasDeuil ? 'opacity-40 cursor-not-allowed border-[#e8e0d8]' :
+                      deliveryMode === 'national' 
+                        ? 'border-[#c4a47a] bg-[#c4a47a]/5' 
+                        : 'border-[#e8e0d8] hover:border-[#c4a47a]/50'
+                    }`}>
+                      <button
+                        onClick={() => !hasDeuil && setDeliveryMode('national')}
+                        disabled={hasDeuil}
+                        className="w-full text-left p-4"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className={`w-4 h-4 rounded-full border-2 mt-0.5 flex-shrink-0 flex items-center justify-center ${
+                            deliveryMode === 'national' ? 'border-[#c4a47a]' : 'border-[#e8e0d8]'
+                          }`}>
+                            {deliveryMode === 'national' && <div className="w-2 h-2 rounded-full bg-[#c4a47a]" />}
                           </div>
-                          <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
-                            Expédition par Colissimo partout en France métropolitaine. Livraison sous 24 à 48h.
-                          </p>
-                          {hasDeuil && (
-                            <p className="text-[10px] text-red-400 mt-1">Les compositions de deuil sont livrées localement uniquement.</p>
-                          )}
+                          <div className="flex-grow">
+                            <div className="flex items-center justify-between">
+                              <p className="text-sm text-[#2d2a26] font-medium">Livraison en France</p>
+                              <p className="text-sm text-[#c4a47a]">{subtotal >= 60 ? 'Offerte' : '17.90€'}</p>
+                            </div>
+                            <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
+                              Colissimo · France métropolitaine · 24 à 48h
+                            </p>
+                            {hasDeuil && (
+                              <p className="text-[10px] text-red-400 mt-1">Les compositions de deuil sont livrées localement uniquement.</p>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    </button>
+                      </button>
+                      {deliveryMode === 'national' && (
+                        <div className="px-4 pb-4">
+                          <div className="border-t border-[#c4a47a]/20 pt-3">
+                            <div className="text-center py-2 bg-white border border-[#e8e0d8]/50">
+                              <p className="text-[10px] text-[#2d2a26]/40 uppercase tracking-wider">Tarif unique</p>
+                              <p className="text-sm text-[#2d2a26] font-medium mt-0.5">{subtotal >= 60 ? <span className="text-[#c4a47a]">Offerte</span> : '17.90€'}</p>
+                            </div>
+                            {subtotal >= 60 && (
+                              <p className="text-[10px] text-[#c4a47a] mt-2">Livraison offerte — votre commande dépasse 60€</p>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
 
