@@ -5,18 +5,14 @@ import { featuredProducts } from '@/lib/mock-data';
 import ProductCard from '@/components/ui/ProductCard';
 
 const FeaturedProducts = () => {
-  const products = featuredProducts.slice(0, 8);
-  
-  // Group by category, keep order
-  const grouped: { category: string; items: typeof products }[] = [];
-  for (const product of products) {
-    const existing = grouped.find(g => g.category === product.category);
-    if (existing) {
-      existing.items.push(product);
-    } else {
-      grouped.push({ category: product.category, items: [product] });
-    }
-  }
+  // Show specific categories in order, skip Deuil on homepage
+  const showCategories = ['Bouquets', 'Plantes', 'Mariages'];
+  const grouped = showCategories
+    .map(cat => ({
+      category: cat,
+      items: featuredProducts.filter(p => p.category === cat).slice(0, 4)
+    }))
+    .filter(g => g.items.length > 0);
 
   return (
     <section className="py-24 md:py-32 bg-[#faf8f5]">

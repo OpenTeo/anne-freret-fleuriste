@@ -30,10 +30,8 @@ export interface Product {
 export const categories = [
   'Bouquets',
   'Plantes',
-  'Fleurs séchées',
   'Mariages',
   'Deuil & Hommages',
-  'Compositions',
 ];
 
 export const mockProducts: Product[] = [
@@ -274,7 +272,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
       'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
     ],
-    category: 'Compositions',
+    category: 'Bouquets',
     description: 'Faites confiance à notre expertise ! Nous créons pour vous un bouquet unique selon nos inspirations du moment.',
     slug: 'le-choix-du-fleuriste',
     featured: true,
@@ -356,7 +354,7 @@ export const mockProducts: Product[] = [
       'https://fleuriste-annefreret.com/cdn/shop/files/279170543_782557459396911_8647938960483584919_n-min_1024x1024_crop_center.jpg',
       'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
     ],
-    category: 'Fleurs séchées',
+    category: 'Bouquets',
     description: 'Nos "Box Mariage" se composent d\'un bouquet et d\'un peigne pour la mariée et d\'une boutonnière assortie pour le marié. Bouquet : 20cm de diamètre pour 25cm de hauteur, finition cordelette. Composition : Amarante, miscanthus, phalaris, grain d\'aneth, limonium, gypsophile, lagurus, stipa. Fleurs séchées.',
     slug: 'box-champetre-lila',
     featured: true,
@@ -376,7 +374,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_6af69be8-d1fe-44a6-9936-308639ed93d2.png?v=1684426912',
       'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
     ],
-    category: 'Fleurs séchées',
+    category: 'Bouquets',
     description: 'Nos "Box Mariage" se composent d\'un bouquet et d\'un peigne pour la mariée et d\'une boutonnière assortie pour le marié. Bouquet : 25cm de diamètre pour 30cm de hauteur, finition cordelette. Une composition exotique et colorée pour un mariage dépaysant.',
     slug: 'box-mariage-exotique',
     featured: true,
@@ -396,7 +394,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_9527aac4-f297-4808-945b-908cf90e1a8e.png?v=1684426619',
       'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
     ],
-    category: 'Fleurs séchées',
+    category: 'Bouquets',
     description: 'Nos "Box Mariage" se composent d\'un bouquet et d\'un peigne pour la mariée et d\'une boutonnière assortie pour le marié. Bouquet : 20cm de diamètre pour 25cm de hauteur, finition cordelette. Inspiration marine pour une cérémonie en bord de mer.',
     slug: 'box-mariage-sur-la-plage',
     featured: true,
@@ -555,6 +553,95 @@ export const mockProducts: Product[] = [
       { name: 'Blanc' },
       { name: 'Rose' }
     ]
+  },
+  // PLANTES
+  {
+    id: '23',
+    name: 'Monstera Deliciosa',
+    price: 34.90,
+    image: 'https://images.pexels.com/photos/3125195/pexels-photo-3125195.jpeg?auto=compress&cs=tinysrgb&w=800',
+    images: [
+      'https://images.pexels.com/photos/3125195/pexels-photo-3125195.jpeg?auto=compress&cs=tinysrgb&w=800',
+      'https://images.pexels.com/photos/3125195/pexels-photo-3125195.jpeg?auto=compress&cs=tinysrgb&w=800',
+    ],
+    category: 'Plantes',
+    description: 'Le Monstera Deliciosa, star des intérieurs contemporains, séduit par ses feuilles découpées spectaculaires. Facile d\'entretien, il apporte une touche tropicale et purife l\'air naturellement. Livré dans un pot en céramique artisanale.',
+    slug: 'monstera-deliciosa',
+    featured: true,
+    inStock: true,
+    rating: 4.8,
+    reviewCount: 22,
+    tags: ['tropical', 'intérieur', 'dépolluante', 'céramique'],
+    sizes: [
+      { name: 'Petit (40cm)', price: 34.90 },
+      { name: 'Moyen (60cm)', price: 49.90 },
+      { name: 'Grand (80cm)', price: 69.90 }
+    ]
+  },
+  {
+    id: '24',
+    name: 'Olivier d\'ornement',
+    price: 44.90,
+    image: 'https://images.pexels.com/photos/4505166/pexels-photo-4505166.jpeg?auto=compress&cs=tinysrgb&w=800',
+    images: [
+      'https://images.pexels.com/photos/4505166/pexels-photo-4505166.jpeg?auto=compress&cs=tinysrgb&w=800',
+    ],
+    category: 'Plantes',
+    description: 'Symbole de paix et de longévité, cet olivier d\'ornement apporte une élégance méditerranéenne à votre intérieur. Son feuillage argenté et son tronc noueux en font une pièce décorative unique. Livré dans un cache-pot en terre cuite.',
+    slug: 'olivier-ornement',
+    featured: true,
+    inStock: true,
+    rating: 4.7,
+    reviewCount: 15,
+    tags: ['méditerranéen', 'élégant', 'longévité', 'terre cuite'],
+    sizes: [
+      { name: 'Petit (35cm)', price: 44.90 },
+      { name: 'Moyen (50cm)', price: 64.90 },
+      { name: 'Grand (70cm)', price: 89.90 }
+    ]
+  },
+  {
+    id: '25',
+    name: 'Ficus Lyrata',
+    price: 39.90,
+    image: 'https://images.pexels.com/photos/6208087/pexels-photo-6208087.jpeg?auto=compress&cs=tinysrgb&w=800',
+    images: [
+      'https://images.pexels.com/photos/6208087/pexels-photo-6208087.jpeg?auto=compress&cs=tinysrgb&w=800',
+    ],
+    category: 'Plantes',
+    description: 'Le Ficus Lyrata, aussi appelé figuier lyre, impressionne par ses grandes feuilles brillantes en forme de violon. Véritable sculpture végétale, il transforme n\'importe quel espace en jardin d\'intérieur luxuriant.',
+    slug: 'ficus-lyrata',
+    featured: false,
+    inStock: true,
+    rating: 4.6,
+    reviewCount: 18,
+    tags: ['sculptural', 'intérieur', 'luxuriant', 'design'],
+    sizes: [
+      { name: 'Petit (45cm)', price: 39.90 },
+      { name: 'Moyen (70cm)', price: 59.90 },
+      { name: 'Grand (100cm)', price: 89.90 }
+    ]
+  },
+  {
+    id: '26',
+    name: 'Trio de succulentes',
+    price: 24.90,
+    image: 'https://images.pexels.com/photos/1470171/pexels-photo-1470171.jpeg?auto=compress&cs=tinysrgb&w=800',
+    images: [
+      'https://images.pexels.com/photos/1470171/pexels-photo-1470171.jpeg?auto=compress&cs=tinysrgb&w=800',
+    ],
+    category: 'Plantes',
+    description: 'Trio de succulentes soigneusement sélectionnées, présentées dans de petits pots en béton. Quasi-indestructibles et graphiques, elles sont parfaites pour offrir ou pour décorer un bureau, une étagère ou un rebord de fenêtre.',
+    slug: 'trio-succulentes',
+    featured: false,
+    inStock: true,
+    rating: 4.9,
+    reviewCount: 26,
+    tags: ['succulentes', 'bureau', 'cadeau', 'graphique'],
+    sizes: [
+      { name: 'Trio classique', price: 24.90 },
+      { name: 'Trio premium (pot céramique)', price: 34.90 }
+    ]
   }
 ];
 
@@ -606,7 +693,7 @@ export const blogPosts = [
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
     slug: 'art-composer-bouquet-champetre',
     date: '2024-02-10',
-    category: 'Compositions',
+    category: 'Bouquets',
     readTime: '5 min de lecture',
     author: 'Anne Freret',
     content: '<p>L\'art de composer un bouquet champêtre réside dans la capacité à capturer l\'essence sauvage de la nature tout en créant une harmonie visuelle délicate. Cette approche florale, qui puise son inspiration dans les champs et les prairies, nécessite une compréhension fine des textures, des couleurs et des formes naturelles.</p>'
