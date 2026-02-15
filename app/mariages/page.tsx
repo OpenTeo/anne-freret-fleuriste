@@ -39,18 +39,7 @@ export default function Mariages() {
       <main className="bg-[#faf8f5] min-h-screen pt-20">
         
         {/* Hero Section */}
-        <section className="py-24 md:py-32">
-          <div 
-            className="absolute inset-0 w-full h-screen"
-            style={{
-              backgroundImage: 'url(https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=1400&q=85)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundAttachment: 'fixed'
-            }}
-          >
-            <div className="absolute inset-0 bg-[#faf8f5]/80" />
-          </div>
+        <section className="py-24 md:py-32 bg-[#faf8f5]">
           
           <div className="container mx-auto px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
