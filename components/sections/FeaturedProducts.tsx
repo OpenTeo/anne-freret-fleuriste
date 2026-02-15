@@ -5,7 +5,18 @@ import { featuredProducts } from '@/lib/mock-data';
 import ProductCard from '@/components/ui/ProductCard';
 
 const FeaturedProducts = () => {
-  const bestSellers = featuredProducts.slice(0, 6);
+  const products = featuredProducts.slice(0, 8);
+  
+  // Group by category, keep order
+  const grouped: { category: string; items: typeof products }[] = [];
+  for (const product of products) {
+    const existing = grouped.find(g => g.category === product.category);
+    if (existing) {
+      existing.items.push(product);
+    } else {
+      grouped.push({ category: product.category, items: [product] });
+    }
+  }
 
   return (
     <section className="py-24 md:py-32 bg-[#faf8f5]">
@@ -28,14 +39,27 @@ const FeaturedProducts = () => {
           </p>
         </div>
 
-        {/* Products Grid - 3 colonnes avec beaucoup d'espace */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-16 mb-16 md:mb-20">
-          {bestSellers.map((product) => (
-            <ProductCard key={product.id} product={product} />
+        {/* Products grouped by category */}
+        <div className="space-y-12 md:space-y-16 mb-16 md:mb-20">
+          {grouped.map((group) => (
+            <div key={group.category}>
+              <div className="flex items-center gap-4 mb-6 md:mb-8">
+                <div className="h-px flex-1 bg-[#e8e0d8]"></div>
+                <h3 className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-[#c4a47a] whitespace-nowrap">
+                  {group.category}
+                </h3>
+                <div className="h-px flex-1 bg-[#e8e0d8]"></div>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-12">
+                {group.items.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* CTA - Lien souligné */}
+        {/* CTA */}
         <div className="text-center">
           <Link 
             href="/boutique"
