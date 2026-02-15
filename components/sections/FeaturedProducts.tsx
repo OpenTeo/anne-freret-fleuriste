@@ -6,7 +6,7 @@ import ProductCard from '@/components/ui/ProductCard';
 
 const FeaturedProducts = () => {
   // Show specific categories in order, skip Deuil on homepage
-  const showCategories = ['Bouquets', 'Plantes', 'Mariages'];
+  const showCategories = ['Bouquets', 'Plantes'];
   const grouped = showCategories
     .map(cat => ({
       category: cat,

@@ -30,7 +30,6 @@ export interface Product {
 export const categories = [
   'Bouquets',
   'Plantes',
-  'Mariages',
   'Deuil & Hommages',
 ];
 
@@ -327,7 +326,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderose2.jpg?v=1625070100',
       'https://fleuriste-annefreret.com/cdn/shop/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798'
     ],
-    category: 'Mariages',
+    category: 'Bouquets',
     description: 'Avec ses tons doux et ses textures aériennes, ce bouquet évoque la beauté naturelle et la sérénité. Composé de roses poudrées, de fleurs sauvages et de feuillages délicats, il capture l\'essence d\'un charme champêtre tout en restant raffiné.',
     slug: 'le-jullouvillais',
     featured: true,
@@ -705,7 +704,7 @@ export const blogPosts = [
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798',
     slug: 'preparer-mariage-guide-floral',
     date: '2024-02-05',
-    category: 'Mariages',
+    category: 'Bouquets',
     readTime: '8 min de lecture',
     author: 'Anne Freret',
     content: '<p>Préparer les décorations florales de votre mariage est un moment privilégié qui nécessite réflexion et anticipation. Des premiers conseils de planification aux derniers détails de la décoration, chaque étape mérite une attention particulière pour créer l\'ambiance de vos rêves.</p>'
