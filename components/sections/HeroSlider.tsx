@@ -22,8 +22,8 @@ const slides = [
   {
     href: '/boutique',
     image: 'https://images.pexels.com/photos/4466260/pexels-photo-4466260.jpeg?auto=compress&cs=tinysrgb&w=1400',
-    subtitle: 'Composition unique du jour',
-    title: 'Le choix du fleuriste',
+    subtitle: 'Sélection de saison',
+    title: 'Le bouquet du mois',
     cta: 'Découvrir →',
   },
   {
@@ -151,11 +151,11 @@ export default function HeroSlider() {
               <img
                 src={slide.image}
                 alt={slide.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-bottom"
               />
               {/* Text content — bandeau blanc en bas pour lisibilité */}
               <div className="absolute bottom-0 left-0 right-0">
-                <div className="bg-white/90 backdrop-blur-sm p-6 md:p-10 pb-14 md:pb-16">
+                <div className="bg-white/90 backdrop-blur-sm p-5 md:p-8 pb-12 md:pb-14">
                   <div className="max-w-4xl">
                     <p 
                       className={`text-[#c4a47a] text-[11px] md:text-xs tracking-[0.25em] uppercase mb-2 md:mb-3 transition-all duration-700 delay-100 ${
