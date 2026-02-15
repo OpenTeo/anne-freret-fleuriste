@@ -46,9 +46,9 @@ export default function ProductPageClient({ params }: ProductPageProps) {
 
   // Calculer le prix actuel avec add-ons
   const addOns = {
-    vase: { name: 'Vase en verre artisanal', price: 19.90, icon: '🏺' },
-    chocolats: { name: 'Boîte de chocolats', price: 14.90, icon: '🍫' },
-    bougie: { name: 'Bougie parfumée', price: 12.90, icon: '🕯️' }
+    vase: { name: 'Vase en verre artisanal', price: 19.90 },
+    chocolats: { name: 'Boîte de chocolats', price: 14.90 },
+    bougie: { name: 'Bougie parfumée', price: 12.90 }
   };
   
   const basePrice = selectedSize?.price || product.price;
@@ -137,12 +137,12 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                   priority
                 />
                 {product.originalPrice && (
-                  <div className="absolute top-4 left-4 bg-[#b8956a] text-white text-sm font-bold px-3 py-1 rounded-full">
+                  <div className="absolute top-4 left-4 bg-[#c4a47a] text-white text-[10px] uppercase tracking-[0.1em] px-2.5 py-1">
                     PROMO
                   </div>
                 )}
                 {product.featured && (
-                  <div className="absolute top-4 right-4 bg-[#b8956a] text-white text-sm font-bold px-3 py-1 rounded-full">
+                  <div className="absolute top-4 right-4 bg-[#c4a47a] text-white text-[10px] uppercase tracking-[0.1em] px-2.5 py-1">
                     Best-seller
                   </div>
                 )}
@@ -228,7 +228,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                       <button
                         key={size.name}
                         onClick={() => setSelectedSize(size)}
-                        className={`px-4 py-3 rounded-full border-2 transition-all font-medium ${
+                        className={`px-4 py-3 border transition-all text-sm ${
                           selectedSize?.name === size.name
                             ? 'border-[#b8956a] bg-[#b8956a] text-white'
                             : 'border-[#e8e0d8] text-[#2d2a26] hover:border-[#b8956a] bg-white'
@@ -250,7 +250,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                       <button
                         key={variant.name}
                         onClick={() => setSelectedVariant(variant)}
-                        className={`px-4 py-3 rounded-full border-2 transition-all font-medium ${
+                        className={`px-4 py-3 border transition-all text-sm ${
                           selectedVariant?.name === variant.name
                             ? 'border-[#b8956a] bg-[#b8956a] text-white'
                             : 'border-[#e8e0d8] text-[#2d2a26] hover:border-[#b8956a] bg-white'
@@ -275,35 +275,32 @@ export default function ProductPageClient({ params }: ProductPageProps) {
 
               {/* 8. Quantité + Bouton "Ajouter au panier" */}
               <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <span className="text-[#2d2a26] font-medium text-lg">Quantité :</span>
-                  <div className="flex items-center space-x-3 bg-white rounded-full border border-[#e8e0d8] p-1">
-                    <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="w-10 h-10 rounded-full bg-[#f5f0eb] text-[#2d2a26] flex items-center justify-center hover:bg-[#e8e0d8] transition-colors"
-                    >
-                      <Minus size={16} />
-                    </button>
-                    <span className="w-12 text-center text-[#2d2a26] font-semibold">
-                      {quantity}
-                    </span>
-                    <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="w-10 h-10 rounded-full bg-[#f5f0eb] text-[#2d2a26] flex items-center justify-center hover:bg-[#e8e0d8] transition-colors"
-                    >
-                      <Plus size={16} />
-                    </button>
+                <div className="flex items-center gap-4">
+                  <span className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40">Quantité</span>
+                  <div className="flex items-center border border-[#e8e0d8] h-10">
+                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-full flex items-center justify-center text-[#2d2a26]/50 hover:text-[#c4a47a] transition-colors">−</button>
+                    <span className="w-10 text-center text-sm text-[#2d2a26]">{quantity}</span>
+                    <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-full flex items-center justify-center text-[#2d2a26]/50 hover:text-[#c4a47a] transition-colors">+</button>
                   </div>
                 </div>
 
-                <div className="flex flex-col lg:flex-row gap-3">
-                  <button className="w-full bg-[#b8956a] text-white font-semibold py-4 px-6 rounded-full hover:bg-[#a07d5a] transition-colors flex items-center justify-center space-x-2 text-lg">
-                    <ShoppingCart size={20} />
-                    <span>Ajouter au panier</span>
+                <div className="flex gap-3">
+                  <button 
+                    onClick={() => {
+                      alert(`${product.name} (${selectedSize?.name || ''}) × ${quantity} ajouté au panier — ${currentPrice.toFixed(2)}€`);
+                    }}
+                    className="flex-grow bg-[#c4a47a] text-white py-3.5 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors flex items-center justify-center gap-2"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    </svg>
+                    Ajouter au panier — {currentPrice.toFixed(2)}€
                   </button>
                   
-                  <button className="lg:w-auto w-full border-2 border-[#b8956a] text-[#b8956a] p-4 rounded-full hover:bg-[#b8956a] hover:text-white transition-colors flex items-center justify-center">
-                    <Heart size={20} />
+                  <button className="w-12 border border-[#e8e0d8] flex items-center justify-center hover:border-[#c4a47a] hover:text-[#c4a47a] transition-colors text-[#2d2a26]/30">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -371,7 +368,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 </AccordionItem>
 
                 {/* Complétez votre cadeau */}
-                <AccordionItem id="addons" title="🎁 Complétez votre cadeau">
+                <AccordionItem id="addons" title="Complétez votre cadeau">
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 gap-3">
                       <div className="bg-[#faf8f5] p-3 rounded-lg border border-[#e8e0d8]">
@@ -385,7 +382,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                           <div className="flex-1">
                             <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-2">
-                                <span className="text-xl">🏺</span>
+                                <svg className="w-5 h-5 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
                                 <span className="font-medium text-[#2d2a26]">Vase en verre artisanal</span>
                               </div>
                               <span className="font-bold text-[#b8956a]">+19,90€</span>
@@ -406,7 +403,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                           <div className="flex-1">
                             <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-2">
-                                <span className="text-xl">🍫</span>
+                                <svg className="w-5 h-5 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21" /></svg>
                                 <span className="font-medium text-[#2d2a26]">Boîte de chocolats</span>
                               </div>
                               <span className="font-bold text-[#b8956a]">+14,90€</span>
@@ -427,7 +424,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                           <div className="flex-1">
                             <div className="flex items-center justify-between">
                               <div className="flex items-center space-x-2">
-                                <span className="text-xl">🕯️</span>
+                                <svg className="w-5 h-5 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}><path strokeLinecap="round" strokeLinejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" /></svg>
                                 <span className="font-medium text-[#2d2a26]">Bougie parfumée</span>
                               </div>
                               <span className="font-bold text-[#b8956a]">+12,90€</span>
@@ -576,10 +573,15 @@ export default function ProductPageClient({ params }: ProductPageProps) {
         </div>
 
         {/* Bouton panier sticky sur mobile */}
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 p-4 bg-[#faf8f5] border-t border-[#e8e0d8] z-50">
-          <button className="w-full bg-[#b8956a] text-white font-semibold py-4 px-6 rounded-full hover:bg-[#a07d5a] transition-colors flex items-center justify-center space-x-2 text-lg">
-            <ShoppingCart size={20} />
-            <span>Ajouter au panier - {currentPrice.toFixed(2)}€</span>
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 p-3 bg-[#faf8f5]/95 backdrop-blur-sm border-t border-[#e8e0d8] z-50">
+          <button 
+            onClick={() => alert(`${product.name} (${selectedSize?.name || ''}) × ${quantity} ajouté au panier — ${currentPrice.toFixed(2)}€`)}
+            className="w-full bg-[#c4a47a] text-white py-3.5 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors flex items-center justify-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+            </svg>
+            Ajouter au panier — {currentPrice.toFixed(2)}€
           </button>
         </div>
       </main>
