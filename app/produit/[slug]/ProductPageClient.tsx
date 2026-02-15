@@ -9,7 +9,7 @@ import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/ui/ProductCard';
 import { mockProducts } from '@/lib/mock-data';
 import { getReviewsForProduct } from '@/lib/reviews-data';
-import { Heart, ShoppingCart, Minus, Plus, Truck, Gift, Shield, Star, ChevronDown } from 'lucide-react';
+// No lucide imports — using inline SVGs for consistency
 
 interface ProductPageProps {
   params: { slug: string };
@@ -109,18 +109,16 @@ export default function ProductPageClient({ params }: ProductPageProps) {
       <Header />
       <main className="min-h-screen bg-[#faf8f5]">
         {/* Breadcrumb - FOND CRÈME */}
-        <div className="bg-[#faf8f5] border-b border-[#e8e0d8] py-4">
+        <div className="bg-[#faf8f5] py-4">
           <div className="container mx-auto px-4">
-            <nav className="text-sm">
-              <Link href="/" className="text-[#2d2a26] hover:text-[#b8956a] transition-colors">Accueil</Link>
-              <span className="mx-2 text-[#2d2a26]">/</span>
-              <Link href="/boutique" className="text-[#2d2a26] hover:text-[#b8956a] transition-colors">Boutique</Link>
-              <span className="mx-2 text-[#2d2a26]">/</span>
-              <Link href={`/boutique?category=${product.category}`} className="text-[#2d2a26] hover:text-[#b8956a] transition-colors">
-                {product.category}
-              </Link>
-              <span className="mx-2 text-[#2d2a26]">/</span>
-              <span className="text-[#b8956a]">{product.name}</span>
+            <nav className="flex items-center gap-2 text-xs text-[#2d2a26]/40">
+              <Link href="/" className="hover:text-[#c4a47a] transition-colors">Accueil</Link>
+              <span>/</span>
+              <Link href="/boutique" className="hover:text-[#c4a47a] transition-colors">Boutique</Link>
+              <span>/</span>
+              <Link href={`/boutique?category=${product.category}`} className="hover:text-[#c4a47a] transition-colors">{product.category}</Link>
+              <span>/</span>
+              <span className="text-[#2d2a26]/60">{product.name}</span>
             </nav>
           </div>
         </div>
@@ -129,7 +127,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* IMAGES (colonne gauche) */}
             <div className="order-1 lg:order-1">
-              <div className="relative aspect-square lg:aspect-square aspect-[3/4] mb-4 rounded-lg overflow-hidden bg-white">
+              <div className="relative aspect-square lg:aspect-square aspect-[3/4] mb-4 overflow-hidden bg-white">
                 <Image
                   src={productImages[selectedImageIndex]}
                   alt={product.name}
@@ -155,8 +153,8 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                     <button
                       key={index}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`relative w-16 h-16 lg:w-20 lg:h-20 rounded-lg overflow-hidden bg-white flex-shrink-0 ${
-                        selectedImageIndex === index ? 'ring-2 ring-[#b8956a]' : 'border border-[#e8e0d8]'
+                      className={`relative w-16 h-16 lg:w-20 lg:h-20 overflow-hidden bg-white flex-shrink-0 ${
+                        selectedImageIndex === index ? 'border-2 border-[#c4a47a]' : 'border border-[#e8e0d8]'
                       }`}
                     >
                       <Image
@@ -174,56 +172,46 @@ export default function ProductPageClient({ params }: ProductPageProps) {
             {/* INFOS PRODUIT (colonne droite) - ORDRE OPTIMISÉ */}
             <div className="order-2 lg:order-2 space-y-6">
               
-              {/* 2. Catégorie */}
-              <div>
-                <span className="text-[#b8956a] font-medium uppercase tracking-wide text-sm">
-                  {product.category}
-                </span>
-              </div>
+              {/* Catégorie */}
+              <p className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a]">
+                {product.category}
+              </p>
 
-              {/* 3. Nom produit */}
-              <div>
-                <h1 className="font-serif text-3xl lg:text-4xl font-bold text-[#2d2a26] leading-tight">
-                  {product.name}
-                </h1>
-              </div>
+              {/* Nom produit */}
+              <h1 className="font-serif text-2xl md:text-3xl text-[#2d2a26] leading-tight -mt-2">
+                {product.name}
+              </h1>
 
-              {/* 4. Avis - étoiles dorées */}
-              <div className="flex items-center space-x-2">
-                <div className="flex space-x-1">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 text-[#b8956a] fill-current"
-                    />
+              {/* Avis */}
+              <div className="flex items-center gap-2 -mt-2">
+                <div className="flex">
+                  {[1,2,3,4,5].map(s => (
+                    <svg key={s} className="w-3.5 h-3.5 text-[#c4a47a]" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
                   ))}
                 </div>
-                <span className="text-[#2d2a26] text-sm">(27 avis)</span>
+                <span className="text-xs text-[#2d2a26]/40">27 avis</span>
               </div>
 
-              {/* 5. Prix - gros, gras */}
+              {/* Prix */}
               <div>
-                <div className="flex items-baseline space-x-3">
-                  <span className="font-bold text-3xl lg:text-4xl text-[#2d2a26]">
+                <div className="flex items-baseline gap-3">
+                  <span className="text-2xl font-serif text-[#2d2a26]">
                     {(product.sizes && product.sizes.length > 1) ? 'Dès ' : ''}{currentPrice.toFixed(2)}€
                   </span>
                   {product.originalPrice && (
-                    <span className="text-xl text-gray-500 line-through">
+                    <span className="text-sm text-[#2d2a26]/30 line-through">
                       {product.originalPrice}€
                     </span>
                   )}
                 </div>
-                {product.originalPrice && (
-                  <p className="text-[#b8956a] text-sm font-medium mt-1">
-                    Économisez {(product.originalPrice - currentPrice).toFixed(2)}€
-                  </p>
-                )}
               </div>
 
               {/* 6. Sélection de taille - JUSTE APRÈS le prix */}
               {product.sizes && (
                 <div>
-                  <h3 className="text-[#2d2a26] font-medium mb-3 text-lg">Taille :</h3>
+                  <h3 className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40 mb-2">Taille</h3>
                   <div className="flex flex-wrap gap-2">
                     {product.sizes.map((size) => (
                       <button
@@ -245,7 +233,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
               {/* Variantes si existantes */}
               {product.variants && (
                 <div>
-                  <h3 className="text-[#2d2a26] font-medium mb-3 text-lg">Variante :</h3>
+                  <h3 className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40 mb-2">Variante</h3>
                   <div className="flex flex-wrap gap-2">
                     {product.variants.map((variant) => (
                       <button
@@ -264,15 +252,13 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 </div>
               )}
 
-              {/* 7. Description courte - 2-3 lignes max */}
-              <div>
-                <p className="text-[#2d2a26] text-lg leading-relaxed">
-                  {product.description.length > 150 
-                    ? product.description.substring(0, 150) + '...'
-                    : product.description
-                  }
-                </p>
-              </div>
+              {/* Description courte */}
+              <p className="text-sm text-[#2d2a26]/60 font-light leading-relaxed">
+                {product.description.length > 150 
+                  ? product.description.substring(0, 150) + '...'
+                  : product.description
+                }
+              </p>
 
               {/* 8. Quantité + Bouton "Ajouter au panier" */}
               <div className="space-y-4">
@@ -342,7 +328,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                         {product.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-3 py-1 bg-[#f5f0eb] text-[#2d2a26] text-sm rounded-full border border-[#e8e0d8]"
+                            className="px-3 py-1 bg-[#f5f0eb] text-[#2d2a26] text-sm border border-[#e8e0d8]/50 text-xs"
                           >
                             {tag}
                           </span>
@@ -362,7 +348,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                       placeholder="Votre message personnalisé..."
                       value={personalMessage}
                       onChange={(e) => setPersonalMessage(e.target.value)}
-                      className="w-full p-3 text-sm border border-[#e8e0d8] rounded-md focus:ring-2 focus:ring-[#b8956a] focus:border-[#b8956a] bg-[#faf8f5]"
+                      className="w-full p-3 text-sm border border-[#e8e0d8] focus:outline-none focus:border-[#c4a47a] bg-white transition-colors"
                       rows={3}
                     />
                   </div>
@@ -372,7 +358,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 <AccordionItem id="addons" title="Complétez votre cadeau">
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 gap-3">
-                      <div className="bg-[#faf8f5] p-3 rounded-lg border border-[#e8e0d8]">
+                      <div className="border border-[#e8e0d8]/50 p-3">
                         <label className="flex items-center space-x-3 cursor-pointer">
                           <input
                             type="checkbox"
@@ -393,7 +379,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                         </label>
                       </div>
 
-                      <div className="bg-[#faf8f5] p-3 rounded-lg border border-[#e8e0d8]">
+                      <div className="border border-[#e8e0d8]/50 p-3">
                         <label className="flex items-center space-x-3 cursor-pointer">
                           <input
                             type="checkbox"
@@ -414,7 +400,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                         </label>
                       </div>
 
-                      <div className="bg-[#faf8f5] p-3 rounded-lg border border-[#e8e0d8]">
+                      <div className="border border-[#e8e0d8]/50 p-3">
                         <label className="flex items-center space-x-3 cursor-pointer">
                           <input
                             type="checkbox"
@@ -440,31 +426,42 @@ export default function ProductPageClient({ params }: ProductPageProps) {
 
                 {/* Livraison */}
                 <AccordionItem id="shipping" title="Livraison">
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-3">
-                        <div className="flex items-center space-x-3">
-                          <svg className="w-4 h-4 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25" /></svg>
-                          <span className="text-sm text-[#2d2a26]">Livraison partout en France</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <svg className="w-4 h-4 text-[#b8a590]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" /></svg>
-                          <span className="text-sm text-[#2d2a26]">Fraîcheur garantie 72h</span>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <span className="text-lg">↩️</span>
-                          <span className="text-sm text-[#2d2a26]">Satisfait ou remplacé</span>
-                        </div>
-                      </div>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <svg className="w-5 h-5 text-[#c4a47a] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25" />
+                      </svg>
                       <div>
-                        <div className="relative aspect-video rounded-lg overflow-hidden bg-[#f5f0eb] border border-[#e8e0d8]">
-                          <Image
-                            src="https://cdn.shopify.com/s/files/1/0295/6292/9231/products/presentationlivraisonAnneFreret_a1e26262-43ad-45c1-960a-20b40f6bca47.jpg?v=1747399798?v=1747399798"
-                            alt="Emballage spécial fleurs fraîches"
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
+                        <p className="text-sm text-[#2d2a26] font-medium mb-0.5">Livraison partout en France</p>
+                        <p className="text-xs text-[#2d2a26]/50">Locale sous 24h · Nationale sous 48h via Colissimo</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <svg className="w-5 h-5 text-[#c4a47a] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                      </svg>
+                      <div>
+                        <p className="text-sm text-[#2d2a26] font-medium mb-0.5">Fraîcheur garantie 7 jours</p>
+                        <p className="text-xs text-[#2d2a26]/50">Bouquet remplacé si vous n&#39;êtes pas satisfait</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <svg className="w-5 h-5 text-[#c4a47a] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21" />
+                      </svg>
+                      <div>
+                        <p className="text-sm text-[#2d2a26] font-medium mb-0.5">Emballage soigné</p>
+                        <p className="text-xs text-[#2d2a26]/50">Protection sur mesure pour préserver la fraîcheur</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <svg className="w-5 h-5 text-[#c4a47a] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375" />
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635" />
+                      </svg>
+                      <div>
+                        <p className="text-sm text-[#2d2a26] font-medium mb-0.5">Livraison offerte dès 60€</p>
+                        <p className="text-xs text-[#2d2a26]/50">Locale : 6-10€ · Nationale : 17.90€</p>
                       </div>
                     </div>
                   </div>
@@ -561,7 +558,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
           {/* Produits similaires */}
           {relatedProducts.length > 0 && (
             <section className="mt-16">
-              <h2 className="font-serif text-3xl font-bold text-[#2d2a26] mb-8 text-center">
+              <h2 className="font-serif text-2xl text-[#2d2a26] mb-8 text-center">
                 Produits similaires
               </h2>
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
