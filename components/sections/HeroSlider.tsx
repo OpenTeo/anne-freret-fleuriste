@@ -7,11 +7,11 @@ import Link from 'next/link';
 const slides = [
   {
     href: '/boutique',
-    image: 'https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=1400&q=85',
+    image: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1400&h=800&fit=crop&crop=center&q=85',
     subtitle: 'Sélection de saison',
     title: 'Le bouquet du mois',
     cta: 'Découvrir →',
-    objectPosition: 'center 50%',
+    objectPosition: 'center center',
   },
   {
     href: '/mariages',

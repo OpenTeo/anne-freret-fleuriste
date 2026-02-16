@@ -41,12 +41,12 @@ const Header = () => {
     { href: '/boutique', label: 'Boutique' },
     { href: '/mariages', label: 'Mariages' },
     { href: '/abonnement', label: 'Abonnement' },
-    { href: '/la-marque', label: 'La marque' },
     { href: '/livraison', label: 'Livraison' },
     { href: '/blog', label: 'Blog' },
-    { href: '/deuil', label: 'Deuil' },
     { href: '/contact', label: 'Contact' },
   ];
+  const navLeft = navLinks.slice(0, 3);
+  const navRight = navLinks.slice(3, 6);
 
   return (
     <>
@@ -61,7 +61,7 @@ const Header = () => {
           <div className="hidden md:flex items-center justify-between h-20">
             {/* Left nav */}
             <nav className="flex items-center gap-5 lg:gap-7">
-              {navLinks.slice(0, 4).map(link => (
+              {navLeft.map(link => (
                 <Link key={link.href} href={link.href} className="text-[#2d2a26]/70 text-[10px] lg:text-[11px] tracking-[0.12em] uppercase hover:text-[#c4a47a] transition-all duration-500 whitespace-nowrap">
                   {link.label}
                 </Link>
@@ -75,7 +75,7 @@ const Header = () => {
 
             {/* Right nav */}
             <nav className="flex items-center gap-5 lg:gap-7">
-              {navLinks.slice(4, 8).map(link => (
+              {navRight.map(link => (
                 <Link key={link.href} href={link.href} className="text-[#2d2a26]/70 text-[10px] lg:text-[11px] tracking-[0.12em] uppercase hover:text-[#c4a47a] transition-all duration-500 whitespace-nowrap">
                   {link.label}
                 </Link>
@@ -138,7 +138,7 @@ const Header = () => {
               <Link href="/" onClick={closeMenu} className="text-[#2d2a26] text-[15px] py-4 border-b border-[#c4a47a]/20">
                 Accueil
               </Link>
-              {navLinks.map(link => (
+              {[...navLinks, { href: '/la-marque', label: 'La marque' }, { href: '/deuil', label: 'Deuil' }, { href: '/galerie', label: 'Galerie' }].map(link => (
                 <Link 
                   key={link.href} 
                   href={link.href} 
