@@ -86,11 +86,11 @@ export default function DIYPage() {
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-[#faf8f5]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-[#faf8f5]" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-3xl">
           <p className="uppercase text-[11px] tracking-[0.35em] text-[#c4a47a] mb-5">Atelier à la maison</p>
-          <h1 className="text-5xl md:text-7xl text-white mb-6 leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
+          <h1 className="text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-lg" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}>
             Do It Yourself
           </h1>
           <p className="text-white/85 text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
