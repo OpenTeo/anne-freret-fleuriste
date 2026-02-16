@@ -80,13 +80,13 @@ export default function DIYPage() {
       <section className="relative h-[75vh] min-h-[520px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.pexels.com/photos/4466584/pexels-photo-4466584.jpeg?auto=compress&cs=tinysrgb&w=1600"
+            src="https://images.unsplash.com/photo-1659018719607-6b110a0915e2?w=1600&q=85"
             alt="Atelier floral"
             fill
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-[#faf8f5]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-[#faf8f5]" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-3xl">
           <p className="uppercase text-[11px] tracking-[0.35em] text-[#c4a47a] mb-5">Atelier à la maison</p>
