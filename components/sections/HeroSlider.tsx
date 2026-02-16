@@ -11,6 +11,7 @@ const slides = [
     subtitle: 'Sélection de saison',
     title: 'Le bouquet du mois',
     cta: 'Découvrir →',
+    objectPosition: 'center 60%',
   },
   {
     href: '/mariages',
@@ -18,6 +19,7 @@ const slides = [
     subtitle: 'Votre jour, nos fleurs',
     title: 'Mariages',
     cta: 'Découvrir →',
+    objectPosition: 'center 40%',
   },
   {
     href: '/blog/art-composer-bouquet-champetre',
@@ -25,6 +27,7 @@ const slides = [
     subtitle: 'Le Journal Floral',
     title: 'L\'art du bouquet champêtre',
     cta: 'Lire l\'article →',
+    objectPosition: 'center center',
   },
   {
     href: '/abonnement',
@@ -33,6 +36,7 @@ const slides = [
     title: '',
     cta: '',
     isGraphic: true,
+    objectPosition: 'center center',
   },
 ];
 
@@ -169,7 +173,7 @@ export default function HeroSlider() {
                 src={slide.image}
                 alt={slide.title}
                 className="w-full h-full object-cover"
-                style={{ objectPosition: 'center center' }}
+                style={{ objectPosition: slide.objectPosition || 'center center' }}
               />
               {/* Text on image mode */}
               {/* Bandeau blanc */}
