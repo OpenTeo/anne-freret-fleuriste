@@ -46,78 +46,28 @@ const steps = [
     title: 'Ouvrez votre box',
     desc: 'Chaque tige est protégée individuellement. Déballez délicatement, taillez les tiges en biseau et placez les fleurs fraîches dans l\'eau immédiatement.',
     tip: 'Astuce : laissez les fleurs fraîches s\'hydrater 2h avant de commencer.',
-    icon: (
-      <svg viewBox="0 0 80 80" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-        {/* Box ouverte avec couvercle soulevé */}
-        <rect x="18" y="40" width="44" height="26" rx="2" />
-        <line x1="40" y1="40" x2="40" y2="66" />
-        <rect x="15" y="32" width="50" height="10" rx="2" />
-        <path d="M40 32c0 0-8-14-16-14c-5 0-7 4-5 7s8 5 12 5" />
-        <path d="M40 32c0 0 8-14 16-14c5 0 7 4 5 7s-8 5-12 5" />
-      </svg>
-    ),
+    icon: '/icons/step-open.svg',
   },
   {
     num: '02',
     title: 'Préparez vos tiges',
     desc: 'Retirez le feuillage du bas des tiges — il ne doit pas toucher l\'eau. Pour les séchées, séparez-les délicatement par variété sur votre plan de travail.',
     tip: 'Astuce : gardez un bol d\'eau tiède à proximité pour les tiges fraîches.',
-    icon: (
-      <svg viewBox="0 0 80 80" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-        {/* Sécateur coupant une tige */}
-        <path d="M34 12v50" />
-        <path d="M30 30l-4 6" />
-        <path d="M38 24l4-6" />
-        <path d="M30 18c-6-2-10 2-8 6s8 2 8-2" />
-        <path d="M38 14c6-4 12 0 10 6s-10 2-10-2" />
-        <line x1="14" y1="42" x2="34" y2="36" />
-        <line x1="14" y1="42" x2="34" y2="48" />
-        <circle cx="17" cy="42" r="2" fill="currentColor" />
-      </svg>
-    ),
+    icon: '/icons/step-cut.svg',
   },
   {
     num: '03',
     title: 'Composez en spirale',
     desc: 'Commencez par les fleurs principales au centre. Ajoutez les secondaires en tournant le bouquet d\'un quart de tour à chaque tige. Terminez par le feuillage.',
     tip: 'Astuce : toujours de l\'extérieur vers l\'intérieur, en spirale.',
-    icon: (
-      <svg viewBox="0 0 80 80" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-        {/* Main tenant des tiges en spirale */}
-        <path d="M30 68l6-24" />
-        <path d="M44 68l-4-24" />
-        <path d="M50 68l-8-24" />
-        <path d="M26 44c-2-8 2-16 10-20" />
-        <path d="M42 44c0-6 4-14-2-22" />
-        <circle cx="36" cy="18" r="6" />
-        <circle cx="26" cy="22" r="5" />
-        <circle cx="46" cy="20" r="5" />
-        <circle cx="31" cy="12" r="4" />
-        <circle cx="43" cy="12" r="4" />
-      </svg>
-    ),
+    icon: '/icons/step-compose.svg',
   },
   {
     num: '04',
     title: 'Nouez & admirez',
     desc: 'Attachez votre bouquet avec le ruban ou le raphia fourni. Placez-le dans votre vase et admirez votre création. Partagez avec #AnneFreretDIY !',
     tip: 'Astuce : changez l\'eau tous les 2 jours pour les fleurs fraîches.',
-    icon: (
-      <svg viewBox="0 0 80 80" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-        {/* Vase avec bouquet fini et noeud */}
-        <ellipse cx="40" cy="68" rx="14" ry="4" />
-        <path d="M26 68V56c0-4 6-8 14-8s14 4 14 8v12" />
-        <circle cx="40" cy="36" r="6" />
-        <circle cx="31" cy="38" r="5" />
-        <circle cx="49" cy="38" r="5" />
-        <circle cx="34" cy="30" r="4.5" />
-        <circle cx="46" cy="30" r="4.5" />
-        <circle cx="40" cy="28" r="4" />
-        <path d="M36 48c2 2 6 2 8 0" />
-        <path d="M34 48l-2 4" />
-        <path d="M46 48l2 4" />
-      </svg>
-    ),
+    icon: '/icons/step-admire.svg',
   },
 ]
 
@@ -166,8 +116,8 @@ export default function DIYPage() {
           {steps.map((step) => (
             <div key={step.num} className="flex gap-6 items-start">
               {/* Icône SVG artisanale */}
-              <div className="w-24 h-24 flex-shrink-0 text-[#c4a47a]">
-                {step.icon}
+              <div className="w-24 h-24 flex-shrink-0">
+                <Image src={step.icon} alt={step.title} width={96} height={96} />
               </div>
               <div>
                 <div className="flex items-baseline gap-3 mb-2">
@@ -293,64 +243,20 @@ export default function DIYPage() {
             </p>
           </div>
           <div className="bg-[#faf8f5] p-8 md:p-10 space-y-6">
-            {/* Emballage cadeau */}
-            <div className="flex items-center gap-4">
-              <div className="w-11 h-11 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center">
-                <svg className="w-5 h-5 text-[#c4a47a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="11" width="18" height="11" rx="1" />
-                  <rect x="2" y="8" width="20" height="4" rx="1" />
-                  <line x1="12" y1="8" x2="12" y2="22" />
-                  <path d="M12 8c-1-3-5-6-7-4s1 5 7 4" />
-                  <path d="M12 8c1-3 5-6 7-4s-1 5-7 4" />
-                </svg>
+            {[
+              { icon: '/icons/gift.svg', label: 'Emballage cadeau inclus' },
+              { icon: '/icons/envelope.svg', label: 'Carte message personnalisée' },
+              { icon: '/icons/truck.svg', label: 'Livraison 24-48h partout en France' },
+              { icon: '/icons/play.svg', label: 'Tuto vidéo accessible par QR code' },
+              { icon: '/icons/leaf.svg', label: 'Fleurs de saison, fraîches ou séchées' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-4">
+                <div className="w-12 h-12 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center p-2.5">
+                  <Image src={item.icon} alt="" width={28} height={28} />
+                </div>
+                <p className="text-[13px] text-[#2d2a26]/70">{item.label}</p>
               </div>
-              <p className="text-[13px] text-[#2d2a26]/70">Emballage cadeau inclus</p>
-            </div>
-            {/* Carte message */}
-            <div className="flex items-center gap-4">
-              <div className="w-11 h-11 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center">
-                <svg className="w-5 h-5 text-[#c4a47a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="5" width="20" height="14" rx="2" />
-                  <polyline points="2,5 12,13 22,5" />
-                </svg>
-              </div>
-              <p className="text-[13px] text-[#2d2a26]/70">Carte message personnalisée</p>
-            </div>
-            {/* Livraison */}
-            <div className="flex items-center gap-4">
-              <div className="w-11 h-11 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center">
-                <svg className="w-5 h-5 text-[#c4a47a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="1" y="6" width="14" height="11" rx="1" />
-                  <polyline points="15,10 20,10 22,13 22,17 15,17 15,6" />
-                  <circle cx="6" cy="19" r="2" />
-                  <circle cx="19" cy="19" r="2" />
-                </svg>
-              </div>
-              <p className="text-[13px] text-[#2d2a26]/70">Livraison 24-48h partout en France</p>
-            </div>
-            {/* Tuto vidéo */}
-            <div className="flex items-center gap-4">
-              <div className="w-11 h-11 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center">
-                <svg className="w-5 h-5 text-[#c4a47a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                  <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none" />
-                </svg>
-              </div>
-              <p className="text-[13px] text-[#2d2a26]/70">Tuto vidéo accessible par QR code</p>
-            </div>
-            {/* Fleurs de saison */}
-            <div className="flex items-center gap-4">
-              <div className="w-11 h-11 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center">
-                <svg className="w-5 h-5 text-[#c4a47a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22V8" />
-                  <path d="M8 12c-4 0-6-3-6-5s2-3 4-2 4 4 4 7" />
-                  <path d="M16 12c4 0 6-3 6-5s-2-3-4-2-4 4-4 7" />
-                  <path d="M9 6c-2-3-1-6 1-6s3 3 2 6" />
-                  <path d="M15 6c2-3 1-6-1-6s-3 3-2 6" />
-                </svg>
-              </div>
-              <p className="text-[13px] text-[#2d2a26]/70">Fleurs de saison, fraîches ou séchées</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
