@@ -221,12 +221,12 @@ export default function CardSelector({ selectedCard, onSelect, message = '', onM
           {/* Texte explicatif */}
           <div className="flex-1 min-w-0">
             <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 16, color: '#2d2a26', fontWeight: 600, marginBottom: 6 }}>
-              Une carte artisanale, glissée dans votre bouquet
+              Ajoutez une carte artisanale à votre bouquet
             </h4>
             <p style={{ fontSize: 13, color: '#2d2a26', opacity: 0.6, lineHeight: 1.5, marginBottom: 0 }}>
               Chaque carte est réalisée à la main avec une <strong style={{ opacity: 1 }}>vraie fleur séchée</strong> délicatement 
               fixée au washi tape. Votre message personnel est inscrit au dos. 
-              <span style={{ display: 'block', marginTop: 4, fontStyle: 'italic', opacity: 0.5 }}>Offerte avec chaque bouquet.</span>
+              <span style={{ display: 'block', marginTop: 4, fontWeight: 600, color: '#c4a47a', opacity: 1 }}>+ 4,99 € · Supplément carte artisanale</span>
             </p>
           </div>
         </div>
