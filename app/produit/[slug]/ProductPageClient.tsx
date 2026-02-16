@@ -289,8 +289,8 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                   <div className="grid grid-cols-3 gap-3">
                     {[
                       { key: 'vase', name: 'Vase artisanal', price: 19.90, image: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=300&q=85', desc: 'Céramique fait main' },
-                      { key: 'chocolats', name: 'Chocolats artisanaux', price: 14.90, image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300&q=85', desc: 'Coffret normand' },
-                      { key: 'bougie', name: 'Bougie parfumée', price: 12.90, image: 'https://images.unsplash.com/photo-1602607207102-04a2d3beeab4?w=300&q=85', desc: 'Cire de soja naturelle' },
+                      { key: 'chocolats', name: 'Chocolats artisanaux', price: 14.90, image: 'https://images.unsplash.com/photo-1599599810769-bcde5a160d32?w=300&q=85', desc: 'Coffret normand' },
+                      { key: 'bougie', name: 'Bougie parfumée', price: 12.90, image: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=300&q=85', desc: 'Cire de soja naturelle' },
                     ].map(addon => (
                       <button
                         key={addon.key}
