@@ -80,24 +80,24 @@ export default function DIYPage() {
       <section className="relative h-[75vh] min-h-[520px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1659018719607-6b110a0915e2?w=1600&q=85"
+            src="https://images.pexels.com/photos/4466584/pexels-photo-4466584.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt="Atelier floral"
             fill
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-[#faf8f5]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/20 to-[#faf8f5]" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-3xl">
           <p className="uppercase text-[11px] tracking-[0.35em] text-[#c4a47a] mb-5">Atelier à la maison</p>
-          <h1 className="text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-lg" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400, textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}>
+          <h1 className="text-5xl md:text-7xl text-[#2d2a26] mb-6 leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
             Do It Yourself
           </h1>
-          <p className="text-white/85 text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
+          <p className="text-[#2d2a26]/80 text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
             Devenez fleuriste le temps d'un instant. Recevez une box complète 
             et créez votre propre composition — fraîche, séchée, ou les deux.
           </p>
-          <a href="#les-box" className="inline-block mt-10 px-10 py-3.5 bg-[#c4a47a] text-white text-[11px] uppercase tracking-[0.2em] hover:bg-[#b8956a] transition-colors duration-500">
+          <a href="#les-box" className="inline-block mt-10 px-10 py-3.5 bg-[#2d2a26] text-white text-[11px] uppercase tracking-[0.2em] hover:bg-[#c4a47a] transition-colors duration-500">
             Choisir ma box
           </a>
         </div>
