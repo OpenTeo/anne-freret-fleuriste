@@ -396,7 +396,24 @@ export default function Admin() {
 
   const clients: ClientData[] = useMemo(() => {
     if (typeof window === 'undefined') return [];
-    return JSON.parse(localStorage.getItem('af-users') || '[]').filter((u: ClientData) => !u.isAdmin);
+    const users = JSON.parse(localStorage.getItem('af-users') || '[]');
+    const nonAdmin = users.filter((u: ClientData) => !u.isAdmin);
+    if (nonAdmin.length === 0) {
+      const seedClients: ClientData[] = [
+        { id: 'c1', firstName: 'Marie', lastName: 'Dupont', email: 'marie.dupont@email.fr', phone: '06 12 34 56 78', city: 'Rouen', createdAt: '2025-11-15T10:00:00Z', favorites: ['bouquet-rose-eternelle'] },
+        { id: 'c2', firstName: 'Sophie', lastName: 'Leroy', email: 'sophie.leroy@outlook.fr', phone: '06 11 22 33 44', city: 'Rouen', createdAt: '2025-12-03T14:30:00Z', favorites: ['orchidee-blanche', 'composition-printaniere'] },
+        { id: 'c3', firstName: 'Jean-Pierre', lastName: 'Martin', email: 'jpmartin@gmail.com', phone: '06 98 76 54 32', city: 'Le Havre', createdAt: '2026-01-10T09:00:00Z', favorites: [] },
+        { id: 'c4', firstName: 'Camille', lastName: 'Bernard', email: 'camille.b@gmail.com', phone: '06 33 22 11 00', city: 'Rouen', createdAt: '2026-01-22T11:30:00Z', favorites: ['plante-monstera'] },
+        { id: 'c5', firstName: 'Philippe', lastName: 'Moreau', email: 'p.moreau@free.fr', phone: '06 55 44 33 22', city: 'Rouen', createdAt: '2026-02-01T16:45:00Z', favorites: [] },
+        { id: 'c6', firstName: 'Nathalie', lastName: 'Rousseau', email: 'n.rousseau@email.fr', phone: '06 88 77 66 55', city: 'Rouen', createdAt: '2026-02-05T08:20:00Z', favorites: ['bouquet-pastel'] },
+        { id: 'c7', firstName: 'Laurent', lastName: 'Dubois', email: 'l.dubois@hotmail.fr', phone: '06 44 55 66 77', city: 'Rouen', createdAt: '2026-01-28T07:00:00Z', favorites: [] },
+        { id: 'c8', firstName: 'Isabelle', lastName: 'Petit', email: 'isabelle.petit@yahoo.fr', phone: '06 77 88 99 00', city: 'Dieppe', createdAt: '2026-02-08T12:15:00Z', favorites: ['couronne-de-deuil'] },
+      ];
+      const updated = [...users, ...seedClients];
+      localStorage.setItem('af-users', JSON.stringify(updated));
+      return seedClients;
+    }
+    return nonAdmin;
   }, [activeTab]);
 
   const resetProductForm = () => {
@@ -1437,23 +1454,25 @@ export default function Admin() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
               {Object.entries(formulaLabels).map(([key, formula]) => {
                 const count = subscriptions.filter(s => s.formula === key && s.status === 'active').length;
-                const image = key === 'essentiel' ? 
-                  'https://images.pexels.com/photos/1070863/pexels-photo-1070863.jpeg?auto=compress&cs=tinysrgb&w=400' :
-                  key === 'signature' ? 
-                  'https://images.pexels.com/photos/1324896/pexels-photo-1324896.jpeg?auto=compress&cs=tinysrgb&w=400' :
-                  'https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=400';
+                const revenue = subscriptions.filter(s => s.formula === key && s.status === 'active').reduce((sum, s) => sum + s.price, 0);
                 
                 return (
-                  <div key={key} className="bg-white border border-[#e8e0d8] overflow-hidden">
-                    <div className="h-32 overflow-hidden">
-                      <img src={image} alt={formula.label} className="w-full h-full object-cover" />
-                    </div>
-                    <div className="p-4">
-                      <div className={`inline-block text-[10px] px-2 py-0.5 rounded mb-2 ${formula.color}`}>
+                  <div key={key} className="bg-white border border-[#e8e0d8] p-5 hover:border-[#c4a47a]/30 transition-colors">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`text-[10px] px-2 py-0.5 rounded ${formula.color}`}>
                         {formula.label}
+                      </span>
+                      <span className="font-serif text-lg text-[#2d2a26]">{formula.price}€<span className="text-xs text-[#2d2a26]/40">/mois</span></span>
+                    </div>
+                    <div className="flex items-end justify-between">
+                      <div>
+                        <div className="text-2xl text-[#2d2a26] font-medium">{count}</div>
+                        <div className="text-[10px] text-[#2d2a26]/40">abonnés actifs</div>
                       </div>
-                      <div className="font-serif text-xl text-[#2d2a26] mb-1">{formula.price}€</div>
-                      <div className="text-sm text-[#2d2a26]/60">{count} abonnés actifs</div>
+                      <div className="text-right">
+                        <div className="text-sm text-[#c4a47a]">{revenue.toFixed(0)}€</div>
+                        <div className="text-[10px] text-[#2d2a26]/40">revenu/mois</div>
+                      </div>
                     </div>
                   </div>
                 );
