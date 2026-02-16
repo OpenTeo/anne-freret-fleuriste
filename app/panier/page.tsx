@@ -68,7 +68,8 @@ export default function Panier() {
   };
   
   const delivery = getDeliveryFee();
-  const total = subtotal - discount + delivery;
+  const cardSupplement = selectedCardImage ? 4.99 : 0;
+  const total = subtotal - discount + delivery + cardSupplement;
   const freeThreshold = deliveryMode === 'chronopost' ? 90 : 60;
   const freeDeliveryRemaining = subtotal < freeThreshold ? (freeThreshold - subtotal) : 0;
 
@@ -227,7 +228,7 @@ export default function Panier() {
                   <svg className="w-4 h-4 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                   </svg>
-                  <h3 className="text-sm font-serif text-[#2d2a26]">Carte message offerte</h3>
+                  <h3 className="text-sm font-serif text-[#2d2a26]">Carte message artisanale <span className="text-[#c4a47a] font-normal text-xs">+ 4,99 €</span></h3>
                 </div>
                 <CardSelector
                   selectedCard={selectedCardImage}
@@ -573,6 +574,12 @@ export default function Panier() {
                     <div className="flex justify-between text-sm text-[#c4a47a]">
                       <span>Réduction</span>
                       <span>-{discount.toFixed(2)}€</span>
+                    </div>
+                  )}
+                  {cardSupplement > 0 && (
+                    <div className="flex justify-between text-sm text-[#2d2a26]/70">
+                      <span>Carte artisanale</span>
+                      <span>{cardSupplement.toFixed(2)}€</span>
                     </div>
                   )}
                   <div className="flex justify-between text-sm text-[#2d2a26]/70">

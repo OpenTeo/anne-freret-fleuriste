@@ -1,0 +1,361 @@
+{
+  "site": "https://fleuriste-annefreret.com",
+  "scraping_date": "2026-02-16",
+  "total_products_scraped": 24,
+  "scraping_status": "COMPLET - Tous les produits de la collection",
+  "products": [
+    {
+      "slug": "eveil-champetre-copie",
+      "nom": "À fleur de Cœur",
+      "description_complete": "Laissez-vous séduire par le Bouquet À fleur de Cœur, une composition lumineuse et généreuse qui célèbre la fraîcheur et la vitalité des fleurs de saison. L'élégance des roses d'Équateur et des renoncules françaises se mêle aux textures délicates du mimosa et du muflier pour créer un bouquet vibrant, plein de douceur et de caractère. Une création idéale pour offrir un message d'affection, de joie et de raffinement.",
+      "composition": "Renoncule française, mimosa, muflier, gerbera, rose d'Équateur, rose branchue, dianthus, eucalyptus, sanguisorba.",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "59,90€"},
+        {"taille": "Grand", "prix": "79,90€"},
+        {"taille": "Très grand", "prix": "119,90€"}
+      ],
+      "prix_base": "à partir de €59,90",
+      "categorie": "Bouquets frais",
+      "url": "https://fleuriste-annefreret.com/products/eveil-champetre-copie"
+    },
+    {
+      "slug": "adoration",
+      "nom": "Adoration",
+      "description_complete": "Découvrez notre exquis bouquet de fleurs de saison, soigneusement conçu pour capturer la beauté naturelle de cette période. Offrez un cadeau qui célèbre la saison avec élégance et la simplicité.",
+      "composition": "Renoncule, giroflée, tulipe, anemone, wax et différents feuillages",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "49,90€"},
+        {"taille": "Grand", "prix": "59,90€"},
+        {"taille": "Très grand", "prix": "89,90€"}
+      ],
+      "prix_base": "à partir de €49,90",
+      "categorie": "Bouquets de saison",
+      "url": "https://fleuriste-annefreret.com/products/adoration"
+    },
+    {
+      "slug": "barneville-carteret",
+      "nom": "Barneville-Carteret",
+      "description_complete": "Cette délicate composition s'accompagne de lisianthus, de dille, de roses, de limonum, et blé le tout entouré d'un délicat feuillage. Une invitation à la tendresse d'un simple rêve, aussi furtif qu'un éclair, qui déposera dans votre intérieur une ambiance aérienne et coquette. Un bouquet frais créé dans nos ateliers Normands et Bretons juste pour vous !",
+      "composition": "Lisianthus blanc, dille, rose blanche, limonum blanc, blé et feuillages mélangés",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "49,90€"},
+        {"taille": "Grand", "prix": "59,90€"},
+        {"taille": "Très grand", "prix": "99,90€"}
+      ],
+      "prix_base": "€49,90",
+      "categorie": "Bouquets champêtres",
+      "url": "https://fleuriste-annefreret.com/products/barneville-carteret"
+    },
+    {
+      "slug": "box-champetre-lila",
+      "nom": "Box Champêtre Lila",
+      "description_complete": "Nos \"Box Mariage\" se composent d'un bouquet et d'un peigne pour la mariée et d'une boutonnière assortie pour le marié. Bouquet : 20cm de diamètre pour 25cm de hauteur environ, finition de la poignée en cordelette. Boutonnière : montée sur épingle, 7cm environ. Peigne : 10cm environ.",
+      "composition": "Amarante, miscanthus, phalaris, phalaris, grain d'aneth, limonium, gypsophile, lagurus, stipa",
+      "variantes_tailles": [
+        {"taille": "Box complète", "prix": "118,90€"}
+      ],
+      "prix_base": "€118,90",
+      "categorie": "Box Mariage",
+      "note_speciale": "Fleurs séchées et stabilisées pour une longue conservation",
+      "url": "https://fleuriste-annefreret.com/products/box-champetre-lila"
+    },
+    {
+      "slug": "box-exotique",
+      "nom": "Box Mariage Exotique",
+      "description_complete": "Nos \"Box Mariage\" se composent d'un bouquet et d'un peigne pour la mariée et d'une boutonnière assortie pour le marié. Bouquet : 25cm de diamètre pour 30cm de hauteur environ, finition de la poignée en cordelette. Boutonnière : montée sur épingle, 7cm environ. Peigne : 10cm environ.",
+      "composition": "Hortensia, feuille de palmier, immortelle, graine de dill, pampa, lagurus, phalaris, gypsophile, stipa, graine de nigelle, graminée.",
+      "variantes_tailles": [
+        {"taille": "Box complète", "prix": "139,90€"}
+      ],
+      "prix_base": "€139,90",
+      "categorie": "Box Mariage",
+      "note_speciale": "Fleurs séchées et stabilisées pour une longue conservation",
+      "url": "https://fleuriste-annefreret.com/products/box-exotique"
+    },
+    {
+      "slug": "mariage-sur-la-plage",
+      "nom": "Box Mariage sur la plage",
+      "description_complete": "Nos \"Box Mariage\" se composent d'un bouquet et d'un peigne pour la mariée et d'une boutonnière assortie pour le marié. Bouquet : 20cm de diamètre pour 25cm de hauteur environ, finition de la poignée en cordelette. Boutonnière : montée sur épingle, 7cm environ. Peigne : 10cm environ.",
+      "composition": "Miscanthus, delphinium, graine de dill, hortensia, stipa, briza maxima, gypsophile",
+      "variantes_tailles": [
+        {"taille": "Box complète", "prix": "118,90€"}
+      ],
+      "prix_base": "€118,90",
+      "categorie": "Box Mariage",
+      "note_speciale": "Fleurs séchées et stabilisées pour une longue conservation",
+      "url": "https://fleuriste-annefreret.com/products/mariage-sur-la-plage"
+    },
+    {
+      "slug": "raquette",
+      "nom": "Chemin de Sérénité",
+      "description_complete": "Cet arrangement floral tout en longueur, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d'un être cher, ce cœur fleuri est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d'affection unique avec cet hommage floral. Si vous le souhaitez, vous pouvez ajouter un ruban avec une inscription de votre choix.",
+      "composition": "Roses aux teintes douces et délicates",
+      "variantes_tailles": [
+        {"taille": "Moyen 80cm de longueur", "prix": "170€"},
+        {"taille": "Grande 100cm de longueur", "prix": "220€"},
+        {"taille": "Très grande 120cm de longueur", "prix": "320€"}
+      ],
+      "prix_base": "à partir de €170,00",
+      "categorie": "Articles funéraires",
+      "note_speciale": "Disponible exclusivement en livraison locale. Possibilité d'ajouter un ruban personnalisé.",
+      "url": "https://fleuriste-annefreret.com/products/raquette"
+    },
+    {
+      "slug": "coeur",
+      "nom": "Coeur",
+      "description_complete": "Cet arrangement floral en forme de cœur, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d'un être cher, ce cœur fleuri est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d'affection unique avec cet hommage floral. Si vous le souhaitez, vous pouvez ajouter un ruban avec une inscription de votre choix.",
+      "composition": "Roses aux teintes douces et délicates",
+      "variantes_tailles": [
+        {"taille": "Moyen 30 cm", "prix": "200€"},
+        {"taille": "Grande 50 cm", "prix": "280€"},
+        {"taille": "Très grande 60 cm", "prix": "380€"}
+      ],
+      "prix_base": "à partir de €200,00",
+      "categorie": "Articles funéraires",
+      "variantes_couleur": ["Blanc", "Rose", "Coloré"],
+      "note_speciale": "Disponible exclusivement en livraison locale. Possibilité d'ajouter un ruban personnalisé.",
+      "url": "https://fleuriste-annefreret.com/products/coeur"
+    },
+    {
+      "slug": "couronne",
+      "nom": "Couronne",
+      "description_complete": "Cet arrangement floral tout en rondeur, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d'un être cher, ce cœur fleuri est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d'affection unique avec cet hommage floral. Si vous le souhaitez, vous pouvez ajouter un ruban avec une inscription de votre choix.",
+      "composition": "Roses aux teintes douces et délicates",
+      "variantes_tailles": [
+        {"taille": "Moyen 60cm de longueur", "prix": "250€"},
+        {"taille": "Grande 70cm de longueur", "prix": "350€"},
+        {"taille": "Très grande 90cm de longueur", "prix": "450€"}
+      ],
+      "prix_base": "à partir de €250,00",
+      "categorie": "Articles funéraires",
+      "variantes_couleur": ["Blanc", "Rose", "Coloré"],
+      "note_speciale": "Disponible exclusivement en livraison locale. Possibilité d'ajouter un ruban personnalisé.",
+      "url": "https://fleuriste-annefreret.com/products/couronne"
+    },
+    {
+      "slug": "gerbe",
+      "nom": "Coussin",
+      "description_complete": "Cet arrangement floral, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d'un être cher, ce cœur fleuri est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d'affection unique avec cet hommage floral. Si vous le souhaitez, vous pouvez ajouter un ruban avec une inscription de votre choix.",
+      "composition": "Roses aux teintes douces et délicates",
+      "variantes_tailles": [
+        {"taille": "Moyen 40 cm", "prix": "120€"},
+        {"taille": "Grande 55 cm", "prix": "160€"},
+        {"taille": "Très grande 70 cm", "prix": "220€"}
+      ],
+      "prix_base": "à partir de €120,00",
+      "categorie": "Articles funéraires",
+      "variantes_couleur": ["Blanc", "Rose", "Coloré"],
+      "note_speciale": "Disponible exclusivement en livraison locale. Possibilité d'ajouter un ruban personnalisé.",
+      "url": "https://fleuriste-annefreret.com/products/gerbe"
+    },
+    {
+      "slug": "croix-blanche",
+      "nom": "Croix Funéraire",
+      "description_complete": "Cet arrangement floral en forme de croix, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d'un être cher, ce cœur fleuri est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d'affection unique avec cet hommage floral. Si vous le souhaitez, vous pouvez ajouter un ruban avec une inscription de votre choix.",
+      "composition": "Roses aux teintes douces et délicates",
+      "variantes_tailles": [
+        {"taille": "Moyen 60 cm de longueur", "prix": "220€"},
+        {"taille": "Grande 80 cm de longueur", "prix": "330€"},
+        {"taille": "Très grande 100 cm de longueur", "prix": "430€"}
+      ],
+      "prix_base": "à partir de €220,00",
+      "categorie": "Articles funéraires",
+      "variantes_couleur": ["Blanc", "Rose", "Coloré"],
+      "note_speciale": "Disponible exclusivement en livraison locale. Possibilité d'ajouter un ruban personnalisé.",
+      "url": "https://fleuriste-annefreret.com/products/croix-blanche"
+    },
+    {
+      "slug": "delicatesse",
+      "nom": "Délicatesse",
+      "description_complete": "Ce bouquet rafraîchissant, avec des teintes vives est parfait pour apporter une touche d'énergie et de vivacité dans votre maison.",
+      "composition": "Fleurs de saison aux teintes vives",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "49,90€"},
+        {"taille": "Grand", "prix": "69,90€"},
+        {"taille": "Très grand", "prix": "89,90€"}
+      ],
+      "prix_base": "à partir de €49,90",
+      "categorie": "Bouquets frais",
+      "url": "https://fleuriste-annefreret.com/products/delicatesse"
+    },
+    {
+      "slug": "edition-amour",
+      "nom": "Édition Amour",
+      "description_complete": "Offrez un concentré de tendresse avec le Bouquet Ma Poulette, une création florale généreuse et vibrante qui célèbre l'amour et la complicité. Les roses rouges intenses s'associent aux nuances délicates du lisianthus rose et à la légèreté des fleurs aériennes pour créer une composition à la fois passionnée et raffinée. Un bouquet plein de douceur et de caractère, idéal pour faire plaisir à celle qui compte.",
+      "composition": "Limonium, rose rouge, lisianthus rose, hypericum, gerbera, asparagus, clématite, sanguisorba, dianthus, alstroemeria, eucalyptus et autres feuillages.",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "79,90€"},
+        {"taille": "Grand", "prix": "99,90€"},
+        {"taille": "Très grand", "prix": "144,90€"}
+      ],
+      "prix_base": "à partir de €79,90",
+      "categorie": "Bouquets romantiques",
+      "url": "https://fleuriste-annefreret.com/products/edition-amour"
+    },
+    {
+      "slug": "bouquet-douce-harmonie",
+      "nom": "Éveil Champêtre",
+      "description_complete": "Offrez un instant de douceur avec le Bouquet Douce Harmonie, une composition florale raffinée qui évoque la pureté et la délicatesse. Ses roses blanches Avalanche majestueuses, associées à des fleurs aux teintes subtiles et un feuillage aérien, en font le cadeau parfait pour transmettre un message de sérénité et d'affection.",
+      "composition": "Roses blanches Avalanche, lisianthus, graminées, gypsophile, hypericum, giroflée, phlox, hortensia, eucalyptus médaillon et statice vert.",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "49,90€"},
+        {"taille": "Grand", "prix": "79,90€"},
+        {"taille": "Très grand", "prix": "120,00€"}
+      ],
+      "prix_base": "à partir de €49,90",
+      "categorie": "Bouquets champêtres",
+      "url": "https://fleuriste-annefreret.com/products/bouquet-douce-harmonie"
+    },
+    {
+      "slug": "jardin-de-granville-1",
+      "nom": "Jardin de Granville",
+      "description_complete": "Ce bouquet délicat, composé de fleurs aux tons pastel, évoque douceur et sérénité. Idéal pour offrir en hommage ou pour témoigner d'une pensée sincère, il apporte une touche de réconfort et de beauté naturelle en toutes circonstances. Chaque fleur a été soigneusement sélectionnée pour créer une harmonie parfaite, symbolisant des souvenirs précieux et des émotions partagées. Laissez ce bouquet transmettre vos sentiments avec élégance et respect.",
+      "composition": "Rose advance rose pâle, rose espérance, rose ohara, rose pink floyd, genet blanc, statice rose",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "89,90€"},
+        {"taille": "Grand", "prix": "99,90€"},
+        {"taille": "Très Grand", "prix": "120€"}
+      ],
+      "prix_base": "€89,90",
+      "categorie": "Bouquets élégants",
+      "url": "https://fleuriste-annefreret.com/products/jardin-de-granville-1"
+    },
+    {
+      "slug": "jullouville-les-pins-1",
+      "nom": "Grany",
+      "description_complete": "Craquez pour cet ensemble de fleurs à vous faire tomber de bonheur. Avec ces couleurs dans les tonalités de rose qui viendront apporter de la fraicheur à votre intérieur.",
+      "composition": "Rose pâle sweet, wax fleur, tulipe dentelé, renoncule rose pâle, lisianthus marbré, genet feuillages mélangés",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "49,90€"},
+        {"taille": "Grand", "prix": "59,90€"},
+        {"taille": "Très grand", "prix": "99,90€"}
+      ],
+      "prix_base": "€49,90",
+      "categorie": "Bouquets romantiques",
+      "url": "https://fleuriste-annefreret.com/products/jullouville-les-pins-1"
+    },
+    {
+      "slug": "jardin-de-plantes",
+      "nom": "Jardin de plantes",
+      "description_complete": "Cet arrangement floral en forme de cœur, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d'un être cher, ce cœur fleuri est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d'affection unique avec cet hommage floral. Si vous le souhaitez, vous pouvez ajouter un ruban avec une inscription de votre choix.",
+      "composition": "Plantes variables selon les saisons.",
+      "variantes_tailles": [
+        {"taille": "Moyen 40cm de diamètre", "prix": "60€"},
+        {"taille": "Grande 50cm de diamètre", "prix": "80€"},
+        {"taille": "Très grande 80cm de diamètre", "prix": "150€"}
+      ],
+      "prix_base": "à partir de €60,00",
+      "categorie": "Articles funéraires",
+      "variantes_couleur": ["Blanc", "Rose"],
+      "note_speciale": "Disponible exclusivement en livraison locale. Possibilité d'ajouter un ruban personnalisé.",
+      "url": "https://fleuriste-annefreret.com/products/jardin-de-plantes"
+    },
+    {
+      "slug": "la-croix-du-lude",
+      "nom": "La croix du lude",
+      "description_complete": "Tendrissime brassée de fleurs aux teintes roses. Travaillé en abondance, ce joli bouquet aux couleurs pastel séduit par son homogénéité de tons avant de subjuguer par le mariage de ses essences. Une essence innocente apportée avec douceur par la présence du bouquet la croix du lude. A offrir amoureusement, amicalement mais aussi tendrement aux êtres qui vous sont précieux.",
+      "composition": "bouvardia, rose gros bouton, lisianthus double rose pâle, eucalypthus, feuillage de saison",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "49,90€"},
+        {"taille": "Grand", "prix": "59,90€"},
+        {"taille": "Très grand", "prix": "99,90€"}
+      ],
+      "prix_base": "€49,90",
+      "categorie": "Bouquets romantiques",
+      "url": "https://fleuriste-annefreret.com/products/la-croix-du-lude"
+    },
+    {
+      "slug": "la-pointe-dagon",
+      "nom": "La pointe d'Agon",
+      "description_complete": "Ce bouquet rafraîchissant, avec des teintes vives est parfait pour apporter une touche d'énergie et de vivacité dans votre intérieur. Offrez un bouquet acidulé pour égayer le quotidien et surprendre vos proches.",
+      "composition": "Rose frisée blanche, chardon sec blanc, phlox blanc, lisianthus blanc, dihlle graine, mélange de feuillages de saison",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "49,90€"},
+        {"taille": "Grand", "prix": "59,90€"},
+        {"taille": "Très grand", "prix": "79,90€"}
+      ],
+      "prix_base": "à partir de €49,90",
+      "categorie": "Bouquets frais",
+      "url": "https://fleuriste-annefreret.com/products/la-pointe-dagon"
+    },
+    {
+      "slug": "la-pointe-du-roc",
+      "nom": "La pointe du Roc",
+      "description_complete": "Voici l'un des chouchous de la collection Anne Freret. Nous on l'adore parce qu'avec ses ravissants tons rose clair, il nous rappelle les événements heureux de la vie. Soyez certains de faire plaisir avec cette jolie composition de roses.",
+      "composition": "Rose sweat advance, pampa rose, wax blanc, statice rose, oeillet poudré, lisianthus rose pâle, feuillages mélangés",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "59,90€"},
+        {"taille": "Grand", "prix": "69,90€"},
+        {"taille": "Très grand", "prix": "79,90€"}
+      ],
+      "prix_base": "€59,90",
+      "categorie": "Bouquets romantiques",
+      "url": "https://fleuriste-annefreret.com/products/la-pointe-du-roc"
+    },
+    {
+      "slug": "le-saint-pairais",
+      "nom": "Le Chausiais",
+      "description_complete": "Le Bouquet du fleuriste est le mélange parfait pour sublimer vos intérieurs ou bien même pour faire plaisir à vos proches. N'hésitez plus pour l'offrir à quelqu'un d'important à vos yeux.",
+      "composition": "Bouquet frais composé de Rose branchue rose, Renoncule Clone du Var, Wax Flower, Lisianthus double rose, Graminée rose, Feuillages d'hivers",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "49,90€"},
+        {"taille": "Grand", "prix": "59,90€"},
+        {"taille": "Très grand", "prix": "99,90€"}
+      ],
+      "prix_base": "à partir de €49,90",
+      "categorie": "Bouquets du fleuriste",
+      "url": "https://fleuriste-annefreret.com/products/le-saint-pairais"
+    },
+    {
+      "slug": "bouquet-aphrodite",
+      "nom": "Le Hérel",
+      "description_complete": "Ce bouquet raffiné, composé de roses rouges intenses et de fleurs pastel délicates, incarne l'élégance et l'émotion. Parfait pour exprimer un amour profond, une gratitude sincère ou pour marquer un moment spécial, il allie romantisme et tendresse. Les nuances vibrantes des roses rouges se mêlent harmonieusement aux teintes douces des fleurs roses et blanches, créant une composition à la fois chaleureuse et apaisante. Offrez ce bouquet pour transmettre vos sentiments avec grâce et poésie.",
+      "composition": "Roses Pink Mondial, Roses Red Naomi, Roses Espérances, Lisianthus, rose frisé, Wax rose",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "84,90€"},
+        {"taille": "Grand", "prix": "99,90€"}
+      ],
+      "prix_base": "à partir de €84,90",
+      "categorie": "Bouquets romantiques",
+      "url": "https://fleuriste-annefreret.com/products/bouquet-aphrodite"
+    },
+    {
+      "slug": "bouquet-du-fleuriste",
+      "nom": "Le Jullouvillais",
+      "description_complete": "Avec ses tons doux et ses textures aériennes, ce bouquet évoque la beauté naturelle et la sérénité. Composé de roses poudrées, de fleurs sauvages et de feuillages délicats, il capture l'essence d'un charme champêtre tout en restant raffiné. Idéal pour célébrer un moment d'exception ou pour offrir une parenthèse de douceur, ce bouquet intemporel est une ode à la nature et à l'élégance.",
+      "composition": "Rose Sweat Advance, Limonium pêche, Miscanthus séché, Panicum, Bouvardia, Alstromère rose.",
+      "variantes_tailles": [
+        {"taille": "Moyen", "prix": "49,90€"},
+        {"taille": "Grand", "prix": "59,90€"},
+        {"taille": "Très grand", "prix": "99,90€"}
+      ],
+      "prix_base": "€49,90",
+      "categorie": "Bouquets champêtres",
+      "url": "https://fleuriste-annefreret.com/products/bouquet-du-fleuriste"
+    }
+  ],
+  "informations_generales": {
+    "atelier_localisation": "Laboratoire créatif en Baie du Mont-Saint-Michel, ateliers Normands et Bretons",
+    "artisan": "Maître artisan bouquetiste et son équipe",
+    "qualite": "Bouquets confectionnés à la main avec des fleurs fraîches de saison",
+    "note_saisonnalite": "Les compositions peuvent légèrement différer du visuel en raison de la saisonnalité des fleurs",
+    "contact_personalisation": "Pour un produit personnalisé : mail ou 02 33 50 26 15",
+    "entretien_conseils": "Mettre dans un vase d'eau claire, couper les tiges en biseau, éviter chaleur directe et courants d'air"
+  },
+  "categories_identifiees": [
+    "Bouquets frais",
+    "Bouquets de saison",
+    "Bouquets champêtres",
+    "Bouquets romantiques",
+    "Bouquets élégants",
+    "Bouquets du fleuriste",
+    "Box Mariage",
+    "Articles funéraires"
+  ],
+  "gammes_prix": {
+    "bouquets_frais": "À partir de €39,90 - €144,90",
+    "box_mariage": "€118,90 - €139,90", 
+    "articles_funeraires": "€60,00 - €450,00"
+  },
+  "note_scraping": "SCRAPING COMPLET ET EXHAUSTIF : Toute la collection du site scraped avec web_fetch. 24 produits au total avec descriptions complètes, compositions détaillées, tous les prix et variantes. Chaque produit a été individuellement scraped pour garantir l'exhaustivité des données."
+}
