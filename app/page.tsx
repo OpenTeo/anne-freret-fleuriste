@@ -140,6 +140,46 @@ export default function Home() {
           </div>
         </section>
 
+        {/* SECTION DIY */}
+        <section className="py-16 md:py-24 bg-[#f5f0eb]">
+          <div className="max-w-5xl mx-auto px-4 md:px-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+              <div className="relative h-80 md:h-96 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=600&q=85"
+                  alt="Box DIY florale"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div>
+                <p className="text-[#c4a47a] text-[10px] tracking-[0.3em] uppercase mb-4">Nouveau</p>
+                <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">
+                  Ateliers DIY
+                </h2>
+                <div className="w-12 h-px bg-[#c4a47a] mb-6"></div>
+                <p className="text-[#2d2a26]/60 text-base leading-relaxed mb-6">
+                  Recevez une box complète avec fleurs fraîches ou séchées, outils et guide illustré. 
+                  Créez votre propre arrangement floral chez vous — aucune expérience requise.
+                </p>
+                <div className="space-y-3 mb-8">
+                  <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
+                    <span className="text-[#c4a47a]">✦</span> 3 box au choix dès 39.90€
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
+                    <span className="text-[#c4a47a]">✦</span> Fleurs fraîches, séchées ou les deux
+                  </div>
+                  <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
+                    <span className="text-[#c4a47a]">✦</span> Tuto vidéo + guide pas à pas inclus
+                  </div>
+                </div>
+                <a href="/diy" className="inline-block text-[#2d2a26] text-sm tracking-wide underline underline-offset-8 decoration-[#c4a47a] hover:text-[#c4a47a] transition-colors">
+                  Découvrir les box DIY →
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* SECTION BLOG - Layout éditorial */}
         <section className="py-24 md:py-32 bg-[#faf8f5]">
           <div className="max-w-6xl mx-auto px-4 md:px-6">

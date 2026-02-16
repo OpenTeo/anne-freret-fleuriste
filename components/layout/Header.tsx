@@ -39,7 +39,7 @@ const Header = () => {
 
   const navLinks = [
     { href: '/boutique', label: 'Boutique' },
-    { href: '/mariages', label: 'Mariages' },
+    { href: '/diy', label: 'DIY' },
     { href: '/abonnement', label: 'Abonnement' },
     { href: '/livraison', label: 'Livraison' },
     { href: '/blog', label: 'Blog' },
