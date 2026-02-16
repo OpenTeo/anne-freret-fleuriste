@@ -11,7 +11,7 @@ const slides = [
     subtitle: 'Sélection de saison',
     title: 'Le bouquet du mois',
     cta: 'Découvrir →',
-    objectPosition: 'center 60%',
+    objectPosition: 'center 75%',
   },
   {
     href: '/mariages',
@@ -19,7 +19,7 @@ const slides = [
     subtitle: 'Votre jour, nos fleurs',
     title: 'Mariages',
     cta: 'Découvrir →',
-    objectPosition: 'center 40%',
+    objectPosition: 'center 60%',
   },
   {
     href: '/blog/art-composer-bouquet-champetre',
@@ -27,7 +27,7 @@ const slides = [
     subtitle: 'Le Journal Floral',
     title: 'L\'art du bouquet champêtre',
     cta: 'Lire l\'article →',
-    objectPosition: 'center center',
+    objectPosition: 'center 50%',
   },
   {
     href: '/abonnement',
