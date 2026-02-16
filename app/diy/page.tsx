@@ -24,7 +24,7 @@ const boxes = [
     tag: 'Best-seller',
     desc: 'Des fleurs séchées et stabilisées pour une composition qui dure des mois. Pampa, lavande, eucalyptus, statice — un bouquet intemporel à créer chez vous.',
     includes: ['10-15 variétés séchées & stabilisées', 'Pampa, lavande, eucalyptus', 'Fil de fer floral doré', 'Ruban en lin naturel', 'Guide de composition illustré', 'QR code → tuto vidéo'],
-    image: 'https://images.pexels.com/photos/5414022/pexels-photo-5414022.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.unsplash.com/photo-1651634152030-f2d017e937f2?w=800&q=85',
     duration: '6 mois à 2 ans',
   },
   {
@@ -35,7 +35,7 @@ const boxes = [
     tag: 'L\'expérience premium',
     desc: 'Notre box signature qui combine fleurs fraîches et séchées. Créez un centre de table unique en mélangeant les textures, les couleurs et les parfums.',
     includes: ['6-8 tiges fraîches de saison', '8-10 variétés séchées', 'Mousse florale Oasis', 'Contenant en bois gravé', 'Sécateur floral professionnel', 'Carte message personnalisée', 'Guide + tuto vidéo exclusif'],
-    image: 'https://images.pexels.com/photos/4238349/pexels-photo-4238349.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.unsplash.com/photo-1758402638146-a1a94f400073?w=800&q=85',
     duration: 'Séchées: 6 mois+ / Fraîches: 7-14j',
   },
 ]
@@ -292,23 +292,65 @@ export default function DIYPage() {
               Pas besoin d'être expert — le guide vous accompagne à chaque étape.
             </p>
           </div>
-          <div className="bg-[#faf8f5] p-8 md:p-10 space-y-5">
-            {[
-              { label: 'Emballage cadeau inclus', d: 'M20 12v6a2 2 0 002 2h8a2 2 0 002-2v-6m-14 0h16m-16 0l2-4h12l2 4M12 12v8m0-8h0' },
-              { label: 'Carte message personnalisée', d: 'M3 8l9 6 9-6M3 8v10a2 2 0 002 2h14a2 2 0 002-2V8M3 8l9-4 9 4' },
-              { label: 'Livraison 24-48h partout en France', d: 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0H3m10 0h2m4 0h2a1 1 0 001-1v-5a1 1 0 00-.3-.7l-3-3A1 1 0 0017 6h-2m0 10h-2m2 0a2 2 0 104 0m-10 0a2 2 0 104 0' },
-              { label: 'Tuto vidéo accessible par QR code', d: 'M15 10l4.5 3L15 16V10zM4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z' },
-              { label: 'Fleurs de saison, fraîches ou séchées', d: 'M12 22c-4 0-8-2-8-6 0-3 2-5 4-6l4-4V2m0 4l-3-3m3 3l3-3M8 16c-2 0-4-1-4-3s2-3 4-3 4 1 4 3-2 3-4 3zm8 0c2 0 4-1 4-3s-2-3-4-3-4 1-4 3 2 3 4 3z' },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-4">
-                <div className="w-10 h-10 flex-shrink-0 rounded-full border border-[#c4a47a]/25 flex items-center justify-center">
-                  <svg className="w-5 h-5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
-                    <path d={item.d} />
-                  </svg>
-                </div>
-                <p className="text-[13px] text-[#2d2a26]/70">{item.label}</p>
+          <div className="bg-[#faf8f5] p-8 md:p-10 space-y-6">
+            {/* Emballage cadeau */}
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center">
+                <svg className="w-5 h-5 text-[#c4a47a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="1" />
+                  <rect x="2" y="8" width="20" height="4" rx="1" />
+                  <line x1="12" y1="8" x2="12" y2="22" />
+                  <path d="M12 8c-1-3-5-6-7-4s1 5 7 4" />
+                  <path d="M12 8c1-3 5-6 7-4s-1 5-7 4" />
+                </svg>
               </div>
-            ))}
+              <p className="text-[13px] text-[#2d2a26]/70">Emballage cadeau inclus</p>
+            </div>
+            {/* Carte message */}
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center">
+                <svg className="w-5 h-5 text-[#c4a47a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="5" width="20" height="14" rx="2" />
+                  <polyline points="2,5 12,13 22,5" />
+                </svg>
+              </div>
+              <p className="text-[13px] text-[#2d2a26]/70">Carte message personnalisée</p>
+            </div>
+            {/* Livraison */}
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center">
+                <svg className="w-5 h-5 text-[#c4a47a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="1" y="6" width="14" height="11" rx="1" />
+                  <polyline points="15,10 20,10 22,13 22,17 15,17 15,6" />
+                  <circle cx="6" cy="19" r="2" />
+                  <circle cx="19" cy="19" r="2" />
+                </svg>
+              </div>
+              <p className="text-[13px] text-[#2d2a26]/70">Livraison 24-48h partout en France</p>
+            </div>
+            {/* Tuto vidéo */}
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center">
+                <svg className="w-5 h-5 text-[#c4a47a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <polygon points="10,8 16,12 10,16" fill="currentColor" stroke="none" />
+                </svg>
+              </div>
+              <p className="text-[13px] text-[#2d2a26]/70">Tuto vidéo accessible par QR code</p>
+            </div>
+            {/* Fleurs de saison */}
+            <div className="flex items-center gap-4">
+              <div className="w-11 h-11 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center">
+                <svg className="w-5 h-5 text-[#c4a47a]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22V8" />
+                  <path d="M8 12c-4 0-6-3-6-5s2-3 4-2 4 4 4 7" />
+                  <path d="M16 12c4 0 6-3 6-5s-2-3-4-2-4 4-4 7" />
+                  <path d="M9 6c-2-3-1-6 1-6s3 3 2 6" />
+                  <path d="M15 6c2-3 1-6-1-6s-3 3-2 6" />
+                </svg>
+              </div>
+              <p className="text-[13px] text-[#2d2a26]/70">Fleurs de saison, fraîches ou séchées</p>
+            </div>
           </div>
         </div>
       </section>
