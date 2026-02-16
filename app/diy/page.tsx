@@ -13,7 +13,7 @@ const boxes = [
     tag: 'Idéal pour débuter',
     desc: 'Un bouquet prêt à assembler avec des fleurs fraîches de saison. Suivez le guide, créez votre composition et admirez le résultat pendant 7 à 14 jours.',
     includes: ['8-12 tiges fraîches de saison', 'Sachet d\'élixir végétal', 'Guide illustré pas à pas', 'QR code → tuto vidéo', 'Papier kraft & raphia'],
-    image: 'https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=600&q=85',
+    image: 'https://images.pexels.com/photos/4466552/pexels-photo-4466552.jpeg?auto=compress&cs=tinysrgb&w=800',
     duration: '7-14 jours',
   },
   {
@@ -24,7 +24,7 @@ const boxes = [
     tag: 'Best-seller',
     desc: 'Des fleurs séchées et stabilisées pour une composition qui dure des mois. Pampa, lavande, eucalyptus, statice — un bouquet intemporel à créer chez vous.',
     includes: ['10-15 variétés séchées & stabilisées', 'Pampa, lavande, eucalyptus', 'Fil de fer floral doré', 'Ruban en lin naturel', 'Guide de composition illustré', 'QR code → tuto vidéo'],
-    image: 'https://images.unsplash.com/photo-1457089328109-e5d9bd499191?w=600&q=85',
+    image: 'https://images.pexels.com/photos/5414022/pexels-photo-5414022.jpeg?auto=compress&cs=tinysrgb&w=800',
     duration: '6 mois à 2 ans',
   },
   {
@@ -35,7 +35,7 @@ const boxes = [
     tag: 'L\'expérience premium',
     desc: 'Notre box signature qui combine fleurs fraîches et séchées. Créez un centre de table unique en mélangeant les textures, les couleurs et les parfums.',
     includes: ['6-8 tiges fraîches de saison', '8-10 variétés séchées', 'Mousse florale Oasis', 'Contenant en bois gravé', 'Sécateur floral professionnel', 'Carte message personnalisée', 'Guide + tuto vidéo exclusif'],
-    image: 'https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=600&q=85',
+    image: 'https://images.pexels.com/photos/4238349/pexels-photo-4238349.jpeg?auto=compress&cs=tinysrgb&w=800',
     duration: 'Séchées: 6 mois+ / Fraîches: 7-14j',
   },
 ]
@@ -124,13 +124,13 @@ export default function DIYPage() {
       <section className="relative h-[75vh] min-h-[520px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.pexels.com/photos/4466260/pexels-photo-4466260.jpeg?auto=compress&cs=tinysrgb&w=1400"
+            src="https://images.pexels.com/photos/6913732/pexels-photo-6913732.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt="Atelier floral"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-[#faf8f5]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-[#faf8f5]" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-3xl">
           <p className="uppercase text-[11px] tracking-[0.35em] text-[#c4a47a] mb-5">Atelier à la maison</p>
