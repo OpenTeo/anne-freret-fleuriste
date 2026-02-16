@@ -43,31 +43,31 @@ const boxes = [
 const steps = [
   {
     num: '01',
-    title: 'Ouvrez votre box',
-    desc: 'Chaque tige est protégée individuellement. Déballez délicatement, taillez les tiges en biseau et placez les fleurs fraîches dans l\'eau immédiatement.',
-    tip: 'Astuce : laissez les fleurs fraîches s\'hydrater 2h avant de commencer.',
-    icon: '/icons/step-open.svg',
+    title: 'Recevez & ouvrez',
+    desc: 'Votre box arrive en 24-48h. Chaque tige est protégée individuellement. Déballez délicatement et placez les fleurs fraîches dans l\'eau.',
+    tip: 'Laissez les fleurs s\'hydrater 2h avant de commencer.',
+    image: 'https://images.pexels.com/photos/4466552/pexels-photo-4466552.jpeg?auto=compress&cs=tinysrgb&w=600',
   },
   {
     num: '02',
     title: 'Préparez vos tiges',
-    desc: 'Retirez le feuillage du bas des tiges — il ne doit pas toucher l\'eau. Pour les séchées, séparez-les délicatement par variété sur votre plan de travail.',
-    tip: 'Astuce : gardez un bol d\'eau tiède à proximité pour les tiges fraîches.',
-    icon: '/icons/step-cut.svg',
+    desc: 'Taillez les tiges en biseau, retirez le feuillage du bas. Pour les séchées, séparez-les par variété sur votre plan de travail.',
+    tip: 'Gardez un bol d\'eau tiède à proximité pour les tiges fraîches.',
+    image: 'https://images.pexels.com/photos/4466544/pexels-photo-4466544.jpeg?auto=compress&cs=tinysrgb&w=600',
   },
   {
     num: '03',
     title: 'Composez en spirale',
-    desc: 'Commencez par les fleurs principales au centre. Ajoutez les secondaires en tournant le bouquet d\'un quart de tour à chaque tige. Terminez par le feuillage.',
-    tip: 'Astuce : toujours de l\'extérieur vers l\'intérieur, en spirale.',
-    icon: '/icons/step-compose.svg',
+    desc: 'Commencez par les fleurs principales au centre. Ajoutez les secondaires en tournant d\'un quart de tour à chaque tige. Terminez par le feuillage.',
+    tip: 'Toujours de l\'extérieur vers l\'intérieur, en spirale.',
+    image: 'https://images.pexels.com/photos/5409700/pexels-photo-5409700.jpeg?auto=compress&cs=tinysrgb&w=600',
   },
   {
     num: '04',
     title: 'Nouez & admirez',
-    desc: 'Attachez votre bouquet avec le ruban ou le raphia fourni. Placez-le dans votre vase et admirez votre création. Partagez avec #AnneFreretDIY !',
-    tip: 'Astuce : changez l\'eau tous les 2 jours pour les fleurs fraîches.',
-    icon: '/icons/step-admire.svg',
+    desc: 'Attachez votre bouquet avec le ruban fourni et placez-le dans votre vase. Partagez votre création avec #AnneFreretDIY !',
+    tip: 'Changez l\'eau tous les 2 jours pour les fleurs fraîches.',
+    image: 'https://images.pexels.com/photos/8723268/pexels-photo-8723268.jpeg?auto=compress&cs=tinysrgb&w=600',
   },
 ]
 
@@ -112,20 +112,24 @@ export default function DIYPage() {
           </h2>
         </div>
 
-        <div className="space-y-16 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-16 md:gap-y-20">
-          {steps.map((step) => (
-            <div key={step.num} className="flex gap-6 items-start">
-              {/* Icône SVG artisanale */}
-              <div className="w-24 h-24 flex-shrink-0">
-                <Image src={step.icon} alt={step.title} width={96} height={96} />
-              </div>
-              <div>
-                <div className="flex items-baseline gap-3 mb-2">
-                  <span className="text-[#c4a47a] text-2xl font-light" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{step.num}</span>
-                  <h3 className="text-sm uppercase tracking-[0.12em] text-[#2d2a26]">{step.title}</h3>
+        <div className="space-y-16 md:space-y-24">
+          {steps.map((step, idx) => (
+            <div key={step.num} className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center ${idx % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
+              {/* Photo */}
+              <div className="relative h-64 md:h-80 overflow-hidden rounded-sm md:[direction:ltr]">
+                <Image src={step.image} alt={step.title} fill className="object-cover" />
+                <div className="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center">
+                  <span className="text-[#c4a47a] text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{step.num}</span>
                 </div>
-                <p className="text-[13px] text-[#2d2a26]/60 leading-relaxed mb-3">{step.desc}</p>
-                <p className="text-[12px] text-[#c4a47a] italic">{step.tip}</p>
+              </div>
+              {/* Texte */}
+              <div className="md:[direction:ltr]">
+                <h3 className="text-2xl md:text-3xl text-[#2d2a26] mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
+                  {step.title}
+                </h3>
+                <div className="w-8 h-px bg-[#c4a47a] mb-4"></div>
+                <p className="text-[14px] text-[#2d2a26]/60 leading-relaxed mb-4">{step.desc}</p>
+                <p className="text-[13px] text-[#c4a47a] italic">✦ {step.tip}</p>
               </div>
             </div>
           ))}
