@@ -46,28 +46,28 @@ const steps = [
     title: 'Recevez & ouvrez',
     desc: 'Votre box arrive en 24-48h. Chaque tige est protégée individuellement. Déballez délicatement et placez les fleurs fraîches dans l\'eau.',
     tip: 'Laissez les fleurs s\'hydrater 2h avant de commencer.',
-    image: 'https://images.pexels.com/photos/4466552/pexels-photo-4466552.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: 'https://images.pexels.com/photos/28973772/pexels-photo-28973772.jpeg?auto=compress&cs=tinysrgb&w=600',
   },
   {
     num: '02',
     title: 'Préparez vos tiges',
     desc: 'Taillez les tiges en biseau, retirez le feuillage du bas. Pour les séchées, séparez-les par variété sur votre plan de travail.',
     tip: 'Gardez un bol d\'eau tiède à proximité pour les tiges fraîches.',
-    image: 'https://images.pexels.com/photos/4466544/pexels-photo-4466544.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: 'https://images.pexels.com/photos/4499858/pexels-photo-4499858.jpeg?auto=compress&cs=tinysrgb&w=600',
   },
   {
     num: '03',
     title: 'Composez en spirale',
     desc: 'Commencez par les fleurs principales au centre. Ajoutez les secondaires en tournant d\'un quart de tour à chaque tige. Terminez par le feuillage.',
     tip: 'Toujours de l\'extérieur vers l\'intérieur, en spirale.',
-    image: 'https://images.pexels.com/photos/5409700/pexels-photo-5409700.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: 'https://images.unsplash.com/photo-1758402638146-a1a94f400073?w=600&q=85',
   },
   {
     num: '04',
     title: 'Nouez & admirez',
     desc: 'Attachez votre bouquet avec le ruban fourni et placez-le dans votre vase. Partagez votre création avec #AnneFreretDIY !',
     tip: 'Changez l\'eau tous les 2 jours pour les fleurs fraîches.',
-    image: 'https://images.pexels.com/photos/8723268/pexels-photo-8723268.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: 'https://images.pexels.com/photos/3579495/pexels-photo-3579495.jpeg?auto=compress&cs=tinysrgb&w=600',
   },
 ]
 
