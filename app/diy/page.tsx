@@ -47,11 +47,12 @@ const steps = [
     desc: 'Chaque tige est protégée individuellement. Déballez délicatement, taillez les tiges en biseau et placez les fleurs fraîches dans l\'eau immédiatement.',
     tip: 'Astuce : laissez les fleurs fraîches s\'hydrater 2h avant de commencer.',
     icon: (
-      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <rect x="12" y="24" width="40" height="28" rx="2" />
-        <path d="M12 24l20-12 20 12" />
-        <path d="M32 12v16" strokeDasharray="3 3" />
-        <circle cx="32" cy="36" r="4" />
+      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="14" y="26" width="36" height="24" rx="3" />
+        <path d="M14 26c0-2 8-10 18-10s18 8 18 10" />
+        <line x1="32" y1="16" x2="32" y2="26" strokeDasharray="2 2" />
+        <path d="M26 38c0-3 3-6 6-6s6 3 6 6-3 6-6 6-6-3-6-6z" />
+        <path d="M32 32v-4m0 16v-4" />
       </svg>
     ),
   },
@@ -61,11 +62,16 @@ const steps = [
     desc: 'Retirez le feuillage du bas des tiges — il ne doit pas toucher l\'eau. Pour les séchées, séparez-les délicatement par variété sur votre plan de travail.',
     tip: 'Astuce : gardez un bol d\'eau tiède à proximité pour les tiges fraîches.',
     icon: (
-      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M20 44l12-32 12 32" />
-        <path d="M16 44h32" />
-        <ellipse cx="32" cy="20" rx="6" ry="8" />
-        <path d="M26 20c0-4 6-12 6-12s6 8 6 12" />
+      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 14l-6 20h6" />
+        <path d="M42 14l6 20h-6" />
+        <path d="M22 34v16" />
+        <path d="M42 34v16" />
+        <path d="M18 50h8" />
+        <path d="M38 50h8" />
+        <path d="M30 10c0-4 2-6 2-6s2 2 2 6c0 3-2 6-2 10" />
+        <path d="M28 18c-2-2-5-2-5 0s3 4 5 6" />
+        <path d="M36 18c2-2 5-2 5 0s-3 4-5 6" />
       </svg>
     ),
   },
@@ -75,13 +81,16 @@ const steps = [
     desc: 'Commencez par les fleurs principales au centre. Ajoutez les secondaires en tournant le bouquet d\'un quart de tour à chaque tige. Terminez par le feuillage.',
     tip: 'Astuce : toujours de l\'extérieur vers l\'intérieur, en spirale.',
     icon: (
-      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M32 48c0-8 8-8 8-16s-8-8-8-16" />
-        <path d="M32 48c0-8-8-8-8-16s8-8 8-16" />
-        <circle cx="32" cy="16" r="6" />
-        <circle cx="24" cy="28" r="4" />
-        <circle cx="40" cy="28" r="4" />
-        <path d="M28 48h8" />
+      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M32 52V36" />
+        <path d="M26 52h12" />
+        <circle cx="32" cy="22" r="5" />
+        <circle cx="23" cy="26" r="4" />
+        <circle cx="41" cy="26" r="4" />
+        <circle cx="26" cy="17" r="3.5" />
+        <circle cx="38" cy="17" r="3.5" />
+        <circle cx="32" cy="14" r="3" />
+        <path d="M28 36l4-4 4 4" />
       </svg>
     ),
   },
@@ -91,15 +100,16 @@ const steps = [
     desc: 'Attachez votre bouquet avec le ruban ou le raphia fourni. Placez-le dans votre vase et admirez votre création. Partagez avec #AnneFreretDIY !',
     tip: 'Astuce : changez l\'eau tous les 2 jours pour les fleurs fraîches.',
     icon: (
-      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M24 20c4 8 4 16 4 28" />
-        <path d="M40 20c-4 8-4 16-4 28" />
-        <path d="M20 34h24" />
-        <path d="M28 34c-2-2-4-6 0-8s8 2 4 8" />
-        <path d="M36 34c2-2 4-6 0-8s-8 2-4 8" />
-        <circle cx="24" cy="16" r="6" />
-        <circle cx="40" cy="16" r="6" />
-        <circle cx="32" cy="12" r="5" />
+      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M24 44c0-10 2-14 8-20" />
+        <path d="M40 44c0-10-2-14-8-20" />
+        <path d="M20 44h24" />
+        <ellipse cx="32" cy="50" rx="10" ry="4" />
+        <circle cx="32" cy="16" r="5" />
+        <circle cx="25" cy="20" r="4" />
+        <circle cx="39" cy="20" r="4" />
+        <path d="M28 30c-1 0-4 1-4 3s3 3 4 1" />
+        <path d="M36 30c1 0 4 1 4 3s-3 3-4 1" />
       </svg>
     ),
   },
@@ -114,7 +124,7 @@ export default function DIYPage() {
       <section className="relative h-[75vh] min-h-[520px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?w=1400&q=85"
+            src="https://images.pexels.com/photos/4466260/pexels-photo-4466260.jpeg?auto=compress&cs=tinysrgb&w=1400"
             alt="Atelier floral"
             fill
             className="object-cover"
@@ -276,27 +286,23 @@ export default function DIYPage() {
               Pas besoin d'être expert — le guide vous accompagne à chaque étape.
             </p>
           </div>
-          <div className="bg-[#faf8f5] p-8 md:p-10 space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="text-[#c4a47a]">🎁</span>
-              <p className="text-[13px] text-[#2d2a26]/70">Emballage cadeau inclus</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-[#c4a47a]">✉️</span>
-              <p className="text-[13px] text-[#2d2a26]/70">Carte message personnalisée</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-[#c4a47a]">🚚</span>
-              <p className="text-[13px] text-[#2d2a26]/70">Livraison 24-48h partout en France</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-[#c4a47a]">📹</span>
-              <p className="text-[13px] text-[#2d2a26]/70">Tuto vidéo accessible par QR code</p>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="text-[#c4a47a]">🌿</span>
-              <p className="text-[13px] text-[#2d2a26]/70">Fleurs de saison, fraîches ou séchées</p>
-            </div>
+          <div className="bg-[#faf8f5] p-8 md:p-10 space-y-5">
+            {[
+              { label: 'Emballage cadeau inclus', d: 'M20 12v6a2 2 0 002 2h8a2 2 0 002-2v-6m-14 0h16m-16 0l2-4h12l2 4M12 12v8m0-8h0' },
+              { label: 'Carte message personnalisée', d: 'M3 8l9 6 9-6M3 8v10a2 2 0 002 2h14a2 2 0 002-2V8M3 8l9-4 9 4' },
+              { label: 'Livraison 24-48h partout en France', d: 'M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10m10 0H3m10 0h2m4 0h2a1 1 0 001-1v-5a1 1 0 00-.3-.7l-3-3A1 1 0 0017 6h-2m0 10h-2m2 0a2 2 0 104 0m-10 0a2 2 0 104 0' },
+              { label: 'Tuto vidéo accessible par QR code', d: 'M15 10l4.5 3L15 16V10zM4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z' },
+              { label: 'Fleurs de saison, fraîches ou séchées', d: 'M12 22c-4 0-8-2-8-6 0-3 2-5 4-6l4-4V2m0 4l-3-3m3 3l3-3M8 16c-2 0-4-1-4-3s2-3 4-3 4 1 4 3-2 3-4 3zm8 0c2 0 4-1 4-3s-2-3-4-3-4 1-4 3 2 3 4 3z' },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-4">
+                <div className="w-10 h-10 flex-shrink-0 rounded-full border border-[#c4a47a]/25 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
+                    <path d={item.d} />
+                  </svg>
+                </div>
+                <p className="text-[13px] text-[#2d2a26]/70">{item.label}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
