@@ -586,9 +586,9 @@ export const mockProducts: Product[] = [
     id: '27',
     name: 'Bougie parfumée',
     price: 12.90,
-    image: 'https://images.pexels.com/photos/374062/pexels-photo-374062.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.unsplash.com/photo-1602607207102-04a2d3beeab4?w=800&q=85',
     images: [
-      'https://images.pexels.com/photos/374062/pexels-photo-374062.jpeg?auto=compress&cs=tinysrgb&w=800'
+      'https://images.unsplash.com/photo-1602607207102-04a2d3beeab4?w=800&q=85'
     ],
     category: 'Accessoires',
     description: 'Coulée à la main en Normandie dans de la cire de soja naturelle, cette bougie au parfum délicat de fleur de coton diffuse une lumière douce et un sillage aérien dans toute la pièce. Sa mèche en coton naturel assure une combustion propre et régulière pendant environ 40 heures. Présentée dans un contenant en verre fumé réutilisable, elle accompagne idéalement un bouquet pour un cadeau complet et raffiné.',
@@ -603,9 +603,9 @@ export const mockProducts: Product[] = [
     id: '28',
     name: 'Vase en céramique',
     price: 19.90,
-    image: 'https://images.pexels.com/photos/4022205/pexels-photo-4022205.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=800&q=85',
     images: [
-      'https://images.pexels.com/photos/4022205/pexels-photo-4022205.jpeg?auto=compress&cs=tinysrgb&w=800'
+      'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=800&q=85'
     ],
     category: 'Accessoires',
     description: 'Vase en céramique tourné à la main, aux lignes organiques et à la finition crème mat légèrement texturée au toucher. D\'une hauteur de 18 cm, sa silhouette épurée met en valeur aussi bien un bouquet généreux qu\'une branche unique. Chaque pièce est légèrement différente, témoignage du geste artisanal. Un objet décoratif à part entière, même sans fleurs.',
@@ -618,14 +618,14 @@ export const mockProducts: Product[] = [
   },
   {
     id: '29',
-    name: 'Coffret chocolats belges',
+    name: 'Coffret chocolats artisanaux',
     price: 14.90,
-    image: 'https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=800&q=85',
     images: [
-      'https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg?auto=compress&cs=tinysrgb&w=800'
+      'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=800&q=85'
     ],
     category: 'Accessoires',
-    description: 'Coffret élégant de 12 chocolats belges artisanaux, déclinés en noir intense, lait onctueux et blanc crémeux. Fourrages praliné noisette, ganache au cacao grand cru et caramel beurre salé se dévoilent sous des coques finement travaillées. L\'accompagnement parfait pour sublimer un bouquet et transformer une attention florale en cadeau gourmand d\'exception.',
+    description: 'Coffret élégant de chocolats artisanaux normands, déclinés en noir intense, lait onctueux et blanc crémeux. Fourrages praliné noisette, ganache au cacao grand cru et caramel beurre salé se dévoilent sous des coques finement travaillées. L\'accompagnement parfait pour sublimer un bouquet et transformer une attention florale en cadeau gourmand d\'exception.',
     slug: 'coffret-chocolats',
     featured: false,
     inStock: true,
@@ -637,9 +637,9 @@ export const mockProducts: Product[] = [
     id: '30',
     name: 'Sachet de graines sauvages',
     price: 8.90,
-    image: 'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=85',
     images: [
-      'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=800'
+      'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=85'
     ],
     category: 'Accessoires',
     description: 'Mélange de graines de fleurs sauvages — coquelicots écarlates, bleuets azur, marguerites lumineuses et cosmos aériens — à semer au printemps pour une floraison estivale généreuse. Présenté dans un sachet kraft illustré à la main, il fait un cadeau charmant et original pour les amoureux de nature. Couvre environ 2 m2 de prairie fleurie et attire papillons et abeilles au jardin.',

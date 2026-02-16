@@ -413,9 +413,9 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 <AccordionItem id="addons" title="Complétez votre cadeau">
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { key: 'vase', name: 'Vase artisanal', price: 19.90, image: 'https://images.pexels.com/photos/4022205/pexels-photo-4022205.jpeg?auto=compress&cs=tinysrgb&w=300', desc: 'Céramique fait main' },
-                      { key: 'chocolats', name: 'Chocolats belges', price: 14.90, image: 'https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg?auto=compress&cs=tinysrgb&w=300', desc: 'Coffret 12 pièces' },
-                      { key: 'bougie', name: 'Bougie parfumée', price: 12.90, image: 'https://images.pexels.com/photos/374062/pexels-photo-374062.jpeg?auto=compress&cs=tinysrgb&w=300', desc: 'Fleur de coton' },
+                      { key: 'vase', name: 'Vase artisanal', price: 19.90, image: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=300&q=85', desc: 'Céramique fait main' },
+                      { key: 'chocolats', name: 'Chocolats artisanaux', price: 14.90, image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300&q=85', desc: 'Coffret normand' },
+                      { key: 'bougie', name: 'Bougie parfumée', price: 12.90, image: 'https://images.unsplash.com/photo-1602607207102-04a2d3beeab4?w=300&q=85', desc: 'Cire de soja naturelle' },
                     ].map(addon => (
                       <button
                         key={addon.key}
