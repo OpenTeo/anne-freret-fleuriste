@@ -207,10 +207,10 @@ export default function Panier() {
                   <p className="text-xs text-[#2d2a26]/40 mb-3 uppercase tracking-[0.1em]">Complétez votre commande</p>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                     {[
-                      { name: 'Bougie parfumée', price: 12.90, image: 'https://images.pexels.com/photos/374062/pexels-photo-374062.jpeg?auto=compress&cs=tinysrgb&w=300', desc: 'Fleur de coton' },
-                      { name: 'Vase céramique', price: 19.90, image: 'https://images.pexels.com/photos/4022205/pexels-photo-4022205.jpeg?auto=compress&cs=tinysrgb&w=300', desc: 'Fait main' },
-                      { name: 'Chocolats belges', price: 14.90, image: 'https://images.pexels.com/photos/918327/pexels-photo-918327.jpeg?auto=compress&cs=tinysrgb&w=300', desc: 'Coffret 12 pièces' },
-                      { name: 'Graines sauvages', price: 8.90, image: 'https://images.pexels.com/photos/1002703/pexels-photo-1002703.jpeg?auto=compress&cs=tinysrgb&w=300', desc: 'Fleurs à semer' },
+                      { name: 'Bougie parfumée', price: 12.90, image: '/bougie-addon.jpg', desc: 'Fleur de coton' },
+                      { name: 'Vase céramique', price: 19.90, image: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=300&q=85', desc: 'Fait main' },
+                      { name: 'Chocolats artisanaux', price: 14.90, image: '/chocolats-addon.jpg', desc: 'Coffret 12 pièces' },
+                      { name: 'Carte message', price: 0, image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300&q=85', desc: 'Offerte' },
                     ].map((item) => (
                       <button key={item.name} className="bg-white border border-[#e8e0d8] p-2.5 text-left hover:border-[#c4a47a] transition-all group">
                         <img src={item.image} alt={item.name} className="w-full aspect-square object-cover mb-2" />
