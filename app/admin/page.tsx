@@ -1322,46 +1322,60 @@ export default function Admin() {
               className={`${inputClass} !w-full md:!w-80 mb-6`}
             />
 
+            <div className="text-xs text-[#2d2a26]/40 mb-4">{filteredClients.length} client{filteredClients.length > 1 ? 's' : ''}</div>
+
             {filteredClients.length === 0 ? (
               <div className="bg-white border border-[#e8e0d8] p-12 text-center">
-                <p className="text-4xl mb-4">👥</p>
                 <p className="text-[#2d2a26]/60">{clients.length === 0 ? 'Aucun client inscrit' : 'Aucun résultat'}</p>
               </div>
             ) : (
-              <div className="space-y-3">
-                {filteredClients.map(c => {
-                  const fullName = `${c.firstName} ${c.lastName}`;
-                  const co = getClientOrders(c.email);
-                  const total = getClientTotal(c.email);
-                  const last = getClientLastOrder(c.email);
-                  return (
-                    <div key={c.id} className="bg-white border border-[#e8e0d8] p-5 flex items-center gap-4 hover:border-[#c4a47a]/30 transition-colors">
-                      <div className={`w-10 h-10 ${avatarColor(fullName)} rounded-full flex items-center justify-center text-white text-sm font-medium flex-shrink-0`}>
-                        {getInitials(fullName)}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm text-[#2d2a26] font-medium">{fullName}</p>
-                        <p className="text-xs text-[#2d2a26]/40">{c.email}</p>
-                      </div>
-                      <div className="hidden sm:block text-center">
-                        <p className="text-sm text-[#2d2a26] font-medium">{co.length}</p>
-                        <p className="text-[9px] text-[#2d2a26]/40 uppercase">Commandes</p>
-                      </div>
-                      <div className="hidden sm:block text-center">
-                        <p className="text-sm text-[#2d2a26] font-medium">{total.toFixed(0)}€</p>
-                        <p className="text-[9px] text-[#2d2a26]/40 uppercase">Total</p>
-                      </div>
-                      <div className="hidden md:block text-right">
-                        {last ? (
-                          <p className="text-xs text-[#2d2a26]/60">{new Date(last).toLocaleDateString('fr-FR')}</p>
-                        ) : (
-                          <p className="text-xs text-[#2d2a26]/30">—</p>
-                        )}
-                        <p className="text-[9px] text-[#2d2a26]/40 uppercase">Dernière commande</p>
-                      </div>
-                    </div>
-                  );
-                })}
+              <div className="bg-white border border-[#e8e0d8] overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-[#e8e0d8] bg-[#faf8f5]">
+                      <th className="text-left text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3">Client</th>
+                      <th className="text-left text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3 hidden sm:table-cell">Téléphone</th>
+                      <th className="text-left text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3 hidden md:table-cell">Ville</th>
+                      <th className="text-center text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3">Commandes</th>
+                      <th className="text-right text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3">Total dépensé</th>
+                      <th className="text-right text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3 hidden md:table-cell">Dernière commande</th>
+                      <th className="text-right text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3 hidden lg:table-cell">Inscrit le</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredClients.map(c => {
+                      const fullName = `${c.firstName} ${c.lastName}`;
+                      const co = getClientOrders(c.email);
+                      const total = getClientTotal(c.email);
+                      const last = getClientLastOrder(c.email);
+                      return (
+                        <tr key={c.id} className="border-b border-[#e8e0d8]/50 hover:bg-[#faf8f5]/50 transition-colors">
+                          <td className="px-4 py-3">
+                            <div className="flex items-center gap-3">
+                              <div className={`w-8 h-8 ${avatarColor(fullName)} rounded-full flex items-center justify-center text-white text-xs font-medium flex-shrink-0`}>
+                                {getInitials(fullName)}
+                              </div>
+                              <div>
+                                <p className="text-[#2d2a26] font-medium text-sm">{fullName}</p>
+                                <p className="text-[11px] text-[#2d2a26]/40">{c.email}</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-4 py-3 text-[#2d2a26]/60 text-xs hidden sm:table-cell">{c.phone || '—'}</td>
+                          <td className="px-4 py-3 text-[#2d2a26]/60 text-xs hidden md:table-cell">{(c as any).city || '—'}</td>
+                          <td className="px-4 py-3 text-center text-[#2d2a26] font-medium">{co.length}</td>
+                          <td className="px-4 py-3 text-right text-[#2d2a26] font-medium">{total.toFixed(0)}€</td>
+                          <td className="px-4 py-3 text-right text-[#2d2a26]/60 text-xs hidden md:table-cell">
+                            {last ? new Date(last).toLocaleDateString('fr-FR') : '—'}
+                          </td>
+                          <td className="px-4 py-3 text-right text-[#2d2a26]/40 text-xs hidden lg:table-cell">
+                            {c.createdAt ? new Date(c.createdAt).toLocaleDateString('fr-FR') : '—'}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             )}
           </div>
@@ -1479,50 +1493,50 @@ export default function Admin() {
               })}
             </div>
 
-            {/* Subscriptions list as cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {subscriptions.map(s => {
-                const formula = formulaLabels[s.formula];
-                const daysUntilNext = s.nextDelivery ? Math.ceil((new Date(s.nextDelivery).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)) : null;
-                
-                return (
-                  <div key={s.id} className="bg-white border border-[#e8e0d8] p-5 hover:border-[#c4a47a]/30 transition-colors">
-                    <div className="flex items-start justify-between mb-3">
-                      <div className="flex-1">
-                        <div className="font-medium text-[#2d2a26] text-sm">{s.customerName}</div>
-                        <div className="text-[10px] text-[#2d2a26]/40">{s.customerEmail}</div>
-                      </div>
-                      <span className={`text-[10px] px-2 py-0.5 rounded flex-shrink-0 ${subStatusLabels[s.status]?.color}`}>
-                        {subStatusLabels[s.status]?.label}
-                      </span>
-                    </div>
-                    
-                    <div className="mb-3">
-                      <span className={`text-[10px] px-2 py-0.5 rounded ${formula?.color}`}>
-                        {formula?.label}
-                      </span>
-                      <div className="font-serif text-lg text-[#2d2a26] mt-1">{s.price}€</div>
-                      <div className="text-xs text-[#2d2a26]/60">{frequencyLabels[s.frequency]}</div>
-                    </div>
-
-                    {s.nextDelivery && daysUntilNext !== null && (
-                      <div className="text-xs text-[#2d2a26]/60 border-t border-[#e8e0d8] pt-3">
-                        <div className="flex justify-between">
-                          <span>Prochaine livraison:</span>
-                          <span className={daysUntilNext <= 3 ? 'text-[#c4a47a] font-medium' : ''}>
-                            {daysUntilNext <= 0 ? "Aujourd'hui" : 
-                             daysUntilNext === 1 ? "Demain" : 
-                             `J-${daysUntilNext}`}
-                          </span>
-                        </div>
-                        <div className="text-[10px] text-[#2d2a26]/30 mt-0.5">
-                          {new Date(s.nextDelivery).toLocaleDateString('fr-FR')}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+            {/* Subscriptions table */}
+            <div className="bg-white border border-[#e8e0d8] overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-[#e8e0d8] bg-[#faf8f5]">
+                    <th className="text-left text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3">Client</th>
+                    <th className="text-left text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3">Formule</th>
+                    <th className="text-right text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3">Prix</th>
+                    <th className="text-left text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3 hidden sm:table-cell">Fréquence</th>
+                    <th className="text-center text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3">Statut</th>
+                    <th className="text-right text-[10px] uppercase tracking-wider text-[#2d2a26]/40 px-4 py-3 hidden md:table-cell">Prochaine livraison</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {subscriptions.map(s => {
+                    const formula = formulaLabels[s.formula];
+                    const daysUntilNext = s.nextDelivery ? Math.ceil((new Date(s.nextDelivery).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)) : null;
+                    return (
+                      <tr key={s.id} className="border-b border-[#e8e0d8]/50 hover:bg-[#faf8f5]/50 transition-colors">
+                        <td className="px-4 py-3">
+                          <p className="text-[#2d2a26] font-medium text-sm">{s.customerName}</p>
+                          <p className="text-[11px] text-[#2d2a26]/40">{s.customerEmail}</p>
+                        </td>
+                        <td className="px-4 py-3">
+                          <span className={`text-[10px] px-2 py-0.5 rounded ${formula?.color}`}>{formula?.label}</span>
+                        </td>
+                        <td className="px-4 py-3 text-right text-[#2d2a26] font-medium">{s.price}€</td>
+                        <td className="px-4 py-3 text-[#2d2a26]/60 text-xs hidden sm:table-cell">{frequencyLabels[s.frequency]}</td>
+                        <td className="px-4 py-3 text-center">
+                          <span className={`text-[10px] px-2 py-0.5 rounded ${subStatusLabels[s.status]?.color}`}>{subStatusLabels[s.status]?.label}</span>
+                        </td>
+                        <td className="px-4 py-3 text-right text-xs hidden md:table-cell">
+                          {s.nextDelivery && daysUntilNext !== null ? (
+                            <span className={daysUntilNext <= 3 ? 'text-[#c4a47a] font-medium' : 'text-[#2d2a26]/60'}>
+                              {daysUntilNext <= 0 ? "Aujourd'hui" : daysUntilNext === 1 ? "Demain" : `J-${daysUntilNext}`}
+                              <span className="text-[#2d2a26]/30 ml-1">({new Date(s.nextDelivery).toLocaleDateString('fr-FR')})</span>
+                            </span>
+                          ) : '—'}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           </div>
         )}
