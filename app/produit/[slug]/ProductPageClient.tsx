@@ -268,6 +268,60 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 {product.description}
               </p>
 
+              {/* ——— CARTE MESSAGE — visible directement, SAUF Deuil ——— */}
+              {product.category !== 'Deuil & Hommages' && (
+                <div className="pt-2 pb-4 border-b border-[#e8e0d8]/60">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40">Ajouter une carte artisanale</h3>
+                    <span className="text-xs text-[#c4a47a]">+ 4,99 €</span>
+                  </div>
+                  <CardSelector
+                    selectedCard={selectedCardImage}
+                    onSelect={setSelectedCardImage}
+                  />
+                </div>
+              )}
+
+              {/* ——— ADD-ONS — visible directement, SAUF Deuil ——— */}
+              {product.category !== 'Deuil & Hommages' && (
+                <div className="pt-2 pb-4 border-b border-[#e8e0d8]/60">
+                  <h3 className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40 mb-3">Complétez votre cadeau</h3>
+                  <div className="grid grid-cols-3 gap-3">
+                    {[
+                      { key: 'vase', name: 'Vase artisanal', price: 19.90, image: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=300&q=85', desc: 'Céramique fait main' },
+                      { key: 'chocolats', name: 'Chocolats artisanaux', price: 14.90, image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300&q=85', desc: 'Coffret normand' },
+                      { key: 'bougie', name: 'Bougie parfumée', price: 12.90, image: 'https://images.unsplash.com/photo-1602607207102-04a2d3beeab4?w=300&q=85', desc: 'Cire de soja naturelle' },
+                    ].map(addon => (
+                      <button
+                        key={addon.key}
+                        onClick={() => handleAddOnChange(addon.key)}
+                        className={`text-left border transition-all ${
+                          selectedAddOns[addon.key as keyof typeof selectedAddOns]
+                            ? 'border-[#c4a47a] bg-[#c4a47a]/5'
+                            : 'border-[#e8e0d8]/50 hover:border-[#c4a47a]/50'
+                        }`}
+                      >
+                        <div className="relative aspect-square overflow-hidden bg-[#f5f0eb]">
+                          <Image src={addon.image} alt={addon.name} fill className="object-cover" sizes="120px" />
+                        </div>
+                        <div className="p-2.5">
+                          <p className="text-xs text-[#2d2a26] leading-tight mb-0.5">{addon.name}</p>
+                          <p className="text-[10px] text-[#2d2a26]/30">{addon.desc}</p>
+                          <div className="flex items-center justify-between mt-2">
+                            <span className="text-xs text-[#c4a47a] font-medium">+{addon.price.toFixed(2)}€</span>
+                            {selectedAddOns[addon.key as keyof typeof selectedAddOns] && (
+                              <svg className="w-3.5 h-3.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                              </svg>
+                            )}
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {/* 8. Quantité + Bouton "Ajouter au panier" */}
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
@@ -398,54 +452,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                   </div>
                 )}
 
-                {/* Carte message offerte — SAUF Deuil */}
-                {product.category !== 'Deuil & Hommages' && (
-                  <AccordionItem id="message" title="Carte message offerte">
-                    <CardSelector
-                      selectedCard={selectedCardImage}
-                      onSelect={setSelectedCardImage}
-                    />
-                  </AccordionItem>
-                )}
-
-                {/* Complétez votre cadeau — SAUF Deuil */}
-                {product.category !== 'Deuil & Hommages' && (
-                <AccordionItem id="addons" title="Complétez votre cadeau">
-                  <div className="grid grid-cols-3 gap-3">
-                    {[
-                      { key: 'vase', name: 'Vase artisanal', price: 19.90, image: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=300&q=85', desc: 'Céramique fait main' },
-                      { key: 'chocolats', name: 'Chocolats artisanaux', price: 14.90, image: 'https://images.unsplash.com/photo-1549007994-cb92caebd54b?w=300&q=85', desc: 'Coffret normand' },
-                      { key: 'bougie', name: 'Bougie parfumée', price: 12.90, image: 'https://images.unsplash.com/photo-1602607207102-04a2d3beeab4?w=300&q=85', desc: 'Cire de soja naturelle' },
-                    ].map(addon => (
-                      <button
-                        key={addon.key}
-                        onClick={() => handleAddOnChange(addon.key)}
-                        className={`text-left border transition-all ${
-                          selectedAddOns[addon.key as keyof typeof selectedAddOns]
-                            ? 'border-[#c4a47a] bg-[#c4a47a]/5'
-                            : 'border-[#e8e0d8]/50 hover:border-[#c4a47a]/50'
-                        }`}
-                      >
-                        <div className="relative aspect-square overflow-hidden bg-[#f5f0eb]">
-                          <Image src={addon.image} alt={addon.name} fill className="object-cover" sizes="120px" />
-                        </div>
-                        <div className="p-2.5">
-                          <p className="text-xs text-[#2d2a26] leading-tight mb-0.5">{addon.name}</p>
-                          <p className="text-[10px] text-[#2d2a26]/30">{addon.desc}</p>
-                          <div className="flex items-center justify-between mt-2">
-                            <span className="text-xs text-[#c4a47a] font-medium">+{addon.price.toFixed(2)}€</span>
-                            {selectedAddOns[addon.key as keyof typeof selectedAddOns] && (
-                              <svg className="w-3.5 h-3.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                              </svg>
-                            )}
-                          </div>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </AccordionItem>
-                )}
+                {/* Carte message + add-ons déplacés plus haut (avant le bouton panier) */}
 
                 {/* Livraison */}
                 <AccordionItem id="shipping" title="Livraison">
