@@ -35,7 +35,7 @@ const boxes = [
     tag: 'L\'expérience premium',
     desc: 'Notre box signature qui combine fleurs fraîches et séchées. Créez un centre de table unique en mélangeant les textures, les couleurs et les parfums.',
     includes: ['6-8 tiges fraîches de saison', '8-10 variétés séchées', 'Mousse florale Oasis', 'Contenant en bois gravé', 'Sécateur floral professionnel', 'Carte message personnalisée', 'Guide + tuto vidéo exclusif'],
-    image: 'https://images.unsplash.com/photo-1758402638146-a1a94f400073?w=800&q=85',
+    image: 'https://images.pexels.com/photos/4270178/pexels-photo-4270178.jpeg?auto=compress&cs=tinysrgb&w=800',
     duration: 'Séchées: 6 mois+ / Fraîches: 7-14j',
   },
 ]
@@ -83,7 +83,7 @@ export default function DIYPage() {
             src="https://images.pexels.com/photos/6913732/pexels-photo-6913732.jpeg?auto=compress&cs=tinysrgb&w=1600"
             alt="Atelier floral"
             fill
-            className="object-cover"
+            className="object-cover object-[center_70%]"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-[#faf8f5]" />
@@ -117,7 +117,7 @@ export default function DIYPage() {
             <div key={step.num} className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-14 items-center ${idx % 2 === 1 ? 'md:[direction:rtl]' : ''}`}>
               {/* Photo */}
               <div className="relative h-64 md:h-80 overflow-hidden rounded-sm md:[direction:ltr]">
-                <Image src={step.image} alt={step.title} fill className="object-cover" />
+                <Image src={step.image} alt={step.title} fill className={`object-cover ${step.num === '04' ? 'object-top' : ''}`} />
                 <div className="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center">
                   <span className="text-[#c4a47a] text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{step.num}</span>
                 </div>
