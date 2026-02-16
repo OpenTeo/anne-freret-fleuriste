@@ -58,9 +58,14 @@ const Header = () => {
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           
           {/* Top bar - desktop */}
-          <div className="hidden md:flex items-center justify-between h-20">
-            {/* Left nav */}
-            <nav className="flex items-center gap-5 lg:gap-7">
+          <div className="hidden md:block relative h-20">
+            {/* Logo — ABSOLUMENT centré au milieu de la page */}
+            <Link href="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+              <Logo className="text-lg md:text-xl" />
+            </Link>
+
+            {/* Left nav — aligné à gauche */}
+            <nav className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-5 lg:gap-7">
               {navLeft.map(link => (
                 <Link key={link.href} href={link.href} className="text-[#2d2a26]/70 text-[10px] lg:text-[11px] tracking-[0.12em] uppercase hover:text-[#c4a47a] transition-all duration-500 whitespace-nowrap">
                   {link.label}
@@ -68,13 +73,8 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Center logo */}
-            <Link href="/" className="flex-shrink-0 mx-4 lg:mx-8">
-              <Logo className="text-lg md:text-xl" />
-            </Link>
-
-            {/* Right nav */}
-            <nav className="flex items-center gap-5 lg:gap-7">
+            {/* Right nav — aligné à droite */}
+            <nav className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-5 lg:gap-7">
               {navRight.map(link => (
                 <Link key={link.href} href={link.href} className="text-[#2d2a26]/70 text-[10px] lg:text-[11px] tracking-[0.12em] uppercase hover:text-[#c4a47a] transition-all duration-500 whitespace-nowrap">
                   {link.label}
