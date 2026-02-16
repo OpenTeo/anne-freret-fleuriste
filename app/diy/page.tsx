@@ -13,7 +13,7 @@ const boxes = [
     tag: 'Idéal pour débuter',
     desc: 'Un bouquet prêt à assembler avec des fleurs fraîches de saison. Suivez le guide, créez votre composition et admirez le résultat pendant 7 à 14 jours.',
     includes: ['8-12 tiges fraîches de saison', 'Sachet d\'élixir végétal', 'Guide illustré pas à pas', 'QR code → tuto vidéo', 'Papier kraft & raphia'],
-    image: 'https://images.pexels.com/photos/4466552/pexels-photo-4466552.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.pexels.com/photos/931155/pexels-photo-931155.jpeg?auto=compress&cs=tinysrgb&w=800',
     duration: '7-14 jours',
   },
   {
@@ -47,12 +47,13 @@ const steps = [
     desc: 'Chaque tige est protégée individuellement. Déballez délicatement, taillez les tiges en biseau et placez les fleurs fraîches dans l\'eau immédiatement.',
     tip: 'Astuce : laissez les fleurs fraîches s\'hydrater 2h avant de commencer.',
     icon: (
-      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="14" y="26" width="36" height="24" rx="3" />
-        <path d="M14 26c0-2 8-10 18-10s18 8 18 10" />
-        <line x1="32" y1="16" x2="32" y2="26" strokeDasharray="2 2" />
-        <path d="M26 38c0-3 3-6 6-6s6 3 6 6-3 6-6 6-6-3-6-6z" />
-        <path d="M32 32v-4m0 16v-4" />
+      <svg viewBox="0 0 80 80" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        {/* Box ouverte avec couvercle soulevé */}
+        <rect x="18" y="40" width="44" height="26" rx="2" />
+        <line x1="40" y1="40" x2="40" y2="66" />
+        <rect x="15" y="32" width="50" height="10" rx="2" />
+        <path d="M40 32c0 0-8-14-16-14c-5 0-7 4-5 7s8 5 12 5" />
+        <path d="M40 32c0 0 8-14 16-14c5 0 7 4 5 7s-8 5-12 5" />
       </svg>
     ),
   },
@@ -62,16 +63,16 @@ const steps = [
     desc: 'Retirez le feuillage du bas des tiges — il ne doit pas toucher l\'eau. Pour les séchées, séparez-les délicatement par variété sur votre plan de travail.',
     tip: 'Astuce : gardez un bol d\'eau tiède à proximité pour les tiges fraîches.',
     icon: (
-      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 14l-6 20h6" />
-        <path d="M42 14l6 20h-6" />
-        <path d="M22 34v16" />
-        <path d="M42 34v16" />
-        <path d="M18 50h8" />
-        <path d="M38 50h8" />
-        <path d="M30 10c0-4 2-6 2-6s2 2 2 6c0 3-2 6-2 10" />
-        <path d="M28 18c-2-2-5-2-5 0s3 4 5 6" />
-        <path d="M36 18c2-2 5-2 5 0s-3 4-5 6" />
+      <svg viewBox="0 0 80 80" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        {/* Sécateur coupant une tige */}
+        <path d="M34 12v50" />
+        <path d="M30 30l-4 6" />
+        <path d="M38 24l4-6" />
+        <path d="M30 18c-6-2-10 2-8 6s8 2 8-2" />
+        <path d="M38 14c6-4 12 0 10 6s-10 2-10-2" />
+        <line x1="14" y1="42" x2="34" y2="36" />
+        <line x1="14" y1="42" x2="34" y2="48" />
+        <circle cx="17" cy="42" r="2" fill="currentColor" />
       </svg>
     ),
   },
@@ -81,16 +82,18 @@ const steps = [
     desc: 'Commencez par les fleurs principales au centre. Ajoutez les secondaires en tournant le bouquet d\'un quart de tour à chaque tige. Terminez par le feuillage.',
     tip: 'Astuce : toujours de l\'extérieur vers l\'intérieur, en spirale.',
     icon: (
-      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M32 52V36" />
-        <path d="M26 52h12" />
-        <circle cx="32" cy="22" r="5" />
-        <circle cx="23" cy="26" r="4" />
-        <circle cx="41" cy="26" r="4" />
-        <circle cx="26" cy="17" r="3.5" />
-        <circle cx="38" cy="17" r="3.5" />
-        <circle cx="32" cy="14" r="3" />
-        <path d="M28 36l4-4 4 4" />
+      <svg viewBox="0 0 80 80" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        {/* Main tenant des tiges en spirale */}
+        <path d="M30 68l6-24" />
+        <path d="M44 68l-4-24" />
+        <path d="M50 68l-8-24" />
+        <path d="M26 44c-2-8 2-16 10-20" />
+        <path d="M42 44c0-6 4-14-2-22" />
+        <circle cx="36" cy="18" r="6" />
+        <circle cx="26" cy="22" r="5" />
+        <circle cx="46" cy="20" r="5" />
+        <circle cx="31" cy="12" r="4" />
+        <circle cx="43" cy="12" r="4" />
       </svg>
     ),
   },
@@ -100,16 +103,19 @@ const steps = [
     desc: 'Attachez votre bouquet avec le ruban ou le raphia fourni. Placez-le dans votre vase et admirez votre création. Partagez avec #AnneFreretDIY !',
     tip: 'Astuce : changez l\'eau tous les 2 jours pour les fleurs fraîches.',
     icon: (
-      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M24 44c0-10 2-14 8-20" />
-        <path d="M40 44c0-10-2-14-8-20" />
-        <path d="M20 44h24" />
-        <ellipse cx="32" cy="50" rx="10" ry="4" />
-        <circle cx="32" cy="16" r="5" />
-        <circle cx="25" cy="20" r="4" />
-        <circle cx="39" cy="20" r="4" />
-        <path d="M28 30c-1 0-4 1-4 3s3 3 4 1" />
-        <path d="M36 30c1 0 4 1 4 3s-3 3-4 1" />
+      <svg viewBox="0 0 80 80" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+        {/* Vase avec bouquet fini et noeud */}
+        <ellipse cx="40" cy="68" rx="14" ry="4" />
+        <path d="M26 68V56c0-4 6-8 14-8s14 4 14 8v12" />
+        <circle cx="40" cy="36" r="6" />
+        <circle cx="31" cy="38" r="5" />
+        <circle cx="49" cy="38" r="5" />
+        <circle cx="34" cy="30" r="4.5" />
+        <circle cx="46" cy="30" r="4.5" />
+        <circle cx="40" cy="28" r="4" />
+        <path d="M36 48c2 2 6 2 8 0" />
+        <path d="M34 48l-2 4" />
+        <path d="M46 48l2 4" />
       </svg>
     ),
   },
@@ -160,7 +166,7 @@ export default function DIYPage() {
           {steps.map((step) => (
             <div key={step.num} className="flex gap-6 items-start">
               {/* Icône SVG artisanale */}
-              <div className="w-20 h-20 flex-shrink-0 text-[#c4a47a]/70">
+              <div className="w-24 h-24 flex-shrink-0 text-[#c4a47a]">
                 {step.icon}
               </div>
               <div>
