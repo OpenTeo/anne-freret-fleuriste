@@ -11,7 +11,7 @@ const slides = [
     subtitle: 'Sélection de saison',
     title: 'Le bouquet du mois',
     cta: 'Découvrir →',
-    objectPosition: 'center 75%',
+    objectPosition: 'center 85%',
   },
   {
     href: '/mariages',
