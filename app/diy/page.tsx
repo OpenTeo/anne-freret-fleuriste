@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 /* ─── Données ─── */
 const boxes = [
@@ -75,6 +77,8 @@ export default function DIYPage() {
   const [openBox, setOpenBox] = useState<string | null>(null)
 
   return (
+    <>
+    <Header />
     <main className="bg-[#faf8f5] min-h-screen">
       {/* ─── HERO ─── */}
       <section className="relative h-[75vh] min-h-[520px] flex items-center justify-center overflow-hidden">
@@ -86,14 +90,14 @@ export default function DIYPage() {
             className="object-cover object-center"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/20 to-[#faf8f5]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[#faf8f5]" />
         </div>
         <div className="relative z-10 text-center px-4 max-w-3xl">
-          <p className="uppercase text-[11px] tracking-[0.35em] text-[#c4a47a] mb-5">Atelier à la maison</p>
+          <p className="uppercase text-[11px] tracking-[0.35em] text-white mb-5">Atelier à la maison</p>
           <h1 className="text-5xl md:text-7xl text-[#2d2a26] mb-6 leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
             Do It Yourself
           </h1>
-          <p className="text-[#2d2a26]/80 text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
+          <p className="text-white/85 text-lg md:text-xl leading-relaxed max-w-xl mx-auto">
             Devenez fleuriste le temps d'un instant. Recevez une box complète 
             et créez votre propre composition — fraîche, séchée, ou les deux.
           </p>
@@ -303,5 +307,7 @@ export default function DIYPage() {
         </div>
       </section>
     </main>
+    <Footer />
+    </>
   )
 }
