@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -71,7 +71,7 @@ const steps = [
   { id: 4, label: 'Paiement' },
 ];
 
-export default function Abonnement() {
+function AbonnementContent() {
   const [step, setStep] = useState(1);
   const searchParams = useSearchParams();
   const [selectedPlan, setSelectedPlan] = useState('signature');
@@ -622,5 +622,13 @@ export default function Abonnement() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function Abonnement() {
+  return (
+    <Suspense>
+      <AbonnementContent />
+    </Suspense>
   );
 }
