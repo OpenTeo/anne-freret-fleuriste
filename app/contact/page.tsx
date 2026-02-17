@@ -118,7 +118,7 @@ export default function Contact() {
               {/* Illustration carte vintage */}
               <div className="mt-12 bg-[#f5f0eb] border border-[#c4a47a]/20 p-6 md:p-8">
                 <img 
-                  src="/images/carte-normandie.svg" 
+                  src="/images/carte-normandie.png" 
                   alt="Carte illustrée vintage de la baie du Mont Saint-Michel — Anne Freret Fleuriste à Saint-Pair-sur-Mer"
                   className="w-full"
                 />
