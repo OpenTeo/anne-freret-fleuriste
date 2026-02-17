@@ -115,23 +115,31 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Illustration carte vintage */}
-              <div className="mt-12 bg-[#f5f0eb] border border-[#c4a47a]/20 p-6 md:p-8">
-                <img 
-                  src="/images/carte-normandie.png" 
-                  alt="Carte illustrée vintage de la baie du Mont Saint-Michel — Anne Freret Fleuriste à Saint-Pair-sur-Mer"
-                  className="w-full"
-                />
-                
-                <div className="flex items-center justify-between mt-4">
-                  <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/30">À deux pas de l&apos;église de Saint-Pair-sur-Mer</p>
+              {/* Carte Google Maps stylisée */}
+              <div className="mt-12 border border-[#c4a47a]/20 overflow-hidden">
+                <div className="relative">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2640.5!2d-1.5697!3d48.8131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480e9e5e5e5e5e5d%3A0x0!2s39+Place+du+G%C3%A9n%C3%A9ral+de+Gaulle%2C+50380+Saint-Pair-sur-Mer!5e0!3m2!1sfr!2sfr!4v1"
+                    width="100%"
+                    height="300"
+                    style={{ border: 0, filter: 'sepia(15%) saturate(85%) brightness(102%)' }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Anne Freret Fleuriste — Saint-Pair-sur-Mer"
+                  />
+                </div>
+                <div className="bg-[#f5f0eb] px-6 py-4 flex items-center justify-between">
+                  <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/30">
+                    39 Place du Général de Gaulle — Saint-Pair-sur-Mer
+                  </p>
                   <a 
                     href="https://www.google.com/maps/search/39+Place+du+Général+de+Gaulle+50380+Saint-Pair-sur-Mer"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[9px] tracking-[0.15em] uppercase text-[#c4a47a] hover:text-[#2d2a26] transition-colors border-b border-[#c4a47a]/30 pb-0.5"
                   >
-                    Voir sur Google Maps
+                    Itinéraire
                   </a>
                 </div>
               </div>
