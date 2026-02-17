@@ -46,7 +46,7 @@ export default function MentionsLegales() {
               <div className="bg-gray/50 p-6 rounded-lg">
                 <p><strong>Raison sociale :</strong> Anne Freret Fleuriste</p>
                 <p><strong>Forme juridique :</strong> Entreprise individuelle</p>
-                <p><strong>Siège social :</strong> Place de l'Église, 50270 39 place Générale de Gaulle, Saint-Pair-sur-Mer, France</p>
+                <p><strong>Siège social :</strong> 39 Place du Général de Gaulle, Saint-Pair-sur-Mer, France</p>
                 <p><strong>SIRET :</strong> [À compléter - En cours d'immatriculation]</p>
                 <p><strong>Code APE :</strong> 4776Z - Commerce de détail de fleurs, plantes, graines, engrais</p>
                 <p><strong>TVA Intracommunautaire :</strong> [À compléter]</p>
@@ -60,7 +60,7 @@ export default function MentionsLegales() {
                 2. Contact
               </h2>
               <div className="bg-gray/50 p-6 rounded-lg">
-                <p><strong>Adresse :</strong> Place de l'Église, 50270 Saint-Pair-sur-Mer, France</p>
+                <p><strong>Adresse :</strong> 39 Place du Général de Gaulle, 50270 Saint-Pair-sur-Mer, France</p>
                 <p><strong>Téléphone :</strong> 02 33 50 26 15</p>
                 <p><strong>Email :</strong> contact@annefreret.fr</p>
                 <p><strong>Horaires d'ouverture :</strong></p>
