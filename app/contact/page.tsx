@@ -115,21 +115,47 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Carte vintage */}
-              <div className="mt-12 relative overflow-hidden border border-[#c4a47a]/20" style={{ height: '320px' }}>
-                <iframe
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=-1.5785%2C48.8090%2C-1.5685%2C48.8140&layer=mapnik&marker=48.8115%2C-1.5735"
-                  className="w-full h-full border-0"
-                  style={{ filter: 'sepia(40%) saturate(70%) brightness(105%) contrast(90%)' }}
-                  loading="lazy"
-                  title="Anne Freret Fleuriste — 39 Place du Général de Gaulle, Saint-Pair-sur-Mer"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#faf8f5] to-transparent h-12 pointer-events-none" />
+              {/* Carte style ancien — Stamen Watercolor */}
+              <div className="mt-12 relative overflow-hidden border border-[#c4a47a]/30" style={{ height: '320px' }}>
+                <div className="w-full h-full relative">
+                  {/* Fond carte aquarelle via Stamen tiles */}
+                  <img
+                    src="https://maps.stamen.com/m2i/watercolor/1256x640/14/48.8267/-1.5694.png"
+                    alt="Carte de Saint-Pair-sur-Mer"
+                    className="w-full h-full object-cover"
+                    style={{ filter: 'sepia(25%) brightness(105%)' }}
+                    onError={(e) => {
+                      // Fallback: OpenStreetMap sépia si Stamen ne charge pas
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        const iframe = document.createElement('iframe');
+                        iframe.src = 'https://www.openstreetmap.org/export/embed.html?bbox=-1.5760%2C48.8230%2C-1.5620%2C48.8305&layer=mapnik&marker=48.8267%2C-1.5694';
+                        iframe.className = 'w-full h-full border-0';
+                        iframe.style.filter = 'sepia(50%) saturate(60%) brightness(110%)';
+                        parent.appendChild(iframe);
+                      }
+                    }}
+                  />
+                  {/* Pin SVG artisanal */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full">
+                    <svg width="32" height="44" viewBox="0 0 32 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M16 0C7.164 0 0 7.164 0 16c0 12 16 28 16 28s16-16 16-28C32 7.164 24.836 0 16 0z" fill="#c4a47a"/>
+                      <circle cx="16" cy="14" r="6" fill="#faf8f5"/>
+                    </svg>
+                  </div>
+                  {/* Label */}
+                  <div className="absolute bottom-4 left-4 bg-[#faf8f5]/90 border border-[#c4a47a]/30 px-4 py-2">
+                    <p className="text-[9px] tracking-[0.15em] uppercase text-[#c4a47a]">Anne Freret — Fleuriste</p>
+                    <p className="text-[11px] text-[#2d2a26]/70 mt-0.5">39 Place du Général de Gaulle</p>
+                  </div>
+                </div>
                 <a 
-                  href="https://www.google.com/maps/search/39+Place+du+Général+de+Gaulle+50270+Saint-Pair-sur-Mer"
+                  href="https://www.google.com/maps/search/39+Place+du+Général+de+Gaulle+50380+Saint-Pair-sur-Mer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="absolute bottom-3 right-3 text-[9px] tracking-[0.15em] uppercase text-[#c4a47a] hover:text-[#2d2a26] transition-colors bg-[#faf8f5]/90 px-3 py-1.5 border border-[#c4a47a]/30"
+                  className="absolute bottom-4 right-4 text-[9px] tracking-[0.15em] uppercase text-[#c4a47a] hover:text-[#2d2a26] transition-colors bg-[#faf8f5]/90 px-3 py-1.5 border border-[#c4a47a]/30"
                 >
                   Itinéraire
                 </a>
