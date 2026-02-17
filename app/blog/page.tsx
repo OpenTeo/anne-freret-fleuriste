@@ -28,22 +28,17 @@ export default function BlogPage() {
       <Header />
       <main className="bg-[#faf8f5] min-h-screen pt-20">
         
-        {/* Hero Section with photo */}
-        <section className="relative h-[50vh] md:h-[60vh] flex items-center justify-center overflow-hidden">
-          <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1600&q=80)' }}
-          />
-          <div className="absolute inset-0 bg-[#2d2a26]/50" />
-          <div className="relative z-10 text-center px-6">
+        {/* Hero — fond crème, pas de photo */}
+        <section className="py-16 md:py-24 text-center">
+          <div className="max-w-2xl mx-auto px-6">
             <div className="text-[10px] uppercase tracking-[0.3em] text-[#c4a47a] mb-6">
               Le Journal Floral
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2d2a26] mb-6 leading-tight">
               Conseils & Inspirations
             </h1>
             <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
-            <p className="text-lg text-white/80 font-light leading-relaxed max-w-xl mx-auto">
+            <p className="text-lg text-[#2d2a26]/60 font-light leading-relaxed">
               Nos secrets de fleuriste, inspirations saisonnières et idées 
               pour sublimer votre quotidien avec des fleurs.
             </p>
