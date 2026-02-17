@@ -138,7 +138,16 @@ const Header = () => {
               <Link href="/" onClick={closeMenu} className="text-[#2d2a26] text-[15px] py-4 border-b border-[#c4a47a]/20">
                 Accueil
               </Link>
-              {[...navLinks, { href: '/la-marque', label: 'La marque' }, { href: '/deuil', label: 'Deuil' }, { href: '/galerie', label: 'Galerie' }].map(link => (
+              {[
+                { href: '/boutique', label: 'Boutique' },
+                { href: '/abonnement', label: 'Abonnement' },
+                { href: '/diy', label: 'DIY' },
+                { href: '/deuil', label: 'Deuil & Hommages' },
+                { href: '/la-marque', label: 'La marque' },
+                { href: '/livraison', label: 'Livraison' },
+                { href: '/blog', label: 'Blog' },
+                { href: '/contact', label: 'Contact' },
+              ].map(link => (
                 <Link 
                   key={link.href} 
                   href={link.href} 
@@ -161,7 +170,7 @@ const Header = () => {
             </div>
 
             <p className="mt-6 text-[#666] text-xs">
-              Boutique principale : 39 place Générale de Gaulle, Saint-Pair-sur-Mer
+              39 Place du Général de Gaulle, 50270 Saint-Pair-sur-Mer
             </p>
           </div>
         </div>

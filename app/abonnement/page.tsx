@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
@@ -72,7 +73,15 @@ const steps = [
 
 export default function Abonnement() {
   const [step, setStep] = useState(1);
+  const searchParams = useSearchParams();
   const [selectedPlan, setSelectedPlan] = useState('signature');
+  
+  useEffect(() => {
+    const planParam = searchParams.get('plan');
+    if (planParam && plans.find(p => p.id === planParam)) {
+      setSelectedPlan(planParam);
+    }
+  }, [searchParams]);
   const [selectedFrequency, setSelectedFrequency] = useState('monthly');
   const [selectedDuration, setSelectedDuration] = useState('1');
   const [isGift, setIsGift] = useState(false);

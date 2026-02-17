@@ -121,7 +121,7 @@ export default function Home() {
                     { name: 'Signature', price: '49.90', desc: 'Sélection premium', popular: true },
                     { name: 'Prestige', price: '69.90', desc: "L'exception florale" },
                   ].map((plan) => (
-                    <a key={plan.name} href="/abonnement" className={`block p-4 bg-white transition-all duration-300 hover:border-[#c4a47a] ${plan.popular ? 'border-2 border-[#c4a47a]' : 'border border-[#e8e0d8]'}`}>
+                    <a key={plan.name} href={`/abonnement?plan=${plan.name.toLowerCase()}`} className={`block p-4 bg-white transition-all duration-300 hover:border-[#c4a47a] cursor-pointer ${plan.popular ? 'border-2 border-[#c4a47a]' : 'border border-[#e8e0d8]'}`}>
                       <div className="flex items-center justify-between">
                         <div>
                           <div className="flex items-center gap-2">
