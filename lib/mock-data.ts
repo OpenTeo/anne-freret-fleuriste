@@ -774,7 +774,7 @@ export const blogPosts = [
     id: 3,
     title: 'Les fleurs de février : un avant-goût de printemps sur votre table',
     excerpt: 'Tandis que l\'hiver murmure ses derniers souffles, tulipes, renoncules et anémones annoncent le renouveau. Portrait de ces fleurs qui illuminent février.',
-    image: 'https://images.pexels.com/photos/2226900/pexels-photo-2226900.jpeg?auto=compress&cs=tinysrgb&w=800',
+    image: 'https://images.pexels.com/photos/18002540/pexels-photo-18002540.jpeg?auto=compress&w=800',
     slug: 'fleurs-saison-fevrier',
     date: '2026-02-01',
     category: 'Saisons',
