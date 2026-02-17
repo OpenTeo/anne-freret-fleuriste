@@ -22,40 +22,37 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <Header />
       <main className="pt-20">
         
-        {/* Hero Image */}
-        <section className="relative h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden">
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-          
-          {/* Breadcrumb */}
-          <div className="absolute bottom-6 left-0 right-0">
-            <div className="max-w-6xl mx-auto px-4 md:px-6">
-              <nav className="flex items-center gap-2 text-white/90 text-sm mb-4">
-                <Link href="/blog" className="hover:text-white transition-colors">
-                  Blog
-                </Link>
-                <span>/</span>
-                <Link 
-                  href={`/blog?category=${encodeURIComponent(post.category)}`}
-                  className="hover:text-white transition-colors"
-                >
-                  {post.category}
-                </Link>
-                <span>/</span>
-                <span className="text-white/70">
-                  {post.title}
-                </span>
-              </nav>
-              
-              {/* Title */}
-              <h1 className="font-serif text-2xl md:text-3xl lg:text-4xl text-white leading-tight">
-                {post.title}
-              </h1>
-            </div>
+        {/* Breadcrumb */}
+        <section className="bg-[#faf8f5] pt-6 pb-2">
+          <div className="max-w-6xl mx-auto px-4 md:px-6">
+            <nav className="flex items-center gap-2 text-[#2d2a26]/40 text-xs">
+              <Link href="/blog" className="hover:text-[#c4a47a] transition-colors">Blog</Link>
+              <span>/</span>
+              <Link href={`/blog?category=${encodeURIComponent(post.category)}`} className="hover:text-[#c4a47a] transition-colors">{post.category}</Link>
+            </nav>
+          </div>
+        </section>
+
+        {/* Titre + Meta sur fond crème */}
+        <section className="bg-[#faf8f5] pb-8 md:pb-10">
+          <div className="max-w-3xl mx-auto px-4 md:px-6 text-center">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-[#c4a47a] mb-4">{post.category}</p>
+            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#2d2a26] leading-tight mb-6">
+              {post.title}
+            </h1>
+            <div className="w-12 h-px bg-[#c4a47a] mx-auto mb-4"></div>
+            <p className="text-sm text-[#2d2a26]/50">{post.excerpt}</p>
+          </div>
+        </section>
+
+        {/* Photo pleine largeur */}
+        <section className="max-w-5xl mx-auto px-4 md:px-6">
+          <div className="aspect-[16/9] overflow-hidden">
+            <img
+              src={post.image}
+              alt={post.title}
+              className="w-full h-full object-cover"
+            />
           </div>
         </section>
 
