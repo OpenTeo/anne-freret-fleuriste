@@ -115,9 +115,24 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Carte placeholder */}
-              <div className="mt-12 h-64 bg-white border border-[#c4a47a]/20 flex items-center justify-center">
-                <p className="text-[#2d2a26] font-light">Carte de localisation</p>
+              {/* Carte vintage */}
+              <div className="mt-12 relative overflow-hidden border border-[#c4a47a]/20" style={{ height: '320px' }}>
+                <iframe
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=-1.5785%2C48.8090%2C-1.5685%2C48.8140&layer=mapnik&marker=48.8115%2C-1.5735"
+                  className="w-full h-full border-0"
+                  style={{ filter: 'sepia(40%) saturate(70%) brightness(105%) contrast(90%)' }}
+                  loading="lazy"
+                  title="Anne Freret Fleuriste — 39 Place du Général de Gaulle, Saint-Pair-sur-Mer"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#faf8f5] to-transparent h-12 pointer-events-none" />
+                <a 
+                  href="https://www.google.com/maps/search/39+Place+du+Général+de+Gaulle+50270+Saint-Pair-sur-Mer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bottom-3 right-3 text-[9px] tracking-[0.15em] uppercase text-[#c4a47a] hover:text-[#2d2a26] transition-colors bg-[#faf8f5]/90 px-3 py-1.5 border border-[#c4a47a]/30"
+                >
+                  Itinéraire
+                </a>
               </div>
             </div>
 
