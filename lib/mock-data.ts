@@ -67,7 +67,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275'
     ],
     category: 'Bouquets',
-    description: 'Ce bouquet rafraîchissant, avec des teintes vives est parfait pour apporter une touche d\'énergie et de vivacité dans votre intérieur. Offrez un bouquet acidulé pour égayer le quotidien et surprendre vos proches. Composition : Rose frisée blanche, chardon sec blanc, phlox blanc, lisianthus blanc, dihlle graine, mélange de feuillages de saison.',
+    description: 'Ce bouquet rafraîchissant, avec des teintes vives est parfait pour apporter une touche d\'énergie et de vivacité dans votre intérieur. Offrez un bouquet acidulé pour égayer le quotidien et surprendre vos proches. Composition : Rose frisée blanche, chardon sec blanc, phlox blanc, lisianthus blanc, dille graine, mélange de feuillages de saison.',
     slug: 'la-pointe-d-agon',
     featured: true,
     inStock: true,
@@ -111,7 +111,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_3a2e9857-fa21-42db-b89a-47630ccdf35d.png?v=1684428237'
     ],
     category: 'Bouquets',
-    description: 'Craquez pour cet ensemble de fleurs à vous faire tomber de bonheur. Avec ces couleurs dans les tonalités de rose qui viendront apporter de la fraicheur à votre intérieur. Composition : Rose pâle sweet, wax fleur, tulipe dentelé, renoncule rose pâle, lisianthus marbré, genet feuillages mélangés.',
+    description: 'Craquez pour cet ensemble de fleurs à vous faire tomber de bonheur. Avec ces couleurs dans les tonalités de rose qui viendront apporter de la fraîcheur à votre intérieur. Composition : Rose pâle sweet, wax fleur, tulipe dentelé, renoncule rose pâle, lisianthus marbré, genet feuillages mélangés.',
     slug: 'grany',
     featured: true,
     inStock: true,
@@ -155,7 +155,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Rosegrosbouton2.jpg?v=1625149279'
     ],
     category: 'Bouquets',
-    description: 'Tendrissime brassée de fleurs aux teintes roses. Travaillé en abondance, ce joli bouquet aux couleurs pastel séduit par son homogénéité de tons avant de subjuguer par le mariage de ses essences. Une essence innocente apportée avec douceur par la présence du bouquet la croix du lude. A offrir amoureusement, amicalement mais aussi tendrement aux êtres qui vous sont précieux. Composition : bouvardia, rose gros bouton, lisianthus double rose pâle, eucalypthus, feuillage de saison.',
+    description: 'Tendrissime brassée de fleurs aux teintes roses. Travaillé en abondance, ce joli bouquet aux couleurs pastel séduit par son homogénéité de tons avant de subjuguer par le mariage de ses essences. Une essence innocente apportée avec douceur par la présence du bouquet la croix du lude. A offrir amoureusement, amicalement mais aussi tendrement aux êtres qui vous sont précieux. Composition : bouvardia, rose gros bouton, lisianthus double rose pâle, eucalyptus, feuillage de saison.',
     slug: 'la-croix-du-lude',
     featured: false,
     inStock: true,
@@ -199,7 +199,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454'
     ],
     category: 'Bouquets',
-    description: 'Voici l\'un des chouchous de la collection Anne Freret. Nous on l\'adore parce qu\'avec ses ravissants tons rose clair, il nous rappelle les événements heureux de la vie. Soyez certains de faire plaisir avec cette jolie composition de roses. Composition : Rose sweat advance, pampa rose, wax blanc, statice rose, oeillet poudré, lisianthus rose pâle, feuillages mélangés.',
+    description: 'Voici l\'un des chouchous de la collection Anne Freret. Nous on l\'adore parce qu\'avec ses ravissants tons rose clair, il nous rappelle les événements heureux de la vie. Soyez certains de faire plaisir avec cette jolie composition de roses. Composition : Rose sweet advance, pampa rose, wax blanc, statice rose, oeillet poudré, lisianthus rose pâle, feuillages mélangés.',
     slug: 'la-pointe-du-roc',
     featured: false,
     inStock: true,
@@ -221,7 +221,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/image00002_b6f2b70f-619d-4105-b4e8-f74941e8c689.jpg?v=1639823258'
     ],
     category: 'Bouquets',
-    description: 'Le Bouquet du fleuriste est le mélange parfait pour sublimer vos intérieurs ou bien même pour faire plaisir à vos proches. N\'hésitez plus pour l\'offrir à quelqu\'un d\'important à vos yeux. Composition : Bouquet frais composé de Rose branchue rose, Renoncule Clone du Var, Wax Flower, Lisianthus double rose, Graminée rose, Feuillages d\'hivers.',
+    description: 'Le Chausiais est une composition généreuse et chaleureuse aux tonalités roses. Chaque tige est soigneusement choisie par notre fleuriste pour créer un ensemble harmonieux et plein de caractère. Un bouquet qui illumine une pièce et réchauffe le cœur. Composition : Rose branchue rose, Renoncule Clone du Var, Wax Flower, Lisianthus double rose, Graminée rose, Feuillages d\'hiver.',
     slug: 'le-chausiais',
     featured: false,
     inStock: true,
@@ -292,7 +292,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderose2.jpg?v=1625070100'
     ],
     category: 'Bouquets',
-    description: 'Avec ses tons doux et ses textures aériennes, ce bouquet évoque la beauté naturelle et la sérénité. Composé de roses poudrées, de fleurs sauvages et de feuillages délicats, il capture l\'essence d\'un charme champêtre tout en restant raffiné. Idéal pour célébrer un moment d\'exception ou pour offrir une parenthèse de douceur, ce bouquet intemporel est une ode à la nature et à l\'élégance. Composition : Rose Sweat Advance, Limonium pêche, Miscanthus séché, Panicum, Bouvardia, Alstromère rose.',
+    description: 'Avec ses tons doux et ses textures aériennes, ce bouquet évoque la beauté naturelle et la sérénité. Composé de roses poudrées, de fleurs sauvages et de feuillages délicats, il capture l\'essence d\'un charme champêtre tout en restant raffiné. Idéal pour célébrer un moment d\'exception ou pour offrir une parenthèse de douceur, ce bouquet intemporel est une ode à la nature et à l\'élégance. Composition : Rose Sweet Advance, Limonium pêche, Miscanthus séché, Panicum, Bouvardia, Alstromère rose.',
     slug: 'le-jullouvillais',
     featured: true,
     inStock: true,
@@ -335,7 +335,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_6af69be8-d1fe-44a6-9936-308639ed93d2.png?v=1684426912'
     ],
     category: 'Bouquets',
-    description: 'Nos "Box Mariage" se composent d\'un bouquet et d\'un peigne pour la mariée et d\'une boutonnière assortie pour le marié. Bouquet : 25cm de diamètre pour 30cm de hauteur environ, finition de la poignée en cordelette. Boutonnière : montée sur épingle, 7cm environ. Peigne : 10cm environ. Composition : Hortensia, feuille de palmier, immortelle, graine de dill, pampa, lagurus, phalaris, gypsophile, stipa, graine de nigelle, graminée. Fleurs séchées et stabilisées pour une longue conservation.',
+    description: 'Évadez-vous avec cette Box Mariage aux accents exotiques. Un ensemble complet — bouquet généreux (25cm × 30cm), peigne fleuri et boutonnière assortie — dans des teintes chaudes et ensoleillées. Finition poignée en cordelette. Composition : Hortensia, feuille de palmier, immortelle, graine de dill, pampa, lagurus, phalaris, gypsophile, stipa, graine de nigelle, graminée. Fleurs séchées et stabilisées pour une longue conservation.',
     slug: 'box-mariage-exotique',
     featured: true,
     inStock: true,
@@ -352,7 +352,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_9527aac4-f297-4808-945b-908cf90e1a8e.png?v=1684426619'
     ],
     category: 'Bouquets',
-    description: 'Nos "Box Mariage" se composent d\'un bouquet et d\'un peigne pour la mariée et d\'une boutonnière assortie pour le marié. Bouquet : 20cm de diamètre pour 25cm de hauteur environ, finition de la poignée en cordelette. Boutonnière : montée sur épingle, 7cm environ. Peigne : 10cm environ. Composition : Miscanthus, delphinium, graine de dill, hortensia, stipa, briza maxima, gypsophile. Fleurs séchées et stabilisées pour une longue conservation.',
+    description: 'Rêvez de vagues et de sable fin avec cette Box Mariage inspirée du bord de mer. Un trio élégant — bouquet délicat (20cm × 25cm), peigne et boutonnière — dans des tons naturels et apaisants. Finition poignée en cordelette. Composition : Miscanthus, delphinium, graine de dill, hortensia, stipa, briza maxima, gypsophile. Fleurs séchées et stabilisées pour une longue conservation.',
     slug: 'box-mariage-sur-la-plage',
     featured: true,
     inStock: true,
@@ -481,7 +481,7 @@ export const mockProducts: Product[] = [
       'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/photo_vente_5_251d2d18-b531-457a-81d2-8a77a2151dbc.png?v=1729950268'
     ],
     category: 'Deuil & Hommages',
-    description: 'Cet arrangement floral en forme de cœur, composé de roses aux teintes douces et délicates, est un hommage empreint de tendresse et de respect. Parfait pour exprimer votre amour et honorer la mémoire d\'un être cher, il est souvent choisi pour accompagner les moments de recueillement. Offrez un geste d\'affection unique avec cet hommage floral. Plantes variables selon les saisons. Disponible exclusivement en livraison locale.',
+    description: 'Ce jardin de plantes est une composition végétale pensée pour durer dans le temps. Un ensemble harmonieux de plantes vertes et fleuries, soigneusement sélectionnées pour leur résistance et leur beauté naturelle. Un hommage vivant et respectueux, symbole de renouveau et de mémoire. Plantes variables selon les saisons. Disponible exclusivement en livraison locale.',
     slug: 'jardin-de-plantes',
     featured: false,
     inStock: true,
