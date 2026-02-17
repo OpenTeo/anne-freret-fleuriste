@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
 import { mockProducts } from '@/lib/mock-data';
 
 const categories = [
@@ -24,6 +26,8 @@ export default function DeuilPage() {
     : products.filter(p => p.slug.includes(activeFilter));
 
   return (
+    <>
+    <Header />
     <main className="bg-[#faf8f5] pt-28 md:pt-32">
       {/* Breadcrumb */}
       <div className="max-w-6xl mx-auto px-4 md:px-6 mb-6">
@@ -195,5 +199,7 @@ export default function DeuilPage() {
         </div>
       </section>
     </main>
+    <Footer />
+    </>
   );
 }

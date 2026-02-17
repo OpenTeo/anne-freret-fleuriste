@@ -695,178 +695,237 @@ export const testimonials = [
 export const blogPosts = [
   {
     id: 1,
-    title: 'L\'art de composer un bouquet champêtre',
-    excerpt: 'Découvrez nos secrets pour créer des bouquets naturels et authentiques qui capturent l\'essence de la campagne normande.',
+    title: 'L\'art du bouquet champêtre : quand la Normandie s\'invite chez vous',
+    excerpt: 'Il y a dans les champs normands une beauté que l\'on ne compose pas — on la cueille, on la ressent. Voici comment capturer cette grâce sauvage dans un bouquet.',
     image: 'https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=800',
     slug: 'art-composer-bouquet-champetre',
     date: '2026-02-10',
     category: 'Conseils',
-    readTime: '5 min de lecture',
+    readTime: '6 min de lecture',
     author: 'Anne Freret',
-    content: `<p>L'art de composer un bouquet champêtre réside dans la capacité à capturer l'essence sauvage de la nature tout en créant une harmonie visuelle délicate. Chez Anne Freret, cette approche florale est au cœur de notre identité depuis nos débuts à Saint-Pair-sur-Mer.</p>
+    ctaTitle: 'Offrez-vous un bouquet champêtre',
+    ctaDescription: 'Composé a la main dans notre atelier de Saint-Pair-sur-Mer, chaque bouquet capture l\'esprit sauvage et poétique de la campagne normande.',
+    ctaLink: '/boutique',
+    ctaLabel: 'Découvrir nos bouquets',
+    content: `<p>Il existe un moment, au debut de l'été, où les chemins creux de la campagne normande se transforment en tableaux vivants. Les graminées ondulent sous le vent marin, les coquelicots percent entre les pierres, et les roses sauvages embaument l'air salé. C'est cette beauté-là — libre, imparfaite, profondément vivante — que nous cherchons à capturer dans chacun de nos bouquets champêtres chez Anne Freret.</p>
 
-<h3>Choisir les bonnes fleurs</h3>
-<p>Un bouquet champêtre réussi mélange des fleurs de différentes tailles et textures. Commencez par une base de fleurs volumineuses — pivoines, roses de jardin ou hortensias — puis ajoutez des fleurs plus délicates : matricaires, astilbes, nigelles ou scabieuses. L'astuce ? Toujours inclure des fleurs "sauvages" qui apportent ce côté naturel et spontané.</p>
+<p>Un bouquet champêtre n'est pas un arrangement que l'on dessine sur papier. C'est une émotion que l'on compose avec les mains, guidée par l'instinct et par cette connaissance intime des fleurs que seules les années de pratique enseignent.</p>
 
-<h3>Le feuillage fait tout</h3>
-<p>Ne sous-estimez jamais le pouvoir du feuillage. L'eucalyptus, le lierre, les graminées ornementales ou encore l'olivier donnent du mouvement et de la profondeur à votre composition. C'est le feuillage qui transforme un simple bouquet en une création champêtre authentique.</p>
+<h3>L'art de choisir : des fleurs qui se racontent</h3>
+<p>La réussite d'un bouquet champêtre tient d'abord au choix des variétés. Il faut des fleurs qui semblent avoir poussé ensemble, qui se connaissent déjà. Chez Anne Freret, nous commençons toujours par une base généreuse — pivoines de saison, roses de jardin aux pétales froissés, hortensias aux teintes aquarellées — puis nous y glissons des fleurs plus discrètes qui font toute la magie : nigelles au coeur étoilé, scabieuses dansantes, matricaires qui rappellent les marguerites de notre enfance.</p>
 
-<h3>La règle des couleurs</h3>
-<p>Optez pour une palette de 3 à 4 couleurs maximum, en privilégiant les tons doux et naturels : rose poudré, blanc crème, vert sauge, lavande. Les touches de couleur vive — un coquelicot, un chardon bleu — doivent rester ponctuelles pour garder cet aspect "cueilli dans un champ".</p>
+<p>L'astuce que nous partageons avec nos clientes les plus curieuses : intégrez toujours au moins une fleur "inattendue". Un chardon bleu, une branche de fenouil sauvage, une tige de clématite. C'est cette note de surprise qui donne à votre bouquet ce caractère unique, ce sentiment d'avoir été cueilli à l'instant dans un jardin secret.</p>
 
-<h3>L'assemblage</h3>
-<p>La technique spirale est votre alliée. Tournez chaque tige dans le même sens en variant les hauteurs. Un bouquet champêtre ne doit jamais paraître "trop parfait" — c'est justement cette asymétrie maîtrisée qui fait tout son charme. Laissez les tiges dépasser, autorisez les fleurs à pencher naturellement.</p>
+<h3>Le feuillage : l'âme invisible du bouquet</h3>
+<p>Si les fleurs sont les notes d'une mélodie, le feuillage en est le rythme. Sans lui, tout s'effondre. L'eucalyptus apporte sa texture argentée et son parfum discret. Le lierre dessine des lignes courbes qui adoucissent la composition. Les graminées ornementales — stipa, panicum, miscanthus — insufflent ce mouvement aérien qui distingue un bouquet champêtre authentique d'une simple botte de fleurs.</p>
 
-<p>Envie de recevoir un bouquet champêtre composé par nos soins ? Découvrez notre sélection en boutique ou contactez-nous pour une création sur mesure.</p>`
+<p>Nous aimons particulièrement travailler avec les feuillages de saison que nous trouvons lors de nos promenades matinales sur la côte : branches d'olivier sauvage, rameaux d'eucalyptus médaillon, fougères encore enroulées au printemps. Chaque saison dicte sa palette, et c'est tant mieux.</p>
+
+<h3>La palette : trois couleurs, mille nuances</h3>
+<p>La retenue est la clé. Trois à quatre couleurs suffisent, choisies dans des tons que la nature associe d'elle-même : le rose poudré des aurores normandes, le blanc crème des embruns, le vert sauge des haies bocagères, la lavande des premiers jours d'été. Si vous souhaitez une touche d'éclat, un seul coquelicot vermillon ou un unique chardon bleu acier suffira — comme un point d'exclamation dans une phrase murmurée.</p>
+
+<h3>L'assemblage : l'éloge de l'imparfait</h3>
+<p>Voici le secret le mieux gardé des fleuristes : un bouquet champêtre réussi ne doit jamais paraître trop parfait. La technique spirale guide nos mains — chaque tige tournée dans le même sens, les hauteurs variées avec intention — mais nous laissons toujours une part de liberté. Une rose qui penche, une graminée qui s'échappe, un lisianthus qui regarde ailleurs. C'est cette asymétrie maîtrisée, cette élégance nonchalante, qui fait que l'on s'arrête devant un bouquet et que l'on murmure : "C'est exactement ça."</p>
+
+<p>Si vous souhaitez recevoir un bouquet qui porte en lui cette poésie des champs normands, nous en composons chaque semaine dans notre atelier de Saint-Pair-sur-Mer, avec les plus belles fleurs de la saison. <a href="/boutique">Découvrez nos créations du moment</a> et laissez la Normandie s'inviter chez vous.</p>`
   },
   {
     id: 2,
-    title: 'Préparer son mariage : le guide floral complet',
-    excerpt: 'De la première consultation au jour J : tout ce qu\'il faut savoir pour choisir les fleurs parfaites de votre mariage.',
+    title: 'Fleurs de mariage : comment créer une cérémonie inoubliable',
+    excerpt: 'Le jour de votre mariage, les fleurs ne décorent pas — elles racontent votre histoire. Guide complet pour une mise en fleurs qui vous ressemble.',
     image: 'https://images.pexels.com/photos/1128782/pexels-photo-1128782.jpeg?auto=compress&cs=tinysrgb&w=800',
     slug: 'preparer-mariage-guide-floral',
     date: '2026-02-05',
     category: 'Mariages',
     readTime: '8 min de lecture',
     author: 'Anne Freret',
-    content: `<p>Le choix des fleurs pour votre mariage est l'une des décisions les plus importantes de la décoration. Elles définissent l'ambiance, complètent votre robe et racontent votre histoire d'amour. Voici notre guide complet pour ne rien laisser au hasard.</p>
+    ctaTitle: 'Rêvons votre mariage ensemble',
+    ctaDescription: 'Bouquet de mariée, boutonnière, décoration de cérémonie... Découvrez nos box mariage en fleurs séchées ou prenez rendez-vous pour une création sur mesure.',
+    ctaLink: '/mariages',
+    ctaLabel: 'Voir nos offres mariage',
+    content: `<p>Il y a des jours qui comptent plus que les autres. Des jours où chaque détail devient un souvenir, où la lumière semble plus douce, où même l'air que l'on respire porte quelque chose de sacré. Votre mariage sera l'un de ces jours. Et les fleurs que vous choisirez ne seront pas de simples ornements — elles seront les témoins silencieux de votre histoire d'amour, le fil conducteur visuel de cette journée que vous raconterez encore dans trente ans.</p>
 
-<h3>Quand commencer ?</h3>
-<p>Idéalement, prenez rendez-vous avec votre fleuriste 6 à 9 mois avant le jour J. Cela laisse le temps de discuter de vos envies, de la saison des fleurs disponibles et du budget. Pour les mariages en haute saison (juin-septembre), anticipez encore plus.</p>
+<p>Chez Anne Freret, nous avons le privilège d'accompagner des couples dans ce moment d'exception depuis notre atelier de Saint-Pair-sur-Mer. Chaque mariage est unique, et notre rôle est de traduire en fleurs ce que les mots peinent parfois à dire.</p>
 
-<h3>Le bouquet de la mariée</h3>
-<p>C'est la pièce maîtresse. Il doit s'accorder avec votre robe, votre morphologie et le style du mariage. Un bouquet rond classique pour une robe princesse, une cascade pour une robe sirène, un bouquet libre et aérien pour une cérémonie champêtre. Prévoyez aussi un bouquet de lancer (plus petit et moins fragile).</p>
+<h3>Le timing : quand tout commence</h3>
+<p>Nous aimons rencontrer nos futurs mariés six à neuf mois avant le grand jour. Non pas pour figer les choses — les plus belles idées viennent souvent tard — mais pour apprendre à se connaître. Nous parlons de vous : vos souvenirs d'enfance liés aux fleurs, le parfum qui vous rend nostalgique, la couleur qui vous fait sourire sans raison. C'est de ces conversations que naissent les compositions les plus justes.</p>
 
-<h3>Les compositions de cérémonie</h3>
-<p>Pensez aux éléments clés : l'arche ou le dais de cérémonie, les bouts de bancs, le chemin de pétales. L'astuce est de concentrer le budget floral sur les points focaux — là où les photos seront prises — plutôt que de tout décorer uniformément.</p>
+<p>Pour les mariages en haute saison — de juin à septembre en Normandie, quand la côte se pare de ses plus beaux atours — nous recommandons d'anticiper davantage encore. Les pivoines de juin, les dahlias d'août, les cosmos de septembre : chaque mois a ses trésors, et nous voulons vous garantir les plus beaux.</p>
 
-<h3>La réception</h3>
-<p>Les centres de table sont incontournables. Variez les hauteurs : alternez grands vases et compositions basses pour créer du rythme. N'oubliez pas les détails qui font la différence : une fleur sur chaque serviette, un chemin de table végétal, des bougies entourées de verdure.</p>
+<h3>Le bouquet de la mariée : votre signature florale</h3>
+<p>C'est la pièce que l'on regarde en premier, celle que l'on voit sur toutes les photos. Votre bouquet doit vous ressembler autant que votre robe. Un bouquet rond et romantique pour une silhouette princesse. Une cascade de lierre et de jasmin pour une robe fluide. Un bouquet libre, presque sauvage, pour une cérémonie pieds nus sur le sable de Jullouville.</p>
 
-<h3>Le budget</h3>
-<p>En moyenne, le budget floral représente 8 à 12% du budget total du mariage. Nos forfaits mariage commencent à partir de 800€ et incluent la consultation, la création et l'installation le jour J. Demandez votre devis personnalisé.</p>
+<p>Nous créons également un bouquet de lancer, plus petit et plus résistant, pour que le geste soit aussi joyeux que symbolique. Et pour celles qui souhaitent conserver un souvenir éternel, nos <a href="/mariages">box mariage en fleurs séchées et stabilisées</a> comprennent bouquet, boutonnière et peigne assorti — des pièces qui traverseront le temps comme votre amour.</p>
 
-<p>Prêts à sublimer votre grand jour ? Prenez rendez-vous pour une consultation gratuite à notre atelier de Saint-Pair-sur-Mer.</p>`
+<h3>La cérémonie : l'émotion en grand</h3>
+<p>C'est ici que les fleurs déploient toute leur puissance. L'arche sous laquelle vous échangerez vos voeux peut être un simple cadre de bois habillé de feuillages, ou une explosion florale qui coupera le souffle de vos invités. Les bouts de bancs, délicatement fleuris, guident le regard vers vous. Un chemin de pétales murmure "c'est par ici que tout commence".</p>
+
+<p>Notre conseil : concentrez votre budget floral sur les points focaux. L'arche de cérémonie, la table d'honneur, votre bouquet. Ce sont les lieux que l'objectif du photographe capturera le plus, et ce sont eux qui marqueront les mémoires.</p>
+
+<h3>La réception : du rythme et de la poésie</h3>
+<p>Les centres de table racontent la suite de l'histoire. Nous aimons alterner les hauteurs — grands vases élancés et compositions basses et généreuses — pour créer un rythme visuel qui accompagne celui de la soirée. Les détails font la différence : une fleur unique posée sur chaque serviette, un chemin de table végétal ponctué de bougies, des guirlandes de verdure qui adoucissent les lignes d'un chapiteau.</p>
+
+<h3>Le budget : investir dans l'émotion</h3>
+<p>Le budget floral représente en moyenne 8 à 12% du budget total d'un mariage. Chez Anne Freret, nous travaillons avec vous pour trouver l'équilibre parfait entre vos rêves et votre réalité. Nos box mariage démarrent à 118,90 euros pour une solution complète en fleurs séchées, et nos prestations sur mesure en fleurs fraîches s'adaptent à chaque projet.</p>
+
+<p>Votre mariage mérite des fleurs à la hauteur de votre histoire. <a href="/mariages">Découvrez nos box mariage</a> ou contactez-nous pour imaginer ensemble la mise en fleurs de votre plus beau jour.</p>`
   },
   {
     id: 3,
-    title: 'Les fleurs de saison : que choisir en février ?',
-    excerpt: 'Tulipes, renoncules, anémones... Découvrez les stars florales du mois et comment en profiter.',
+    title: 'Les fleurs de février : un avant-goût de printemps sur votre table',
+    excerpt: 'Tandis que l\'hiver murmure ses derniers souffles, tulipes, renoncules et anémones annoncent le renouveau. Portrait de ces fleurs qui illuminent février.',
     image: 'https://images.pexels.com/photos/2226900/pexels-photo-2226900.jpeg?auto=compress&cs=tinysrgb&w=800',
     slug: 'fleurs-saison-fevrier',
     date: '2026-02-01',
     category: 'Saisons',
-    readTime: '4 min de lecture',
+    readTime: '5 min de lecture',
     author: 'Anne Freret',
-    content: `<p>Février annonce timidement le retour du printemps. Les premiers bulbes pointent leur nez et les couleurs reviennent dans nos ateliers. C'est l'un de nos mois préférés : la palette est douce, romantique, parfaite pour la Saint-Valentin mais pas seulement.</p>
+    ctaTitle: 'Nos bouquets de saison',
+    ctaDescription: 'Tulipes, renoncules, anémones... Nos compositions du moment célèbrent les plus belles fleurs de février, fraîchement arrivées dans notre atelier.',
+    ctaLink: '/boutique',
+    ctaLabel: 'Voir les bouquets du moment',
+    content: `<p>Il y a quelque chose de profondément émouvant dans les fleurs de février. Dehors, le monde est encore engourdi — les matins sont froids, la lumière pâle, les jardins silencieux. Et pourtant, dans notre atelier de Saint-Pair-sur-Mer, c'est une tout autre histoire qui se joue. Les caisses arrivent de Hollande et du Var, et soudain, l'hiver recule : les tulipes déploient leurs courbes sensuelles, les renoncules dévoilent leurs jupons de soie, les anémones ouvrent leurs grands yeux cerclés de noir.</p>
 
-<h3>Les stars de février</h3>
-<p><strong>Les tulipes</strong> — Reines incontestées du mois. Simples, doubles, perroquet, frangées... Il existe plus de 3 000 variétés. Nos préférées : les tulipes doubles rose poudré et les tulipes perroquet aux pétales ondulés.</p>
+<p>Février est peut-être le mois le plus poétique pour offrir des fleurs. Pas seulement à cause de la Saint-Valentin — mais parce que ces fleurs-là portent en elles une promesse : celle du printemps qui vient.</p>
 
-<p><strong>Les renoncules</strong> — Avec leurs pétales délicats qui se superposent comme du papier de soie, elles sont l'élégance incarnée. Disponibles en blanc, rose, rouge, orange et même vert chartreuse.</p>
+<h3>La tulipe : reine incontestée du mois</h3>
+<p>Il existe plus de trois mille variétés de tulipes, et chacune raconte une histoire différente. Chez Anne Freret, nous avons un faible pour les tulipes doubles, dont les pétales se superposent comme les pages d'un livre précieux, et pour les tulipes perroquet, ondulées et presque extravagantes, qui apportent un souffle de fantaisie à n'importe quelle composition.</p>
 
-<p><strong>Les anémones</strong> — Leur cœur noir cerné de pétales blancs, rouges ou violets en fait des fleurs graphiques et modernes. Parfaites pour apporter du contraste.</p>
+<p>Ce que nous aimons particulièrement chez la tulipe, c'est qu'elle continue de vivre dans le vase. Elle pousse, se courbe vers la lumière, change de posture au fil des jours. Un bouquet de tulipes n'est jamais le même deux matins de suite — c'est une oeuvre d'art en mouvement perpétuel.</p>
 
-<p><strong>Le mimosa</strong> — Ses petites boules jaunes et son parfum enivrant font entrer le soleil dans la maison. En branche ou intégré à un bouquet, il illumine tout.</p>
+<h3>La renoncule : l'élégance à l'état pur</h3>
+<p>Si la rose est la reine classique, la renoncule est la princesse moderne. Ses pétales, d'une finesse presque irréelle, se superposent en couches délicates qui évoquent le papier de soie le plus précieux. Disponible en blanc nacré, rose ancien, orange brûlé ou même vert chartreuse, elle se prête à toutes les inspirations. Nous la travaillons souvent en bouquets monochromes — un luxe discret qui fait sensation.</p>
 
-<h3>Nos conseils d'entretien</h3>
-<p>Les fleurs de février aiment la fraîcheur. Changez l'eau tous les 2 jours, recoupez les tiges en biseau et évitez la proximité des fruits (l'éthylène accélère le flétrissement). Vos tulipes continueront de pousser dans le vase — c'est normal et c'est beau !</p>
+<h3>L'anémone : le contraste saisissant</h3>
+<p>Avec son coeur sombre cerné de pétales d'une blancheur éclatante, ou d'un rouge profond, ou d'un violet de velours, l'anémone est la fleur des contrastes. Elle apporte à nos compositions cette touche graphique et contemporaine que nos clientes adorent. Fragile en apparence mais étonnamment résistante, elle tient magnifiquement en vase et se marie avec tout.</p>
 
-<p>Retrouvez toutes nos compositions de saison dans notre boutique en ligne, avec livraison partout en France.</p>`
+<h3>Le mimosa : quand le soleil entre dans la maison</h3>
+<p>On ne peut parler de février sans évoquer le mimosa. Ses petites sphères d'or et son parfum poudreux — à mi-chemin entre le miel et la violette — sont une invitation immédiate au bonheur. En branche dans un grand vase, il suffit à lui seul à transformer une pièce. Intégré à un bouquet, il y glisse une lumière et une gaieté incomparables.</p>
+
+<h3>Bien accueillir vos fleurs d'hiver</h3>
+<p>Les fleurs de février aiment la fraîcheur. Recoupez les tiges en biseau dès réception, changez l'eau tous les deux jours et éloignez votre bouquet de toute source de chaleur et des corbeilles de fruits. Vos tulipes, en particulier, préféreront une eau fraîche et un espace lumineux sans soleil direct — elles vous récompenseront en déployant leurs pétales avec une grâce quotidiennement renouvelée.</p>
+
+<p>Chaque semaine, nous composons de nouveaux bouquets au gré des arrivages et des saisons. <a href="/boutique">Découvrez nos créations du moment</a> et offrez-vous — ou offrez à quelqu'un que vous aimez — cette promesse de printemps que seules les fleurs de février savent tenir.</p>`
   },
   {
     id: 4,
-    title: '5 plantes d\'intérieur increvables pour les débutants',
-    excerpt: 'Pas la main verte ? Ces plantes résistantes transformeront votre intérieur sans effort.',
+    title: 'Cinq plantes d\'intérieur pour ceux qui n\'y croient plus',
+    excerpt: 'Vous avez renoncé à avoir la main verte ? Ces cinq merveilles végétales vont vous réconcilier avec le vivant — sans effort, sans culpabilité.',
     image: 'https://images.pexels.com/photos/3076899/pexels-photo-3076899.jpeg?auto=compress&cs=tinysrgb&w=800',
     slug: 'plantes-interieur-debutants',
     date: '2026-01-25',
     category: 'Conseils',
-    readTime: '4 min de lecture',
+    readTime: '5 min de lecture',
     author: 'Anne Freret',
-    content: `<p>Vous rêvez d'un intérieur verdoyant mais chaque plante que vous touchez finit par dépérir ? Pas de panique. Ces 5 plantes sont quasi-indestructibles et apporteront vie et couleur à votre espace.</p>
+    ctaTitle: 'Adoptez une plante',
+    ctaDescription: 'Monstera, olivier, ficus, succulentes... Chaque plante est livrée avec ses conseils d\'entretien personnalisés pour une adoption réussie.',
+    ctaLink: '/boutique',
+    ctaLabel: 'Voir nos plantes',
+    content: `<p>Nous les connaissons bien, ces regards un peu honteux lorsque nos clientes nous confient, à voix basse, qu'elles ont "tué" leur dernière plante. Comme si aimer le végétal tout en échouant à le maintenir en vie était un aveu de faiblesse. Rassurez-vous : il n'existe pas de fatalité botanique. Il n'existe que des plantes mal choisies pour l'espace qu'on leur offre.</p>
 
-<h3>1. Le Pothos (Epipremnum aureum)</h3>
-<p>Le champion toutes catégories. Il supporte l'ombre, les oublis d'arrosage et pousse aussi bien en suspension qu'en pot. Ses longues lianes retombantes habillent n'importe quelle étagère. Arrosez quand la terre est sèche, c'est tout.</p>
+<p>Chez Anne Freret, nous croyons profondément que chaque intérieur mérite une présence végétale. Pas un bibelot vert posé dans un coin, mais une vraie compagne de vie — quelque chose qui respire, qui grandit, qui transforme subtilement l'atmosphère d'une pièce. Voici nos cinq recommandations pour celles et ceux qui ont décidé de réessayer.</p>
 
-<h3>2. Le Sansevieria (Langue de belle-mère)</h3>
-<p>Graphique et sculptural, il ne demande presque rien. Un arrosage toutes les 2 à 3 semaines suffit. Il purifie l'air et supporte aussi bien la lumière vive que les coins sombres. Parfait pour une chambre.</p>
+<h3>Le Pothos : l'indulgent</h3>
+<p>Si le monde végétal avait un saint patron des débutants, ce serait le Pothos. Cette plante retombante au feuillage en forme de coeur pardonne tout : les oublis d'arrosage, les coins sombres, les absences prolongées. Ses lianes peuvent atteindre plusieurs mètres, cascadant depuis une étagère avec une nonchalance qui ferait pâlir un mannequin. Un arrosage lorsque la terre est sèche au toucher, et le tour est joué. Rien de plus.</p>
 
-<h3>3. Le Zamioculcas (Plante ZZ)</h3>
-<p>Ses feuilles brillantes et charnues stockent l'eau, ce qui le rend ultra-résistant à la sécheresse. Il pousse lentement mais sûrement, même dans un bureau sans fenêtre. Le survivant ultime.</p>
+<h3>Le Sansevieria : l'architecte</h3>
+<p>Avec ses feuilles dressées comme des lames, le Sansevieria — ou langue de belle-mère, un surnom qu'il porte avec une ironie botanique certaine — est la plante des minimalistes. Graphique, sculptural, presque architectural, il ne demande qu'un arrosage toutes les deux à trois semaines et supporte aussi bien la lumière vive que la pénombre. Bonus considérable : il purifie l'air et libère de l'oxygène la nuit, ce qui en fait le compagnon idéal d'une chambre.</p>
 
-<h3>4. Le Monstera Deliciosa</h3>
-<p>Ses grandes feuilles découpées sont devenues iconiques. Il aime la lumière indirecte et un arrosage hebdomadaire. En retour, il transforme votre salon en jungle tropicale. Vous le trouverez dans notre collection Plantes.</p>
+<h3>Le Zamioculcas : le survivant</h3>
+<p>On le surnomme la plante ZZ, et il mérite un prix de résilience. Ses feuilles vernissées d'un vert profond stockent l'eau comme un chameau stocke ses réserves, ce qui le rend quasiment imperméable à la négligence. Il pousse lentement, certes, mais il pousse — même dans un bureau sans fenêtre, même quand on l'oublie des semaines entières. Si vous cherchez une plante qui vous survivra, c'est celle-ci.</p>
 
-<h3>5. Les Succulentes</h3>
-<p>Elles ne demandent qu'un rebord de fenêtre ensoleillé et un arrosage toutes les 2 semaines. Seules ou en trio, elles sont graphiques, modernes et parfaites pour offrir.</p>
+<h3>Le Monstera Deliciosa : l'iconique</h3>
+<p>Ses grandes feuilles fenêtrées sont devenues le symbole d'un intérieur qui a du goût. Le Monstera aime la lumière indirecte et un arrosage hebdomadaire — des exigences raisonnables pour une plante qui transforme n'importe quel salon en jardin d'hiver. Avec le temps, ses feuilles deviennent de plus en plus découpées, chaque nouvelle pousse étant plus spectaculaire que la précédente. C'est une plante qui récompense la patience par la beauté.</p>
 
-<p>Découvrez notre sélection de plantes d'intérieur en boutique — toutes livrées avec leurs conseils d'entretien personnalisés.</p>`
+<h3>Les Succulentes : les graphiques</h3>
+<p>Pour celles et ceux qui voyagent beaucoup ou qui oublient sincèrement que les plantes ont besoin d'eau : les succulentes sont vos alliées. Un rebord de fenêtre ensoleillé, un arrosage tous les dix à quinze jours, et elles prospéreront avec une élégance géométrique qui fait merveille sur un bureau, une étagère ou une table basse. Présentées en trio dans de petits pots en béton brut, elles constituent aussi un cadeau idéal pour convertir un ami sceptique au plaisir du végétal.</p>
+
+<p>Toutes ces plantes sont disponibles dans notre boutique, livrées dans des contenants soigneusement choisis et accompagnées de conseils d'entretien personnalisés. Parce que chez Anne Freret, nous ne vendons pas des plantes — nous vous aidons à les garder vivantes. <a href="/boutique">Découvrez notre collection de plantes</a> et laissez le vert reprendre sa place chez vous.</p>`
   },
   {
     id: 5,
-    title: 'Comment faire durer vos fleurs coupées plus longtemps',
-    excerpt: '7 astuces de fleuriste pour profiter de vos bouquets jusqu\'à 2 semaines.',
+    title: 'Sept secrets de fleuriste pour des fleurs qui durent',
+    excerpt: 'Ce serait dommage qu\'un si beau bouquet ne dure que trois jours. Voici les gestes simples qui changent tout — testés et approuvés dans notre atelier.',
     image: 'https://images.pexels.com/photos/1408221/pexels-photo-1408221.jpeg?auto=compress&cs=tinysrgb&w=800',
     slug: 'faire-durer-fleurs-coupees',
     date: '2026-01-18',
     category: 'Pratique',
-    readTime: '3 min de lecture',
+    readTime: '5 min de lecture',
     author: 'Anne Freret',
-    content: `<p>Rien n'est plus frustrant qu'un beau bouquet qui se fane en quelques jours. Avec ces astuces de professionnelle, vous pourrez prolonger la vie de vos fleurs de plusieurs jours, voire doubler leur durée.</p>
+    ctaTitle: 'Des bouquets qui durent',
+    ctaDescription: 'Chaque bouquet Anne Freret est livré avec son sachet de conservation et ses conseils personnalisés. Fraîcheur garantie sept jours.',
+    ctaLink: '/boutique',
+    ctaLabel: 'Commander un bouquet frais',
+    content: `<p>Il y a peu de choses aussi réjouissantes que de rentrer chez soi et de poser les yeux sur un bouquet de fleurs fraîches. Cette explosion de couleurs sur la table de la cuisine, ce parfum qui flotte dans l'entrée, cette sensation immédiate que la maison est plus vivante, plus douce, plus accueillante. Et il y a peu de choses aussi frustrantes que de voir ce même bouquet s'éteindre en quelques jours à peine.</p>
 
-<h3>1. Recoupez les tiges</h3>
-<p>Dès la réception, coupez 2 à 3 cm en biseau avec un couteau propre (pas des ciseaux qui écrasent). Renouvelez la coupe tous les 2-3 jours. C'est le geste le plus important.</p>
+<p>Après des années passées les mains dans les fleurs, nous avons appris que la différence entre un bouquet qui dure trois jours et un bouquet qui illumine votre intérieur pendant deux semaines tient à quelques gestes simples. Les voici, sans filtre.</p>
 
-<h3>2. Eau fraîche, pas froide</h3>
-<p>Remplissez le vase aux deux tiers avec de l'eau tiède (20-25°C). Les tiges absorbent mieux l'eau tiède. Changez l'eau tous les 2 jours pour éviter les bactéries.</p>
+<h3>Le geste fondateur : recouper les tiges</h3>
+<p>C'est le conseil numéro un, celui que nous répétons à chaque cliente, et celui qui fait la plus grande différence. Dès que vous recevez votre bouquet, recoupez deux à trois centimètres de chaque tige en biseau, avec un couteau bien aiguisé. Pas des ciseaux — ils écrasent les fibres et bloquent l'absorption de l'eau. Renouvelez cette coupe tous les deux à trois jours. Ce geste simple rouvre les canaux d'hydratation de la tige et prolonge la vie de vos fleurs de manière spectaculaire.</p>
 
-<h3>3. Retirez le feuillage immergé</h3>
-<p>Toute feuille sous l'eau va pourrir et créer des bactéries qui bouchent les tiges. Nettoyez soigneusement la partie immergée.</p>
+<h3>L'eau : tiède, propre, renouvelée</h3>
+<p>Contrairement à ce que l'on pourrait croire, les fleurs coupées préfèrent l'eau tiède — autour de vingt degrés — qui pénètre plus facilement dans les tiges. Remplissez votre vase aux deux tiers et changez l'eau tous les deux jours. Ce n'est pas glamour, mais les bactéries qui prolifèrent dans une eau stagnante sont les premières ennemies de vos fleurs.</p>
 
-<h3>4. L'astuce du sucre et du vinaigre</h3>
-<p>Ajoutez une cuillère à café de sucre (nourriture) et une cuillère de vinaigre blanc (antibactérien) par litre d'eau. C'est l'équivalent maison du sachet de conservation.</p>
+<h3>Le feuillage immergé : l'ennemi silencieux</h3>
+<p>Toute feuille qui trempe dans l'eau se décompose et génère des bactéries qui obstruent les tiges. Avant de placer votre bouquet dans le vase, retirez méticuleusement chaque feuille qui se trouverait sous la ligne d'eau. C'est un petit effort qui a un grand impact.</p>
 
-<h3>5. Éloignez les fruits</h3>
-<p>Les fruits dégagent de l'éthylène qui accélère le vieillissement des fleurs. Gardez votre bouquet loin de la corbeille de fruits.</p>
+<h3>La recette secrète : sucre et vinaigre</h3>
+<p>Si vous n'avez pas de sachet de conservation — nous en glissons un dans chacun de nos bouquets — voici notre recette maison : une cuillère à café de sucre pour nourrir les fleurs, et une cuillère de vinaigre blanc pour freiner la prolifération bactérienne, le tout pour un litre d'eau. C'est simple, c'est efficace, et vous avez probablement tout ce qu'il faut dans votre cuisine.</p>
 
-<h3>6. Évitez le soleil direct et la chaleur</h3>
-<p>Placez votre bouquet dans un endroit frais et lumineux, mais jamais en plein soleil ni près d'un radiateur. La nuit, un balcon couvert ou une pièce fraîche prolonge significativement leur vie.</p>
+<h3>L'éloignement des fruits : la règle d'or</h3>
+<p>Les fruits, en murissant, dégagent de l'éthylène — un gaz invisible qui accélère considérablement le vieillissement des fleurs. Éloignez votre bouquet de la corbeille de fruits. Ce détail, souvent ignoré, peut faire gagner plusieurs jours de fraîcheur à vos compositions.</p>
 
-<h3>7. Retirez les fleurs fanées</h3>
-<p>Une fleur qui se fane accélère le vieillissement des autres. Retirez-les au fur et à mesure pour que le reste du bouquet reste frais plus longtemps.</p>
+<h3>L'emplacement idéal : frais et lumineux</h3>
+<p>Vos fleurs aiment la lumière mais détestent la chaleur. Placez-les dans un endroit lumineux, loin du soleil direct, des radiateurs et des courants d'air. Le soir, si vous le pouvez, déplacez votre bouquet dans la pièce la plus fraîche de la maison — un geste que les fleuristes pratiquent dans leurs boutiques et qui prolonge la vie des fleurs de manière significative.</p>
 
-<p>Tous nos bouquets sont livrés avec un sachet de conservation et des conseils d'entretien personnalisés. Fraîcheur garantie 7 jours !</p>`
+<h3>Le tri sélectif : retirer ce qui fane</h3>
+<p>Une fleur qui se fane dégage de l'éthylène et accélère le déclin de ses voisines. Retirez les fleurs fatiguées au fur et à mesure, sans hésiter. Votre bouquet changera de visage au fil des jours — c'est normal, c'est même beau — et les dernières survivantes vous offriront parfois leur plus belle floraison.</p>
+
+<p>Chez Anne Freret, nous coupons nos fleurs le plus tard possible et nous composons vos bouquets le jour même de l'expédition. Chaque commande est accompagnée d'un sachet de conservation et de conseils adaptés aux variétés que nous avons choisies pour vous. <a href="/boutique">Offrez-vous un bouquet</a> et voyez la différence que fait la fraîcheur.</p>`
   },
   {
     id: 6,
-    title: 'Offrir des fleurs : le langage secret des bouquets',
-    excerpt: 'Chaque fleur porte un message. Apprenez à composer le bouquet qui dit exactement ce que vous ressentez.',
+    title: 'Ce que vos fleurs disent de vous : le langage secret des bouquets',
+    excerpt: 'Depuis des siècles, chaque fleur porte un message. Apprenez à lire — et à écrire — le plus beau des langages silencieux.',
     image: 'https://images.pexels.com/photos/2879824/pexels-photo-2879824.jpeg?auto=compress&cs=tinysrgb&w=800',
     slug: 'langage-secret-fleurs',
     date: '2026-01-10',
     category: 'Inspiration',
-    readTime: '5 min de lecture',
+    readTime: '6 min de lecture',
     author: 'Anne Freret',
-    content: `<p>Le langage des fleurs, ou floriographie, est une tradition séculaire qui attribue un sens à chaque variété. Aujourd'hui encore, offrir des fleurs est un geste chargé de sens. Voici les messages les plus courants pour ne jamais se tromper.</p>
+    ctaTitle: 'Composez votre message floral',
+    ctaDescription: 'Amour, amitié, gratitude, réconfort... Laissez notre équipe vous guider pour choisir les fleurs qui diront exactement ce que vous ressentez.',
+    ctaLink: '/boutique',
+    ctaLabel: 'Choisir un bouquet',
+    content: `<p>Bien avant les textos, les emails et les lettres manuscrites, il existait un langage que l'on confiait aux fleurs. Au dix-neuvième siècle, à l'époque victorienne, un bouquet n'était jamais anodin : chaque variété, chaque couleur, jusqu'à la manière de le tendre, portait un message que le destinataire savait déchiffrer. On appelait cela la floriographie — l'art de parler sans dire un mot.</p>
 
-<h3>L'amour</h3>
-<p><strong>La rose rouge</strong> — Le classique absolu de la déclaration d'amour. Une seule rose rouge dit "je t'aime" avec force et simplicité. Un bouquet entier exprime une passion ardente.</p>
-<p><strong>La tulipe rouge</strong> — Moins conventionnelle que la rose, elle déclare un amour parfait et sincère. Idéale pour surprendre en février.</p>
-<p><strong>La pivoine</strong> — Elle symbolise un amour heureux et la prospérité du couple. Parfaite pour un anniversaire de mariage.</p>
+<p>Aujourd'hui, nous ne composons plus nos bouquets en consultant des dictionnaires de symboles. Et pourtant, quelque chose persiste. Lorsque vous hésitez entre des roses rouges et des pivoines rose pâle, ce n'est pas une question de goût — c'est une question de message. Chez Anne Freret, nous croyons que choisir ses fleurs avec intention transforme un beau geste en un geste inoubliable.</p>
 
-<h3>L'amitié</h3>
-<p><strong>Le tournesol</strong> — Joie, fidélité et admiration. Il dit "tu illumines ma vie" sans ambiguïté romantique.</p>
-<p><strong>La rose jaune</strong> — Contrairement à la croyance populaire, elle ne signifie pas la jalousie mais l'amitié chaleureuse et la joie de vivre.</p>
+<h3>Les fleurs de l'amour</h3>
+<p><strong>La rose rouge</strong> n'a pas besoin de présentation. Depuis des siècles, elle est la déclaration d'amour la plus universelle, la plus directe, la plus puissante. Une seule rose rouge dans un vase fin dit "je t'aime" avec une force que mille mots ne sauraient égaler. Un bouquet entier est une proclamation.</p>
 
-<h3>La gratitude</h3>
-<p><strong>L'hortensia</strong> — Il exprime la reconnaissance et la grâce. Parfait pour remercier quelqu'un qui compte.</p>
-<p><strong>Le lys</strong> — Pureté et noblesse de cœur. Offrez-le pour dire "merci du fond du cœur".</p>
+<p><strong>La tulipe rouge</strong>, plus inattendue, déclare un amour parfait et sincère. Moins conventionnelle que la rose, elle surprend — et c'est souvent dans la surprise que réside le plus beau des aveux.</p>
 
-<h3>Le réconfort</h3>
-<p><strong>Le chrysanthème blanc</strong> — En France, il est associé au souvenir et au recueillement. Mais dans le reste du monde, il symbolise la vérité et la loyauté.</p>
-<p><strong>L'iris</strong> — Il porte un message d'espoir et de foi. Un choix délicat pour accompagner un moment difficile.</p>
+<p><strong>La pivoine</strong>, avec ses pétales qui se déploient comme une confidence, symbolise un amour heureux et l'enchantement du couple. C'est la fleur des anniversaires de mariage, celle qui dit "notre histoire est belle et elle continue".</p>
 
-<p>Besoin d'aide pour choisir ? Notre équipe vous conseille par téléphone ou en boutique pour composer le message floral parfait.</p>`
+<h3>Les fleurs de l'amitié</h3>
+<p><strong>Le tournesol</strong> incarne la joie pure, la fidélité et l'admiration. Offrir des tournesols, c'est dire "tu illumines mes journées" sans aucune ambiguïté romantique — un message rare et précieux dans un monde qui confond souvent affection et séduction.</p>
+
+<p><strong>La rose jaune</strong>, longtemps victime d'une réputation injuste — non, elle ne signifie pas la jalousie — est en réalité le symbole d'une amitié chaleureuse, de la joie partagée, du bonheur d'être ensemble. Offrez-en sans hésiter à vos amis les plus chers.</p>
+
+<h3>Les fleurs de la gratitude</h3>
+<p><strong>L'hortensia</strong>, avec ses pompons généreux aux teintes aquarellées, exprime la reconnaissance et la grâce. C'est la fleur que l'on offre pour dire "merci d'exister dans ma vie" — un sentiment plus profond et plus rare qu'un simple remerciement.</p>
+
+<p><strong>Le lys</strong>, dans sa blancheur majestueuse, porte un message de pureté et de noblesse de coeur. Offrir un lys, c'est reconnaître la valeur de quelqu'un avec une élégance qui se passe de commentaire.</p>
+
+<h3>Les fleurs du réconfort</h3>
+<p><strong>L'iris</strong>, fleur délicate aux teintes de bleu et de violet, porte un message d'espoir et de foi en l'avenir. Dans les moments difficiles, il murmure "ceci aussi passera" avec une douceur que seul le végétal sait offrir.</p>
+
+<p><strong>Le chrysanthème blanc</strong>, souvent réduit en France à son rôle du premier novembre, est pourtant une fleur d'une noblesse remarquable. Dans le reste du monde, il symbolise la vérité, la loyauté et la dévotion. Nous l'intégrons parfois dans nos compositions de deuil chez Anne Freret, où il apporte une sérénité lumineuse et apaisante.</p>
+
+<h3>Laisser les fleurs parler pour vous</h3>
+<p>Vous n'avez pas besoin de maîtriser la floriographie pour offrir un bouquet qui touche en plein coeur. L'essentiel est l'intention : prendre un instant pour penser à la personne que vous aimez, et choisir les fleurs qui reflètent ce que vous ressentez pour elle. Notre équipe est là pour vous guider dans ce choix — par téléphone, en boutique, ou à travers nos compositions pensées pour chaque émotion.</p>
+
+<p>Parce qu'un bouquet bien choisi dit toujours plus qu'une carte de voeux. <a href="/boutique">Explorez nos créations</a> et laissez les fleurs parler pour vous.</p>`
   },
 ];

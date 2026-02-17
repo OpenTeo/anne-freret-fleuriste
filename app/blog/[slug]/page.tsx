@@ -166,17 +166,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 {/* CTA */}
                 <div className="bg-[#b8956a] rounded-lg p-6 text-center text-white">
                   <h3 className="font-serif text-xl mb-3">
-                    Découvrir nos bouquets
+                    {post.ctaTitle || 'Découvrir nos bouquets'}
                   </h3>
                   <p className="text-sm opacity-90 mb-5">
-                    Laissez-vous séduire par nos créations florales uniques, 
-                    composées avec passion dans notre atelier normand.
+                    {post.ctaDescription || 'Laissez-vous séduire par nos créations florales uniques, composées avec passion dans notre atelier normand.'}
                   </p>
                   <Link 
-                    href="/boutique"
+                    href={post.ctaLink || '/boutique'}
                     className="inline-block bg-white text-[#b8956a] px-6 py-3 rounded-full font-medium text-sm hover:bg-gray-50 transition-colors"
                   >
-                    Voir nos créations
+                    {post.ctaLabel || 'Voir nos créations'}
                   </Link>
                 </div>
               </div>
