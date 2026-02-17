@@ -135,7 +135,7 @@ const Header = () => {
         <div className="fixed inset-0 z-40 bg-[#faf8f5]">
           <div className="pt-20 px-6">
             <nav className="flex flex-col">
-              <Link href="/" onClick={closeMenu} className="text-[#2d2a26] text-[15px] py-4 border-b border-[#c4a47a]/20">
+              <Link href="/" onClick={closeMenu} className="text-[#2d2a26] text-[14px] py-2.5 border-b border-[#c4a47a]/20">
                 Accueil
               </Link>
               {[
@@ -152,7 +152,7 @@ const Header = () => {
                   key={link.href} 
                   href={link.href} 
                   onClick={closeMenu}
-                  className="text-[#2d2a26] text-[15px] py-4 border-b border-[#c4a47a]/20 flex justify-between items-center transition-colors hover:text-[#c4a47a]"
+                  className="text-[#2d2a26] text-[14px] py-2.5 border-b border-[#c4a47a]/20 flex justify-between items-center transition-colors hover:text-[#c4a47a]"
                 >
                   {link.label}
                   <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
