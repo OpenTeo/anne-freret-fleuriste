@@ -14,7 +14,7 @@ const boxes = [
     price: 34.90,
     tag: 'Idéal pour débuter',
     desc: 'Un bouquet prêt à assembler avec des fleurs fraîches de saison. Suivez le guide, créez votre composition et admirez le résultat pendant 7 à 14 jours.',
-    includes: ['8-12 tiges fraîches de saison', 'Sachet d\'élixir végétal', 'Guide illustré pas à pas', 'QR code → tuto vidéo', 'Papier kraft & raphia'],
+    includes: ['8-12 tiges fraîches de saison', 'Sachet d\'élixir végétal', 'Guide illustré pas à pas', 'Papier kraft & raphia'],
     image: 'https://images.pexels.com/photos/931155/pexels-photo-931155.jpeg?auto=compress&cs=tinysrgb&w=800',
     duration: '7-14 jours',
   },
@@ -25,7 +25,7 @@ const boxes = [
     price: 39.90,
     tag: 'Best-seller',
     desc: 'Des fleurs séchées et stabilisées pour une composition qui dure des mois. Pampa, lavande, eucalyptus, statice — un bouquet intemporel à créer chez vous.',
-    includes: ['10-15 variétés séchées & stabilisées', 'Pampa, lavande, eucalyptus', 'Fil de fer floral doré', 'Ruban en lin naturel', 'Guide de composition illustré', 'QR code → tuto vidéo'],
+    includes: ['10-15 variétés séchées & stabilisées', 'Pampa, lavande, eucalyptus', 'Fil de fer floral doré', 'Ruban en lin naturel', 'Guide de composition illustré'],
     image: 'https://images.pexels.com/photos/5414022/pexels-photo-5414022.jpeg?auto=compress&cs=tinysrgb&w=800',
     duration: '6 mois à 2 ans',
   },
@@ -36,7 +36,7 @@ const boxes = [
     price: 54.90,
     tag: 'L\'expérience premium',
     desc: 'Notre box signature qui combine fleurs fraîches et séchées. Créez un centre de table unique en mélangeant les textures, les couleurs et les parfums.',
-    includes: ['6-8 tiges fraîches de saison', '8-10 variétés séchées', 'Mousse florale Oasis', 'Contenant en bois gravé', 'Sécateur floral professionnel', 'Carte message personnalisée', 'Guide + tuto vidéo exclusif'],
+    includes: ['6-8 tiges fraîches de saison', '8-10 variétés séchées', 'Mousse florale Oasis', 'Contenant en bois gravé', 'Sécateur floral professionnel', 'Carte message personnalisée', 'Guide de composition illustré'],
     image: 'https://images.pexels.com/photos/4270178/pexels-photo-4270178.jpeg?auto=compress&cs=tinysrgb&w=800',
     duration: 'Séchées: 6 mois+ / Fraîches: 7-14j',
   },
@@ -255,7 +255,6 @@ export default function DIYPage() {
               { icon: '/icons/gift.svg', label: 'Emballage cadeau inclus' },
               { icon: '/icons/envelope.svg', label: 'Carte message personnalisée' },
               { icon: '/icons/truck.svg', label: 'Livraison 24-48h partout en France' },
-              { icon: '/icons/play.svg', label: 'Tuto vidéo accessible par QR code' },
               { icon: '/icons/leaf.svg', label: 'Fleurs de saison, fraîches ou séchées' },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-4">
@@ -293,7 +292,7 @@ export default function DIYPage() {
         </div>
         <div className="space-y-0">
           {[
-            { q: 'Faut-il avoir de l\'expérience ?', a: 'Pas du tout ! Nos box sont conçues pour tous les niveaux. Le guide illustré et le tuto vidéo vous accompagnent étape par étape. De la débutante à la passionnée, chacune y trouvera son bonheur.' },
+            { q: 'Faut-il avoir de l\'expérience ?', a: 'Pas du tout ! Nos box sont conçues pour tous les niveaux. Le guide illustré vous accompagne étape par étape. De la débutante à la passionnée, chacune y trouvera son bonheur.' },
             { q: 'Combien de temps durent les compositions ?', a: 'Les fleurs fraîches durent 7 à 14 jours avec le sachet nutritif inclus. Les fleurs séchées et stabilisées durent 6 mois à 2 ans — parfois plus avec un bon entretien.' },
             { q: 'Peut-on offrir une box ?', a: 'Absolument ! Ajoutez une carte message personnalisée lors de votre commande. La box arrive dans un packaging cadeau soigné, prête à être offerte.' },
             { q: 'Comment sont livrées les fleurs fraîches ?', a: 'En colis Chronopost 24h, chaque tige est protégée individuellement dans un emballage biodégradable. Les fleurs arrivent en boutons pour une durée de vie maximale.' },
