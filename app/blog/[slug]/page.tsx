@@ -47,11 +47,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         {/* Photo pleine largeur */}
         <section className="max-w-5xl mx-auto px-4 md:px-6">
-          <div className="aspect-[16/9] overflow-hidden">
+          <div className="aspect-[3/2] md:aspect-[2/1] overflow-hidden">
             <img
               src={post.image}
               alt={post.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center"
             />
           </div>
         </section>
