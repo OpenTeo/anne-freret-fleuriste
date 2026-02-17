@@ -117,97 +117,155 @@ export default function Contact() {
 
               {/* Illustration carte vintage */}
               <div className="mt-12 bg-[#f5f0eb] border border-[#c4a47a]/20 p-6 md:p-8">
-                <svg viewBox="0 0 600 400" className="w-full" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 600 440" className="w-full" xmlns="http://www.w3.org/2000/svg" style={{ fontFamily: "'Georgia', 'Times New Roman', serif" }}>
                   {/* Fond parchemin */}
-                  <rect width="600" height="400" fill="#f5f0eb"/>
+                  <rect width="600" height="440" fill="#f5f0eb"/>
                   
-                  {/* Côte — La Manche */}
-                  <path d="M0 0 L0 400 L95 400 Q85 350 90 300 Q80 250 85 200 Q75 150 82 100 Q88 50 80 0 Z" fill="#c4a47a" opacity="0.07"/>
-                  <path d="M85 0 Q78 30 82 60 Q75 90 80 120 Q72 150 78 180 Q82 210 76 240 Q80 270 85 300 Q78 340 88 400" stroke="#c4a47a" strokeWidth="1" fill="none" opacity="0.3" strokeDasharray="5 3"/>
-                  <text x="35" y="220" fill="#c4a47a" opacity="0.25" fontSize="11" fontStyle="italic" letterSpacing="0.15em" transform="rotate(-90 35 220)">La Manche</text>
-
-                  {/* Routes principales */}
-                  <path d="M90 190 L200 185 L300 180 L430 175 L600 170" stroke="#c4a47a" strokeWidth="1.2" fill="none" opacity="0.35"/>
-                  <path d="M300 50 L300 180 L300 380" stroke="#c4a47a" strokeWidth="1" fill="none" opacity="0.25"/>
-                  <path d="M300 180 L420 100 L540 40" stroke="#c4a47a" strokeWidth="1" fill="none" opacity="0.25"/>
-                  <path d="M300 180 L400 280 L500 370" stroke="#c4a47a" strokeWidth="0.8" fill="none" opacity="0.2"/>
+                  {/* Côte dessinée — trait irrégulier style encre */}
+                  <path d="M82 0 Q75 20 78 45 Q70 70 76 95 Q68 120 74 145 Q80 165 72 190 Q78 215 70 240 Q76 265 80 290 Q72 320 78 350 Q84 380 76 410 Q80 430 78 440" stroke="#2d2a26" strokeWidth="1.8" fill="none" opacity="0.6"/>
+                  {/* Hachures côte — style gravure */}
+                  <path d="M78 20 L68 22 M74 40 L62 43 M76 60 L64 62 M72 80 L60 83 M76 100 L66 103 M70 120 L58 122 M74 140 L64 143 M78 160 L66 162 M72 180 L60 183 M76 200 L64 202 M70 220 L58 223 M74 240 L62 242 M78 260 L66 263 M72 280 L60 282 M76 300 L64 303 M80 320 L68 322 M74 340 L62 343 M78 360 L66 363 M76 380 L64 382 M80 400 L68 402 M76 420 L64 423" stroke="#2d2a26" strokeWidth="0.6" opacity="0.25"/>
                   
-                  {/* Granville — au nord */}
-                  <g transform="translate(180, 80)">
-                    <circle cx="0" cy="0" r="3" fill="#2d2a26" opacity="0.25"/>
-                    <text x="10" y="4" fill="#2d2a26" opacity="0.4" fontSize="10" fontFamily="serif">Granville</text>
+                  {/* Petites vagues mer */}
+                  <path d="M30 100 Q35 97 40 100 Q45 103 50 100" stroke="#2d2a26" strokeWidth="0.6" fill="none" opacity="0.2"/>
+                  <path d="M20 150 Q25 147 30 150 Q35 153 40 150" stroke="#2d2a26" strokeWidth="0.6" fill="none" opacity="0.2"/>
+                  <path d="M35 200 Q40 197 45 200 Q50 203 55 200" stroke="#2d2a26" strokeWidth="0.6" fill="none" opacity="0.15"/>
+                  <path d="M25 260 Q30 257 35 260 Q40 263 45 260" stroke="#2d2a26" strokeWidth="0.6" fill="none" opacity="0.2"/>
+                  <path d="M40 320 Q45 317 50 320 Q55 323 60 320" stroke="#2d2a26" strokeWidth="0.6" fill="none" opacity="0.15"/>
+                  <text x="25" y="55" fill="#2d2a26" opacity="0.2" fontSize="11" fontStyle="italic" letterSpacing="0.1em" transform="rotate(-80 25 55)">La Manche</text>
+
+                  {/* Routes — traits fins pointillés */}
+                  <path d="M85 200 Q150 195 250 192 Q300 190 350 188 Q450 184 600 178" stroke="#2d2a26" strokeWidth="0.8" fill="none" opacity="0.3" strokeDasharray="8 4"/>
+                  <path d="M280 30 Q285 80 288 130 Q290 160 290 190 Q290 250 285 320 Q282 370 280 440" stroke="#2d2a26" strokeWidth="0.6" fill="none" opacity="0.2" strokeDasharray="6 4"/>
+                  <path d="M290 190 Q350 140 420 100 Q480 70 540 40" stroke="#2d2a26" strokeWidth="0.6" fill="none" opacity="0.2" strokeDasharray="6 4"/>
+
+                  {/* === GRANVILLE — rempart + tour === */}
+                  <g transform="translate(200, 72)">
+                    {/* Rempart */}
+                    <rect x="-12" y="-8" width="24" height="16" fill="none" stroke="#2d2a26" strokeWidth="1.2" opacity="0.55"/>
+                    {/* Créneaux */}
+                    <path d="M-12 -8 L-12 -12 L-8 -12 L-8 -8 M-4 -8 L-4 -12 L0 -12 L0 -8 M4 -8 L4 -12 L8 -12 L8 -8" stroke="#2d2a26" strokeWidth="1" fill="none" opacity="0.55"/>
+                    {/* Tour */}
+                    <line x1="0" y1="-12" x2="0" y2="-20" stroke="#2d2a26" strokeWidth="1" opacity="0.5"/>
+                    <path d="M-3 -20 L0 -24 L3 -20" stroke="#2d2a26" strokeWidth="0.8" fill="none" opacity="0.5"/>
+                    <text x="0" y="22" textAnchor="middle" fill="#2d2a26" opacity="0.6" fontSize="12" fontStyle="italic">Granville</text>
                   </g>
                   
-                  {/* Avranches — à droite */}
-                  <g transform="translate(500, 95)">
-                    <circle cx="0" cy="0" r="3" fill="#2d2a26" opacity="0.25"/>
-                    <text x="-55" y="-8" fill="#2d2a26" opacity="0.4" fontSize="10" fontFamily="serif">Avranches</text>
-                  </g>
-
-                  {/* Mont Saint-Michel — silhouette en bas à droite */}
-                  <g transform="translate(480, 310)">
-                    {/* Silhouette simplifiée du Mont */}
-                    <path d="M-15 5 Q-12 -5 -8 -8 Q-4 -15 -2 -22 Q0 -28 0 -32 Q0 -28 2 -22 Q4 -15 8 -8 Q12 -5 15 5 Z" fill="#c4a47a" opacity="0.35"/>
-                    {/* Flèche de l'abbaye */}
-                    <line x1="0" y1="-32" x2="0" y2="-38" stroke="#c4a47a" strokeWidth="0.8" opacity="0.4"/>
-                    {/* Reflet dans l'eau */}
-                    <ellipse cx="0" cy="8" rx="18" ry="3" fill="#c4a47a" opacity="0.08"/>
-                    <text x="0" y="22" textAnchor="middle" fill="#2d2a26" opacity="0.45" fontSize="9" fontStyle="italic" fontFamily="serif">Mont Saint-Michel</text>
-                    <text x="0" y="33" textAnchor="middle" fill="#2d2a26" opacity="0.3" fontSize="7">~ 25 km</text>
-                  </g>
-
-                  {/* Jullouville */}
-                  <g transform="translate(230, 260)">
-                    <circle cx="0" cy="0" r="2" fill="#2d2a26" opacity="0.2"/>
-                    <text x="8" y="4" fill="#2d2a26" opacity="0.3" fontSize="8" fontStyle="italic">Jullouville</text>
-                  </g>
-
-                  {/* Carolles */}
-                  <g transform="translate(280, 310)">
-                    <circle cx="0" cy="0" r="2" fill="#2d2a26" opacity="0.2"/>
-                    <text x="8" y="4" fill="#2d2a26" opacity="0.3" fontSize="8" fontStyle="italic">Carolles</text>
+                  {/* === AVRANCHES — cathédrale === */}
+                  <g transform="translate(490, 85)">
+                    {/* Base cathédrale */}
+                    <rect x="-8" y="-6" width="16" height="12" fill="none" stroke="#2d2a26" strokeWidth="1" opacity="0.5"/>
+                    {/* Toit triangulaire */}
+                    <path d="M-10 -6 L0 -16 L10 -6" stroke="#2d2a26" strokeWidth="1" fill="none" opacity="0.5"/>
+                    {/* Croix */}
+                    <line x1="0" y1="-16" x2="0" y2="-22" stroke="#2d2a26" strokeWidth="0.8" opacity="0.5"/>
+                    <line x1="-2" y1="-19" x2="2" y2="-19" stroke="#2d2a26" strokeWidth="0.8" opacity="0.5"/>
+                    <text x="0" y="20" textAnchor="middle" fill="#2d2a26" opacity="0.6" fontSize="12" fontStyle="italic">Avranches</text>
                   </g>
 
-                  {/* Église — symbole croix */}
-                  <g transform="translate(280, 170)">
-                    <line x1="0" y1="-7" x2="0" y2="7" stroke="#2d2a26" strokeWidth="1" opacity="0.4"/>
-                    <line x1="-4" y1="-2" x2="4" y2="-2" stroke="#2d2a26" strokeWidth="1" opacity="0.4"/>
-                    <text x="8" y="3" fill="#2d2a26" opacity="0.35" fontSize="7" fontStyle="italic">Église</text>
-                  </g>
-                  
-                  {/* Pin boutique — doré, plus grand */}
-                  <g transform="translate(310, 172)">
-                    <path d="M0-26C-8-26-14.5-19.5-14.5-11.5c0 11 14.5 26 14.5 26s14.5-15 14.5-26C14.5-19.5 8-26 0-26z" fill="#c4a47a"/>
-                    <circle cx="0" cy="-13" r="5.5" fill="#faf8f5"/>
-                    <circle cx="0" cy="-13" r="2.5" fill="#c4a47a"/>
+                  {/* === MONT SAINT-MICHEL — illustration détaillée === */}
+                  <g transform="translate(460, 290)">
+                    {/* Île/rocher base */}
+                    <ellipse cx="0" cy="12" rx="28" ry="8" fill="#2d2a26" opacity="0.08"/>
+                    {/* Mont — forme pyramidale */}
+                    <path d="M-25 12 Q-20 0 -15 -5 Q-10 -12 -5 -20 Q-2 -30 0 -38 Q2 -30 5 -20 Q10 -12 15 -5 Q20 0 25 12 Z" fill="#2d2a26" opacity="0.1" stroke="#2d2a26" strokeWidth="1.2" />
+                    {/* Abbaye au sommet */}
+                    <rect x="-6" y="-38" width="12" height="10" fill="none" stroke="#2d2a26" strokeWidth="0.8" opacity="0.6"/>
+                    <path d="M-7 -38 L0 -45 L7 -38" stroke="#2d2a26" strokeWidth="0.8" fill="none" opacity="0.6"/>
+                    {/* Flèche */}
+                    <line x1="0" y1="-45" x2="0" y2="-55" stroke="#2d2a26" strokeWidth="0.8" opacity="0.6"/>
+                    {/* Croix au sommet */}
+                    <line x1="-2" y1="-53" x2="2" y2="-53" stroke="#2d2a26" strokeWidth="0.7" opacity="0.5"/>
+                    {/* Petits bâtiments sur le mont */}
+                    <rect x="-10" y="-15" width="5" height="6" fill="none" stroke="#2d2a26" strokeWidth="0.5" opacity="0.35"/>
+                    <rect x="5" y="-12" width="4" height="5" fill="none" stroke="#2d2a26" strokeWidth="0.5" opacity="0.35"/>
+                    <rect x="-3" y="-28" width="6" height="5" fill="none" stroke="#2d2a26" strokeWidth="0.5" opacity="0.35"/>
+                    {/* Rempart bas */}
+                    <path d="M-18 5 Q-15 3 -10 2 M10 2 Q15 3 18 5" stroke="#2d2a26" strokeWidth="0.6" opacity="0.3"/>
+                    {/* Reflets eau */}
+                    <path d="M-20 18 Q-15 16 -10 18 Q-5 20 0 18 Q5 16 10 18 Q15 20 20 18" stroke="#2d2a26" strokeWidth="0.4" fill="none" opacity="0.15"/>
+                    <text x="0" y="32" textAnchor="middle" fill="#2d2a26" opacity="0.65" fontSize="11" fontStyle="italic">Mont Saint-Michel</text>
+                    <text x="0" y="44" textAnchor="middle" fill="#2d2a26" opacity="0.35" fontSize="8">~ 25 km</text>
                   </g>
 
-                  {/* Nom de la boutique */}
-                  <text x="310" y="215" textAnchor="middle" fill="#2d2a26" fontSize="12" fontWeight="500" letterSpacing="0.1em" fontFamily="serif">Anne Freret — Fleuriste</text>
-                  <text x="310" y="232" textAnchor="middle" fill="#2d2a26" opacity="0.5" fontSize="8.5" letterSpacing="0.05em">39 Place du Général de Gaulle</text>
-                  
-                  {/* Ville — lettrage large */}
-                  <text x="260" y="265" fill="#c4a47a" opacity="0.25" fontSize="13" letterSpacing="0.5em" fontFamily="serif">SAINT-PAIR-SUR-MER</text>
-                  
-                  {/* Routes labels */}
-                  <text x="430" y="168" fill="#2d2a26" opacity="0.2" fontSize="7" fontStyle="italic">D 973</text>
-                  <text x="310" y="120" fill="#2d2a26" opacity="0.2" fontSize="7" fontStyle="italic" textAnchor="middle">vers Granville</text>
-                  <text x="440" y="85" fill="#2d2a26" opacity="0.2" fontSize="7" fontStyle="italic">vers Avranches</text>
-                  
-                  {/* Rose des vents */}
-                  <g transform="translate(550, 55)">
-                    <line x1="0" y1="-20" x2="0" y2="20" stroke="#c4a47a" strokeWidth="0.7" opacity="0.35"/>
-                    <line x1="-20" y1="0" x2="20" y2="0" stroke="#c4a47a" strokeWidth="0.7" opacity="0.35"/>
-                    <line x1="-12" y1="-12" x2="12" y2="12" stroke="#c4a47a" strokeWidth="0.4" opacity="0.2"/>
-                    <line x1="12" y1="-12" x2="-12" y2="12" stroke="#c4a47a" strokeWidth="0.4" opacity="0.2"/>
-                    <text x="0" y="-25" textAnchor="middle" fill="#c4a47a" opacity="0.5" fontSize="9" fontFamily="serif">N</text>
-                    <circle cx="0" cy="0" r="3" fill="#c4a47a" opacity="0.25"/>
-                    <circle cx="0" cy="0" r="1" fill="#c4a47a" opacity="0.4"/>
+                  {/* === JULLOUVILLE — petite maison === */}
+                  <g transform="translate(220, 270)">
+                    <rect x="-4" y="-3" width="8" height="6" fill="none" stroke="#2d2a26" strokeWidth="0.7" opacity="0.35"/>
+                    <path d="M-5 -3 L0 -7 L5 -3" stroke="#2d2a26" strokeWidth="0.7" fill="none" opacity="0.35"/>
+                    <text x="10" y="2" fill="#2d2a26" opacity="0.4" fontSize="9" fontStyle="italic">Jullouville</text>
+                  </g>
+
+                  {/* === CAROLLES — falaise === */}
+                  <g transform="translate(300, 330)">
+                    <path d="M-8 4 L-6 -2 L-2 -5 L2 -3 L6 -6 L8 0 L8 4 Z" fill="none" stroke="#2d2a26" strokeWidth="0.8" opacity="0.35"/>
+                    <text x="14" y="0" fill="#2d2a26" opacity="0.4" fontSize="9" fontStyle="italic">Carolles</text>
+                  </g>
+
+                  {/* === SAINT-PAIR-SUR-MER — boutique + église === */}
+                  {/* Église */}
+                  <g transform="translate(265, 178)">
+                    <rect x="-4" y="-4" width="8" height="10" fill="none" stroke="#2d2a26" strokeWidth="0.8" opacity="0.5"/>
+                    <path d="M-5 -4 L0 -10 L5 -4" stroke="#2d2a26" strokeWidth="0.8" fill="none" opacity="0.5"/>
+                    <line x1="0" y1="-10" x2="0" y2="-14" stroke="#2d2a26" strokeWidth="0.7" opacity="0.5"/>
+                    <line x1="-1.5" y1="-12" x2="1.5" y2="-12" stroke="#2d2a26" strokeWidth="0.7" opacity="0.5"/>
+                    <text x="-2" y="16" fill="#2d2a26" opacity="0.35" fontSize="7" fontStyle="italic">Église</text>
+                  </g>
+
+                  {/* Bouquet de fleurs = la boutique */}
+                  <g transform="translate(310, 170)">
+                    {/* Vase */}
+                    <path d="M-4 8 Q-5 4 -4 0 Q-3 -2 0 -3 Q3 -2 4 0 Q5 4 4 8 Z" fill="#c4a47a" opacity="0.6" stroke="#2d2a26" strokeWidth="0.8"/>
+                    {/* Tiges */}
+                    <line x1="-2" y1="-3" x2="-4" y2="-14" stroke="#2d2a26" strokeWidth="0.6" opacity="0.5"/>
+                    <line x1="0" y1="-3" x2="0" y2="-16" stroke="#2d2a26" strokeWidth="0.6" opacity="0.5"/>
+                    <line x1="2" y1="-3" x2="4" y2="-14" stroke="#2d2a26" strokeWidth="0.6" opacity="0.5"/>
+                    {/* Fleurs */}
+                    <circle cx="-4" cy="-16" r="3" fill="none" stroke="#2d2a26" strokeWidth="0.6" opacity="0.4"/>
+                    <circle cx="0" cy="-18" r="3" fill="none" stroke="#2d2a26" strokeWidth="0.6" opacity="0.4"/>
+                    <circle cx="4" cy="-15" r="2.5" fill="none" stroke="#2d2a26" strokeWidth="0.6" opacity="0.4"/>
+                    <circle cx="-4" cy="-16" r="1" fill="#c4a47a" opacity="0.5"/>
+                    <circle cx="0" cy="-18" r="1" fill="#c4a47a" opacity="0.5"/>
+                    <circle cx="4" cy="-15" r="1" fill="#c4a47a" opacity="0.5"/>
+                  </g>
+
+                  {/* Nom boutique — calligraphie */}
+                  <text x="310" y="198" textAnchor="middle" fill="#2d2a26" fontSize="13" fontWeight="500" fontStyle="italic" opacity="0.8">Anne Freret</text>
+                  <text x="310" y="212" textAnchor="middle" fill="#2d2a26" opacity="0.45" fontSize="8" letterSpacing="0.08em">— Fleuriste —</text>
+                  <text x="310" y="226" textAnchor="middle" fill="#2d2a26" opacity="0.4" fontSize="7.5">39 Place du Général de Gaulle</text>
+
+                  {/* Nom de ville — grand lettrage */}
+                  <text x="290" y="260" textAnchor="middle" fill="#2d2a26" opacity="0.15" fontSize="15" letterSpacing="0.6em">SAINT-PAIR-SUR-MER</text>
+
+                  {/* === Petit voilier en mer === */}
+                  <g transform="translate(55, 130)">
+                    <path d="M-6 0 L6 0 L4 4 L-4 4 Z" fill="none" stroke="#2d2a26" strokeWidth="0.7" opacity="0.3"/>
+                    <line x1="0" y1="0" x2="0" y2="-10" stroke="#2d2a26" strokeWidth="0.6" opacity="0.3"/>
+                    <path d="M0 -10 L7 -2 L0 0 Z" fill="#2d2a26" opacity="0.1" stroke="#2d2a26" strokeWidth="0.5"/>
+                  </g>
+
+                  {/* === Rose des vents — ornée === */}
+                  <g transform="translate(540, 390)">
+                    {/* Cercle extérieur */}
+                    <circle cx="0" cy="0" r="25" fill="none" stroke="#2d2a26" strokeWidth="0.5" opacity="0.25"/>
+                    {/* Points cardinaux — flèches */}
+                    <path d="M0 -22 L3 -8 L0 -5 L-3 -8 Z" fill="#2d2a26" opacity="0.35"/>
+                    <path d="M0 22 L3 8 L0 5 L-3 8 Z" fill="#2d2a26" opacity="0.15"/>
+                    <path d="M-22 0 L-8 -3 L-5 0 L-8 3 Z" fill="#2d2a26" opacity="0.15"/>
+                    <path d="M22 0 L8 -3 L5 0 L8 3 Z" fill="#2d2a26" opacity="0.15"/>
+                    {/* Diagonales */}
+                    <line x1="-14" y1="-14" x2="14" y2="14" stroke="#2d2a26" strokeWidth="0.4" opacity="0.15"/>
+                    <line x1="14" y1="-14" x2="-14" y2="14" stroke="#2d2a26" strokeWidth="0.4" opacity="0.15"/>
+                    {/* Labels */}
+                    <text x="0" y="-28" textAnchor="middle" fill="#2d2a26" opacity="0.5" fontSize="9">N</text>
+                    <text x="0" y="34" textAnchor="middle" fill="#2d2a26" opacity="0.3" fontSize="7">S</text>
+                    <text x="-30" y="3" textAnchor="middle" fill="#2d2a26" opacity="0.3" fontSize="7">O</text>
+                    <text x="30" y="3" textAnchor="middle" fill="#2d2a26" opacity="0.3" fontSize="7">E</text>
+                    <circle cx="0" cy="0" r="2" fill="#2d2a26" opacity="0.3"/>
                   </g>
 
                   {/* Bordure double décorative */}
-                  <rect x="6" y="6" width="588" height="388" fill="none" stroke="#c4a47a" strokeWidth="0.5" opacity="0.2"/>
-                  <rect x="12" y="12" width="576" height="376" fill="none" stroke="#c4a47a" strokeWidth="0.3" opacity="0.15"/>
+                  <rect x="6" y="6" width="588" height="428" fill="none" stroke="#2d2a26" strokeWidth="0.6" opacity="0.15"/>
+                  <rect x="12" y="12" width="576" height="416" fill="none" stroke="#2d2a26" strokeWidth="0.3" opacity="0.1"/>
                 </svg>
                 
                 <div className="flex items-center justify-between mt-4">
