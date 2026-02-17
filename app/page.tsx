@@ -169,7 +169,7 @@ export default function Home() {
                     <span className="text-[#c4a47a]">✦</span> Fleurs fraîches, séchées ou les deux
                   </div>
                   <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
-                    <span className="text-[#c4a47a]">✦</span> Tuto vidéo + guide pas à pas inclus
+                    <span className="text-[#c4a47a]">✦</span> Guide illustré pas à pas inclus
                   </div>
                 </div>
                 <a href="/diy" className="inline-block text-[#2d2a26] text-sm tracking-wide underline underline-offset-8 decoration-[#c4a47a] hover:text-[#c4a47a] transition-colors">
