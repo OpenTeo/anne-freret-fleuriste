@@ -28,23 +28,24 @@ export default function BlogPage() {
       <Header />
       <main className="bg-[#faf8f5] min-h-screen pt-20">
         
-        {/* Hero Section */}
-        <section className="py-24 md:py-32">
-          <div className="container mx-auto px-6 lg:px-8 text-center">
-            
-            <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
+        {/* Hero Section with photo */}
+        <section className="relative h-[50vh] md:h-[60vh] flex items-center justify-center overflow-hidden">
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1600&q=80)' }}
+          />
+          <div className="absolute inset-0 bg-[#2d2a26]/50" />
+          <div className="relative z-10 text-center px-6">
+            <div className="text-[10px] uppercase tracking-[0.3em] text-[#c4a47a] mb-6">
               Le Journal Floral
             </div>
-
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2d2a26] mb-8 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-white mb-6 leading-tight">
               Conseils & Inspirations
             </h1>
-            
-            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
-            
-            <p className="text-xl text-[#2d2a26] font-light leading-relaxed max-w-2xl mx-auto">
-              Découvrez nos conseils d'experts, nos inspirations saisonnières et les secrets 
-              de l'art floral normand à travers nos articles passionnés.
+            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+            <p className="text-lg text-white/80 font-light leading-relaxed max-w-xl mx-auto">
+              Nos secrets de fleuriste, inspirations saisonnières et idées 
+              pour sublimer votre quotidien avec des fleurs.
             </p>
           </div>
         </section>
