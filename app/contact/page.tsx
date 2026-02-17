@@ -115,50 +115,73 @@ export default function Contact() {
                 </div>
               </div>
 
-              {/* Carte style ancien — Stamen Watercolor */}
-              <div className="mt-12 relative overflow-hidden border border-[#c4a47a]/30" style={{ height: '320px' }}>
-                <div className="w-full h-full relative">
-                  {/* Fond carte aquarelle via Stamen tiles */}
-                  <img
-                    src="https://maps.stamen.com/m2i/watercolor/1256x640/14/48.8267/-1.5694.png"
-                    alt="Carte de Saint-Pair-sur-Mer"
-                    className="w-full h-full object-cover"
-                    style={{ filter: 'sepia(25%) brightness(105%)' }}
-                    onError={(e) => {
-                      // Fallback: OpenStreetMap sépia si Stamen ne charge pas
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      const parent = target.parentElement;
-                      if (parent) {
-                        const iframe = document.createElement('iframe');
-                        iframe.src = 'https://www.openstreetmap.org/export/embed.html?bbox=-1.5760%2C48.8230%2C-1.5620%2C48.8305&layer=mapnik&marker=48.8267%2C-1.5694';
-                        iframe.className = 'w-full h-full border-0';
-                        iframe.style.filter = 'sepia(50%) saturate(60%) brightness(110%)';
-                        parent.appendChild(iframe);
-                      }
-                    }}
-                  />
-                  {/* Pin SVG artisanal */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full">
-                    <svg width="32" height="44" viewBox="0 0 32 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M16 0C7.164 0 0 7.164 0 16c0 12 16 28 16 28s16-16 16-28C32 7.164 24.836 0 16 0z" fill="#c4a47a"/>
-                      <circle cx="16" cy="14" r="6" fill="#faf8f5"/>
-                    </svg>
-                  </div>
-                  {/* Label */}
-                  <div className="absolute bottom-4 left-4 bg-[#faf8f5]/90 border border-[#c4a47a]/30 px-4 py-2">
-                    <p className="text-[9px] tracking-[0.15em] uppercase text-[#c4a47a]">Anne Freret — Fleuriste</p>
-                    <p className="text-[11px] text-[#2d2a26]/70 mt-0.5">39 Place du Général de Gaulle</p>
-                  </div>
+              {/* Illustration carte vintage */}
+              <div className="mt-12 bg-[#f5f0eb] border border-[#c4a47a]/20 p-6 md:p-8">
+                <svg viewBox="0 0 600 360" className="w-full" xmlns="http://www.w3.org/2000/svg">
+                  {/* Fond parchemin */}
+                  <rect width="600" height="360" fill="#f5f0eb"/>
+                  
+                  {/* Routes principales — ligne fine style gravure */}
+                  <path d="M0 180 L180 180 L300 160 L450 170 L600 150" stroke="#c4a47a" strokeWidth="1.5" fill="none" opacity="0.4"/>
+                  <path d="M300 0 L300 160 L300 360" stroke="#c4a47a" strokeWidth="1.5" fill="none" opacity="0.4"/>
+                  <path d="M200 360 L250 250 L300 160" stroke="#c4a47a" strokeWidth="1" fill="none" opacity="0.3"/>
+                  <path d="M300 160 L380 100 L500 0" stroke="#c4a47a" strokeWidth="1" fill="none" opacity="0.3"/>
+                  
+                  {/* Mer à gauche */}
+                  <path d="M0 0 L0 360 L80 360 L60 300 L70 240 L50 180 L65 120 L55 60 L70 0 Z" fill="#c4a47a" opacity="0.08"/>
+                  <path d="M70 0 Q60 40 65 80 Q55 120 60 160 Q50 200 55 240 Q65 280 60 320 Q55 350 65 360" stroke="#c4a47a" strokeWidth="0.8" fill="none" opacity="0.25" strokeDasharray="4 3"/>
+                  <text x="25" y="200" fill="#c4a47a" opacity="0.3" fontSize="10" fontStyle="italic" transform="rotate(-90 25 200)">La Manche</text>
+
+                  {/* Église — petit symbole croix */}
+                  <g transform="translate(280, 145)">
+                    <line x1="0" y1="-8" x2="0" y2="8" stroke="#2d2a26" strokeWidth="1.2" opacity="0.5"/>
+                    <line x1="-5" y1="-3" x2="5" y2="-3" stroke="#2d2a26" strokeWidth="1.2" opacity="0.5"/>
+                    <text x="8" y="4" fill="#2d2a26" opacity="0.4" fontSize="8" fontStyle="italic">Église</text>
+                  </g>
+                  
+                  {/* Pin boutique — doré */}
+                  <g transform="translate(310, 155)">
+                    <path d="M0-24C-7.5-24-13.5-18-13.5-10.5c0 10 13.5 24 13.5 24s13.5-14 13.5-24C13.5-18 7.5-24 0-24z" fill="#c4a47a"/>
+                    <circle cx="0" cy="-12" r="5" fill="#faf8f5"/>
+                    {/* Petite fleur dans le pin */}
+                    <circle cx="0" cy="-12" r="2" fill="#c4a47a"/>
+                  </g>
+
+                  {/* Nom de la boutique */}
+                  <text x="310" y="195" textAnchor="middle" fill="#2d2a26" fontSize="11" fontWeight="500" letterSpacing="0.1em" fontFamily="serif">Anne Freret</text>
+                  <text x="310" y="210" textAnchor="middle" fill="#2d2a26" opacity="0.5" fontSize="8" letterSpacing="0.05em">39 Pl. du Général de Gaulle</text>
+                  
+                  {/* Noms de rues — style ancien */}
+                  <text x="400" y="175" fill="#2d2a26" opacity="0.25" fontSize="7" fontStyle="italic">Rue du Gal de Gaulle</text>
+                  <text x="310" y="90" fill="#2d2a26" opacity="0.25" fontSize="7" fontStyle="italic" textAnchor="middle">Route d&apos;Avranches</text>
+                  <text x="150" y="175" fill="#2d2a26" opacity="0.25" fontSize="7" fontStyle="italic">Vers Granville</text>
+                  
+                  {/* Ville */}
+                  <text x="310" y="240" textAnchor="middle" fill="#c4a47a" opacity="0.35" fontSize="14" letterSpacing="0.4em" fontFamily="serif">SAINT-PAIR-SUR-MER</text>
+                  
+                  {/* Rose des vents simplifiée */}
+                  <g transform="translate(540, 50)">
+                    <line x1="0" y1="-18" x2="0" y2="18" stroke="#c4a47a" strokeWidth="0.8" opacity="0.4"/>
+                    <line x1="-18" y1="0" x2="18" y2="0" stroke="#c4a47a" strokeWidth="0.8" opacity="0.4"/>
+                    <text x="0" y="-22" textAnchor="middle" fill="#c4a47a" opacity="0.5" fontSize="8">N</text>
+                    <circle cx="0" cy="0" r="3" fill="#c4a47a" opacity="0.3"/>
+                  </g>
+
+                  {/* Bordure décorative intérieure */}
+                  <rect x="8" y="8" width="584" height="344" fill="none" stroke="#c4a47a" strokeWidth="0.5" opacity="0.2"/>
+                </svg>
+                
+                <div className="flex items-center justify-between mt-4">
+                  <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/30">À deux pas de l&apos;église de Saint-Pair-sur-Mer</p>
+                  <a 
+                    href="https://www.google.com/maps/search/39+Place+du+Général+de+Gaulle+50380+Saint-Pair-sur-Mer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[9px] tracking-[0.15em] uppercase text-[#c4a47a] hover:text-[#2d2a26] transition-colors border-b border-[#c4a47a]/30 pb-0.5"
+                  >
+                    Voir sur Google Maps
+                  </a>
                 </div>
-                <a 
-                  href="https://www.google.com/maps/search/39+Place+du+Général+de+Gaulle+50380+Saint-Pair-sur-Mer"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute bottom-4 right-4 text-[9px] tracking-[0.15em] uppercase text-[#c4a47a] hover:text-[#2d2a26] transition-colors bg-[#faf8f5]/90 px-3 py-1.5 border border-[#c4a47a]/30"
-                >
-                  Itinéraire
-                </a>
               </div>
             </div>
 
