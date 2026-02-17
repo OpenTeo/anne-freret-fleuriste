@@ -52,9 +52,9 @@ const plans = [
 ];
 
 const frequencies = [
-  { id: 'weekly', label: 'Chaque semaine', shortLabel: 'Hebdomadaire', multiplier: 4 },
-  { id: 'bimonthly', label: 'Toutes les 2 semaines', shortLabel: 'Bi-mensuel', multiplier: 2 },
-  { id: 'monthly', label: 'Chaque mois', shortLabel: 'Mensuel', multiplier: 1 },
+  { id: 'weekly', label: 'Chaque semaine', shortLabel: 'Hebdomadaire', deliveriesPerMonth: 4, discount: 15 },
+  { id: 'bimonthly', label: 'Toutes les 2 semaines', shortLabel: 'Bi-mensuel', deliveriesPerMonth: 2, discount: 8 },
+  { id: 'monthly', label: 'Chaque mois', shortLabel: 'Mensuel', deliveriesPerMonth: 1, discount: 0 },
 ];
 
 const durations = [
@@ -107,9 +107,12 @@ function AbonnementContent() {
   const currentPlan = plans.find(p => p.id === selectedPlan)!;
   const currentDuration = durations.find(d => d.id === selectedDuration)!;
   const currentFrequency = frequencies.find(f => f.id === selectedFrequency)!;
-  const discountedPrice = currentPlan.price * (1 - currentDuration.discount / 100);
-  const totalDeliveries = currentDuration.months * currentFrequency.multiplier;
-  const totalPrice = discountedPrice * totalDeliveries;
+  // Réduction combinée: fréquence (plus on commande, moins c'est cher) + durée d'engagement
+  const combinedDiscount = 1 - (1 - currentFrequency.discount / 100) * (1 - currentDuration.discount / 100);
+  const pricePerDelivery = currentPlan.price * (1 - combinedDiscount);
+  const totalDeliveries = currentDuration.months * currentFrequency.deliveriesPerMonth;
+  const monthlyPrice = pricePerDelivery * currentFrequency.deliveriesPerMonth;
+  const totalPrice = pricePerDelivery * totalDeliveries;
 
   const [confirmed, setConfirmed] = useState(false);
 
@@ -137,7 +140,7 @@ function AbonnementContent() {
               <div className="bg-white border border-[#e8e0d8] p-8 mb-8 text-left">
                 <p className="text-[10px] tracking-[0.2em] uppercase text-[#c4a47a] mb-4">Récapitulatif</p>
                 <div className="space-y-2 text-sm text-[#2d2a26]/70">
-                  <p><span className="text-[#2d2a26]">Formule :</span> {currentPlan.name} — {discountedPrice.toFixed(2)}€/livraison</p>
+                  <p><span className="text-[#2d2a26]">Formule :</span> {currentPlan.name} — {pricePerDelivery.toFixed(2)}€/livraison</p>
                   <p><span className="text-[#2d2a26]">Fréquence :</span> {currentFrequency.label}</p>
                   <p><span className="text-[#2d2a26]">Durée :</span> {currentDuration.label}</p>
                   <p><span className="text-[#2d2a26]">Livraison :</span> {address}, {postalCode} {city}</p>
@@ -261,7 +264,12 @@ function AbonnementContent() {
                               : 'bg-white border border-[#e8e0d8] text-[#2d2a26] hover:border-[#c4a47a]'
                           }`}
                         >
-                          {freq.label}
+                          <span className="block">{freq.label}</span>
+                          {freq.discount > 0 && (
+                            <span className={`text-[10px] ${selectedFrequency === freq.id ? 'text-white/80' : 'text-[#c4a47a]'}`}>
+                              -{freq.discount}% par livraison
+                            </span>
+                          )}
                         </button>
                       ))}
                     </div>
@@ -520,11 +528,22 @@ function AbonnementContent() {
                   <div className="space-y-3 text-sm border-t border-[#e8e0d8] pt-4">
                     <div className="flex justify-between">
                       <span className="text-[#2d2a26]/60">Par livraison</span>
-                      <span className="text-[#2d2a26]">{discountedPrice.toFixed(2)}€</span>
+                      <div className="text-right">
+                        <span className="text-[#2d2a26]">{pricePerDelivery.toFixed(2)}€</span>
+                        {(currentFrequency.discount > 0 || currentDuration.discount > 0) && (
+                          <span className="text-[#2d2a26]/30 text-xs line-through ml-2">{currentPlan.price.toFixed(2)}€</span>
+                        )}
+                      </div>
                     </div>
+                    {currentFrequency.discount > 0 && (
+                      <div className="flex justify-between">
+                        <span className="text-[#2d2a26]/60">Fidélité {currentFrequency.shortLabel.toLowerCase()}</span>
+                        <span className="text-[#c4a47a]">-{currentFrequency.discount}%</span>
+                      </div>
+                    )}
                     {currentDuration.discount > 0 && (
                       <div className="flex justify-between">
-                        <span className="text-[#2d2a26]/60">Réduction</span>
+                        <span className="text-[#2d2a26]/60">Engagement {currentDuration.months} mois</span>
                         <span className="text-[#c4a47a]">-{currentDuration.discount}%</span>
                       </div>
                     )}
@@ -533,12 +552,16 @@ function AbonnementContent() {
                       <span className="text-[#2d2a26]">{currentFrequency.shortLabel}</span>
                     </div>
                     <div className="flex justify-between">
+                      <span className="text-[#2d2a26]/60">Par mois</span>
+                      <span className="text-[#2d2a26] font-medium">{monthlyPrice.toFixed(2)}€/mois</span>
+                    </div>
+                    <div className="flex justify-between">
                       <span className="text-[#2d2a26]/60">Durée</span>
                       <span className="text-[#2d2a26]">{currentDuration.label}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#2d2a26]/60">Livraisons</span>
-                      <span className="text-[#2d2a26]">{totalDeliveries}</span>
+                      <span className="text-[#2d2a26]">{totalDeliveries} bouquets</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#2d2a26]/60">Livraison</span>
@@ -559,7 +582,7 @@ function AbonnementContent() {
                     </div>
                     {currentDuration.months > 1 && (
                       <p className="text-[#2d2a26]/40 text-[10px] text-right mt-1">
-                        soit {discountedPrice.toFixed(2)}€ × {totalDeliveries} livraisons
+                        soit {pricePerDelivery.toFixed(2)}€ × {totalDeliveries} livraisons
                       </p>
                     )}
                   </div>
