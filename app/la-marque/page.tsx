@@ -32,7 +32,7 @@ export default function LaMarque() {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-10">
+              <div className="text-sm md:text-base uppercase tracking-[0.25em] text-[#b8935a] mb-10 font-medium">
                 Qui sommes-nous
               </div>
 
