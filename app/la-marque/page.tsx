@@ -27,34 +27,28 @@ export default function LaMarque() {
       
       <main className="bg-[#faf8f5] min-h-screen pt-20">
         
-        {/* Hero Section — Grand logo + photo florale */}
-        <section className="relative">
-          <div className="relative h-[70vh] md:h-[80vh] overflow-hidden">
-            <img
-              src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1400&q=85"
-              alt="Atelier floral — bouquets et compositions"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-[#2d2a26]/50"></div>
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+        {/* Hero — Logo grand + sous-phrase */}
+        <section className="py-24 md:py-32">
+          <div className="container mx-auto px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto text-center">
               
-              <div className="text-[11px] uppercase tracking-[0.3em] text-[#c4a47a] mb-6">
-                Depuis plus de 20 ans
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-10">
+                Qui sommes-nous
               </div>
 
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-2 leading-none tracking-wide">
-                ANNE
+              <h1 className="font-serif text-[#2d2a26] mb-1 leading-none">
+                <span className="block text-[13px] md:text-[16px] uppercase tracking-[0.35em]">A N N E</span>
               </h1>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-2 leading-none tracking-wide">
-                FRERET
+              <h1 className="font-serif text-[#2d2a26] mb-3 leading-none">
+                <span className="block text-5xl md:text-7xl lg:text-8xl uppercase tracking-[0.15em]">FRERET</span>
               </h1>
-              <div className="text-[11px] md:text-[13px] uppercase tracking-[0.35em] text-[#c4a47a] mb-8">
+              <div className="text-[11px] md:text-[13px] uppercase tracking-[0.35em] text-[#c4a47a] mb-10">
                 — fleuriste —
               </div>
 
-              <div className="w-16 h-px bg-[#c4a47a] mb-8"></div>
+              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-10"></div>
 
-              <p className="text-lg md:text-xl text-white/90 font-light leading-relaxed max-w-2xl">
+              <p className="text-lg md:text-xl text-[#2d2a26]/70 font-light leading-relaxed max-w-2xl mx-auto italic">
                 Quand les fleurs racontent l'histoire d'une vie — de Lessay à Saint-Pair-sur-Mer, 
                 chaque bouquet porte l'âme de la Normandie.
               </p>

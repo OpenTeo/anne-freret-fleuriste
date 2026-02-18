@@ -143,7 +143,7 @@ const Header = () => {
                 { href: '/abonnement', label: 'Abonnement' },
                 { href: '/diy', label: 'DIY' },
                 { href: '/deuil', label: 'Deuil & Hommages' },
-                { href: '/la-marque', label: 'La marque' },
+                { href: '/la-marque', label: 'Qui sommes-nous' },
                 { href: '/livraison', label: 'Livraison' },
                 { href: '/blog', label: 'Blog' },
                 { href: '/contact', label: 'Contact' },
