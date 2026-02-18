@@ -36,7 +36,7 @@ export default function LaMarque() {
                 Qui sommes-nous
               </div>
 
-              <div className="border border-[#b8935a]/30 px-8 py-12 md:px-16 md:py-16 max-w-xl mx-auto mb-10">
+              <div className="bg-white shadow-md px-8 py-12 md:px-16 md:py-16 max-w-xl mx-auto mb-10">
                 <h1 className="font-serif text-[#2d2a26] mb-1 leading-none">
                   <span className="block text-[13px] md:text-[16px] uppercase tracking-[0.35em]">A N N E</span>
                 </h1>
