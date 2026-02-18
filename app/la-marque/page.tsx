@@ -43,8 +43,8 @@ export default function LaMarque() {
               <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
 
               <p className="text-xl text-[#2d2a26] mb-12 font-light leading-relaxed max-w-3xl mx-auto">
-                Une histoire d'amour entre la Normandie et l'art floral, 
-                où chaque création raconte l'émotion de l'instant présent.
+                D'une petite boutique verte à Lessay jusqu'au littoral de Saint-Pair-sur-Mer — 
+                plus de vingt ans d'amour des fleurs, de la Normandie et des émotions partagées.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -54,11 +54,11 @@ export default function LaMarque() {
                 </div>
                 <div>
                   <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">Depuis</div>
-                  <div className="text-[#2d2a26] font-light">2009</div>
+                  <div className="text-[#2d2a26] font-light">Plus de 20 ans</div>
                 </div>
                 <div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">Expérience</div>
-                  <div className="text-[#2d2a26] font-light">15 ans</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">Deux chapitres</div>
+                  <div className="text-[#2d2a26] font-light">Lessay → Saint-Pair</div>
                 </div>
               </div>
             </div>
@@ -82,24 +82,34 @@ export default function LaMarque() {
                 
                 <div className="space-y-6 text-[#2d2a26] font-light leading-relaxed text-lg">
                   <p>
-                    Tout a commencé en 2009, quand Anne Freret a décidé de transformer sa passion 
-                    pour les fleurs en véritable art de vivre. Installée au cœur du Cotentin, 
-                    à Saint-Pair-sur-Mer, elle puise son inspiration dans les paysages sauvages 
-                    et authentiques de la Normandie.
+                    L'histoire a commencé dans la petite ville de Lessay, au cœur du Cotentin, 
+                    dans une boutique verte nichée entre les ruelles pavées et l'abbaye millénaire. 
+                    C'est là, bercée par le vent marin et les bruyères de la lande, qu'Anne Freret 
+                    a posé ses premières fleurs sur un comptoir en bois — et qu'une passion est 
+                    devenue un métier.
                   </p>
                   
                   <p>
-                    Formée aux plus belles techniques florales européennes, Anne a développé 
-                    un style unique qui marie l'élégance classique française à la spontanéité 
-                    champêtre normande. Chaque création porte en elle l'empreinte de cette terre 
-                    généreuse et de ses saisons changeantes.
+                    Pendant des années, la petite boutique de Lessay a vu défiler les saisons et les 
+                    émotions. Des bouquets de mariée tremblants d'émotion, des couronnes de deuil 
+                    composées avec respect, des compositions de Noël qui illuminaient les foyers normands. 
+                    Anne y a forgé son style — un mélange d'élégance naturelle et de générosité, 
+                    à l'image de cette terre normande qu'elle aime tant.
                   </p>
                   
                   <p>
-                    Aujourd'hui, l'atelier Anne Freret est devenu une référence en Normandie 
-                    pour tous ceux qui recherchent l'exception dans l'art floral. De la simple 
-                    composition quotidienne aux plus grands événements, nous mettons notre 
-                    expertise et notre passion au service de vos émotions.
+                    En 2008, un nouveau chapitre s'ouvre. Anne pose ses valises à Saint-Pair-sur-Mer, 
+                    face à la mer, sur la Place du Général de Gaulle. Un atelier plus grand, une lumière 
+                    différente — celle de l'océan qui baigne chaque création d'une douceur particulière. 
+                    Mais l'âme reste la même : ce souci du détail, cette écoute sincère, cette envie 
+                    de mettre du beau dans le quotidien des gens.
+                  </p>
+
+                  <p>
+                    Aujourd'hui, l'atelier Anne Freret est devenu une adresse incontournable 
+                    du littoral normand. De la composition quotidienne aux grands événements, 
+                    chaque création porte en elle plus de vingt ans de savoir-faire — et toute 
+                    la tendresse de cette petite boutique verte de Lessay où tout a commencé.
                   </p>
                 </div>
               </div>
