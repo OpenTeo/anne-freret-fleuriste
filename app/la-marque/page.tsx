@@ -36,14 +36,16 @@ export default function LaMarque() {
                 Qui sommes-nous
               </div>
 
-              <h1 className="font-serif text-[#2d2a26] mb-1 leading-none">
-                <span className="block text-[13px] md:text-[16px] uppercase tracking-[0.35em]">A N N E</span>
-              </h1>
-              <h1 className="font-serif text-[#2d2a26] mb-3 leading-none">
-                <span className="block text-5xl md:text-7xl lg:text-8xl uppercase tracking-[0.15em]">FRERET</span>
-              </h1>
-              <div className="text-[11px] md:text-[13px] uppercase tracking-[0.35em] text-[#b8935a] mb-10">
-                — fleuriste —
+              <div className="border border-[#b8935a]/30 px-8 py-12 md:px-16 md:py-16 max-w-xl mx-auto mb-10">
+                <h1 className="font-serif text-[#2d2a26] mb-1 leading-none">
+                  <span className="block text-[13px] md:text-[16px] uppercase tracking-[0.35em]">A N N E</span>
+                </h1>
+                <h1 className="font-serif text-[#2d2a26] mb-3 leading-none">
+                  <span className="block text-5xl md:text-7xl lg:text-8xl uppercase tracking-[0.15em]">FRERET</span>
+                </h1>
+                <div className="text-[11px] md:text-[13px] uppercase tracking-[0.35em] text-[#b8935a]">
+                  — fleuriste —
+                </div>
               </div>
 
               <div className="w-16 h-px bg-[#b8935a] mx-auto mb-10"></div>
