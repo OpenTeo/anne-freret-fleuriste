@@ -67,7 +67,7 @@ const Header = () => {
             {/* Left nav — aligné à gauche */}
             <nav className="absolute left-0 top-1/2 -translate-y-1/2 flex items-center gap-5 lg:gap-7">
               {navLeft.map(link => (
-                <Link key={link.href} href={link.href} className="text-[#2d2a26]/70 text-[10px] lg:text-[11px] tracking-[0.12em] uppercase hover:text-[#c4a47a] transition-all duration-500 whitespace-nowrap">
+                <Link key={link.href} href={link.href} className="text-[#2d2a26]/70 text-[10px] lg:text-[11px] tracking-[0.12em] uppercase hover:text-[#b8935a] transition-all duration-500 whitespace-nowrap">
                   {link.label}
                 </Link>
               ))}
@@ -76,17 +76,17 @@ const Header = () => {
             {/* Right nav — aligné à droite */}
             <nav className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-5 lg:gap-7">
               {navRight.map(link => (
-                <Link key={link.href} href={link.href} className="text-[#2d2a26]/70 text-[10px] lg:text-[11px] tracking-[0.12em] uppercase hover:text-[#c4a47a] transition-all duration-500 whitespace-nowrap">
+                <Link key={link.href} href={link.href} className="text-[#2d2a26]/70 text-[10px] lg:text-[11px] tracking-[0.12em] uppercase hover:text-[#b8935a] transition-all duration-500 whitespace-nowrap">
                   {link.label}
                 </Link>
               ))}
-              <div className="w-px h-4 bg-[#c4a47a]/20 ml-1"></div>
-              <Link href="/compte" className="text-[#2d2a26]/70 hover:text-[#c4a47a] transition-all duration-500 ml-2">
+              <div className="w-px h-4 bg-[#b8935a]/20 ml-1"></div>
+              <Link href="/compte" className="text-[#2d2a26]/70 hover:text-[#b8935a] transition-all duration-500 ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
               </Link>
-              <Link href="/panier" className="text-[#2d2a26]/80 hover:text-[#c4a47a] transition-all duration-500 ml-2">
+              <Link href="/panier" className="text-[#2d2a26]/80 hover:text-[#b8935a] transition-all duration-500 ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
@@ -135,7 +135,7 @@ const Header = () => {
         <div className="fixed inset-0 z-40 bg-[#faf8f5]">
           <div className="pt-20 px-6">
             <nav className="flex flex-col">
-              <Link href="/" onClick={closeMenu} className="text-[#2d2a26] text-[14px] py-2.5 border-b border-[#c4a47a]/20">
+              <Link href="/" onClick={closeMenu} className="text-[#2d2a26] text-[14px] py-2.5 border-b border-[#b8935a]/20">
                 Accueil
               </Link>
               {[
@@ -152,10 +152,10 @@ const Header = () => {
                   key={link.href} 
                   href={link.href} 
                   onClick={closeMenu}
-                  className="text-[#2d2a26] text-[14px] py-2.5 border-b border-[#c4a47a]/20 flex justify-between items-center transition-colors hover:text-[#c4a47a]"
+                  className="text-[#2d2a26] text-[14px] py-2.5 border-b border-[#b8935a]/20 flex justify-between items-center transition-colors hover:text-[#b8935a]"
                 >
                   {link.label}
-                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>

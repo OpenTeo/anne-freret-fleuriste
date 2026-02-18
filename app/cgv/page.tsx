@@ -9,13 +9,13 @@ export default function CGV() {
       <main className="bg-[#faf8f5] min-h-screen pt-20">
         
         {/* Breadcrumb */}
-        <section className="py-6 border-b border-[#c4a47a]/20">
+        <section className="py-6 border-b border-[#b8935a]/20">
           <div className="container mx-auto px-6 lg:px-8">
             <nav className="flex items-center space-x-2 text-sm">
-              <Link href="/" className="text-[#c4a47a] hover:text-[#b8956a] transition-colors">
+              <Link href="/" className="text-[#b8935a] hover:text-[#b8956a] transition-colors">
                 Accueil
               </Link>
-              <span className="text-[#c4a47a]">/</span>
+              <span className="text-[#b8935a]">/</span>
               <span className="text-[#2d2a26] font-light">Conditions Générales de Vente</span>
             </nav>
           </div>
@@ -25,7 +25,7 @@ export default function CGV() {
         <section className="py-24 md:py-32">
           <div className="container mx-auto px-6 lg:px-8 text-center">
             
-            <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-8">
               Conditions Générales
             </div>
 
@@ -33,7 +33,7 @@ export default function CGV() {
               Conditions de Vente
             </h1>
             
-            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+            <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
             
             <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
               Conditions applicables à toutes les ventes réalisées par Anne Freret Fleuriste.
@@ -47,7 +47,7 @@ export default function CGV() {
             
             {/* Préambule */}
             <section className="mb-16">
-              <div className="bg-white p-8 border border-[#c4a47a]/20">
+              <div className="bg-white p-8 border border-[#b8935a]/20">
                 <p className="text-[#2d2a26] font-light leading-relaxed text-lg">
                   Les présentes Conditions Générales de Vente (CGV) régissent toutes les ventes de produits et services réalisées par Anne Freret Fleuriste, 
                   entreprise individuelle située 39 Place du Général de Gaulle, Saint-Pair-sur-Mer. 
@@ -64,7 +64,7 @@ export default function CGV() {
                 <h2 className="text-3xl font-serif text-[#2d2a26] mb-6">
                   Article 1 - Objet
                 </h2>
-                <div className="w-16 h-px bg-[#c4a47a] mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
                 <div className="space-y-4 text-[#2d2a26] font-light leading-relaxed">
                   <p>
                     Les présentes Conditions Générales de Vente ont pour objet de définir les modalités et conditions dans lesquelles 
@@ -90,7 +90,7 @@ export default function CGV() {
                 <h2 className="text-3xl font-serif text-[#2d2a26] mb-6">
                   Article 2 - Prix
                 </h2>
-                <div className="w-16 h-px bg-[#c4a47a] mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
                 <div className="space-y-4 text-[#2d2a26] font-light leading-relaxed">
                   <p>
                     <strong className="font-normal">2.1. Tarification :</strong> Les prix de nos produits sont affichés en euros, toutes taxes comprises (TTC). 
@@ -116,7 +116,7 @@ export default function CGV() {
                 <h2 className="text-3xl font-serif text-[#2d2a26] mb-6">
                   Article 3 - Commande
                 </h2>
-                <div className="w-16 h-px bg-[#c4a47a] mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
                 <div className="space-y-4 text-[#2d2a26] font-light leading-relaxed">
                   <p>
                     <strong className="font-normal">3.1. Passation de commande :</strong> Les commandes peuvent être passées :
@@ -148,7 +148,7 @@ export default function CGV() {
                 <h2 className="text-3xl font-serif text-[#2d2a26] mb-6">
                   Article 4 - Paiement
                 </h2>
-                <div className="w-16 h-px bg-[#c4a47a] mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
                 <div className="space-y-4 text-[#2d2a26] font-light leading-relaxed">
                   <p>
                     <strong className="font-normal">4.1. Modalités :</strong> Le paiement s'effectue au moment de la commande par les moyens suivants :
@@ -174,7 +174,7 @@ export default function CGV() {
                 <h2 className="text-3xl font-serif text-[#2d2a26] mb-6">
                   Article 5 - Livraison
                 </h2>
-                <div className="w-16 h-px bg-[#c4a47a] mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
                 <div className="space-y-4 text-[#2d2a26] font-light leading-relaxed">
                   <p>
                     <strong className="font-normal">5.1. Zone de livraison :</strong> Nous livrons sur toute la France métropolitaine. Des conditions particulières 
@@ -208,9 +208,9 @@ export default function CGV() {
                 <h2 className="text-3xl font-serif text-[#2d2a26] mb-6">
                   Article 6 - Droit de rétractation
                 </h2>
-                <div className="w-16 h-px bg-[#c4a47a] mb-6"></div>
-                <div className="bg-white p-6 border border-[#c4a47a]/40 mb-6">
-                  <p className="text-[#c4a47a] font-light">
+                <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
+                <div className="bg-white p-6 border border-[#b8935a]/40 mb-6">
+                  <p className="text-[#b8935a] font-light">
                     ⚠️ <strong className="font-normal">Important :</strong> Conformément à l'article L221-28 du Code de la consommation, 
                     <strong className="font-normal"> les fleurs coupées et compositions florales fraîches sont exclues du droit de rétractation</strong> 
                     en raison de leur caractère périssable.
@@ -238,7 +238,7 @@ export default function CGV() {
                 <h2 className="text-3xl font-serif text-[#2d2a26] mb-6">
                   Article 7 - Garantie et réclamations
                 </h2>
-                <div className="w-16 h-px bg-[#c4a47a] mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
                 <div className="space-y-4 text-[#2d2a26] font-light leading-relaxed">
                   <p>
                     <strong className="font-normal">7.1. Garantie fraîcheur :</strong> Nous garantissons la fraîcheur de nos fleurs au moment de la livraison. 
@@ -269,7 +269,7 @@ export default function CGV() {
                 <h2 className="text-3xl font-serif text-[#2d2a26] mb-6">
                   Article 8 - Données personnelles
                 </h2>
-                <div className="w-16 h-px bg-[#c4a47a] mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
                 <div className="space-y-4 text-[#2d2a26] font-light leading-relaxed">
                   <p>
                     <strong className="font-normal">8.1. Collecte et traitement :</strong> Conformément au RGPD et à la Loi Informatique et Libertés, 
@@ -296,7 +296,7 @@ export default function CGV() {
                 <h2 className="text-3xl font-serif text-[#2d2a26] mb-6">
                   Article 9 - Propriété intellectuelle
                 </h2>
-                <div className="w-16 h-px bg-[#c4a47a] mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
                 <div className="space-y-4 text-[#2d2a26] font-light leading-relaxed">
                   <p>
                     <strong className="font-normal">9.1. Protection :</strong> Tous les contenus de notre site (textes, images, photos, logos, créations florales) 
@@ -318,7 +318,7 @@ export default function CGV() {
                 <h2 className="text-3xl font-serif text-[#2d2a26] mb-6">
                   Article 10 - Droit applicable et juridiction
                 </h2>
-                <div className="w-16 h-px bg-[#c4a47a] mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
                 <div className="space-y-4 text-[#2d2a26] font-light leading-relaxed">
                   <p>
                     <strong className="font-normal">10.1. Droit applicable :</strong> Les présentes CGV sont régies par le droit français.
@@ -341,15 +341,15 @@ export default function CGV() {
 
             {/* Contact et mise à jour */}
             <section className="mt-16">
-              <div className="bg-white p-8 border border-[#c4a47a]/20">
+              <div className="bg-white p-8 border border-[#b8935a]/20">
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">Contact et mise à jour</h3>
-                <div className="w-16 h-px bg-[#c4a47a] mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
                 <div className="space-y-2 text-[#2d2a26] font-light">
                   <p><strong className="font-normal">Dernière mise à jour :</strong> Février 2025</p>
                   <p>
                     Pour toute question concernant ces CGV : contact@annefreret.fr ou 02 33 50 26 15
                   </p>
-                  <p className="text-sm text-[#c4a47a] mt-4">
+                  <p className="text-sm text-[#b8935a] mt-4">
                     Anne Freret Fleuriste se réserve le droit de modifier ces CGV à tout moment. 
                     Les conditions applicables sont celles en vigueur au moment de votre commande.
                   </p>

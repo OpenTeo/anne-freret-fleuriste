@@ -58,13 +58,13 @@ export default function Entretien() {
       <main className="bg-[#faf8f5] min-h-screen pt-20">
         
         {/* Breadcrumb */}
-        <section className="py-6 border-b border-[#c4a47a]/20">
+        <section className="py-6 border-b border-[#b8935a]/20">
           <div className="container mx-auto px-6 lg:px-8">
             <nav className="flex items-center space-x-2 text-sm">
-              <Link href="/" className="text-[#c4a47a] hover:text-[#b8956a] transition-colors">
+              <Link href="/" className="text-[#b8935a] hover:text-[#b8956a] transition-colors">
                 Accueil
               </Link>
-              <span className="text-[#c4a47a]">/</span>
+              <span className="text-[#b8935a]">/</span>
               <span className="text-[#2d2a26] font-light">Entretien des fleurs</span>
             </nav>
           </div>
@@ -74,7 +74,7 @@ export default function Entretien() {
         <section className="py-24 md:py-32">
           <div className="container mx-auto px-6 lg:px-8 text-center">
             
-            <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-8">
               Guide d'Entretien
             </div>
 
@@ -82,7 +82,7 @@ export default function Entretien() {
               Prolongez la Beauté de Vos Fleurs
             </h1>
             
-            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+            <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
             
             <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
               Découvrez tous nos conseils d'expert pour prolonger la beauté et la fraîcheur de vos bouquets.
@@ -107,7 +107,7 @@ export default function Entretien() {
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Étape 1
               </div>
               
@@ -115,7 +115,7 @@ export default function Entretien() {
                 À la Réception de Votre Bouquet
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
                 Les premiers gestes sont cruciaux pour garantir la longévité de vos fleurs.
@@ -125,11 +125,11 @@ export default function Entretien() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               
               <div className="text-center">
-                <div className="text-6xl font-serif text-[#c4a47a] mb-6">1</div>
+                <div className="text-6xl font-serif text-[#b8935a] mb-6">1</div>
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                   Déballez Délicatement
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Retirez l'emballage avec précaution en évitant de tirer sur les tiges. 
                   Gardez l'eau de transport si les fleurs y baignent encore.
@@ -137,11 +137,11 @@ export default function Entretien() {
               </div>
 
               <div className="text-center">
-                <div className="text-6xl font-serif text-[#c4a47a] mb-6">2</div>
+                <div className="text-6xl font-serif text-[#b8935a] mb-6">2</div>
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                   Recoupez les Tiges
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Coupez 2-3 cm des tiges en biseau sous l'eau froide courante. 
                   Cela évite la formation de bulles d'air qui bloqueraient l'absorption.
@@ -149,11 +149,11 @@ export default function Entretien() {
               </div>
 
               <div className="text-center">
-                <div className="text-6xl font-serif text-[#c4a47a] mb-6">3</div>
+                <div className="text-6xl font-serif text-[#b8935a] mb-6">3</div>
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                   Plongez dans l'Eau Fraîche
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Placez immédiatement les fleurs dans un vase propre rempli d'eau fraîche. 
                   L'eau doit couvrir au moins la moitié des tiges.
@@ -168,7 +168,7 @@ export default function Entretien() {
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Étape 2
               </div>
               
@@ -176,7 +176,7 @@ export default function Entretien() {
                 Entretien Quotidien
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
                 Quelques minutes chaque jour suffisent pour maintenir vos fleurs en parfait état.
@@ -189,7 +189,7 @@ export default function Entretien() {
                 <h3 className="text-xl font-serif text-[#2d2a26] mb-4">
                   Changez l'Eau
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Tous les 2-3 jours ou dès que l'eau devient trouble. 
                   Rincez bien le vase pour éliminer les bactéries.
@@ -200,7 +200,7 @@ export default function Entretien() {
                 <h3 className="text-xl font-serif text-[#2d2a26] mb-4">
                   Recoupez les Tiges
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   À chaque changement d'eau, recoupez 1 cm en biseau 
                   pour maintenir une bonne absorption.
@@ -211,7 +211,7 @@ export default function Entretien() {
                 <h3 className="text-xl font-serif text-[#2d2a26] mb-4">
                   Retirez les Feuilles
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Enlevez les feuilles qui trempent dans l'eau 
                   et les fleurs fanées pour éviter les bactéries.
@@ -222,7 +222,7 @@ export default function Entretien() {
                 <h3 className="text-xl font-serif text-[#2d2a26] mb-4">
                   Vaporisez Légèrement
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Un léger spray d'eau sur les pétales 
                   (sauf pour les fleurs fragiles) maintient l'hydratation.
@@ -237,7 +237,7 @@ export default function Entretien() {
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Étape 3
               </div>
               
@@ -245,7 +245,7 @@ export default function Entretien() {
                 Astuces de Professionnel
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
                 Les secrets de nos fleuristes pour des bouquets qui durent plus longtemps.
@@ -259,7 +259,7 @@ export default function Entretien() {
                   <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                     Température Idéale
                   </h3>
-                  <div className="w-16 h-px bg-[#c4a47a] mb-4"></div>
+                  <div className="w-16 h-px bg-[#b8935a] mb-4"></div>
                   <p className="text-[#2d2a26] font-light leading-relaxed">
                     Maintenez vos fleurs entre 18-22°C. Évitez les zones trop chaudes 
                     comme près des radiateurs ou cheminées qui accélèrent le flétrissement.
@@ -270,7 +270,7 @@ export default function Entretien() {
                   <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                     Évitez le Soleil Direct
                   </h3>
-                  <div className="w-16 h-px bg-[#c4a47a] mb-4"></div>
+                  <div className="w-16 h-px bg-[#b8935a] mb-4"></div>
                   <p className="text-[#2d2a26] font-light leading-relaxed">
                     Placez vos fleurs dans un endroit lumineux mais sans soleil direct, 
                     qui dessèche rapidement les pétales et décolore les couleurs.
@@ -281,7 +281,7 @@ export default function Entretien() {
                   <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                     Éloignez des Fruits Mûrs
                   </h3>
-                  <div className="w-16 h-px bg-[#c4a47a] mb-4"></div>
+                  <div className="w-16 h-px bg-[#b8935a] mb-4"></div>
                   <p className="text-[#2d2a26] font-light leading-relaxed">
                     Les fruits mûrs dégagent de l'éthylène, un gaz qui accélère 
                     le vieillissement des fleurs. Gardez-les à distance.
@@ -294,7 +294,7 @@ export default function Entretien() {
                   <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                     Le Truc du Sucre
                   </h3>
-                  <div className="w-16 h-px bg-[#c4a47a] mb-4"></div>
+                  <div className="w-16 h-px bg-[#b8935a] mb-4"></div>
                   <p className="text-[#2d2a26] font-light leading-relaxed">
                     Ajoutez une cuillère à café de sucre dans l'eau : il nourrit les fleurs. 
                     Alternativement, quelques gouttes d'eau de javel désinfectent l'eau.
@@ -305,7 +305,7 @@ export default function Entretien() {
                   <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                     Eau Tiède pour Certaines Fleurs
                   </h3>
-                  <div className="w-16 h-px bg-[#c4a47a] mb-4"></div>
+                  <div className="w-16 h-px bg-[#b8935a] mb-4"></div>
                   <p className="text-[#2d2a26] font-light leading-relaxed">
                     Les gerberas et tournesols préfèrent l'eau tiède qui facilite 
                     l'absorption. Testez la température avec votre poignet.
@@ -316,7 +316,7 @@ export default function Entretien() {
                   <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                     Réveil Matinal
                   </h3>
-                  <div className="w-16 h-px bg-[#c4a47a] mb-4"></div>
+                  <div className="w-16 h-px bg-[#b8935a] mb-4"></div>
                   <p className="text-[#2d2a26] font-light leading-relaxed">
                     Plongez les tiges dans l'eau froide le matin : les fleurs 
                     "boivent" plus efficacement aux heures fraîches de la journée.
@@ -332,7 +332,7 @@ export default function Entretien() {
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Étape 4
               </div>
               
@@ -340,7 +340,7 @@ export default function Entretien() {
                 Durée de Vie par Type de Fleur
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
                 Chaque variété a ses spécificités. Connaître la durée de vie moyenne vous aide à mieux anticiper.
@@ -353,10 +353,10 @@ export default function Entretien() {
                   <h3 className="text-xl font-serif text-[#2d2a26] mb-2">
                     {flower.name}
                   </h3>
-                  <div className="text-[#c4a47a] font-light mb-4">
+                  <div className="text-[#b8935a] font-light mb-4">
                     {flower.duration}
                   </div>
-                  <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-4"></div>
+                  <div className="w-16 h-px bg-[#b8935a] mx-auto mb-4"></div>
                   <p className="text-[#2d2a26] font-light text-sm leading-relaxed">
                     {flower.tips}
                   </p>
@@ -364,11 +364,11 @@ export default function Entretien() {
               ))}
             </div>
 
-            <div className="bg-white p-8 border border-[#c4a47a]/20">
+            <div className="bg-white p-8 border border-[#b8935a]/20">
               <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                 Bon à Savoir
               </h3>
-              <div className="w-16 h-px bg-[#c4a47a] mb-4"></div>
+              <div className="w-16 h-px bg-[#b8935a] mb-4"></div>
               <p className="text-[#2d2a26] font-light leading-relaxed">
                 Ces durées sont indicatives et peuvent varier selon les conditions d'entretien, 
                 la saison et la fraîcheur des fleurs à l'achat. Avec nos conseils, 
@@ -383,7 +383,7 @@ export default function Entretien() {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 SOS
               </div>
               
@@ -391,7 +391,7 @@ export default function Entretien() {
                 Fleurs Fanées : Gestes de Secours
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light mb-16 leading-relaxed">
                 Vos fleurs montrent des signes de fatigue ? Tentez ces gestes de secours !
@@ -401,7 +401,7 @@ export default function Entretien() {
                 
                 <div className="text-center">
                   <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">Bain Glacé</h3>
-                  <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                  <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                   <p className="text-[#2d2a26] font-light leading-relaxed">
                     Plongez les tiges dans l'eau très froide pendant 1h. 
                     Effet choc garanti !
@@ -410,7 +410,7 @@ export default function Entretien() {
                 
                 <div className="text-center">
                   <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">Douche Fraîche</h3>
-                  <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                  <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                   <p className="text-[#2d2a26] font-light leading-relaxed">
                     Vaporisez délicatement les pétales avec 
                     de l'eau fraîche pour les réhydrater.
@@ -419,7 +419,7 @@ export default function Entretien() {
                 
                 <div className="text-center">
                   <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">Coupe Radicale</h3>
-                  <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                  <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                   <p className="text-[#2d2a26] font-light leading-relaxed">
                     Coupez 3-4 cm des tiges sous l'eau courante. 
                     Parfois, ça relance tout !
@@ -435,7 +435,7 @@ export default function Entretien() {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Besoin d'aide ?
               </div>
               
@@ -443,7 +443,7 @@ export default function Entretien() {
                 Une Question sur l'Entretien de Vos Fleurs ?
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light mb-12 leading-relaxed">
                 Notre équipe d'experts est à votre disposition pour vous conseiller 
@@ -453,13 +453,13 @@ export default function Entretien() {
               <div className="flex flex-col sm:flex-row gap-8 justify-center">
                 <Link
                   href="/faq"
-                  className="bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
+                  className="bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
                 >
                   Consulter la FAQ
                 </Link>
                 <Link
                   href="/contact"
-                  className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors py-4"
+                  className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors py-4"
                 >
                   Nous contacter
                 </Link>

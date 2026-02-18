@@ -9,7 +9,7 @@ const StarRating = ({ rating, count }: { rating: number; count: number }) => (
       {[1, 2, 3, 4, 5].map((star) => (
         <svg
           key={star}
-          className={`w-2.5 h-2.5 md:w-3 md:h-3 ${star <= Math.round(rating) ? 'text-[#c4a47a]' : 'text-[#e8e0d8]'}`}
+          className={`w-2.5 h-2.5 md:w-3 md:h-3 ${star <= Math.round(rating) ? 'text-[#b8935a]' : 'text-[#e8e0d8]'}`}
           fill="currentColor"
           viewBox="0 0 20 20"
         >
@@ -48,8 +48,8 @@ const ProductCard = ({ product, className = '' }: ProductCardProps) => {
 
       {/* Content */}
       <div className="space-y-1 md:space-y-2">
-        <p className="text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-[#c4a47a]">{product.category}</p>
-        <h3 className="font-serif text-sm md:text-xl lg:text-2xl text-[#2d2a26] group-hover:text-[#c4a47a] transition-colors leading-tight font-light">
+        <p className="text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-[#b8935a]">{product.category}</p>
+        <h3 className="font-serif text-sm md:text-xl lg:text-2xl text-[#2d2a26] group-hover:text-[#b8935a] transition-colors leading-tight font-light">
           {product.name}
         </h3>
         {product.rating && product.reviewCount && (

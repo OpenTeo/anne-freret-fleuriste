@@ -128,7 +128,7 @@ export default function Galerie() {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center mb-16">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-8">
                 Galerie Photo
               </div>
               
@@ -136,7 +136,7 @@ export default function Galerie() {
                 Nos Plus Belles Créations
               </h1>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light max-w-3xl mx-auto leading-relaxed">
                 Découvrez l'art floral d'Anne Freret à travers une sélection de nos plus 
@@ -147,11 +147,11 @@ export default function Galerie() {
         </section>
 
         {/* Filtres */}
-        <section className="py-12 border-b border-[#c4a47a]/20">
+        <section className="py-12 border-b border-[#b8935a]/20">
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-8">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-4">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-4">
                 Filtrer par catégorie
               </div>
             </div>
@@ -163,8 +163,8 @@ export default function Galerie() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full transition-all duration-300 border text-sm ${
                     selectedCategory === category
-                      ? 'bg-[#c4a47a] text-white border-[#c4a47a]'
-                      : 'bg-transparent text-[#2d2a26] border-[#c4a47a]/30 hover:bg-[#c4a47a] hover:text-white hover:border-[#c4a47a]'
+                      ? 'bg-[#b8935a] text-white border-[#b8935a]'
+                      : 'bg-transparent text-[#2d2a26] border-[#b8935a]/30 hover:bg-[#b8935a] hover:text-white hover:border-[#b8935a]'
                   }`}
                 >
                   {category}
@@ -174,7 +174,7 @@ export default function Galerie() {
             
             <div className="text-center">
               <p className="text-[#2d2a26] font-light text-sm">
-                <span className="text-[#c4a47a]">{filteredImages.length}</span> création(s) 
+                <span className="text-[#b8935a]">{filteredImages.length}</span> création(s) 
                 {selectedCategory !== 'Toutes' && (
                   <span> dans {selectedCategory}</span>
                 )}
@@ -218,7 +218,7 @@ export default function Galerie() {
                   </div>
 
                   <div className="pt-4">
-                    <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">
+                    <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-2">
                       {image.category}
                     </div>
                     <h3 className="text-lg font-serif text-[#2d2a26] mb-2">
@@ -239,7 +239,7 @@ export default function Galerie() {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Votre Projet
               </div>
               
@@ -247,7 +247,7 @@ export default function Galerie() {
                 Une Vision pour Votre Événement ?
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light mb-12 leading-relaxed">
                 Inspiré par nos créations ? Discutons ensemble de votre projet floral 
@@ -257,13 +257,13 @@ export default function Galerie() {
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8">
                 <a
                   href="/contact"
-                  className="bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
+                  className="bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
                 >
                   Discuter de mon projet
                 </a>
                 <a
                   href="/boutique"
-                  className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                  className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors"
                 >
                   Voir nos créations
                 </a>
@@ -282,7 +282,7 @@ export default function Galerie() {
           <div className="relative max-w-4xl max-h-full">
             <button
               onClick={closeLightbox}
-              className="absolute -top-12 right-0 w-10 h-10 bg-[#c4a47a] hover:bg-[#b8956a] rounded-full flex items-center justify-center text-white transition-colors"
+              className="absolute -top-12 right-0 w-10 h-10 bg-[#b8935a] hover:bg-[#b8956a] rounded-full flex items-center justify-center text-white transition-colors"
             >
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -297,7 +297,7 @@ export default function Galerie() {
               />
               
               <div className="p-6">
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-2">
                   {selectedImage.category}
                 </div>
                 <h3 className="text-xl font-serif text-[#2d2a26] mb-3">

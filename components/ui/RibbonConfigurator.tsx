@@ -8,9 +8,9 @@ interface RibbonConfiguratorProps {
 }
 
 const colorSchemes: Record<string, { base: string; light: string; dark: string; darker: string; border: string; text: string; name: string }> = {
-  or: { base: '#c4a47a', light: '#e8d5b5', dark: '#a8885c', darker: '#8a6d3b', border: '#8a6d3b', text: '#3d2b14', name: 'Or' },
-  blanc: { base: '#f0ebe6', light: '#ffffff', dark: '#ddd5cb', darker: '#c8bdb0', border: '#c4a47a', text: '#2d2a26', name: 'Blanc' },
-  violet: { base: '#5a4475', light: '#7a6295', dark: '#3d2d55', darker: '#2a1e3d', border: '#c4a47a', text: '#ede6f5', name: 'Violet' },
+  or: { base: '#b8935a', light: '#e8d5b5', dark: '#a8885c', darker: '#8a6d3b', border: '#8a6d3b', text: '#3d2b14', name: 'Or' },
+  blanc: { base: '#f0ebe6', light: '#ffffff', dark: '#ddd5cb', darker: '#c8bdb0', border: '#b8935a', text: '#2d2a26', name: 'Blanc' },
+  violet: { base: '#5a4475', light: '#7a6295', dark: '#3d2d55', darker: '#2a1e3d', border: '#b8935a', text: '#ede6f5', name: 'Violet' },
 };
 
 export default function RibbonConfigurator({ ribbonText, setRibbonText, ribbonColor, setRibbonColor }: RibbonConfiguratorProps) {
@@ -29,8 +29,8 @@ export default function RibbonConfigurator({ ribbonText, setRibbonText, ribbonCo
             onClick={() => setRibbonColor(key)}
             className={`flex items-center gap-1.5 px-3 py-2 border transition-all text-xs ${
               ribbonColor === key
-                ? 'border-[#c4a47a] bg-[#c4a47a]/5'
-                : 'border-[#e8e0d8] hover:border-[#c4a47a]/50'
+                ? 'border-[#b8935a] bg-[#b8935a]/5'
+                : 'border-[#e8e0d8] hover:border-[#b8935a]/50'
             }`}
           >
             <span className="w-3.5 h-3.5 border border-[#e8e0d8]" style={{ backgroundColor: val.base }} />
@@ -44,7 +44,7 @@ export default function RibbonConfigurator({ ribbonText, setRibbonText, ribbonCo
         value={ribbonText}
         onChange={(e) => setRibbonText(e.target.value.slice(0, 40))}
         placeholder="À notre père adoré"
-        className="w-full px-3 py-2.5 border border-[#e8e0d8] text-[16px] text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors placeholder:text-[#2d2a26]/25"
+        className="w-full px-3 py-2.5 border border-[#e8e0d8] text-[16px] text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors placeholder:text-[#2d2a26]/25"
       />
       <p className="text-[10px] text-right -mt-3 text-[#2d2a26]/30">{ribbonText.length}/40</p>
 

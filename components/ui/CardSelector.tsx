@@ -159,7 +159,7 @@ function FleurBlancheSVG() {
       })}
       <circle cx="40" cy="50" r="4" fill="#e8dcc8"/>
       <circle cx="40" cy="50" r="2.5" fill="#d4c4a0"/>
-      <circle cx="39" cy="49" r="1" fill="#c4a47a" opacity="0.5"/>
+      <circle cx="39" cy="49" r="1" fill="#b8935a" opacity="0.5"/>
     </svg>
   );
 }
@@ -226,7 +226,7 @@ export default function CardSelector({ selectedCard, onSelect, message = '', onM
             <p style={{ fontSize: 13, color: '#2d2a26', opacity: 0.6, lineHeight: 1.5, marginBottom: 0 }}>
               Chaque carte est réalisée à la main avec une <strong style={{ opacity: 1 }}>vraie fleur séchée</strong> délicatement 
               fixée au washi tape. Votre message personnel est inscrit au dos. 
-              <span style={{ display: 'block', marginTop: 4, fontWeight: 600, color: '#c4a47a', opacity: 1 }}>+ 4,99 € · Supplément carte artisanale</span>
+              <span style={{ display: 'block', marginTop: 4, fontWeight: 600, color: '#b8935a', opacity: 1 }}>+ 4,99 € · Supplément carte artisanale</span>
             </p>
           </div>
         </div>
@@ -255,7 +255,7 @@ export default function CardSelector({ selectedCard, onSelect, message = '', onM
                 className="relative transition-all duration-300"
                 style={{
                   aspectRatio: '3/4',
-                  borderColor: isSelected ? '#c4a47a' : '#d8d4ce',
+                  borderColor: isSelected ? '#b8935a' : '#d8d4ce',
                   borderWidth: isSelected ? 2 : 1,
                   borderStyle: 'solid',
                   backgroundColor: '#ffffff',
@@ -292,7 +292,7 @@ export default function CardSelector({ selectedCard, onSelect, message = '', onM
                 </div>
                 {/* Check mark */}
                 {isSelected && (
-                  <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#c4a47a' }}>
+                  <div className="absolute -top-2 -right-2 w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: '#b8935a' }}>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
@@ -315,7 +315,7 @@ export default function CardSelector({ selectedCard, onSelect, message = '', onM
       {selectedCard && (
         <div className="space-y-3 animate-in fade-in duration-300">
           <div className="flex items-center gap-2">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c4a47a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b8935a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
             </svg>
             <p style={{ fontSize: 13, color: '#2d2a26', opacity: 0.6 }}>

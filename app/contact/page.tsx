@@ -43,7 +43,7 @@ export default function Contact() {
         <section className="py-24 md:py-32">
           <div className="container mx-auto px-6 lg:px-8 text-center">
             
-            <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-8">
               Contact
             </div>
 
@@ -51,7 +51,7 @@ export default function Contact() {
               Parlons de Votre Projet
             </h1>
 
-            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+            <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
 
             <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
               Nous sommes là pour vous accompagner dans tous vos projets floraux. 
@@ -65,7 +65,7 @@ export default function Contact() {
             
             {/* Informations de Contact */}
             <div>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Informations
               </div>
               
@@ -73,7 +73,7 @@ export default function Contact() {
                 Nous Trouver
               </h2>
 
-              <div className="w-16 h-px bg-[#c4a47a] mb-12"></div>
+              <div className="w-16 h-px bg-[#b8935a] mb-12"></div>
               
               <div className="space-y-12">
                 <div>
@@ -89,7 +89,7 @@ export default function Contact() {
                   <h3 className="text-xl font-serif text-[#2d2a26] mb-3">Téléphone</h3>
                   <a 
                     href="tel:0233502615" 
-                    className="text-[#c4a47a] font-light hover:text-[#b8956a] transition-colors"
+                    className="text-[#b8935a] font-light hover:text-[#b8956a] transition-colors"
                   >
                     02 33 50 26 15
                   </a>
@@ -99,7 +99,7 @@ export default function Contact() {
                   <h3 className="text-xl font-serif text-[#2d2a26] mb-3">Email</h3>
                   <a 
                     href="mailto:contact@annefreret.com" 
-                    className="text-[#c4a47a] font-light hover:text-[#b8956a] transition-colors"
+                    className="text-[#b8935a] font-light hover:text-[#b8956a] transition-colors"
                   >
                     contact@annefreret.com
                   </a>
@@ -110,13 +110,13 @@ export default function Contact() {
                   <div className="text-[#2d2a26] font-light leading-relaxed space-y-1">
                     <p>Lundi - Samedi : 9h00 - 19h00</p>
                     <p>Dimanche : 10h00 - 17h00</p>
-                    <p className="text-sm text-[#c4a47a]">Fermé les jours fériés</p>
+                    <p className="text-sm text-[#b8935a]">Fermé les jours fériés</p>
                   </div>
                 </div>
               </div>
 
               {/* Carte Google Maps stylisée */}
-              <div className="mt-12 border border-[#c4a47a]/20 overflow-hidden">
+              <div className="mt-12 border border-[#b8935a]/20 overflow-hidden">
                 <div className="relative">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2640.5!2d-1.5697!3d48.8131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x480e9e5e5e5e5e5d%3A0x0!2s39+Place+du+G%C3%A9n%C3%A9ral+de+Gaulle%2C+50380+Saint-Pair-sur-Mer!5e0!3m2!1sfr!2sfr!4v1"
@@ -137,7 +137,7 @@ export default function Contact() {
                     href="https://www.google.com/maps/search/39+Place+du+Général+de+Gaulle+50380+Saint-Pair-sur-Mer"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[9px] tracking-[0.15em] uppercase text-[#c4a47a] hover:text-[#2d2a26] transition-colors border-b border-[#c4a47a]/30 pb-0.5"
+                    className="text-[9px] tracking-[0.15em] uppercase text-[#b8935a] hover:text-[#2d2a26] transition-colors border-b border-[#b8935a]/30 pb-0.5"
                   >
                     Itinéraire
                   </a>
@@ -147,7 +147,7 @@ export default function Contact() {
 
             {/* Formulaire de Contact */}
             <div>
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Message
               </div>
               
@@ -155,12 +155,12 @@ export default function Contact() {
                 Écrivez-nous
               </h2>
 
-              <div className="w-16 h-px bg-[#c4a47a] mb-12"></div>
+              <div className="w-16 h-px bg-[#b8935a] mb-12"></div>
 
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                    <label htmlFor="name" className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                       Nom *
                     </label>
                     <input
@@ -170,12 +170,12 @@ export default function Contact() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors"
+                      className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#b8935a] transition-colors"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="phone" className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                    <label htmlFor="phone" className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                       Téléphone
                     </label>
                     <input
@@ -184,13 +184,13 @@ export default function Contact() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors"
+                      className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#b8935a] transition-colors"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                  <label htmlFor="email" className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                     Email *
                   </label>
                   <input
@@ -200,12 +200,12 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors"
+                    className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#b8935a] transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                  <label htmlFor="subject" className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                     Sujet *
                   </label>
                   <select
@@ -214,7 +214,7 @@ export default function Contact() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors"
+                    className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#b8935a] transition-colors"
                   >
                     <option value="">Sélectionnez un sujet</option>
                     <option value="devis">Demande de devis</option>
@@ -227,7 +227,7 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                  <label htmlFor="message" className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                     Message *
                   </label>
                   <textarea
@@ -237,7 +237,7 @@ export default function Contact() {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors resize-none"
+                    className="w-full px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#b8935a] transition-colors resize-none"
                     placeholder="Décrivez votre projet, vos besoins, la date souhaitée..."
                   />
                 </div>
@@ -246,7 +246,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitted}
-                    className="bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300 disabled:opacity-50"
+                    className="bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300 disabled:opacity-50"
                   >
                     {isSubmitted ? 'Message envoyé ✓' : 'Envoyer le message'}
                   </button>
@@ -264,7 +264,7 @@ export default function Contact() {
         <section className="py-24 md:py-32 bg-white">
           <div className="container mx-auto px-6 lg:px-8 text-center">
             
-            <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
               Conseil Personnalisé
             </div>
             
@@ -272,7 +272,7 @@ export default function Contact() {
               Besoin d'un Accompagnement ?
             </h2>
             
-            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+            <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
             
             <p className="text-xl text-[#2d2a26] font-light mb-12 max-w-2xl mx-auto leading-relaxed">
               Nos experts sont disponibles pour vous accompagner dans votre projet. 
@@ -282,13 +282,13 @@ export default function Contact() {
             <div className="flex flex-col sm:flex-row gap-8 justify-center">
               <a
                 href="tel:0233502615"
-                className="bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
+                className="bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
               >
                 Appeler maintenant
               </a>
               <a
                 href="/boutique"
-                className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors py-4"
+                className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors py-4"
               >
                 Découvrir nos créations
               </a>

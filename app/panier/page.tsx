@@ -82,13 +82,13 @@ export default function Panier() {
         <main className="bg-[#faf8f5] min-h-screen pt-20">
           <div className="container mx-auto px-4 md:px-8 py-20 md:py-32">
             <div className="max-w-md mx-auto text-center">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">Panier</div>
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">Panier</div>
               <h1 className="text-3xl md:text-5xl font-serif text-[#2d2a26] mb-6">Votre Panier est Vide</h1>
-              <div className="w-12 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+              <div className="w-12 h-px bg-[#b8935a] mx-auto mb-6"></div>
               <p className="text-[#2d2a26] font-light mb-10 leading-relaxed">
                 Découvrez nos créations florales artisanales.
               </p>
-              <Link href="/boutique" className="inline-block bg-[#c4a47a] text-white px-8 py-3.5 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors">
+              <Link href="/boutique" className="inline-block bg-[#b8935a] text-white px-8 py-3.5 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors">
                 Découvrir la Boutique
               </Link>
             </div>
@@ -107,7 +107,7 @@ export default function Panier() {
           
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-xs mb-6">
-            <Link href="/boutique" className="text-[#c4a47a] hover:text-[#b8956a] transition-colors">Boutique</Link>
+            <Link href="/boutique" className="text-[#b8935a] hover:text-[#b8956a] transition-colors">Boutique</Link>
             <span className="text-[#2d2a26]/20">/</span>
             <span className="text-[#2d2a26]/50">Votre panier</span>
           </div>
@@ -125,24 +125,24 @@ export default function Panier() {
             <div className="bg-white p-4 mb-6 border border-[#e8e0d8]">
               <div className="flex items-center justify-between mb-2">
                 <p className="text-sm text-[#2d2a26] font-light">
-                  Plus que <span className="text-[#c4a47a] font-medium">{freeDeliveryRemaining.toFixed(2)}€</span> pour la livraison gratuite
+                  Plus que <span className="text-[#b8935a] font-medium">{freeDeliveryRemaining.toFixed(2)}€</span> pour la livraison gratuite
                 </p>
-                <svg className="w-4 h-4 text-[#c4a47a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <svg className="w-4 h-4 text-[#b8935a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                 </svg>
               </div>
               <div className="w-full h-1.5 bg-[#e8e0d8] rounded-full overflow-hidden">
-                <div className="h-full bg-[#c4a47a] rounded-full transition-all duration-500" style={{ width: `${Math.min((subtotal / freeThreshold) * 100, 100)}%` }} />
+                <div className="h-full bg-[#b8935a] rounded-full transition-all duration-500" style={{ width: `${Math.min((subtotal / freeThreshold) * 100, 100)}%` }} />
               </div>
             </div>
           )}
 
           {subtotal >= 60 && (
-            <div className="flex items-center gap-2 bg-white p-4 mb-6 border border-[#c4a47a]/30">
-              <svg className="w-4 h-4 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <div className="flex items-center gap-2 bg-white p-4 mb-6 border border-[#b8935a]/30">
+              <svg className="w-4 h-4 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
-              <p className="text-sm text-[#c4a47a]">Livraison gratuite appliquée</p>
+              <p className="text-sm text-[#b8935a]">Livraison gratuite appliquée</p>
             </div>
           )}
 
@@ -171,7 +171,7 @@ export default function Panier() {
                       <div>
                         <div className="flex justify-between items-start">
                           <div>
-                            <p className="text-[9px] uppercase tracking-[0.15em] text-[#c4a47a] mb-1">{item.category}</p>
+                            <p className="text-[9px] uppercase tracking-[0.15em] text-[#b8935a] mb-1">{item.category}</p>
                             <h3 className="text-base md:text-lg font-serif text-[#2d2a26] leading-tight">{item.name}</h3>
                             <p className="text-xs text-[#2d2a26]/40 mt-0.5">Taille : {item.size}</p>
                           </div>
@@ -188,9 +188,9 @@ export default function Panier() {
 
                       <div className="flex items-center justify-between mt-3">
                         <div className="flex items-center border border-[#e8e0d8] h-8">
-                          <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-full flex items-center justify-center text-[#2d2a26]/50 hover:text-[#c4a47a] transition-colors text-sm">−</button>
+                          <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-full flex items-center justify-center text-[#2d2a26]/50 hover:text-[#b8935a] transition-colors text-sm">−</button>
                           <span className="w-8 text-center text-sm text-[#2d2a26]">{item.quantity}</span>
-                          <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-full flex items-center justify-center text-[#2d2a26]/50 hover:text-[#c4a47a] transition-colors text-sm">+</button>
+                          <button onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-full flex items-center justify-center text-[#2d2a26]/50 hover:text-[#b8935a] transition-colors text-sm">+</button>
                         </div>
                         <p className="text-lg font-serif text-[#2d2a26]">
                           {(item.price * item.quantity).toFixed(2)}€
@@ -212,10 +212,10 @@ export default function Panier() {
                       { name: 'Chocolats artisanaux', price: 14.90, image: '/chocolats-addon.jpg', desc: 'Coffret 12 pièces' },
                       { name: 'Carte message', price: 0, image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300&q=85', desc: 'Offerte' },
                     ].map((item) => (
-                      <button key={item.name} className="bg-white border border-[#e8e0d8] p-2.5 text-left hover:border-[#c4a47a] transition-all group">
+                      <button key={item.name} className="bg-white border border-[#e8e0d8] p-2.5 text-left hover:border-[#b8935a] transition-all group">
                         <img src={item.image} alt={item.name} className="w-full aspect-square object-cover mb-2" />
                         <p className="text-xs text-[#2d2a26] leading-tight">{item.name}</p>
-                        <p className="text-xs text-[#c4a47a] mt-1">{item.price.toFixed(2)}€</p>
+                        <p className="text-xs text-[#b8935a] mt-1">{item.price.toFixed(2)}€</p>
                       </button>
                     ))}
                   </div>
@@ -225,10 +225,10 @@ export default function Panier() {
               {/* Card Message */}
               <div className="bg-white p-4 md:p-6 border border-[#e8e0d8]/50">
                 <div className="flex items-center gap-2 mb-4">
-                  <svg className="w-4 h-4 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg className="w-4 h-4 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                   </svg>
-                  <h3 className="text-sm font-serif text-[#2d2a26]">Carte message artisanale <span className="text-[#c4a47a] font-normal text-xs">+ 4,99 €</span></h3>
+                  <h3 className="text-sm font-serif text-[#2d2a26]">Carte message artisanale <span className="text-[#b8935a] font-normal text-xs">+ 4,99 €</span></h3>
                 </div>
                 <CardSelector
                   selectedCard={selectedCardImage}
@@ -238,7 +238,7 @@ export default function Panier() {
 
               {/* Continue shopping */}
               <div className="text-center pt-4">
-                <Link href="/boutique" className="text-sm text-[#c4a47a] hover:text-[#b8956a] transition-colors">
+                <Link href="/boutique" className="text-sm text-[#b8935a] hover:text-[#b8956a] transition-colors">
                   ← Continuer les achats
                 </Link>
               </div>
@@ -252,14 +252,14 @@ export default function Panier() {
 
                 {/* ——— DELIVERY MODE SELECTOR ——— */}
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.15em] text-[#c4a47a] mb-3">Mode de livraison</p>
+                  <p className="text-[10px] uppercase tracking-[0.15em] text-[#b8935a] mb-3">Mode de livraison</p>
                   
                   <div className="space-y-2">
                     {/* Local */}
                     <div className={`border transition-all ${
                       deliveryMode === 'local' 
-                        ? 'border-[#c4a47a] bg-[#c4a47a]/5' 
-                        : 'border-[#e8e0d8] hover:border-[#c4a47a]/50'
+                        ? 'border-[#b8935a] bg-[#b8935a]/5' 
+                        : 'border-[#e8e0d8] hover:border-[#b8935a]/50'
                     }`}>
                       <button
                         onClick={() => setDeliveryMode('local')}
@@ -267,17 +267,17 @@ export default function Panier() {
                       >
                         <div className="flex items-start gap-3">
                           <div className={`w-4 h-4 rounded-full border-2 mt-0.5 flex-shrink-0 flex items-center justify-center ${
-                            deliveryMode === 'local' ? 'border-[#c4a47a]' : 'border-[#e8e0d8]'
+                            deliveryMode === 'local' ? 'border-[#b8935a]' : 'border-[#e8e0d8]'
                           }`}>
-                            {deliveryMode === 'local' && <div className="w-2 h-2 rounded-full bg-[#c4a47a]" />}
+                            {deliveryMode === 'local' && <div className="w-2 h-2 rounded-full bg-[#b8935a]" />}
                           </div>
                           <div className="flex-grow">
                             <div className="flex items-center justify-between">
                               <div className="flex items-center gap-2">
                                 <p className="text-sm text-[#2d2a26] font-medium">Livraison locale</p>
-                                <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#c4a47a' }}>24h</span>
+                                <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#b8935a' }}>24h</span>
                               </div>
-                              <p className="text-sm text-[#c4a47a]">{subtotal >= 60 ? 'Offerte' : 'Dès 6€'}</p>
+                              <p className="text-sm text-[#b8935a]">{subtotal >= 60 ? 'Offerte' : 'Dès 6€'}</p>
                             </div>
                             <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
                               Livrée à la main · Rayon 35 km
@@ -289,7 +289,7 @@ export default function Panier() {
                       {/* Tarifs locaux + calculateur */}
                       {deliveryMode === 'local' && (
                         <div className="px-4 pb-4 space-y-3">
-                          <div className="border-t border-[#c4a47a]/20 pt-3">
+                          <div className="border-t border-[#b8935a]/20 pt-3">
                             {/* Grille tarifs */}
                             <div className="grid grid-cols-3 gap-2 mb-3">
                               {[
@@ -304,7 +304,7 @@ export default function Panier() {
                               ))}
                             </div>
                             {subtotal >= 60 && (
-                              <p className="text-[10px] text-[#c4a47a] mb-3">Livraison offerte — votre commande dépasse 60€</p>
+                              <p className="text-[10px] text-[#b8935a] mb-3">Livraison offerte — votre commande dépasse 60€</p>
                             )}
                             {/* Recherche ville */}
                             <p className="text-[10px] uppercase tracking-[0.1em] text-[#2d2a26]/30 mb-2">Vérifier votre ville</p>
@@ -441,7 +441,7 @@ export default function Panier() {
 
                 {/* ——— DATE PICKER ——— */}
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.15em] text-[#c4a47a] mb-3">Date de livraison souhaitée</p>
+                  <p className="text-[10px] uppercase tracking-[0.15em] text-[#b8935a] mb-3">Date de livraison souhaitée</p>
                   
                   {/* Estimation automatique */}
                   {deliveryMode && !selectedDate && (() => {
@@ -450,7 +450,7 @@ export default function Panier() {
                     if (est.getDay() === 0) est.setDate(est.getDate() + 1); // skip dimanche
                     return (
                       <div className="flex items-center gap-2 p-3 bg-[#faf8f5] border border-[#e8e0d8]/50 mb-3">
-                        <svg className="w-4 h-4 text-[#c4a47a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                        <svg className="w-4 h-4 text-[#b8935a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <p className="text-xs text-[#2d2a26]/60">
@@ -480,7 +480,7 @@ export default function Panier() {
                         <div className="flex items-center justify-between mb-2">
                           <button 
                             onClick={() => canGoPrev && setCalendarMonth(new Date(year, month - 1, 1))}
-                            className={`p-1 transition-colors ${canGoPrev ? 'text-[#2d2a26]/40 hover:text-[#c4a47a]' : 'text-[#2d2a26]/10 cursor-not-allowed'}`}
+                            className={`p-1 transition-colors ${canGoPrev ? 'text-[#2d2a26]/40 hover:text-[#b8935a]' : 'text-[#2d2a26]/10 cursor-not-allowed'}`}
                           >
                             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -489,7 +489,7 @@ export default function Panier() {
                           <span className="text-xs text-[#2d2a26] font-serif">{monthNames[month]} {year}</span>
                           <button 
                             onClick={() => setCalendarMonth(new Date(year, month + 1, 1))}
-                            className="p-1 text-[#2d2a26]/40 hover:text-[#c4a47a] transition-colors"
+                            className="p-1 text-[#2d2a26]/40 hover:text-[#b8935a] transition-colors"
                           >
                             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
@@ -519,9 +519,9 @@ export default function Panier() {
                                 disabled={isDisabled}
                                 onClick={() => setSelectedDate(isSelected ? '' : dateStr)}
                                 className={`aspect-square flex items-center justify-center text-[11px] transition-all rounded-sm
-                                  ${isDisabled ? 'text-[#2d2a26]/12' : 'hover:bg-[#c4a47a]/10 cursor-pointer'}
-                                  ${isSelected ? 'bg-[#c4a47a] text-white rounded-sm' : 'text-[#2d2a26]/60'}
-                                  ${isToday && !isSelected ? 'text-[#c4a47a] font-medium' : ''}
+                                  ${isDisabled ? 'text-[#2d2a26]/12' : 'hover:bg-[#b8935a]/10 cursor-pointer'}
+                                  ${isSelected ? 'bg-[#b8935a] text-white rounded-sm' : 'text-[#2d2a26]/60'}
+                                  ${isToday && !isSelected ? 'text-[#b8935a] font-medium' : ''}
                                 `}
                               >
                                 {day}
@@ -531,7 +531,7 @@ export default function Panier() {
                         </div>
                         {selectedDate && (
                           <div className="mt-2 pt-2 border-t border-[#e8e0d8]/50 flex items-center gap-2">
-                            <svg className="w-3.5 h-3.5 text-[#c4a47a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                            <svg className="w-3.5 h-3.5 text-[#b8935a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                             </svg>
                             <p className="text-[11px] text-[#2d2a26]">
@@ -553,14 +553,14 @@ export default function Panier() {
                       value={promoCode}
                       onChange={(e) => setPromoCode(e.target.value)}
                       placeholder="Code promo"
-                      className="flex-1 px-3 py-2.5 border border-[#e8e0d8] text-sm text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors placeholder:text-[#2d2a26]/25"
+                      className="flex-1 px-3 py-2.5 border border-[#e8e0d8] text-sm text-[#2d2a26] font-light focus:outline-none focus:border-[#b8935a] transition-colors placeholder:text-[#2d2a26]/25"
                     />
                     <button onClick={applyPromoCode} className="bg-[#2d2a26] text-white px-4 py-2.5 text-sm hover:bg-[#2d2a26]/80 transition-colors">
                       OK
                     </button>
                   </div>
                   {appliedPromo && (
-                    <p className="text-xs mt-2 text-[#c4a47a]">Code {appliedPromo} appliqué (-10%)</p>
+                    <p className="text-xs mt-2 text-[#b8935a]">Code {appliedPromo} appliqué (-10%)</p>
                   )}
                 </div>
 
@@ -571,7 +571,7 @@ export default function Panier() {
                     <span>{subtotal.toFixed(2)}€</span>
                   </div>
                   {discount > 0 && (
-                    <div className="flex justify-between text-sm text-[#c4a47a]">
+                    <div className="flex justify-between text-sm text-[#b8935a]">
                       <span>Réduction</span>
                       <span>-{discount.toFixed(2)}€</span>
                     </div>
@@ -584,7 +584,7 @@ export default function Panier() {
                   )}
                   <div className="flex justify-between text-sm text-[#2d2a26]/70">
                     <span>Livraison {deliveryMode === 'local' ? '(locale)' : deliveryMode === 'colissimo' ? '(Colissimo)' : deliveryMode === 'chronopost' ? '(Chronopost)' : ''}</span>
-                    <span className={delivery === 0 && deliveryMode ? 'text-[#c4a47a]' : ''}>
+                    <span className={delivery === 0 && deliveryMode ? 'text-[#b8935a]' : ''}>
                       {!deliveryMode ? '—' : delivery === 0 ? 'Offerte' : `${delivery.toFixed(2)}€`}
                     </span>
                   </div>
@@ -610,7 +610,7 @@ export default function Panier() {
                         total,
                       }));
                     }}
-                    className="block w-full py-3.5 text-sm uppercase tracking-[0.1em] transition-all bg-[#c4a47a] text-white hover:bg-[#b8956a] text-center"
+                    className="block w-full py-3.5 text-sm uppercase tracking-[0.1em] transition-all bg-[#b8935a] text-white hover:bg-[#b8956a] text-center"
                   >
                     Proceder au paiement
                   </Link>
@@ -630,7 +630,7 @@ export default function Panier() {
                     { icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', text: 'Fraîcheur 7 jours' },
                   ].map((badge, i) => (
                     <div key={i} className="flex items-center gap-2">
-                      <svg className="w-3.5 h-3.5 text-[#c4a47a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <svg className="w-3.5 h-3.5 text-[#b8935a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d={badge.icon} />
                       </svg>
                       <span className="text-[10px] text-[#2d2a26]/40">{badge.text}</span>

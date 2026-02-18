@@ -47,7 +47,7 @@ function BoutiqueContent() {
         </section>
 
         {/* Category Filter */}
-        <section className="py-12 border-b border-[#c4a47a]/20">
+        <section className="py-12 border-b border-[#b8935a]/20">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="flex flex-wrap justify-center gap-3">
               {allCategories.map((category) => (
@@ -56,8 +56,8 @@ function BoutiqueContent() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full transition-all duration-500 border luxury-label ${
                     selectedCategory === category
-                      ? 'bg-[#c4a47a] text-white border-[#c4a47a]'
-                      : 'bg-transparent text-[#2d2a26] border-[#c4a47a]/30 hover:bg-[#c4a47a] hover:text-white hover:border-[#c4a47a]'
+                      ? 'bg-[#b8935a] text-white border-[#b8935a]'
+                      : 'bg-transparent text-[#2d2a26] border-[#b8935a]/30 hover:bg-[#b8935a] hover:text-white hover:border-[#b8935a]'
                   }`}
                 >
                   {category}
@@ -98,7 +98,7 @@ function BoutiqueContent() {
                 </p>
                 <button
                   onClick={() => setSelectedCategory('Tous')}
-                  className="btn-luxury bg-[#c4a47a] text-white hover:bg-[#b8956a]"
+                  className="btn-luxury bg-[#b8935a] text-white hover:bg-[#b8956a]"
                 >
                   Voir tous les produits
                 </button>

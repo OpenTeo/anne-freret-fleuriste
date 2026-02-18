@@ -91,13 +91,13 @@ export default function FAQ() {
       <main className="bg-[#faf8f5] min-h-screen pt-20">
         
         {/* Breadcrumb */}
-        <section className="py-6 border-b border-[#c4a47a]/20">
+        <section className="py-6 border-b border-[#b8935a]/20">
           <div className="container mx-auto px-6 lg:px-8">
             <nav className="flex items-center space-x-2 text-sm">
-              <Link href="/" className="text-[#c4a47a] hover:text-[#b8956a] transition-colors">
+              <Link href="/" className="text-[#b8935a] hover:text-[#b8956a] transition-colors">
                 Accueil
               </Link>
-              <span className="text-[#c4a47a]">/</span>
+              <span className="text-[#b8935a]">/</span>
               <span className="text-[#2d2a26] font-light">FAQ</span>
             </nav>
           </div>
@@ -107,7 +107,7 @@ export default function FAQ() {
         <section className="py-24 md:py-32">
           <div className="container mx-auto px-6 lg:px-8 text-center">
             
-            <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
+            <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-8">
               Questions Fréquentes
             </div>
 
@@ -115,7 +115,7 @@ export default function FAQ() {
               Toutes les Réponses à Vos Questions
             </h1>
             
-            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+            <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
             
             <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
               Trouvez rapidement les réponses à vos questions sur nos services, nos livraisons et l'entretien de vos fleurs.
@@ -134,13 +134,13 @@ export default function FAQ() {
               <div className="flex flex-col sm:flex-row gap-8 justify-center">
                 <Link
                   href="/contact"
-                  className="bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
+                  className="bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
                 >
                   Nous Contacter
                 </Link>
                 <Link
                   href="tel:0233502615"
-                  className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors py-4"
+                  className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors py-4"
                 >
                   02 33 50 26 15
                 </Link>
@@ -157,7 +157,7 @@ export default function FAQ() {
                 {faqData.map((item) => (
                   <div
                     key={item.id}
-                    className="border border-[#c4a47a]/20 hover:border-[#c4a47a]/40 transition-colors"
+                    className="border border-[#b8935a]/20 hover:border-[#b8935a]/40 transition-colors"
                   >
                     <button
                       onClick={() => toggleItem(item.id)}
@@ -168,7 +168,7 @@ export default function FAQ() {
                       </h3>
                       <div className="flex-shrink-0">
                         <svg
-                          className={`w-5 h-5 text-[#c4a47a] transition-transform duration-300 ${
+                          className={`w-5 h-5 text-[#b8935a] transition-transform duration-300 ${
                             openItems.includes(item.id) ? 'rotate-180' : ''
                           }`}
                           fill="none"
@@ -186,7 +186,7 @@ export default function FAQ() {
                       }`}
                     >
                       <div className="px-8 pb-6">
-                        <div className="border-t border-[#c4a47a]/20 pt-6">
+                        <div className="border-t border-[#b8935a]/20 pt-6">
                           <p className="text-[#2d2a26] font-light leading-relaxed">
                             {item.answer}
                           </p>
@@ -205,7 +205,7 @@ export default function FAQ() {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center mb-16">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Aide Supplémentaire
               </div>
               
@@ -213,7 +213,7 @@ export default function FAQ() {
                 Besoin d'un Conseil Personnalisé ?
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light leading-relaxed">
                 Notre équipe est disponible pour répondre à toutes vos questions spécifiques 
@@ -225,13 +225,13 @@ export default function FAQ() {
               
               <div className="bg-white p-8 text-center">
                 <h3 className="text-xl font-serif text-[#2d2a26] mb-4">Questions Techniques</h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light mb-6 leading-relaxed">
                   Entretien, conservation, conseils de pro
                 </p>
                 <Link 
                   href="/entretien" 
-                  className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                  className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors"
                 >
                   Guide d'entretien
                 </Link>
@@ -239,13 +239,13 @@ export default function FAQ() {
 
               <div className="bg-white p-8 text-center">
                 <h3 className="text-xl font-serif text-[#2d2a26] mb-4">Conseils Personnalisés</h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light mb-6 leading-relaxed">
                   Projets spéciaux, mariages, événements
                 </p>
                 <Link 
                   href="/contact" 
-                  className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                  className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors"
                 >
                   Nous consulter
                 </Link>
@@ -253,13 +253,13 @@ export default function FAQ() {
 
               <div className="bg-white p-8 text-center">
                 <h3 className="text-xl font-serif text-[#2d2a26] mb-4">Support Direct</h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light mb-6 leading-relaxed">
                   Lun-Sam 9h-19h, Dim 10h-17h
                 </p>
                 <Link 
                   href="tel:0233502615" 
-                  className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                  className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors"
                 >
                   02 33 50 26 15
                 </Link>

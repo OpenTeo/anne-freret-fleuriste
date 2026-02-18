@@ -11,14 +11,14 @@ const Testimonials = () => {
         
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
-          <p className="text-[#c4a47a] text-[10px] tracking-[0.2em] uppercase mb-4 font-light">
+          <p className="text-[#b8935a] text-[10px] tracking-[0.2em] uppercase mb-4 font-light">
             Témoignages
           </p>
           <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl text-[#2d2a26] mb-8 font-light">
             Nos clients témoignent
           </h2>
           <div className="flex justify-center">
-            <div className="w-16 h-px bg-[#c4a47a]"></div>
+            <div className="w-16 h-px bg-[#b8935a]"></div>
           </div>
         </div>
 

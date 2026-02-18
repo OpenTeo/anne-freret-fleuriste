@@ -20,7 +20,7 @@ const FeaturedProducts = () => {
         
         {/* Header */}
         <div className="text-center mb-10 md:mb-14">
-          <p className="text-[#c4a47a] text-[10px] tracking-[0.2em] uppercase mb-3 font-light">
+          <p className="text-[#b8935a] text-[10px] tracking-[0.2em] uppercase mb-3 font-light">
             Sélection
           </p>
           <h2 className="font-serif text-3xl md:text-5xl text-[#2d2a26] mb-4 font-light">
@@ -37,7 +37,7 @@ const FeaturedProducts = () => {
             <div key={group.category}>
               <div className="flex items-center gap-4 mb-6 md:mb-8">
                 <div className="h-px flex-1 bg-[#e8e0d8]"></div>
-                <h3 className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-[#c4a47a] whitespace-nowrap">
+                <h3 className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-[#b8935a] whitespace-nowrap">
                   {group.category}
                 </h3>
                 <div className="h-px flex-1 bg-[#e8e0d8]"></div>
@@ -55,7 +55,7 @@ const FeaturedProducts = () => {
         <div className="text-center">
           <Link 
             href="/boutique"
-            className="text-[#2d2a26] text-sm md:text-base underline underline-offset-4 hover:text-[#c4a47a] transition-colors font-light"
+            className="text-[#2d2a26] text-sm md:text-base underline underline-offset-4 hover:text-[#b8935a] transition-colors font-light"
           >
             Voir toute la collection →
           </Link>

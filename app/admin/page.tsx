@@ -506,8 +506,8 @@ export default function Admin() {
             @media print { body { margin: 0; } }
             * { box-sizing: border-box; }
             body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; color: #2d2a26; background: white; padding: 30px; max-width: 800px; margin: 0 auto; }
-            .header { border-bottom: 2px solid #c4a47a; padding-bottom: 20px; margin-bottom: 30px; }
-            .company { font-family: Georgia, "Times New Roman", serif; font-size: 24px; color: #c4a47a; margin-bottom: 5px; }
+            .header { border-bottom: 2px solid #b8935a; padding-bottom: 20px; margin-bottom: 30px; }
+            .company { font-family: Georgia, "Times New Roman", serif; font-size: 24px; color: #b8935a; margin-bottom: 5px; }
             .order-number { font-size: 14px; color: #666; }
             .section { margin-bottom: 25px; }
             .section-title { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 10px; border-bottom: 1px solid #e8e0d8; padding-bottom: 5px; }
@@ -517,12 +517,12 @@ export default function Admin() {
             .items-table td { padding: 10px; border-bottom: 1px solid #e8e0d8; }
             .items-table .qty { text-align: center; width: 60px; }
             .items-table .price { text-align: right; width: 100px; }
-            .total-section { border-top: 2px solid #c4a47a; padding-top: 15px; text-align: right; }
-            .total-amount { font-size: 20px; font-weight: bold; color: #c4a47a; }
+            .total-section { border-top: 2px solid #b8935a; padding-top: 15px; text-align: right; }
+            .total-amount { font-size: 20px; font-weight: bold; color: #b8935a; }
             .status-badge { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
             .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #e8e0d8; font-size: 12px; color: #666; text-align: center; }
             @media print { .print-button { display: none; } }
-            .print-button { background: #c4a47a; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-bottom: 20px; }
+            .print-button { background: #b8935a; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; margin-bottom: 20px; }
             .print-button:hover { background: #b8956a; }
           </style>
         </head>
@@ -609,7 +609,7 @@ export default function Admin() {
 
   if (isLoading || !user?.isAdmin) return null;
 
-  const inputClass = "w-full px-3 py-2.5 bg-white border border-[#e8e0d8] text-[#2d2a26] text-[16px] sm:text-sm focus:outline-none focus:border-[#c4a47a]";
+  const inputClass = "w-full px-3 py-2.5 bg-white border border-[#e8e0d8] text-[#2d2a26] text-[16px] sm:text-sm focus:outline-none focus:border-[#b8935a]";
   const labelClass = "block text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/50 mb-1.5";
 
   // ─── Computed data ───
@@ -757,9 +757,9 @@ export default function Admin() {
     <div className="min-h-screen bg-[#faf8f5] flex">
       {/* Sidebar - Desktop */}
       <aside className="w-64 bg-gradient-to-b from-[#1a1714] to-[#2d2a26] text-white min-h-screen fixed left-0 top-0 z-50 hidden md:flex md:flex-col shadow-2xl">
-        <div className="p-6 border-b border-white/10 bg-gradient-to-r from-[#c4a47a]/10 to-transparent">
+        <div className="p-6 border-b border-white/10 bg-gradient-to-r from-[#b8935a]/10 to-transparent">
           <Link href="/" className="font-serif text-2xl text-white/95 tracking-wide">Anne Freret</Link>
-          <p className="text-[11px] tracking-[0.2em] uppercase text-[#c4a47a] mt-2 font-medium">Administration</p>
+          <p className="text-[11px] tracking-[0.2em] uppercase text-[#b8935a] mt-2 font-medium">Administration</p>
         </div>
         <nav className="p-4 space-y-2 flex-1">
           {tabs.map(tab => (
@@ -768,7 +768,7 @@ export default function Admin() {
               onClick={() => setActiveTab(tab.id)}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-all duration-200 ${
                 activeTab === tab.id 
-                  ? 'bg-gradient-to-r from-[#c4a47a] to-[#b8956a] text-white shadow-lg transform scale-105' 
+                  ? 'bg-gradient-to-r from-[#b8935a] to-[#b8956a] text-white shadow-lg transform scale-105' 
                   : 'text-white/70 hover:text-white hover:bg-white/10 hover:transform hover:scale-102'
               }`}
             >
@@ -782,15 +782,15 @@ export default function Admin() {
             </button>
           ))}
         </nav>
-        <div className="p-4 border-t border-white/10 space-y-4 bg-gradient-to-r from-[#c4a47a]/5 to-transparent">
-          <Link href="/" target="_blank" className="flex items-center gap-2 text-xs text-white/50 hover:text-[#c4a47a] transition-colors duration-200">
+        <div className="p-4 border-t border-white/10 space-y-4 bg-gradient-to-r from-[#b8935a]/5 to-transparent">
+          <Link href="/" target="_blank" className="flex items-center gap-2 text-xs text-white/50 hover:text-[#b8935a] transition-colors duration-200">
             🌐 Voir le site web
           </Link>
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#c4a47a] to-[#b8956a] rounded-full flex items-center justify-center text-white text-sm font-serif shadow-md">AF</div>
+            <div className="w-10 h-10 bg-gradient-to-br from-[#b8935a] to-[#b8956a] rounded-full flex items-center justify-center text-white text-sm font-serif shadow-md">AF</div>
             <div>
               <p className="text-sm text-white/90 font-medium">{user.firstName} {user.lastName}</p>
-              <p className="text-[10px] text-[#c4a47a] uppercase tracking-wider">Administrateur</p>
+              <p className="text-[10px] text-[#b8935a] uppercase tracking-wider">Administrateur</p>
             </div>
           </div>
         </div>
@@ -804,7 +804,7 @@ export default function Admin() {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`flex flex-col items-center gap-1 px-2 py-1 rounded-lg relative transition-all duration-200 ${
-                activeTab === tab.id ? 'text-[#c4a47a] transform scale-110' : 'text-white/50'
+                activeTab === tab.id ? 'text-[#b8935a] transform scale-110' : 'text-white/50'
               }`}
             >
               <span className="text-lg">{tab.icon}</span>
@@ -817,7 +817,7 @@ export default function Admin() {
           <button
             onClick={() => setActiveTab(activeTab === 'deliveries' ? 'stats' : 'deliveries')}
             className={`flex flex-col items-center gap-1 px-2 py-1 rounded-lg transition-all duration-200 ${
-              activeTab === 'deliveries' || activeTab === 'stats' ? 'text-[#c4a47a] transform scale-110' : 'text-white/50'
+              activeTab === 'deliveries' || activeTab === 'stats' ? 'text-[#b8935a] transform scale-110' : 'text-white/50'
             }`}
           >
             <span className="text-lg">{activeTab === 'stats' ? '📈' : '🚚'}</span>
@@ -848,7 +848,7 @@ export default function Admin() {
                   <p className="text-xl mb-1">{kpi.icon}</p>
                   <p className="font-serif text-2xl text-[#2d2a26]">{kpi.value}</p>
                   <p className="text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/40 mt-1">{kpi.label}</p>
-                  {kpi.sub && <p className="text-[10px] text-[#c4a47a] mt-0.5">{kpi.sub}</p>}
+                  {kpi.sub && <p className="text-[10px] text-[#b8935a] mt-0.5">{kpi.sub}</p>}
                 </div>
               ))}
             </div>
@@ -868,7 +868,7 @@ export default function Admin() {
                           <span className="text-[#2d2a26]/60">{total.toFixed(0)}€</span>
                         </div>
                         <div className="h-3 bg-[#f5f0eb] rounded-full overflow-hidden">
-                          <div className="h-full bg-[#c4a47a] rounded-full transition-all" style={{ width: `${(total / maxCategorySale) * 100}%` }} />
+                          <div className="h-full bg-[#b8935a] rounded-full transition-all" style={{ width: `${(total / maxCategorySale) * 100}%` }} />
                         </div>
                       </div>
                     ))}
@@ -910,7 +910,7 @@ export default function Admin() {
                       <div key={w.id} className="flex items-center justify-between text-sm">
                         <div>
                           <p className="text-[#2d2a26]">{w.name}</p>
-                          <p className="text-[10px] text-[#c4a47a]">📅 {w.date} · {w.budget}</p>
+                          <p className="text-[10px] text-[#b8935a]">📅 {w.date} · {w.budget}</p>
                         </div>
                         <span className={`text-[10px] px-2 py-0.5 rounded ${statusLabels[w.status]?.color}`}>
                           {statusLabels[w.status]?.label}
@@ -951,7 +951,7 @@ export default function Admin() {
               <h1 className="font-serif text-2xl text-[#2d2a26]">Produits</h1>
               <button
                 onClick={() => { resetProductForm(); setShowProductForm(true); }}
-                className="px-6 py-2.5 bg-[#c4a47a] text-white text-sm hover:bg-[#b8956a] transition-colors"
+                className="px-6 py-2.5 bg-[#b8935a] text-white text-sm hover:bg-[#b8956a] transition-colors"
               >
                 + Nouveau produit
               </button>
@@ -971,7 +971,7 @@ export default function Admin() {
                   <button
                     key={f.v}
                     onClick={() => setProductCategoryFilter(f.v)}
-                    className={`px-3 py-1.5 text-xs rounded transition-colors ${productCategoryFilter === f.v ? 'bg-[#c4a47a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
+                    className={`px-3 py-1.5 text-xs rounded transition-colors ${productCategoryFilter === f.v ? 'bg-[#b8935a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
                   >
                     {f.l}
                   </button>
@@ -1020,19 +1020,19 @@ export default function Admin() {
                 </div>
                 <div className="flex flex-wrap gap-6 mb-6">
                   <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" checked={pActive} onChange={e => setPActive(e.target.checked)} className="accent-[#c4a47a]" />
+                    <input type="checkbox" checked={pActive} onChange={e => setPActive(e.target.checked)} className="accent-[#b8935a]" />
                     <span className="text-sm text-[#2d2a26]/70">Produit actif</span>
                   </label>
                   <label className="flex items-center gap-2 cursor-pointer">
-                    <input type="checkbox" checked={pInStock} onChange={e => setPInStock(e.target.checked)} className="accent-[#c4a47a]" />
+                    <input type="checkbox" checked={pInStock} onChange={e => setPInStock(e.target.checked)} className="accent-[#b8935a]" />
                     <span className="text-sm text-[#2d2a26]/70">En stock</span>
                   </label>
                 </div>
                 <div className="flex gap-3">
-                  <button onClick={handleSaveProduct} className="px-8 py-2.5 bg-[#c4a47a] text-white text-sm hover:bg-[#b8956a]">
+                  <button onClick={handleSaveProduct} className="px-8 py-2.5 bg-[#b8935a] text-white text-sm hover:bg-[#b8956a]">
                     {editingProduct ? 'Enregistrer' : 'Créer le produit'}
                   </button>
-                  <button onClick={resetProductForm} className="px-6 py-2.5 border border-[#e8e0d8] text-[#2d2a26]/60 text-sm hover:border-[#c4a47a]">
+                  <button onClick={resetProductForm} className="px-6 py-2.5 border border-[#e8e0d8] text-[#2d2a26]/60 text-sm hover:border-[#b8935a]">
                     Annuler
                   </button>
                 </div>
@@ -1085,7 +1085,7 @@ export default function Admin() {
                     </div>
                     <div className="col-span-1 text-xs text-[#2d2a26]/60">{p.salesCount || 0}</div>
                     <div className="col-span-3 flex gap-2 flex-wrap">
-                      <button onClick={() => editProduct(p)} className="text-xs text-[#c4a47a] hover:underline">Modifier</button>
+                      <button onClick={() => editProduct(p)} className="text-xs text-[#b8935a] hover:underline">Modifier</button>
                       <Link href={`/produit/${p.slug}`} target="_blank" className="text-xs text-sky-600 hover:underline">Voir sur le site</Link>
                       <button onClick={() => deleteProduct(p.id)} className="text-xs text-red-400 hover:underline">Supprimer</button>
                     </div>
@@ -1120,7 +1120,7 @@ export default function Admin() {
                   <button
                     key={f.v}
                     onClick={() => setOrderStatusFilter(f.v)}
-                    className={`px-3 py-1.5 text-xs rounded transition-colors ${orderStatusFilter === f.v ? 'bg-[#c4a47a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
+                    className={`px-3 py-1.5 text-xs rounded transition-colors ${orderStatusFilter === f.v ? 'bg-[#b8935a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
                   >
                     {f.l} ({f.count})
                   </button>
@@ -1139,7 +1139,7 @@ export default function Admin() {
                   <button
                     key={f.v}
                     onClick={() => setOrderCarrierFilter(f.v)}
-                    className={`px-3 py-1.5 text-xs rounded transition-colors ${orderCarrierFilter === f.v ? 'bg-[#c4a47a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
+                    className={`px-3 py-1.5 text-xs rounded transition-colors ${orderCarrierFilter === f.v ? 'bg-[#b8935a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
                   >
                     {f.l} ({f.count})
                   </button>
@@ -1160,7 +1160,7 @@ export default function Admin() {
                   const nextAction = statusIdx === 0 ? 'Confirmer' : statusIdx === 1 ? 'Préparer' : statusIdx === 2 ? 'Expédier' : statusIdx === 3 ? 'Marquer livrée' : null;
 
                   return (
-                    <div key={o.id} className="bg-white border border-[#e8e0d8] hover:border-[#c4a47a]/30 transition-colors">
+                    <div key={o.id} className="bg-white border border-[#e8e0d8] hover:border-[#b8935a]/30 transition-colors">
                       {/* Header */}
                       <div
                         className="flex flex-wrap items-center justify-between gap-3 p-5 cursor-pointer"
@@ -1196,13 +1196,13 @@ export default function Admin() {
                         <div className="flex items-center gap-1">
                           {orderStatusFlow.map((s, i) => (
                             <div key={s} className="flex items-center flex-1">
-                              <div className={`h-1.5 flex-1 rounded-full ${i <= statusIdx ? 'bg-[#c4a47a]' : 'bg-[#e8e0d8]'}`} />
+                              <div className={`h-1.5 flex-1 rounded-full ${i <= statusIdx ? 'bg-[#b8935a]' : 'bg-[#e8e0d8]'}`} />
                             </div>
                           ))}
                         </div>
                         <div className="flex justify-between mt-1">
                           {orderStatusFlow.map((s, i) => (
-                            <span key={s} className={`text-[8px] ${i <= statusIdx ? 'text-[#c4a47a]' : 'text-[#2d2a26]/20'}`}>
+                            <span key={s} className={`text-[8px] ${i <= statusIdx ? 'text-[#b8935a]' : 'text-[#2d2a26]/20'}`}>
                               {statusLabels[s]?.label}
                             </span>
                           ))}
@@ -1277,21 +1277,21 @@ export default function Admin() {
                             {nextAction && (
                               <button
                                 onClick={() => advanceOrderStatus(o.id)}
-                                className="px-4 py-2 bg-[#c4a47a] text-white text-xs hover:bg-[#b8956a] transition-colors"
+                                className="px-4 py-2 bg-[#b8935a] text-white text-xs hover:bg-[#b8956a] transition-colors"
                               >
                                 ▶ {nextAction}
                               </button>
                             )}
                             <button
                               onClick={() => printOrderReceipt(o)}
-                              className="px-4 py-2 border border-[#e8e0d8] text-[#2d2a26] text-xs hover:border-[#c4a47a] hover:bg-[#c4a47a] hover:text-white transition-colors"
+                              className="px-4 py-2 border border-[#e8e0d8] text-[#2d2a26] text-xs hover:border-[#b8935a] hover:bg-[#b8935a] hover:text-white transition-colors"
                             >
                               🖨 Imprimer
                             </button>
                             <select
                               value={o.status}
                               onChange={e => updateOrderStatus(o.id, e.target.value as Order['status'])}
-                              className="text-xs border border-[#e8e0d8] px-3 py-2 focus:outline-none focus:border-[#c4a47a]"
+                              className="text-xs border border-[#e8e0d8] px-3 py-2 focus:outline-none focus:border-[#b8935a]"
                             >
                               <option value="pending">En attente</option>
                               <option value="confirmed">Confirmée</option>
@@ -1407,7 +1407,7 @@ export default function Admin() {
                           return (
                             <div key={w.id} className="bg-[#faf8f5] border border-[#e8e0d8] p-3 rounded text-sm">
                               <p className="font-medium text-[#2d2a26] text-xs">{w.name}</p>
-                              <p className="text-[10px] text-[#c4a47a] mt-1">📅 {w.date}</p>
+                              <p className="text-[10px] text-[#b8935a] mt-1">📅 {w.date}</p>
                               <p className={`text-[10px] mt-0.5 ${days < 30 ? 'text-red-500 font-medium' : 'text-[#2d2a26]/40'}`}>
                                 {days > 0 ? `J-${days}` : days === 0 ? "Aujourd'hui !" : 'Passé'}
                               </p>
@@ -1415,13 +1415,13 @@ export default function Admin() {
                               <div className="flex gap-1 mt-2">
                                 <button
                                   onClick={() => advanceWeddingStatus(w.id, -1)}
-                                  className="text-[10px] px-2 py-1 border border-[#e8e0d8] text-[#2d2a26]/40 hover:border-[#c4a47a] rounded"
+                                  className="text-[10px] px-2 py-1 border border-[#e8e0d8] text-[#2d2a26]/40 hover:border-[#b8935a] rounded"
                                 >
                                   ◀
                                 </button>
                                 <button
                                   onClick={() => advanceWeddingStatus(w.id, 1)}
-                                  className="text-[10px] px-2 py-1 border border-[#e8e0d8] text-[#2d2a26]/40 hover:border-[#c4a47a] rounded"
+                                  className="text-[10px] px-2 py-1 border border-[#e8e0d8] text-[#2d2a26]/40 hover:border-[#b8935a] rounded"
                                 >
                                   ▶
                                 </button>
@@ -1445,7 +1445,7 @@ export default function Admin() {
 
             {/* MRR section */}
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-8">
-              <div className="bg-gradient-to-br from-[#c4a47a] to-[#b8956a] text-white p-6 rounded-lg">
+              <div className="bg-gradient-to-br from-[#b8935a] to-[#b8956a] text-white p-6 rounded-lg">
                 <div className="text-[10px] tracking-[0.12em] uppercase opacity-80 mb-2">Revenue récurrent mensuel</div>
                 <div className="font-serif text-4xl mb-2">{mrr.toFixed(0)}€</div>
                 <div className="text-sm opacity-90">+12% vs mois dernier</div>
@@ -1471,7 +1471,7 @@ export default function Admin() {
                 const revenue = subscriptions.filter(s => s.formula === key && s.status === 'active').reduce((sum, s) => sum + s.price, 0);
                 
                 return (
-                  <div key={key} className="bg-white border border-[#e8e0d8] p-5 hover:border-[#c4a47a]/30 transition-colors">
+                  <div key={key} className="bg-white border border-[#e8e0d8] p-5 hover:border-[#b8935a]/30 transition-colors">
                     <div className="flex items-center justify-between mb-3">
                       <span className={`text-[10px] px-2 py-0.5 rounded ${formula.color}`}>
                         {formula.label}
@@ -1484,7 +1484,7 @@ export default function Admin() {
                         <div className="text-[10px] text-[#2d2a26]/40">abonnés actifs</div>
                       </div>
                       <div className="text-right">
-                        <div className="text-sm text-[#c4a47a]">{revenue.toFixed(0)}€</div>
+                        <div className="text-sm text-[#b8935a]">{revenue.toFixed(0)}€</div>
                         <div className="text-[10px] text-[#2d2a26]/40">revenu/mois</div>
                       </div>
                     </div>
@@ -1526,7 +1526,7 @@ export default function Admin() {
                         </td>
                         <td className="px-4 py-3 text-right text-xs hidden md:table-cell">
                           {s.nextDelivery && daysUntilNext !== null ? (
-                            <span className={daysUntilNext <= 3 ? 'text-[#c4a47a] font-medium' : 'text-[#2d2a26]/60'}>
+                            <span className={daysUntilNext <= 3 ? 'text-[#b8935a] font-medium' : 'text-[#2d2a26]/60'}>
                               {daysUntilNext <= 0 ? "Aujourd'hui" : daysUntilNext === 1 ? "Demain" : `J-${daysUntilNext}`}
                               <span className="text-[#2d2a26]/30 ml-1">({new Date(s.nextDelivery).toLocaleDateString('fr-FR')})</span>
                             </span>
@@ -1556,7 +1556,7 @@ export default function Admin() {
                   <button
                     key={f.v}
                     onClick={() => setDeliveryFilter(f.v)}
-                    className={`px-3 py-1.5 text-xs rounded transition-colors ${deliveryFilter === f.v ? 'bg-[#c4a47a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
+                    className={`px-3 py-1.5 text-xs rounded transition-colors ${deliveryFilter === f.v ? 'bg-[#b8935a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
                   >
                     {f.l}
                   </button>
@@ -1572,7 +1572,7 @@ export default function Admin() {
                   <button
                     key={f.v}
                     onClick={() => setDeliveryCarrierFilter(f.v)}
-                    className={`px-3 py-1.5 text-xs rounded transition-colors ${deliveryCarrierFilter === f.v ? 'bg-[#c4a47a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
+                    className={`px-3 py-1.5 text-xs rounded transition-colors ${deliveryCarrierFilter === f.v ? 'bg-[#b8935a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
                   >
                     {f.l}
                   </button>
@@ -1588,7 +1588,7 @@ export default function Admin() {
             ) : (
               <div className="space-y-3">
                 {filteredDeliveries.map(d => (
-                  <div key={d.id} className="bg-white border border-[#e8e0d8] p-5 flex flex-wrap items-center justify-between gap-3 hover:border-[#c4a47a]/30 transition-colors">
+                  <div key={d.id} className="bg-white border border-[#e8e0d8] p-5 flex flex-wrap items-center justify-between gap-3 hover:border-[#b8935a]/30 transition-colors">
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
                         <span className="text-xs text-[#2d2a26]/30">{d.orderNumber}</span>
@@ -1638,7 +1638,7 @@ export default function Admin() {
                   <button
                     key={f.v}
                     onClick={() => setStatsDateFilter(f.v)}
-                    className={`px-3 py-1.5 text-xs rounded transition-colors ${statsDateFilter === f.v ? 'bg-[#c4a47a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
+                    className={`px-3 py-1.5 text-xs rounded transition-colors ${statsDateFilter === f.v ? 'bg-[#b8935a] text-white' : 'text-[#2d2a26]/60 hover:bg-[#f5f0eb]'}`}
                   >
                     {f.l}
                   </button>
@@ -1648,7 +1648,7 @@ export default function Admin() {
 
             {/* KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-              <div className="bg-gradient-to-br from-[#c4a47a] to-[#b8956a] text-white p-6 rounded-lg">
+              <div className="bg-gradient-to-br from-[#b8935a] to-[#b8956a] text-white p-6 rounded-lg">
                 <div className="text-[10px] tracking-[0.12em] uppercase opacity-80 mb-2">Chiffre d'affaires</div>
                 <div className="font-serif text-3xl mb-2">{totalRevenue.toFixed(0)}€</div>
                 <div className="text-sm opacity-90">+8% vs période précédente</div>
@@ -1681,7 +1681,7 @@ export default function Admin() {
                       <div className="text-xs text-[#2d2a26]/60">{val}€</div>
                       <div className="w-full bg-[#f5f0eb] rounded-t relative flex-1">
                         <div
-                          className="absolute bottom-0 w-full bg-gradient-to-t from-[#c4a47a] to-[#c4a47a]/70 rounded-t transition-all duration-500"
+                          className="absolute bottom-0 w-full bg-gradient-to-t from-[#b8935a] to-[#b8935a]/70 rounded-t transition-all duration-500"
                           style={{ height: `${(val / 340) * 100}%` }}
                         />
                       </div>
@@ -1708,7 +1708,7 @@ export default function Admin() {
                         </div>
                         <div className="h-6 bg-[#f5f0eb] rounded-full overflow-hidden">
                           <div 
-                            className="h-full bg-gradient-to-r from-[#c4a47a] to-[#b8956a] rounded-full transition-all duration-700" 
+                            className="h-full bg-gradient-to-r from-[#b8935a] to-[#b8956a] rounded-full transition-all duration-700" 
                             style={{ width: `${(total / maxCategorySale) * 100}%` }} 
                           />
                         </div>
@@ -1728,7 +1728,7 @@ export default function Admin() {
                     {topProducts.map(([name, count], i) => (
                       <div key={name} className="flex items-center gap-4">
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-medium ${
-                          i === 0 ? 'bg-amber-500' : i === 1 ? 'bg-gray-400' : i === 2 ? 'bg-amber-600' : 'bg-[#c4a47a]'
+                          i === 0 ? 'bg-amber-500' : i === 1 ? 'bg-gray-400' : i === 2 ? 'bg-amber-600' : 'bg-[#b8935a]'
                         }`}>
                           #{i + 1}
                         </div>
@@ -1736,7 +1736,7 @@ export default function Admin() {
                           <p className="text-sm text-[#2d2a26] font-medium truncate">{name}</p>
                           <div className="h-3 bg-[#f5f0eb] rounded-full mt-1 overflow-hidden">
                             <div 
-                              className="h-full bg-[#c4a47a] rounded-full transition-all duration-700" 
+                              className="h-full bg-[#b8935a] rounded-full transition-all duration-700" 
                               style={{ width: `${(count / (topProducts[0]?.[1] || 1)) * 100}%` }} 
                             />
                           </div>
@@ -1758,7 +1758,7 @@ export default function Admin() {
                     <select
                       value={statsSortBy}
                       onChange={e => setStatsSortBy(e.target.value as any)}
-                      className="text-xs border border-[#e8e0d8] px-3 py-2 focus:outline-none focus:border-[#c4a47a]"
+                      className="text-xs border border-[#e8e0d8] px-3 py-2 focus:outline-none focus:border-[#b8935a]"
                     >
                       <option value="date">Trier par date</option>
                       <option value="amount">Trier par montant</option>
@@ -1766,7 +1766,7 @@ export default function Admin() {
                     </select>
                     <button
                       onClick={() => setStatsSortOrder(statsSortOrder === 'asc' ? 'desc' : 'asc')}
-                      className="px-3 py-2 border border-[#e8e0d8] text-xs hover:border-[#c4a47a] transition-colors"
+                      className="px-3 py-2 border border-[#e8e0d8] text-xs hover:border-[#b8935a] transition-colors"
                     >
                       {statsSortOrder === 'asc' ? '↑' : '↓'}
                     </button>

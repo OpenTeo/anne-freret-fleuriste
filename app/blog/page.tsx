@@ -31,13 +31,13 @@ export default function BlogPage() {
         {/* Hero — fond crème, pas de photo */}
         <section className="py-16 md:py-24 text-center">
           <div className="max-w-2xl mx-auto px-6">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-[#c4a47a] mb-6">
+            <div className="text-[10px] uppercase tracking-[0.3em] text-[#b8935a] mb-6">
               Le Journal Floral
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2d2a26] mb-6 leading-tight">
               Conseils & Inspirations
             </h1>
-            <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+            <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
             <p className="text-lg text-[#2d2a26]/60 font-light leading-relaxed">
               Nos secrets de fleuriste, inspirations saisonnières et idées 
               pour sublimer votre quotidien avec des fleurs.
@@ -46,11 +46,11 @@ export default function BlogPage() {
         </section>
 
         {/* Filtres */}
-        <section className="py-12 border-b border-[#c4a47a]/20">
+        <section className="py-12 border-b border-[#b8935a]/20">
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-8">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-4">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-4">
                 Filtrer par catégorie
               </div>
             </div>
@@ -62,8 +62,8 @@ export default function BlogPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full transition-all duration-300 border text-sm ${
                     selectedCategory === category
-                      ? 'bg-[#c4a47a] text-white border-[#c4a47a]'
-                      : 'bg-transparent text-[#2d2a26] border-[#c4a47a]/30 hover:bg-[#c4a47a] hover:text-white hover:border-[#c4a47a]'
+                      ? 'bg-[#b8935a] text-white border-[#b8935a]'
+                      : 'bg-transparent text-[#2d2a26] border-[#b8935a]/30 hover:bg-[#b8935a] hover:text-white hover:border-[#b8935a]'
                   }`}
                 >
                   {category}
@@ -103,12 +103,12 @@ export default function BlogPage() {
                     {/* Content */}
                     <div className="p-6">
                       {/* Category */}
-                      <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-4">
+                      <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-4">
                         {post.category}
                       </div>
 
                       {/* Title */}
-                      <h3 className="text-xl md:text-2xl font-serif text-[#2d2a26] mb-4 leading-tight group-hover:text-[#c4a47a] transition-colors">
+                      <h3 className="text-xl md:text-2xl font-serif text-[#2d2a26] mb-4 leading-tight group-hover:text-[#b8935a] transition-colors">
                         {post.title}
                       </h3>
 
@@ -131,8 +131,8 @@ export default function BlogPage() {
                         </div>
                       </div>
 
-                      <div className="mt-6 pt-6 border-t border-[#c4a47a]/20">
-                        <span className="text-[#c4a47a] group-hover:text-[#b8956a] transition-colors underline">
+                      <div className="mt-6 pt-6 border-t border-[#b8935a]/20">
+                        <span className="text-[#b8935a] group-hover:text-[#b8956a] transition-colors underline">
                           Lire la suite
                         </span>
                       </div>
@@ -149,7 +149,7 @@ export default function BlogPage() {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Newsletter
               </div>
               
@@ -157,7 +157,7 @@ export default function BlogPage() {
                 Restez Inspiré
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light mb-12 leading-relaxed">
                 Recevez nos derniers conseils floraux et inspirations directement dans votre boîte mail.
@@ -167,9 +167,9 @@ export default function BlogPage() {
                 <input
                   type="email"
                   placeholder="Votre adresse email"
-                  className="flex-1 px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#c4a47a] transition-colors"
+                  className="flex-1 px-4 py-3 border border-[#e8e0d8] text-[#2d2a26] font-light focus:outline-none focus:border-[#b8935a] transition-colors"
                 />
-                <button className="bg-[#c4a47a] text-white px-8 py-3 hover:bg-[#b8956a] transition-colors duration-300 whitespace-nowrap">
+                <button className="bg-[#b8935a] text-white px-8 py-3 hover:bg-[#b8956a] transition-colors duration-300 whitespace-nowrap">
                   S'abonner
                 </button>
               </div>

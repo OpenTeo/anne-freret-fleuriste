@@ -26,7 +26,7 @@ export default function Informations() {
     }
   }, [user, isLoading, router]);
 
-  const inputClass = "w-full px-4 py-3.5 bg-white border border-[#e8e0d8] text-[#2d2a26] placeholder-[#9a9490] focus:outline-none focus:border-[#c4a47a] transition-colors duration-200 text-sm";
+  const inputClass = "w-full px-4 py-3.5 bg-white border border-[#e8e0d8] text-[#2d2a26] placeholder-[#9a9490] focus:outline-none focus:border-[#b8935a] transition-colors duration-200 text-sm";
   const labelClass = "block text-[10px] tracking-[0.15em] uppercase text-[#2d2a26]/60 mb-2";
 
   const handleSave = (e: React.FormEvent) => {
@@ -44,7 +44,7 @@ export default function Informations() {
       <main className="bg-[#faf8f5] min-h-screen pt-14 md:pt-20">
         <section className="py-16 md:py-24">
           <div className="max-w-lg mx-auto px-4">
-            <button onClick={() => router.push('/compte')} className="text-[#c4a47a] text-sm hover:underline mb-6 inline-block">← Mon compte</button>
+            <button onClick={() => router.push('/compte')} className="text-[#b8935a] text-sm hover:underline mb-6 inline-block">← Mon compte</button>
             
             <h1 className="font-serif text-2xl md:text-3xl text-[#2d2a26] mb-8">Mes informations</h1>
 
@@ -72,7 +72,7 @@ export default function Informations() {
                 <label className={labelClass}>Téléphone</label>
                 <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} className={inputClass} />
               </div>
-              <button type="submit" className="w-full py-4 bg-[#c4a47a] text-white hover:bg-[#b8956a] transition-colors duration-300 text-sm">
+              <button type="submit" className="w-full py-4 bg-[#b8935a] text-white hover:bg-[#b8956a] transition-colors duration-300 text-sm">
                 Enregistrer les modifications
               </button>
             </form>

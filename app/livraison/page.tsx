@@ -33,7 +33,7 @@ export default function Livraison() {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center mb-16">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-8">
                 Livraison de fleurs fraîches
               </div>
               
@@ -41,7 +41,7 @@ export default function Livraison() {
                 Livraison Partout en France
               </h1>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light max-w-3xl mx-auto leading-relaxed mb-12">
                 Vos créations florales livrées avec le plus grand soin depuis Saint-Pair-sur-Mer. 
@@ -61,7 +61,7 @@ export default function Livraison() {
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Notre Processus
               </div>
               
@@ -69,7 +69,7 @@ export default function Livraison() {
                 Comment Ça Marche
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
                 Un processus simple en 3 étapes pour une livraison parfaite.
@@ -79,11 +79,11 @@ export default function Livraison() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               
               <div className="text-center">
-                <div className="text-6xl font-serif text-[#c4a47a] mb-6">1</div>
+                <div className="text-6xl font-serif text-[#b8935a] mb-6">1</div>
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                   Commandez
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Sélectionnez votre création florale et personnalisez votre commande. 
                   Choisissez votre date et créneau de livraison.
@@ -91,11 +91,11 @@ export default function Livraison() {
               </div>
 
               <div className="text-center">
-                <div className="text-6xl font-serif text-[#c4a47a] mb-6">2</div>
+                <div className="text-6xl font-serif text-[#b8935a] mb-6">2</div>
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                   Préparation Artisanale
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Notre fleuriste prépare votre commande avec des fleurs fraîches du jour, 
                   sélectionnées avec soin dans notre atelier.
@@ -103,11 +103,11 @@ export default function Livraison() {
               </div>
 
               <div className="text-center">
-                <div className="text-6xl font-serif text-[#c4a47a] mb-6">3</div>
+                <div className="text-6xl font-serif text-[#b8935a] mb-6">3</div>
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                   Livraison Soignée
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Livraison en douceur dans notre emballage protecteur spécial. 
                   SMS de confirmation avec photo à la réception.
@@ -122,7 +122,7 @@ export default function Livraison() {
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Zones de Livraison
               </div>
               
@@ -130,7 +130,7 @@ export default function Livraison() {
                 Calculez Vos Frais de Livraison
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
                 Découvrez nos tarifs selon votre localisation depuis notre atelier de Saint-Pair-sur-Mer.
@@ -148,7 +148,7 @@ export default function Livraison() {
               <div className="border border-[#e8e0d8] p-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 flex items-center justify-center border border-[#e8e0d8] bg-[#faf8f5]">
-                    <svg className="w-5 h-5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+                    <svg className="w-5 h-5 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
                   </div>
                   <div>
                     <p className="text-sm text-[#2d2a26]">Livraison locale</p>
@@ -160,7 +160,7 @@ export default function Livraison() {
                   <div className="flex justify-between border-b border-[#e8e0d8]/50 pb-1"><span>5 a 10 km</span><span>8,00 €</span></div>
                   <div className="flex justify-between"><span>10 a 35 km</span><span>10,00 €</span></div>
                 </div>
-                <p className="text-[10px] text-[#c4a47a] mt-3">Offerte des 60 € d&apos;achat</p>
+                <p className="text-[10px] text-[#b8935a] mt-3">Offerte des 60 € d&apos;achat</p>
               </div>
 
               {/* Colissimo */}
@@ -193,7 +193,7 @@ export default function Livraison() {
                 </div>
                 <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
                   <div className="flex justify-between"><span>France metropolitaine</span><span>18,90 €</span></div>
-                  <div className="flex justify-between"><span>Suivi en temps reel</span><span className="text-[#c4a47a]">Inclus</span></div>
+                  <div className="flex justify-between"><span>Suivi en temps reel</span><span className="text-[#b8935a]">Inclus</span></div>
                 </div>
                 <p className="text-[10px] mt-3" style={{ color: '#D4003C' }}>Offerte des 90 € d&apos;achat</p>
               </div>
@@ -207,7 +207,7 @@ export default function Livraison() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               
               <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                   Emballage Spécial
                 </div>
 
@@ -215,7 +215,7 @@ export default function Livraison() {
                   Protection Parfaite
                 </h2>
 
-                <div className="w-16 h-px bg-[#c4a47a] mb-8"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-8"></div>
 
                 <p className="text-xl text-[#2d2a26] font-light leading-relaxed mb-8">
                   Chaque bouquet voyage dans notre emballage protecteur spécialement conçu 
@@ -224,19 +224,19 @@ export default function Livraison() {
 
                 <div className="space-y-4 mb-8">
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#c4a47a] rounded-full mt-2"></div>
+                    <div className="w-2 h-2 bg-[#b8935a] rounded-full mt-2"></div>
                     <span className="text-[#2d2a26] font-light">Protection contre les chocs</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#c4a47a] rounded-full mt-2"></div>
+                    <div className="w-2 h-2 bg-[#b8935a] rounded-full mt-2"></div>
                     <span className="text-[#2d2a26] font-light">Maintien de l'hydratation</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#c4a47a] rounded-full mt-2"></div>
+                    <div className="w-2 h-2 bg-[#b8935a] rounded-full mt-2"></div>
                     <span className="text-[#2d2a26] font-light">Emballage éco-responsable</span>
                   </div>
                   <div className="flex items-start space-x-3">
-                    <div className="w-2 h-2 bg-[#c4a47a] rounded-full mt-2"></div>
+                    <div className="w-2 h-2 bg-[#b8935a] rounded-full mt-2"></div>
                     <span className="text-[#2d2a26] font-light">Présentation soignée à l'arrivée</span>
                   </div>
                 </div>
@@ -258,7 +258,7 @@ export default function Livraison() {
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Nos Garanties
               </div>
               
@@ -266,7 +266,7 @@ export default function Livraison() {
                 Nos Engagements Qualité
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
                 Votre satisfaction est notre priorité.
@@ -279,7 +279,7 @@ export default function Livraison() {
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                   Fraîcheur 72h
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Nous garantissons la fraîcheur de vos fleurs pendant au minimum 72h 
                   après la livraison ou nous les remplaçons.
@@ -290,7 +290,7 @@ export default function Livraison() {
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                   Satisfait ou Remplacé
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Si votre bouquet ne correspond pas à vos attentes, 
                   nous le remplaçons gratuitement dans les 24h.
@@ -301,7 +301,7 @@ export default function Livraison() {
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                   Emballage Protecteur
                 </h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Emballage spécialisé qui préserve vos fleurs pendant le transport 
                   et garantit une présentation parfaite.
@@ -316,7 +316,7 @@ export default function Livraison() {
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 FAQ
               </div>
               
@@ -324,7 +324,7 @@ export default function Livraison() {
                 Questions Fréquentes
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
                 Toutes les réponses sur nos services de livraison.
@@ -334,7 +334,7 @@ export default function Livraison() {
             <div className="max-w-4xl mx-auto">
               <div className="space-y-8">
                 {faqItems.map((item, index) => (
-                  <div key={index} className="border-b border-[#c4a47a]/20 pb-8">
+                  <div key={index} className="border-b border-[#b8935a]/20 pb-8">
                     <h3 className="text-xl font-serif text-[#2d2a26] mb-4">
                       {item.question}
                     </h3>
@@ -354,7 +354,7 @@ export default function Livraison() {
                   Une Autre Question ?
                 </h3>
                 
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 
                 <p className="text-[#2d2a26] font-light mb-8 leading-relaxed">
                   Notre équipe est disponible pour répondre à toutes vos questions 
@@ -364,13 +364,13 @@ export default function Livraison() {
                 <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8">
                   <a 
                     href="tel:0233502615"
-                    className="bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
+                    className="bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
                   >
                     02 33 50 26 15
                   </a>
                   <a 
                     href="/contact"
-                    className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                    className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors"
                   >
                     Nous écrire
                   </a>

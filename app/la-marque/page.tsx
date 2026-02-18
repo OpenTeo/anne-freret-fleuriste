@@ -32,7 +32,7 @@ export default function LaMarque() {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-10">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-10">
                 Qui sommes-nous
               </div>
 
@@ -42,11 +42,11 @@ export default function LaMarque() {
               <h1 className="font-serif text-[#2d2a26] mb-3 leading-none">
                 <span className="block text-5xl md:text-7xl lg:text-8xl uppercase tracking-[0.15em]">FRERET</span>
               </h1>
-              <div className="text-[11px] md:text-[13px] uppercase tracking-[0.35em] text-[#c4a47a] mb-10">
+              <div className="text-[11px] md:text-[13px] uppercase tracking-[0.35em] text-[#b8935a] mb-10">
                 — fleuriste —
               </div>
 
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-10"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-10"></div>
 
               <p className="text-lg md:text-xl text-[#2d2a26]/70 font-light leading-relaxed max-w-2xl mx-auto italic">
                 Quand les fleurs racontent l'histoire d'une vie — de Lessay à Saint-Pair-sur-Mer, 
@@ -62,14 +62,14 @@ export default function LaMarque() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               
               <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                   Notre Histoire
                 </div>
                 <h2 className="text-4xl md:text-5xl font-serif text-[#2d2a26] mb-8 leading-tight">
                   Une Passion Normande
                 </h2>
                 
-                <div className="w-16 h-px bg-[#c4a47a] mb-8"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-8"></div>
                 
                 <div className="space-y-6 text-[#2d2a26] font-light leading-relaxed text-lg">
                   <p>
@@ -121,13 +121,13 @@ export default function LaMarque() {
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Nos Valeurs
               </div>
               <h2 className="text-4xl md:text-5xl font-serif text-[#2d2a26] mb-8">
                 L'Excellence au Quotidien
               </h2>
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               <p className="text-xl text-[#2d2a26] font-light max-w-3xl mx-auto leading-relaxed">
                 Les principes qui guident notre travail quotidien et donnent du sens 
                 à chacune de nos créations florales.
@@ -140,7 +140,7 @@ export default function LaMarque() {
                   <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">
                     {value.title}
                   </h3>
-                  <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                  <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                   <p className="text-[#2d2a26] font-light leading-relaxed text-lg">
                     {value.description}
                   </p>
@@ -164,14 +164,14 @@ export default function LaMarque() {
               </div>
 
               <div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                   Savoir-faire
                 </div>
                 <h2 className="text-4xl md:text-5xl font-serif text-[#2d2a26] mb-8 leading-tight">
                   L'Art de la Composition
                 </h2>
                 
-                <div className="w-16 h-px bg-[#c4a47a] mb-8"></div>
+                <div className="w-16 h-px bg-[#b8935a] mb-8"></div>
                 
                 <div className="space-y-6 text-[#2d2a26] font-light leading-relaxed text-lg">
                   <p>
@@ -190,7 +190,7 @@ export default function LaMarque() {
                 <div className="mt-12">
                   <a
                     href="/boutique"
-                    className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                    className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors"
                   >
                     Découvrir nos créations
                   </a>
@@ -205,7 +205,7 @@ export default function LaMarque() {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="max-w-4xl mx-auto text-center">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Engagement Local
               </div>
               
@@ -213,7 +213,7 @@ export default function LaMarque() {
                 Fiers d'être Normands
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <div className="space-y-6 text-[#2d2a26] font-light leading-relaxed text-lg mb-12">
                 <p>
@@ -231,15 +231,15 @@ export default function LaMarque() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">Origine</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-2">Origine</div>
                   <div className="text-[#2d2a26] font-light">Fleurs locales</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">Partenaires</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-2">Partenaires</div>
                   <div className="text-[#2d2a26] font-light">Producteurs normands</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">Qualité</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-2">Qualité</div>
                   <div className="text-[#2d2a26] font-light">Fraîcheur garantie</div>
                 </div>
               </div>
@@ -252,7 +252,7 @@ export default function LaMarque() {
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Rencontrons-nous
               </div>
               
@@ -260,7 +260,7 @@ export default function LaMarque() {
                 Votre Projet, Notre Passion
               </h2>
               
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light mb-12 leading-relaxed">
                 Venez découvrir notre atelier et discutons ensemble de vos projets floraux. 
@@ -270,13 +270,13 @@ export default function LaMarque() {
               <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8">
                 <a
                   href="/contact"
-                  className="bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
+                  className="bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
                 >
                   Prendre rendez-vous
                 </a>
                 <a
                   href="/galerie"
-                  className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                  className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors"
                 >
                   Voir nos créations
                 </a>

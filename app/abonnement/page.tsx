@@ -120,7 +120,7 @@ function AbonnementContent() {
   const canProceedStep3 = address && postalCode && city && (deliveryFirstName || !isGift) && preferredDay;
   const canProceedStep4 = firstName && lastName && email && phone;
 
-  const inputClass = "w-full px-4 py-3.5 bg-white border border-[#e8e0d8] text-[#2d2a26] placeholder-[#9a9490] focus:outline-none focus:border-[#c4a47a] transition-colors duration-200 text-sm";
+  const inputClass = "w-full px-4 py-3.5 bg-white border border-[#e8e0d8] text-[#2d2a26] placeholder-[#9a9490] focus:outline-none focus:border-[#b8935a] transition-colors duration-200 text-sm";
   const labelClass = "block text-[10px] tracking-[0.15em] uppercase text-[#2d2a26]/60 mb-2";
 
   if (confirmed) {
@@ -130,15 +130,15 @@ function AbonnementContent() {
         <main className="bg-[#faf8f5] min-h-screen pt-14 md:pt-20">
           <section className="py-28 md:py-40 text-center">
             <div className="max-w-lg mx-auto px-4">
-              <svg className="w-16 h-16 mx-auto mb-8 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <svg className="w-16 h-16 mx-auto mb-8 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
               <h1 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">Merci pour votre inscription !</h1>
-              <div className="w-12 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+              <div className="w-12 h-px bg-[#b8935a] mx-auto mb-6"></div>
               <p className="text-[#2d2a26]/60 mb-8 leading-relaxed">
                 Votre abonnement <strong>{currentPlan.name}</strong> est enregistré.
                 Votre première livraison sera préparée avec soin et envoyée sous 48h.
               </p>
               <div className="bg-white border border-[#e8e0d8] p-8 mb-8 text-left">
-                <p className="text-[10px] tracking-[0.2em] uppercase text-[#c4a47a] mb-4">Récapitulatif</p>
+                <p className="text-[10px] tracking-[0.2em] uppercase text-[#b8935a] mb-4">Récapitulatif</p>
                 <div className="space-y-2 text-sm text-[#2d2a26]/70">
                   <p><span className="text-[#2d2a26]">Formule :</span> {currentPlan.name} — {pricePerDelivery.toFixed(2)}€/livraison</p>
                   <p><span className="text-[#2d2a26]">Fréquence :</span> {currentFrequency.label}</p>
@@ -165,11 +165,11 @@ function AbonnementContent() {
         {/* Hero compact */}
         <section className="py-12 md:py-16 text-center">
           <div className="max-w-3xl mx-auto px-4">
-            <p className="text-[#c4a47a] text-[10px] tracking-[0.3em] uppercase mb-3">Abonnement</p>
+            <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-3">Abonnement</p>
             <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#2d2a26] mb-4">
               L'Abonnement Floral
             </h1>
-            <div className="w-12 h-px bg-[#c4a47a] mx-auto mb-4"></div>
+            <div className="w-12 h-px bg-[#b8935a] mx-auto mb-4"></div>
             <p className="text-[#2d2a26]/50 text-sm max-w-md mx-auto">
               Des fleurs fraîches de saison livrées chez vous. Chaque bouquet est une surprise.
             </p>
@@ -184,7 +184,7 @@ function AbonnementContent() {
                 <div key={s.id} className="flex items-center flex-1">
                   <div className="flex flex-col items-center">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs transition-all duration-300 ${
-                      step >= s.id ? 'bg-[#c4a47a] text-white' : 'border border-[#e8e0d8] text-[#2d2a26]/30'
+                      step >= s.id ? 'bg-[#b8935a] text-white' : 'border border-[#e8e0d8] text-[#2d2a26]/30'
                     }`}>
                       {step > s.id ? '✓' : s.id}
                     </div>
@@ -194,7 +194,7 @@ function AbonnementContent() {
                   </div>
                   {i < steps.length - 1 && (
                     <div className={`flex-1 h-px mx-3 mt-[-16px] transition-colors duration-300 ${
-                      step > s.id ? 'bg-[#c4a47a]' : 'bg-[#e8e0d8]'
+                      step > s.id ? 'bg-[#b8935a]' : 'bg-[#e8e0d8]'
                     }`} />
                   )}
                 </div>
@@ -222,16 +222,16 @@ function AbonnementContent() {
                           onClick={() => setSelectedPlan(plan.id)}
                           className={`relative text-left p-6 md:p-8 bg-white transition-all duration-300 ${
                             selectedPlan === plan.id 
-                              ? 'border-2 border-[#c4a47a] shadow-lg' 
-                              : 'border border-[#e8e0d8] hover:border-[#c4a47a]/50'
+                              ? 'border-2 border-[#b8935a] shadow-lg' 
+                              : 'border border-[#e8e0d8] hover:border-[#b8935a]/50'
                           }`}
                         >
                           {plan.popular && (
-                            <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#c4a47a] text-white text-[8px] tracking-[0.15em] uppercase px-3 py-0.5">
+                            <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#b8935a] text-white text-[8px] tracking-[0.15em] uppercase px-3 py-0.5">
                               Populaire
                             </div>
                           )}
-                          <p className="text-[10px] tracking-[0.2em] uppercase text-[#c4a47a] mb-1">{plan.name}</p>
+                          <p className="text-[10px] tracking-[0.2em] uppercase text-[#b8935a] mb-1">{plan.name}</p>
                           <p className="text-[#2d2a26]/40 text-xs mb-1">Diamètre {plan.diameter}</p>
                           <p className="text-[#2d2a26]/50 text-sm mb-4">{plan.description}</p>
                           <div className="mb-6">
@@ -241,7 +241,7 @@ function AbonnementContent() {
                           <ul className="space-y-2">
                             {plan.features.map((f, i) => (
                               <li key={i} className="flex items-start gap-2 text-xs text-[#2d2a26]/60 font-light">
-                                <span className="text-[#c4a47a] mt-0.5 text-[10px]">✓</span>{f}
+                                <span className="text-[#b8935a] mt-0.5 text-[10px]">✓</span>{f}
                               </li>
                             ))}
                           </ul>
@@ -260,13 +260,13 @@ function AbonnementContent() {
                           onClick={() => setSelectedFrequency(freq.id)}
                           className={`px-6 py-4 text-sm transition-all duration-300 ${
                             selectedFrequency === freq.id
-                              ? 'bg-[#c4a47a] text-white'
-                              : 'bg-white border border-[#e8e0d8] text-[#2d2a26] hover:border-[#c4a47a]'
+                              ? 'bg-[#b8935a] text-white'
+                              : 'bg-white border border-[#e8e0d8] text-[#2d2a26] hover:border-[#b8935a]'
                           }`}
                         >
                           <span className="block">{freq.label}</span>
                           {freq.discount > 0 && (
-                            <span className={`text-[10px] ${selectedFrequency === freq.id ? 'text-white/80' : 'text-[#c4a47a]'}`}>
+                            <span className={`text-[10px] ${selectedFrequency === freq.id ? 'text-white/80' : 'text-[#b8935a]'}`}>
                               -{freq.discount}% par livraison
                             </span>
                           )}
@@ -285,13 +285,13 @@ function AbonnementContent() {
                           onClick={() => setSelectedDuration(dur.id)}
                           className={`px-4 py-4 text-sm transition-all duration-300 ${
                             selectedDuration === dur.id
-                              ? 'bg-[#c4a47a] text-white'
-                              : 'bg-white border border-[#e8e0d8] text-[#2d2a26] hover:border-[#c4a47a]'
+                              ? 'bg-[#b8935a] text-white'
+                              : 'bg-white border border-[#e8e0d8] text-[#2d2a26] hover:border-[#b8935a]'
                           }`}
                         >
                           <span className="block">{dur.label}</span>
                           {dur.discount > 0 && (
-                            <span className={`text-[10px] ${selectedDuration === dur.id ? 'text-white/80' : 'text-[#c4a47a]'}`}>
+                            <span className={`text-[10px] ${selectedDuration === dur.id ? 'text-white/80' : 'text-[#b8935a]'}`}>
                               -{dur.discount}%
                             </span>
                           )}
@@ -306,7 +306,7 @@ function AbonnementContent() {
                       <div 
                         onClick={() => setIsGift(!isGift)}
                         className={`w-5 h-5 border flex items-center justify-center transition-all duration-200 ${
-                          isGift ? 'bg-[#c4a47a] border-[#c4a47a]' : 'border-[#e8e0d8]'
+                          isGift ? 'bg-[#b8935a] border-[#b8935a]' : 'border-[#e8e0d8]'
                         }`}
                       >
                         {isGift && <span className="text-white text-xs">✓</span>}
@@ -329,7 +329,7 @@ function AbonnementContent() {
                   <button
                     onClick={() => setStep(2)}
                     disabled={!canProceedStep2}
-                    className="w-full md:w-auto px-12 py-4 bg-[#c4a47a] text-white hover:bg-[#b8956a] transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="w-full md:w-auto px-12 py-4 bg-[#b8935a] text-white hover:bg-[#b8956a] transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     Continuer →
                   </button>
@@ -340,13 +340,13 @@ function AbonnementContent() {
               {step === 2 && (
                 <div className="space-y-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <button onClick={() => setStep(1)} className="text-[#c4a47a] text-sm hover:underline">← Retour</button>
+                    <button onClick={() => setStep(1)} className="text-[#b8935a] text-sm hover:underline">← Retour</button>
                   </div>
                   <h2 className="font-serif text-2xl text-[#2d2a26]">Adresse de livraison</h2>
                   
                   {isGift && (
-                    <div className="bg-[#c4a47a]/5 border border-[#c4a47a]/20 p-6">
-                      <p className="text-[10px] tracking-[0.15em] uppercase text-[#c4a47a] mb-4">Destinataire du cadeau</p>
+                    <div className="bg-[#b8935a]/5 border border-[#b8935a]/20 p-6">
+                      <p className="text-[10px] tracking-[0.15em] uppercase text-[#b8935a] mb-4">Destinataire du cadeau</p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                           <label className={labelClass}>Prénom du destinataire *</label>
@@ -392,8 +392,8 @@ function AbonnementContent() {
                             onClick={() => setPreferredDay(day)}
                             className={`py-3 text-sm capitalize transition-all duration-200 ${
                               preferredDay === day
-                                ? 'bg-[#c4a47a] text-white'
-                                : 'bg-white border border-[#e8e0d8] text-[#2d2a26] hover:border-[#c4a47a]'
+                                ? 'bg-[#b8935a] text-white'
+                                : 'bg-white border border-[#e8e0d8] text-[#2d2a26] hover:border-[#b8935a]'
                             }`}
                           >
                             {day}
@@ -407,7 +407,7 @@ function AbonnementContent() {
                   <button
                     onClick={() => setStep(3)}
                     disabled={!canProceedStep3}
-                    className="w-full md:w-auto px-12 py-4 bg-[#c4a47a] text-white hover:bg-[#b8956a] transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="w-full md:w-auto px-12 py-4 bg-[#b8935a] text-white hover:bg-[#b8956a] transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     Continuer →
                   </button>
@@ -418,7 +418,7 @@ function AbonnementContent() {
               {step === 3 && (
                 <div className="space-y-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <button onClick={() => setStep(2)} className="text-[#c4a47a] text-sm hover:underline">← Retour</button>
+                    <button onClick={() => setStep(2)} className="text-[#b8935a] text-sm hover:underline">← Retour</button>
                   </div>
                   <h2 className="font-serif text-2xl text-[#2d2a26]">Vos informations</h2>
                   
@@ -445,11 +445,11 @@ function AbonnementContent() {
 
                   <div className="bg-white border border-[#e8e0d8] p-6">
                     <label className="flex items-start gap-3 cursor-pointer">
-                      <div className="w-5 h-5 mt-0.5 border border-[#c4a47a] bg-[#c4a47a] flex items-center justify-center">
+                      <div className="w-5 h-5 mt-0.5 border border-[#b8935a] bg-[#b8935a] flex items-center justify-center">
                         <span className="text-white text-xs">✓</span>
                       </div>
                       <span className="text-xs text-[#2d2a26]/60 leading-relaxed">
-                        J'accepte les <a href="/cgv" className="text-[#c4a47a] underline">conditions générales de vente</a> et la <a href="/mentions-legales" className="text-[#c4a47a] underline">politique de confidentialité</a>. Je comprends que mon abonnement sera renouvelé automatiquement selon la durée choisie.
+                        J'accepte les <a href="/cgv" className="text-[#b8935a] underline">conditions générales de vente</a> et la <a href="/mentions-legales" className="text-[#b8935a] underline">politique de confidentialité</a>. Je comprends que mon abonnement sera renouvelé automatiquement selon la durée choisie.
                       </span>
                     </label>
                   </div>
@@ -457,7 +457,7 @@ function AbonnementContent() {
                   <button
                     onClick={() => setStep(4)}
                     disabled={!canProceedStep4}
-                    className="w-full md:w-auto px-12 py-4 bg-[#c4a47a] text-white hover:bg-[#b8956a] transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="w-full md:w-auto px-12 py-4 bg-[#b8935a] text-white hover:bg-[#b8956a] transition-colors duration-300 disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     Continuer vers le paiement →
                   </button>
@@ -468,7 +468,7 @@ function AbonnementContent() {
               {step === 4 && (
                 <div className="space-y-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <button onClick={() => setStep(3)} className="text-[#c4a47a] text-sm hover:underline">← Retour</button>
+                    <button onClick={() => setStep(3)} className="text-[#b8935a] text-sm hover:underline">← Retour</button>
                   </div>
                   <h2 className="font-serif text-2xl text-[#2d2a26]">Paiement sécurisé</h2>
                   
@@ -502,7 +502,7 @@ function AbonnementContent() {
 
                   <button
                     onClick={() => setConfirmed(true)}
-                    className="w-full py-4 bg-[#c4a47a] text-white hover:bg-[#b8956a] transition-colors duration-300 text-sm tracking-wide"
+                    className="w-full py-4 bg-[#b8935a] text-white hover:bg-[#b8956a] transition-colors duration-300 text-sm tracking-wide"
                   >
                     Confirmer l'abonnement — {totalPrice.toFixed(2)}€
                   </button>
@@ -520,7 +520,7 @@ function AbonnementContent() {
             <div className="lg:col-span-1">
               <div className="sticky top-24">
                 <div className="bg-white border border-[#e8e0d8] p-6 md:p-8">
-                  <p className="text-[10px] tracking-[0.2em] uppercase text-[#c4a47a] mb-4">Votre abonnement</p>
+                  <p className="text-[10px] tracking-[0.2em] uppercase text-[#b8935a] mb-4">Votre abonnement</p>
                   
                   <h3 className="font-serif text-xl text-[#2d2a26] mb-1">{currentPlan.name}</h3>
                   <p className="text-[#2d2a26]/40 text-xs mb-4">Diamètre {currentPlan.diameter}</p>
@@ -544,13 +544,13 @@ function AbonnementContent() {
                     {currentFrequency.discount > 0 && (
                       <div className="flex justify-between">
                         <span className="text-[#2d2a26]/60">Fidélité {currentFrequency.shortLabel.toLowerCase()}</span>
-                        <span className="text-[#c4a47a]">-{currentFrequency.discount}%</span>
+                        <span className="text-[#b8935a]">-{currentFrequency.discount}%</span>
                       </div>
                     )}
                     {currentDuration.discount > 0 && (
                       <div className="flex justify-between">
                         <span className="text-[#2d2a26]/60">Engagement {currentDuration.months} mois</span>
-                        <span className="text-[#c4a47a]">-{currentDuration.discount}%</span>
+                        <span className="text-[#b8935a]">-{currentDuration.discount}%</span>
                       </div>
                     )}
                     <div className="flex justify-between">
@@ -571,7 +571,7 @@ function AbonnementContent() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-[#2d2a26]/60">Livraison</span>
-                      <span className="text-[#c4a47a]">Gratuite</span>
+                      <span className="text-[#b8935a]">Gratuite</span>
                     </div>
                     {isGift && (
                       <div className="flex justify-between">
@@ -600,9 +600,9 @@ function AbonnementContent() {
 
                   {/* Vase offert */}
                   {(selectedPlan === 'signature' || selectedPlan === 'prestige') && (
-                    <div className="mt-4 bg-[#c4a47a]/5 border border-[#c4a47a]/20 p-3 flex items-center justify-center gap-2">
-                      <svg className="w-4 h-4 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg>
-                      <p className="text-[10px] tracking-[0.15em] uppercase text-[#c4a47a]">Vase offert à la 1ère livraison</p>
+                    <div className="mt-4 bg-[#b8935a]/5 border border-[#b8935a]/20 p-3 flex items-center justify-center gap-2">
+                      <svg className="w-4 h-4 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg>
+                      <p className="text-[10px] tracking-[0.15em] uppercase text-[#b8935a]">Vase offert à la 1ère livraison</p>
                     </div>
                   )}
                 </div>
@@ -610,15 +610,15 @@ function AbonnementContent() {
                 {/* Trust */}
                 <div className="mt-4 grid grid-cols-3 gap-2 text-center">
                   <div className="p-3">
-                    <svg className="w-6 h-6 mx-auto mb-1.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>
+                    <svg className="w-6 h-6 mx-auto mb-1.5 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>
                     <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/40">Livraison gratuite</p>
                   </div>
                   <div className="p-3">
-                    <svg className="w-6 h-6 mx-auto mb-1.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+                    <svg className="w-6 h-6 mx-auto mb-1.5 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
                     <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/40">Paiement sécurisé</p>
                   </div>
                   <div className="p-3">
-                    <svg className="w-6 h-6 mx-auto mb-1.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+                    <svg className="w-6 h-6 mx-auto mb-1.5 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
                     <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/40">Sans engagement</p>
                   </div>
                 </div>
@@ -642,9 +642,9 @@ function AbonnementContent() {
                 { q: 'Et si je ne suis pas chez moi ?', a: 'Le livreur déposera votre bouquet chez un voisin ou en point relais. Vous pouvez également laisser des instructions de livraison lors de votre inscription.' },
               ].map((item, i) => (
                 <details key={i} className="border-b border-[#e8e0d8] group">
-                  <summary className="py-5 cursor-pointer flex items-center justify-between text-[#2d2a26] hover:text-[#c4a47a] transition-colors">
+                  <summary className="py-5 cursor-pointer flex items-center justify-between text-[#2d2a26] hover:text-[#b8935a] transition-colors">
                     <span className="font-serif text-base">{item.q}</span>
-                    <span className="text-[#c4a47a] text-xl group-open:rotate-45 transition-transform duration-200">+</span>
+                    <span className="text-[#b8935a] text-xl group-open:rotate-45 transition-transform duration-200">+</span>
                   </summary>
                   <p className="text-[#2d2a26]/60 font-light text-sm leading-relaxed pb-5 pr-8">{item.a}</p>
                 </details>

@@ -85,7 +85,7 @@ export default function Paiement() {
         <main className="bg-[#faf8f5] min-h-screen pt-20">
           <div className="container mx-auto px-4 py-20 text-center">
             <h1 className="font-serif text-2xl text-[#2d2a26] mb-4">Aucune commande en cours</h1>
-            <Link href="/boutique" className="text-sm text-[#c4a47a] hover:text-[#b8956a] transition-colors">
+            <Link href="/boutique" className="text-sm text-[#b8935a] hover:text-[#b8956a] transition-colors">
               Retour a la boutique
             </Link>
           </div>
@@ -103,7 +103,7 @@ export default function Paiement() {
 
           {/* Breadcrumb */}
           <div className="flex items-center gap-2 text-xs mb-8">
-            <Link href="/panier" className="text-[#c4a47a] hover:text-[#b8956a] transition-colors">Panier</Link>
+            <Link href="/panier" className="text-[#b8935a] hover:text-[#b8956a] transition-colors">Panier</Link>
             <span className="text-[#2d2a26]/20">/</span>
             <span className="text-[#2d2a26]/50">Paiement</span>
           </div>
@@ -119,7 +119,7 @@ export default function Paiement() {
 
                 {/* Contact */}
                 <div>
-                  <h2 className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-4">Vos coordonnees</h2>
+                  <h2 className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-4">Vos coordonnees</h2>
                   <div className="space-y-4">
                     <div>
                       <label className="block text-xs uppercase tracking-[0.1em] text-[#2d2a26]/50 mb-1.5">Email</label>
@@ -129,7 +129,7 @@ export default function Paiement() {
                         value={form.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors placeholder:text-[#2d2a26]/25"
+                        className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors placeholder:text-[#2d2a26]/25"
                         placeholder="votre@email.fr"
                       />
                     </div>
@@ -142,7 +142,7 @@ export default function Paiement() {
                           value={form.firstName}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors"
+                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
                         />
                       </div>
                       <div>
@@ -153,7 +153,7 @@ export default function Paiement() {
                           value={form.lastName}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors"
+                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
                         />
                       </div>
                     </div>
@@ -165,7 +165,7 @@ export default function Paiement() {
                         value={form.phone}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors"
+                        className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
                         placeholder="06 00 00 00 00"
                       />
                     </div>
@@ -174,7 +174,7 @@ export default function Paiement() {
 
                 {/* Address */}
                 <div>
-                  <h2 className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-4">Adresse de livraison</h2>
+                  <h2 className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-4">Adresse de livraison</h2>
                   <div className="space-y-4">
                     <div>
                       <label className="block text-xs uppercase tracking-[0.1em] text-[#2d2a26]/50 mb-1.5">Adresse</label>
@@ -184,7 +184,7 @@ export default function Paiement() {
                         value={form.address}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors"
+                        className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
                         placeholder="12 rue des Fleurs"
                       />
                     </div>
@@ -197,7 +197,7 @@ export default function Paiement() {
                           value={form.postalCode}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors"
+                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
                           placeholder="50000"
                         />
                       </div>
@@ -209,7 +209,7 @@ export default function Paiement() {
                           value={form.city}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors"
+                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
                           placeholder="Saint-Lo"
                         />
                       </div>
@@ -221,7 +221,7 @@ export default function Paiement() {
                 <div className="pt-2 border-t border-[#e8e0d8]">
                   <p className="text-xs text-[#2d2a26]/40 font-light">
                     Vous avez un compte ?{' '}
-                    <Link href="/compte/connexion" className="text-[#c4a47a] hover:text-[#b8956a] transition-colors">
+                    <Link href="/compte/connexion" className="text-[#b8935a] hover:text-[#b8956a] transition-colors">
                       Connectez-vous
                     </Link>
                     {' '}pour pre-remplir vos informations.
@@ -266,7 +266,7 @@ export default function Paiement() {
                           <span>{deliveryInfo.subtotal.toFixed(2)}€</span>
                         </div>
                         {deliveryInfo.discount > 0 && (
-                          <div className="flex justify-between text-sm text-[#c4a47a]">
+                          <div className="flex justify-between text-sm text-[#b8935a]">
                             <span>Reduction</span>
                             <span>-{deliveryInfo.discount.toFixed(2)}€</span>
                           </div>
@@ -274,16 +274,16 @@ export default function Paiement() {
                         <div className="flex justify-between text-sm text-[#2d2a26]/70">
                           <span className="flex items-center gap-1.5">
                             Livraison
-                            {deliveryInfo.mode === 'local' && <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#c4a47a' }}>Locale</span>}
+                            {deliveryInfo.mode === 'local' && <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#b8935a' }}>Locale</span>}
                             {deliveryInfo.mode === 'colissimo' && <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#003DA5' }}>Colissimo</span>}
                             {deliveryInfo.mode === 'chronopost' && <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#D4003C' }}>Chronopost</span>}
                           </span>
-                          <span className={deliveryInfo.fee === 0 ? 'text-[#c4a47a]' : ''}>
+                          <span className={deliveryInfo.fee === 0 ? 'text-[#b8935a]' : ''}>
                             {deliveryInfo.fee === 0 ? 'Offerte' : `${deliveryInfo.fee.toFixed(2)}€`}
                           </span>
                         </div>
                         <div className="flex items-center gap-2 text-sm text-[#2d2a26]/70">
-                          <svg className="w-3.5 h-3.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <svg className="w-3.5 h-3.5 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
                           </svg>
                           <span>
@@ -305,7 +305,7 @@ export default function Paiement() {
                     disabled={!isFormValid || isSubmitting}
                     className={`w-full py-3.5 text-sm uppercase tracking-[0.1em] transition-all ${
                       isFormValid && !isSubmitting
-                        ? 'bg-[#c4a47a] text-white hover:bg-[#b8956a]'
+                        ? 'bg-[#b8935a] text-white hover:bg-[#b8956a]'
                         : 'bg-[#e8e0d8] text-[#2d2a26]/30 cursor-not-allowed'
                     }`}
                   >
@@ -313,7 +313,7 @@ export default function Paiement() {
                   </button>
 
                   <div className="flex items-center justify-center gap-2 pt-1">
-                    <svg className="w-3.5 h-3.5 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <svg className="w-3.5 h-3.5 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
                     </svg>
                     <span className="text-[10px] text-[#2d2a26]/40">Paiement securise</span>

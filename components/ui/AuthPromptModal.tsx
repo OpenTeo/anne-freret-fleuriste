@@ -33,7 +33,7 @@ export default function AuthPromptModal({ isOpen, onClose, title, message }: Aut
         </button>
 
         {/* Decorative line */}
-        <div className="w-10 h-px bg-[#c4a47a] mx-auto mb-6" />
+        <div className="w-10 h-px bg-[#b8935a] mx-auto mb-6" />
 
         <h2 className="font-serif text-xl text-[#2d2a26] text-center mb-3">
           {title || 'Connectez-vous'}
@@ -46,7 +46,7 @@ export default function AuthPromptModal({ isOpen, onClose, title, message }: Aut
         <div className="space-y-3">
           <Link
             href="/compte/connexion"
-            className="block w-full bg-[#c4a47a] text-white py-3 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors text-center"
+            className="block w-full bg-[#b8935a] text-white py-3 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors text-center"
           >
             Se connecter
           </Link>

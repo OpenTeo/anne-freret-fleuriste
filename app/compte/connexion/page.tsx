@@ -15,7 +15,7 @@ export default function Connexion() {
   const { login } = useAuth();
   const router = useRouter();
 
-  const inputClass = "w-full px-4 py-3.5 bg-white border border-[#e8e0d8] text-[#2d2a26] placeholder-[#9a9490] focus:outline-none focus:border-[#c4a47a] transition-colors duration-200 text-sm";
+  const inputClass = "w-full px-4 py-3.5 bg-white border border-[#e8e0d8] text-[#2d2a26] placeholder-[#9a9490] focus:outline-none focus:border-[#b8935a] transition-colors duration-200 text-sm";
   const labelClass = "block text-[10px] tracking-[0.15em] uppercase text-[#2d2a26]/60 mb-2";
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -42,9 +42,9 @@ export default function Connexion() {
           <div className="max-w-md mx-auto px-4">
             
             <div className="text-center mb-10">
-              <p className="text-[#c4a47a] text-[10px] tracking-[0.3em] uppercase mb-3">Mon compte</p>
+              <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-3">Mon compte</p>
               <h1 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">Connexion</h1>
-              <div className="w-12 h-px bg-[#c4a47a] mx-auto"></div>
+              <div className="w-12 h-px bg-[#b8935a] mx-auto"></div>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -80,10 +80,10 @@ export default function Connexion() {
 
               <div className="flex items-center justify-between gap-4">
                 <label className="flex items-center gap-2 cursor-pointer flex-shrink-0">
-                  <input type="checkbox" className="w-4 h-4 accent-[#c4a47a] flex-shrink-0" />
+                  <input type="checkbox" className="w-4 h-4 accent-[#b8935a] flex-shrink-0" />
                   <span className="text-xs text-[#2d2a26]/60 whitespace-nowrap">Se souvenir de moi</span>
                 </label>
-                <button type="button" className="text-xs text-[#c4a47a] hover:underline whitespace-nowrap">
+                <button type="button" className="text-xs text-[#b8935a] hover:underline whitespace-nowrap">
                   Mot de passe oublié ?
                 </button>
               </div>
@@ -91,7 +91,7 @@ export default function Connexion() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 bg-[#c4a47a] text-white hover:bg-[#b8956a] transition-colors duration-300 text-sm tracking-wide disabled:opacity-50"
+                className="w-full py-4 bg-[#b8935a] text-white hover:bg-[#b8956a] transition-colors duration-300 text-sm tracking-wide disabled:opacity-50"
               >
                 {loading ? 'Connexion...' : 'Se connecter'}
               </button>
@@ -104,7 +104,7 @@ export default function Connexion() {
               </div>
               <p className="text-sm text-[#2d2a26]/60">
                 Pas encore de compte ?{' '}
-                <Link href="/compte/inscription" className="text-[#c4a47a] hover:underline">
+                <Link href="/compte/inscription" className="text-[#b8935a] hover:underline">
                   Créer un compte
                 </Link>
               </p>

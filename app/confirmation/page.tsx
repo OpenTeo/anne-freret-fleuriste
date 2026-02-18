@@ -89,7 +89,7 @@ export default function Confirmation() {
         <main className="bg-[#faf8f5] min-h-screen pt-20">
           <div className="container mx-auto px-4 py-20 text-center">
             <h1 className="font-serif text-2xl text-[#2d2a26] mb-4">Aucune commande récente</h1>
-            <Link href="/boutique" className="text-sm text-[#c4a47a] hover:text-[#b8956a] transition-colors">
+            <Link href="/boutique" className="text-sm text-[#b8935a] hover:text-[#b8956a] transition-colors">
               Retour à la boutique
             </Link>
           </div>
@@ -148,14 +148,14 @@ export default function Confirmation() {
                   <span>{order.delivery.subtotal.toFixed(2)}€</span>
                 </div>
                 {order.delivery.discount > 0 && (
-                  <div className="flex justify-between text-[#c4a47a]">
+                  <div className="flex justify-between text-[#b8935a]">
                     <span>Réduction</span>
                     <span>-{order.delivery.discount.toFixed(2)}€</span>
                   </div>
                 )}
                 <div className="flex justify-between">
                   <span>Livraison</span>
-                  <span className={order.delivery.fee === 0 ? 'text-[#c4a47a]' : ''}>
+                  <span className={order.delivery.fee === 0 ? 'text-[#b8935a]' : ''}>
                     {order.delivery.fee === 0 ? 'Offerte' : `${order.delivery.fee.toFixed(2)}€`}
                   </span>
                 </div>
@@ -166,8 +166,8 @@ export default function Confirmation() {
           {/* Confirmation header */}
           <div className="bg-white border border-[#e8e0d8]/50 p-6 md:p-8 mb-6">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 border-2 border-[#c4a47a] rounded-full flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <div className="w-12 h-12 border-2 border-[#b8935a] rounded-full flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                 </svg>
               </div>
@@ -232,7 +232,7 @@ export default function Confirmation() {
                 <p className="text-xs uppercase tracking-[0.15em] text-[#2d2a26] font-medium mb-2">Livraison</p>
                 <p className="text-sm text-[#2d2a26]/60 flex items-center gap-2">
                   {order.delivery.mode === 'local' && (
-                    <><span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#c4a47a' }}>Locale</span> Livraison locale — Sous 24h</>
+                    <><span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#b8935a' }}>Locale</span> Livraison locale — Sous 24h</>
                   )}
                   {order.delivery.mode === 'colissimo' && (
                     <><span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#003DA5' }}>Colissimo</span> La Poste — Sous 48h</>
@@ -261,7 +261,7 @@ export default function Confirmation() {
 
           {/* Création de compte — seulement si pas connecté */}
           {!user && !accountCreated && (
-            <div className="bg-white border border-[#c4a47a]/20 p-6 md:p-8 mb-6">
+            <div className="bg-white border border-[#b8935a]/20 p-6 md:p-8 mb-6">
               <div className="text-center mb-6">
                 <h2 className="font-serif text-lg text-[#2d2a26] mb-2">Créez votre compte en 1 clic</h2>
                 <p className="text-xs text-[#2d2a26]/40 leading-relaxed">
@@ -283,12 +283,12 @@ export default function Confirmation() {
                     onChange={(e) => { setPassword(e.target.value); setError(''); }}
                     required
                     minLength={6}
-                    className="w-full px-3 py-2.5 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#c4a47a] transition-colors placeholder:text-[#2d2a26]/25"
+                    className="w-full px-3 py-2.5 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors placeholder:text-[#2d2a26]/25"
                     placeholder="Choisissez un mot de passe"
                   />
                 </div>
                 {error && <p className="text-xs text-red-400">{error}</p>}
-                <button type="submit" className="w-full bg-[#c4a47a] text-white py-3 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors">
+                <button type="submit" className="w-full bg-[#b8935a] text-white py-3 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors">
                   Créer mon compte
                 </button>
                 <p className="text-center">
@@ -302,12 +302,12 @@ export default function Confirmation() {
 
           {/* Compte créé */}
           {accountCreated && (
-            <div className="bg-white border border-[#c4a47a]/30 p-5 mb-6 flex items-center gap-3">
-              <svg className="w-4 h-4 text-[#c4a47a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <div className="bg-white border border-[#b8935a]/30 p-5 mb-6 flex items-center gap-3">
+              <svg className="w-4 h-4 text-[#b8935a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
               <p className="text-sm text-[#2d2a26]">
-                Compte créé ! <Link href="/compte" className="text-[#c4a47a] hover:text-[#b8956a]">Accéder à mon espace</Link>
+                Compte créé ! <Link href="/compte" className="text-[#b8935a] hover:text-[#b8956a]">Accéder à mon espace</Link>
               </p>
             </div>
           )}
@@ -315,7 +315,7 @@ export default function Confirmation() {
           {/* Déjà connecté */}
           {user && (
             <div className="text-center mb-6">
-              <Link href="/compte/commandes" className="text-sm text-[#c4a47a] hover:text-[#b8956a] transition-colors">
+              <Link href="/compte/commandes" className="text-sm text-[#b8935a] hover:text-[#b8956a] transition-colors">
                 Suivre ma commande →
               </Link>
             </div>

@@ -21,7 +21,7 @@ export default function Inscription() {
   const { register } = useAuth();
   const router = useRouter();
 
-  const inputClass = "w-full px-4 py-3.5 bg-white border border-[#e8e0d8] text-[#2d2a26] placeholder-[#9a9490] focus:outline-none focus:border-[#c4a47a] transition-colors duration-200 text-sm";
+  const inputClass = "w-full px-4 py-3.5 bg-white border border-[#e8e0d8] text-[#2d2a26] placeholder-[#9a9490] focus:outline-none focus:border-[#b8935a] transition-colors duration-200 text-sm";
   const labelClass = "block text-[10px] tracking-[0.15em] uppercase text-[#2d2a26]/60 mb-2";
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -60,9 +60,9 @@ export default function Inscription() {
           <div className="max-w-lg mx-auto px-4">
             
             <div className="text-center mb-10">
-              <p className="text-[#c4a47a] text-[10px] tracking-[0.3em] uppercase mb-3">Bienvenue</p>
+              <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-3">Bienvenue</p>
               <h1 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">Créer un compte</h1>
-              <div className="w-12 h-px bg-[#c4a47a] mx-auto mb-4"></div>
+              <div className="w-12 h-px bg-[#b8935a] mx-auto mb-4"></div>
               <p className="text-[#2d2a26]/50 text-sm">
                 Rejoignez Anne Freret pour suivre vos commandes, gérer votre abonnement et profiter d'offres exclusives.
               </p>
@@ -102,7 +102,7 @@ export default function Inscription() {
                 <div className="mt-2 flex gap-1">
                   {[1,2,3,4].map(i => (
                     <div key={i} className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
-                      password.length >= i * 3 ? (password.length >= 12 ? 'bg-green-400' : password.length >= 8 ? 'bg-[#c4a47a]' : 'bg-orange-300') : 'bg-[#e8e0d8]'
+                      password.length >= i * 3 ? (password.length >= 12 ? 'bg-green-400' : password.length >= 8 ? 'bg-[#b8935a]' : 'bg-orange-300') : 'bg-[#e8e0d8]'
                     }`} />
                   ))}
                 </div>
@@ -124,20 +124,20 @@ export default function Inscription() {
                   <div
                     onClick={() => setAcceptCgv(!acceptCgv)}
                     className={`w-5 h-5 mt-0.5 border flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
-                      acceptCgv ? 'bg-[#c4a47a] border-[#c4a47a]' : 'border-[#e8e0d8]'
+                      acceptCgv ? 'bg-[#b8935a] border-[#b8935a]' : 'border-[#e8e0d8]'
                     }`}
                   >
                     {acceptCgv && <span className="text-white text-xs">✓</span>}
                   </div>
                   <span className="text-xs text-[#2d2a26]/60 leading-relaxed">
-                    J'accepte les <Link href="/cgv" className="text-[#c4a47a] underline">conditions générales de vente</Link> et la <Link href="/mentions-legales" className="text-[#c4a47a] underline">politique de confidentialité</Link> *
+                    J'accepte les <Link href="/cgv" className="text-[#b8935a] underline">conditions générales de vente</Link> et la <Link href="/mentions-legales" className="text-[#b8935a] underline">politique de confidentialité</Link> *
                   </span>
                 </label>
                 <label className="flex items-start gap-3 cursor-pointer">
                   <div
                     onClick={() => setNewsletter(!newsletter)}
                     className={`w-5 h-5 mt-0.5 border flex items-center justify-center flex-shrink-0 transition-all duration-200 ${
-                      newsletter ? 'bg-[#c4a47a] border-[#c4a47a]' : 'border-[#e8e0d8]'
+                      newsletter ? 'bg-[#b8935a] border-[#b8935a]' : 'border-[#e8e0d8]'
                     }`}
                   >
                     {newsletter && <span className="text-white text-xs">✓</span>}
@@ -151,7 +151,7 @@ export default function Inscription() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 bg-[#c4a47a] text-white hover:bg-[#b8956a] transition-colors duration-300 text-sm tracking-wide disabled:opacity-50"
+                className="w-full py-4 bg-[#b8935a] text-white hover:bg-[#b8956a] transition-colors duration-300 text-sm tracking-wide disabled:opacity-50"
               >
                 {loading ? 'Création du compte...' : 'Créer mon compte'}
               </button>
@@ -160,7 +160,7 @@ export default function Inscription() {
             <div className="mt-8 text-center">
               <p className="text-sm text-[#2d2a26]/60">
                 Déjà un compte ?{' '}
-                <Link href="/compte/connexion" className="text-[#c4a47a] hover:underline">
+                <Link href="/compte/connexion" className="text-[#b8935a] hover:underline">
                   Se connecter
                 </Link>
               </p>

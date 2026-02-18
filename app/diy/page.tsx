@@ -101,7 +101,7 @@ export default function DIYPage() {
             Devenez fleuriste le temps d'un instant. Recevez une box complète 
             et créez votre propre composition — fraîche, séchée, ou les deux.
           </p>
-          <a href="#les-box" className="inline-block mt-10 px-10 py-3.5 bg-[#2d2a26] text-white text-[11px] uppercase tracking-[0.2em] hover:bg-[#c4a47a] transition-colors duration-500">
+          <a href="#les-box" className="inline-block mt-10 px-10 py-3.5 bg-[#2d2a26] text-white text-[11px] uppercase tracking-[0.2em] hover:bg-[#b8935a] transition-colors duration-500">
             Choisir ma box
           </a>
         </div>
@@ -110,7 +110,7 @@ export default function DIYPage() {
       {/* ─── ÉTAPES PAS À PAS ─── */}
       <section className="max-w-5xl mx-auto px-4 py-24">
         <div className="text-center mb-20">
-          <p className="uppercase text-[10px] tracking-[0.3em] text-[#c4a47a] mb-4">En 4 étapes simples</p>
+          <p className="uppercase text-[10px] tracking-[0.3em] text-[#b8935a] mb-4">En 4 étapes simples</p>
           <h2 className="text-3xl md:text-5xl text-[#2d2a26]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
             Comment ça marche
           </h2>
@@ -123,7 +123,7 @@ export default function DIYPage() {
               <div className="relative h-64 md:h-80 overflow-hidden rounded-sm md:[direction:ltr]">
                 <Image src={step.image} alt={step.title} fill className={`object-cover ${step.num === '04' ? 'object-top' : ''}`} />
                 <div className="absolute top-4 left-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center">
-                  <span className="text-[#c4a47a] text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{step.num}</span>
+                  <span className="text-[#b8935a] text-sm" style={{ fontFamily: "'Cormorant Garamond', serif" }}>{step.num}</span>
                 </div>
               </div>
               {/* Texte */}
@@ -131,9 +131,9 @@ export default function DIYPage() {
                 <h3 className="text-2xl md:text-3xl text-[#2d2a26] mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
                   {step.title}
                 </h3>
-                <div className="w-8 h-px bg-[#c4a47a] mb-4"></div>
+                <div className="w-8 h-px bg-[#b8935a] mb-4"></div>
                 <p className="text-[14px] text-[#2d2a26]/60 leading-relaxed mb-4">{step.desc}</p>
-                <p className="text-[13px] text-[#c4a47a] italic">✦ {step.tip}</p>
+                <p className="text-[13px] text-[#b8935a] italic">✦ {step.tip}</p>
               </div>
             </div>
           ))}
@@ -144,9 +144,9 @@ export default function DIYPage() {
       <section className="bg-[#2d2a26] py-12">
         <div className="max-w-3xl mx-auto text-center px-4">
           <p className="text-white/50 text-[13px] leading-relaxed">
-            <span className="text-[#c4a47a]">Fleurs fraîches</span> pour une explosion de couleurs — 
-            <span className="text-[#c4a47a]"> Fleurs séchées</span> pour une décoration qui dure — 
-            <span className="text-[#c4a47a]"> Ou les deux</span> pour l'expérience ultime.
+            <span className="text-[#b8935a]">Fleurs fraîches</span> pour une explosion de couleurs — 
+            <span className="text-[#b8935a]"> Fleurs séchées</span> pour une décoration qui dure — 
+            <span className="text-[#b8935a]"> Ou les deux</span> pour l'expérience ultime.
           </p>
         </div>
       </section>
@@ -154,7 +154,7 @@ export default function DIYPage() {
       {/* ─── LES BOX ─── */}
       <section id="les-box" className="max-w-6xl mx-auto px-4 py-24">
         <div className="text-center mb-20">
-          <p className="uppercase text-[10px] tracking-[0.3em] text-[#c4a47a] mb-4">Nos créations</p>
+          <p className="uppercase text-[10px] tracking-[0.3em] text-[#b8935a] mb-4">Nos créations</p>
           <h2 className="text-3xl md:text-5xl text-[#2d2a26]" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
             Choisissez votre box
           </h2>
@@ -183,16 +183,16 @@ export default function DIYPage() {
 
               {/* Info */}
               <div className="md:[direction:ltr]">
-                <p className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">{box.type}</p>
+                <p className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-2">{box.type}</p>
                 <h3 className="text-3xl md:text-4xl text-[#2d2a26] mb-3" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
                   {box.name}
                 </h3>
-                <div className="w-10 h-px bg-[#c4a47a] mb-5"></div>
+                <div className="w-10 h-px bg-[#b8935a] mb-5"></div>
                 <p className="text-[14px] text-[#2d2a26]/60 leading-relaxed mb-6">{box.desc}</p>
 
                 {/* Durée */}
                 <div className="flex items-center gap-2 mb-6 text-[12px] text-[#2d2a26]/50">
-                  <svg className="w-4 h-4 text-[#c4a47a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <svg className="w-4 h-4 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   Durée : {box.duration}
@@ -201,7 +201,7 @@ export default function DIYPage() {
                 {/* Contenu */}
                 <button 
                   onClick={() => setOpenBox(openBox === box.id ? null : box.id)}
-                  className="text-[11px] uppercase tracking-[0.15em] text-[#c4a47a] mb-4 hover:text-[#2d2a26] transition-colors flex items-center gap-2"
+                  className="text-[11px] uppercase tracking-[0.15em] text-[#b8935a] mb-4 hover:text-[#2d2a26] transition-colors flex items-center gap-2"
                 >
                   Voir le contenu de la box
                   <span className={`transition-transform duration-300 ${openBox === box.id ? 'rotate-180' : ''}`}>▾</span>
@@ -210,7 +210,7 @@ export default function DIYPage() {
                   <ul className="space-y-2 pl-0">
                     {box.includes.map((item, i) => (
                       <li key={i} className="text-[13px] text-[#2d2a26]/65 flex items-start gap-2">
-                        <span className="text-[#c4a47a] text-xs mt-0.5">✦</span>
+                        <span className="text-[#b8935a] text-xs mt-0.5">✦</span>
                         {item}
                       </li>
                     ))}
@@ -222,7 +222,7 @@ export default function DIYPage() {
                   <span className="text-3xl text-[#2d2a26]" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
                     {box.price.toFixed(2)}€
                   </span>
-                  <button className="text-[10px] uppercase tracking-[0.2em] text-white bg-[#c4a47a] px-6 py-3 hover:bg-[#b8956a] transition-colors duration-500">
+                  <button className="text-[10px] uppercase tracking-[0.2em] text-white bg-[#b8935a] px-6 py-3 hover:bg-[#b8956a] transition-colors duration-500">
                     Ajouter au panier
                   </button>
                 </div>
@@ -236,11 +236,11 @@ export default function DIYPage() {
       <section className="bg-white py-20 px-4">
         <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="uppercase text-[10px] tracking-[0.25em] text-[#c4a47a] mb-3">Idée cadeau</p>
+            <p className="uppercase text-[10px] tracking-[0.25em] text-[#b8935a] mb-3">Idée cadeau</p>
             <h2 className="text-3xl text-[#2d2a26] mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
               Offrez l'expérience florale
             </h2>
-            <div className="w-10 h-px bg-[#c4a47a] mb-5"></div>
+            <div className="w-10 h-px bg-[#b8935a] mb-5"></div>
             <p className="text-[14px] text-[#2d2a26]/60 leading-relaxed mb-4">
               Offrez à vos proches une box DIY — un cadeau original et personnel. 
               Ajoutez une carte message et nous nous occupons de l'emballage cadeau.
@@ -258,7 +258,7 @@ export default function DIYPage() {
               { icon: '/icons/leaf.svg', label: 'Fleurs de saison, fraîches ou séchées' },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-4">
-                <div className="w-12 h-12 flex-shrink-0 rounded-full border border-[#c4a47a]/30 flex items-center justify-center p-2.5">
+                <div className="w-12 h-12 flex-shrink-0 rounded-full border border-[#b8935a]/30 flex items-center justify-center p-2.5">
                   <Image src={item.icon} alt="" width={28} height={28} />
                 </div>
                 <p className="text-[13px] text-[#2d2a26]/70">{item.label}</p>
@@ -271,13 +271,13 @@ export default function DIYPage() {
       {/* ─── Partagez ─── */}
       <section className="bg-[#2d2a26] py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="uppercase text-[10px] tracking-[0.25em] text-[#c4a47a] mb-4">Communauté</p>
+          <p className="uppercase text-[10px] tracking-[0.25em] text-[#b8935a] mb-4">Communauté</p>
           <h2 className="text-3xl text-white/90 mb-6" style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 400 }}>
             Partagez vos créations
           </h2>
           <p className="text-white/45 text-[14px] leading-relaxed max-w-lg mx-auto mb-8">
-            Identifiez <span className="text-[#c4a47a]">@annefreret</span> et utilisez 
-            <span className="text-[#c4a47a]"> #AnneFreretDIY</span> — les plus belles 
+            Identifiez <span className="text-[#b8935a]">@annefreret</span> et utilisez 
+            <span className="text-[#b8935a]"> #AnneFreretDIY</span> — les plus belles 
             créations seront mises en avant sur notre page.
           </p>
         </div>

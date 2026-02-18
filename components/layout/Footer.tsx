@@ -29,15 +29,15 @@ const Footer = () => {
 
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <MapPin className="w-5 h-5 text-[#c4a47a]" />
+                <MapPin className="w-5 h-5 text-[#b8935a]" />
                 <span className="text-white/80">39 Place du Général de Gaulle, Saint-Pair-sur-Mer</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="w-5 h-5 text-[#c4a47a]" />
+                <Phone className="w-5 h-5 text-[#b8935a]" />
                 <span className="text-white/80">02 33 50 26 15</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="w-5 h-5 text-[#c4a47a]" />
+                <Mail className="w-5 h-5 text-[#b8935a]" />
                 <span className="text-white/80">contact@annefreret.fr</span>
               </div>
             </div>
@@ -48,22 +48,22 @@ const Footer = () => {
             <h3 className="font-serif text-lg text-white mb-4">Navigation</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/" className="text-white/70 hover:text-[#c4a47a] transition-all duration-500 text-[11px] tracking-wide uppercase">
+                <Link href="/" className="text-white/70 hover:text-[#b8935a] transition-all duration-500 text-[11px] tracking-wide uppercase">
                   Accueil
                 </Link>
               </li>
               <li>
-                <Link href="/boutique" className="text-white/70 hover:text-[#c4a47a] transition-all duration-500 text-[11px] tracking-wide uppercase">
+                <Link href="/boutique" className="text-white/70 hover:text-[#b8935a] transition-all duration-500 text-[11px] tracking-wide uppercase">
                   Boutique
                 </Link>
               </li>
               <li>
-                <Link href="/mariages" className="text-white/70 hover:text-[#c4a47a] transition-all duration-500 text-[11px] tracking-wide uppercase">
+                <Link href="/mariages" className="text-white/70 hover:text-[#b8935a] transition-all duration-500 text-[11px] tracking-wide uppercase">
                   Mariages
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-white/70 hover:text-[#c4a47a] transition-all duration-500 text-[11px] tracking-wide uppercase">
+                <Link href="/contact" className="text-white/70 hover:text-[#b8935a] transition-all duration-500 text-[11px] tracking-wide uppercase">
                   Contact
                 </Link>
               </li>
@@ -75,27 +75,27 @@ const Footer = () => {
             <h3 className="font-serif text-lg text-white mb-4">Informations</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/livraison" className="text-white/70 hover:text-[#c4a47a] transition-all duration-500 text-[11px] tracking-wide uppercase">
+                <Link href="/livraison" className="text-white/70 hover:text-[#b8935a] transition-all duration-500 text-[11px] tracking-wide uppercase">
                   Livraison
                 </Link>
               </li>
               <li>
-                <Link href="/entretien" className="text-white/70 hover:text-[#c4a47a] transition-all duration-500 text-[11px] tracking-wide uppercase">
+                <Link href="/entretien" className="text-white/70 hover:text-[#b8935a] transition-all duration-500 text-[11px] tracking-wide uppercase">
                   Entretien des fleurs
                 </Link>
               </li>
               <li>
-                <Link href="/faq" className="text-white/70 hover:text-[#c4a47a] transition-all duration-500 text-[11px] tracking-wide uppercase">
+                <Link href="/faq" className="text-white/70 hover:text-[#b8935a] transition-all duration-500 text-[11px] tracking-wide uppercase">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link href="/cgv" className="text-white/70 hover:text-[#c4a47a] transition-all duration-500 text-[11px] tracking-wide uppercase">
+                <Link href="/cgv" className="text-white/70 hover:text-[#b8935a] transition-all duration-500 text-[11px] tracking-wide uppercase">
                   CGV
                 </Link>
               </li>
               <li>
-                <Link href="/mentions-legales" className="text-white/70 hover:text-[#c4a47a] transition-all duration-500 text-[11px] tracking-wide uppercase">
+                <Link href="/mentions-legales" className="text-white/70 hover:text-[#b8935a] transition-all duration-500 text-[11px] tracking-wide uppercase">
                   Mentions légales
                 </Link>
               </li>
@@ -116,7 +116,7 @@ const Footer = () => {
               href="https://instagram.com/anne_freret_fleuriste" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-[#c4a47a] hover:text-white transition-all duration-500"
+              className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-[#b8935a] hover:text-white transition-all duration-500"
             >
               <Instagram className="w-6 h-6" />
             </a>
@@ -124,7 +124,7 @@ const Footer = () => {
               href="https://facebook.com/fleuristeannefreret" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-[#c4a47a] hover:text-white transition-all duration-500"
+              className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-[#b8935a] hover:text-white transition-all duration-500"
             >
               <Facebook className="w-6 h-6" />
             </a>
@@ -132,7 +132,7 @@ const Footer = () => {
               href="https://tiktok.com/@annefreretfleuriste" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-[#c4a47a] hover:text-white transition-all duration-500"
+              className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center text-white hover:bg-[#b8935a] hover:text-white transition-all duration-500"
             >
               <Video className="w-6 h-6" />
             </a>
@@ -140,7 +140,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-[#c4a47a]/20 pt-8 text-center">
+        <div className="border-t border-[#b8935a]/20 pt-8 text-center">
           <p className="text-white/60 text-sm">
             © 2025 Anne Freret Fleuriste. Tous droits réservés.
           </p>

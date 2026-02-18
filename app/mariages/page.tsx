@@ -45,7 +45,7 @@ export default function Mariages() {
           
           <div className="container mx-auto px-6 lg:px-8 relative z-10">
             <div className="text-center max-w-4xl mx-auto">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-8">
                 Mariages d'Exception
               </div>
 
@@ -53,7 +53,7 @@ export default function Mariages() {
                 Votre Grand Jour Sublimé
               </h1>
 
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
 
               <p className="text-xl text-[#2d2a26] mb-12 font-light leading-relaxed max-w-2xl mx-auto">
                 Créations florales d'exception pour faire de votre mariage 
@@ -62,7 +62,7 @@ export default function Mariages() {
 
               <a
                 href="#devis"
-                className="inline-block bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
+                className="inline-block bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
               >
                 Demander un devis
               </a>
@@ -75,13 +75,13 @@ export default function Mariages() {
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Collections Mariage
               </div>
               <h2 className="text-4xl md:text-5xl font-serif text-[#2d2a26] mb-8">
                 Nos Créations
               </h2>
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               <p className="text-xl text-[#2d2a26] font-light max-w-3xl mx-auto leading-relaxed">
                 Trois univers distincts, chacun conçu pour refléter votre personnalité 
                 et l'atmosphère unique de votre célébration.
@@ -97,18 +97,18 @@ export default function Mariages() {
             )}
 
             {/* Service Sur-Mesure */}
-            <div className="bg-white p-12 text-center border border-[#c4a47a]/20">
+            <div className="bg-white p-12 text-center border border-[#b8935a]/20">
               <h3 className="text-3xl font-serif text-[#2d2a26] mb-6">
                 Création Sur-Mesure
               </h3>
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
               <p className="text-xl text-[#2d2a26] font-light mb-8 max-w-2xl mx-auto leading-relaxed">
                 Votre mariage est unique ? Nous créons ensemble des compositions florales 
                 personnalisées qui correspondent parfaitement à vos rêves.
               </p>
               <a 
                 href="#devis"
-                className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors"
               >
                 Discutons de votre projet
               </a>
@@ -120,9 +120,9 @@ export default function Mariages() {
         <section className="py-24 md:py-32 bg-[#faf8f5]">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center mb-16">
-              <p className="text-[#c4a47a] text-[10px] tracking-[0.25em] uppercase mb-4">Nos créations</p>
+              <p className="text-[#b8935a] text-[10px] tracking-[0.25em] uppercase mb-4">Nos créations</p>
               <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">Box Mariage</h2>
-              <div className="w-12 h-px bg-[#c4a47a] mx-auto mb-6" />
+              <div className="w-12 h-px bg-[#b8935a] mx-auto mb-6" />
               <p className="text-sm text-[#2d2a26]/50 font-light max-w-lg mx-auto leading-relaxed">
                 Bouquet de mariée, peigne floral et boutonnière assortie — tout ce qu&#39;il faut pour le plus beau jour.
               </p>
@@ -141,7 +141,7 @@ export default function Mariages() {
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
                     </div>
-                    <h3 className="font-serif text-base text-[#2d2a26] group-hover:text-[#c4a47a] transition-colors mb-1">{product.name}</h3>
+                    <h3 className="font-serif text-base text-[#2d2a26] group-hover:text-[#b8935a] transition-colors mb-1">{product.name}</h3>
                     <p className="text-sm font-serif text-[#2d2a26]/60">{product.price.toFixed(2)}€</p>
                   </Link>
                 ))}
@@ -153,13 +153,13 @@ export default function Mariages() {
         <section className="py-24 md:py-32">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Galerie
               </div>
               <h2 className="text-4xl md:text-5xl font-serif text-[#2d2a26] mb-8">
                 Nos Réalisations
               </h2>
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
                 Découvrez nos plus belles créations pour vous inspirer.
               </p>
@@ -190,7 +190,7 @@ export default function Mariages() {
             <div className="text-center">
               <a 
                 href="/galerie"
-                className="text-[#c4a47a] underline hover:text-[#b8956a] transition-colors"
+                className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors"
               >
                 Voir toute la galerie
               </a>
@@ -202,19 +202,19 @@ export default function Mariages() {
         <section className="py-24 md:py-32">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center mb-16">
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+              <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                 Notre Approche
               </div>
               <h2 className="text-4xl md:text-5xl font-serif text-[#2d2a26] mb-8">
                 Un Accompagnement Complet
               </h2>
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto"></div>
+              <div className="w-16 h-px bg-[#b8935a] mx-auto"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
               <div className="text-center">
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">Consultation</h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Rencontre personnalisée pour comprendre vos goûts et l'ambiance souhaitée.
                 </p>
@@ -222,7 +222,7 @@ export default function Mariages() {
 
               <div className="text-center">
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">Création</h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Réalisation de vos compositions avec possibilité d'ajustements.
                 </p>
@@ -230,7 +230,7 @@ export default function Mariages() {
 
               <div className="text-center">
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">Livraison</h3>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-6"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-6"></div>
                 <p className="text-[#2d2a26] font-light leading-relaxed">
                   Installation le jour de votre mariage pour une journée sans stress.
                 </p>
@@ -245,13 +245,13 @@ export default function Mariages() {
             <div className="max-w-3xl mx-auto">
               
               <div className="text-center mb-12">
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-6">
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-6">
                   Demande de Devis
                 </div>
                 <h2 className="text-4xl md:text-5xl font-serif text-[#2d2a26] mb-8">
                   Parlons de Votre Projet
                 </h2>
-                <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
+                <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
                 <p className="text-xl text-[#2d2a26] font-light leading-relaxed">
                   Partagez-nous les détails de votre projet pour recevoir une proposition personnalisée.
                 </p>
@@ -261,7 +261,7 @@ export default function Mariages() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   
                   <div>
-                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                       Nom complet *
                     </label>
                     <input
@@ -270,12 +270,12 @@ export default function Mariages() {
                       value={formData.nom}
                       onChange={handleInputChange}
                       required
-                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#c4a47a] focus:outline-none transition-colors font-light"
+                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#b8935a] focus:outline-none transition-colors font-light"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                       Email *
                     </label>
                     <input
@@ -284,12 +284,12 @@ export default function Mariages() {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#c4a47a] focus:outline-none transition-colors font-light"
+                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#b8935a] focus:outline-none transition-colors font-light"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                       Téléphone
                     </label>
                     <input
@@ -297,12 +297,12 @@ export default function Mariages() {
                       name="telephone"
                       value={formData.telephone}
                       onChange={handleInputChange}
-                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#c4a47a] focus:outline-none transition-colors font-light"
+                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#b8935a] focus:outline-none transition-colors font-light"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                       Date du mariage
                     </label>
                     <input
@@ -310,12 +310,12 @@ export default function Mariages() {
                       name="dateMariage"
                       value={formData.dateMariage}
                       onChange={handleInputChange}
-                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#c4a47a] focus:outline-none transition-colors font-light"
+                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#b8935a] focus:outline-none transition-colors font-light"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                       Lieu de la cérémonie
                     </label>
                     <input
@@ -323,19 +323,19 @@ export default function Mariages() {
                       name="lieuMariage"
                       value={formData.lieuMariage}
                       onChange={handleInputChange}
-                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#c4a47a] focus:outline-none transition-colors font-light"
+                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#b8935a] focus:outline-none transition-colors font-light"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                    <label className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                       Budget estimé
                     </label>
                     <select
                       name="budget"
                       value={formData.budget}
                       onChange={handleInputChange}
-                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#c4a47a] focus:outline-none transition-colors font-light"
+                      className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] focus:border-[#b8935a] focus:outline-none transition-colors font-light"
                     >
                       <option value="">Sélectionner un budget</option>
                       <option value="500-1000">500€ - 1 000€</option>
@@ -348,7 +348,7 @@ export default function Mariages() {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] uppercase tracking-[0.2em] text-[#c4a47a] mb-3">
+                  <label className="block text-[11px] uppercase tracking-[0.2em] text-[#b8935a] mb-3">
                     Décrivez votre projet
                   </label>
                   <textarea
@@ -357,14 +357,14 @@ export default function Mariages() {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Partagez-nous vos idées, votre style, vos couleurs préférées..."
-                    className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] placeholder-[#2d2a26]/50 focus:border-[#c4a47a] focus:outline-none transition-colors resize-none font-light"
+                    className="w-full border border-[#e8e0d8] px-4 py-3 text-[#2d2a26] placeholder-[#2d2a26]/50 focus:border-[#b8935a] focus:outline-none transition-colors resize-none font-light"
                   />
                 </div>
 
                 <div className="text-center pt-6">
                   <button
                     type="submit"
-                    className="bg-[#c4a47a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
+                    className="bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
                   >
                     Envoyer ma demande
                   </button>
