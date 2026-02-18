@@ -119,8 +119,8 @@ export default function LaMarque() {
 
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=85"
-                  alt="Compositions florales dans un atelier"
+                  src="https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  alt="Bouquet de fleurs artisanal"
                   className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -169,8 +169,8 @@ export default function LaMarque() {
               
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=85"
-                  alt="Fleuriste au travail — composition artisanale"
+                  src="https://images.pexels.com/photos/4466260/pexels-photo-4466260.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  alt="Atelier floral — table de travail artisanale"
                   className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
