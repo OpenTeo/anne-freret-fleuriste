@@ -27,40 +27,37 @@ export default function LaMarque() {
       
       <main className="bg-[#faf8f5] min-h-screen pt-20">
         
-        {/* Hero Section */}
-        <section className="py-24 md:py-32">
-          <div className="container mx-auto px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto text-center">
+        {/* Hero Section — Grand logo + photo florale */}
+        <section className="relative">
+          <div className="relative h-[70vh] md:h-[80vh] overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=1400&q=85"
+              alt="Atelier floral — bouquets et compositions"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-[#2d2a26]/50"></div>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
               
-              <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-8">
-                L'histoire d'une passion
+              <div className="text-[11px] uppercase tracking-[0.3em] text-[#c4a47a] mb-6">
+                Depuis plus de 20 ans
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-[#2d2a26] mb-8 leading-tight">
-                Anne Freret Fleuriste
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-2 leading-none tracking-wide">
+                ANNE
               </h1>
-
-              <div className="w-16 h-px bg-[#c4a47a] mx-auto mb-8"></div>
-
-              <p className="text-xl text-[#2d2a26] mb-12 font-light leading-relaxed max-w-3xl mx-auto">
-                D'une petite boutique verte à Lessay jusqu'au littoral de Saint-Pair-sur-Mer — 
-                plus de vingt ans d'amour des fleurs, de la Normandie et des émotions partagées.
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">Lieu</div>
-                  <div className="text-[#2d2a26] font-light">Saint-Pair-sur-Mer</div>
-                </div>
-                <div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">Depuis</div>
-                  <div className="text-[#2d2a26] font-light">Plus de 20 ans</div>
-                </div>
-                <div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-[#c4a47a] mb-2">Deux chapitres</div>
-                  <div className="text-[#2d2a26] font-light">Lessay → Saint-Pair</div>
-                </div>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-2 leading-none tracking-wide">
+                FRERET
+              </h1>
+              <div className="text-[11px] md:text-[13px] uppercase tracking-[0.35em] text-[#c4a47a] mb-8">
+                — fleuriste —
               </div>
+
+              <div className="w-16 h-px bg-[#c4a47a] mb-8"></div>
+
+              <p className="text-lg md:text-xl text-white/90 font-light leading-relaxed max-w-2xl">
+                Quand les fleurs racontent l'histoire d'une vie — de Lessay à Saint-Pair-sur-Mer, 
+                chaque bouquet porte l'âme de la Normandie.
+              </p>
             </div>
           </div>
         </section>
@@ -116,8 +113,8 @@ export default function LaMarque() {
 
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=85"
-                  alt="Anne Freret dans son atelier"
+                  src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=85"
+                  alt="Compositions florales dans un atelier"
                   className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
@@ -166,8 +163,8 @@ export default function LaMarque() {
               
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=85"
-                  alt="Atelier floral"
+                  src="https://images.unsplash.com/photo-1563241527-3004b7be0ffd?w=800&q=85"
+                  alt="Fleuriste au travail — composition artisanale"
                   className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-700"
                 />
               </div>
