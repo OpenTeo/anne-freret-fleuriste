@@ -167,12 +167,12 @@ export default function Mariages() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {[
-                'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&q=85',
-                'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&q=85',
+                'https://images.pexels.com/photos/2959192/pexels-photo-2959192.jpeg?auto=compress&cs=tinysrgb&w=600',
+                'https://images.pexels.com/photos/1616113/pexels-photo-1616113.jpeg?auto=compress&cs=tinysrgb&w=600',
                 'https://images.pexels.com/photos/1128782/pexels-photo-1128782.jpeg?auto=compress&cs=tinysrgb&w=600',
-                'https://images.pexels.com/photos/1114425/pexels-photo-1114425.jpeg?auto=compress&cs=tinysrgb&w=600',
-                'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=600&q=85',
-                'https://images.unsplash.com/photo-1520854221256-17451cc331bf?w=600&q=85'
+                'https://images.pexels.com/photos/2253842/pexels-photo-2253842.jpeg?auto=compress&cs=tinysrgb&w=600',
+                'https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg?auto=compress&cs=tinysrgb&w=600',
+                'https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=600'
               ].map((image, index) => (
                 <div 
                   key={index}
