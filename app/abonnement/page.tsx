@@ -31,7 +31,7 @@ const plans = [
       'Livraison gratuite à domicile',
       'Carte message personnalisée',
       'Vase offert à la première livraison',
-      'Accès aux fleurs rares de saison',
+      'Fleurs de saison sélectionnées',
     ],
   },
   {
@@ -45,7 +45,7 @@ const plans = [
       'Livraison gratuite à domicile',
       'Carte message personnalisée',
       'Vase offert à la première livraison',
-      'Fleurs rares et importées',
+      'Compositions sur mesure',
       'Emballage cadeau luxe',
     ],
   },
@@ -58,7 +58,6 @@ const frequencies = [
 ];
 
 const durations = [
-  { id: '1', label: 'Sans engagement', months: 1, discount: 0 },
   { id: '3', label: '3 mois', months: 3, discount: 0 },
   { id: '6', label: '6 mois', months: 6, discount: 7 },
   { id: '12', label: '12 mois', months: 12, discount: 10 },
@@ -83,7 +82,7 @@ function AbonnementContent() {
     }
   }, [searchParams]);
   const [selectedFrequency, setSelectedFrequency] = useState('monthly');
-  const [selectedDuration, setSelectedDuration] = useState('1');
+  const [selectedDuration, setSelectedDuration] = useState('3');
   const [isGift, setIsGift] = useState(false);
   const [giftMessage, setGiftMessage] = useState('');
   
@@ -508,7 +507,7 @@ function AbonnementContent() {
                   </button>
                   
                   <p className="text-[#2d2a26]/40 text-xs text-center">
-                    {currentDuration.id === '1' ? 'Sans engagement · Annulation à tout moment' : `Engagement ${currentDuration.months} mois · Annulation possible après`}
+                    {`Engagement ${currentDuration.months} mois · Annulation possible après la période`}
                     {' · '}Paiement sécurisé par Stripe
                   </p>
                 </div>
@@ -619,7 +618,7 @@ function AbonnementContent() {
                   </div>
                   <div className="p-3">
                     <svg className="w-6 h-6 mx-auto mb-1.5 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
-                    <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/40">Sans engagement</p>
+                    <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/40">Satisfait ou remplacé</p>
                   </div>
                 </div>
               </div>
@@ -638,7 +637,7 @@ function AbonnementContent() {
                 { q: 'Puis-je modifier ou mettre en pause mon abonnement ?', a: 'Oui, à tout moment depuis votre espace client. Vous pouvez changer la fréquence, l\'adresse, mettre en pause ou reprendre quand vous le souhaitez.' },
                 { q: 'Les fleurs sont-elles toujours les mêmes ?', a: 'Jamais ! Chaque livraison est une composition unique de saison, créée par notre fleuriste avec les plus belles fleurs disponibles. C\'est la surprise à chaque fois.' },
                 { q: 'Puis-je offrir un abonnement ?', a: 'Absolument ! Cochez "C\'est un cadeau" lors de votre commande. Vous pourrez ajouter un message personnalisé et indiquer l\'adresse du destinataire.' },
-                { q: 'Comment fonctionne l\'annulation ?', a: 'Pour un abonnement sans engagement, vous pouvez annuler à tout moment. Pour un abonnement avec durée, l\'annulation prend effet à la fin de la période choisie.' },
+                { q: 'Comment fonctionne l\'annulation ?', a: 'L\'annulation prend effet à la fin de la période d\'engagement choisie. Vous pouvez faire votre demande à tout moment depuis votre espace client.' },
                 { q: 'Et si je ne suis pas chez moi ?', a: 'Le livreur déposera votre bouquet chez un voisin ou en point relais. Vous pouvez également laisser des instructions de livraison lors de votre inscription.' },
               ].map((item, i) => (
                 <details key={i} className="border-b border-[#e8e0d8] group">

@@ -172,7 +172,7 @@ export default function Mariages() {
                 'https://images.pexels.com/photos/1128782/pexels-photo-1128782.jpeg?auto=compress&cs=tinysrgb&w=600',
                 'https://images.pexels.com/photos/2253842/pexels-photo-2253842.jpeg?auto=compress&cs=tinysrgb&w=600',
                 'https://images.pexels.com/photos/1045541/pexels-photo-1045541.jpeg?auto=compress&cs=tinysrgb&w=600',
-                'https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg?auto=compress&cs=tinysrgb&w=600'
+                'https://images.pexels.com/photos/4234545/pexels-photo-4234545.jpeg?auto=compress&cs=tinysrgb&w=600'
               ].map((image, index) => (
                 <div 
                   key={index}
@@ -180,7 +180,7 @@ export default function Mariages() {
                 >
                   <img
                     src={image}
-                    alt={['Table champêtre fleurie', 'Allée cérémonie fleurs roses', 'Centre de table bougies dorées', 'Table banquet eucalyptus', 'Chaises mariés décorées', 'Bouquet de mariée'][index]}
+                    alt={['Table champêtre fleurie', 'Allée cérémonie fleurs roses', 'Centre de table bougies dorées', 'Table banquet eucalyptus', 'Chaises mariés décorées', 'Arche florale cérémonie en jardin'][index]}
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -371,6 +371,12 @@ export default function Mariages() {
 
                   <p className="text-[#2d2a26] text-sm mt-6 font-light">
                     Réponse sous 24h • Devis gratuit et sans engagement
+                  </p>
+                  <p className="text-[#2d2a26]/60 text-sm mt-3 font-light">
+                    Vous pouvez aussi nous écrire directement à{' '}
+                    <a href="mailto:evenementiel@fleuriste-annefreret.com" className="text-[#b8935a] hover:text-[#b8956a] transition-colors">
+                      evenementiel@fleuriste-annefreret.com
+                    </a>
                   </p>
                 </div>
               </form>

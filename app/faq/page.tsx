@@ -15,7 +15,7 @@ const faqData: FAQItem[] = [
   {
     id: 1,
     question: "Comment passer commande ?",
-    answer: "Vous pouvez passer commande de plusieurs façons : directement en magasin (39 Place du Général de Gaulle, 50270 Saint-Pair-sur-Mer), par téléphone (02 33 50 26 15), sur notre site internet, ou par email (contact@annefreret.fr). Pour les commandes urgentes, nous recommandons le téléphone pour vérifier la disponibilité en temps réel."
+    answer: "Vous pouvez passer commande de plusieurs façons : directement en magasin (39 Place du Général de Gaulle, 50270 Saint-Pair-sur-Mer), par téléphone (02 33 50 26 15), sur notre site internet, ou par email (contact@fleuriste-annefreret.com). Pour les commandes urgentes, nous recommandons le téléphone pour vérifier la disponibilité en temps réel."
   },
   {
     id: 2,

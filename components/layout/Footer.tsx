@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Instagram, Facebook, Video, MapPin, Phone, Mail } from 'lucide-react';
+import { Instagram, Facebook, Video, MapPin, Phone, Mail, Store } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -38,7 +38,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-[#b8935a]" />
-                <span className="text-white/80">contact@annefreret.fr</span>
+                <span className="text-white/80">contact@fleuriste-annefreret.com</span>
               </div>
             </div>
           </div>
@@ -100,6 +100,41 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
+          </div>
+        </div>
+
+        {/* Nos Boutiques */}
+        <div className="mb-12">
+          <h3 className="font-serif text-lg text-white mb-6">Nos Boutiques</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="flex items-start space-x-3">
+              <Store className="w-4 h-4 text-[#b8935a] mt-0.5 flex-shrink-0" />
+              <div>
+                <span className="text-white/80 text-sm block">Saint-Pair-sur-Mer</span>
+                <span className="text-white/50 text-xs">02 33 50 26 15</span>
+              </div>
+            </div>
+            <div className="flex items-start space-x-3">
+              <Store className="w-4 h-4 text-[#b8935a] mt-0.5 flex-shrink-0" />
+              <div>
+                <span className="text-white/80 text-sm block">Jullouville</span>
+                <span className="text-white/50 text-xs">02 33 91 71 07</span>
+              </div>
+            </div>
+            <div className="flex items-start space-x-3">
+              <Store className="w-4 h-4 text-[#b8935a] mt-0.5 flex-shrink-0" />
+              <div>
+                <span className="text-white/80 text-sm block">Yquelon</span>
+                <span className="text-white/50 text-xs">02 61 90 04 00</span>
+              </div>
+            </div>
+            <div className="flex items-start space-x-3">
+              <Store className="w-4 h-4 text-[#b8935a] mt-0.5 flex-shrink-0" />
+              <div>
+                <span className="text-white/80 text-sm block">Dol-de-Bretagne</span>
+                <span className="text-white/50 text-xs">02 99 48 03 63</span>
+              </div>
+            </div>
           </div>
         </div>
 
