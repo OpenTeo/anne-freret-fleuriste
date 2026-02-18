@@ -99,10 +99,20 @@ export default function LaMarque() {
                   </p>
 
                   <p>
-                    Aujourd'hui, l'atelier Anne Freret est devenu une adresse incontournable 
-                    du littoral normand. De la composition quotidienne aux grands événements, 
-                    chaque création porte en elle plus de vingt ans de savoir-faire — et toute 
-                    la tendresse de cette petite boutique verte de Lessay où tout a commencé.
+                    Le succès de Saint-Pair appelle de nouvelles aventures. En 2014, une deuxième 
+                    boutique voit le jour à Jullouville, à quelques kilomètres le long de la côte. 
+                    Puis en 2017, c'est Donville-les-Bains qui accueille l'univers Anne Freret. 
+                    Et en 2019, l'histoire franchit la frontière bretonne avec l'ouverture d'un 
+                    atelier à Dol-de-Bretagne — comme un clin d'œil à ces racines normandes 
+                    qui n'ont jamais eu peur de s'étendre.
+                  </p>
+
+                  <p>
+                    Aujourd'hui, avec quatre boutiques entre Normandie et Bretagne, Anne Freret 
+                    est devenue une référence du littoral. De la composition quotidienne aux 
+                    grands événements, chaque création porte en elle plus de vingt ans de 
+                    savoir-faire — et toute la tendresse de cette petite boutique verte 
+                    de Lessay où tout a commencé.
                   </p>
                 </div>
               </div>
