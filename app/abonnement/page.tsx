@@ -529,12 +529,18 @@ function AbonnementContent() {
                     <div className="flex justify-between">
                       <span className="text-[#2d2a26]/60">Par livraison</span>
                       <div className="text-right">
-                        <span className="text-[#2d2a26]">{pricePerDelivery.toFixed(2)}€</span>
                         {(currentFrequency.discount > 0 || currentDuration.discount > 0) && (
-                          <span className="text-[#2d2a26]/30 text-xs line-through ml-2">{currentPlan.price.toFixed(2)}€</span>
+                          <span className="text-[#2d2a26]/40 text-sm line-through mr-2">{currentPlan.price.toFixed(2)}€</span>
                         )}
+                        <span className="text-[#2d2a26] font-medium">{pricePerDelivery.toFixed(2)}€</span>
                       </div>
                     </div>
+                    {(currentFrequency.discount > 0 || currentDuration.discount > 0) && (
+                      <div className="bg-[#4a7c59]/10 border border-[#4a7c59]/20 px-3 py-2 flex justify-between items-center">
+                        <span className="text-[#4a7c59] text-xs font-medium">🎉 Vous économisez</span>
+                        <span className="text-[#4a7c59] text-sm font-semibold">-{(currentPlan.price - pricePerDelivery).toFixed(2)}€/livraison</span>
+                      </div>
+                    )}
                     {currentFrequency.discount > 0 && (
                       <div className="flex justify-between">
                         <span className="text-[#2d2a26]/60">Fidélité {currentFrequency.shortLabel.toLowerCase()}</span>
@@ -584,6 +590,11 @@ function AbonnementContent() {
                       <p className="text-[#2d2a26]/40 text-[10px] text-right mt-1">
                         soit {pricePerDelivery.toFixed(2)}€ × {totalDeliveries} livraisons
                       </p>
+                    )}
+                    {(currentFrequency.discount > 0 || currentDuration.discount > 0) && totalDeliveries > 1 && (
+                      <div className="bg-[#4a7c59]/10 border border-[#4a7c59]/20 px-3 py-2 mt-3 text-center">
+                        <span className="text-[#4a7c59] text-xs font-semibold">Économie totale : {((currentPlan.price - pricePerDelivery) * totalDeliveries).toFixed(2)}€</span>
+                      </div>
                     )}
                   </div>
 
