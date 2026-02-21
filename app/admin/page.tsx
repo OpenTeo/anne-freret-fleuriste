@@ -122,7 +122,7 @@ const deliveryStatusLabels: Record<string, { label: string; color: string }> = {
 
 const orderStatusFlow: Order['status'][] = ['pending', 'confirmed', 'preparing', 'shipped', 'delivered'];
 
-type Tab = 'dashboard' | 'products' | 'orders' | 'clients' | 'weddings' | 'subscriptions' | 'deliveries' | 'stats';
+type Tab = 'dashboard' | 'products' | 'orders' | 'clients' | 'weddings' | 'subscriptions' | 'deliveries' | 'calendar' | 'stats';
 
 // ─── SEED DATA ───────────────────────────────────────────
 
@@ -553,9 +553,23 @@ export default function Admin() {
 
           <div class="section">
             <div class="section-title">Détails de la commande</div>
-            <div style="margin-bottom: 10px;">
-              <strong>Date:</strong> ${new Date(order.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })} • 
-              <strong>Statut:</strong> <span class="status-badge" style="background: #${order.status === 'delivered' ? 'dcfce7; color: #166534' : order.status === 'shipped' ? 'dbeafe; color: #1e40af' : order.status === 'preparing' ? 'e9d5ff; color: #7c2d12' : order.status === 'confirmed' ? 'dbeafe; color: #1e40af' : 'fef3c7; color: #92400e'};">${order.status === 'delivered' ? 'Livrée' : order.status === 'shipped' ? 'Expédiée' : order.status === 'preparing' ? 'En préparation' : order.status === 'confirmed' ? 'Confirmée' : 'En attente'}</span>
+            <div style="margin-bottom: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #f5f0eb; padding: 15px; border-left: 3px solid #b8935a;">
+              <div>
+                <div style="font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Date de commande</div>
+                <div style="font-size: 16px; font-weight: bold; color: #2d2a26;">${new Date(order.createdAt).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Date de livraison</div>
+                <div style="font-size: 16px; font-weight: bold; color: #2d2a26;">${order.status === 'delivered' ? 'Livrée' : 'À planifier'}</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Transporteur</div>
+                <div style="font-size: 14px; color: #2d2a26;">${order.carrier === 'locale' ? '🚲 Livraison locale' : order.carrier === 'colissimo' ? '📮 Colissimo' : '⚡ Chronopost'}</div>
+              </div>
+              <div>
+                <div style="font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 0.5px;">Statut</div>
+                <span class="status-badge" style="background: #${order.status === 'delivered' ? 'dcfce7; color: #166534' : order.status === 'shipped' ? 'dbeafe; color: #1e40af' : order.status === 'preparing' ? 'e9d5ff; color: #7c2d12' : order.status === 'confirmed' ? 'dbeafe; color: #1e40af' : 'fef3c7; color: #92400e'};">${order.status === 'delivered' ? 'Livrée' : order.status === 'shipped' ? 'Expédiée' : order.status === 'preparing' ? 'En préparation' : order.status === 'confirmed' ? 'Confirmée' : 'En attente'}</span>
+              </div>
             </div>
             
             <table class="items-table">
@@ -580,6 +594,9 @@ export default function Admin() {
             </table>
             
             <div class="total-section">
+              <div style="font-size: 14px; color: #666; margin-bottom: 5px;">
+                Frais de livraison : ${order.carrier === 'locale' ? (order.total >= 60 ? 'Offerts' : '6,00 — 10,00€') : order.carrier === 'colissimo' ? (order.total >= 60 ? 'Offerts' : '12,90€') : (order.total >= 90 ? 'Offerts' : '18,90€')}
+              </div>
               <div class="total-amount">Total: ${order.total.toFixed(2)}€</div>
             </div>
           </div>
@@ -719,6 +736,7 @@ export default function Admin() {
     { id: 'weddings', label: 'Mariages', icon: '💍', count: weddings.filter(w => w.status === 'new').length },
     { id: 'subscriptions', label: 'Abonnements', icon: '🔄', count: subscriptions.filter(s => s.status === 'active').length },
     { id: 'deliveries', label: 'Livraisons', icon: '🚚', count: deliveries.length },
+    { id: 'calendar', label: 'Calendrier', icon: '📅' },
     { id: 'stats', label: 'Statistiques', icon: '📈' },
   ];
 
@@ -1313,14 +1331,55 @@ export default function Admin() {
         {/* ═══════════ CLIENTS ═══════════ */}
         {activeTab === 'clients' && (
           <div>
-            <h1 className="font-serif text-2xl text-[#2d2a26] mb-6">Clients</h1>
+            <div className="flex items-center justify-between mb-6">
+              <h1 className="font-serif text-2xl text-[#2d2a26]">Clients</h1>
+              <button
+                onClick={() => {
+                  const emails = filteredClients.filter(c => c.email).map(c => c.email).join(', ');
+                  navigator.clipboard.writeText(emails);
+                  alert(`${filteredClients.filter(c => c.email).length} emails copiés dans le presse-papier !\n\nCollez dans votre outil de mailing.`);
+                }}
+                className="px-4 py-2 bg-[#b8935a] text-white text-xs hover:bg-[#b8956a] transition-colors"
+              >
+                📧 Copier emails ({filteredClients.filter(c => c.email).length})
+              </button>
+            </div>
 
-            <input
-              value={clientSearch}
-              onChange={e => setClientSearch(e.target.value)}
-              placeholder="🔍 Rechercher par nom ou email..."
-              className={`${inputClass} !w-full md:!w-80 mb-6`}
-            />
+            {/* Filters */}
+            <div className="flex flex-wrap gap-3 mb-4">
+              <input
+                value={clientSearch}
+                onChange={e => setClientSearch(e.target.value)}
+                placeholder="🔍 Rechercher par nom ou email..."
+                className={`${inputClass} !w-full md:!w-64`}
+              />
+              <select
+                onChange={e => {
+                  const val = e.target.value;
+                  if (val === 'all') setClientSearch('');
+                  else setClientSearch(val);
+                }}
+                className={`${inputClass} !w-auto`}
+              >
+                <option value="all">🏙 Toutes les villes</option>
+                {[...new Set(clients.map(c => (c as any).city).filter(Boolean))].map(city => (
+                  <option key={city} value={city}>{city}</option>
+                ))}
+              </select>
+              <select
+                onChange={e => {
+                  const val = e.target.value;
+                  if (val === 'all') setClientSearch('');
+                  // We filter by budget in the display
+                }}
+                className={`${inputClass} !w-auto`}
+              >
+                <option value="all">💰 Tous les budgets</option>
+                <option value="0-50">0 - 50€</option>
+                <option value="50-100">50 - 100€</option>
+                <option value="100+">100€+</option>
+              </select>
+            </div>
 
             <div className="text-xs text-[#2d2a26]/40 mb-4">{filteredClients.length} client{filteredClients.length > 1 ? 's' : ''}</div>
 
@@ -1620,6 +1679,154 @@ export default function Admin() {
             )}
           </div>
         )}
+
+        {/* ═══════════ CALENDAR ═══════════ */}
+        {activeTab === 'calendar' && (() => {
+          // Build calendar events from subscriptions + weddings
+          const calendarEvents: { date: string; type: 'subscription' | 'wedding'; label: string; detail: string; color: string }[] = [];
+          
+          subscriptions.filter(s => s.status === 'active').forEach(s => {
+            if (s.nextDelivery) {
+              calendarEvents.push({
+                date: s.nextDelivery,
+                type: 'subscription',
+                label: `🌸 ${s.customerName}`,
+                detail: `${formulaLabels[s.formula]?.label || s.formula} · ${frequencyLabels[s.frequency] || s.frequency}`,
+                color: 'bg-green-50 border-green-300 text-green-800',
+              });
+            }
+          });
+          
+          weddings.filter(w => w.status !== 'archived').forEach(w => {
+            calendarEvents.push({
+              date: w.date,
+              type: 'wedding',
+              label: `💍 ${w.name}`,
+              detail: `${w.budget} · ${statusLabels[w.status]?.label || w.status}`,
+              color: 'bg-pink-50 border-pink-300 text-pink-800',
+            });
+          });
+
+          // Sort events by date
+          calendarEvents.sort((a, b) => a.date.localeCompare(b.date));
+
+          // Group by month
+          const months: Record<string, typeof calendarEvents> = {};
+          calendarEvents.forEach(e => {
+            const month = e.date.slice(0, 7);
+            if (!months[month]) months[month] = [];
+            months[month].push(e);
+          });
+
+          return (
+            <div>
+              <h1 className="font-serif text-2xl text-[#2d2a26] mb-6">Calendrier</h1>
+              
+              <div className="flex gap-4 mb-6">
+                <div className="flex items-center gap-2 text-xs">
+                  <div className="w-3 h-3 rounded-full bg-green-400"></div>
+                  <span className="text-[#2d2a26]/60">Abonnements ({subscriptions.filter(s => s.status === 'active').length} actifs)</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs">
+                  <div className="w-3 h-3 rounded-full bg-pink-400"></div>
+                  <span className="text-[#2d2a26]/60">Mariages ({weddings.filter(w => w.status !== 'archived').length})</span>
+                </div>
+              </div>
+
+              {calendarEvents.length === 0 ? (
+                <div className="bg-white border border-[#e8e0d8] p-12 text-center">
+                  <p className="text-4xl mb-4">📅</p>
+                  <p className="text-[#2d2a26]/60">Aucun événement à afficher</p>
+                </div>
+              ) : (
+                <div className="space-y-8">
+                  {Object.entries(months).map(([month, events]) => (
+                    <div key={month}>
+                      <h2 className="font-serif text-lg text-[#2d2a26] mb-4 capitalize">
+                        {new Date(month + '-01').toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}
+                      </h2>
+                      <div className="space-y-2">
+                        {events.map((event, i) => {
+                          const d = new Date(event.date);
+                          const dayNum = d.getDate();
+                          const dayName = d.toLocaleDateString('fr-FR', { weekday: 'short' });
+                          const dLeft = daysUntil(event.date);
+                          return (
+                            <div key={`${event.date}-${i}`} className={`flex items-center gap-4 border-l-4 p-4 bg-white ${event.color}`}>
+                              <div className="text-center flex-shrink-0 w-12">
+                                <p className="text-[10px] uppercase text-[#2d2a26]/40">{dayName}</p>
+                                <p className="font-serif text-2xl text-[#2d2a26]">{dayNum}</p>
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium text-[#2d2a26] truncate">{event.label}</p>
+                                <p className="text-xs text-[#2d2a26]/50">{event.detail}</p>
+                              </div>
+                              <div className="flex-shrink-0 text-right">
+                                {dLeft > 0 ? (
+                                  <span className="text-xs text-[#2d2a26]/40">dans {dLeft}j</span>
+                                ) : dLeft === 0 ? (
+                                  <span className="text-xs text-red-500 font-medium">Aujourd&apos;hui</span>
+                                ) : (
+                                  <span className="text-xs text-[#2d2a26]/30">passé</span>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Quick add subscription from boutique */}
+              <div className="mt-8 bg-white border border-[#e8e0d8] p-6">
+                <h3 className="font-serif text-lg text-[#2d2a26] mb-4">➕ Ajouter un abonnement boutique</h3>
+                <p className="text-xs text-[#2d2a26]/50 mb-4">Pour les abonnements vendus en magasin</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <input id="cal-name" placeholder="Nom du client" className={inputClass} />
+                  <input id="cal-email" placeholder="Email" className={inputClass} />
+                  <select id="cal-formula" className={inputClass}>
+                    <option value="essentiel">🌿 Essentiel (29,90€)</option>
+                    <option value="signature">🌸 Signature (44,90€)</option>
+                    <option value="prestige">👑 Prestige (69,90€)</option>
+                  </select>
+                  <select id="cal-frequency" className={inputClass}>
+                    <option value="weekly">Hebdomadaire</option>
+                    <option value="biweekly">Bi-mensuel</option>
+                    <option value="monthly">Mensuel</option>
+                  </select>
+                  <input id="cal-next" type="date" className={inputClass} />
+                  <button
+                    onClick={() => {
+                      const name = (document.getElementById('cal-name') as HTMLInputElement)?.value;
+                      const email = (document.getElementById('cal-email') as HTMLInputElement)?.value;
+                      const formula = (document.getElementById('cal-formula') as HTMLSelectElement)?.value as Subscription['formula'];
+                      const frequency = (document.getElementById('cal-frequency') as HTMLSelectElement)?.value as Subscription['frequency'];
+                      const nextDelivery = (document.getElementById('cal-next') as HTMLInputElement)?.value;
+                      if (!name || !nextDelivery) return alert('Nom et date requis');
+                      const newSub: Subscription = {
+                        id: crypto.randomUUID(),
+                        customerName: name,
+                        customerEmail: email || '',
+                        formula,
+                        status: 'active',
+                        frequency,
+                        price: formulaLabels[formula]?.price || 29.90,
+                        nextDelivery,
+                        startDate: new Date().toISOString().slice(0, 10),
+                      };
+                      saveSubscriptions([...subscriptions, newSub]);
+                    }}
+                    className="px-6 py-2.5 bg-[#b8935a] text-white text-sm hover:bg-[#b8956a] transition-colors"
+                  >
+                    Ajouter
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* ═══════════ STATISTICS ═══════════ */}
         {activeTab === 'stats' && (
