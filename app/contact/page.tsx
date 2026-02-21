@@ -111,8 +111,9 @@ export default function Contact() {
                     {/* Saint-Pair-sur-Mer */}
                     <div className="border-l-2 border-[#b8935a] pl-4">
                       <p className="font-serif text-[#2d2a26] mb-1">Saint-Pair-sur-Mer</p>
-                      <p className="text-xs text-[#2d2a26]/50 mb-2">39 Place du Général de Gaulle</p>
-                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5">
+                      <p className="text-xs text-[#2d2a26]/50 mb-1">39 Place du Général de Gaulle</p>
+                      <a href="tel:0233502615" className="text-xs text-[#b8935a] hover:text-[#b8956a] transition-colors">📞 02 33 50 26 15</a>
+                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5 mt-2">
                         <p>Lun-Ven : 9h-12h30 / 14h-19h</p>
                         <p>Samedi : 9h-13h / 14h-19h30</p>
                         <p>Dimanche : 9h-13h</p>
@@ -121,8 +122,9 @@ export default function Contact() {
                     {/* Yquelon */}
                     <div className="border-l-2 border-[#b8935a]/60 pl-4">
                       <p className="font-serif text-[#2d2a26] mb-1">Yquelon</p>
-                      <p className="text-xs text-[#2d2a26]/50 mb-2">577 Route de Villedieu</p>
-                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5">
+                      <p className="text-xs text-[#2d2a26]/50 mb-1">577 Route de Villedieu</p>
+                      <a href="tel:0261900400" className="text-xs text-[#b8935a] hover:text-[#b8956a] transition-colors">📞 02 61 90 04 00</a>
+                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5 mt-2">
                         <p>Mar-Ven : 9h30-12h30 / 14h-19h</p>
                         <p>Samedi : 9h30-19h</p>
                         <p className="text-[#2d2a26]/40">Fermé lun & dim</p>
@@ -131,8 +133,9 @@ export default function Contact() {
                     {/* Jullouville */}
                     <div className="border-l-2 border-[#b8935a]/60 pl-4">
                       <p className="font-serif text-[#2d2a26] mb-1">Jullouville</p>
-                      <p className="text-xs text-[#2d2a26]/50 mb-2">7 Avenue Armand Jullou</p>
-                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5">
+                      <p className="text-xs text-[#2d2a26]/50 mb-1">7 Avenue Armand Jullou</p>
+                      <a href="tel:0233917107" className="text-xs text-[#b8935a] hover:text-[#b8956a] transition-colors">📞 02 33 91 71 07</a>
+                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5 mt-2">
                         <p>Mar, Jeu-Sam : 9h30-12h30 / 14h30-19h</p>
                         <p>Dimanche : 9h-13h</p>
                         <p className="text-[#2d2a26]/40">Fermé lun & mer</p>
@@ -141,9 +144,12 @@ export default function Contact() {
                     {/* Dol-de-Bretagne */}
                     <div className="border-l-2 border-[#b8935a]/60 pl-4">
                       <p className="font-serif text-[#2d2a26] mb-1">Dol-de-Bretagne</p>
-                      <p className="text-xs text-[#2d2a26]/50 mb-2">17 Grande Rue des Stuarts</p>
-                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5">
-                        <p>Appelez pour les horaires : 02 33 50 26 15</p>
+                      <p className="text-xs text-[#2d2a26]/50 mb-1">17 Grande Rue des Stuarts</p>
+                      <a href="tel:0299480363" className="text-xs text-[#b8935a] hover:text-[#b8956a] transition-colors">📞 02 99 48 03 63</a>
+                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5 mt-2">
+                        <p>Lundi : 14h-19h</p>
+                        <p>Mar-Sam : 9h-12h30 / 14h-19h30</p>
+                        <p className="text-[#2d2a26]/40">Fermé dim</p>
                       </div>
                     </div>
                   </div>
