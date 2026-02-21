@@ -61,7 +61,7 @@ export default function DeuilPage() {
           <div>
             <p className="text-[#2d2a26] text-sm font-medium">Livraison locale uniquement</p>
             <p className="text-[#2d2a26]/40 text-xs mt-0.5">
-              Rayon de 35 km autour de Saint-Pair-sur-Mer · Livraison le jour même avant 14h
+              Rayon de 35 km autour de Saint-Pair-sur-Mer · Commande la veille avant 17h recommandée
             </p>
           </div>
         </div>
@@ -155,7 +155,7 @@ export default function DeuilPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <p className="text-[10px] md:text-xs text-[#2d2a26]/50 uppercase tracking-wider">Livraison<br />le jour même</p>
+            <p className="text-[10px] md:text-xs text-[#2d2a26]/50 uppercase tracking-wider">Livraison<br />sous 24h</p>
           </div>
           <div>
             <div className="w-10 h-10 mx-auto mb-3 rounded-full border border-[#b8935a]/30 flex items-center justify-center">

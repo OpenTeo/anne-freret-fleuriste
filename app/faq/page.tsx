@@ -20,7 +20,7 @@ const faqData: FAQItem[] = [
   {
     id: 2,
     question: "Quels sont les délais de livraison ?",
-    answer: "Livraison locale (rayon 35 km) : en 24h, du mardi au samedi. Colissimo (France métropolitaine) : 48h ouvrées, du lundi au samedi — La Poste ne livre pas le dimanche. Chronopost express : 24h, du lundi au samedi avant 18h. Pour une livraison le dimanche, seule la livraison locale est possible (nous contacter). Pour les événements spéciaux (mariages, obsèques), nous pouvons organiser des livraisons le jour même si la commande est passée avant 14h."
+    answer: "Livraison locale (rayon 35 km) : en 24h, du mardi au samedi. Colissimo (France métropolitaine) : 48h ouvrées, du lundi au samedi — La Poste ne livre pas le dimanche. Chronopost express : 24h, du lundi au samedi avant 18h. Pour une livraison le dimanche, seule la livraison locale est possible (nous contacter). Pour les événements spéciaux (mariages, obsèques), nous recommandons de commander la veille avant 17h pour garantir la préparation et la livraison. Contactez-nous par téléphone pour les urgences."
   },
   {
     id: 3,

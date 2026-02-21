@@ -106,11 +106,46 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-serif text-[#2d2a26] mb-3">Horaires</h3>
-                  <div className="text-[#2d2a26] font-light leading-relaxed space-y-1">
-                    <p>Lundi - Samedi : 9h00 - 19h00</p>
-                    <p>Dimanche : 10h00 - 17h00</p>
-                    <p className="text-sm text-[#b8935a]">Fermé les jours fériés</p>
+                  <h3 className="text-xl font-serif text-[#2d2a26] mb-3">Nos Boutiques & Horaires</h3>
+                  <div className="space-y-6">
+                    {/* Saint-Pair-sur-Mer */}
+                    <div className="border-l-2 border-[#b8935a] pl-4">
+                      <p className="font-serif text-[#2d2a26] mb-1">Saint-Pair-sur-Mer</p>
+                      <p className="text-xs text-[#2d2a26]/50 mb-2">39 Place du Général de Gaulle</p>
+                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5">
+                        <p>Lun-Ven : 9h-12h30 / 14h-19h</p>
+                        <p>Samedi : 9h-13h / 14h-19h30</p>
+                        <p>Dimanche : 9h-13h</p>
+                      </div>
+                    </div>
+                    {/* Yquelon */}
+                    <div className="border-l-2 border-[#b8935a]/60 pl-4">
+                      <p className="font-serif text-[#2d2a26] mb-1">Yquelon</p>
+                      <p className="text-xs text-[#2d2a26]/50 mb-2">577 Route de Villedieu</p>
+                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5">
+                        <p>Mar-Ven : 9h30-12h30 / 14h-19h</p>
+                        <p>Samedi : 9h30-19h</p>
+                        <p className="text-[#2d2a26]/40">Fermé lun & dim</p>
+                      </div>
+                    </div>
+                    {/* Jullouville */}
+                    <div className="border-l-2 border-[#b8935a]/60 pl-4">
+                      <p className="font-serif text-[#2d2a26] mb-1">Jullouville</p>
+                      <p className="text-xs text-[#2d2a26]/50 mb-2">7 Avenue Armand Jullou</p>
+                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5">
+                        <p>Mar, Jeu-Sam : 9h30-12h30 / 14h30-19h</p>
+                        <p>Dimanche : 9h-13h</p>
+                        <p className="text-[#2d2a26]/40">Fermé lun & mer</p>
+                      </div>
+                    </div>
+                    {/* Dol-de-Bretagne */}
+                    <div className="border-l-2 border-[#b8935a]/60 pl-4">
+                      <p className="font-serif text-[#2d2a26] mb-1">Dol-de-Bretagne</p>
+                      <p className="text-xs text-[#2d2a26]/50 mb-2">17 Grande Rue des Stuarts</p>
+                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5">
+                        <p>Appelez pour les horaires : 02 33 50 26 15</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
