@@ -634,11 +634,11 @@ function AbonnementContent() {
             <div className="space-y-0">
               {[
                 { q: 'Quand serai-je livré(e) ?', a: 'Votre première livraison est envoyée sous 48h après votre inscription. Les suivantes selon la fréquence choisie, le jour que vous avez sélectionné.' },
-                { q: 'Puis-je modifier ou mettre en pause mon abonnement ?', a: 'Oui, à tout moment depuis votre espace client. Vous pouvez changer la fréquence, l\'adresse, mettre en pause ou reprendre quand vous le souhaitez.' },
+                { q: 'Puis-je modifier ou mettre en pause mon abonnement ?', a: 'Oui, à tout moment ! Appelez-nous au 02 33 50 26 15 ou écrivez-nous à contact@fleuriste-annefreret.com. Vous pouvez changer la fréquence, l\'adresse, mettre en pause ou reprendre quand vous le souhaitez.' },
                 { q: 'Les fleurs sont-elles toujours les mêmes ?', a: 'Jamais ! Chaque livraison est une composition unique de saison, créée par notre fleuriste avec les plus belles fleurs disponibles. C\'est la surprise à chaque fois.' },
                 { q: 'Puis-je offrir un abonnement ?', a: 'Absolument ! Cochez "C\'est un cadeau" lors de votre commande. Vous pourrez ajouter un message personnalisé et indiquer l\'adresse du destinataire.' },
-                { q: 'Comment fonctionne l\'annulation ?', a: 'L\'annulation prend effet à la fin de la période d\'engagement choisie. Vous pouvez faire votre demande à tout moment depuis votre espace client.' },
-                { q: 'Et si je ne suis pas chez moi ?', a: 'Le livreur déposera votre bouquet chez un voisin ou en point relais. Vous pouvez également laisser des instructions de livraison lors de votre inscription.' },
+                { q: 'Comment fonctionne l\'annulation ?', a: 'L\'annulation prend effet à la fin de la période en cours. Contactez-nous par téléphone ou email pour faire votre demande à tout moment.' },
+                { q: 'Et si je ne suis pas chez moi ?', a: 'Le livreur déposera votre bouquet chez un voisin de confiance ou dans un endroit abrité que vous aurez indiqué. Vous pouvez laisser des instructions de livraison lors de votre inscription.' },
               ].map((item, i) => (
                 <details key={i} className="border-b border-[#e8e0d8] group">
                   <summary className="py-5 cursor-pointer flex items-center justify-between text-[#2d2a26] hover:text-[#b8935a] transition-colors">

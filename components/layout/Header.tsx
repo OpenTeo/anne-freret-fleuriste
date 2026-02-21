@@ -40,7 +40,6 @@ const Header = () => {
   const navLinks = [
     { href: '/boutique', label: 'Boutique' },
     { href: '/mariages', label: 'Mariages' },
-    { href: '/diy', label: 'DIY' },
     { href: '/abonnement', label: 'Abonnement' },
     { href: '/livraison', label: 'Livraison' },
     { href: '/blog', label: 'Blog' },
@@ -143,7 +142,6 @@ const Header = () => {
                 { href: '/boutique', label: 'Boutique' },
                 { href: '/mariages', label: 'Mariages' },
                 { href: '/abonnement', label: 'Abonnement' },
-                { href: '/diy', label: 'DIY' },
                 { href: '/deuil', label: 'Deuil & Hommages' },
                 { href: '/la-marque', label: 'Qui sommes-nous' },
                 { href: '/livraison', label: 'Livraison' },

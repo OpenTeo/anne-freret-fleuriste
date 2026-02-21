@@ -18,7 +18,7 @@ export default function Livraison() {
     },
     {
       question: 'Que se passe-t-il si personne n\'est présent lors de la livraison ?',
-      answer: 'Nous contactons le destinataire avant la livraison. Si personne n\'est présent, nous laissons les fleurs chez un voisin de confiance ou repassons selon vos préférences.'
+      answer: 'Nous contactons le destinataire avant la livraison. Si personne n\'est présent, nous déposons les fleurs chez un voisin de confiance ou dans un endroit abrité selon vos instructions. Vous pouvez aussi indiquer un lieu de dépôt lors de la commande.'
     }
   ];
 
