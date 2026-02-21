@@ -60,12 +60,20 @@ export default function Mariages() {
                 un moment inoubliable, empreint d'émotion et de beauté.
               </p>
 
-              <a
-                href="#devis"
-                className="inline-block bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
-              >
-                Demander un devis
-              </a>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a
+                  href="#devis"
+                  className="inline-block bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300"
+                >
+                  Demander un devis
+                </a>
+                <a
+                  href="mailto:evenementiel@fleuriste-annefreret.com"
+                  className="text-[#b8935a] hover:text-[#b8956a] transition-colors font-light"
+                >
+                  ✉ evenementiel@fleuriste-annefreret.com
+                </a>
+              </div>
             </div>
           </div>
         </section>

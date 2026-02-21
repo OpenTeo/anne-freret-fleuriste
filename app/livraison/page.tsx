@@ -6,7 +6,7 @@ export default function Livraison() {
   const faqItems = [
     {
       question: 'À quelle heure sont effectuées les livraisons ?',
-      answer: 'Nos livraisons s\'effectuent du mardi au samedi, de 9h à 18h. Pour les commandes urgentes, nous proposons un service express avec supplément.'
+      answer: 'Nos livraisons locales s\'effectuent du mardi au samedi, de 9h à 18h (dimanche sur demande). Les envois Colissimo et Chronopost sont livrés du lundi au samedi uniquement — La Poste ne livre pas le dimanche. Pour les commandes urgentes, nous proposons un service express avec supplément.'
     },
     {
       question: 'Puis-je choisir un créneau de livraison ?',
@@ -171,13 +171,14 @@ export default function Livraison() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold tracking-wide" style={{ color: '#003DA5' }}>COLISSIMO</p>
-                    <p className="text-[10px] text-[#2d2a26]/40">La Poste · Suivi inclus · 48h (J+2)</p>
+                    <p className="text-[10px] text-[#2d2a26]/40">La Poste · Suivi inclus · 48h (J+2) · Lun-Sam</p>
                   </div>
                 </div>
                 <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
                   <div className="flex justify-between"><span>France metropolitaine</span><span>12,90 €</span></div>
                 </div>
-                <p className="text-[10px] mt-3" style={{ color: '#003DA5' }}>Offerte des 60 € d&apos;achat</p>
+                <p className="text-[10px] mt-2 text-[#2d2a26]/40">⚠ Pas de livraison le dimanche</p>
+                <p className="text-[10px] mt-1" style={{ color: '#003DA5' }}>Offerte des 60 € d&apos;achat</p>
               </div>
 
               {/* Chronopost */}

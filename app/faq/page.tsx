@@ -20,7 +20,7 @@ const faqData: FAQItem[] = [
   {
     id: 2,
     question: "Quels sont les délais de livraison ?",
-    answer: "Nous proposons plusieurs options de livraison : livraison express en 24 à 48 heures ouvrées, livraison standard en 2 à 4 jours ouvrés, ou livraison à date choisie selon nos disponibilités. Pour les événements spéciaux (mariages, obsèques), nous pouvons organiser des livraisons le jour même si la commande est passée avant 14h."
+    answer: "Livraison locale (rayon 35 km) : en 24h, du mardi au samedi. Colissimo (France métropolitaine) : 48h ouvrées, du lundi au samedi — La Poste ne livre pas le dimanche. Chronopost express : 24h, du lundi au samedi avant 18h. Pour une livraison le dimanche, seule la livraison locale est possible (nous contacter). Pour les événements spéciaux (mariages, obsèques), nous pouvons organiser des livraisons le jour même si la commande est passée avant 14h."
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const faqData: FAQItem[] = [
   {
     id: 4,
     question: "Puis-je choisir une date de livraison ?",
-    answer: "Absolument ! Nous proposons un service de livraison à date choisie, particulièrement apprécié pour les anniversaires, fêtes et événements spéciaux. Lors de votre commande, indiquez simplement la date souhaitée. Nous recommandons de commander au moins 48h à l'avance."
+    answer: "Absolument ! Nous proposons un service de livraison à date choisie, particulièrement apprécié pour les anniversaires, fêtes et événements spéciaux. Lors de votre commande, indiquez simplement la date souhaitée. Nous recommandons de commander au moins 48h à l'avance. Attention : pour une livraison le dimanche, seule la livraison locale est disponible (Colissimo et Chronopost ne livrent pas le dimanche)."
   },
   {
     id: 5,
