@@ -336,7 +336,24 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 <div className="flex gap-3">
                   <button 
                     onClick={() => {
-                      alert(`${product.name} (${selectedSize?.name || ''}) × ${quantity} ajouté au panier — ${currentPrice.toFixed(2)}€`);
+                      const cart = JSON.parse(localStorage.getItem('af-cart') || '[]');
+                      const newItem = {
+                        id: product.id + '-' + (selectedSize?.name || 'default'),
+                        name: product.name,
+                        size: selectedSize?.name || 'Standard',
+                        price: currentPrice,
+                        quantity: quantity,
+                        image: product.image,
+                        category: product.category || 'Bouquets',
+                      };
+                      const existingIndex = cart.findIndex((item: any) => item.id === newItem.id);
+                      if (existingIndex >= 0) {
+                        cart[existingIndex].quantity += quantity;
+                      } else {
+                        cart.push(newItem);
+                      }
+                      localStorage.setItem('af-cart', JSON.stringify(cart));
+                      window.location.href = '/panier';
                     }}
                     className="flex-grow bg-[#b8935a] text-white py-3.5 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors flex items-center justify-center gap-2"
                   >
@@ -602,7 +619,26 @@ export default function ProductPageClient({ params }: ProductPageProps) {
         {/* Bouton panier sticky sur mobile */}
         <div className="lg:hidden fixed bottom-0 left-0 right-0 p-3 bg-[#faf8f5]/95 backdrop-blur-sm border-t border-[#e8e0d8] z-50">
           <button 
-            onClick={() => alert(`${product.name} (${selectedSize?.name || ''}) × ${quantity} ajouté au panier — ${currentPrice.toFixed(2)}€`)}
+            onClick={() => {
+              const cart = JSON.parse(localStorage.getItem('af-cart') || '[]');
+              const newItem = {
+                id: product.id + '-' + (selectedSize?.name || 'default'),
+                name: product.name,
+                size: selectedSize?.name || 'Standard',
+                price: currentPrice,
+                quantity: quantity,
+                image: product.image,
+                category: product.category || 'Bouquets',
+              };
+              const existingIndex = cart.findIndex((item: any) => item.id === newItem.id);
+              if (existingIndex >= 0) {
+                cart[existingIndex].quantity += quantity;
+              } else {
+                cart.push(newItem);
+              }
+              localStorage.setItem('af-cart', JSON.stringify(cart));
+              window.location.href = '/panier';
+            }}
             className="w-full bg-[#b8935a] text-white py-3.5 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors flex items-center justify-center gap-2"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

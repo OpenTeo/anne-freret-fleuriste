@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
@@ -8,17 +8,24 @@ import Footer from '@/components/layout/Footer';
 import DeliveryCalculator from '@/components/ui/DeliveryCalculator';
 import CardSelector from '@/components/ui/CardSelector';
 
-const initialCartItems = [
-  {
-    id: '1',
-    name: 'Le Jullouvillais',
-    size: 'Moyen',
-    price: 49.90,
-    quantity: 1,
-    image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetderose2.jpg?v=1625070100',
-    category: 'Bouquets'
-  },
-];
+interface CartItem {
+  id: string;
+  name: string;
+  size: string;
+  price: number;
+  quantity: number;
+  image: string;
+  category: string;
+}
+
+// Load cart from localStorage instead of hardcoding items
+const getInitialCart = (): CartItem[] => {
+  if (typeof window === 'undefined') return [];
+  const stored = localStorage.getItem('af-cart');
+  return stored ? JSON.parse(stored) : [];
+};
+
+const initialCartItems = getInitialCart();
 
 type DeliveryMode = 'local' | 'colissimo' | 'chronopost' | null;
 
@@ -35,6 +42,11 @@ export default function Panier() {
     const now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), 1);
   });
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('af-cart', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const updateQuantity = (id: string, newQuantity: number) => {
     if (newQuantity === 0) { removeItem(id); return; }
