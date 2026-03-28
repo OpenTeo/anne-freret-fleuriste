@@ -11,6 +11,8 @@ export function getStripe(): Stripe {
   // Use SDK default API version (most stable)
   _stripe = new Stripe(key, {
     typescript: true,
+    timeout: 20000, // 20s timeout
+    maxNetworkRetries: 3,
   });
   
   return _stripe;
