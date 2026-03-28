@@ -19,4 +19,5 @@ export const resend = new Proxy({} as Resend, {
   },
 });
 
-export const FROM_EMAIL = 'Anne Freret Fleuriste <commandes@anne-freret.fr>';
+// TODO: Changer vers commandes@anne-freret.fr une fois le domaine vérifié dans Resend
+export const FROM_EMAIL = 'Anne Freret Fleuriste <onboarding@resend.dev>';
