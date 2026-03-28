@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import { resend, FROM_EMAIL } from '@/lib/resend';
+import { createParcel } from '@/lib/sendcloud';
 import Stripe from 'stripe';
 
 export async function POST(req: NextRequest) {
@@ -117,5 +118,29 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
     console.log(`✅ Email de confirmation envoyé à ${email}`);
   } catch (err) {
     console.error('Erreur envoi email:', err);
+  }
+
+  // Créer le colis SendCloud pour livraisons nationales
+  if (meta.delivery_mode === 'colissimo' || meta.delivery_mode === 'chronopost') {
+    try {
+      const addressParts = (meta.delivery_address || '').split(', ');
+      const cityParts = addressParts[1]?.split(' ') || [];
+
+      const parcel = await createParcel({
+        name: meta.customer_name || '',
+        address: addressParts[0] || '',
+        city: cityParts.slice(1).join(' ') || '',
+        postalCode: cityParts[0] || '',
+        country: 'FR',
+        email,
+        phone: '',
+        orderNumber: session.id.slice(-8).toUpperCase(),
+        weight: 1.5,
+        shipmentMethod: 8, // À ajuster selon les méthodes disponibles
+      });
+      console.log(`📦 Colis SendCloud créé: ${parcel.tracking_number}`);
+    } catch (err) {
+      console.error('Erreur création colis SendCloud:', err);
+    }
   }
 }
