@@ -146,9 +146,10 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ url: session.url });
   } catch (error) {
-    console.error('Stripe checkout error:', error);
+    const errMsg = error instanceof Error ? error.message : String(error);
+    console.error('Stripe checkout error:', errMsg, error);
     return NextResponse.json(
-      { error: 'Erreur lors de la création du paiement' },
+      { error: 'Erreur lors de la création du paiement', details: errMsg },
       { status: 500 }
     );
   }
