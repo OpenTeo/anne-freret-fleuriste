@@ -9,7 +9,7 @@ export function getStripe(): Stripe {
   if (!key) throw new Error('STRIPE_SECRET_KEY manquante');
   
   _stripe = new Stripe(key, {
-    apiVersion: '2024-11-20.acacia' as any,
+    apiVersion: '2026-02-25.clover' as any,
     typescript: true,
   });
   
