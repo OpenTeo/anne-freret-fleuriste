@@ -611,8 +611,8 @@ export default function Admin() {
 
           <div class="footer">
             <div>Anne Freret • Fleuriste Artisan</div>
-            <div>12 place du Vieux-Marché • 76000 Rouen</div>
-            <div>06 12 34 56 78 • contact@annefreret.fr</div>
+            <div>39 place du Général de Gaulle • 50380 Saint-Pair-sur-Mer</div>
+            <div>02 33 50 XX XX • contact@anne-freret.fr</div>
           </div>
         </body>
       </html>
