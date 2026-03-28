@@ -60,18 +60,25 @@ export default function Confirmation() {
             const addressParts = (meta.delivery_address || '').split(', ');
             const cityParts = addressParts[1]?.split(' ') || [];
 
-            setOrder({
-              items: (meta.order_items || '').split(' | ').map((s: string, i: number) => {
-                const match = s.match(/^(\d+)x (.+) \((.+)\)$/);
-                return {
+            const items = meta.order_items_json 
+              ? JSON.parse(meta.order_items_json).map((item: any, i: number) => ({
                   id: String(i),
-                  name: match?.[2] || s,
-                  size: match?.[3] || '',
-                  price: 0,
-                  quantity: parseInt(match?.[1] || '1'),
-                  image: '',
-                };
-              }),
+                  ...item,
+                }))
+              : (meta.order_items || '').split(' | ').map((s: string, i: number) => {
+                  const match = s.match(/^(\d+)x (.+) \((.+)\)$/);
+                  return {
+                    id: String(i),
+                    name: match?.[2] || s,
+                    size: match?.[3] || '',
+                    price: 0,
+                    quantity: parseInt(match?.[1] || '1'),
+                    image: '',
+                  };
+                });
+
+            setOrder({
+              items,
               delivery: {
                 mode: meta.delivery_mode || '',
                 date: meta.delivery_date || '',

@@ -57,7 +57,6 @@ export async function POST(req: NextRequest) {
     params.append('success_url', `${siteUrl}/confirmation?session_id={CHECKOUT_SESSION_ID}`);
     params.append('cancel_url', `${siteUrl}/panier`);
     params.append('locale', 'fr');
-    params.append('currency', 'eur');
     params.append('billing_address_collection', 'required');
 
     // Add line items
@@ -105,6 +104,13 @@ export async function POST(req: NextRequest) {
     params.append('metadata[delivery_address]', `${customer.address}, ${customer.postalCode} ${customer.city}`);
     params.append('metadata[card_message]', cardMessage || '');
     params.append('metadata[order_items]', items.map(i => `${i.quantity}x ${i.name} (${i.size})`).join(' | '));
+    params.append('metadata[order_items_json]', JSON.stringify(items.map(i => ({
+      name: i.name,
+      size: i.size,
+      price: i.price,
+      quantity: i.quantity,
+      image: i.image,
+    }))));
 
     // Direct fetch to Stripe API
     const res = await fetch('https://api.stripe.com/v1/checkout/sessions', {
