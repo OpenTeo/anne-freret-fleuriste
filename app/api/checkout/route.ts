@@ -117,8 +117,11 @@ export async function POST(req: NextRequest) {
     const data = await res.json();
 
     if (!res.ok) {
-      console.error('Stripe API error:', data);
-      return NextResponse.json({ error: data.error?.message || 'Erreur Stripe' }, { status: res.status });
+      console.error('Stripe API error:', JSON.stringify(data, null, 2));
+      return NextResponse.json({ 
+        error: data.error?.message || 'Erreur Stripe',
+        details: data.error || data,
+      }, { status: res.status });
     }
 
     return NextResponse.json({ url: data.url });
