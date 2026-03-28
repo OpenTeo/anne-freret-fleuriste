@@ -1,20 +1,25 @@
 import Stripe from 'stripe';
 
-export function getStripe() {
-  if (!process.env.STRIPE_SECRET_KEY) {
-    throw new Error('STRIPE_SECRET_KEY manquante dans .env.local');
-  }
-  return new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: '2026-03-25.dahlia',
+let _stripe: Stripe | undefined;
+
+export function getStripe(): Stripe {
+  if (_stripe) return _stripe;
+  
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) throw new Error('STRIPE_SECRET_KEY manquante');
+  
+  _stripe = new Stripe(key, {
+    apiVersion: '2024-11-20.acacia' as any,
     typescript: true,
   });
+  
+  return _stripe;
 }
 
-// Lazy singleton
-let _stripe: Stripe | null = null;
 export const stripe = new Proxy({} as Stripe, {
   get(_, prop) {
-    if (!_stripe) _stripe = getStripe();
-    return (_stripe as unknown as Record<string | symbol, unknown>)[prop];
+    const s = getStripe();
+    const value = (s as any)[prop];
+    return typeof value === 'function' ? value.bind(s) : value;
   },
 });
