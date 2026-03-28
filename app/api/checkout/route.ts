@@ -57,6 +57,8 @@ export async function POST(req: NextRequest) {
     params.append('success_url', `${siteUrl}/confirmation?session_id={CHECKOUT_SESSION_ID}`);
     params.append('cancel_url', `${siteUrl}/panier`);
     params.append('locale', 'fr');
+    params.append('currency', 'eur');
+    params.append('billing_address_collection', 'required');
 
     // Add line items
     let idx = 0;
