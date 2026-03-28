@@ -4,15 +4,16 @@ import { supabase } from '@/lib/supabase';
 // GET /api/orders/[id] - Récupérer une commande spécifique
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const { data, error } = await supabase
     .from('orders')
     .select(`
       *,
       order_items (*)
     `)
-    .eq('id', params.id)
+    .eq('id', id)
     .single();
 
   if (error) {
@@ -26,8 +27,9 @@ export async function GET(
 // PATCH /api/orders/[id] - Mettre à jour une commande
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
   const body = await req.json();
 
   // Champs autorisés à la mise à jour
@@ -52,7 +54,7 @@ export async function PATCH(
   const { data, error } = await supabase
     .from('orders')
     .update(updates)
-    .eq('id', params.id)
+    .eq('id', id)
     .select()
     .single();
 
