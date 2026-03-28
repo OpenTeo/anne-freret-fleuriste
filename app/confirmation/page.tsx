@@ -46,9 +46,65 @@ export default function Confirmation() {
   const { user, register } = useAuth();
 
   useEffect(() => {
-    const stored = localStorage.getItem('af-last-order');
-    if (stored) {
-      setOrder(JSON.parse(stored));
+    // Try Stripe session first
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('session_id');
+
+    if (sessionId) {
+      fetch(`/api/checkout/session?session_id=${sessionId}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'paid' && data.metadata) {
+            const meta = data.metadata;
+            const nameParts = (meta.customer_name || '').split(' ');
+            const addressParts = (meta.delivery_address || '').split(', ');
+            const cityParts = addressParts[1]?.split(' ') || [];
+
+            setOrder({
+              items: (meta.order_items || '').split(' | ').map((s: string, i: number) => {
+                const match = s.match(/^(\d+)x (.+) \((.+)\)$/);
+                return {
+                  id: String(i),
+                  name: match?.[2] || s,
+                  size: match?.[3] || '',
+                  price: 0,
+                  quantity: parseInt(match?.[1] || '1'),
+                  image: '',
+                };
+              }),
+              delivery: {
+                mode: meta.delivery_mode || '',
+                date: meta.delivery_date || '',
+                fee: 0,
+                discount: 0,
+                subtotal: (data.amount_total || 0) / 100,
+                total: (data.amount_total || 0) / 100,
+              },
+              customer: {
+                email: data.customer_email || '',
+                firstName: nameParts[0] || '',
+                lastName: nameParts.slice(1).join(' ') || '',
+                phone: '',
+                address: addressParts[0] || '',
+                postalCode: cityParts[0] || '',
+                city: cityParts.slice(1).join(' ') || '',
+              },
+              orderId: sessionId.slice(-8).toUpperCase(),
+              date: new Date().toISOString(),
+            });
+
+            // Clear cart
+            localStorage.removeItem('af-checkout-cart');
+            localStorage.removeItem('af-checkout-delivery');
+          }
+        })
+        .catch(() => {});
+    } else {
+      // Fallback to localStorage
+      const stored = localStorage.getItem('af-last-order');
+      if (stored) {
+        setOrder(JSON.parse(stored));
+      }
     }
   }, []);
 

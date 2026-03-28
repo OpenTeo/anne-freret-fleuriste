@@ -55,27 +55,39 @@ export default function Paiement() {
 
   const isFormValid = form.email && form.firstName && form.lastName && form.phone && form.address && form.postalCode && form.city;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isFormValid) return;
     setIsSubmitting(true);
+    setError('');
 
-    // Store order info for confirmation page
-    localStorage.setItem('af-last-order', JSON.stringify({
-      items: cartItems,
-      delivery: deliveryInfo,
-      customer: form,
-      orderId: `AF-${Date.now().toString(36).toUpperCase()}`,
-      date: new Date().toISOString(),
-    }));
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cartItems,
+          delivery: deliveryInfo,
+          customer: form,
+        }),
+      });
 
-    // Clear cart
-    localStorage.removeItem('af-checkout-cart');
-    localStorage.removeItem('af-checkout-delivery');
+      const data = await res.json();
 
-    setTimeout(() => {
-      router.push('/confirmation');
-    }, 800);
+      if (!res.ok) {
+        throw new Error(data.error || 'Erreur lors du paiement');
+      }
+
+      // Redirect to Stripe Checkout
+      if (data.url) {
+        window.location.href = data.url;
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+      setIsSubmitting(false);
+    }
   };
 
   if (cartItems.length === 0 && typeof window !== 'undefined') {
@@ -311,6 +323,10 @@ export default function Paiement() {
                   >
                     {isSubmitting ? 'Traitement en cours...' : 'Payer'}
                   </button>
+
+                  {error && (
+                    <p className="text-xs text-red-500 text-center">{error}</p>
+                  )}
 
                   <div className="flex items-center justify-center gap-2 pt-1">
                     <svg className="w-3.5 h-3.5 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
