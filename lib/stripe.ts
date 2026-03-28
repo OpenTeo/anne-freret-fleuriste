@@ -8,8 +8,8 @@ export function getStripe(): Stripe {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) throw new Error('STRIPE_SECRET_KEY manquante');
   
+  // Use SDK default API version (most stable)
   _stripe = new Stripe(key, {
-    apiVersion: '2026-02-25.clover' as any,
     typescript: true,
   });
   
