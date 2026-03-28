@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Config Stripe manquante' }, { status: 500 });
     }
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+    const siteUrl = 'https://anne-freret-fleuriste.vercel.app';
 
     // Build form data for Stripe API
     const params = new URLSearchParams();
