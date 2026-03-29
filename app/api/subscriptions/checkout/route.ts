@@ -81,8 +81,7 @@ export async function POST(request: NextRequest) {
       currency: 'eur',
       recurring: frequencyConfig,
       product_data: {
-        name: `Abonnement ${formula.charAt(0).toUpperCase() + formula.slice(1)}`,
-        description: `Livraison de fleurs fraîches - ${frequency === 'weekly' ? 'Hebdomadaire' : frequency === 'biweekly' ? 'Bi-mensuel' : 'Mensuel'}`,
+        name: `Abonnement ${formula.charAt(0).toUpperCase() + formula.slice(1)} - ${frequency === 'weekly' ? 'Hebdomadaire' : frequency === 'biweekly' ? 'Bi-mensuel' : 'Mensuel'}`,
       },
     });
 
