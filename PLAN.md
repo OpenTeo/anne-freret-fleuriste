@@ -29,21 +29,27 @@
 
 ## 🚀 Timeline de Lancement
 
-### Phase 1: Développement (2 semaines)
+### Phase 1: Développement (2 semaines) ✅ COMPLÉTÉ
 - ✅ Setup Next.js + Tailwind
 - ✅ Design système & composants
 - ✅ Pages principales (Accueil, Boutique, À propos, Contact, Panier)
 - ✅ Responsive design mobile-first
-- 🔄 Integration CMS (Strapi/Contentful)
-- 🔄 Système de panier complet
-- 🔄 Formulaires de contact fonctionnels
+- ✅ Système de panier complet
+- ✅ Formulaires de contact fonctionnels
+- ✅ Migration localStorage → Neon PostgreSQL
+- ✅ Système d'authentification complet
+- ✅ Admin dashboard opérationnel
 
-### Phase 2: Intégrations & Tests (1 semaine)
-- Integration Stripe pour les paiements
-- Setup emailing automatisé
-- Tests cross-browser
-- Optimisations SEO techniques
-- Tests de performance
+### Phase 2: Intégrations & Tests (1 semaine) ✅ COMPLÉTÉ
+- ✅ Integration Stripe pour paiements one-time
+- ✅ **Integration Stripe Subscriptions complète (4 phases)**
+- ✅ Setup emailing automatisé (Resend)
+- ✅ Webhook Stripe → sauvegarde BDD
+- ✅ Système de fidélité automatique
+- ✅ SendCloud integration (API prête)
+- ⏳ Tests cross-browser (à faire)
+- ⏳ Optimisations SEO techniques (à faire)
+- ⏳ Tests de performance (à faire)
 
 ### Phase 3: Contenu & Lancement (1 semaine)
 - Photographie produits professionnelle
