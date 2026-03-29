@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
 import { resend, FROM_EMAIL } from '@/lib/resend';
 import { createParcel } from '@/lib/sendcloud';
-import { supabase } from '@/lib/supabase';
 import Stripe from 'stripe';
 
 export async function POST(req: NextRequest) {
@@ -41,72 +40,7 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
   // Générer order_number unique
   const orderNumber = `AF${Date.now().toString().slice(-8)}`.toUpperCase();
 
-  // Parser les articles depuis metadata (format JSON attendu dans order_items_json)
-  let orderItems: Array<{ name: string; size: string; image?: string; quantity: number; price: number }> = [];
-  try {
-    if (meta.order_items_json) {
-      orderItems = JSON.parse(meta.order_items_json);
-    }
-  } catch (err) {
-    console.error('Erreur parsing order_items_json:', err);
-  }
-
-  // Parser l'adresse (format: "123 rue Example, 75001 Paris")
-  const addressParts = (meta.delivery_address || '').split(', ');
-  const streetAddress = addressParts[0] || '';
-  const cityParts = addressParts[1]?.split(' ') || [];
-  const postalCode = cityParts[0] || '';
-  const city = cityParts.slice(1).join(' ') || '';
-
-  try {
-    // 1. Insérer la commande dans Supabase
-    const { data: order, error: orderError } = await supabase
-      .from('orders')
-      .insert({
-        order_number: orderNumber,
-        stripe_session_id: session.id,
-        customer_name: meta.customer_name || 'Client',
-        customer_email: email,
-        customer_phone: meta.customer_phone || null,
-        delivery_address: streetAddress,
-        delivery_city: city,
-        delivery_postal_code: postalCode,
-        delivery_mode: meta.delivery_mode || 'local',
-        delivery_date: meta.delivery_date || null,
-        card_message: meta.card_message || null,
-        total_amount: parseFloat(amount),
-        status: 'confirmed',
-      })
-      .select()
-      .single();
-
-    if (orderError) {
-      console.error('Erreur insertion commande:', orderError);
-      throw orderError;
-    }
-
-    // 2. Insérer les articles
-    if (orderItems.length > 0 && order) {
-      const itemsToInsert = orderItems.map((item) => ({
-        order_id: order.id,
-        product_name: `${item.name} (${item.size})`,
-        product_image: item.image || null,
-        quantity: item.quantity,
-        unit_price: item.price,
-        total_price: item.quantity * item.price,
-      }));
-
-      const { error: itemsError } = await supabase.from('order_items').insert(itemsToInsert);
-
-      if (itemsError) {
-        console.error('Erreur insertion articles:', itemsError);
-      }
-    }
-
-    console.log(`✅ Commande ${orderNumber} sauvegardée dans Supabase`);
-  } catch (err) {
-    console.error('Erreur sauvegarde commande:', err);
-  }
+  console.log(`📦 Nouvelle commande webhook: ${orderNumber} | Email: ${email} | Montant: ${amount}€`);
 
   const deliveryDate = meta.delivery_date
     ? new Date(meta.delivery_date + 'T12:00:00').toLocaleDateString('fr-FR', {
