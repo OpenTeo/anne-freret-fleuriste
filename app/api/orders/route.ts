@@ -15,54 +15,95 @@ export async function GET(req: NextRequest) {
       );
     }
 
-    // Construire query
-    let query = sql`
-      SELECT 
-        o.*,
-        json_agg(
-          json_build_object(
-            'id', oi.id,
-            'product_name', oi.product_name,
-            'product_image', oi.product_image,
-            'quantity', oi.quantity,
-            'unit_price', oi.unit_price,
-            'total_price', oi.total_price
-          )
-        ) as items
-      FROM orders o
-      LEFT JOIN order_items oi ON o.id = oi.order_id
-    `;
+    let result;
 
-    // Filtres
-    if (email) {
-      query = sql`
-        ${query}
+    // Query selon les filtres
+    if (email && status) {
+      result = await sql`
+        SELECT 
+          o.*,
+          json_agg(
+            json_build_object(
+              'id', oi.id,
+              'product_name', oi.product_name,
+              'product_image', oi.product_image,
+              'quantity', oi.quantity,
+              'unit_price', oi.unit_price,
+              'total_price', oi.total_price
+            )
+          ) as items
+        FROM orders o
+        LEFT JOIN order_items oi ON o.id = oi.order_id
         WHERE o.customer_email = ${email.toLowerCase()}
+        AND o.status = ${status}
+        GROUP BY o.id
+        ORDER BY o.created_at DESC
+      `;
+    } else if (email) {
+      result = await sql`
+        SELECT 
+          o.*,
+          json_agg(
+            json_build_object(
+              'id', oi.id,
+              'product_name', oi.product_name,
+              'product_image', oi.product_image,
+              'quantity', oi.quantity,
+              'unit_price', oi.unit_price,
+              'total_price', oi.total_price
+            )
+          ) as items
+        FROM orders o
+        LEFT JOIN order_items oi ON o.id = oi.order_id
+        WHERE o.customer_email = ${email.toLowerCase()}
+        GROUP BY o.id
+        ORDER BY o.created_at DESC
+      `;
+    } else if (userId && status) {
+      result = await sql`
+        SELECT 
+          o.*,
+          json_agg(
+            json_build_object(
+              'id', oi.id,
+              'product_name', oi.product_name,
+              'product_image', oi.product_image,
+              'quantity', oi.quantity,
+              'unit_price', oi.unit_price,
+              'total_price', oi.total_price
+            )
+          ) as items
+        FROM orders o
+        LEFT JOIN order_items oi ON o.id = oi.order_id
+        WHERE o.user_id = ${userId}
+        AND o.status = ${status}
+        GROUP BY o.id
+        ORDER BY o.created_at DESC
       `;
     } else if (userId) {
-      query = sql`
-        ${query}
+      result = await sql`
+        SELECT 
+          o.*,
+          json_agg(
+            json_build_object(
+              'id', oi.id,
+              'product_name', oi.product_name,
+              'product_image', oi.product_image,
+              'quantity', oi.quantity,
+              'unit_price', oi.unit_price,
+              'total_price', oi.total_price
+            )
+          ) as items
+        FROM orders o
+        LEFT JOIN order_items oi ON o.id = oi.order_id
         WHERE o.user_id = ${userId}
+        GROUP BY o.id
+        ORDER BY o.created_at DESC
       `;
     }
-
-    if (status) {
-      query = sql`
-        ${query}
-        AND o.status = ${status}
-      `;
-    }
-
-    query = sql`
-      ${query}
-      GROUP BY o.id
-      ORDER BY o.created_at DESC
-    `;
-
-    const result = await query;
 
     return NextResponse.json({
-      orders: result.rows
+      orders: result?.rows || []
     });
 
   } catch (error) {
