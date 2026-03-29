@@ -1,124 +1,104 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Stripe from 'stripe';
+import { stripe } from '@/lib/stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-11-20.acacia',
-});
-
-// Mapping formules → Prix Stripe (à créer dans Stripe Dashboard)
-const FORMULA_PRICES: Record<string, { priceId: string; amount: number }> = {
+// Mapping des formules/fréquences vers les Price IDs Stripe (créés le 2026-03-29)
+const PRICE_IDS: Record<string, Record<string, string>> = {
   essentiel: {
-    priceId: process.env.STRIPE_PRICE_ESSENTIEL || 'price_essentiel', // À remplacer par vrai ID
-    amount: 29.90,
+    weekly: 'price_1TGSgxRwU9pCrCN8Zeyu0ukj',
+    biweekly: 'price_1TGSgxRwU9pCrCN8LTBQMz99',
+    monthly: 'price_1TGSgxRwU9pCrCN8OEWAfnN8',
   },
   signature: {
-    priceId: process.env.STRIPE_PRICE_SIGNATURE || 'price_signature',
-    amount: 44.90,
+    weekly: 'price_1TGSgxRwU9pCrCN88MTZGPb2',
+    biweekly: 'price_1TGSgxRwU9pCrCN8Fd31JXBQ',
+    monthly: 'price_1TGSgxRwU9pCrCN8oblkGjz9',
   },
   prestige: {
-    priceId: process.env.STRIPE_PRICE_PRESTIGE || 'price_prestige',
-    amount: 69.90,
+    weekly: 'price_1TGSgyRwU9pCrCN81USSri9D',
+    biweekly: 'price_1TGSgyRwU9pCrCN8eTlY03mG',
+    monthly: 'price_1TGSgyRwU9pCrCN8OlbqbkA0',
   },
 };
 
-// Mapping fréquences → recurring interval Stripe
-const FREQUENCY_INTERVALS: Record<string, { interval: Stripe.Price.Recurring.Interval; interval_count: number }> = {
-  weekly: { interval: 'week', interval_count: 1 },
-  biweekly: { interval: 'week', interval_count: 2 },
-  monthly: { interval: 'month', interval_count: 1 },
-};
+interface CheckoutBody {
+  formula: string;
+  frequency: string;
+  email: string;
+  userId: string;
+}
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const body = await request.json();
+    const body: CheckoutBody = await req.json();
     const { formula, frequency, email, userId } = body;
 
     if (!formula || !frequency || !email) {
       return NextResponse.json(
-        { error: 'Champs manquants: formula, frequency, email' },
+        { error: 'Données manquantes (formula, frequency, email requis)' },
         { status: 400 }
       );
     }
 
-    const formulaConfig = FORMULA_PRICES[formula];
-    if (!formulaConfig) {
+    // Vérifier que la combinaison existe
+    const priceId = PRICE_IDS[formula]?.[frequency];
+    if (!priceId) {
       return NextResponse.json(
-        { error: 'Formule invalide' },
+        { error: `Combinaison invalide: ${formula} / ${frequency}` },
         { status: 400 }
       );
     }
 
-    const frequencyConfig = FREQUENCY_INTERVALS[frequency];
-    if (!frequencyConfig) {
-      return NextResponse.json(
-        { error: 'Fréquence invalide' },
-        { status: 400 }
-      );
-    }
+    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://anne-freret-fleuriste.vercel.app').trim();
 
-    // Créer ou récupérer le customer Stripe
-    const customers = await stripe.customers.list({
-      email,
-      limit: 1,
-    });
-
-    let customer: Stripe.Customer;
-    if (customers.data.length > 0) {
-      customer = customers.data[0];
+    // Créer ou récupérer le Customer Stripe
+    let customerId: string;
+    const existingCustomers = await stripe.customers.list({ email, limit: 1 });
+    
+    if (existingCustomers.data.length > 0) {
+      customerId = existingCustomers.data[0].id;
+      console.log(`✅ Customer existant trouvé: ${customerId}`);
     } else {
-      customer = await stripe.customers.create({
-        email,
-        metadata: {
-          userId: userId || '',
-        },
-      });
+      const customer = await stripe.customers.create({ email });
+      customerId = customer.id;
+      console.log(`✨ Nouveau customer créé: ${customerId}`);
     }
 
-    // Créer un Price dynamique pour cette combinaison formule/fréquence
-    // (Alternative: créer tous les prix à l'avance dans Stripe Dashboard)
-    const price = await stripe.prices.create({
-      unit_amount: Math.round(formulaConfig.amount * 100),
-      currency: 'eur',
-      recurring: frequencyConfig,
-      product_data: {
-        name: `Abonnement ${formula.charAt(0).toUpperCase() + formula.slice(1)} - ${frequency === 'weekly' ? 'Hebdomadaire' : frequency === 'biweekly' ? 'Bi-mensuel' : 'Mensuel'}`,
-      },
-    });
-
-    // Créer la Checkout Session en mode subscription
+    // Créer une Checkout Session en mode 'subscription'
     const session = await stripe.checkout.sessions.create({
-      customer: customer.id,
-      payment_method_types: ['card'],
       mode: 'subscription',
+      customer: customerId,
+      payment_method_types: ['card'],
       line_items: [
         {
-          price: price.id,
+          price: priceId,
           quantity: 1,
         },
       ],
+      success_url: `${siteUrl}/compte?subscription=success`,
+      cancel_url: `${siteUrl}/abonnement`,
+      locale: 'fr',
       subscription_data: {
         metadata: {
           formula,
           frequency,
-          userId: userId || '',
+          user_id: userId,
         },
       },
-      success_url: `${process.env.NEXT_PUBLIC_SITE_URL}/confirmation?session_id={CHECKOUT_SESSION_ID}&type=subscription`,
-      cancel_url: `${process.env.NEXT_PUBLIC_SITE_URL}/abonnement`,
-      locale: 'fr',
-      billing_address_collection: 'required',
-      allow_promotion_codes: true,
+      metadata: {
+        formula,
+        frequency,
+        user_id: userId,
+      },
     });
 
-    return NextResponse.json({
-      success: true,
-      sessionId: session.id,
-      url: session.url,
-    });
-  } catch (error: unknown) {
-    console.error('❌ Erreur création checkout subscription:', error);
+    console.log(`🔗 Checkout session créée: ${session.id} | URL: ${session.url}`);
+
+    return NextResponse.json({ success: true, url: session.url });
+  } catch (error) {
+    const errMsg = error instanceof Error ? error.message : String(error);
+    console.error('❌ Erreur checkout abonnement:', errMsg);
     return NextResponse.json(
-      { error: 'Erreur serveur' },
+      { error: 'Erreur serveur', details: errMsg },
       { status: 500 }
     );
   }

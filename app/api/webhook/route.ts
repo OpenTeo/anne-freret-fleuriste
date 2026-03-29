@@ -54,6 +54,12 @@ export async function POST(req: NextRequest) {
         await handleSubscriptionInvoicePaid(invoice);
       }
     }
+    else if (event.type === 'invoice.payment_failed') {
+      const invoice = event.data.object as Stripe.Invoice;
+      if (invoice.subscription) {
+        await handleSubscriptionPaymentFailed(invoice);
+      }
+    }
   } catch (error) {
     console.error('❌ Erreur traitement webhook:', error);
   }
@@ -514,5 +520,101 @@ async function handleSubscriptionInvoicePaid(invoice: Stripe.Invoice) {
     
   } catch (error) {
     console.error('❌ Erreur création commande abonnement:', error);
+  }
+}
+
+async function handleSubscriptionPaymentFailed(invoice: Stripe.Invoice) {
+  const subscriptionId = invoice.subscription as string;
+  const email = invoice.customer_email;
+  
+  console.log(`⚠️ Échec paiement pour abonnement ${subscriptionId}`);
+  
+  if (!email) return;
+  
+  try {
+    // Récupérer l'abonnement en BDD
+    const subResult = await sql`
+      SELECT s.*, u.first_name
+      FROM subscriptions s
+      JOIN users u ON s.user_id = u.id
+      WHERE s.stripe_subscription_id = ${subscriptionId}
+    `;
+    
+    if (subResult.rows.length === 0) {
+      console.log('ℹ️ Abonnement non trouvé en BDD');
+      return;
+    }
+    
+    const sub = subResult.rows[0];
+    const amount = invoice.amount_due ? (invoice.amount_due / 100).toFixed(2) : '0.00';
+    
+    // Envoyer un email d'alerte au client
+    try {
+      await resend.emails.send({
+        from: FROM_EMAIL,
+        to: email,
+        subject: '⚠️ Échec de paiement — Anne Freret Fleuriste',
+        html: `
+          <!DOCTYPE html>
+          <html lang="fr">
+          <head><meta charset="utf-8"></head>
+          <body style="margin:0;padding:0;background:#faf8f5;font-family:Georgia,'Times New Roman',serif;">
+            <div style="max-width:600px;margin:0 auto;padding:40px 20px;">
+              
+              <div style="text-align:center;margin-bottom:32px;">
+                <h1 style="font-size:24px;color:#2d2a26;margin:0;">Anne Freret</h1>
+                <p style="font-size:12px;color:#b8935a;letter-spacing:3px;margin:4px 0 0;">FLEURISTE</p>
+              </div>
+
+              <div style="background:white;border:1px solid #e8e0d8;padding:32px;">
+                <h2 style="font-size:18px;color:#d9534f;margin:0 0 8px;">⚠️ Problème de paiement</h2>
+                <p style="font-size:14px;color:#2d2a26;opacity:0.7;margin:0 0 24px;line-height:1.6;">
+                  Bonjour ${sub.first_name || ''},
+                  <br><br>
+                  Nous n'avons pas pu débiter votre carte pour votre abonnement fleurs.
+                  <br>
+                  Montant : <strong>${amount}€</strong>
+                </p>
+
+                <div style="background:#fef5f5;padding:16px;border-left:4px solid #d9534f;margin-bottom:24px;">
+                  <p style="font-size:13px;color:#2d2a26;margin:0;line-height:1.5;">
+                    <strong>Action requise :</strong> Veuillez mettre à jour votre moyen de paiement depuis votre compte pour continuer à recevoir vos fleurs.
+                  </p>
+                </div>
+
+                <div style="text-align:center;margin-top:24px;">
+                  <a href="${(process.env.NEXT_PUBLIC_SITE_URL || '').trim()}/compte" style="display:inline-block;background:#b8935a;color:white;padding:12px 32px;text-decoration:none;border-radius:4px;">
+                    Mettre à jour ma carte
+                  </a>
+                </div>
+              </div>
+
+              <div style="text-align:center;margin-top:24px;">
+                <p style="font-size:12px;color:#2d2a26;opacity:0.4;line-height:1.6;">
+                  Une question ? Répondez directement à cet email.<br>
+                  Anne Freret Fleuriste · Barneville-Carteret, Normandie
+                </p>
+              </div>
+            </div>
+          </body>
+          </html>
+        `,
+      });
+      console.log(`✅ Email d'alerte échec paiement envoyé à ${email}`);
+    } catch (err) {
+      console.error('❌ Erreur envoi email échec paiement:', err);
+    }
+    
+    // Marquer l'abonnement comme "unpaid" dans notre BDD
+    await sql`
+      UPDATE subscriptions
+      SET status = 'unpaid', updated_at = CURRENT_TIMESTAMP
+      WHERE stripe_subscription_id = ${subscriptionId}
+    `;
+    
+    console.log(`✅ Abonnement marqué comme 'unpaid'`);
+    
+  } catch (error) {
+    console.error('❌ Erreur gestion échec paiement:', error);
   }
 }

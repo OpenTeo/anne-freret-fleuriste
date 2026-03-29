@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
 import Header from '@/components/layout/Header';
@@ -74,12 +74,47 @@ const frequencies = [
   },
 ];
 
+// Fonction pour calculer la prochaine date de livraison
+function getNextDeliveryDate(frequency: string): string {
+  const today = new Date();
+  let nextDate: Date;
+
+  if (frequency === 'weekly') {
+    // Prochain lundi
+    const daysUntilMonday = (8 - today.getDay()) % 7 || 7;
+    nextDate = new Date(today);
+    nextDate.setDate(today.getDate() + daysUntilMonday);
+  } else if (frequency === 'biweekly') {
+    // 1er ou 15 du mois
+    const day = today.getDate();
+    if (day < 1) {
+      nextDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    } else if (day < 15) {
+      nextDate = new Date(today.getFullYear(), today.getMonth(), 15);
+    } else {
+      // Prochain 1er du mois suivant
+      nextDate = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+    }
+  } else {
+    // monthly: 1er du mois prochain
+    nextDate = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+  }
+
+  return nextDate.toLocaleDateString('fr-FR', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+
 export default function AbonnementStripe() {
   const router = useRouter();
   const { user } = useAuth();
   const [selectedPlan, setSelectedPlan] = useState('signature');
   const [selectedFrequency, setSelectedFrequency] = useState('monthly');
   const [isLoading, setIsLoading] = useState(false);
+  const [nextDelivery, setNextDelivery] = useState('');
 
   const getPriceForPlan = (planId: string, frequency: string) => {
     const plan = plans.find((p) => p.id === planId);
@@ -93,6 +128,11 @@ export default function AbonnementStripe() {
   const selectedPlanData = plans.find((p) => p.id === selectedPlan);
   const selectedFrequencyData = frequencies.find((f) => f.id === selectedFrequency);
   const price = getPriceForPlan(selectedPlan, selectedFrequency);
+
+  // Calculer la prochaine date de livraison quand la fréquence change
+  useEffect(() => {
+    setNextDelivery(getNextDeliveryDate(selectedFrequency));
+  }, [selectedFrequency]);
 
   const handleSubscribe = async () => {
     if (!user) {
@@ -139,11 +179,37 @@ export default function AbonnementStripe() {
             <h1 className="font-serif text-3xl md:text-5xl text-[#2d2a26] mb-6">
               Abonnement Fleurs Fraîches
             </h1>
-            <p className="text-lg text-[#2d2a26]/70 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-[#2d2a26]/70 max-w-2xl mx-auto mb-4">
               Recevez des fleurs fraîches de saison, sélectionnées avec soin par notre fleuriste.
-              <br />
-              <strong className="text-[#b8935a]">💳 Débit automatique — Annulation possible à tout moment</strong>
             </p>
+            <div className="bg-white border-2 border-[#b8935a] rounded-lg p-6 max-w-2xl mx-auto">
+              <h3 className="font-serif text-xl text-[#2d2a26] mb-4 text-center">
+                Comment ça marche ? 🌸
+              </h3>
+              <div className="space-y-3 text-sm text-[#2d2a26]/80">
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl">📅</span>
+                  <div>
+                    <strong className="text-[#b8935a]">Livraison automatique à dates fixes</strong>
+                    <p>Selon votre fréquence : chaque lundi (hebdomadaire), les 1er & 15 (bi-mensuel), ou le 1er du mois (mensuel)</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl">💳</span>
+                  <div>
+                    <strong className="text-[#b8935a]">Paiement automatique par carte</strong>
+                    <p>Votre carte est débitée automatiquement avant chaque livraison — aucune action requise</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl">🔄</span>
+                  <div>
+                    <strong className="text-[#b8935a]">Annulation libre à tout moment</strong>
+                    <p>Pausez ou annulez votre abonnement depuis votre compte, sans engagement</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -229,6 +295,10 @@ export default function AbonnementStripe() {
                 <div className="flex justify-between items-center pb-3 border-b border-[#e8e0d8]">
                   <span className="text-[#2d2a26]/60">Livraison</span>
                   <span className="font-medium text-[#2d2a26] text-sm">{selectedFrequencyData?.deliveryInfo}</span>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-[#e8e0d8]">
+                  <span className="text-[#2d2a26]/60">Prochaine livraison</span>
+                  <span className="font-medium text-[#b8935a] text-sm capitalize">{nextDelivery}</span>
                 </div>
                 <div className="flex justify-between items-center pt-3">
                   <span className="font-serif text-lg text-[#2d2a26]">Prix par livraison</span>
