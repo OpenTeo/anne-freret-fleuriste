@@ -8,19 +8,25 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get('category');
     const active = searchParams.get('active');
 
-    let query = sql`SELECT * FROM products WHERE 1=1`;
+    // Construction dynamique de la requête
+    const conditions: string[] = [];
+    const values: (string | boolean)[] = [];
+    let paramIndex = 1;
 
     if (category) {
-      query = sql`${query} AND category = ${category}`;
+      conditions.push(`category = $${paramIndex++}`);
+      values.push(category);
     }
 
     if (active !== null) {
-      query = sql`${query} AND is_active = ${active === 'true'}`;
+      conditions.push(`is_active = $${paramIndex++}`);
+      values.push(active === 'true');
     }
 
-    query = sql`${query} ORDER BY created_at DESC`;
+    const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+    const query = `SELECT * FROM products ${whereClause} ORDER BY created_at DESC`;
 
-    const result = await query;
+    const result = await sql.query(query, values);
 
     return NextResponse.json({ products: result.rows });
   } catch (error: unknown) {

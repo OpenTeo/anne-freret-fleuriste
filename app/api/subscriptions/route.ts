@@ -8,7 +8,24 @@ export async function GET(request: NextRequest) {
     const userId = searchParams.get('userId');
     const status = searchParams.get('status');
 
-    let query = sql`
+    // Construction dynamique de la requête
+    const conditions: string[] = [];
+    const values: string[] = [];
+    let paramIndex = 1;
+
+    if (userId) {
+      conditions.push(`s.user_id = $${paramIndex++}`);
+      values.push(userId);
+    }
+
+    if (status) {
+      conditions.push(`s.status = $${paramIndex++}`);
+      values.push(status);
+    }
+
+    const whereClause = conditions.length > 0 ? `AND ${conditions.join(' AND ')}` : '';
+
+    const query = `
       SELECT 
         s.*,
         u.email,
@@ -17,21 +34,11 @@ export async function GET(request: NextRequest) {
         u.phone
       FROM subscriptions s
       JOIN users u ON s.user_id = u.id
-      WHERE 1=1
+      WHERE 1=1 ${whereClause}
+      ORDER BY s.created_at DESC
     `;
 
-    // Filtres
-    if (userId) {
-      query = sql`${query} AND s.user_id = ${userId}`;
-    }
-    
-    if (status) {
-      query = sql`${query} AND s.status = ${status}`;
-    }
-
-    query = sql`${query} ORDER BY s.created_at DESC`;
-
-    const result = await query;
+    const result = await sql.query(query, values);
 
     return NextResponse.json({
       subscriptions: result.rows,
@@ -68,14 +75,15 @@ export async function POST(request: NextRequest) {
     }
 
     // Calculer la prochaine date de livraison
-    const nextDelivery = frequency === 'weekly' 
-      ? '7 days' 
-      : frequency === 'biweekly' 
-      ? '14 days' 
-      : '1 month';
+    const intervalMap: Record<string, string> = {
+      weekly: '7 days',
+      biweekly: '14 days',
+      monthly: '1 month',
+    };
+    const interval = intervalMap[frequency] || '1 month';
 
-    const result = await sql`
-      INSERT INTO subscriptions (
+    const result = await sql.query(
+      `INSERT INTO subscriptions (
         user_id,
         formula,
         status,
@@ -83,17 +91,10 @@ export async function POST(request: NextRequest) {
         price,
         next_delivery_date,
         start_date
-      ) VALUES (
-        ${userId},
-        ${formula},
-        'active',
-        ${frequency},
-        ${price},
-        CURRENT_DATE + INTERVAL '${nextDelivery}',
-        CURRENT_DATE
-      )
-      RETURNING *
-    `;
+      ) VALUES ($1, $2, 'active', $3, $4, CURRENT_DATE + INTERVAL '${interval}', CURRENT_DATE)
+      RETURNING *`,
+      [userId, formula, frequency, price]
+    );
 
     return NextResponse.json({
       success: true,
