@@ -48,7 +48,7 @@ export default function Compte() {
                 Bonjour, {user.firstName}
               </h1>
               <p className="text-[#2d2a26]/50 text-sm">
-                Membre depuis le {new Date(user.createdAt).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}
+                Membre depuis le {new Date(user.created_at || new Date()).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })}
               </p>
             </div>
 
