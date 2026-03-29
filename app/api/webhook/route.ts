@@ -23,9 +23,39 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Signature invalide' }, { status: 400 });
   }
 
-  if (event.type === 'checkout.session.completed') {
-    const session = event.data.object as Stripe.Checkout.Session;
-    await handleOrderCompleted(session);
+  // Gestion des events
+  try {
+    if (event.type === 'checkout.session.completed') {
+      const session = event.data.object as Stripe.Checkout.Session;
+      
+      // Vérifier si c'est une commande one-time ou un abonnement
+      if (session.mode === 'subscription') {
+        await handleSubscriptionCheckout(session);
+      } else {
+        await handleOrderCompleted(session);
+      }
+    } 
+    else if (event.type === 'customer.subscription.created') {
+      const subscription = event.data.object as Stripe.Subscription;
+      await handleSubscriptionCreated(subscription);
+    }
+    else if (event.type === 'customer.subscription.updated') {
+      const subscription = event.data.object as Stripe.Subscription;
+      await handleSubscriptionUpdated(subscription);
+    }
+    else if (event.type === 'customer.subscription.deleted') {
+      const subscription = event.data.object as Stripe.Subscription;
+      await handleSubscriptionCancelled(subscription);
+    }
+    else if (event.type === 'invoice.paid') {
+      const invoice = event.data.object as Stripe.Invoice;
+      // Créer une commande automatique pour chaque paiement d'abonnement
+      if (invoice.subscription) {
+        await handleSubscriptionInvoicePaid(invoice);
+      }
+    }
+  } catch (error) {
+    console.error('❌ Erreur traitement webhook:', error);
   }
 
   return NextResponse.json({ received: true });
@@ -258,5 +288,231 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
     }
   } else {
     console.log(`ℹ️ Livraison locale (pas de colis SendCloud nécessaire)`);
+  }
+}
+
+// ==================== GESTION ABONNEMENTS STRIPE ====================
+
+async function handleSubscriptionCheckout(session: Stripe.Checkout.Session) {
+  console.log('🔄 Checkout abonnement complété:', session.id);
+  // L'abonnement sera créé automatiquement par Stripe
+  // On le recevra via customer.subscription.created
+}
+
+async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
+  const meta = subscription.metadata || {};
+  const customerId = subscription.customer as string;
+  
+  console.log(`✨ Nouvel abonnement Stripe créé: ${subscription.id}`);
+  
+  try {
+    // Récupérer le customer pour avoir l'email
+    const customer = await stripe.customers.retrieve(customerId) as Stripe.Customer;
+    const email = customer.email;
+    
+    if (!email) {
+      console.error('❌ Pas d\'email pour le customer');
+      return;
+    }
+    
+    // Chercher l'utilisateur
+    const userResult = await sql`
+      SELECT id FROM users WHERE email = ${email.toLowerCase()}
+    `;
+    
+    let userId = null;
+    if (userResult.rows.length > 0) {
+      userId = userResult.rows[0].id;
+    }
+    
+    if (!userId) {
+      console.error('❌ Utilisateur introuvable pour email:', email);
+      return;
+    }
+    
+    const formula = meta.formula || 'signature';
+    const frequency = meta.frequency || 'monthly';
+    const price = subscription.items.data[0]?.price.unit_amount 
+      ? (subscription.items.data[0].price.unit_amount / 100).toFixed(2)
+      : '0.00';
+    
+    // Calculer la prochaine livraison avec notre fonction SQL
+    const nextDeliveryResult = await sql`
+      SELECT calculate_next_delivery_smart(${frequency}, CURRENT_DATE) as next_delivery
+    `;
+    const nextDeliveryDate = nextDeliveryResult.rows[0]?.next_delivery;
+    
+    // Créer l'abonnement en BDD
+    await sql`
+      INSERT INTO subscriptions (
+        user_id,
+        formula,
+        status,
+        frequency,
+        price,
+        next_delivery_date,
+        start_date,
+        stripe_subscription_id,
+        stripe_customer_id,
+        stripe_price_id
+      ) VALUES (
+        ${userId},
+        ${formula},
+        'active',
+        ${frequency},
+        ${price},
+        ${nextDeliveryDate},
+        CURRENT_DATE,
+        ${subscription.id},
+        ${customerId},
+        ${subscription.items.data[0]?.price.id || null}
+      )
+    `;
+    
+    console.log(`✅ Abonnement créé en BDD pour user ${userId}`);
+  } catch (error) {
+    console.error('❌ Erreur création abonnement en BDD:', error);
+  }
+}
+
+async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
+  console.log(`🔄 Abonnement mis à jour: ${subscription.id}`);
+  
+  try {
+    // Mettre à jour le statut dans notre BDD
+    let status = 'active';
+    if (subscription.status === 'canceled' || subscription.status === 'unpaid') {
+      status = 'cancelled';
+    } else if (subscription.pause_collection?.behavior === 'void') {
+      status = 'paused';
+    }
+    
+    await sql`
+      UPDATE subscriptions
+      SET status = ${status}, updated_at = CURRENT_TIMESTAMP
+      WHERE stripe_subscription_id = ${subscription.id}
+    `;
+    
+    console.log(`✅ Statut abonnement mis à jour: ${status}`);
+  } catch (error) {
+    console.error('❌ Erreur mise à jour abonnement:', error);
+  }
+}
+
+async function handleSubscriptionCancelled(subscription: Stripe.Subscription) {
+  console.log(`❌ Abonnement annulé: ${subscription.id}`);
+  
+  try {
+    await sql`
+      UPDATE subscriptions
+      SET status = 'cancelled', cancelled_at = CURRENT_TIMESTAMP
+      WHERE stripe_subscription_id = ${subscription.id}
+    `;
+    
+    console.log(`✅ Abonnement marqué comme annulé en BDD`);
+  } catch (error) {
+    console.error('❌ Erreur annulation abonnement:', error);
+  }
+}
+
+async function handleSubscriptionInvoicePaid(invoice: Stripe.Invoice) {
+  const subscriptionId = invoice.subscription as string;
+  const email = invoice.customer_email;
+  
+  console.log(`💳 Invoice payée pour abonnement ${subscriptionId}`);
+  
+  if (!email) return;
+  
+  try {
+    // Récupérer l'abonnement en BDD
+    const subResult = await sql`
+      SELECT s.*, u.first_name, u.last_name, u.address, u.city, u.postal_code, u.phone
+      FROM subscriptions s
+      JOIN users u ON s.user_id = u.id
+      WHERE s.stripe_subscription_id = ${subscriptionId}
+    `;
+    
+    if (subResult.rows.length === 0) {
+      console.log('ℹ️ Abonnement non trouvé en BDD (peut-être premier paiement)');
+      return;
+    }
+    
+    const sub = subResult.rows[0];
+    
+    // Générer un numéro de commande
+    const orderNumber = `AF-SUB-${Date.now().toString().slice(-8)}`.toUpperCase();
+    
+    // Créer la commande récurrente
+    const orderResult = await sql`
+      INSERT INTO orders (
+        order_number,
+        user_id,
+        stripe_session_id,
+        customer_email,
+        customer_name,
+        customer_phone,
+        delivery_address,
+        delivery_city,
+        delivery_postal_code,
+        delivery_mode,
+        delivery_date,
+        total_amount,
+        status
+      ) VALUES (
+        ${orderNumber},
+        ${sub.user_id},
+        ${invoice.id},
+        ${email},
+        ${sub.first_name + ' ' + sub.last_name},
+        ${sub.phone || ''},
+        ${sub.address || ''},
+        ${sub.city || ''},
+        ${sub.postal_code || ''},
+        'local',
+        ${sub.next_delivery_date},
+        ${sub.price},
+        'confirmed'
+      )
+      RETURNING id
+    `;
+    
+    const orderId = orderResult.rows[0].id;
+    
+    // Ajouter l'article (bouquet d'abonnement)
+    await sql`
+      INSERT INTO order_items (
+        order_id,
+        product_name,
+        quantity,
+        unit_price,
+        total_price
+      ) VALUES (
+        ${orderId},
+        ${`Abonnement ${sub.formula.charAt(0).toUpperCase() + sub.formula.slice(1)} - ${sub.frequency === 'weekly' ? 'Hebdomadaire' : sub.frequency === 'biweekly' ? 'Bi-mensuel' : 'Mensuel'}`},
+        1,
+        ${sub.price},
+        ${sub.price}
+      )
+    `;
+    
+    // Calculer la prochaine livraison
+    const nextResult = await sql`
+      SELECT calculate_next_delivery_smart(${sub.frequency}, ${sub.next_delivery_date}::DATE) as next_delivery
+    `;
+    const nextDate = nextResult.rows[0]?.next_delivery;
+    
+    // Mettre à jour l'abonnement avec la nouvelle date
+    await sql`
+      UPDATE subscriptions
+      SET next_delivery_date = ${nextDate}
+      WHERE id = ${sub.id}
+    `;
+    
+    console.log(`✅ Commande abonnement ${orderNumber} créée, prochaine livraison: ${nextDate}`);
+    
+    // TODO: Envoyer email de confirmation (optionnel)
+    
+  } catch (error) {
+    console.error('❌ Erreur création commande abonnement:', error);
   }
 }
