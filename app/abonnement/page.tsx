@@ -14,7 +14,6 @@ const plans = [
     diameter: '30-35cm',
     features: [
       'Bouquet de fleurs fraîches de saison',
-      'Livraison gratuite à domicile',
       'Carte message personnalisée',
       'Fleurs sélectionnées par notre fleuriste',
     ],
@@ -28,7 +27,6 @@ const plans = [
     diameter: '35-40cm',
     features: [
       'Bouquet premium plus généreux',
-      'Livraison gratuite à domicile',
       'Carte message personnalisée',
       'Vase offert à la première livraison',
       'Fleurs de saison sélectionnées',
@@ -45,8 +43,6 @@ const plans = [
       'Livraison gratuite à domicile',
       'Carte message personnalisée',
       'Vase offert à la première livraison',
-      'Compositions sur mesure',
-      'Emballage cadeau luxe',
     ],
   },
 ];
