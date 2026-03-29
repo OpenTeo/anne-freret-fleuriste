@@ -56,8 +56,10 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
     meta.delivery_mode === 'chronopost' ? '⚡ Chronopost Express (24h)' :
     'Livraison';
 
+  console.log(`📧 Tentative envoi email à ${email} depuis ${FROM_EMAIL}`);
+  
   try {
-    await resend.emails.send({
+    const emailResult = await resend.emails.send({
       from: FROM_EMAIL,
       to: email,
       subject: `Merci pour votre commande ! 🌿 — Anne Freret Fleuriste`,
@@ -122,13 +124,15 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
         </html>
       `,
     });
-    console.log(`✅ Email de confirmation envoyé à ${email}`);
+    console.log(`✅ Email de confirmation envoyé à ${email}`, emailResult);
   } catch (err) {
-    console.error('Erreur envoi email:', err);
+    console.error('❌ Erreur envoi email:', err instanceof Error ? err.message : err);
   }
 
   // Créer le colis SendCloud pour livraisons nationales
   if (meta.delivery_mode === 'colissimo' || meta.delivery_mode === 'chronopost') {
+    console.log(`📦 Tentative création colis SendCloud pour ${meta.customer_name} (mode: ${meta.delivery_mode})`);
+    
     try {
       const addressParts = (meta.delivery_address || '').split(', ');
       const cityParts = addressParts[1]?.split(' ') || [];
@@ -145,9 +149,11 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
         weight: 1.5,
         shipmentMethod: 8, // À ajuster selon les méthodes disponibles
       });
-      console.log(`📦 Colis SendCloud créé: ${parcel.tracking_number}`);
+      console.log(`✅ Colis SendCloud créé: ${parcel.tracking_number}`);
     } catch (err) {
-      console.error('Erreur création colis SendCloud:', err);
+      console.error('❌ Erreur création colis SendCloud:', err instanceof Error ? err.message : err);
     }
+  } else {
+    console.log(`ℹ️ Livraison locale (pas de colis SendCloud nécessaire)`);
   }
 }
