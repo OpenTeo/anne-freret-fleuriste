@@ -28,7 +28,6 @@ const plans = [
     features: [
       'Bouquet premium plus généreux',
       'Carte message personnalisée',
-      'Vase offert à la première livraison',
       'Fleurs de saison sélectionnées',
     ],
   },
@@ -165,9 +164,24 @@ function AbonnementContent() {
               L'Abonnement Floral
             </h1>
             <div className="w-12 h-px bg-[#b8935a] mx-auto mb-4"></div>
-            <p className="text-[#2d2a26]/50 text-sm max-w-md mx-auto">
+            <p className="text-[#2d2a26]/50 text-sm max-w-md mx-auto mb-6">
               Des fleurs fraîches de saison livrées chez vous. Chaque bouquet est une surprise.
             </p>
+            <div className="bg-white border border-[#e8e0d8] p-6 max-w-xl mx-auto text-left">
+              <div className="flex items-start gap-3">
+                <svg className="w-5 h-5 text-[#b8935a] flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                </svg>
+                <div>
+                  <p className="text-[10px] tracking-[0.15em] uppercase text-[#b8935a] mb-2">Comment ça marche ?</p>
+                  <p className="text-sm text-[#2d2a26]/70 leading-relaxed">
+                    Tous les abonnements sont <strong>expédiés le même jour</strong> selon votre fréquence choisie 
+                    (hebdomadaire, bi-mensuel ou mensuel). Cela nous permet d'optimiser la fraîcheur 
+                    et de vous offrir les plus belles compositions de saison.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -396,6 +410,14 @@ function AbonnementContent() {
                         ))}
                       </div>
                       <p className="text-[#2d2a26]/40 text-xs mt-2">Livraison entre 8h et 13h</p>
+                      <div className="mt-4 bg-[#b8935a]/10 border border-[#b8935a]/20 p-4 rounded">
+                        <p className="text-[10px] tracking-[0.15em] uppercase text-[#b8935a] mb-2">📦 Expédition groupée</p>
+                        <p className="text-xs text-[#2d2a26]/70 leading-relaxed">
+                          Tous les abonnements sont expédiés <strong>le même jour chaque semaine</strong> selon votre fréquence. 
+                          Le jour que vous choisissez sera respecté dans la mesure du possible, 
+                          mais peut varier de ±1 jour selon les fêtes et disponibilités.
+                        </p>
+                      </div>
                     </div>
                   </div>
 
@@ -564,10 +586,12 @@ function AbonnementContent() {
                       <span className="text-[#2d2a26]/60">Livraisons</span>
                       <span className="text-[#2d2a26]">{totalDeliveries} bouquets</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-[#2d2a26]/60">Livraison</span>
-                      <span className="text-[#b8935a]">Gratuite</span>
-                    </div>
+                    {selectedPlan === 'prestige' && (
+                      <div className="flex justify-between">
+                        <span className="text-[#2d2a26]/60">Livraison</span>
+                        <span className="text-[#b8935a]">Gratuite</span>
+                      </div>
+                    )}
                     {isGift && (
                       <div className="flex justify-between">
                         <span className="text-[#2d2a26]/60">Cadeau</span>
@@ -594,7 +618,7 @@ function AbonnementContent() {
                   </div>
 
                   {/* Vase offert */}
-                  {(selectedPlan === 'signature' || selectedPlan === 'prestige') && (
+                  {selectedPlan === 'prestige' && (
                     <div className="mt-4 bg-[#b8935a]/5 border border-[#b8935a]/20 p-3 flex items-center justify-center gap-2">
                       <svg className="w-4 h-4 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" /></svg>
                       <p className="text-[10px] tracking-[0.15em] uppercase text-[#b8935a]">Vase offert à la 1ère livraison</p>
@@ -603,11 +627,7 @@ function AbonnementContent() {
                 </div>
 
                 {/* Trust */}
-                <div className="mt-4 grid grid-cols-3 gap-2 text-center">
-                  <div className="p-3">
-                    <svg className="w-6 h-6 mx-auto mb-1.5 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>
-                    <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/40">Livraison gratuite</p>
-                  </div>
+                <div className="mt-4 grid grid-cols-2 gap-2 text-center">
                   <div className="p-3">
                     <svg className="w-6 h-6 mx-auto mb-1.5 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
                     <p className="text-[9px] tracking-[0.1em] uppercase text-[#2d2a26]/40">Paiement sécurisé</p>
