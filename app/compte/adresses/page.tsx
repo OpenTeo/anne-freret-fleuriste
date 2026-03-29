@@ -19,8 +19,8 @@ export default function Adresses() {
     if (!isLoading && !user) router.push('/compte/connexion');
     if (user) {
       setAddress(user.address || '');
-      setAddressComplement(user.addressComplement || '');
-      setPostalCode(user.postalCode || '');
+      setAddressComplement(user.address_complement || '');
+      setPostalCode(user.postal_code || '');
       setCity(user.city || '');
     }
   }, [user, isLoading, router]);
@@ -30,7 +30,12 @@ export default function Adresses() {
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    updateProfile({ address, addressComplement, postalCode, city });
+    updateProfile({ 
+      address, 
+      address_complement: addressComplement, 
+      postal_code: postalCode, 
+      city 
+    });
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   };

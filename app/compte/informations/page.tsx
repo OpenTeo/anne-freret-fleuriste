@@ -19,10 +19,10 @@ export default function Informations() {
   useEffect(() => {
     if (!isLoading && !user) router.push('/compte/connexion');
     if (user) {
-      setFirstName(user.firstName);
-      setLastName(user.lastName);
-      setEmail(user.email);
-      setPhone(user.phone);
+      setFirstName(user.firstName || '');
+      setLastName(user.lastName || '');
+      setEmail(user.email || '');
+      setPhone(user.phone || '');
     }
   }, [user, isLoading, router]);
 
@@ -31,7 +31,12 @@ export default function Informations() {
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    updateProfile({ firstName, lastName, email, phone });
+    updateProfile({ 
+      first_name: firstName, 
+      last_name: lastName, 
+      email, 
+      phone 
+    });
     setSaved(true);
     setTimeout(() => setSaved(false), 3000);
   };
