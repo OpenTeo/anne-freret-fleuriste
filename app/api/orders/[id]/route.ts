@@ -57,35 +57,40 @@ export async function PATCH(
     const body = await req.json();
     const { status, tracking_number } = body;
 
-    // Update commande
-    const updates: string[] = [];
-    const values: any[] = [];
-
-    if (status) {
-      updates.push('status = $' + (updates.length + 1));
-      values.push(status);
-    }
-
-    if (tracking_number) {
-      updates.push('tracking_number = $' + (updates.length + 1));
-      values.push(tracking_number);
-    }
-
-    if (updates.length === 0) {
+    if (!status && !tracking_number) {
       return NextResponse.json(
         { error: 'Aucune mise à jour fournie' },
         { status: 400 }
       );
     }
 
-    const result = await sql`
-      UPDATE orders
-      SET ${sql.raw(updates.join(', '))}
-      WHERE id = ${id} OR order_number = ${id}
-      RETURNING *
-    `;
+    let result;
 
-    if (result.rows.length === 0) {
+    // Update selon les champs fournis
+    if (status && tracking_number) {
+      result = await sql`
+        UPDATE orders
+        SET status = ${status}, tracking_number = ${tracking_number}
+        WHERE id = ${id} OR order_number = ${id}
+        RETURNING *
+      `;
+    } else if (status) {
+      result = await sql`
+        UPDATE orders
+        SET status = ${status}
+        WHERE id = ${id} OR order_number = ${id}
+        RETURNING *
+      `;
+    } else if (tracking_number) {
+      result = await sql`
+        UPDATE orders
+        SET tracking_number = ${tracking_number}
+        WHERE id = ${id} OR order_number = ${id}
+        RETURNING *
+      `;
+    }
+
+    if (!result || result.rows.length === 0) {
       return NextResponse.json(
         { error: 'Commande non trouvée' },
         { status: 404 }
