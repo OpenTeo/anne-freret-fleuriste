@@ -179,8 +179,8 @@ export default function AbonnementStripe() {
       <Header />
       <main className="min-h-screen pt-14 md:pt-20">
         {/* Hero Section - Émotionnel */}
-        <section className="relative bg-gradient-to-br from-[#0a0a0a] via-[#1a1613] to-[#0a0a0a] py-20 md:py-32 overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
+        <section className="relative bg-gradient-to-b from-[#f5f0eb] to-[#faf8f5] py-20 md:py-32 overflow-hidden">
+          <div className="absolute inset-0 opacity-5">
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#b8935a] rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#b8935a] rounded-full blur-3xl"></div>
           </div>
@@ -189,15 +189,15 @@ export default function AbonnementStripe() {
             <div className="inline-block mb-6">
               <span className="text-[#b8935a] text-sm tracking-[0.3em] uppercase font-light">Abonnements Floraux</span>
             </div>
-            <h1 className="font-serif text-4xl md:text-6xl text-white mb-6 leading-tight">
+            <h1 className="font-serif text-4xl md:text-6xl text-[#2d2a26] mb-6 leading-tight">
               Votre dose de beauté,<br />
               <span className="text-[#b8935a]">livrée avec soin</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-4">
+            <p className="text-lg md:text-xl text-[#2d2a26]/70 max-w-2xl mx-auto leading-relaxed mb-4">
               Imaginez recevoir l'émotion d'un cadeau, chaque semaine. Sans y penser, sans courir. 
               Juste la magie d'un bouquet frais qui vous attend.
             </p>
-            <p className="text-sm text-white/50 max-w-xl mx-auto">
+            <p className="text-sm text-[#2d2a26]/50 max-w-xl mx-auto">
               Annulation libre • Sans engagement • Garantie fraîcheur 7 jours
             </p>
           </div>
