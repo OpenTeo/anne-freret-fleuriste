@@ -9,8 +9,9 @@ import OrdersList from './components/OrdersList';
 import ClientsList from './components/ClientsList';
 import SubscriptionsList from './components/SubscriptionsList';
 import ProductsList from './components/ProductsList';
+import ReviewsList from './components/ReviewsList';
 
-type Tab = 'dashboard' | 'orders' | 'clients' | 'subscriptions' | 'products';
+type Tab = 'dashboard' | 'orders' | 'clients' | 'subscriptions' | 'products' | 'reviews';
 
 export default function AdminNew() {
   const { user, isLoading } = useAuth();
@@ -31,6 +32,7 @@ export default function AdminNew() {
     { id: 'clients', label: 'Clients', icon: '👥' },
     { id: 'products', label: 'Produits', icon: '🛍️' },
     { id: 'subscriptions', label: 'Abonnements', icon: '🔄' },
+    { id: 'reviews', label: 'Avis', icon: '⭐' },
   ];
 
   return (
@@ -175,6 +177,14 @@ export default function AdminNew() {
           <div>
             <h1 className="font-serif text-2xl text-[#2d2a26] mb-8">Abonnements</h1>
             <SubscriptionsList />
+          </div>
+        )}
+
+        {/* Reviews */}
+        {activeTab === 'reviews' && (
+          <div>
+            <h1 className="font-serif text-2xl text-[#2d2a26] mb-8">Avis clients</h1>
+            <ReviewsList />
           </div>
         )}
       </main>

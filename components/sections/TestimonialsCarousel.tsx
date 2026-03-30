@@ -10,7 +10,7 @@ interface Testimonial {
   verified: boolean;
 }
 
-const testimonials: Testimonial[] = [
+const fallbackTestimonials: Testimonial[] = [
   {
     id: 'r1',
     author: 'Marie L.',
@@ -56,8 +56,35 @@ const testimonials: Testimonial[] = [
 ];
 
 export default function TestimonialsCarousel() {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(fallbackTestimonials);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  // Charger les avis mis en avant depuis la DB
+  useEffect(() => {
+    const loadFeaturedReviews = async () => {
+      try {
+        const res = await fetch('/api/reviews?featured=true&limit=6');
+        const data = await res.json();
+        
+        if (data.reviews && data.reviews.length > 0) {
+          const formattedReviews = data.reviews.map((review: any) => ({
+            id: review.id,
+            author: review.author_name,
+            rating: review.rating,
+            text: review.text,
+            verified: review.verified_purchase || false,
+          }));
+          setTestimonials(formattedReviews);
+        }
+      } catch (error) {
+        console.error('Erreur chargement avis mis en avant:', error);
+        // Garder les avis fallback
+      }
+    };
+
+    loadFeaturedReviews();
+  }, []);
 
   // Auto-advance every 6 seconds
   useEffect(() => {
