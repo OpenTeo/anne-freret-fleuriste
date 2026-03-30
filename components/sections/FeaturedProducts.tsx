@@ -56,12 +56,18 @@ const FeaturedProducts = () => {
     loadProducts();
   }, []);
 
-  // Show specific categories in order, skip Deuil on homepage
-  const showCategories = ['Bouquets', 'Plantes'];
-  const grouped = showCategories
+  // Show all featured products except Deuil, max 8 total
+  const excludeCategories = ['Deuil & Hommages'];
+  const featuredProducts = products
+    .filter(p => !excludeCategories.includes(p.category))
+    .slice(0, 8);
+  
+  // Group by category for display
+  const categoriesOrder = ['Bouquets', 'Plantes', 'Mariages', 'Accessoires'];
+  const grouped = categoriesOrder
     .map(cat => ({
       category: cat,
-      items: products.filter(p => p.category === cat).slice(0, 4)
+      items: featuredProducts.filter(p => p.category === cat)
     }))
     .filter(g => g.items.length > 0);
 

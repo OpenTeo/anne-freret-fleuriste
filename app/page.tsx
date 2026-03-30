@@ -1,7 +1,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import FeaturedProducts from '@/components/sections/FeaturedProducts';
-import Testimonials from '@/components/sections/Testimonials';
+import TestimonialsCarousel from '@/components/sections/TestimonialsCarousel';
 import HeroSlider from '@/components/sections/HeroSlider';
 import BrandIdentity from '@/components/sections/BrandIdentity';
 import { blogPosts } from '@/lib/mock-data';
@@ -29,6 +29,9 @@ export default function Home() {
           </div>
           <span className="text-[9px] md:text-[10px] text-white/70 uppercase tracking-wider">238 clients qui nous font confiance</span>
         </div>
+
+        {/* SECTION AVIS CLIENTS — Créer la confiance */}
+        <TestimonialsCarousel />
 
         {/* SECTION NOS CRÉATIONS */}
         <FeaturedProducts />
@@ -285,8 +288,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* TÉMOIGNAGES */}
-        <Testimonials />
       </main>
       <Footer />
     </>

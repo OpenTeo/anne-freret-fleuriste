@@ -45,23 +45,20 @@ export default function BrandIdentity() {
               Notre Signature
             </p>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[#f5f0eb] mb-6 font-light leading-tight">
-              L'art de l'emballage,<br />
-              <span className="text-[#b8935a]">notre promesse d'élégance</span>
+              L'instant magique<br />
+              <span className="text-[#b8935a]">de l'ouverture</span>
             </h2>
             <div className="w-16 h-px bg-[#b8935a] mb-8" />
-            <p className="text-[#f5f0eb]/70 text-base md:text-lg leading-relaxed mb-6 font-light">
-              Chaque bouquet Anne Freret est enveloppé dans notre papier d'emballage exclusif, dessiné spécialement pour notre maison. Ce motif, inspiré de la campagne normande et de notre atelier, transforme chaque création en un véritable cadeau.
-            </p>
-            <p className="text-[#f5f0eb]/50 text-sm leading-relaxed mb-10 font-light">
-              Du manoir au jardin, des silhouettes intemporelles aux frondaisons luxuriantes — notre papier raconte l'histoire d'un savoir-faire artisanal transmis avec passion. Parce que l'émotion commence avant même de découvrir les fleurs.
+            <p className="text-[#f5f0eb]/70 text-base md:text-lg leading-relaxed mb-10 font-light">
+              Imaginez recevoir un paquet élégant, enveloppé dans notre papier signature au dessin exclusif. Vos doigts délient le ruban, le papier bruisse délicatement. Et là, l'émerveillement : la beauté se révèle, pétale après pétale.
             </p>
 
             {/* Détails signature */}
             <div className="space-y-4 mb-10">
               {[
-                { label: 'Dessin exclusif', detail: 'Créé spécialement pour Anne Freret' },
-                { label: 'Papier de qualité', detail: 'Imprimé avec soin pour un rendu premium' },
-                { label: 'Éco-responsable', detail: 'Papier certifié, encres végétales' },
+                { label: 'Emballage signature', detail: 'Dessin exclusif Anne Freret' },
+                { label: 'Attention aux détails', detail: 'Chaque colis est une œuvre d\'art' },
+                { label: 'Engagement durable', detail: 'Matériaux nobles et responsables' },
               ].map((item) => (
                 <div key={item.label} className="flex items-start gap-4">
                   <span className="text-[#b8935a] text-lg leading-none mt-0.5">✦</span>
