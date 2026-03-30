@@ -13,13 +13,14 @@ const plans = [
     monthlyPrice: 29.90,
     biweeklyPrice: 27.50,
     weeklyPrice: 25.50,
-    tagline: 'Le bouquet de saison',
-    description: 'Une touche de fraîcheur naturelle qui illumine votre quotidien',
+    tagline: 'Le rituel simple et élégant',
+    description: 'Imaginez rentrer chez vous et découvrir un bouquet frais qui transforme votre salon en refuge parfumé. C'est votre petit luxe hebdomadaire — sans effort, sans stress.',
     features: [
-      'Bouquet de fleurs fraîches (30-35cm)',
-      'Carte message personnalisée',
-      'Fleurs sélectionnées par notre fleuriste',
+      'Votre dose de fraîcheur (30-35cm)',
+      'Un message écrit de notre main',
+      'Sélection artisanale de saison',
     ],
+    dailyCost: 0.99, // weekly price / 7
   },
   {
     id: 'signature',
@@ -27,14 +28,15 @@ const plans = [
     monthlyPrice: 44.90,
     biweeklyPrice: 41.50,
     weeklyPrice: 38.00,
-    tagline: 'Notre sélection premium',
-    description: 'Un bouquet généreux qui exprime l\'élégance et le raffinement',
+    tagline: 'Notre création favorite',
+    description: 'Ce bouquet, c'est celui que nous offririons à nos proches. Généreux, raffiné, conçu pour impressionner. Parce que votre intérieur mérite ce qu'il y a de mieux.',
     popular: true,
     features: [
-      'Bouquet premium plus généreux (35-40cm)',
-      'Carte message personnalisée',
-      'Fleurs de saison sélectionnées',
+      'Composition généreuse premium (35-40cm)',
+      'Un message écrit de notre main',
+      'Fleurs rares et variétés d\'exception',
     ],
+    dailyCost: 1.27, // weekly price / 7 (arrondi)
   },
   {
     id: 'prestige',
@@ -42,13 +44,14 @@ const plans = [
     monthlyPrice: 69.90,
     biweeklyPrice: 64.50,
     weeklyPrice: 59.00,
-    tagline: 'L\'exception florale',
-    description: 'Une composition d\'exception pour célébrer les moments précieux',
+    tagline: 'L'excellence florale absolue',
+    description: 'Une œuvre d'art vivante. Ce bouquet attire les regards, suscite l'admiration, et transforme chaque pièce en galerie d'exception. C'est plus qu'un abonnement : c'est une signature.',
     features: [
-      "Grande composition d'exception (40-45cm)",
-      'Vase offert à la première livraison',
-      'Carte message personnalisée',
+      'Grande composition d\'exception (40-45cm)',
+      'Vase design offert (1ère livraison)',
+      'Message personnalisé calligraphié',
     ],
+    dailyCost: 1.97, // weekly price / 7 (arrondi)
   },
 ];
 
@@ -57,22 +60,22 @@ const frequencies = [
     id: 'weekly',
     label: 'Hebdomadaire',
     shortLabel: 'Chaque lundi',
-    description: 'Fraîcheur chaque semaine',
-    deliveryInfo: 'Livraison automatique tous les lundis',
+    description: 'Votre rituel sacré',
+    deliveryInfo: 'Plus jamais de dimanche à courir chez le fleuriste',
   },
   {
     id: 'biweekly',
     label: 'Bimensuel',
     shortLabel: 'Les 1er et 15',
-    description: 'Deux fois par mois',
-    deliveryInfo: 'Livraison automatique le 1er et le 15 de chaque mois',
+    description: 'L'équilibre parfait',
+    deliveryInfo: 'Le bon rythme pour ceux qui aiment la surprise',
   },
   {
     id: 'monthly',
     label: 'Mensuel',
     shortLabel: 'Chaque 1er du mois',
-    description: 'Rendez-vous mensuel',
-    deliveryInfo: 'Livraison automatique le 1er jour de chaque mois',
+    description: 'Le rendez-vous précieux',
+    deliveryInfo: 'Un cadeau que vous vous offrez, chaque mois',
   },
 ];
 
@@ -175,7 +178,7 @@ export default function AbonnementStripe() {
     <>
       <Header />
       <main className="min-h-screen pt-14 md:pt-20">
-        {/* Hero Section - Dark & Elegant */}
+        {/* Hero Section - Émotionnel */}
         <section className="relative bg-gradient-to-br from-[#0a0a0a] via-[#1a1613] to-[#0a0a0a] py-20 md:py-32 overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#b8935a] rounded-full blur-3xl"></div>
@@ -184,15 +187,18 @@ export default function AbonnementStripe() {
           
           <div className="relative max-w-4xl mx-auto px-4 text-center">
             <div className="inline-block mb-6">
-              <span className="text-[#b8935a] text-sm tracking-[0.3em] uppercase font-light">Abonnement</span>
+              <span className="text-[#b8935a] text-sm tracking-[0.3em] uppercase font-light">Abonnements Floraux</span>
             </div>
             <h1 className="font-serif text-4xl md:text-6xl text-white mb-6 leading-tight">
-              Des fleurs fraîches,<br />
-              <span className="text-[#b8935a]">livrées avec régularité</span>
+              Votre dose de beauté,<br />
+              <span className="text-[#b8935a]">livrée avec soin</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-              Laissez-vous surprendre par nos créations florales de saison, 
-              sélectionnées avec soin et livrées directement chez vous.
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed mb-4">
+              Imaginez recevoir l'émotion d'un cadeau, chaque semaine. Sans y penser, sans courir. 
+              Juste la magie d'un bouquet frais qui vous attend.
+            </p>
+            <p className="text-sm text-white/50 max-w-xl mx-auto">
+              Annulation libre • Sans engagement • Garantie fraîcheur 7 jours
             </p>
           </div>
         </section>
@@ -201,9 +207,10 @@ export default function AbonnementStripe() {
         <section className="py-16 md:py-24 bg-[#faf8f5]">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">Nos Formules</h2>
+              <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">Nos Rituels Floraux</h2>
               <p className="text-[#2d2a26]/60 max-w-2xl mx-auto">
-                Chaque bouquet est une création unique, composée selon les arrivages du marché et l'inspiration du moment
+                Chaque bouquet est une création unique, pensée pour transformer votre quotidien. 
+                Choisissez votre rituel, nous nous occupons du reste.
               </p>
             </div>
 
@@ -221,30 +228,37 @@ export default function AbonnementStripe() {
                   {plan.popular && (
                     <div className="absolute top-4 right-4 z-10">
                       <span className="bg-[#b8935a] text-white text-xs px-3 py-1 tracking-wider uppercase font-light">
-                        Populaire
+                        Le + Choisi
                       </span>
                     </div>
                   )}
 
                   <div className="p-6">
                     <h3 className="font-serif text-2xl text-[#2d2a26] mb-2">{plan.name}</h3>
-                    <p className="text-sm text-[#b8935a] mb-3 font-light">{plan.tagline}</p>
+                    <p className="text-sm text-[#b8935a] mb-3 font-light italic">{plan.tagline}</p>
                     <p className="text-sm text-[#2d2a26]/70 mb-6 leading-relaxed">{plan.description}</p>
 
                     <div className="space-y-2 mb-6 pb-6 border-b border-[#e8e0d8]">
                       {plan.features.map((feature, i) => (
                         <div key={i} className="flex items-start gap-3 text-sm text-[#2d2a26]/80">
-                          <span className="text-[#b8935a] mt-0.5">—</span>
+                          <span className="text-[#b8935a] mt-0.5">✓</span>
                           <span>{feature}</span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-serif text-3xl text-[#2d2a26]">
-                        {getPriceForPlan(plan.id, selectedFrequency).toFixed(2)}€
-                      </span>
-                      <span className="text-sm text-[#2d2a26]/50 font-light">par livraison</span>
+                    <div className="space-y-1">
+                      <div className="flex items-baseline gap-2">
+                        <span className="font-serif text-3xl text-[#2d2a26]">
+                          {getPriceForPlan(plan.id, selectedFrequency).toFixed(2)}€
+                        </span>
+                        <span className="text-sm text-[#2d2a26]/50 font-light">par livraison</span>
+                      </div>
+                      {selectedFrequency === 'weekly' && (
+                        <p className="text-xs text-[#b8935a] italic">
+                          Soit {plan.dailyCost.toFixed(2)}€ par jour de beauté
+                        </p>
+                      )}
                     </div>
                   </div>
                 </button>
@@ -267,7 +281,7 @@ export default function AbonnementStripe() {
                   >
                     <h3 className="font-serif text-xl text-[#2d2a26] mb-2">{freq.label}</h3>
                     <p className="text-sm text-[#2d2a26]/60 mb-1">{freq.shortLabel}</p>
-                    <p className="text-xs text-[#b8935a] font-light">{freq.description}</p>
+                    <p className="text-xs text-[#b8935a] font-light italic">{freq.description}</p>
                   </button>
                 ))}
               </div>
@@ -276,7 +290,7 @@ export default function AbonnementStripe() {
             {/* Summary Card */}
             <div className="max-w-xl mx-auto">
               <div className="bg-white border-2 border-[#b8935a] p-8 shadow-2xl">
-                <h3 className="font-serif text-2xl text-[#2d2a26] mb-8 text-center">Récapitulatif</h3>
+                <h3 className="font-serif text-2xl text-[#2d2a26] mb-8 text-center">Votre Rituel</h3>
                 
                 <div className="space-y-6 mb-8">
                   <div className="flex justify-between items-center pb-4 border-b border-[#e8e0d8]">
@@ -288,7 +302,7 @@ export default function AbonnementStripe() {
                     <span className="text-[#2d2a26]">{selectedFrequencyData?.label}</span>
                   </div>
                   <div className="flex justify-between items-center pb-4 border-b border-[#e8e0d8]">
-                    <span className="text-[#2d2a26]/60 font-light">Prochaine livraison</span>
+                    <span className="text-[#2d2a26]/60 font-light">Première livraison</span>
                     <span className="text-[#b8935a] text-sm capitalize">{nextDelivery}</span>
                   </div>
                   <div className="flex justify-between items-center pt-2">
@@ -302,14 +316,231 @@ export default function AbonnementStripe() {
                   disabled={isLoading}
                   className="w-full bg-[#b8935a] text-white py-4 px-6 text-lg font-light tracking-wide hover:bg-[#a17d47] transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-4"
                 >
-                  {isLoading ? 'Redirection...' : user ? 'S\'abonner maintenant' : 'Créer un compte pour s\'abonner'}
+                  {isLoading ? 'Redirection...' : user ? 'Commencer mon rituel fleuri' : 'Créer mon compte'}
                 </button>
 
                 <p className="text-xs text-[#2d2a26]/40 text-center">
-                  Paiement sécurisé • Annulation libre à tout moment
+                  Sans engagement • Annulation libre • Garantie fraîcheur 7 jours
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* Témoignages Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-serif text-3xl text-[#2d2a26] mb-4">Ils ont adopté le rituel</h2>
+              <p className="text-[#2d2a26]/60">Ce qu'ils disent de leur abonnement</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-[#faf8f5] p-6 border border-[#e8e0d8]">
+                <div className="mb-4">
+                  <span className="text-[#b8935a] text-2xl">★★★★★</span>
+                </div>
+                <p className="text-[#2d2a26] mb-4 leading-relaxed italic">
+                  "Je ne peux plus m'en passer. Mon lundi est devenu magique. C'est mon petit luxe hebdomadaire, et ça change tout."
+                </p>
+                <div className="text-sm">
+                  <p className="text-[#2d2a26] font-light">Sophie L.</p>
+                  <p className="text-[#2d2a26]/50 text-xs">Abonnée depuis 8 mois</p>
+                </div>
+              </div>
+
+              <div className="bg-[#faf8f5] p-6 border border-[#e8e0d8]">
+                <div className="mb-4">
+                  <span className="text-[#b8935a] text-2xl">★★★★★</span>
+                </div>
+                <p className="text-[#2d2a26] mb-4 leading-relaxed italic">
+                  "Plus besoin d'y penser, les fleurs arrivent comme par magie. Et à chaque fois, c'est une nouvelle surprise. Un pur bonheur."
+                </p>
+                <div className="text-sm">
+                  <p className="text-[#2d2a26] font-light">Mathilde D.</p>
+                  <p className="text-[#2d2a26]/50 text-xs">Abonnée depuis 5 mois</p>
+                </div>
+              </div>
+
+              <div className="bg-[#faf8f5] p-6 border border-[#e8e0d8]">
+                <div className="mb-4">
+                  <span className="text-[#b8935a] text-2xl">★★★★★</span>
+                </div>
+                <p className="text-[#2d2a26] mb-4 leading-relaxed italic">
+                  "La qualité est exceptionnelle. Ce n'est pas qu'un bouquet, c'est une œuvre d'art. Mes invités sont toujours impressionnés."
+                </p>
+                <div className="text-sm">
+                  <p className="text-[#2d2a26] font-light">Claire M.</p>
+                  <p className="text-[#2d2a26]/50 text-xs">Abonnée depuis 1 an</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Pourquoi S'Abonner Section */}
+        <section className="py-16 bg-[#faf8f5]">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-serif text-3xl text-[#2d2a26] mb-4">Pourquoi s'abonner ?</h2>
+              <p className="text-[#2d2a26]/60">Les avantages que vous allez adorer</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white p-8 border-2 border-[#e8e0d8] hover:border-[#b8935a]/30 transition-all duration-300">
+                <div className="w-12 h-12 mb-4 flex items-center justify-center border border-[#b8935a] text-[#b8935a]">
+                  <span className="font-serif text-2xl">✓</span>
+                </div>
+                <h3 className="font-serif text-xl text-[#2d2a26] mb-3">Liberté totale</h3>
+                <p className="text-[#2d2a26]/70 leading-relaxed">
+                  Annulation libre à tout moment, sans justification. Vous êtes libre de mettre en pause ou 
+                  d'arrêter quand vous voulez. C'est votre rituel, vous en gardez le contrôle.
+                </p>
+              </div>
+
+              <div className="bg-white p-8 border-2 border-[#e8e0d8] hover:border-[#b8935a]/30 transition-all duration-300">
+                <div className="w-12 h-12 mb-4 flex items-center justify-center border border-[#b8935a] text-[#b8935a]">
+                  <span className="font-serif text-2xl">✦</span>
+                </div>
+                <h3 className="font-serif text-xl text-[#2d2a26] mb-3">Zéro contrainte</h3>
+                <p className="text-[#2d2a26]/70 leading-relaxed">
+                  Plus besoin de courir chez le fleuriste le dimanche. Plus de stress, plus d'oublis. 
+                  Juste la joie de découvrir vos fleurs fraîches, livrées directement chez vous.
+                </p>
+              </div>
+
+              <div className="bg-white p-8 border-2 border-[#e8e0d8] hover:border-[#b8935a]/30 transition-all duration-300">
+                <div className="w-12 h-12 mb-4 flex items-center justify-center border border-[#b8935a] text-[#b8935a]">
+                  <span className="font-serif text-2xl">✧</span>
+                </div>
+                <h3 className="font-serif text-xl text-[#2d2a26] mb-3">Variétés exclusives</h3>
+                <p className="text-[#2d2a26]/70 leading-relaxed">
+                  Accédez à des fleurs rares que nous sélectionnons au marché. Des variétés d'exception 
+                  que vous ne trouverez pas ailleurs. Votre intérieur le mérite.
+                </p>
+              </div>
+
+              <div className="bg-white p-8 border-2 border-[#e8e0d8] hover:border-[#b8935a]/30 transition-all duration-300">
+                <div className="w-12 h-12 mb-4 flex items-center justify-center border border-[#b8935a] text-[#b8935a]">
+                  <span className="font-serif text-2xl">€</span>
+                </div>
+                <h3 className="font-serif text-xl text-[#2d2a26] mb-3">Prix privilégié</h3>
+                <p className="text-[#2d2a26]/70 leading-relaxed">
+                  Économisez jusqu'à 15% par rapport à l'achat à l'unité. Un tarif préférentiel réservé 
+                  à nos abonnés, sans compromis sur la qualité.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Garanties Section */}
+        <section className="py-12 bg-gradient-to-br from-[#0a0a0a] via-[#1a1613] to-[#0a0a0a]">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="text-center mb-10">
+              <h3 className="font-serif text-2xl text-white mb-3">Nos Garanties</h3>
+              <p className="text-white/60 text-sm">Votre satisfaction est notre priorité</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center p-6 bg-white/5 border border-[#b8935a]/30">
+                <div className="text-[#b8935a] text-3xl mb-3">✓</div>
+                <h4 className="font-serif text-lg text-white mb-2">Fraîcheur 7 jours</h4>
+                <p className="text-white/60 text-sm leading-relaxed">
+                  Fleurs garanties fraîches minimum 7 jours. Sinon, nous les remplaçons gratuitement.
+                </p>
+              </div>
+
+              <div className="text-center p-6 bg-white/5 border border-[#b8935a]/30">
+                <div className="text-[#b8935a] text-3xl mb-3">∞</div>
+                <h4 className="font-serif text-lg text-white mb-2">Sans engagement</h4>
+                <p className="text-white/60 text-sm leading-relaxed">
+                  Aucun contrat, aucune durée minimum. Vous êtes libre de partir à tout moment.
+                </p>
+              </div>
+
+              <div className="text-center p-6 bg-white/5 border border-[#b8935a]/30">
+                <div className="text-[#b8935a] text-3xl mb-3">◐</div>
+                <h4 className="font-serif text-lg text-white mb-2">Pause flexible</h4>
+                <p className="text-white/60 text-sm leading-relaxed">
+                  En vacances ? Mettez votre abonnement en pause d'un simple clic.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 bg-white">
+          <div className="max-w-3xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="font-serif text-3xl text-[#2d2a26] mb-4">Questions fréquentes</h2>
+              <p className="text-[#2d2a26]/60">Tout ce que vous devez savoir</p>
+            </div>
+
+            <div className="space-y-6">
+              <div className="border-b border-[#e8e0d8] pb-6">
+                <h3 className="font-serif text-lg text-[#2d2a26] mb-2">Puis-je changer de formule ?</h3>
+                <p className="text-[#2d2a26]/70 leading-relaxed">
+                  Absolument ! Vous pouvez changer de formule ou de fréquence à tout moment depuis votre espace client. 
+                  Les modifications prennent effet dès la prochaine livraison.
+                </p>
+              </div>
+
+              <div className="border-b border-[#e8e0d8] pb-6">
+                <h3 className="font-serif text-lg text-[#2d2a26] mb-2">Que se passe-t-il si je suis absent ?</h3>
+                <p className="text-[#2d2a26]/70 leading-relaxed">
+                  Pas de souci ! Vous pouvez reporter ou sauter une livraison depuis votre compte, ou simplement 
+                  mettre votre abonnement en pause. Aucun gaspillage, aucune perte.
+                </p>
+              </div>
+
+              <div className="border-b border-[#e8e0d8] pb-6">
+                <h3 className="font-serif text-lg text-[#2d2a26] mb-2">Puis-je offrir un abonnement ?</h3>
+                <p className="text-[#2d2a26]/70 leading-relaxed">
+                  Oui ! Un abonnement floral est un cadeau merveilleux. Contactez-nous pour créer un abonnement 
+                  cadeau personnalisé avec une durée déterminée (3, 6 ou 12 mois).
+                </p>
+              </div>
+
+              <div className="border-b border-[#e8e0d8] pb-6">
+                <h3 className="font-serif text-lg text-[#2d2a26] mb-2">Comment annuler mon abonnement ?</h3>
+                <p className="text-[#2d2a26]/70 leading-relaxed">
+                  Rendez-vous dans votre espace client, section "Mon abonnement", et cliquez sur "Annuler". 
+                  C'est immédiat, sans justification, sans frais. Vous pouvez revenir quand vous voulez.
+                </p>
+              </div>
+
+              <div className="pb-6">
+                <h3 className="font-serif text-lg text-[#2d2a26] mb-2">Les bouquets sont-ils vraiment uniques ?</h3>
+                <p className="text-[#2d2a26]/70 leading-relaxed">
+                  Chaque bouquet est composé selon les arrivages du marché et l'inspiration de notre fleuriste. 
+                  Vous ne recevrez jamais deux fois le même bouquet. C'est la magie de l'artisanat floral.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Final */}
+        <section className="py-20 bg-gradient-to-br from-[#1a1613] to-[#0a0a0a]">
+          <div className="max-w-3xl mx-auto px-4 text-center">
+            <h2 className="font-serif text-3xl md:text-4xl text-white mb-6">
+              Prêt à transformer votre quotidien ?
+            </h2>
+            <p className="text-white/70 text-lg mb-8 leading-relaxed">
+              Rejoignez la communauté des amoureux de fleurs qui ont adopté le rituel Anne Freret. 
+              Sans engagement, avec amour.
+            </p>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="bg-[#b8935a] text-white py-4 px-10 text-lg font-light tracking-wide hover:bg-[#a17d47] transition-colors"
+            >
+              Rejoindre la communauté Anne Freret
+            </button>
+            <p className="text-white/40 text-xs mt-6">
+              Annulation libre • Sans engagement • Garantie fraîcheur 7 jours
+            </p>
           </div>
         </section>
 
@@ -322,27 +553,27 @@ export default function AbonnementStripe() {
                 <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center border border-[#b8935a] text-[#b8935a]">
                   <span className="font-serif text-xl">1</span>
                 </div>
-                <h4 className="font-serif text-lg text-[#2d2a26] mb-2">Livraison automatique</h4>
+                <h4 className="font-serif text-lg text-[#2d2a26] mb-2">Choisissez votre rituel</h4>
                 <p className="text-sm text-[#2d2a26]/60">
-                  Recevez vos fleurs à la fréquence choisie, sans effort
+                  Sélectionnez votre formule et votre rythme préféré
                 </p>
               </div>
               <div>
                 <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center border border-[#b8935a] text-[#b8935a]">
                   <span className="font-serif text-xl">2</span>
                 </div>
-                <h4 className="font-serif text-lg text-[#2d2a26] mb-2">Paiement simplifié</h4>
+                <h4 className="font-serif text-lg text-[#2d2a26] mb-2">Recevez vos fleurs</h4>
                 <p className="text-sm text-[#2d2a26]/60">
-                  Débit automatique sécurisé avant chaque livraison
+                  Livraison automatique, sans effort, sans oubli
                 </p>
               </div>
               <div>
                 <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center border border-[#b8935a] text-[#b8935a]">
                   <span className="font-serif text-xl">3</span>
                 </div>
-                <h4 className="font-serif text-lg text-[#2d2a26] mb-2">Liberté totale</h4>
+                <h4 className="font-serif text-lg text-[#2d2a26] mb-2">Profitez</h4>
                 <p className="text-sm text-[#2d2a26]/60">
-                  Pausez ou annulez votre abonnement à tout moment
+                  Pausez, modifiez ou annulez à tout moment
                 </p>
               </div>
             </div>
