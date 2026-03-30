@@ -22,7 +22,7 @@ export default function BrandIdentity() {
               
               <Image
                 src="/images/brand/papier-emballage.jpg"
-                alt="Papier d'emballage signature Anne Freret — Toile de Jouy artisanale"
+                alt="Papier d'emballage signature Anne Freret"
                 fill
                 className="object-cover group-hover:scale-[1.02] transition-transform duration-1000 ease-out"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -35,7 +35,7 @@ export default function BrandIdentity() {
             
             {/* Petite légende sous l'image */}
             <p className="text-center mt-4 text-[9px] tracking-[0.3em] uppercase text-[#b8935a]/60 font-light">
-              Toile de Jouy — Dessin exclusif
+              Papier signature — Dessin exclusif
             </p>
           </div>
 
@@ -50,7 +50,7 @@ export default function BrandIdentity() {
             </h2>
             <div className="w-16 h-px bg-[#b8935a] mb-8" />
             <p className="text-[#f5f0eb]/70 text-base md:text-lg leading-relaxed mb-6 font-light">
-              Chaque bouquet Anne Freret est enveloppé dans notre papier signature, une toile de Jouy exclusive dessinée pour notre maison. Ce motif, inspiré de la campagne normande et de notre atelier, transforme chaque création en un véritable cadeau.
+              Chaque bouquet Anne Freret est enveloppé dans notre papier d'emballage exclusif, dessiné spécialement pour notre maison. Ce motif, inspiré de la campagne normande et de notre atelier, transforme chaque création en un véritable cadeau.
             </p>
             <p className="text-[#f5f0eb]/50 text-sm leading-relaxed mb-10 font-light">
               Du manoir au jardin, des silhouettes intemporelles aux frondaisons luxuriantes — notre papier raconte l'histoire d'un savoir-faire artisanal transmis avec passion. Parce que l'émotion commence avant même de découvrir les fleurs.
@@ -60,7 +60,7 @@ export default function BrandIdentity() {
             <div className="space-y-4 mb-10">
               {[
                 { label: 'Dessin exclusif', detail: 'Créé spécialement pour Anne Freret' },
-                { label: 'Toile de Jouy', detail: 'Tradition française du XVIIIᵉ siècle' },
+                { label: 'Papier de qualité', detail: 'Imprimé avec soin pour un rendu premium' },
                 { label: 'Éco-responsable', detail: 'Papier certifié, encres végétales' },
               ].map((item) => (
                 <div key={item.label} className="flex items-start gap-4">

@@ -214,7 +214,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
         <div className="container mx-auto px-4 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
             {/* IMAGES (colonne gauche) */}
-            <div className="order-1 lg:order-1">
+            <div className="order-1 lg:order-1 lg:sticky lg:top-8 lg:self-start">
               <div className="relative aspect-square lg:aspect-square aspect-[3/4] mb-4 overflow-hidden bg-white">
                 <Image
                   src={productImages[selectedImageIndex]}
