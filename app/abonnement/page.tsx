@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { useAuth } from '@/lib/auth-context';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -16,7 +15,6 @@ const plans = [
     weeklyPrice: 25.50,
     tagline: 'Le bouquet de saison',
     description: 'Une touche de fraîcheur naturelle qui illumine votre quotidien',
-    image: '/images/bouquet-essentiel.jpg',
     features: [
       'Bouquet de fleurs fraîches (30-35cm)',
       'Carte message personnalisée',
@@ -32,7 +30,6 @@ const plans = [
     tagline: 'Notre sélection premium',
     description: 'Un bouquet généreux qui exprime l\'élégance et le raffinement',
     popular: true,
-    image: '/images/bouquet-signature.jpg',
     features: [
       'Bouquet premium plus généreux (35-40cm)',
       'Carte message personnalisée',
@@ -47,11 +44,9 @@ const plans = [
     weeklyPrice: 59.00,
     tagline: 'L\'exception florale',
     description: 'Une composition d\'exception pour célébrer les moments précieux',
-    image: '/images/bouquet-prestige.jpg',
     features: [
       "Grande composition d'exception (40-45cm)",
       'Vase offert à la première livraison',
-      'Livraison gratuite à domicile',
       'Carte message personnalisée',
     ],
   },
@@ -230,17 +225,6 @@ export default function AbonnementStripe() {
                       </span>
                     </div>
                   )}
-
-                  {/* Image Bouquet */}
-                  <div className="relative h-64 bg-[#f5f0eb] overflow-hidden">
-                    <Image
-                      src={plan.image}
-                      alt={`Bouquet ${plan.name}`}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                  </div>
 
                   <div className="p-6">
                     <h3 className="font-serif text-2xl text-[#2d2a26] mb-2">{plan.name}</h3>
