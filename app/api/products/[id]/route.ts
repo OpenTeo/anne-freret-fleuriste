@@ -45,10 +45,17 @@ export async function PATCH(
       stock,
       is_active,
       featured,
+      tags,
+      sizes,
+      variants,
+      rating,
+      review_count,
+      original_price,
+      in_stock,
     } = body;
 
     const updates: string[] = [];
-    const values: (string | number | boolean | null | Record<string, unknown>)[] = [];
+    const values: (string | number | boolean | null | Record<string, unknown> | string[])[] = [];
     let paramCount = 1;
 
     if (name !== undefined) {
@@ -83,7 +90,7 @@ export async function PATCH(
 
     if (images !== undefined) {
       updates.push(`images = $${paramCount++}`);
-      values.push(JSON.stringify(images));
+      values.push(images);
     }
 
     if (stock !== undefined) {
@@ -99,6 +106,41 @@ export async function PATCH(
     if (featured !== undefined) {
       updates.push(`featured = $${paramCount++}`);
       values.push(featured);
+    }
+
+    if (tags !== undefined) {
+      updates.push(`tags = $${paramCount++}`);
+      values.push(tags);
+    }
+
+    if (sizes !== undefined) {
+      updates.push(`sizes = $${paramCount++}`);
+      values.push(JSON.stringify(sizes));
+    }
+
+    if (variants !== undefined) {
+      updates.push(`variants = $${paramCount++}`);
+      values.push(JSON.stringify(variants));
+    }
+
+    if (rating !== undefined) {
+      updates.push(`rating = $${paramCount++}`);
+      values.push(rating);
+    }
+
+    if (review_count !== undefined) {
+      updates.push(`review_count = $${paramCount++}`);
+      values.push(review_count);
+    }
+
+    if (original_price !== undefined) {
+      updates.push(`original_price = $${paramCount++}`);
+      values.push(original_price);
+    }
+
+    if (in_stock !== undefined) {
+      updates.push(`in_stock = $${paramCount++}`);
+      values.push(in_stock);
     }
 
     if (updates.length === 0) {

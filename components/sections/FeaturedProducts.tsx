@@ -1,18 +1,79 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { featuredProducts } from '@/lib/mock-data';
 import ProductCard from '@/components/ui/ProductCard';
 
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  category: string;
+  price: number;
+  originalPrice?: number;
+  original_price?: number;
+  image: string;
+  images?: string[];
+  featured: boolean;
+  inStock: boolean;
+  in_stock: boolean;
+  tags: string[];
+  sizes?: Array<{ name: string; price: number }>;
+  variants?: Array<{ name: string; price?: number }>;
+  rating?: number;
+  reviewCount?: number;
+  review_count?: number;
+}
+
 const FeaturedProducts = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const res = await fetch('/api/products?active=true');
+        const data = await res.json();
+        // Normaliser et filtrer les produits featured
+        const normalizedProducts = (data.products || [])
+          .filter((p: any) => p.featured && p.is_active)
+          .map((p: any) => ({
+            ...p,
+            image: p.images?.[0] || '',
+            inStock: p.in_stock ?? true,
+            reviewCount: p.review_count || 0,
+            tags: p.tags || [],
+          }));
+        setProducts(normalizedProducts);
+      } catch (error) {
+        console.error('Erreur chargement produits featured:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, []);
+
   // Show specific categories in order, skip Deuil on homepage
   const showCategories = ['Bouquets', 'Plantes'];
   const grouped = showCategories
     .map(cat => ({
       category: cat,
-      items: featuredProducts.filter(p => p.category === cat).slice(0, 4)
+      items: products.filter(p => p.category === cat).slice(0, 4)
     }))
     .filter(g => g.items.length > 0);
+
+  if (isLoading) {
+    return (
+      <section className="py-12 md:py-20 bg-[#faf8f5]">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 text-center">
+          <div className="text-[#2d2a26]/60">Chargement...</div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-12 md:py-20 bg-[#faf8f5]">

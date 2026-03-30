@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -8,18 +8,42 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/ui/ProductCard';
 import AuthPromptModal from '@/components/ui/AuthPromptModal';
-import { mockProducts } from '@/lib/mock-data';
 import { getReviewsForProduct } from '@/lib/reviews-data';
 import { useAuth } from '@/lib/auth-context';
 import RibbonConfigurator from '@/components/ui/RibbonConfigurator';
 import CardSelector from '@/components/ui/CardSelector';
 // No lucide imports — using inline SVGs for consistency
 
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  category: string;
+  price: number;
+  originalPrice?: number;
+  original_price?: number;
+  image: string;
+  images?: string[];
+  featured: boolean;
+  inStock: boolean;
+  in_stock: boolean;
+  tags: string[];
+  sizes?: Array<{ name: string; price: number }>;
+  variants?: Array<{ name: string; price?: number }>;
+  rating?: number;
+  reviewCount?: number;
+  review_count?: number;
+}
+
 interface ProductPageProps {
   params: { slug: string };
 }
 
 export default function ProductPageClient({ params }: ProductPageProps) {
+  const [product, setProduct] = useState<Product | null>(null);
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState<{ name: string; price: number } | null>(null);
@@ -41,18 +65,75 @@ export default function ProductPageClient({ params }: ProductPageProps) {
   // État pour les accordéons
   const [openAccordion, setOpenAccordion] = useState<string | null>(null);
 
-  const product = mockProducts.find(p => p.slug === params.slug);
+  // Charger le produit depuis l'API
+  useEffect(() => {
+    const loadProduct = async () => {
+      try {
+        const res = await fetch('/api/products');
+        const data = await res.json();
+        const foundProduct = (data.products || []).find((p: any) => p.slug === params.slug);
+        
+        if (foundProduct) {
+          // Normaliser les données
+          const normalized = {
+            ...foundProduct,
+            image: foundProduct.images?.[0] || '',
+            inStock: foundProduct.in_stock ?? true,
+            reviewCount: foundProduct.review_count || 0,
+            originalPrice: foundProduct.original_price,
+            tags: foundProduct.tags || [],
+          };
+          setProduct(normalized);
+
+          // Charger les produits similaires
+          const related = (data.products || [])
+            .filter((p: any) => p.category === foundProduct.category && p.id !== foundProduct.id && p.is_active)
+            .slice(0, 3)
+            .map((p: any) => ({
+              ...p,
+              image: p.images?.[0] || '',
+              inStock: p.in_stock ?? true,
+              reviewCount: p.review_count || 0,
+              tags: p.tags || [],
+            }));
+          setRelatedProducts(related);
+        }
+      } catch (error) {
+        console.error('Erreur chargement produit:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadProduct();
+  }, [params.slug]);
+
+  // Initialiser la sélection par défaut
+  useEffect(() => {
+    if (product) {
+      if (product.sizes && product.sizes.length > 0 && !selectedSize) {
+        setSelectedSize(product.sizes[0]);
+      }
+      if (product.variants && product.variants.length > 0 && !selectedVariant) {
+        setSelectedVariant(product.variants[0]);
+      }
+    }
+  }, [product]);
+
+  if (isLoading) {
+    return (
+      <>
+        <Header />
+        <main className="min-h-screen bg-[#faf8f5] flex items-center justify-center">
+          <div className="text-[#2d2a26]/60">Chargement...</div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
 
   if (!product) {
     notFound();
-  }
-
-  // Initialiser la sélection par défaut
-  if (product.sizes && !selectedSize) {
-    setSelectedSize(product.sizes[0]);
-  }
-  if (product.variants && !selectedVariant) {
-    setSelectedVariant(product.variants[0]);
   }
 
   // Calculer le prix actuel avec add-ons
@@ -78,10 +159,6 @@ export default function ProductPageClient({ params }: ProductPageProps) {
   const toggleAccordion = (section: string) => {
     setOpenAccordion(openAccordion === section ? null : section);
   };
-
-  const relatedProducts = mockProducts
-    .filter(p => p.category === product.category && p.id !== product.id)
-    .slice(0, 3);
 
   const productImages = product.images || [product.image];
 

@@ -42,7 +42,10 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, description, category, price, images, stock, is_active, featured } = body;
+    const { 
+      name, description, category, price, images, stock, is_active, featured,
+      tags, sizes, variants, rating, review_count, original_price, in_stock
+    } = body;
 
     if (!name || !category || price === undefined) {
       return NextResponse.json(
@@ -69,17 +72,31 @@ export async function POST(request: NextRequest) {
         images,
         stock,
         is_active,
-        featured
+        featured,
+        tags,
+        sizes,
+        variants,
+        rating,
+        review_count,
+        original_price,
+        in_stock
       ) VALUES (
         ${name},
         ${slug},
         ${description || ''},
         ${category},
         ${price},
-        ${images ? JSON.stringify(images) : '{}'},
+        ${images || []},
         ${stock || 0},
         ${is_active !== false},
-        ${featured || false}
+        ${featured || false},
+        ${tags || []},
+        ${sizes ? JSON.stringify(sizes) : '[]'},
+        ${variants ? JSON.stringify(variants) : '[]'},
+        ${rating || null},
+        ${review_count || 0},
+        ${original_price || null},
+        ${in_stock !== false}
       )
       RETURNING *
     `;

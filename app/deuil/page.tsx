@@ -1,10 +1,31 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-import { mockProducts } from '@/lib/mock-data';
+
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  category: string;
+  price: number;
+  originalPrice?: number;
+  original_price?: number;
+  image: string;
+  images?: string[];
+  featured: boolean;
+  inStock: boolean;
+  in_stock: boolean;
+  tags: string[];
+  variants?: Array<{ name: string; price?: number }>;
+  sizes?: Array<{ name: string; price: number }>;
+  rating?: number;
+  reviewCount?: number;
+  review_count?: number;
+}
 
 const categories = [
   { id: 'all', label: 'Toutes les créations' },
@@ -19,7 +40,32 @@ const categories = [
 
 export default function DeuilPage() {
   const [activeFilter, setActiveFilter] = useState('all');
-  const products = mockProducts.filter(p => p.category === 'Deuil & Hommages');
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const res = await fetch('/api/products?active=true&category=Deuil & Hommages');
+        const data = await res.json();
+        // Normaliser les données
+        const normalizedProducts = (data.products || []).map((p: any) => ({
+          ...p,
+          image: p.images?.[0] || '',
+          inStock: p.in_stock ?? true,
+          tags: p.tags || [],
+          reviewCount: p.review_count || 0,
+        }));
+        setProducts(normalizedProducts);
+      } catch (error) {
+        console.error('Erreur chargement produits deuil:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadProducts();
+  }, []);
   
   const filtered = activeFilter === 'all' 
     ? products 
@@ -102,8 +148,13 @@ export default function DeuilPage() {
 
           {/* Product grid */}
           <div className="flex-1">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
-              {filtered.map(product => (
+            {isLoading ? (
+              <div className="text-center py-12 text-[#2d2a26]/60">
+                Chargement...
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+                {filtered.map(product => (
                 <Link key={product.slug} href={`/produit/${product.slug}`} className="group">
                   <div className="aspect-square overflow-hidden bg-[#f5f0eb] mb-3">
                     <img 
@@ -136,10 +187,11 @@ export default function DeuilPage() {
                   </div>
                   <p className="text-[#b8935a] text-sm">À partir de {product.price.toFixed(2)}€</p>
                 </Link>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
-            {filtered.length === 0 && (
+            {!isLoading && filtered.length === 0 && (
               <p className="text-center text-[#2d2a26]/40 text-sm py-12">Aucun produit dans cette catégorie</p>
             )}
           </div>

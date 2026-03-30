@@ -5,25 +5,75 @@ import { useSearchParams } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ProductCard from '@/components/ui/ProductCard';
-import { mockProducts, categories } from '@/lib/mock-data';
+import { categories } from '@/lib/mock-data';
+
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  category: string;
+  price: number;
+  originalPrice?: number;
+  original_price?: number;
+  image: string;
+  images?: string[];
+  featured: boolean;
+  inStock: boolean;
+  in_stock: boolean;
+  tags: string[];
+  sizes?: Array<{ name: string; price: number }>;
+  variants?: Array<{ name: string; price?: number }>;
+  rating?: number;
+  reviewCount?: number;
+  review_count?: number;
+}
 
 function BoutiqueContent() {
   const searchParams = useSearchParams();
-  const [filteredProducts, setFilteredProducts] = useState(mockProducts);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'Tous');
+  const [isLoading, setIsLoading] = useState(true);
 
   const allCategories = ['Tous', ...categories];
 
+  // Charger les produits depuis l'API
   useEffect(() => {
-    let filtered = [...mockProducts];
+    const loadProducts = async () => {
+      try {
+        const res = await fetch('/api/products?active=true');
+        const data = await res.json();
+        // Normaliser les données pour compatibilité avec ProductCard
+        const normalizedProducts = (data.products || []).map((p: any) => ({
+          ...p,
+          image: p.images?.[0] || '',
+          inStock: p.in_stock ?? true,
+          reviewCount: p.review_count || 0,
+          tags: p.tags || [],
+        }));
+        setProducts(normalizedProducts);
+        setFilteredProducts(normalizedProducts);
+      } catch (error) {
+        console.error('Erreur chargement produits:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    // Filter by category
+    loadProducts();
+  }, []);
+
+  // Filtrer par catégorie
+  useEffect(() => {
+    let filtered = [...products];
+
     if (selectedCategory !== 'Tous') {
       filtered = filtered.filter(product => product.category === selectedCategory);
     }
 
     setFilteredProducts(filtered);
-  }, [selectedCategory]);
+  }, [selectedCategory, products]);
 
   return (
     <>
@@ -70,7 +120,11 @@ function BoutiqueContent() {
         {/* Products Grid */}
         <section className="py-20">
           <div className="container mx-auto px-6 lg:px-8">
-            {filteredProducts.length > 0 ? (
+            {isLoading ? (
+              <div className="text-center py-20">
+                <div className="text-[#2d2a26]/60">Chargement des produits...</div>
+              </div>
+            ) : filteredProducts.length > 0 ? (
               <>
                 <div className="flex items-center justify-between mb-12">
                   <h2 className="text-2xl font-serif text-[#2d2a26] font-light">
