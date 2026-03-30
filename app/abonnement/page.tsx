@@ -190,14 +190,14 @@ export default function AbonnementStripe() {
               <span className="text-[#b8935a] text-sm tracking-[0.3em] uppercase font-light">Abonnements Floraux</span>
             </div>
             <h1 className="font-serif text-4xl md:text-6xl text-[#2d2a26] mb-6 leading-tight">
-              Votre dose de beauté,<br />
-              <span className="text-[#b8935a]">livrée avec soin</span>
+              Des fleurs fraîches chaque semaine,<br />
+              <span className="text-[#b8935a]">créées avec passion</span>
             </h1>
             <p className="text-lg md:text-xl text-[#2d2a26]/70 max-w-2xl mx-auto leading-relaxed mb-4">
-              Imaginez recevoir l'émotion d'un cadeau, chaque semaine. Sans y penser, sans courir. 
-              Juste la magie d'un bouquet frais qui vous attend.
+              Imaginez recevoir l\'émotion d\'un cadeau, chaque semaine. Sans y penser, sans courir. 
+              Juste la magie d\'un bouquet frais qui vous attend.
             </p>
-            <p className="text-sm text-[#2d2a26]/50 max-w-xl mx-auto">
+            <p className="text-base text-[#2d2a26]/70 max-w-xl mx-auto font-medium">
               Annulation libre • Sans engagement • Garantie fraîcheur 7 jours
             </p>
           </div>
