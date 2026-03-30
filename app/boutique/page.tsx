@@ -33,10 +33,10 @@ function BoutiqueContent() {
   const searchParams = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'Tous');
+  const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'Bouquets');
   const [isLoading, setIsLoading] = useState(true);
 
-  const allCategories = ['Tous', ...categories];
+  const allCategories = categories.filter(c => c !== 'Plantes');
 
   // Charger les produits depuis l'API
   useEffect(() => {
@@ -68,9 +68,7 @@ function BoutiqueContent() {
   useEffect(() => {
     let filtered = [...products];
 
-    if (selectedCategory !== 'Tous') {
-      filtered = filtered.filter(product => product.category === selectedCategory);
-    }
+    filtered = filtered.filter(product => product.category === selectedCategory);
 
     setFilteredProducts(filtered);
   }, [selectedCategory, products]);
@@ -128,7 +126,7 @@ function BoutiqueContent() {
               <>
                 <div className="flex items-center justify-between mb-12">
                   <h2 className="text-2xl font-serif text-[#2d2a26] font-light">
-                    {selectedCategory === 'Tous' ? 'Toutes nos créations' : selectedCategory}
+                    {selectedCategory}
                   </h2>
                   <div className="text-[#6b6560] luxury-label">
                     {filteredProducts.length} produit{filteredProducts.length > 1 ? 's' : ''}
@@ -151,10 +149,10 @@ function BoutiqueContent() {
                   Aucun produit ne correspond à votre sélection actuelle.
                 </p>
                 <button
-                  onClick={() => setSelectedCategory('Tous')}
+                  onClick={() => setSelectedCategory('Bouquets')}
                   className="btn-luxury bg-[#b8935a] text-white hover:bg-[#b8956a]"
                 >
-                  Voir tous les produits
+                  Voir les bouquets
                 </button>
               </div>
             )}

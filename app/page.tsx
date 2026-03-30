@@ -147,45 +147,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION DIY */}
-        <section className="py-16 md:py-24 bg-[#f5f0eb]">
-          <div className="max-w-5xl mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-              <div className="relative h-80 md:h-96 overflow-hidden">
-                <img
-                  src="https://images.unsplash.com/photo-1487530811176-3780de880c2d?w=600&q=85"
-                  alt="Box DIY florale"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div>
-                <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-4">Créez vos propres créations</p>
-                <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">
-                  L'art floral à portée de main
-                </h2>
-                <div className="w-12 h-px bg-[#b8935a] mb-6"></div>
-                <p className="text-[#2d2a26]/60 text-base leading-relaxed mb-6">
-                  Imaginez composer votre propre bouquet, guidé par notre savoir-faire. Chaque box contient des fleurs fraîches ou séchées, les outils d'artisan et nos secrets de composition. Le plaisir de créer, sans quitter votre maison.
-                </p>
-                <div className="space-y-3 mb-8">
-                  <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
-                    <span className="text-[#b8935a]">✦</span> Créations fraîches, séchées ou mixtes — dès 39.90€
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
-                    <span className="text-[#b8935a]">✦</span> Fleurs d'exception et outils d'artisan inclus
-                  </div>
-                  <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
-                    <span className="text-[#b8935a]">✦</span> Guide illustré avec nos techniques de fleuriste
-                  </div>
-                </div>
-                <a href="/diy" className="inline-block text-[#2d2a26] text-sm tracking-wide underline underline-offset-8 decoration-[#b8935a] hover:text-[#b8935a] transition-colors">
-                  Explorer les ateliers à la maison →
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* SECTION BLOG - Layout éditorial */}
         <section className="py-24 md:py-32 bg-[#faf8f5]">
           <div className="max-w-6xl mx-auto px-4 md:px-6">

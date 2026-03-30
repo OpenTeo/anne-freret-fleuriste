@@ -39,10 +39,10 @@ const Header = () => {
 
   const navLinks = [
     { href: '/boutique', label: 'Boutique' },
-    { href: '/mariages', label: 'Mariages' },
     { href: '/abonnement', label: 'Abonnement' },
+    { href: '/mariages', label: 'Mariages' },
+    { href: '/deuil', label: 'Deuil' },
     { href: '/livraison', label: 'Livraison' },
-    { href: '/blog', label: 'Blog' },
     { href: '/contact', label: 'Contact' },
   ];
   const navLeft = navLinks.slice(0, 3);
