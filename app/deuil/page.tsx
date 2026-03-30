@@ -185,7 +185,7 @@ export default function DeuilPage() {
                       </span>
                     ))}
                   </div>
-                  <p className="text-[#b8935a] text-sm">À partir de {product.price.toFixed(2)}€</p>
+                  <p className="text-[#b8935a] text-sm">À partir de {Number(product.price).toFixed(2)}€</p>
                 </Link>
                 ))}
               </div>

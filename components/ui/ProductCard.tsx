@@ -27,8 +27,8 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, className = '' }: ProductCardProps) => {
-  const formatPrice = (price: number) => {
-    return price.toFixed(2).replace('.', ',');
+  const formatPrice = (price: number | string) => {
+    return Number(price).toFixed(2).replace('.', ',');
   };
 
   return (

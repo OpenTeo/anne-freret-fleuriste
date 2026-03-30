@@ -143,7 +143,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
     bougie: { name: 'Bougie parfumée', price: 12.90 }
   };
   
-  const basePrice = selectedSize?.price || product.price;
+  const basePrice = Number(selectedSize?.price || product.price);
   const addOnsTotal = Object.entries(selectedAddOns)
     .filter(([_, selected]) => selected)
     .reduce((total, [key, _]) => total + addOns[key as keyof typeof addOns].price, 0);
