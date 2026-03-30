@@ -3,6 +3,7 @@ import Footer from '@/components/layout/Footer';
 import FeaturedProducts from '@/components/sections/FeaturedProducts';
 import Testimonials from '@/components/sections/Testimonials';
 import HeroSlider from '@/components/sections/HeroSlider';
+import BrandIdentity from '@/components/sections/BrandIdentity';
 import { blogPosts } from '@/lib/mock-data';
 import Link from 'next/link';
 
@@ -82,6 +83,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* SECTION NOTRE SIGNATURE — Papier d'emballage */}
+        <BrandIdentity />
 
         {/* SECTION ABONNEMENT */}
         <section className="py-16 md:py-24 bg-white">
