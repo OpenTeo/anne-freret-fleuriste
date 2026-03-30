@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import { useAuth } from '@/lib/auth-context';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
@@ -9,11 +10,13 @@ import Footer from '@/components/layout/Footer';
 const plans = [
   {
     id: 'essentiel',
-    name: '🌿 Essentiel',
+    name: 'Essentiel',
     monthlyPrice: 29.90,
     biweeklyPrice: 27.50,
     weeklyPrice: 25.50,
-    description: 'Le bouquet de saison',
+    tagline: 'Le bouquet de saison',
+    description: 'Une touche de fraîcheur naturelle qui illumine votre quotidien',
+    image: '/images/bouquet-essentiel.jpg',
     features: [
       'Bouquet de fleurs fraîches (30-35cm)',
       'Carte message personnalisée',
@@ -22,12 +25,14 @@ const plans = [
   },
   {
     id: 'signature',
-    name: '🌸 Signature',
+    name: 'Signature',
     monthlyPrice: 44.90,
     biweeklyPrice: 41.50,
     weeklyPrice: 38.00,
-    description: 'Notre sélection premium',
+    tagline: 'Notre sélection premium',
+    description: 'Un bouquet généreux qui exprime l\'élégance et le raffinement',
     popular: true,
+    image: '/images/bouquet-signature.jpg',
     features: [
       'Bouquet premium plus généreux (35-40cm)',
       'Carte message personnalisée',
@@ -36,14 +41,16 @@ const plans = [
   },
   {
     id: 'prestige',
-    name: '👑 Prestige',
+    name: 'Prestige',
     monthlyPrice: 69.90,
     biweeklyPrice: 64.50,
     weeklyPrice: 59.00,
-    description: "L'exception florale",
+    tagline: 'L\'exception florale',
+    description: 'Une composition d\'exception pour célébrer les moments précieux',
+    image: '/images/bouquet-prestige.jpg',
     features: [
       "Grande composition d'exception (40-45cm)",
-      '🎁 Vase offert à la première livraison',
+      'Vase offert à la première livraison',
       'Livraison gratuite à domicile',
       'Carte message personnalisée',
     ],
@@ -53,24 +60,24 @@ const plans = [
 const frequencies = [
   {
     id: 'weekly',
-    label: 'Chaque lundi',
+    label: 'Hebdomadaire',
+    shortLabel: 'Chaque lundi',
     description: 'Fraîcheur chaque semaine',
     deliveryInfo: 'Livraison automatique tous les lundis',
-    icon: '🌿',
   },
   {
     id: 'biweekly',
-    label: 'Les 1er et 15',
-    description: '2 fois par mois',
+    label: 'Bimensuel',
+    shortLabel: 'Les 1er et 15',
+    description: 'Deux fois par mois',
     deliveryInfo: 'Livraison automatique le 1er et le 15 de chaque mois',
-    icon: '🌸',
   },
   {
     id: 'monthly',
-    label: 'Chaque 1er du mois',
+    label: 'Mensuel',
+    shortLabel: 'Chaque 1er du mois',
     description: 'Rendez-vous mensuel',
     deliveryInfo: 'Livraison automatique le 1er jour de chaque mois',
-    icon: '👑',
   },
 ];
 
@@ -172,161 +179,188 @@ export default function AbonnementStripe() {
   return (
     <>
       <Header />
-      <main className="bg-[#faf8f5] min-h-screen pt-14 md:pt-20">
-        {/* Hero */}
-        <section className="py-16 md:py-20 bg-gradient-to-b from-[#f5f0eb] to-[#faf8f5]">
-          <div className="max-w-4xl mx-auto px-4 text-center">
-            <h1 className="font-serif text-3xl md:text-5xl text-[#2d2a26] mb-6">
-              Abonnement Fleurs Fraîches
-            </h1>
-            <p className="text-lg text-[#2d2a26]/70 max-w-2xl mx-auto mb-4">
-              Recevez des fleurs fraîches de saison, sélectionnées avec soin par notre fleuriste.
-            </p>
-            <div className="bg-white border-2 border-[#b8935a] rounded-lg p-6 max-w-2xl mx-auto">
-              <h3 className="font-serif text-xl text-[#2d2a26] mb-4 text-center">
-                Comment ça marche ? 🌸
-              </h3>
-              <div className="space-y-3 text-sm text-[#2d2a26]/80">
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">📅</span>
-                  <div>
-                    <strong className="text-[#b8935a]">Livraison automatique à dates fixes</strong>
-                    <p>Selon votre fréquence : chaque lundi (hebdomadaire), les 1er & 15 (bi-mensuel), ou le 1er du mois (mensuel)</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">💳</span>
-                  <div>
-                    <strong className="text-[#b8935a]">Paiement automatique par carte</strong>
-                    <p>Votre carte est débitée automatiquement avant chaque livraison — aucune action requise</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl">🔄</span>
-                  <div>
-                    <strong className="text-[#b8935a]">Annulation libre à tout moment</strong>
-                    <p>Pausez ou annulez votre abonnement depuis votre compte, sans engagement</p>
-                  </div>
-                </div>
-              </div>
+      <main className="min-h-screen pt-14 md:pt-20">
+        {/* Hero Section - Dark & Elegant */}
+        <section className="relative bg-gradient-to-br from-[#0a0a0a] via-[#1a1613] to-[#0a0a0a] py-20 md:py-32 overflow-hidden">
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#b8935a] rounded-full blur-3xl"></div>
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#b8935a] rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="relative max-w-4xl mx-auto px-4 text-center">
+            <div className="inline-block mb-6">
+              <span className="text-[#b8935a] text-sm tracking-[0.3em] uppercase font-light">Abonnement</span>
             </div>
+            <h1 className="font-serif text-4xl md:text-6xl text-white mb-6 leading-tight">
+              Des fleurs fraîches,<br />
+              <span className="text-[#b8935a]">livrées avec régularité</span>
+            </h1>
+            <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+              Laissez-vous surprendre par nos créations florales de saison, 
+              sélectionnées avec soin et livrées directement chez vous.
+            </p>
           </div>
         </section>
 
-        {/* Selection */}
-        <section className="py-12 md:py-16">
-          <div className="max-w-6xl mx-auto px-4">
-            {/* Choix formule */}
-            <div className="mb-12">
-              <h2 className="font-serif text-2xl text-[#2d2a26] mb-6 text-center">1. Choisissez votre formule</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {plans.map((plan) => (
-                  <button
-                    key={plan.id}
-                    onClick={() => setSelectedPlan(plan.id)}
-                    className={`p-6 border-2 text-left transition-all ${
-                      selectedPlan === plan.id
-                        ? 'border-[#b8935a] bg-[#b8935a]/5 shadow-lg scale-105'
-                        : 'border-[#e8e0d8] bg-white hover:border-[#b8935a]/50'
-                    } ${plan.popular ? 'relative' : ''}`}
-                  >
-                    {plan.popular && (
-                      <div className="absolute -top-3 right-4 bg-[#b8935a] text-white text-xs px-3 py-1 rounded-full">
-                        ⭐ Populaire
-                      </div>
-                    )}
-                    <h3 className="font-serif text-xl text-[#2d2a26] mb-2">{plan.name}</h3>
-                    <p className="text-sm text-[#2d2a26]/60 mb-4">{plan.description}</p>
-                    <div className="space-y-2 mb-4">
+        {/* Plans Section */}
+        <section className="py-16 md:py-24 bg-[#faf8f5]">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-16">
+              <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">Nos Formules</h2>
+              <p className="text-[#2d2a26]/60 max-w-2xl mx-auto">
+                Chaque bouquet est une création unique, composée selon les arrivages du marché et l'inspiration du moment
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+              {plans.map((plan) => (
+                <button
+                  key={plan.id}
+                  onClick={() => setSelectedPlan(plan.id)}
+                  className={`group relative bg-white border-2 transition-all duration-300 overflow-hidden text-left ${
+                    selectedPlan === plan.id
+                      ? 'border-[#b8935a] shadow-2xl scale-105'
+                      : 'border-[#e8e0d8] hover:border-[#b8935a]/50 hover:shadow-xl'
+                  }`}
+                >
+                  {plan.popular && (
+                    <div className="absolute top-4 right-4 z-10">
+                      <span className="bg-[#b8935a] text-white text-xs px-3 py-1 tracking-wider uppercase font-light">
+                        Populaire
+                      </span>
+                    </div>
+                  )}
+
+                  {/* Image Bouquet */}
+                  <div className="relative h-64 bg-[#f5f0eb] overflow-hidden">
+                    <Image
+                      src={plan.image}
+                      alt={`Bouquet ${plan.name}`}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="font-serif text-2xl text-[#2d2a26] mb-2">{plan.name}</h3>
+                    <p className="text-sm text-[#b8935a] mb-3 font-light">{plan.tagline}</p>
+                    <p className="text-sm text-[#2d2a26]/70 mb-6 leading-relaxed">{plan.description}</p>
+
+                    <div className="space-y-2 mb-6 pb-6 border-b border-[#e8e0d8]">
                       {plan.features.map((feature, i) => (
-                        <div key={i} className="flex items-start gap-2 text-sm text-[#2d2a26]/80">
-                          <span className="text-[#b8935a]">✓</span>
+                        <div key={i} className="flex items-start gap-3 text-sm text-[#2d2a26]/80">
+                          <span className="text-[#b8935a] mt-0.5">—</span>
                           <span>{feature}</span>
                         </div>
                       ))}
                     </div>
-                    <div className="text-2xl font-serif text-[#2d2a26]">
-                      {getPriceForPlan(plan.id, selectedFrequency).toFixed(2)}€
-                      <span className="text-sm text-[#2d2a26]/60 font-sans"> / livraison</span>
+
+                    <div className="flex items-baseline gap-2">
+                      <span className="font-serif text-3xl text-[#2d2a26]">
+                        {getPriceForPlan(plan.id, selectedFrequency).toFixed(2)}€
+                      </span>
+                      <span className="text-sm text-[#2d2a26]/50 font-light">par livraison</span>
                     </div>
-                  </button>
-                ))}
-              </div>
+                  </div>
+                </button>
+              ))}
             </div>
 
-            {/* Choix fréquence */}
-            <div className="mb-12">
-              <h2 className="font-serif text-2xl text-[#2d2a26] mb-6 text-center">
-                2. Choisissez votre fréquence
-              </h2>
+            {/* Frequency Selection */}
+            <div className="max-w-4xl mx-auto mb-16">
+              <h2 className="font-serif text-2xl text-[#2d2a26] mb-8 text-center">Choisissez votre rythme</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {frequencies.map((freq) => (
                   <button
                     key={freq.id}
                     onClick={() => setSelectedFrequency(freq.id)}
-                    className={`p-6 border-2 text-left transition-all ${
+                    className={`p-6 border-2 text-center transition-all duration-300 ${
                       selectedFrequency === freq.id
                         ? 'border-[#b8935a] bg-[#b8935a]/5 shadow-lg'
-                        : 'border-[#e8e0d8] bg-white hover:border-[#b8935a]/50'
+                        : 'border-[#e8e0d8] bg-white hover:border-[#b8935a]/30'
                     }`}
                   >
-                    <div className="text-3xl mb-3">{freq.icon}</div>
-                    <h3 className="font-serif text-lg text-[#2d2a26] mb-2">{freq.label}</h3>
-                    <p className="text-sm text-[#2d2a26]/60 mb-3">{freq.description}</p>
-                    <p className="text-xs text-[#b8935a] font-medium">{freq.deliveryInfo}</p>
+                    <h3 className="font-serif text-xl text-[#2d2a26] mb-2">{freq.label}</h3>
+                    <p className="text-sm text-[#2d2a26]/60 mb-1">{freq.shortLabel}</p>
+                    <p className="text-xs text-[#b8935a] font-light">{freq.description}</p>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Récapitulatif */}
-            <div className="bg-white border-2 border-[#b8935a] p-8 max-w-2xl mx-auto">
-              <h2 className="font-serif text-2xl text-[#2d2a26] mb-6 text-center">Votre abonnement</h2>
-              
-              <div className="space-y-4 mb-6">
-                <div className="flex justify-between items-center pb-3 border-b border-[#e8e0d8]">
-                  <span className="text-[#2d2a26]/60">Formule</span>
-                  <span className="font-medium text-[#2d2a26]">{selectedPlanData?.name}</span>
+            {/* Summary Card */}
+            <div className="max-w-xl mx-auto">
+              <div className="bg-white border-2 border-[#b8935a] p-8 shadow-2xl">
+                <h3 className="font-serif text-2xl text-[#2d2a26] mb-8 text-center">Récapitulatif</h3>
+                
+                <div className="space-y-6 mb-8">
+                  <div className="flex justify-between items-center pb-4 border-b border-[#e8e0d8]">
+                    <span className="text-[#2d2a26]/60 font-light">Formule</span>
+                    <span className="font-serif text-lg text-[#2d2a26]">{selectedPlanData?.name}</span>
+                  </div>
+                  <div className="flex justify-between items-center pb-4 border-b border-[#e8e0d8]">
+                    <span className="text-[#2d2a26]/60 font-light">Rythme</span>
+                    <span className="text-[#2d2a26]">{selectedFrequencyData?.label}</span>
+                  </div>
+                  <div className="flex justify-between items-center pb-4 border-b border-[#e8e0d8]">
+                    <span className="text-[#2d2a26]/60 font-light">Prochaine livraison</span>
+                    <span className="text-[#b8935a] text-sm capitalize">{nextDelivery}</span>
+                  </div>
+                  <div className="flex justify-between items-center pt-2">
+                    <span className="font-serif text-xl text-[#2d2a26]">Total</span>
+                    <span className="font-serif text-3xl text-[#b8935a]">{price.toFixed(2)}€</span>
+                  </div>
                 </div>
-                <div className="flex justify-between items-center pb-3 border-b border-[#e8e0d8]">
-                  <span className="text-[#2d2a26]/60">Fréquence</span>
-                  <span className="font-medium text-[#2d2a26]">{selectedFrequencyData?.label}</span>
-                </div>
-                <div className="flex justify-between items-center pb-3 border-b border-[#e8e0d8]">
-                  <span className="text-[#2d2a26]/60">Livraison</span>
-                  <span className="font-medium text-[#2d2a26] text-sm">{selectedFrequencyData?.deliveryInfo}</span>
-                </div>
-                <div className="flex justify-between items-center pb-3 border-b border-[#e8e0d8]">
-                  <span className="text-[#2d2a26]/60">Prochaine livraison</span>
-                  <span className="font-medium text-[#b8935a] text-sm capitalize">{nextDelivery}</span>
-                </div>
-                <div className="flex justify-between items-center pt-3">
-                  <span className="font-serif text-lg text-[#2d2a26]">Prix par livraison</span>
-                  <span className="font-serif text-2xl text-[#b8935a]">{price.toFixed(2)}€</span>
-                </div>
-              </div>
 
-              <div className="bg-[#f5f0eb] p-4 rounded mb-6 text-sm text-[#2d2a26]/80">
-                <p className="mb-2">
-                  <strong>💳 Débit automatique</strong> : Votre carte sera débitée automatiquement à chaque période.
+                <button
+                  onClick={handleSubscribe}
+                  disabled={isLoading}
+                  className="w-full bg-[#b8935a] text-white py-4 px-6 text-lg font-light tracking-wide hover:bg-[#a17d47] transition-colors disabled:opacity-50 disabled:cursor-not-allowed mb-4"
+                >
+                  {isLoading ? 'Redirection...' : user ? 'S\'abonner maintenant' : 'Créer un compte pour s\'abonner'}
+                </button>
+
+                <p className="text-xs text-[#2d2a26]/40 text-center">
+                  Paiement sécurisé • Annulation libre à tout moment
                 </p>
-                <p>
-                  <strong>🔄 Annulation libre</strong> : Vous pouvez annuler votre abonnement à tout moment depuis votre
-                  compte.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works - Discreet Section */}
+        <section className="py-12 bg-[#f5f0eb]">
+          <div className="max-w-5xl mx-auto px-4">
+            <h3 className="font-serif text-xl text-[#2d2a26] mb-8 text-center">Comment ça marche</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div>
+                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center border border-[#b8935a] text-[#b8935a]">
+                  <span className="font-serif text-xl">1</span>
+                </div>
+                <h4 className="font-serif text-lg text-[#2d2a26] mb-2">Livraison automatique</h4>
+                <p className="text-sm text-[#2d2a26]/60">
+                  Recevez vos fleurs à la fréquence choisie, sans effort
                 </p>
               </div>
-
-              <button
-                onClick={handleSubscribe}
-                disabled={isLoading}
-                className="w-full bg-[#b8935a] text-white py-4 px-6 text-lg font-medium hover:bg-[#b8956a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isLoading ? 'Redirection...' : user ? 'S\'abonner maintenant' : 'Créer un compte pour s\'abonner'}
-              </button>
-
-              <p className="text-xs text-[#2d2a26]/50 text-center mt-4">
-                Paiement sécurisé par Stripe • Annulation possible à tout moment
-              </p>
+              <div>
+                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center border border-[#b8935a] text-[#b8935a]">
+                  <span className="font-serif text-xl">2</span>
+                </div>
+                <h4 className="font-serif text-lg text-[#2d2a26] mb-2">Paiement simplifié</h4>
+                <p className="text-sm text-[#2d2a26]/60">
+                  Débit automatique sécurisé avant chaque livraison
+                </p>
+              </div>
+              <div>
+                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center border border-[#b8935a] text-[#b8935a]">
+                  <span className="font-serif text-xl">3</span>
+                </div>
+                <h4 className="font-serif text-lg text-[#2d2a26] mb-2">Liberté totale</h4>
+                <p className="text-sm text-[#2d2a26]/60">
+                  Pausez ou annulez votre abonnement à tout moment
+                </p>
+              </div>
             </div>
           </div>
         </section>
