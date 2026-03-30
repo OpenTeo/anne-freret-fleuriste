@@ -194,8 +194,8 @@ export default function AbonnementStripe() {
               <span className="text-[#b8935a]">créées avec passion</span>
             </h1>
             <p className="text-lg md:text-xl text-[#2d2a26]/70 max-w-2xl mx-auto leading-relaxed mb-4">
-              Imaginez recevoir l\'émotion d\'un cadeau, chaque semaine. Sans y penser, sans courir. 
-              Juste la magie d\'un bouquet frais qui vous attend.
+              Imaginez recevoir l&apos;émotion d&apos;un cadeau, chaque semaine. Sans y penser, sans courir. 
+              Juste la magie d&apos;un bouquet frais qui vous attend.
             </p>
             <p className="text-base text-[#2d2a26]/70 max-w-xl mx-auto font-medium">
               Annulation libre • Sans engagement • Garantie fraîcheur 7 jours
