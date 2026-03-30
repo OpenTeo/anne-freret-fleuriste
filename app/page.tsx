@@ -118,8 +118,8 @@ export default function Home() {
                 <div className="space-y-4">
                   {[
                     { name: 'Essentiel', price: '39.90', desc: 'La douceur mensuelle', popular: false },
-                    { name: 'Signature', price: '49.90', desc: 'L'équilibre parfait', popular: true },
-                    { name: 'Prestige', price: '69.90', desc: 'L'excellence absolue', popular: false },
+                    { name: 'Signature', price: '49.90', desc: 'L\'équilibre parfait', popular: true },
+                    { name: 'Prestige', price: '69.90', desc: 'L\'excellence absolue', popular: false },
                   ].map((plan) => (
                     <a key={plan.name} href={`/abonnement?plan=${plan.name.toLowerCase()}`} className={`block p-4 bg-white transition-all duration-300 hover:border-[#b8935a] cursor-pointer ${plan.popular ? 'border-2 border-[#b8935a]' : 'border border-[#e8e0d8]'}`}>
                       <div className="flex items-center justify-between">
