@@ -179,7 +179,7 @@ export default function AbonnementStripe() {
       <Header />
       <main className="min-h-screen pt-14 md:pt-20">
         {/* Hero Section - Émotionnel */}
-        <section className="relative bg-gradient-to-b from-[#f5f0eb] to-[#faf8f5] py-20 md:py-32 overflow-hidden">
+        <section className="relative bg-gradient-to-b from-[#f5f0eb] to-[#faf8f5] pt-20 pb-12 md:pt-32 md:pb-20 overflow-hidden">
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#b8935a] rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#b8935a] rounded-full blur-3xl"></div>
@@ -204,7 +204,7 @@ export default function AbonnementStripe() {
         </section>
 
         {/* Plans Section */}
-        <section className="py-16 md:py-24 bg-[#faf8f5]">
+        <section className="pt-10 pb-16 md:pt-14 md:pb-24 bg-[#faf8f5]">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">Nos Rituels Floraux</h2>
