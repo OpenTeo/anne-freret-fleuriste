@@ -26,7 +26,7 @@ export default function Home() {
               </svg>
             ))}
           </div>
-          <span className="text-[9px] md:text-[10px] text-white/70 uppercase tracking-wider">238 avis clients</span>
+          <span className="text-[9px] md:text-[10px] text-white/70 uppercase tracking-wider">238 clients qui nous font confiance</span>
         </div>
 
         {/* SECTION NOS CRÉATIONS */}
@@ -36,48 +36,48 @@ export default function Home() {
         <section className="py-12 md:py-16 border-y border-[#e8e0d8]">
           <div className="max-w-5xl mx-auto px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6">
-              {/* Commandez en ligne */}
+              {/* Choisissez votre émotion */}
               <div className="text-center">
                 <div className="h-14 flex items-center justify-center mb-4">
                   <svg className="w-8 h-8 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" />
                   </svg>
                 </div>
-                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Commandez en ligne</p>
-                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Choisissez la création<br />qui vous ressemble.</p>
+                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Choisissez votre émotion</p>
+                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Chaque création raconte<br />une histoire unique.</p>
               </div>
 
-              {/* Préparée avec amour */}
+              {/* Composée main de maître */}
               <div className="text-center">
                 <div className="h-14 flex items-center justify-center mb-4">
                   <svg className="w-8 h-8 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
                   </svg>
                 </div>
-                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Préparée avec amour</p>
-                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Dans notre atelier<br />par nos artisans fleuristes.</p>
+                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Composée main de maître</p>
+                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Par des artisans passionnés,<br />dans notre atelier normand.</p>
               </div>
 
-              {/* Expédiée avec soin */}
+              {/* Voyage protégé */}
               <div className="text-center">
                 <div className="h-14 flex items-center justify-center mb-4">
                   <svg className="w-8 h-8 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
                   </svg>
                 </div>
-                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Expédiée avec soin</p>
-                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Emballage sur mesure,<br />100% adapté aux fleurs.</p>
+                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Voyage protégé</p>
+                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Emballage sur mesure<br />conçu pour leur beauté.</p>
               </div>
 
-              {/* Livrée en un éclair */}
+              {/* Chez vous en un instant */}
               <div className="text-center">
                 <div className="h-14 flex items-center justify-center mb-4">
                   <svg className="w-8 h-8 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
                   </svg>
                 </div>
-                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Livrée en un éclair</p>
-                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">En quelques heures,<br />partout en France.</p>
+                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Chez vous en un instant</p>
+                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Fraîcheur préservée,<br />émerveillement garanti.</p>
               </div>
             </div>
           </div>
@@ -88,45 +88,45 @@ export default function Home() {
           <div className="max-w-5xl mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
               <div>
-                <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-4">Nouveau</p>
+                <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-4">Imaginez</p>
                 <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">
-                  L'Abonnement Floral
+                  Chaque mois, une surprise florale
                 </h2>
                 <div className="w-12 h-px bg-[#b8935a] mb-6"></div>
                 <p className="text-[#2d2a26]/60 text-base leading-relaxed mb-6">
-                  Recevez chaque mois un bouquet de saison composé avec soin par notre fleuriste. Une surprise florale livrée directement chez vous.
+                  Imaginez rentrer chez vous et découvrir un bouquet de saison, choisi avec soin par notre fleuriste. Plus qu'un abonnement : une parenthèse enchantée qui transforme votre quotidien, mois après mois.
                 </p>
                 <div className="space-y-3 mb-8">
                   <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
                     <svg className="w-5 h-5 text-[#b8935a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    3 formules dès 39.90€/mois
+                    3 formules pensées pour vous — dès 39.90€/mois
                   </div>
                   <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
                     <svg className="w-5 h-5 text-[#b8935a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    Livraison gratuite partout en France
+                    Livrée chez vous, sans frais — partout en France
                   </div>
                   <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
                     <svg className="w-5 h-5 text-[#b8935a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    Sans engagement, annulation à tout moment
+                    Liberté totale — pausez ou arrêtez quand vous voulez
                   </div>
                 </div>
                 <a href="/abonnement" className="inline-block text-[#2d2a26] text-sm tracking-wide underline underline-offset-8 decoration-[#b8935a] hover:text-[#b8935a] transition-colors">
-                  Découvrir nos formules →
+                  Commencer mon voyage floral →
                 </a>
               </div>
               <div className="bg-[#faf8f5] p-8 md:p-10">
                 <div className="space-y-4">
                   {[
-                    { name: 'Essentiel', price: '39.90', desc: 'Bouquet de saison' },
-                    { name: 'Signature', price: '49.90', desc: 'Sélection premium', popular: true },
-                    { name: 'Prestige', price: '69.90', desc: "L'exception florale" },
+                    { name: 'Essentiel', price: '39.90', desc: 'La douceur mensuelle', popular: false },
+                    { name: 'Signature', price: '49.90', desc: 'L'équilibre parfait', popular: true },
+                    { name: 'Prestige', price: '69.90', desc: 'L'excellence absolue', popular: false },
                   ].map((plan) => (
                     <a key={plan.name} href={`/abonnement?plan=${plan.name.toLowerCase()}`} className={`block p-4 bg-white transition-all duration-300 hover:border-[#b8935a] cursor-pointer ${plan.popular ? 'border-2 border-[#b8935a]' : 'border border-[#e8e0d8]'}`}>
                       <div className="flex items-center justify-between">
                         <div>
                           <div className="flex items-center gap-2">
                             <p className="text-sm text-[#2d2a26]">{plan.name}</p>
-                            {plan.popular && <span className="text-[8px] tracking-[0.1em] uppercase bg-[#b8935a] text-white px-2 py-0.5">Populaire</span>}
+                            {plan.popular && <span className="text-[8px] tracking-[0.1em] uppercase bg-[#b8935a] text-white px-2 py-0.5">Coup de cœur</span>}
                           </div>
                           <p className="text-xs text-[#2d2a26]/40">{plan.desc}</p>
                         </div>
@@ -152,28 +152,27 @@ export default function Home() {
                 />
               </div>
               <div>
-                <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-4">Nouveau</p>
+                <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-4">Créez vos propres créations</p>
                 <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">
-                  Ateliers DIY
+                  L'art floral à portée de main
                 </h2>
                 <div className="w-12 h-px bg-[#b8935a] mb-6"></div>
                 <p className="text-[#2d2a26]/60 text-base leading-relaxed mb-6">
-                  Recevez une box complète avec fleurs fraîches ou séchées, outils et guide illustré. 
-                  Créez votre propre arrangement floral chez vous — aucune expérience requise.
+                  Imaginez composer votre propre bouquet, guidé par notre savoir-faire. Chaque box contient des fleurs fraîches ou séchées, les outils d'artisan et nos secrets de composition. Le plaisir de créer, sans quitter votre maison.
                 </p>
                 <div className="space-y-3 mb-8">
                   <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
-                    <span className="text-[#b8935a]">✦</span> 3 box au choix dès 39.90€
+                    <span className="text-[#b8935a]">✦</span> Créations fraîches, séchées ou mixtes — dès 39.90€
                   </div>
                   <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
-                    <span className="text-[#b8935a]">✦</span> Fleurs fraîches, séchées ou les deux
+                    <span className="text-[#b8935a]">✦</span> Fleurs d'exception et outils d'artisan inclus
                   </div>
                   <div className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
-                    <span className="text-[#b8935a]">✦</span> Guide illustré pas à pas inclus
+                    <span className="text-[#b8935a]">✦</span> Guide illustré avec nos techniques de fleuriste
                   </div>
                 </div>
                 <a href="/diy" className="inline-block text-[#2d2a26] text-sm tracking-wide underline underline-offset-8 decoration-[#b8935a] hover:text-[#b8935a] transition-colors">
-                  Découvrir les box DIY →
+                  Explorer les ateliers à la maison →
                 </a>
               </div>
             </div>
@@ -185,10 +184,10 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 md:px-6">
             <div className="text-center mb-16 md:mb-20">
               <p className="text-[#b8935a] text-[10px] tracking-[0.2em] uppercase mb-4 font-light">
-                Notre journal
+                Inspiration & Savoir-Faire
               </p>
               <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl text-[#2d2a26] mb-8 font-light">
-                Le Journal Floral
+                Notre Carnet d'Atelier
               </h2>
               <div className="flex justify-center mb-8">
                 <div className="w-16 h-px bg-[#b8935a]"></div>
@@ -276,7 +275,7 @@ export default function Home() {
                 href="/blog"
                 className="text-[#2d2a26] text-sm underline underline-offset-4 hover:text-[#b8935a] transition-colors font-light"
               >
-                Tous nos articles →
+                Plongez dans nos inspirations →
               </Link>
             </div>
           </div>
