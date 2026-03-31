@@ -35,7 +35,6 @@ const FeaturedProducts = () => {
       try {
         const res = await fetch('/api/products?active=true');
         const data = await res.json();
-        // Normaliser et filtrer les produits featured
         const normalizedProducts = (data.products || [])
           .filter((p: any) => p.featured && p.is_active)
           .map((p: any) => ({
@@ -56,7 +55,6 @@ const FeaturedProducts = () => {
     loadProducts();
   }, []);
 
-  // Show max 6 featured products (excluding Deuil)
   const excludeCategories = ['Deuil & Hommages', 'Mariages'];
   const featuredProducts = products
     .filter(p => !excludeCategories.includes(p.category))
@@ -74,58 +72,36 @@ const FeaturedProducts = () => {
 
   return (
     <section className="py-16 md:py-24 bg-[#faf8f5]">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
         
         {/* Header */}
-        <div className="text-center mb-12 md:mb-20">
+        <div className="text-center mb-12 md:mb-16">
           <p className="text-[#b8935a] text-[10px] tracking-[0.2em] uppercase mb-4 font-light">
             Sélection
           </p>
-          <h2 className="font-serif text-4xl md:text-6xl text-[#2d2a26] mb-6 font-light">
+          <h2 className="font-serif text-4xl md:text-5xl text-[#2d2a26] mb-6 font-light">
             Nos créations
           </h2>
           <div className="flex justify-center mb-6">
             <div className="w-16 h-px bg-[#b8935a]"></div>
           </div>
-          <p className="text-[#2d2a26]/50 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#2d2a26]/50 text-sm md:text-base font-light max-w-lg mx-auto">
             Des fleurs fraîches, cueillies avec soin, livrées partout en France
           </p>
         </div>
 
-        {/* Asymmetric Grid - Editorial Layout */}
-        {featuredProducts.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8 mb-16">
-            {/* First product - Large featured (spans 2 columns on lg) */}
-            <div className="lg:col-span-7">
-              <div className="group relative h-full">
-                <ProductCard product={featuredProducts[0]} featured={true} />
-              </div>
-            </div>
-
-            {/* Products 2-3 - Right column stack */}
-            <div className="lg:col-span-5 grid grid-cols-1 gap-6 md:gap-8">
-              {featuredProducts[1] && (
-                <ProductCard product={featuredProducts[1]} />
-              )}
-              {featuredProducts[2] && (
-                <ProductCard product={featuredProducts[2]} />
-              )}
-            </div>
-
-            {/* Products 4-6 - Three equal columns below */}
-            {featuredProducts.slice(3, 6).map((product) => (
-              <div key={product.id} className="lg:col-span-4">
-                <ProductCard product={product} />
-              </div>
-            ))}
-          </div>
-        )}
+        {/* Grille uniforme 2 colonnes mobile, 3 colonnes desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-16">
+          {featuredProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
 
         {/* CTA */}
         <div className="text-center">
           <Link 
             href="/boutique"
-            className="inline-block text-[#2d2a26] text-sm md:text-base underline underline-offset-4 hover:text-[#b8935a] transition-colors font-light tracking-wide"
+            className="inline-block text-[#2d2a26] text-sm underline underline-offset-8 decoration-[#b8935a] hover:text-[#b8935a] transition-colors font-light tracking-wide"
           >
             Découvrir toute la collection →
           </Link>
