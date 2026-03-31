@@ -22,15 +22,15 @@ const Hero = () => {
         {/* Contenu texte mobile */}
         <div className="px-6 -mt-16 relative z-10 pb-12">
           <p className="text-xs tracking-[0.25em] uppercase mb-4 font-light" style={{ color: '#b8935a' }}>
-            Artisan fleuriste · Normandie & Bretagne
+            Artisan fleuriste · Depuis 2018
           </p>
           
           <h1 className="font-serif text-3xl mb-4 font-normal leading-tight" style={{ color: '#2d2a26' }}>
-            Des fleurs fraîches chaque semaine, créées avec passion
+            L'art floral livré chez vous, partout en France
           </h1>
           
           <p className="text-base mb-6 font-light leading-relaxed" style={{ color: '#6b6560' }}>
-            Bouquets d'exception composés à la main, livrés partout en France
+            Compositions uniques créées à la main par Anne, expédiées avec soin depuis la Normandie
           </p>
 
           <div className="flex flex-col gap-3 mb-8">
@@ -76,15 +76,15 @@ const Hero = () => {
         {/* Côté gauche: Texte sur fond crème */}
         <div className="w-1/2 flex flex-col justify-center px-12 lg:px-16 xl:px-24 py-16 relative z-10">
           <p className="text-sm tracking-[0.3em] uppercase mb-6 font-light" style={{ color: '#b8935a' }}>
-            Artisan fleuriste · Normandie & Bretagne
+            Artisan fleuriste · Depuis 2018
           </p>
           
           <h1 className="font-serif text-5xl lg:text-6xl xl:text-7xl mb-6 font-normal leading-tight" style={{ color: '#2d2a26' }}>
-            Des fleurs fraîches chaque semaine, créées avec passion
+            L'art floral livré chez vous, partout en France
           </h1>
           
           <p className="text-lg lg:text-xl mb-10 font-light leading-relaxed max-w-lg" style={{ color: '#6b6560' }}>
-            Bouquets d'exception composés à la main, livrés partout en France
+            Compositions uniques créées à la main par Anne, expédiées avec soin depuis la Normandie
           </p>
 
           <div className="flex items-start gap-4 mb-12">

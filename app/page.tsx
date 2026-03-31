@@ -29,13 +29,19 @@ export default function Home() {
         {/* 5. BRAND IDENTITY - Section papier signature (différenciation) */}
         <BrandIdentity />
 
-        {/* 6. SECTION ABONNEMENT - Design luxe fond sombre */}
-        <section className="py-16 md:py-24 bg-[#2d2a26] relative overflow-hidden">
-          {/* Decorative elements */}
-          <div className="absolute inset-0 opacity-[0.02]">
-            <div className="absolute top-0 left-0 w-full h-px bg-[#b8935a]" />
-            <div className="absolute bottom-0 left-0 w-full h-px bg-[#b8935a]" />
-          </div>
+        {/* 6. SECTION ABONNEMENT - Fond papier emballage */}
+        <section className="py-16 md:py-24 relative overflow-hidden">
+          {/* Papier emballage en fond */}
+          <div 
+            className="absolute inset-0 bg-repeat bg-center"
+            style={{
+              backgroundImage: 'url(/images/brand/papier-emballage.jpg)',
+              backgroundSize: '600px',
+            }}
+          />
+          <div className="absolute inset-0 bg-[#faf8f5]/88" />
+          <div className="absolute top-0 left-0 right-0 h-px bg-[#b8935a]/20" />
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-[#b8935a]/20" />
 
           <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
             {/* Header */}
@@ -43,13 +49,13 @@ export default function Home() {
               <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-4 font-light">
                 Abonnement Floral
               </p>
-              <h2 className="font-serif text-3xl md:text-5xl text-[#f5f0eb] mb-6 font-light">
+              <h2 className="font-serif text-3xl md:text-5xl text-[#2d2a26] mb-6 font-light">
                 Chaque mois,<br />une surprise florale
               </h2>
               <div className="flex justify-center mb-6">
                 <div className="w-16 h-px bg-[#b8935a]"></div>
               </div>
-              <p className="text-[#f5f0eb]/60 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-light">
+              <p className="text-[#2d2a26]/60 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-light">
                 Imaginez rentrer chez vous et découvrir un bouquet de saison, choisi avec soin. Plus qu'un abonnement : une parenthèse enchantée qui transforme votre quotidien.
               </p>
             </div>
@@ -132,7 +138,7 @@ export default function Home() {
                   { icon: '✓', text: 'Pausez quand vous voulez' },
                   { icon: '✓', text: 'Livraison offerte' },
                 ].map((benefit, idx) => (
-                  <div key={idx} className="flex items-center gap-2 text-[#f5f0eb]/60 text-sm">
+                  <div key={idx} className="flex items-center gap-2 text-[#2d2a26]/60 text-sm">
                     <span className="text-[#b8935a]">{benefit.icon}</span>
                     {benefit.text}
                   </div>
