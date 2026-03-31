@@ -36,6 +36,7 @@ export async function PATCH(
   try {
     const { id } = await params;
     const body = await request.json();
+    console.log('PATCH /api/products/', id, 'body keys:', Object.keys(body), 'images type:', typeof body.images, Array.isArray(body.images), 'tags type:', typeof body.tags, Array.isArray(body.tags));
     const {
       name,
       description,
@@ -89,8 +90,8 @@ export async function PATCH(
     }
 
     if (images !== undefined) {
-      updates.push(`images = $${paramCount++}`);
-      values.push(images);
+      updates.push(`images = $${paramCount++}::text[]`);
+      values.push(Array.isArray(images) ? `{${images.map((i: string) => `"${i.replace(/"/g, '\\"')}"`).join(',')}}` : images);
     }
 
     if (stock !== undefined) {
@@ -109,8 +110,8 @@ export async function PATCH(
     }
 
     if (tags !== undefined) {
-      updates.push(`tags = $${paramCount++}`);
-      values.push(tags);
+      updates.push(`tags = $${paramCount++}::text[]`);
+      values.push(Array.isArray(tags) ? `{${tags.map((t: string) => `"${t.replace(/"/g, '\\"')}"`).join(',')}}` : tags);
     }
 
     if (sizes !== undefined) {
