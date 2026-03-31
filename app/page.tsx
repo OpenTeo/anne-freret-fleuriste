@@ -23,14 +23,11 @@ export default function Home() {
         {/* 3. GUARANTEES - Rassurer: livraison, fraîcheur, artisanal */}
         <Guarantees />
 
-        {/* 4. TESTIMONIALS - Social proof */}
-        <TestimonialsCarousel />
-
-        {/* 5. BRAND IDENTITY - Section papier signature (différenciation) */}
+        {/* 4. BRAND IDENTITY - Section papier signature (différenciation) */}
         <BrandIdentity />
 
-        {/* Séparateur entre Brand Identity et Abonnement */}
-        <div className="py-8 md:py-12 bg-white" />
+        {/* 5. TESTIMONIALS - Social proof (sépare les deux sections papier) */}
+        <TestimonialsCarousel />
 
         {/* 6. SECTION ABONNEMENT - Fond papier emballage */}
         <section className="py-16 md:py-24 relative overflow-hidden">
