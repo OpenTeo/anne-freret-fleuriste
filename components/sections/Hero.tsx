@@ -36,14 +36,14 @@ const Hero = () => {
           <div className="flex flex-col gap-3 mb-8">
             <Link 
               href="/boutique" 
-              className="text-white px-6 py-3.5 text-sm font-semibold tracking-wider uppercase text-center transition-colors"
+              className="text-white px-6 py-3.5 text-sm font-semibold tracking-wider uppercase text-center transition-colors rounded-full"
               style={{ backgroundColor: '#b8935a' }}
             >
               Découvrir la boutique
             </Link>
             <Link 
               href="/abonnement" 
-              className="px-6 py-3.5 text-sm font-semibold tracking-wider uppercase border text-center transition-colors"
+              className="px-6 py-3.5 text-sm font-semibold tracking-wider uppercase border text-center transition-colors rounded-full"
               style={{ color: '#b8935a', borderColor: '#b8935a' }}
             >
               Nos abonnements
@@ -90,14 +90,14 @@ const Hero = () => {
           <div className="flex items-start gap-4 mb-12">
             <Link 
               href="/boutique" 
-              className="text-white px-8 py-4 text-sm font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-105"
+              className="text-white px-8 py-4 text-sm font-semibold tracking-wider uppercase transition-all duration-300 hover:scale-105 rounded-full"
               style={{ backgroundColor: '#b8935a' }}
             >
               Découvrir la boutique
             </Link>
             <Link 
               href="/abonnement" 
-              className="px-8 py-4 text-sm font-semibold tracking-wider uppercase border transition-all duration-300 hover:border-[#96754d] hover:text-[#96754d]"
+              className="px-8 py-4 text-sm font-semibold tracking-wider uppercase border transition-all duration-300 hover:border-[#96754d] hover:text-[#96754d] rounded-full"
               style={{ color: '#b8935a', borderColor: '#b8935a' }}
             >
               Nos abonnements
