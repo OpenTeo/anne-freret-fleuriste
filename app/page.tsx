@@ -29,17 +29,8 @@ export default function Home() {
         {/* 5. TESTIMONIALS - Social proof (sépare les deux sections papier) */}
         <TestimonialsCarousel />
 
-        {/* 6. SECTION ABONNEMENT - Fond papier emballage */}
-        <section className="py-16 md:py-24 relative overflow-hidden">
-          {/* Papier emballage en fond */}
-          <div 
-            className="absolute inset-0 bg-repeat bg-center"
-            style={{
-              backgroundImage: 'url(/images/brand/papier-emballage.jpg)',
-              backgroundSize: '600px',
-            }}
-          />
-          <div className="absolute inset-0 bg-[#faf8f5]/88" />
+        {/* 6. SECTION ABONNEMENT - Fond dégradé élégant */}
+        <section className="py-16 md:py-24 relative overflow-hidden bg-gradient-to-b from-[#f5f0eb] via-[#efe8e0] to-[#f5f0eb]">
           <div className="absolute top-0 left-0 right-0 h-px bg-[#b8935a]/20" />
           <div className="absolute bottom-0 left-0 right-0 h-px bg-[#b8935a]/20" />
 
