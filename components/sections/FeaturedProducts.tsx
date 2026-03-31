@@ -57,7 +57,7 @@ const FeaturedProducts = () => {
   }, []);
 
   // Show max 6 featured products (excluding Deuil)
-  const excludeCategories = ['Deuil & Hommages'];
+  const excludeCategories = ['Deuil & Hommages', 'Mariages'];
   const featuredProducts = products
     .filter(p => !excludeCategories.includes(p.category))
     .slice(0, 6);
