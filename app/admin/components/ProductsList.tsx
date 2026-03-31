@@ -300,9 +300,9 @@ function ProductFormModal({
     name: product?.name || '',
     description: product?.description || '',
     category: product?.category || 'Bouquets',
-    price: product?.price || 0,
-    original_price: product?.original_price || null as number | null,
-    stock: product?.stock || 0,
+    price: Number(product?.price) || 0,
+    original_price: product?.original_price ? Number(product.original_price) : null as number | null,
+    stock: Number(product?.stock) || 0,
     images: product?.images?.join('\n') || '',
     tags: product?.tags?.join(', ') || '',
     is_active: product?.is_active ?? true,
@@ -345,9 +345,11 @@ function ProductFormModal({
     try {
       const payload = {
         ...formData,
-        images: formData.images.split('\n').filter((url) => url.trim()),
+        price: Number(formData.price),
+        original_price: formData.original_price ? Number(formData.original_price) : null,
+        stock: Number(formData.stock),
+        images: formData.images.split('\n').map(u => u.trim()).filter(Boolean),
         tags: formData.tags.split(',').map((t) => t.trim()).filter(Boolean),
-        original_price: formData.original_price || null,
         sizes: sizes.length > 0 ? sizes.filter(s => s.name.trim()) : null,
         variants: variants.length > 0 ? variants.filter(v => v.name.trim()) : null,
       };
@@ -364,7 +366,9 @@ function ProductFormModal({
       if (res.ok) {
         onSuccess();
       } else {
-        alert('Erreur lors de la sauvegarde');
+        const errData = await res.json().catch(() => ({}));
+        console.error('Erreur sauvegarde:', res.status, errData);
+        alert(`Erreur lors de la sauvegarde: ${errData.error || res.status}`);
       }
     } catch (error) {
       console.error('Erreur:', error);
