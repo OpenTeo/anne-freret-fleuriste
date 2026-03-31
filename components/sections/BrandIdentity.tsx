@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function BrandIdentity() {
   return (
-    <section className="relative py-20 md:py-32 bg-[#2d2a26] overflow-hidden">
+    <section className="relative py-16 md:py-32 bg-[#2d2a26] overflow-hidden">
       {/* Subtle decorative lines */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute top-0 left-0 w-full h-px bg-[#b8935a]" />
@@ -12,35 +12,10 @@ export default function BrandIdentity() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20 items-center">
-          {/* Image du papier d'emballage */}
-          <div className="relative group order-2 lg:order-1">
-            <div className="relative aspect-[4/5] overflow-hidden shadow-2xl">
-              {/* Cadre doré subtil */}
-              <div className="absolute inset-0 border border-[#b8935a]/20 z-10 pointer-events-none" />
-              <div className="absolute inset-2 border border-[#b8935a]/10 z-10 pointer-events-none" />
-              
-              <Image
-                src="/images/brand/papier-emballage.jpg"
-                alt="Papier d'emballage signature Anne Freret"
-                fill
-                className="object-cover group-hover:scale-[1.02] transition-transform duration-1000 ease-out"
-                sizes="(max-width: 768px) 100vw, 50vw"
-                quality={85}
-              />
-              
-              {/* Overlay gradient subtil en bas */}
-              <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-[#2d2a26]/40 to-transparent z-10" />
-            </div>
-            
-            {/* Petite légende sous l'image */}
-            <p className="text-center mt-4 text-[9px] tracking-[0.3em] uppercase text-[#b8935a]/60 font-light">
-              Papier signature — Dessin exclusif
-            </p>
-          </div>
-
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-20 items-center">
+          
           {/* Texte */}
-          <div className="order-1 lg:order-2">
+          <div className="order-2 lg:order-1">
             <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-6 font-light">
               Notre Signature
             </p>
@@ -76,6 +51,40 @@ export default function BrandIdentity() {
             >
               Découvrir nos créations →
             </a>
+          </div>
+
+          {/* Image du papier d'emballage */}
+          <div className="relative group order-1 lg:order-2">
+            <div className="relative aspect-[4/5] overflow-hidden shadow-2xl">
+              {/* Cadre doré subtil */}
+              <div className="absolute inset-0 border border-[#b8935a]/20 z-10 pointer-events-none" />
+              <div className="absolute inset-2 border border-[#b8935a]/10 z-10 pointer-events-none" />
+              
+              {/* Image responsive - mobile vs desktop */}
+              <picture>
+                <source
+                  media="(max-width: 768px)"
+                  srcSet="/images/brand/papier-emballage-mobile.jpg"
+                />
+                <Image
+                  src="/images/brand/papier-emballage.jpg"
+                  alt="Papier d'emballage signature Anne Freret"
+                  fill
+                  className="object-cover group-hover:scale-[1.02] transition-transform duration-1000 ease-out"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  quality={85}
+                  priority={false}
+                />
+              </picture>
+              
+              {/* Overlay gradient subtil en bas */}
+              <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-[#2d2a26]/40 to-transparent z-10" />
+            </div>
+            
+            {/* Petite légende sous l'image */}
+            <p className="text-center mt-4 text-[9px] tracking-[0.3em] uppercase text-[#b8935a]/60 font-light">
+              Papier signature — Dessin exclusif
+            </p>
           </div>
         </div>
       </div>

@@ -56,20 +56,11 @@ const FeaturedProducts = () => {
     loadProducts();
   }, []);
 
-  // Show all featured products except Deuil, max 8 total
+  // Show max 6 featured products (excluding Deuil)
   const excludeCategories = ['Deuil & Hommages'];
   const featuredProducts = products
     .filter(p => !excludeCategories.includes(p.category))
-    .slice(0, 8);
-  
-  // Group by category for display
-  const categoriesOrder = ['Bouquets', 'Plantes', 'Mariages', 'Accessoires'];
-  const grouped = categoriesOrder
-    .map(cat => ({
-      category: cat,
-      items: featuredProducts.filter(p => p.category === cat)
-    }))
-    .filter(g => g.items.length > 0);
+    .slice(0, 6);
 
   if (isLoading) {
     return (
@@ -82,49 +73,61 @@ const FeaturedProducts = () => {
   }
 
   return (
-    <section className="py-12 md:py-20 bg-[#faf8f5]">
-      <div className="max-w-6xl mx-auto px-4 md:px-6">
+    <section className="py-16 md:py-24 bg-[#faf8f5]">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         
         {/* Header */}
-        <div className="text-center mb-10 md:mb-14">
-          <p className="text-[#b8935a] text-[10px] tracking-[0.2em] uppercase mb-3 font-light">
+        <div className="text-center mb-12 md:mb-20">
+          <p className="text-[#b8935a] text-[10px] tracking-[0.2em] uppercase mb-4 font-light">
             Sélection
           </p>
-          <h2 className="font-serif text-3xl md:text-5xl text-[#2d2a26] mb-4 font-light">
+          <h2 className="font-serif text-4xl md:text-6xl text-[#2d2a26] mb-6 font-light">
             Nos créations
           </h2>
-          <p className="text-[#2d2a26]/50 text-sm md:text-base font-light max-w-lg mx-auto">
+          <div className="flex justify-center mb-6">
+            <div className="w-16 h-px bg-[#b8935a]"></div>
+          </div>
+          <p className="text-[#2d2a26]/50 text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed">
             Des fleurs fraîches, cueillies avec soin, livrées partout en France
           </p>
         </div>
 
-        {/* Products grouped by category */}
-        <div className="space-y-12 md:space-y-16 mb-16 md:mb-20">
-          {grouped.map((group) => (
-            <div key={group.category}>
-              <div className="flex items-center gap-4 mb-6 md:mb-8">
-                <div className="h-px flex-1 bg-[#e8e0d8]"></div>
-                <h3 className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-[#b8935a] whitespace-nowrap">
-                  {group.category}
-                </h3>
-                <div className="h-px flex-1 bg-[#e8e0d8]"></div>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-12">
-                {group.items.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
+        {/* Asymmetric Grid - Editorial Layout */}
+        {featuredProducts.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 md:gap-8 mb-16">
+            {/* First product - Large featured (spans 2 columns on lg) */}
+            <div className="lg:col-span-7">
+              <div className="group relative h-full">
+                <ProductCard product={featuredProducts[0]} featured={true} />
               </div>
             </div>
-          ))}
-        </div>
+
+            {/* Products 2-3 - Right column stack */}
+            <div className="lg:col-span-5 grid grid-cols-1 gap-6 md:gap-8">
+              {featuredProducts[1] && (
+                <ProductCard product={featuredProducts[1]} />
+              )}
+              {featuredProducts[2] && (
+                <ProductCard product={featuredProducts[2]} />
+              )}
+            </div>
+
+            {/* Products 4-6 - Three equal columns below */}
+            {featuredProducts.slice(3, 6).map((product) => (
+              <div key={product.id} className="lg:col-span-4">
+                <ProductCard product={product} />
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* CTA */}
         <div className="text-center">
           <Link 
             href="/boutique"
-            className="text-[#2d2a26] text-sm md:text-base underline underline-offset-4 hover:text-[#b8935a] transition-colors font-light"
+            className="inline-block text-[#2d2a26] text-sm md:text-base underline underline-offset-4 hover:text-[#b8935a] transition-colors font-light tracking-wide"
           >
-            Voir toute la collection →
+            Découvrir toute la collection →
           </Link>
         </div>
       </div>

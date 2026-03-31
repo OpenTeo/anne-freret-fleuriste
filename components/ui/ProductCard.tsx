@@ -24,9 +24,10 @@ const StarRating = ({ rating, count }: { rating: number; count: number }) => (
 interface ProductCardProps {
   product: Product;
   className?: string;
+  featured?: boolean;
 }
 
-const ProductCard = ({ product, className = '' }: ProductCardProps) => {
+const ProductCard = ({ product, className = '', featured = false }: ProductCardProps) => {
   const formatPrice = (price: number | string) => {
     return Number(price).toFixed(2).replace('.', ',');
   };
@@ -37,19 +38,28 @@ const ProductCard = ({ product, className = '' }: ProductCardProps) => {
       className={`group block ${className}`}
     >
       {/* Image */}
-      <div className="relative aspect-[3/4] overflow-hidden mb-3 md:mb-8">
+      <div className={`relative overflow-hidden mb-3 md:mb-8 ${featured ? 'aspect-[4/5]' : 'aspect-[3/4]'}`}>
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-500"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
           loading="lazy"
         />
+        {/* Overlay on hover - more sophisticated */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#2d2a26]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        {featured && (
+          <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+            <p className="text-white text-xs md:text-sm font-light leading-relaxed">
+              {product.description}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Content */}
       <div className="space-y-1 md:space-y-2">
         <p className="text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-[#b8935a]">{product.category}</p>
-        <h3 className="font-serif text-sm md:text-xl lg:text-2xl text-[#2d2a26] group-hover:text-[#b8935a] transition-colors leading-tight font-light">
+        <h3 className={`font-serif text-[#2d2a26] group-hover:text-[#b8935a] transition-colors leading-tight font-light ${featured ? 'text-lg md:text-2xl lg:text-3xl' : 'text-sm md:text-xl lg:text-2xl'}`}>
           {product.name}
         </h3>
         {product.rating && product.reviewCount && (
