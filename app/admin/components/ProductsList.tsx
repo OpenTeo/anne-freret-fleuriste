@@ -171,7 +171,7 @@ export default function ProductsList() {
             <div className="p-4">
               <h3 className="font-serif text-lg text-[#2d2a26] mb-1">{product.name}</h3>
               <p className="text-sm text-[#2d2a26]/60 mb-2">{product.category}</p>
-              <p className="text-lg font-semibold text-[#b8935a] mb-3">{product.price.toFixed(2)} €</p>
+              <p className="text-lg font-semibold text-[#b8935a] mb-3">{Number(product.price).toFixed(2)} €</p>
 
               {/* Sizes & Variants summary */}
               {(() => {
