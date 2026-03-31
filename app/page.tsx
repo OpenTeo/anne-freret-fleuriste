@@ -29,6 +29,9 @@ export default function Home() {
         {/* 5. BRAND IDENTITY - Section papier signature (différenciation) */}
         <BrandIdentity />
 
+        {/* Séparateur entre Brand Identity et Abonnement */}
+        <div className="py-8 md:py-12 bg-white" />
+
         {/* 6. SECTION ABONNEMENT - Fond papier emballage */}
         <section className="py-16 md:py-24 relative overflow-hidden">
           {/* Papier emballage en fond */}
