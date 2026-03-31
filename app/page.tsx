@@ -1,8 +1,9 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import Hero from '@/components/sections/Hero';
 import FeaturedProducts from '@/components/sections/FeaturedProducts';
+import Guarantees from '@/components/sections/Guarantees';
 import TestimonialsCarousel from '@/components/sections/TestimonialsCarousel';
-import HeroSlider from '@/components/sections/HeroSlider';
 import BrandIdentity from '@/components/sections/BrandIdentity';
 import { blogPosts } from '@/lib/mock-data';
 import Link from 'next/link';
@@ -12,85 +13,23 @@ export default function Home() {
     <>
       <Header />
       <main className="pt-14 md:pt-20 bg-[#faf8f5]">
-        {/* HERO SLIDER - Plein écran mobile, 85vh desktop */}
-        <section className="w-full">
-          <HeroSlider />
-        </section>
+        
+        {/* 1. HERO - Accroche émotionnelle + CTA */}
+        <Hero />
 
-        {/* Trust bar avis — délimite hero et produits */}
-        <div className="flex items-center justify-center gap-2 py-2.5 bg-[#2d2a26]">
-          <span className="text-[9px] md:text-[10px] text-white/70">4.8 / 5</span>
-          <div className="flex">
-            {[1,2,3,4,5].map(s => (
-              <svg key={s} className={`w-2.5 h-2.5 ${s <= 4 ? 'text-[#b8935a]' : 'text-white/20'}`} fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-              </svg>
-            ))}
-          </div>
-          <span className="text-[9px] md:text-[10px] text-white/70 uppercase tracking-wider">238 clients qui nous font confiance</span>
-        </div>
-
-        {/* SECTION AVIS CLIENTS — Créer la confiance */}
-        <TestimonialsCarousel />
-
-        {/* SECTION NOS CRÉATIONS */}
+        {/* 2. FEATURED PRODUCTS - Montrer les produits immédiatement */}
         <FeaturedProducts />
 
-        {/* BANNIÈRE GARANTIES — illustrations ligne fine artisanales */}
-        <section className="py-12 md:py-16 border-y border-[#e8e0d8]">
-          <div className="max-w-5xl mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6">
-              {/* Choisissez votre émotion */}
-              <div className="text-center">
-                <div className="h-14 flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" />
-                  </svg>
-                </div>
-                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Choisissez votre émotion</p>
-                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Chaque création raconte<br />une histoire unique.</p>
-              </div>
+        {/* 3. GUARANTEES - Rassurer: livraison, fraîcheur, artisanal */}
+        <Guarantees />
 
-              {/* Composée main de maître */}
-              <div className="text-center">
-                <div className="h-14 flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                  </svg>
-                </div>
-                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Composée main de maître</p>
-                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Par des artisans passionnés,<br />dans notre atelier normand.</p>
-              </div>
+        {/* 4. TESTIMONIALS - Social proof */}
+        <TestimonialsCarousel />
 
-              {/* Voyage protégé */}
-              <div className="text-center">
-                <div className="h-14 flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 01-1.5 1.5H5.25a1.5 1.5 0 01-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 109.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1114.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
-                  </svg>
-                </div>
-                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Voyage protégé</p>
-                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Emballage sur mesure<br />conçu pour leur beauté.</p>
-              </div>
-
-              {/* Chez vous en un instant */}
-              <div className="text-center">
-                <div className="h-14 flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-                  </svg>
-                </div>
-                <p className="text-sm md:text-base font-serif text-[#2d2a26] mb-1">Chez vous en un instant</p>
-                <p className="text-xs text-[#2d2a26]/40 leading-relaxed">Fraîcheur préservée,<br />émerveillement garanti.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION NOTRE SIGNATURE — Papier d'emballage */}
+        {/* 5. BRAND IDENTITY - Section papier signature (différenciation) */}
         <BrandIdentity />
 
-        {/* SECTION ABONNEMENT */}
+        {/* 6. SECTION ABONNEMENT - Upsell abonnement */}
         <section className="py-16 md:py-24 bg-white">
           <div className="max-w-5xl mx-auto px-4 md:px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
@@ -147,7 +86,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* SECTION BLOG - Layout éditorial */}
+        {/* 7. SECTION BLOG - Layout éditorial */}
         <section className="py-24 md:py-32 bg-[#faf8f5]">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
             <div className="text-center mb-16 md:mb-20">
