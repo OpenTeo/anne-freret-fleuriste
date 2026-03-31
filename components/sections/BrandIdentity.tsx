@@ -13,7 +13,7 @@ export default function BrandIdentity() {
       />
       
       {/* Overlay pour atténuer le motif et assurer la lisibilité */}
-      <div className="absolute inset-0 bg-[#faf8f5]/[0.96]" />
+      <div className="absolute inset-0 bg-[#faf8f5]/85" />
       
       {/* Bordures subtiles haut/bas */}
       <div className="absolute top-0 left-0 right-0 h-px bg-[#b8935a]/20" />
