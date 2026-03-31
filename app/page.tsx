@@ -38,7 +38,7 @@ export default function Home() {
               backgroundSize: '600px',
             }}
           />
-          <div className="absolute inset-0 bg-[#faf8f5]/70" />
+          <div className="absolute inset-0 bg-[#faf8f5]/50" />
           <div className="absolute top-0 left-0 right-0 h-px bg-[#b8935a]/20" />
           <div className="absolute bottom-0 left-0 right-0 h-px bg-[#b8935a]/20" />
 
