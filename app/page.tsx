@@ -42,7 +42,7 @@ export default function Home() {
           <div className="absolute top-0 left-0 right-0 h-px bg-[#b8935a]/20" />
           <div className="absolute bottom-0 left-0 right-0 h-px bg-[#b8935a]/20" />
 
-          <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
+          <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10 bg-[#faf8f5]/85 backdrop-blur-sm py-16 md:py-20 rounded-2xl shadow-sm">
             {/* Header */}
             <div className="text-center mb-12 md:mb-16">
               <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-4 font-light">
