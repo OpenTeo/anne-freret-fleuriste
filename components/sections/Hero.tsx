@@ -6,66 +6,64 @@ const Hero = () => {
   return (
     <section className="relative overflow-hidden bg-[#faf8f5]">
       
-      {/* MOBILE: Image compacte + carte texte */}
+      {/* MOBILE: Style Bergamotte — image lifestyle + texte minimal centré */}
       <div className="md:hidden">
-        {/* Image — hauteur réduite */}
-        <div className="relative h-[45vh]">
+        {/* Image hero pleine largeur */}
+        <div className="relative h-[70vh]">
           <div 
-            className="absolute inset-0 bg-cover bg-center"
+            className="absolute inset-0 bg-cover bg-[center_20%]"
             style={{
-              backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798')`,
+              backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275')`,
             }}
           />
-          {/* Overlay léger */}
-          <div className="absolute inset-0 bg-black/10" />
-          {/* Fade vers le bas */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#faf8f5] to-transparent" />
+          {/* Overlay subtil pour lisibilité */}
+          <div className="absolute inset-0 bg-black/15" />
+          
+          {/* Texte centré sur l'image — minimaliste */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-8">
+            <h1 className="font-serif text-4xl text-white font-light text-center leading-tight tracking-wide">
+              Bouquets
+            </h1>
+            <p className="text-white/70 text-xs tracking-[0.25em] uppercase mt-3 font-light">
+              Artisan fleuriste · Depuis 2001
+            </p>
+          </div>
         </div>
-        
-        {/* Contenu texte sur fond crème — lisible */}
-        <div className="px-6 -mt-8 relative z-10 pb-10">
-          <p className="text-[10px] tracking-[0.3em] uppercase mb-3 font-light text-[#b8935a]">
-            Artisan fleuriste · Depuis 2001
-          </p>
-          
-          <h1 className="font-serif text-[1.75rem] leading-[1.2] mb-3 font-normal text-[#2d2a26]">
-            Des bouquets d'exception,{' '}
-            <span className="italic text-[#b8935a]">composés avec amour</span>
-          </h1>
-          
-          <p className="text-sm mb-5 font-light leading-relaxed text-[#6b6560]">
-            Compositions uniques livrées dans toute la France
-          </p>
 
-          <div className="flex gap-3 mb-6">
-            <Link 
-              href="/boutique" 
-              className="flex-1 text-white px-5 py-3 text-xs font-semibold tracking-wider uppercase text-center rounded-full bg-[#b8935a] hover:bg-[#a07d45] transition-colors"
-            >
-              La boutique
-            </Link>
-            <Link 
-              href="/abonnement" 
-              className="flex-1 px-5 py-3 text-xs font-semibold tracking-wider uppercase text-center rounded-full border border-[#b8935a] text-[#b8935a] hover:bg-[#b8935a]/10 transition-colors"
-            >
-              Abonnements
-            </Link>
-          </div>
-
-          {/* Trust badges mobile */}
-          <div className="flex items-center justify-around pt-4 border-t border-[#e8e0d8]">
-            <div className="text-center">
-              <p className="text-[11px] font-light text-[#2d2a26]">Livraison France</p>
-            </div>
-            <div className="w-px h-4 bg-[#e8e0d8]" />
-            <div className="text-center">
-              <p className="text-[11px] font-light text-[#2d2a26]">Fraîcheur 7 jours</p>
-            </div>
-            <div className="w-px h-4 bg-[#e8e0d8]" />
-            <div className="text-center">
-              <p className="text-[11px] font-light text-[#2d2a26]">100% artisanal</p>
-            </div>
-          </div>
+        {/* Catégories en grille sous l'image */}
+        <div className="grid grid-cols-2 gap-[1px] bg-[#e8e0d8]">
+          <Link href="/boutique" className="relative h-44 overflow-hidden">
+            <div 
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
+              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/WhatsAppImage2026-02-11at06.43.58.jpg?v=1770916995')` }}
+            />
+            <div className="absolute inset-0 bg-black/25" />
+            <p className="absolute bottom-4 left-4 text-white text-sm font-light tracking-wide">Nos bouquets</p>
+          </Link>
+          <Link href="/abonnement" className="relative h-44 overflow-hidden">
+            <div 
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
+              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/WhatsAppImage2026-02-11at06.34.45.jpg?v=1770916718')` }}
+            />
+            <div className="absolute inset-0 bg-black/25" />
+            <p className="absolute bottom-4 left-4 text-white text-sm font-light tracking-wide">Abonnements</p>
+          </Link>
+          <Link href="/deuil" className="relative h-44 overflow-hidden">
+            <div 
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
+              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454')` }}
+            />
+            <div className="absolute inset-0 bg-black/25" />
+            <p className="absolute bottom-4 left-4 text-white text-sm font-light tracking-wide">Deuil</p>
+          </Link>
+          <Link href="/mariages" className="relative h-44 overflow-hidden">
+            <div 
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
+              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Lisianthusfriseblanc2.jpg?v=1625219126')` }}
+            />
+            <div className="absolute inset-0 bg-black/25" />
+            <p className="absolute bottom-4 left-4 text-white text-sm font-light tracking-wide">Mariages</p>
+          </Link>
         </div>
       </div>
 
