@@ -17,17 +17,20 @@ const Hero = () => {
               backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275')`,
             }}
           />
-          {/* Overlay gradient fort en bas */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          {/* Overlay léger global */}
+          <div className="absolute inset-0 bg-black/10" />
           
-          {/* Texte en bas sur le gradient sombre */}
-          <div className="absolute bottom-0 left-0 right-0 z-10 px-6 pb-6">
-            <h1 className="font-serif text-5xl text-white font-light text-center tracking-wide" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
-              Bouquets
-            </h1>
-            <p className="text-white/90 text-[11px] tracking-[0.3em] uppercase mt-2 font-light text-center" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.5)' }}>
-              Artisan fleuriste · Depuis 2001
-            </p>
+          {/* Texte centré dans un encadré semi-transparent */}
+          <div className="absolute inset-0 flex items-center justify-center z-10 px-6">
+            <div className="bg-black/50 backdrop-blur-[2px] px-10 py-6 text-center">
+              <h1 className="font-serif text-4xl text-white font-light tracking-wider">
+                Bouquets
+              </h1>
+              <div className="w-10 h-px bg-[#b8935a] mx-auto my-3" />
+              <p className="text-white/90 text-[10px] tracking-[0.35em] uppercase font-light">
+                Artisan fleuriste · Depuis 2001
+              </p>
+            </div>
           </div>
         </div>
 
