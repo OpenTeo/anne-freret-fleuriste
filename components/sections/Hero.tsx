@@ -17,21 +17,7 @@ const Hero = () => {
               backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275')`,
             }}
           />
-          {/* Overlay léger global */}
-          <div className="absolute inset-0 bg-black/10" />
-          
-          {/* Texte centré dans un encadré semi-transparent */}
-          <div className="absolute inset-0 flex items-center justify-center z-10 px-6">
-            <div className="bg-black/50 backdrop-blur-[2px] px-10 py-6 text-center">
-              <h1 className="font-serif text-4xl text-white font-light tracking-wider">
-                Bouquets
-              </h1>
-              <div className="w-10 h-px bg-[#b8935a] mx-auto my-3" />
-              <p className="text-white/90 text-[10px] tracking-[0.35em] uppercase font-light">
-                Artisan fleuriste · Depuis 2001
-              </p>
-            </div>
-          </div>
+          {/* Pas de texte — l'image et le header suffisent */}
         </div>
 
         {/* Catégories en grille sous l'image */}
@@ -41,32 +27,32 @@ const Hero = () => {
               className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
               style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/WhatsAppImage2026-02-11at06.43.58.jpg?v=1770916995')` }}
             />
-            <div className="absolute inset-0 bg-black/25" />
-            <p className="absolute bottom-4 left-4 text-white text-sm font-light tracking-wide">Nos bouquets</p>
+            <div className="absolute inset-0 bg-black/15" />
+            <span className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs font-light tracking-wider uppercase px-4 py-2 rounded-full">Nos bouquets</span>
           </Link>
           <Link href="/abonnement" className="relative h-44 overflow-hidden">
             <div 
               className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
               style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/WhatsAppImage2026-02-11at06.34.45.jpg?v=1770916718')` }}
             />
-            <div className="absolute inset-0 bg-black/25" />
-            <p className="absolute bottom-4 left-4 text-white text-sm font-light tracking-wide">Abonnements</p>
+            <div className="absolute inset-0 bg-black/15" />
+            <span className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs font-light tracking-wider uppercase px-4 py-2 rounded-full">Abonnements</span>
           </Link>
           <Link href="/deuil" className="relative h-44 overflow-hidden">
             <div 
               className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
               style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454')` }}
             />
-            <div className="absolute inset-0 bg-black/25" />
-            <p className="absolute bottom-4 left-4 text-white text-sm font-light tracking-wide">Deuil</p>
+            <div className="absolute inset-0 bg-black/15" />
+            <span className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs font-light tracking-wider uppercase px-4 py-2 rounded-full">Deuil</span>
           </Link>
           <Link href="/mariages" className="relative h-44 overflow-hidden">
             <div 
               className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
               style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Lisianthusfriseblanc2.jpg?v=1625219126')` }}
             />
-            <div className="absolute inset-0 bg-black/25" />
-            <p className="absolute bottom-4 left-4 text-white text-sm font-light tracking-wide">Mariages</p>
+            <div className="absolute inset-0 bg-black/15" />
+            <span className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs font-light tracking-wider uppercase px-4 py-2 rounded-full">Mariages</span>
           </Link>
         </div>
       </div>
