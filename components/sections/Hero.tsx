@@ -9,22 +9,23 @@ const Hero = () => {
       {/* MOBILE: Style Bergamotte — image lifestyle + texte minimal centré */}
       <div className="md:hidden">
         {/* Image hero pleine largeur */}
-        <div className="relative h-[70vh]">
+        <div className="relative h-[55vh]">
+          {/* Image recadrée vers le bas pour garder le fond sombre en haut */}
           <div 
-            className="absolute inset-0 bg-cover bg-[center_20%]"
+            className="absolute inset-0 bg-cover bg-[center_75%]"
             style={{
               backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275')`,
             }}
           />
-          {/* Overlay gradient: sombre en haut pour le texte, transparent au centre */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/15 to-black/10" />
+          {/* Overlay gradient fort en bas */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           
-          {/* Texte en haut de l'image — sur la zone sombre */}
-          <div className="absolute top-0 left-0 right-0 z-10 px-8 pt-12">
-            <h1 className="font-serif text-4xl text-white font-light text-center leading-tight tracking-wide" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}>
+          {/* Texte en bas sur le gradient sombre */}
+          <div className="absolute bottom-0 left-0 right-0 z-10 px-6 pb-6">
+            <h1 className="font-serif text-5xl text-white font-light text-center tracking-wide" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.6)' }}>
               Bouquets
             </h1>
-            <p className="text-white/80 text-xs tracking-[0.25em] uppercase mt-3 font-light text-center" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
+            <p className="text-white/90 text-[11px] tracking-[0.3em] uppercase mt-2 font-light text-center" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.5)' }}>
               Artisan fleuriste · Depuis 2001
             </p>
           </div>
