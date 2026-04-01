@@ -6,30 +6,34 @@ const Hero = () => {
   return (
     <section className="relative overflow-hidden bg-[#faf8f5]">
       
-      {/* MOBILE: Image plein écran avec texte superposé */}
-      <div className="md:hidden relative min-h-[100svh]">
-        {/* Image de fond */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798')`,
-          }}
-        />
-        {/* Overlay gradient: transparent en haut → sombre en bas */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/20 to-black/70" />
+      {/* MOBILE: Image compacte + carte texte */}
+      <div className="md:hidden">
+        {/* Image — hauteur réduite */}
+        <div className="relative h-[45vh]">
+          <div 
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG_3629.jpg?v=1747399798')`,
+            }}
+          />
+          {/* Overlay léger */}
+          <div className="absolute inset-0 bg-black/10" />
+          {/* Fade vers le bas */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#faf8f5] to-transparent" />
+        </div>
         
-        {/* Contenu texte superposé en bas */}
-        <div className="absolute bottom-0 left-0 right-0 px-6 pb-8 pt-16 z-10">
+        {/* Contenu texte sur fond crème — lisible */}
+        <div className="px-6 -mt-8 relative z-10 pb-10">
           <p className="text-[10px] tracking-[0.3em] uppercase mb-3 font-light text-[#b8935a]">
             Artisan fleuriste · Depuis 2001
           </p>
           
-          <h1 className="font-serif text-[2rem] leading-[1.15] mb-4 font-normal text-white">
+          <h1 className="font-serif text-[1.75rem] leading-[1.2] mb-3 font-normal text-[#2d2a26]">
             Des bouquets d'exception,{' '}
-            <span className="italic text-[#d4b078]">composés avec amour</span>
+            <span className="italic text-[#b8935a]">composés avec amour</span>
           </h1>
           
-          <p className="text-sm mb-6 font-light leading-relaxed text-white/80">
+          <p className="text-sm mb-5 font-light leading-relaxed text-[#6b6560]">
             Compositions uniques livrées dans toute la France
           </p>
 
@@ -42,24 +46,24 @@ const Hero = () => {
             </Link>
             <Link 
               href="/abonnement" 
-              className="flex-1 px-5 py-3 text-xs font-semibold tracking-wider uppercase text-center rounded-full border border-white/40 text-white hover:bg-white/10 transition-colors"
+              className="flex-1 px-5 py-3 text-xs font-semibold tracking-wider uppercase text-center rounded-full border border-[#b8935a] text-[#b8935a] hover:bg-[#b8935a]/10 transition-colors"
             >
               Abonnements
             </Link>
           </div>
 
-          {/* Trust badges mobile — compact */}
-          <div className="flex items-center justify-around pt-4 border-t border-white/20">
+          {/* Trust badges mobile */}
+          <div className="flex items-center justify-around pt-4 border-t border-[#e8e0d8]">
             <div className="text-center">
-              <p className="text-[11px] font-light text-white/90">Livraison France</p>
+              <p className="text-[11px] font-light text-[#2d2a26]">Livraison France</p>
             </div>
-            <div className="w-px h-4 bg-white/20" />
+            <div className="w-px h-4 bg-[#e8e0d8]" />
             <div className="text-center">
-              <p className="text-[11px] font-light text-white/90">Fraîcheur 7 jours</p>
+              <p className="text-[11px] font-light text-[#2d2a26]">Fraîcheur 7 jours</p>
             </div>
-            <div className="w-px h-4 bg-white/20" />
+            <div className="w-px h-4 bg-[#e8e0d8]" />
             <div className="text-center">
-              <p className="text-[11px] font-light text-white/90">100% artisanal</p>
+              <p className="text-[11px] font-light text-[#2d2a26]">100% artisanal</p>
             </div>
           </div>
         </div>
