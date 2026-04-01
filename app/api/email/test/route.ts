@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
     ],
     total: 165.0,
     shippingAddress: {
-      name: 'Sophie Martin',
+      name: 'contact.ledanois@gmail.com',
       street: '42 Avenue des Champs-Élysées',
       city: 'Paris',
       postalCode: '75008',
