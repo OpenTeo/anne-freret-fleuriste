@@ -62,8 +62,14 @@ export async function POST(request: NextRequest) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/-+$/, '');
 
-    const result = await sql`
-      INSERT INTO products (
+    // Format text[] columns as PostgreSQL array literals
+    const formatTextArray = (arr: string[] | null | undefined): string => {
+      if (!arr || !Array.isArray(arr) || arr.length === 0) return '{}';
+      return `{${arr.join(',')}}`;
+    };
+
+    const result = await sql.query(
+      `INSERT INTO products (
         name,
         slug,
         description,
@@ -81,25 +87,28 @@ export async function POST(request: NextRequest) {
         original_price,
         in_stock
       ) VALUES (
-        ${name},
-        ${slug},
-        ${description || ''},
-        ${category},
-        ${price},
-        ${images || []},
-        ${stock || 0},
-        ${is_active !== false},
-        ${featured || false},
-        ${tags || []},
-        ${sizes ? JSON.stringify(sizes) : '[]'},
-        ${variants ? JSON.stringify(variants) : '[]'},
-        ${rating || null},
-        ${review_count || 0},
-        ${original_price || null},
-        ${in_stock !== false}
+        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16
       )
-      RETURNING *
-    `;
+      RETURNING *`,
+      [
+        name,
+        slug,
+        description || '',
+        category,
+        price,
+        formatTextArray(images),
+        stock || 0,
+        is_active !== false,
+        featured || false,
+        formatTextArray(tags),
+        sizes ? JSON.stringify(sizes) : '[]',
+        variants ? JSON.stringify(variants) : '[]',
+        rating || null,
+        review_count || 0,
+        original_price || null,
+        in_stock !== false
+      ]
+    );
 
     return NextResponse.json({
       success: true,

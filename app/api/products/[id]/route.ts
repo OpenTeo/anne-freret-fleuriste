@@ -55,8 +55,14 @@ export async function PATCH(
       in_stock,
     } = body;
 
+    // Format text[] columns as PostgreSQL array literals
+    const formatTextArray = (arr: string[] | null | undefined): string => {
+      if (!arr || !Array.isArray(arr) || arr.length === 0) return '{}';
+      return `{${arr.join(',')}}`;
+    };
+
     const updates: string[] = [];
-    const values: (string | number | boolean | null | Record<string, unknown> | string[])[] = [];
+    const values: (string | number | boolean | null)[] = [];
     let paramCount = 1;
 
     if (name !== undefined) {
@@ -90,8 +96,8 @@ export async function PATCH(
     }
 
     if (images !== undefined) {
-      updates.push(`images = $${paramCount++}::text[]`);
-      values.push(Array.isArray(images) ? `{${images.map((i: string) => `"${i.replace(/"/g, '\\"')}"`).join(',')}}` : images);
+      updates.push(`images = $${paramCount++}`);
+      values.push(formatTextArray(images));
     }
 
     if (stock !== undefined) {
@@ -110,8 +116,8 @@ export async function PATCH(
     }
 
     if (tags !== undefined) {
-      updates.push(`tags = $${paramCount++}::text[]`);
-      values.push(Array.isArray(tags) ? `{${tags.map((t: string) => `"${t.replace(/"/g, '\\"')}"`).join(',')}}` : tags);
+      updates.push(`tags = $${paramCount++}`);
+      values.push(formatTextArray(tags));
     }
 
     if (sizes !== undefined) {
