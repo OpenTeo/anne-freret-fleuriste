@@ -6,54 +6,73 @@ const Hero = () => {
   return (
     <section className="relative overflow-hidden bg-[#faf8f5]">
       
-      {/* MOBILE: Style Bergamotte — image lifestyle + texte minimal centré */}
+      {/* MOBILE: Bright & Airy — hero pivoine + bannière crème + grille catégories */}
       <div className="md:hidden">
-        {/* Image hero pleine largeur */}
-        <div className="relative h-[55vh]">
-          {/* Image recadrée vers le bas pour garder le fond sombre en haut */}
+        {/* Image hero pleine largeur avec bannière overlay */}
+        <div className="relative h-[60vh]">
           <div 
-            className="absolute inset-0 bg-cover bg-[center_75%]"
+            className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275')`,
+              backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454')`,
             }}
           />
-          {/* Pas de texte — l'image et le header suffisent */}
+          {/* Bannière crème semi-transparente centrée */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="bg-[#faf8f5]/80 backdrop-blur-sm px-10 py-5 text-center">
+              <h1 className="font-serif text-3xl tracking-wide" style={{ color: '#b8935a' }}>
+                Bouquets
+              </h1>
+              <p className="text-[10px] tracking-[0.3em] uppercase mt-1 font-light" style={{ color: '#6b6560' }}>
+                L&apos;artisanat de la fleur
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Catégories en grille sous l'image */}
-        <div className="grid grid-cols-2 gap-[1px] bg-[#e8e0d8]">
-          <Link href="/boutique" className="relative h-44 overflow-hidden">
-            <div 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
-              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/WhatsAppImage2026-02-11at06.43.58.jpg?v=1770916995')` }}
-            />
-            <div className="absolute inset-0 bg-black/15" />
-            <span className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs font-light tracking-wider uppercase px-4 py-2 rounded-full">Nos bouquets</span>
-          </Link>
-          <Link href="/abonnement" className="relative h-44 overflow-hidden">
-            <div 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
-              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/WhatsAppImage2026-02-11at06.34.45.jpg?v=1770916718')` }}
-            />
-            <div className="absolute inset-0 bg-black/15" />
-            <span className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs font-light tracking-wider uppercase px-4 py-2 rounded-full">Abonnements</span>
-          </Link>
-          <Link href="/deuil" className="relative h-44 overflow-hidden">
-            <div 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
-              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454')` }}
-            />
-            <div className="absolute inset-0 bg-black/15" />
-            <span className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs font-light tracking-wider uppercase px-4 py-2 rounded-full">Deuil</span>
-          </Link>
-          <Link href="/mariages" className="relative h-44 overflow-hidden">
-            <div 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
-              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Lisianthusfriseblanc2.jpg?v=1625219126')` }}
-            />
-            <div className="absolute inset-0 bg-black/15" />
-            <span className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs font-light tracking-wider uppercase px-4 py-2 rounded-full">Mariages</span>
-          </Link>
+        {/* Section catégories */}
+        <div className="px-5 py-8 bg-[#faf8f5]">
+          <p className="text-[10px] tracking-[0.3em] uppercase text-center font-light mb-1" style={{ color: '#b8935a' }}>
+            Nos collections
+          </p>
+          <p className="font-serif text-xl text-center mb-6" style={{ color: '#2d2a26' }}>
+            Pour chaque instant, une émotion fleurie.
+          </p>
+
+          {/* Grille 2x2 avec coins arrondis */}
+          <div className="grid grid-cols-2 gap-3">
+            <Link href="/boutique" className="relative aspect-square overflow-hidden rounded-2xl">
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
+                style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275')` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <span className="absolute bottom-3 left-3 text-white text-xs font-light tracking-wider uppercase">Nos bouquets</span>
+            </Link>
+            <Link href="/abonnement" className="relative aspect-square overflow-hidden rounded-2xl">
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
+                style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/WhatsAppImage2026-02-11at06.34.45.jpg?v=1770916718')` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <span className="absolute bottom-3 left-3 text-white text-xs font-light tracking-wider uppercase">Abonnements</span>
+            </Link>
+            <Link href="/deuil" className="relative aspect-square overflow-hidden rounded-2xl">
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
+                style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Couronne3.jpg?v=1743008466')` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <span className="absolute bottom-3 left-3 text-white text-xs font-light tracking-wider uppercase">Deuil</span>
+            </Link>
+            <Link href="/mariages" className="relative aspect-square overflow-hidden rounded-2xl">
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
+                style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Lisianthusfriseblanc2.jpg?v=1625219126')` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <span className="absolute bottom-3 left-3 text-white text-xs font-light tracking-wider uppercase">Mariages</span>
+            </Link>
+          </div>
         </div>
       </div>
 
