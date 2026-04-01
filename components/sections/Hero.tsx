@@ -16,15 +16,15 @@ const Hero = () => {
               backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/7ACE65B9-6559-4B06-8BF7-0290B4194167.jpg?v=1736713275')`,
             }}
           />
-          {/* Overlay subtil pour lisibilité */}
-          <div className="absolute inset-0 bg-black/15" />
+          {/* Overlay gradient: sombre en haut pour le texte, transparent au centre */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/15 to-black/10" />
           
-          {/* Texte centré sur l'image — minimaliste */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center z-10 px-8">
-            <h1 className="font-serif text-4xl text-white font-light text-center leading-tight tracking-wide">
+          {/* Texte en haut de l'image — sur la zone sombre */}
+          <div className="absolute top-0 left-0 right-0 z-10 px-8 pt-12">
+            <h1 className="font-serif text-4xl text-white font-light text-center leading-tight tracking-wide" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.4)' }}>
               Bouquets
             </h1>
-            <p className="text-white/70 text-xs tracking-[0.25em] uppercase mt-3 font-light">
+            <p className="text-white/80 text-xs tracking-[0.25em] uppercase mt-3 font-light text-center" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.4)' }}>
               Artisan fleuriste · Depuis 2001
             </p>
           </div>
