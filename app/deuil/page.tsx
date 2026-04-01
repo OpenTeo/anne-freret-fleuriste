@@ -91,9 +91,18 @@ export default function DeuilPage() {
         <p className="text-[#b8935a] text-[10px] tracking-[0.25em] uppercase mb-4">Accompagnement</p>
         <h1 className="font-serif text-3xl md:text-5xl text-[#2d2a26] mb-4">Deuil & Hommages</h1>
         <div className="w-12 h-px bg-[#b8935a] mx-auto mb-4" />
-        <p className="text-[#2d2a26]/50 text-sm md:text-base max-w-xl mx-auto leading-relaxed">
+        <p className="text-[#2d2a26]/50 text-sm md:text-base max-w-xl mx-auto leading-relaxed mb-4">
           Nos créations pour rendre hommage avec amour et tendresse. 
           Chaque composition est réalisée à la main avec le plus grand soin.
+        </p>
+        <p className="text-[#2d2a26]/60 text-sm max-w-2xl mx-auto leading-relaxed mb-3">
+          Depuis 2001, notre atelier de <strong>fleuriste à Granville</strong> et dans le <strong>Cotentin</strong> accompagne 
+          les familles avec respect et délicatesse. Nos <strong>compositions funéraires</strong> et <strong>gerbes d'enterrement</strong> sont 
+          créées avec des fleurs fraîches pour un dernier hommage digne et émouvant.
+        </p>
+        <p className="text-[#2d2a26]/60 text-sm max-w-2xl mx-auto leading-relaxed">
+          Livraison de compositions funéraires dans la Manche, le Calvados et toute la Normandie. Nos arrangements sont 
+          livrés avec soin et respect à Granville, Avranches, Coutances, Caen et les communes environnantes.
         </p>
       </section>
 

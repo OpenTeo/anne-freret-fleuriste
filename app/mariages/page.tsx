@@ -53,9 +53,22 @@ export default function Mariages() {
 
               <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
 
-              <p className="text-xl text-[#2d2a26] mb-12 font-light leading-relaxed max-w-2xl mx-auto">
+              <p className="text-xl text-[#2d2a26] mb-6 font-light leading-relaxed max-w-2xl mx-auto">
                 Créations florales d'exception pour faire de votre mariage 
                 un moment inoubliable, empreint d'émotion et de beauté.
+              </p>
+              
+              <p className="text-base text-[#2d2a26]/70 mb-6 font-light leading-relaxed max-w-2xl mx-auto">
+                <strong>Fleuriste mariage en Normandie</strong> et dans le <strong>Cotentin</strong>, 
+                nous créons votre <strong>décoration florale</strong> sur-mesure : bouquets de mariée, 
+                centres de table, arches florales. Votre mariage à Granville, Barneville ou dans la <strong>Manche</strong> mérite 
+                l'excellence d'un artisan passionné.
+              </p>
+              
+              <p className="text-sm text-[#2d2a26]/60 mb-12 font-light leading-relaxed max-w-2xl mx-auto">
+                Anne Freret accompagne vos mariages dans tout le Cotentin, de Granville à Cherbourg, ainsi que dans le 
+                Calvados (Caen, Bayeux) et jusqu'à Rouen. Consultation sur rendez-vous pour créer ensemble la décoration 
+                florale de votre jour unique.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

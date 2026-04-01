@@ -1,6 +1,16 @@
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Entretien Bouquet & Conseils Fleurs | Anne Freret Fleuriste — Normandie",
+  description: "Guide complet pour l'entretien de vos bouquets et fleurs coupées. Conseils d'expert pour prolonger la durée de vie de vos fleurs. Astuces de fleuriste professionnel en Normandie.",
+  keywords: "entretien bouquet, conseils fleurs, durée de vie fleurs, entretien fleurs coupées, astuces fleuriste, conserver bouquet",
+  alternates: {
+    canonical: 'https://fleuriste-annefreret.com/entretien',
+  },
+};
 
 interface FlowerLifespan {
   name: string;

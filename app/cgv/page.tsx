@@ -1,6 +1,20 @@
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: 'Conditions Générales de Vente',
+  description:
+    'Conditions générales de vente Anne Freret Fleuriste. Commandes, livraison, paiement et retours.',
+  alternates: {
+    canonical: 'https://fleuriste-annefreret.com/cgv',
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function CGV() {
   return (

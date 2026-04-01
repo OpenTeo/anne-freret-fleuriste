@@ -1,7 +1,23 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Heart, Award, Leaf, Users, Clock, MapPin } from 'lucide-react';
+
+export const metadata: Metadata = {
+  title: 'Notre Histoire — Anne Freret, Artisan Fleuriste depuis 2001',
+  description:
+    'Découvrez l\'histoire d\'Anne Freret, artisan fleuriste passionné depuis 2001 à Barneville-Carteret. Notre savoir-faire et notre engagement pour des créations florales d\'exception en Normandie.',
+  alternates: {
+    canonical: 'https://fleuriste-annefreret.com/a-propos',
+  },
+  openGraph: {
+    title: 'Notre Histoire — Anne Freret, Artisan Fleuriste depuis 2001',
+    description:
+      'Découvrez l\'histoire d\'Anne Freret, artisan fleuriste passionné depuis 2001 à Barneville-Carteret.',
+    url: 'https://fleuriste-annefreret.com/a-propos',
+  },
+};
 
 export default function APropos() {
   return (

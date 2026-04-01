@@ -1,6 +1,22 @@
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import DeliveryCalculator from '@/components/ui/DeliveryCalculator';
+
+export const metadata: Metadata = {
+  title: 'Livraison de Fleurs en Normandie et France Entière',
+  description:
+    'Livraison de fleurs fraîches à Granville, Caen, Cherbourg, Saint-Lô, Avranches, Bayeux, Rouen et partout en France. Livraison soignée, fraîcheur garantie 7 jours.',
+  alternates: {
+    canonical: 'https://fleuriste-annefreret.com/livraison',
+  },
+  openGraph: {
+    title: 'Livraison de Fleurs en Normandie et France Entière',
+    description:
+      'Livraison de fleurs fraîches à Granville, Caen, Cherbourg, Saint-Lô, Avranches, Bayeux, Rouen et partout en France.',
+    url: 'https://fleuriste-annefreret.com/livraison',
+  },
+};
 
 export default function Livraison() {
   const faqItems = [
@@ -43,9 +59,14 @@ export default function Livraison() {
               
               <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
-              <p className="text-xl text-[#2d2a26] font-light max-w-3xl mx-auto leading-relaxed mb-12">
-                Vos créations florales livrées avec le plus grand soin depuis Saint-Pair-sur-Mer. 
+              <p className="text-xl text-[#2d2a26] font-light max-w-3xl mx-auto leading-relaxed mb-6">
+                Vos créations florales livrées avec le plus grand soin depuis Barneville-Carteret. 
                 Fraîcheur garantie et service personnalisé pour chaque livraison.
+              </p>
+              
+              <p className="text-base text-[#2d2a26]/60 font-light max-w-3xl mx-auto leading-relaxed mb-12">
+                Nous livrons vos bouquets dans tout le Cotentin et la Normandie : Granville, Avranches, Coutances, 
+                Saint-Lô, Cherbourg, Caen, Bayeux, Vire, Rouen, ainsi que partout en France métropolitaine.
               </p>
 
               {/* Delivery Calculator - Featured */}

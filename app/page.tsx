@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Hero from '@/components/sections/Hero';
@@ -7,6 +8,19 @@ import TestimonialsCarousel from '@/components/sections/TestimonialsCarousel';
 import BrandIdentity from '@/components/sections/BrandIdentity';
 import { blogPosts } from '@/lib/mock-data';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+  title: "Anne Freret — Fleuriste Artisanale à Barneville-Carteret | Livraison Normandie & France",
+  description: "Artisan fleuriste depuis 2001 à Barneville-Carteret. Bouquets d'exception composés à la main, livrés à Granville, Cotentin, Caen, Rouen et partout en France. Mariage, deuil, abonnement.",
+  alternates: {
+    canonical: 'https://fleuriste-annefreret.com',
+  },
+  openGraph: {
+    title: "Anne Freret — Fleuriste Artisanale à Barneville-Carteret",
+    description: "Artisan fleuriste depuis 2001. Bouquets d'exception composés à la main, livrés à Granville, Cotentin, Caen, Rouen et partout en France.",
+    url: 'https://fleuriste-annefreret.com',
+  },
+};
 
 export default function Home() {
   return (
