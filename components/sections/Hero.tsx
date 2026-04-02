@@ -17,13 +17,7 @@ const slides = [
     href: '/abonnement',
   },
   {
-    image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Couronne3.jpg?v=1743008466',
-    label: 'Hommages & Recueillement',
-    title: 'Compositions de deuil',
-    href: '/deuil',
-  },
-  {
-    image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/2_1eed40b5-fab8-414d-9819-7f2592160295.png?v=1684426098',
+    image: '/images/mariages/table-cheminee.jpg',
     label: 'Jour J',
     title: 'Fleurs de mariage',
     href: '/mariages',
