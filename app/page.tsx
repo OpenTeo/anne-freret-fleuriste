@@ -31,7 +31,10 @@ export default function Home() {
         {/* 1. HERO - Accroche émotionnelle + CTA */}
         <Hero />
 
-        {/* 2. SECTION ABONNEMENT - Fond papier emballage */}
+        {/* 2. FEATURED PRODUCTS */}
+        <FeaturedProducts />
+
+        {/* 3. SECTION ABONNEMENT - Fond papier emballage */}
         <section className="py-16 md:py-24 relative overflow-hidden">
           <div 
             className="absolute inset-0 bg-repeat bg-center"
@@ -142,10 +145,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 3. FEATURED PRODUCTS - Montrer les produits */}
-        <FeaturedProducts />
-
-        {/* 3. GUARANTEES - Rassurer: livraison, fraîcheur, artisanal */}
+        {/* 4. GUARANTEES - Rassurer: livraison, fraîcheur, artisanal */}
         <Guarantees />
 
         {/* 4. BRAND IDENTITY - Section papier signature (différenciation) */}

@@ -51,7 +51,7 @@ const Hero = () => {
           className="transition-opacity duration-700 ease-in-out"
           style={{ opacity: current === 1 ? 1 : 0, position: current === 1 ? 'relative' : 'absolute', top: 0, left: 0, right: 0 }}
         >
-          <div className="bg-[#f5f0ea] min-h-[65vh] md:min-h-[70vh] flex flex-col items-center justify-center px-6 md:px-16 py-12 md:py-16">
+          <div className="bg-[#f5f0ea] h-[45vh] md:h-[50vh] flex flex-col items-center justify-center px-6 md:px-16 py-8 md:py-10">
             <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-3" style={{ color: '#b8935a' }}>
               Abonnement Floral
             </p>
