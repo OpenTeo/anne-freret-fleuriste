@@ -31,19 +31,7 @@ export default function Home() {
         {/* 1. HERO - Accroche émotionnelle + CTA */}
         <Hero />
 
-        {/* 2. FEATURED PRODUCTS - Montrer les produits immédiatement */}
-        <FeaturedProducts />
-
-        {/* 3. GUARANTEES - Rassurer: livraison, fraîcheur, artisanal */}
-        <Guarantees />
-
-        {/* 4. BRAND IDENTITY - Section papier signature (différenciation) */}
-        <BrandIdentity />
-
-        {/* 5. TESTIMONIALS - Social proof (sépare les deux sections papier) */}
-        <TestimonialsCarousel />
-
-        {/* 6. SECTION ABONNEMENT - Fond papier emballage */}
+        {/* 2. SECTION ABONNEMENT - Fond papier emballage */}
         <section className="py-16 md:py-24 relative overflow-hidden">
           <div 
             className="absolute inset-0 bg-repeat bg-center"
@@ -57,7 +45,6 @@ export default function Home() {
           <div className="absolute bottom-0 left-0 right-0 h-px bg-[#b8935a]/20" />
 
           <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10 bg-[#faf8f5]/85 backdrop-blur-sm py-16 md:py-20 rounded-2xl shadow-sm">
-            {/* Header */}
             <div className="text-center mb-12 md:mb-16">
               <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-4 font-light">
                 Abonnement Floral
@@ -69,11 +56,10 @@ export default function Home() {
                 <div className="w-16 h-px bg-[#b8935a]"></div>
               </div>
               <p className="text-[#2d2a26]/60 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-light">
-                Imaginez rentrer chez vous et découvrir un bouquet de saison, choisi avec soin. Plus qu'un abonnement : une parenthèse enchantée qui transforme votre quotidien.
+                Imaginez rentrer chez vous et découvrir un bouquet de saison, choisi avec soin. Plus qu&apos;un abonnement : une parenthèse enchantée qui transforme votre quotidien.
               </p>
             </div>
 
-            {/* Pricing Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
               {[
                 { 
@@ -86,15 +72,15 @@ export default function Home() {
                 { 
                   name: 'Signature', 
                   price: '49.90', 
-                  desc: 'L\'équilibre parfait',
+                  desc: "L'équilibre parfait",
                   features: ['5-7 variétés', 'Composition premium', 'Carte personnalisée'],
                   popular: true 
                 },
                 { 
                   name: 'Prestige', 
                   price: '69.90', 
-                  desc: 'L\'excellence absolue',
-                  features: ['8-10 variétés', 'Fleurs d\'exception', 'Service prioritaire'],
+                  desc: "L'excellence absolue",
+                  features: ['8-10 variétés', "Fleurs d'exception", 'Service prioritaire'],
                   popular: false 
                 },
               ].map((plan) => (
@@ -112,17 +98,14 @@ export default function Home() {
                       Coup de cœur
                     </div>
                   )}
-                  
                   <div className="text-center mb-6">
                     <h3 className="font-serif text-2xl text-[#2d2a26] mb-2">{plan.name}</h3>
                     <p className="text-xs text-[#2d2a26]/50 tracking-wide uppercase">{plan.desc}</p>
                   </div>
-
                   <div className="text-center mb-8 pb-8 border-b border-[#e8e0d8]">
                     <span className="font-serif text-4xl text-[#2d2a26]">{plan.price}€</span>
                     <span className="text-sm text-[#2d2a26]/50">/mois</span>
                   </div>
-
                   <div className="space-y-3 mb-8">
                     {plan.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center gap-3 text-sm text-[#2d2a26]/70">
@@ -133,7 +116,6 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-
                   <div className="text-center">
                     <span className="inline-block text-[#2d2a26] text-sm group-hover:text-[#b8935a] transition-colors font-light border-b border-[#2d2a26] group-hover:border-[#b8935a]">
                       Choisir cette formule
@@ -143,7 +125,6 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Benefits */}
             <div className="mt-16 text-center">
               <div className="flex flex-wrap justify-center gap-8 md:gap-12">
                 {[
@@ -161,7 +142,19 @@ export default function Home() {
           </div>
         </section>
 
-        {/* 7. SECTION BLOG - Layout compact horizontal */}
+        {/* 3. FEATURED PRODUCTS - Montrer les produits */}
+        <FeaturedProducts />
+
+        {/* 3. GUARANTEES - Rassurer: livraison, fraîcheur, artisanal */}
+        <Guarantees />
+
+        {/* 4. BRAND IDENTITY - Section papier signature (différenciation) */}
+        <BrandIdentity />
+
+        {/* 5. TESTIMONIALS - Social proof (sépare les deux sections papier) */}
+        <TestimonialsCarousel />
+
+        {/* 6. SECTION BLOG - Layout compact horizontal */}
         <section className="py-16 md:py-20 bg-[#faf8f5]">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
             {/* Header */}

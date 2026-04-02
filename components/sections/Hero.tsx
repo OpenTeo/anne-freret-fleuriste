@@ -51,7 +51,7 @@ const Hero = () => {
             <Link href="/abonnement" className="relative aspect-square overflow-hidden rounded-2xl">
               <div 
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
-                style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/WhatsAppImage2026-02-11at06.34.45.jpg?v=1770916718')` }}
+                style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Designsanstitre_29_8a157ca1-e7ec-4bdd-8c6e-fc4a07a4af4c.png?v=1709222874')` }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <span className="absolute bottom-3 left-3 text-white text-xs font-light tracking-wider uppercase">Abonnements</span>
@@ -67,7 +67,7 @@ const Hero = () => {
             <Link href="/mariages" className="relative aspect-square overflow-hidden rounded-2xl">
               <div 
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
-                style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/products/Lisianthusfriseblanc2.jpg?v=1625219126')` }}
+                style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/2_1eed40b5-fab8-414d-9819-7f2592160295.png?v=1684426098')` }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <span className="absolute bottom-3 left-3 text-white text-xs font-light tracking-wider uppercase">Mariages</span>
