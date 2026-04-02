@@ -45,57 +45,8 @@ const Hero = () => {
   return (
     <section className="relative overflow-hidden bg-[#faf8f5]">
       
-      {/* ═══════════ MOBILE: Bright & Airy ═══════════ */}
-      <div className="md:hidden">
-        <div className="relative h-[60vh]">
-          <div 
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/products/bouquetdepivoineblanche_4fc67682-709a-45c2-9855-a91af5896ef7.jpg?v=1679413454')`,
-            }}
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="bg-[#faf8f5]/80 backdrop-blur-sm px-10 py-5 text-center">
-              <h1 className="font-serif text-3xl tracking-wide" style={{ color: '#b8935a' }}>
-                Bouquets
-              </h1>
-              <p className="text-[10px] tracking-[0.3em] uppercase mt-1 font-light" style={{ color: '#6b6560' }}>
-                L&apos;artisanat de la fleur
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="px-5 py-8 bg-[#faf8f5]">
-          <p className="text-[10px] tracking-[0.3em] uppercase text-center font-light mb-1" style={{ color: '#b8935a' }}>
-            Nos collections
-          </p>
-          <p className="font-serif text-xl text-center mb-6" style={{ color: '#2d2a26' }}>
-            Pour chaque instant, une émotion fleurie.
-          </p>
-
-          <div className="grid grid-cols-2 gap-3">
-            {[
-              { href: '/boutique', img: slides[0].image, label: 'Nos bouquets' },
-              { href: '/abonnement', img: slides[1].image, label: 'Abonnements' },
-              { href: '/deuil', img: slides[2].image, label: 'Deuil' },
-              { href: '/mariages', img: slides[3].image, label: 'Mariages' },
-            ].map((cat) => (
-              <Link key={cat.label} href={cat.href} className="relative aspect-square overflow-hidden rounded-2xl">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-500 hover:scale-105"
-                  style={{ backgroundImage: `url('${cat.img}')` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <span className="absolute bottom-3 left-3 text-white text-xs font-light tracking-wider uppercase">{cat.label}</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* ═══════════ DESKTOP: Carousel pleine largeur ═══════════ */}
-      <div className="hidden md:block">
+      {/* ═══════════ CAROUSEL (Mobile + Desktop) ═══════════ */}
+      <div>
         {/* Image carousel */}
         <div className="relative h-[70vh] overflow-hidden">
           {slides.map((slide, i) => (
