@@ -84,7 +84,7 @@ const Hero = () => {
           <div className="relative h-[55vh] md:h-[60vh]">
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Couronne3.jpg?v=1743008466')` }}
+              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Couronne3.jpg?v=1743008466')`, backgroundPosition: 'center 40%' }}
             />
           </div>
           <div className="bg-[#faf8f5] px-6 md:px-16 lg:px-24 py-6 md:py-8">
@@ -112,7 +112,7 @@ const Hero = () => {
           <div className="relative h-[55vh] md:h-[60vh]">
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url('/images/mariages/bouquet-mariee-vert.jpg')` }}
+              style={{ backgroundImage: `url('/images/mariages/salle-reception.jpg')` }}
             />
             <div className="absolute bottom-6 left-0 right-0 text-center">
               <p className="font-serif text-lg md:text-2xl italic font-light text-white/90 drop-shadow-lg">
