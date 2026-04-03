@@ -167,12 +167,14 @@ const Hero = () => {
               className="absolute inset-0 bg-cover bg-center hidden md:block"
               style={{ backgroundImage: `url('/images/mariages/couverts-fleurs.jpg')` }}
             />
-            <div className="absolute bottom-6 left-0 right-0 text-center">
-              <p className="font-serif text-lg md:text-2xl italic font-light text-white/90 drop-shadow-lg">
+            {/* Gradient pour lisibilité */}
+            <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute bottom-10 left-0 right-0 text-center">
+              <p className="font-serif text-2xl md:text-4xl italic font-light text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
                 Sublimez votre plus beau jour
               </p>
             </div>
-            <p className="absolute bottom-2 right-3 text-[8px] text-white/50 font-light">
+            <p className="absolute bottom-3 right-4 text-[9px] text-white/70 font-light drop-shadow-md">
               © Bastien Norrington
             </p>
           </div>
