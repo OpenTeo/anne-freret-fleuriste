@@ -64,14 +64,14 @@ const Hero = () => {
             {/* 3 cards */}
             <div className="flex flex-row items-stretch justify-center gap-3 md:gap-6 w-full max-w-4xl">
               {[
-                { name: 'Essentiel', tagline: 'La douceur mensuelle', price: '29.90', highlight: false },
-                { name: 'Signature', tagline: 'Notre création favorite', price: '44.90', highlight: true },
-                { name: 'Prestige', tagline: "L'excellence absolue", price: '59.90', highlight: false },
+                { name: 'Essentiel', tagline: 'La douceur mensuelle', price: '29.90', features: ['3-5 variétés', 'Bouquet classique', 'Livraison incluse'], highlight: false },
+                { name: 'Signature', tagline: 'Notre création favorite', price: '44.90', features: ['5-7 variétés', 'Composition premium', 'Carte personnalisée'], highlight: true },
+                { name: 'Prestige', tagline: "L'excellence absolue", price: '59.90', features: ['8-10 variétés', "Fleurs d'exception", 'Service prioritaire'], highlight: false },
               ].map((plan) => (
                 <Link
                   key={plan.name}
                   href={`/abonnement?plan=${plan.name.toLowerCase()}`}
-                  className={`flex-1 bg-white px-3 md:px-6 py-4 md:py-6 text-center transition-all hover:shadow-md ${
+                  className={`flex-1 bg-white px-3 md:px-6 py-4 md:py-6 text-center flex flex-col transition-all hover:shadow-md ${
                     plan.highlight
                       ? 'border-2 border-[#b8935a] shadow-sm'
                       : 'border border-[#e8e0d8]'
@@ -83,10 +83,27 @@ const Hero = () => {
                     </span>
                   )}
                   <p className="font-serif text-base md:text-xl mb-0.5" style={{ color: '#2d2a26' }}>{plan.name}</p>
-                  <p className="text-[9px] md:text-[10px] italic font-light mb-3" style={{ color: '#b8935a' }}>{plan.tagline}</p>
-                  <p className="font-serif text-xl md:text-3xl" style={{ color: '#2d2a26' }}>{plan.price}€</p>
-                  <p className="text-[9px] md:text-[10px] text-[#2d2a26]/40">par livraison</p>
+                  <p className="text-[9px] md:text-[10px] italic font-light mb-2" style={{ color: '#b8935a' }}>{plan.tagline}</p>
+                  <div className="w-8 h-px bg-[#e8e0d8] mx-auto mb-2" />
+                  <p className="font-serif text-xl md:text-3xl mb-1" style={{ color: '#2d2a26' }}>{plan.price}€</p>
+                  <p className="text-[9px] md:text-[10px] text-[#2d2a26]/40 mb-2">par livraison</p>
+                  <div className="hidden md:block space-y-1 mt-auto pt-2 border-t border-[#e8e0d8]">
+                    {plan.features.map((f, i) => (
+                      <p key={i} className="text-[10px] text-[#2d2a26]/50 font-light">
+                        ✓ {f}
+                      </p>
+                    ))}
+                  </div>
                 </Link>
+              ))}
+            </div>
+
+            {/* Garanties sous les cards */}
+            <div className="flex items-center justify-center gap-4 md:gap-8 mt-4">
+              {['Sans engagement', 'Livraison offerte'].map((txt) => (
+                <p key={txt} className="text-[9px] md:text-[10px] text-[#2d2a26]/40 font-light flex items-center gap-1">
+                  <span style={{ color: '#b8935a' }}>✓</span> {txt}
+                </p>
               ))}
             </div>
           </div>
