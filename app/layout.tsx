@@ -20,6 +20,12 @@ const lato = Lato({
   display: "swap",
 });
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover' as const,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://fleuriste-annefreret.com'),
   title: {

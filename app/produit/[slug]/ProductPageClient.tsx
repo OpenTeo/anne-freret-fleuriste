@@ -646,7 +646,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
         </div>
 
         {/* Bouton panier sticky sur mobile */}
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] bg-[#faf8f5]/95 backdrop-blur-sm border-t border-[#e8e0d8] z-50">
+        <div className="lg:hidden fixed bottom-0 left-0 right-0 px-5 pt-3 pb-8 bg-[#faf8f5]/95 backdrop-blur-sm border-t border-[#e8e0d8] z-50" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom, 2rem))' }}>
           <button 
             onClick={() => {
               const cart = JSON.parse(localStorage.getItem('af-cart') || '[]');
