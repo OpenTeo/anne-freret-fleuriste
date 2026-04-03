@@ -80,7 +80,7 @@ const FeaturedProducts = () => {
             Sélection
           </p>
           <h2 className="font-serif text-4xl md:text-5xl text-[#2d2a26] mb-6 font-light">
-            Ceux qui font craquer
+            Vos coups de cœur en fleurs
           </h2>
           <div className="flex justify-center mb-6">
             <div className="w-16 h-px bg-[#b8935a]"></div>
