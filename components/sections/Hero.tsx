@@ -145,10 +145,10 @@ const Hero = () => {
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url('/images/mariages/bouquet-mariee-vert.jpg')` }}
             />
-            {/* Desktop: photo alternative plus large */}
+            {/* Desktop: photo paysage */}
             <div
               className="absolute inset-0 bg-cover bg-center hidden md:block"
-              style={{ backgroundImage: `url('/images/mariages/table-vue-mer.jpg')` }}
+              style={{ backgroundImage: `url('/images/mariages/couverts-fleurs.jpg')` }}
             />
             <div className="absolute bottom-6 left-0 right-0 text-center">
               <p className="font-serif text-lg md:text-2xl italic font-light text-white/90 drop-shadow-lg">
