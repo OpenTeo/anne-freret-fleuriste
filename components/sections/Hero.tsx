@@ -48,7 +48,7 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* ═══ SLIDE 2: Abonnement — fond photo + overlay élégant ═══ */}
+        {/* ═══ SLIDE 2: Abonnement — photo propre, même style que les autres ═══ */}
         <div
           className="transition-opacity duration-700 ease-in-out"
           style={{ opacity: current === 1 ? 1 : 0, position: current === 1 ? 'relative' : 'absolute', top: 0, left: 0, right: 0 }}
@@ -58,48 +58,6 @@ const Hero = () => {
               className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Designsanstitre_29_8a157ca1-e7ec-4bdd-8c6e-fc4a07a4af4c.png?v=1709222874')` }}
             />
-            <div className="absolute inset-0 bg-[#f5f0ea]/70 backdrop-blur-[3px]" />
-            
-            <div className="relative h-full flex flex-col items-center justify-center px-8">
-              <p className="text-[11px] md:text-xs tracking-[0.35em] uppercase font-light mb-4" style={{ color: '#b8935a' }}>
-                Abonnement Floral
-              </p>
-              <h2 className="font-serif text-4xl md:text-6xl text-center mb-1 font-light leading-tight" style={{ color: '#2d2a26' }}>
-                Des fleurs
-              </h2>
-              <h2 className="font-serif text-4xl md:text-6xl text-center mb-5 font-light italic leading-tight" style={{ color: '#b8935a' }}>
-                chaque mois
-              </h2>
-              <div className="w-16 h-px bg-[#b8935a]/50 mb-8" />
-
-              <div className="flex items-end justify-center gap-6 md:gap-12">
-                {[
-                  { name: 'Essentiel', price: '39.90', highlight: false },
-                  { name: 'Signature', price: '49.90', highlight: true },
-                  { name: 'Prestige', price: '69.90', highlight: false },
-                ].map((plan) => (
-                  <div 
-                    key={plan.name} 
-                    className={`text-center px-4 md:px-6 py-3 md:py-4 rounded-xl transition-all ${
-                      plan.highlight 
-                        ? 'bg-white/60 backdrop-blur-sm shadow-sm scale-105' 
-                        : ''
-                    }`}
-                  >
-                    <p className="font-serif text-lg md:text-xl mb-1" style={{ color: '#2d2a26' }}>{plan.name}</p>
-                    <p className="font-serif text-2xl md:text-3xl font-light" style={{ color: '#b8935a' }}>
-                      {plan.price}€
-                    </p>
-                    <p className="text-[10px] text-[#2d2a26]/40 tracking-wider">par mois</p>
-                    {plan.highlight && (
-                      <span className="inline-block mt-2 text-[8px] tracking-[0.2em] uppercase px-3 py-1 bg-[#b8935a] text-white rounded-full">
-                        Coup de cœur
-                      </span>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
           <div className="bg-[#faf8f5] px-6 md:px-16 lg:px-24 py-6 md:py-8">
             <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-2" style={{ color: '#b8935a' }}>
