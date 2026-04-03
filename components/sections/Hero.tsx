@@ -48,16 +48,47 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* ═══ SLIDE 2: Abonnement — photo propre, même style que les autres ═══ */}
+        {/* ═══ SLIDE 2: Abonnement — fond crème + 3 cards élégantes ═══ */}
         <div
           className="transition-opacity duration-700 ease-in-out"
           style={{ opacity: current === 1 ? 1 : 0, position: current === 1 ? 'relative' : 'absolute', top: 0, left: 0, right: 0 }}
         >
-          <div className="relative h-[55vh] md:h-[60vh]">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/Designsanstitre_29_8a157ca1-e7ec-4bdd-8c6e-fc4a07a4af4c.png?v=1709222874')` }}
-            />
+          <div className="bg-[#f7f3ee] h-[55vh] md:h-[60vh] flex flex-col items-center justify-center px-4 md:px-12">
+            <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-3" style={{ color: '#b8935a' }}>
+              Abonnement Floral
+            </p>
+            <h2 className="font-serif text-2xl md:text-4xl text-center mb-6 font-light" style={{ color: '#2d2a26' }}>
+              Chaque mois, une surprise florale
+            </h2>
+
+            {/* 3 cards */}
+            <div className="flex flex-row items-stretch justify-center gap-3 md:gap-6 w-full max-w-4xl">
+              {[
+                { name: 'Essentiel', tagline: 'La douceur mensuelle', price: '29.90', highlight: false },
+                { name: 'Signature', tagline: 'Notre création favorite', price: '44.90', highlight: true },
+                { name: 'Prestige', tagline: "L'excellence absolue", price: '59.90', highlight: false },
+              ].map((plan) => (
+                <Link
+                  key={plan.name}
+                  href={`/abonnement?plan=${plan.name.toLowerCase()}`}
+                  className={`flex-1 bg-white px-3 md:px-6 py-4 md:py-6 text-center transition-all hover:shadow-md ${
+                    plan.highlight
+                      ? 'border-2 border-[#b8935a] shadow-sm'
+                      : 'border border-[#e8e0d8]'
+                  }`}
+                >
+                  {plan.highlight && (
+                    <span className="inline-block mb-2 text-[7px] md:text-[8px] tracking-[0.2em] uppercase px-2 py-0.5 bg-[#b8935a] text-white">
+                      Le + choisi
+                    </span>
+                  )}
+                  <p className="font-serif text-base md:text-xl mb-0.5" style={{ color: '#2d2a26' }}>{plan.name}</p>
+                  <p className="text-[9px] md:text-[10px] italic font-light mb-3" style={{ color: '#b8935a' }}>{plan.tagline}</p>
+                  <p className="font-serif text-xl md:text-3xl" style={{ color: '#2d2a26' }}>{plan.price}€</p>
+                  <p className="text-[9px] md:text-[10px] text-[#2d2a26]/40">par livraison</p>
+                </Link>
+              ))}
+            </div>
           </div>
           <div className="bg-[#faf8f5] px-6 md:px-16 lg:px-24 py-6 md:py-8">
             <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-2" style={{ color: '#b8935a' }}>
