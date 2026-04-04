@@ -5,14 +5,7 @@ import { createParcel } from '@/lib/sendcloud';
 import { sql } from '@/lib/db';
 import Stripe from 'stripe';
 
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
+import { escapeHtml } from '@/lib/sanitize';
 
 export async function POST(req: NextRequest) {
   const body = await req.text();
@@ -312,8 +305,8 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
   }
 
   // Créer le colis SendCloud pour livraisons nationales
-  if (meta.delivery_mode === 'colissimo' || meta.delivery_mode === 'chronopost') {
-    console.log(`📦 Tentative création colis SendCloud pour ${meta.customer_name} (mode: ${meta.delivery_mode})`);
+  if (meta.delivery_mode === 'chronopost') {
+    console.log(`📦 Tentative création colis SendCloud pour ${meta.customer_name} (mode: chronopost)`);
     
     try {
       const parcel = await createParcel({

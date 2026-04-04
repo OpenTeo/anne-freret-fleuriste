@@ -20,7 +20,7 @@ const faqData: FAQItem[] = [
   {
     id: 2,
     question: "Quels sont les délais de livraison ?",
-    answer: "Livraison locale (rayon 35 km) : en 24h, du mardi au samedi. Colissimo (France métropolitaine) : 48h ouvrées, du lundi au samedi — La Poste ne livre pas le dimanche. Chronopost express : 24h, du lundi au samedi avant 18h. Pour une livraison le dimanche, seule la livraison locale est possible (nous contacter). Pour les événements spéciaux (mariages, obsèques), nous recommandons de commander la veille avant 17h pour garantir la préparation et la livraison. Contactez-nous par téléphone pour les urgences."
+    answer: "Livraison locale (rayon 35 km) : en 24h, du mardi au samedi. Chronopost express (France métropolitaine) : 24h, du lundi au samedi avant 18h. Pour une livraison le dimanche, seule la livraison locale est possible (nous contacter). Pour les événements spéciaux (mariages, obsèques), nous recommandons de commander la veille avant 17h pour garantir la préparation et la livraison. Contactez-nous par téléphone pour les urgences."
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const faqData: FAQItem[] = [
   {
     id: 4,
     question: "Puis-je choisir une date de livraison ?",
-    answer: "Absolument ! Nous proposons un service de livraison à date choisie, particulièrement apprécié pour les anniversaires, fêtes et événements spéciaux. Lors de votre commande, indiquez simplement la date souhaitée. Nous recommandons de commander au moins 48h à l'avance. Attention : pour une livraison le dimanche, seule la livraison locale est disponible (Colissimo et Chronopost ne livrent pas le dimanche)."
+    answer: "Absolument ! Nous proposons un service de livraison à date choisie, particulièrement apprécié pour les anniversaires, fêtes et événements spéciaux. Lors de votre commande, indiquez simplement la date souhaitée. Nous recommandons de commander au moins 48h à l'avance. Attention : pour une livraison le dimanche, seule la livraison locale est disponible (Chronopost ne livre pas le dimanche)."
   },
   {
     id: 5,

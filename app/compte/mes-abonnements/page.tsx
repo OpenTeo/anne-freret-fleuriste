@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
+import { apiFetch } from '@/lib/api-client';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
@@ -54,7 +55,7 @@ export default function MesAbonnements() {
 
   const loadSubscriptions = async () => {
     try {
-      const res = await fetch(`/api/subscriptions?userId=${user?.id}`);
+      const res = await apiFetch('/api/subscriptions');
       const data = await res.json();
       setSubscriptions(data.subscriptions || []);
     } catch (error) {
@@ -68,7 +69,7 @@ export default function MesAbonnements() {
     if (!confirm('Mettre en pause cet abonnement ?')) return;
 
     try {
-      const res = await fetch(`/api/subscriptions/${id}`, {
+      const res = await apiFetch(`/api/subscriptions/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: 'paused' }),
@@ -84,7 +85,7 @@ export default function MesAbonnements() {
 
   const resumeSubscription = async (id: string) => {
     try {
-      const res = await fetch(`/api/subscriptions/${id}`, {
+      const res = await apiFetch(`/api/subscriptions/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: 'active' }),
@@ -102,7 +103,7 @@ export default function MesAbonnements() {
     if (!confirm('Êtes-vous sûr de vouloir annuler cet abonnement ? Cette action est irréversible.')) return;
 
     try {
-      const res = await fetch(`/api/subscriptions/${id}`, {
+      const res = await apiFetch(`/api/subscriptions/${id}`, {
         method: 'DELETE',
       });
 

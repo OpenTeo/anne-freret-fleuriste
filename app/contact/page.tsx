@@ -13,18 +13,35 @@ export default function Contact() {
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: ''
-    });
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Erreur lors de l\'envoi');
+      }
+
+      setIsSubmitted(true);
+      setTimeout(() => setIsSubmitted(false), 5000);
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -286,11 +303,15 @@ export default function Contact() {
                 <div className="text-center pt-6">
                   <button
                     type="submit"
-                    disabled={isSubmitted}
+                    disabled={isSubmitted || isLoading}
                     className="bg-[#b8935a] text-white px-8 py-4 hover:bg-[#b8956a] transition-colors duration-300 disabled:opacity-50"
                   >
-                    {isSubmitted ? 'Message envoyé ✓' : 'Envoyer le message'}
+                    {isLoading ? 'Envoi en cours...' : isSubmitted ? 'Message envoyé ✓' : 'Envoyer le message'}
                   </button>
+
+                  {error && (
+                    <p className="text-red-500 text-sm mt-4">{error}</p>
+                  )}
 
                   <p className="text-[#2d2a26] text-sm font-light mt-6">
                     * Champs obligatoires. Nous nous engageons à répondre sous 24h.

@@ -206,7 +206,7 @@ export const DELIVERY_ZONES: DeliveryZone[] = [
 ];
 
 // Delivery method types
-export type DeliveryMethod = 'local' | 'colissimo' | 'chronopost';
+export type DeliveryMethod = 'local' | 'chronopost';
 
 // Delivery pricing configuration
 export const DELIVERY_CONFIG = {
@@ -221,14 +221,6 @@ export const DELIVERY_CONFIG = {
       { range: '5-10 km', maxDistance: 10, fee: 8 },
       { range: '10-35 km', maxDistance: 35, fee: 10 },
     ],
-  },
-  colissimo: {
-    label: 'Colissimo',
-    description: 'La Poste · Suivi inclus · 48h',
-    delay: '48h (J+2)',
-    fee: 12.90,
-    freeThreshold: 60,
-    color: '#003DA5',
   },
   chronopost: {
     label: 'Chronopost',
@@ -261,7 +253,7 @@ export const NATIONAL_DELIVERY = {
   deliveryFee: 12.90,
   deliveryTime: '48h (J+2)',
   zone: 'national' as const,
-  description: 'Livraison nationale Colissimo — Suivi inclus'
+  description: 'Livraison nationale Chronopost — Suivi inclus'
 };
 
 // Search function for delivery zones

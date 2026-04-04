@@ -37,7 +37,7 @@ export interface Order {
   delivery_address: string;
   delivery_city: string;
   delivery_postal_code: string;
-  delivery_mode: 'local' | 'colissimo' | 'chronopost';
+  delivery_mode: 'local' | 'chronopost';
   delivery_date: Date | null;
   card_message: string | null;
   total_amount: number;

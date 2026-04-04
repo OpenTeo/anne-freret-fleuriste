@@ -1,14 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@/lib/db';
+import { requireAuth, requireAdmin, isAuthError } from '@/lib/api-auth';
 
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  const auth = await requireAuth(req);
+  if (isAuthError(auth)) return auth;
+
   try {
     const { id } = await params;
 
-    // Récupérer commande avec items
     const result = await sql`
       SELECT 
         o.*,
@@ -21,30 +24,27 @@ export async function GET(
             'unit_price', oi.unit_price,
             'total_price', oi.total_price
           )
-        ) as items
+        ) FILTER (WHERE oi.id IS NOT NULL) as items
       FROM orders o
       LEFT JOIN order_items oi ON o.id = oi.order_id
-      WHERE o.id = ${id} OR o.order_number = ${id}
+      WHERE (o.id = ${id} OR o.order_number = ${id})
       GROUP BY o.id
     `;
 
     if (result.rows.length === 0) {
-      return NextResponse.json(
-        { error: 'Commande non trouvée' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Commande non trouvée' }, { status: 404 });
     }
 
-    return NextResponse.json({
-      order: result.rows[0]
-    });
+    // Vérifier ownership (sauf admin)
+    const order = result.rows[0];
+    if (!auth.is_admin && order.customer_email !== auth.email) {
+      return NextResponse.json({ error: 'Accès refusé' }, { status: 403 });
+    }
 
+    return NextResponse.json({ order });
   } catch (error) {
     console.error('Erreur récupération commande:', error);
-    return NextResponse.json(
-      { error: 'Erreur lors de la récupération de la commande' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
   }
 }
 
@@ -52,6 +52,10 @@ export async function PATCH(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+  // Seul un admin peut modifier le statut d'une commande
+  const auth = await requireAdmin(req);
+  if (isAuthError(auth)) return auth;
+
   try {
     const { verifyAdminToken } = await import('@/lib/admin-auth');
     const token = req.cookies.get('admin-token')?.value;
@@ -63,54 +67,34 @@ export async function PATCH(
     const { status, tracking_number } = body;
 
     if (!status && !tracking_number) {
-      return NextResponse.json(
-        { error: 'Aucune mise à jour fournie' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'Aucune mise à jour fournie' }, { status: 400 });
     }
 
     let result;
-
-    // Update selon les champs fournis
     if (status && tracking_number) {
       result = await sql`
-        UPDATE orders
-        SET status = ${status}, tracking_number = ${tracking_number}
-        WHERE id = ${id} OR order_number = ${id}
-        RETURNING *
+        UPDATE orders SET status = ${status}, tracking_number = ${tracking_number}
+        WHERE id = ${id} OR order_number = ${id} RETURNING *
       `;
     } else if (status) {
       result = await sql`
-        UPDATE orders
-        SET status = ${status}
-        WHERE id = ${id} OR order_number = ${id}
-        RETURNING *
+        UPDATE orders SET status = ${status}
+        WHERE id = ${id} OR order_number = ${id} RETURNING *
       `;
-    } else if (tracking_number) {
+    } else {
       result = await sql`
-        UPDATE orders
-        SET tracking_number = ${tracking_number}
-        WHERE id = ${id} OR order_number = ${id}
-        RETURNING *
+        UPDATE orders SET tracking_number = ${tracking_number}
+        WHERE id = ${id} OR order_number = ${id} RETURNING *
       `;
     }
 
     if (!result || result.rows.length === 0) {
-      return NextResponse.json(
-        { error: 'Commande non trouvée' },
-        { status: 404 }
-      );
+      return NextResponse.json({ error: 'Commande non trouvée' }, { status: 404 });
     }
 
-    return NextResponse.json({
-      order: result.rows[0]
-    });
-
+    return NextResponse.json({ order: result.rows[0] });
   } catch (error) {
     console.error('Erreur mise à jour commande:', error);
-    return NextResponse.json(
-      { error: 'Erreur lors de la mise à jour' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
   }
 }

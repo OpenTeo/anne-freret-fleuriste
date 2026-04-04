@@ -559,7 +559,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                       </svg>
                       <div>
                         <p className="text-sm text-[#2d2a26] mb-0.5">Livraison partout en France</p>
-                        <p className="text-xs text-[#2d2a26]/40 font-light">Locale 24h · Colissimo 48h · Chronopost express 24h</p>
+                        <p className="text-xs text-[#2d2a26]/40 font-light">Locale 24h · Chronopost express 24h</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
@@ -586,7 +586,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                       </svg>
                       <div>
                         <p className="text-sm text-[#2d2a26] mb-0.5">Livraison offerte des 60€</p>
-                        <p className="text-xs text-[#2d2a26]/40 font-light">Locale : 6-10€ · Colissimo : 12,90€ · Chronopost : 18,90€</p>
+                        <p className="text-xs text-[#2d2a26]/40 font-light">Locale : 6-10€ · Chronopost : 18,90€</p>
                       </div>
                     </div>
                   </div>

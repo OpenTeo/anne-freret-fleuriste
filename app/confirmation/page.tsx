@@ -297,13 +297,10 @@ export default function Confirmation() {
                   {order.delivery.mode === 'local' && (
                     <><span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#b8935a' }}>Locale</span> Livraison locale — Sous 24h</>
                   )}
-                  {order.delivery.mode === 'colissimo' && (
-                    <><span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#003DA5' }}>Colissimo</span> La Poste — Sous 48h</>
-                  )}
                   {order.delivery.mode === 'chronopost' && (
                     <><span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#D4003C' }}>Chronopost</span> Express — Sous 24h</>
                   )}
-                  {!['local', 'colissimo', 'chronopost'].includes(order.delivery.mode) && (
+                  {!['local', 'chronopost'].includes(order.delivery.mode) && (
                     <>Livraison — {order.delivery.mode}</>
                   )}
                 </p>

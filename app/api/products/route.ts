@@ -1,51 +1,58 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { sql } from '@/lib/db';
+import { requireAdmin, isAuthError } from '@/lib/api-auth';
 
-// GET /api/products - Liste des produits
+// GET /api/products - Liste des produits (public)
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get('category');
     const active = searchParams.get('active');
 
-    // Construction dynamique de la requête
-    const conditions: string[] = [];
-    const values: (string | boolean)[] = [];
-    let paramIndex = 1;
+    let result;
 
-    if (category) {
-      conditions.push(`category = $${paramIndex++}`);
-      values.push(category);
+    if (category && active !== null) {
+      const activeBool = active === 'true';
+      result = await sql`
+        SELECT * FROM products 
+        WHERE category = ${category} AND is_active = ${activeBool}
+        ORDER BY created_at DESC
+      `;
+    } else if (category) {
+      result = await sql`
+        SELECT * FROM products 
+        WHERE category = ${category}
+        ORDER BY created_at DESC
+      `;
+    } else if (active !== null) {
+      const activeBool = active === 'true';
+      result = await sql`
+        SELECT * FROM products 
+        WHERE is_active = ${activeBool}
+        ORDER BY created_at DESC
+      `;
+    } else {
+      result = await sql`
+        SELECT * FROM products 
+        ORDER BY created_at DESC
+      `;
     }
-
-    if (active !== null) {
-      conditions.push(`is_active = $${paramIndex++}`);
-      values.push(active === 'true');
-    }
-
-    const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
-    const query = `SELECT * FROM products ${whereClause} ORDER BY created_at DESC`;
-
-    const result = await sql.query(query, values);
 
     return NextResponse.json({ products: result.rows });
   } catch (error: unknown) {
     console.error('❌ Erreur GET /api/products:', error);
-    return NextResponse.json(
-      { error: 'Erreur serveur' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
   }
 }
 
-// POST /api/products - Créer un produit
+// POST /api/products - Créer un produit (admin only)
 export async function POST(request: NextRequest) {
+  const auth = await requireAdmin(request);
+  if (isAuthError(auth)) return auth;
+
   try {
     const body = await request.json();
-    const { 
-      name, description, category, price, images, stock, is_active, featured,
-      tags, sizes, variants, rating, review_count, original_price, in_stock
-    } = body;
+    const { name, description, category, price, images, stock, is_active, featured } = body;
 
     if (!name || !category || price === undefined) {
       return NextResponse.json(
@@ -54,7 +61,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Générer slug depuis le nom
     const slug = name
       .toLowerCase()
       .normalize('NFD')
@@ -62,63 +68,19 @@ export async function POST(request: NextRequest) {
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/-+$/, '');
 
-    // Format text[] columns as PostgreSQL array literals
-    const formatTextArray = (arr: string[] | null | undefined): string => {
-      if (!arr || !Array.isArray(arr) || arr.length === 0) return '{}';
-      return `{${arr.join(',')}}`;
-    };
-
-    const result = await sql.query(
-      `INSERT INTO products (
-        name,
-        slug,
-        description,
-        category,
-        price,
-        images,
-        stock,
-        is_active,
-        featured,
-        tags,
-        sizes,
-        variants,
-        rating,
-        review_count,
-        original_price,
-        in_stock
-      ) VALUES (
-        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16
+    const result = await sql`
+      INSERT INTO products (name, slug, description, category, price, images, stock, is_active, featured)
+      VALUES (
+        ${name}, ${slug}, ${description || ''}, ${category}, ${price},
+        ${images ? JSON.stringify(images) : '{}'}, ${stock || 0},
+        ${is_active !== false}, ${featured || false}
       )
-      RETURNING *`,
-      [
-        name,
-        slug,
-        description || '',
-        category,
-        price,
-        formatTextArray(images),
-        stock || 0,
-        is_active !== false,
-        featured || false,
-        formatTextArray(tags),
-        sizes ? JSON.stringify(sizes) : '[]',
-        variants ? JSON.stringify(variants) : '[]',
-        rating || null,
-        review_count || 0,
-        original_price || null,
-        in_stock !== false
-      ]
-    );
+      RETURNING *
+    `;
 
-    return NextResponse.json({
-      success: true,
-      product: result.rows[0],
-    });
+    return NextResponse.json({ success: true, product: result.rows[0] }, { status: 201 });
   } catch (error: unknown) {
     console.error('❌ Erreur POST /api/products:', error);
-    return NextResponse.json(
-      { error: 'Erreur serveur' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
   }
 }

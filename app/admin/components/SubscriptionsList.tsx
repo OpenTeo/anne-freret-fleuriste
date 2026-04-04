@@ -1,196 +1,209 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { apiFetch } from '@/lib/api-client';
 
 interface Subscription {
   id: string;
   user_id: string;
-  formula: string;
-  plan: string;
-  frequency: string;
-  status: string;
-  price: number;
-  stripe_subscription_id: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  formula: 'essentiel' | 'signature' | 'prestige';
+  status: 'active' | 'paused' | 'cancelled';
+  frequency: 'weekly' | 'biweekly' | 'monthly';
+  price: string;
   next_delivery_date: string;
   start_date: string;
-  cancelled_at: string | null;
   created_at: string;
-  // Joined
-  customer_name?: string;
-  customer_email?: string;
 }
 
-const statusBadge: Record<string, { label: string; cls: string }> = {
-  active: { label: 'Actif', cls: 'bg-green-100 text-green-800' },
-  paused: { label: 'En pause', cls: 'bg-yellow-100 text-yellow-800' },
-  cancelled: { label: 'Annulé', cls: 'bg-red-100 text-red-800' },
+const formulaLabels: Record<string, { label: string; color: string }> = {
+  essentiel: { label: '🌿 Essentiel', color: 'bg-green-100 text-green-800' },
+  signature: { label: '🌸 Signature', color: 'bg-pink-100 text-pink-800' },
+  prestige: { label: '👑 Prestige', color: 'bg-amber-100 text-amber-800' },
 };
 
-function fmt(n: number): string {
-  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(n);
-}
+const statusLabels: Record<string, { label: string; color: string }> = {
+  active: { label: 'Actif', color: 'bg-green-100 text-green-800' },
+  paused: { label: 'En pause', color: 'bg-yellow-100 text-yellow-800' },
+  cancelled: { label: 'Annulé', color: 'bg-red-100 text-red-800' },
+};
+
+const frequencyLabels: Record<string, string> = {
+  weekly: 'Hebdo',
+  biweekly: 'Bi-mensuel',
+  monthly: 'Mensuel',
+};
 
 export default function SubscriptionsList() {
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [statusFilter, setStatusFilter] = useState('');
-  const [formulaFilter, setFormulaFilter] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+  const [statusFilter, setStatusFilter] = useState<string>('all');
+
+  const loadSubscriptions = async () => {
+    try {
+      const url = statusFilter === 'all' ? '/api/subscriptions' : `/api/subscriptions?status=${statusFilter}`;
+      const res = await apiFetch(url);
+      const data = await res.json();
+      setSubscriptions(data.subscriptions || []);
+    } catch (error) {
+      console.error('Erreur chargement abonnements:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    fetch('/api/subscriptions')
-      .then((r) => r.json())
-      .then((data) => setSubscriptions(data.subscriptions || []))
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, []);
+    loadSubscriptions();
+  }, [statusFilter]);
 
-  const filtered = subscriptions.filter((s) => {
-    if (statusFilter && s.status !== statusFilter) return false;
-    if (formulaFilter && (s.formula || '').toLowerCase() !== formulaFilter.toLowerCase()) return false;
-    return true;
-  });
+  const changeStatus = async (id: string, newStatus: string) => {
+    try {
+      const res = await apiFetch(`/api/subscriptions/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus }),
+      });
 
-  const activeCount = subscriptions.filter((s) => s.status === 'active').length;
+      if (res.ok) {
+        loadSubscriptions();
+      }
+    } catch (error) {
+      console.error('Erreur mise à jour statut:', error);
+    }
+  };
+
   const mrr = subscriptions
     .filter((s) => s.status === 'active')
-    .reduce((sum, s) => sum + Number(s.price || 0), 0);
+    .reduce((sum, s) => {
+      const price = parseFloat(s.price);
+      if (s.frequency === 'weekly') return sum + price * 4;
+      if (s.frequency === 'biweekly') return sum + price * 2;
+      return sum + price;
+    }, 0);
 
-  const byFormula = subscriptions
-    .filter((s) => s.status === 'active')
-    .reduce(
-      (acc, s) => {
-        const key = (s.formula || 'autre').toLowerCase();
-        acc[key] = (acc[key] || 0) + 1;
-        return acc;
-      },
-      {} as Record<string, number>
-    );
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center py-20">
-        <div className="w-8 h-8 border-2 border-[#b8935a] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
+  if (isLoading) {
+    return <div className="text-center py-8 text-[#2d2a26]/40">Chargement...</div>;
   }
 
   return (
     <div>
-      {/* KPI */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-        <div className="bg-white border border-[#e8e0d8] rounded-lg p-5">
-          <p className="text-xs text-[#2d2a26]/50 uppercase tracking-wider">MRR</p>
-          <p className="text-2xl font-bold text-[#b8935a] mt-1">{fmt(mrr)}</p>
+      {/* MRR */}
+      <div className="mb-6 bg-white border border-[#e8e0d8] p-6">
+        <div className="flex items-end gap-2">
+          <span className="font-serif text-3xl text-[#2d2a26]">{mrr.toFixed(0)}€</span>
+          <span className="text-[10px] text-[#2d2a26]/40 mb-1 tracking-[0.12em] uppercase">MRR (Revenu mensuel récurrent)</span>
         </div>
-        <div className="bg-white border border-[#e8e0d8] rounded-lg p-5">
-          <p className="text-xs text-[#2d2a26]/50 uppercase tracking-wider">Abonnements actifs</p>
-          <p className="text-2xl font-bold text-[#2d2a26] mt-1">{activeCount}</p>
-        </div>
-        <div className="bg-white border border-[#e8e0d8] rounded-lg p-5">
-          <p className="text-xs text-[#2d2a26]/50 uppercase tracking-wider">Par formule</p>
-          <div className="flex gap-3 mt-2">
-            {Object.entries(byFormula).map(([key, count]) => (
-              <span key={key} className="text-sm text-[#2d2a26]">
-                <span className="capitalize font-medium">{key}</span>: {count}
-              </span>
-            ))}
-            {Object.keys(byFormula).length === 0 && (
-              <span className="text-sm text-[#2d2a26]/40">Aucun</span>
-            )}
-          </div>
-        </div>
+        <p className="text-xs text-[#2d2a26]/60 mt-2">
+          {subscriptions.filter((s) => s.status === 'active').length} abonnements actifs
+        </p>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-6">
-        <select
-          value={statusFilter}
-          onChange={(e) => setStatusFilter(e.target.value)}
-          className="px-4 py-2.5 border border-[#e8e0d8] rounded-lg text-sm bg-white focus:outline-none focus:border-[#b8935a] text-[#2d2a26]"
+      <div className="mb-4 flex gap-2 flex-wrap">
+        <button
+          onClick={() => setStatusFilter('all')}
+          className={`px-3 py-1.5 text-sm rounded ${
+            statusFilter === 'all' ? 'bg-[#b8935a] text-white' : 'bg-white text-[#2d2a26] border border-[#e8e0d8]'
+          }`}
         >
-          <option value="">Tous les statuts</option>
-          <option value="active">Actif</option>
-          <option value="paused">En pause</option>
-          <option value="cancelled">Annulé</option>
-        </select>
-        <select
-          value={formulaFilter}
-          onChange={(e) => setFormulaFilter(e.target.value)}
-          className="px-4 py-2.5 border border-[#e8e0d8] rounded-lg text-sm bg-white focus:outline-none focus:border-[#b8935a] text-[#2d2a26]"
-        >
-          <option value="">Toutes les formules</option>
-          <option value="essentiel">Essentiel</option>
-          <option value="signature">Signature</option>
-          <option value="prestige">Prestige</option>
-        </select>
+          Tous ({subscriptions.length})
+        </button>
+        {Object.entries(statusLabels).map(([key, { label }]) => (
+          <button
+            key={key}
+            onClick={() => setStatusFilter(key)}
+            className={`px-3 py-1.5 text-sm rounded ${
+              statusFilter === key ? 'bg-[#b8935a] text-white' : 'bg-white text-[#2d2a26] border border-[#e8e0d8]'
+            }`}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
-      <p className="text-xs text-[#2d2a26]/50 mb-3">
-        {filtered.length} abonnement{filtered.length > 1 ? 's' : ''}
-      </p>
-
-      {/* Table */}
-      <div className="bg-white border border-[#e8e0d8] rounded-lg overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="bg-[#faf8f5] text-[#2d2a26]/50 text-xs uppercase">
-                <th className="text-left px-4 py-3">Client</th>
-                <th className="text-left px-4 py-3">Formule</th>
-                <th className="text-left px-4 py-3 hidden md:table-cell">Fréquence</th>
-                <th className="text-right px-4 py-3">Prix</th>
-                <th className="text-center px-4 py-3">Statut</th>
-                <th className="text-left px-4 py-3 hidden lg:table-cell">Prochaine livraison</th>
-                <th className="text-left px-4 py-3 hidden lg:table-cell">Date début</th>
+      {/* Subscriptions table */}
+      <div className="bg-white border border-[#e8e0d8] overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-[#e8e0d8] bg-[#f5f0eb]">
+              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Client</th>
+              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Formule</th>
+              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Fréquence</th>
+              <th className="p-3 text-right text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Prix</th>
+              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Prochaine livraison</th>
+              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Statut</th>
+              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {subscriptions.length === 0 ? (
+              <tr>
+                <td colSpan={7} className="p-8 text-center text-[#2d2a26]/40">
+                  Aucun abonnement
+                </td>
               </tr>
-            </thead>
-            <tbody className="divide-y divide-[#e8e0d8]">
-              {filtered.map((sub) => {
-                const badge = statusBadge[sub.status] || {
-                  label: sub.status,
-                  cls: 'bg-gray-100 text-gray-800',
-                };
-                return (
-                  <tr key={sub.id} className="hover:bg-[#faf8f5] transition-colors">
-                    <td className="px-4 py-3">
-                      <p className="font-medium text-[#2d2a26]">{sub.customer_name || '—'}</p>
-                      <p className="text-xs text-[#2d2a26]/50">{sub.customer_email || ''}</p>
-                    </td>
-                    <td className="px-4 py-3 capitalize text-[#2d2a26]">{sub.formula || '—'}</td>
-                    <td className="px-4 py-3 text-[#2d2a26]/60 hidden md:table-cell">
-                      {sub.frequency || '—'}
-                    </td>
-                    <td className="px-4 py-3 text-right font-medium text-[#2d2a26]">
-                      {fmt(Number(sub.price))}
-                    </td>
-                    <td className="px-4 py-3 text-center">
-                      <span className={`inline-block px-2 py-0.5 text-xs rounded-full ${badge.cls}`}>
-                        {badge.label}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-[#2d2a26]/60 hidden lg:table-cell">
-                      {sub.next_delivery_date
-                        ? new Date(sub.next_delivery_date).toLocaleDateString('fr-FR')
-                        : '—'}
-                    </td>
-                    <td className="px-4 py-3 text-[#2d2a26]/60 hidden lg:table-cell">
-                      {sub.start_date
-                        ? new Date(sub.start_date).toLocaleDateString('fr-FR')
-                        : '—'}
-                    </td>
-                  </tr>
-                );
-              })}
-              {filtered.length === 0 && (
-                <tr>
-                  <td colSpan={7} className="px-4 py-12 text-center text-[#2d2a26]/40">
-                    Aucun abonnement trouvé
+            ) : (
+              subscriptions.map((sub) => (
+                <tr key={sub.id} className="border-b border-[#e8e0d8] hover:bg-[#faf8f5]">
+                  <td className="p-3">
+                    <div className="text-[#2d2a26]">
+                      {sub.first_name} {sub.last_name}
+                    </div>
+                    <div className="text-[10px] text-[#2d2a26]/40">{sub.email}</div>
+                  </td>
+                  <td className="p-3">
+                    <span className={`inline-block px-2 py-0.5 text-[10px] rounded ${formulaLabels[sub.formula]?.color}`}>
+                      {formulaLabels[sub.formula]?.label}
+                    </span>
+                  </td>
+                  <td className="p-3 text-[#2d2a26]/60 text-xs">{frequencyLabels[sub.frequency]}</td>
+                  <td className="p-3 text-right text-[#2d2a26] font-medium">{parseFloat(sub.price).toFixed(2)}€</td>
+                  <td className="p-3 text-[#2d2a26]/60 text-xs">
+                    {sub.next_delivery_date ? new Date(sub.next_delivery_date).toLocaleDateString('fr-FR') : '-'}
+                  </td>
+                  <td className="p-3">
+                    <span className={`inline-block px-2 py-0.5 text-[10px] rounded ${statusLabels[sub.status]?.color}`}>
+                      {statusLabels[sub.status]?.label}
+                    </span>
+                  </td>
+                  <td className="p-3">
+                    <div className="flex gap-1">
+                      {sub.status === 'active' && (
+                        <button
+                          onClick={() => changeStatus(sub.id, 'paused')}
+                          className="text-xs text-yellow-600 hover:text-yellow-700"
+                          title="Mettre en pause"
+                        >
+                          ⏸
+                        </button>
+                      )}
+                      {sub.status === 'paused' && (
+                        <button
+                          onClick={() => changeStatus(sub.id, 'active')}
+                          className="text-xs text-green-600 hover:text-green-700"
+                          title="Réactiver"
+                        >
+                          ▶️
+                        </button>
+                      )}
+                      {sub.status !== 'cancelled' && (
+                        <button
+                          onClick={() => changeStatus(sub.id, 'cancelled')}
+                          className="text-xs text-red-600 hover:text-red-700"
+                          title="Annuler"
+                        >
+                          ❌
+                        </button>
+                      )}
+                    </div>
                   </td>
                 </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );

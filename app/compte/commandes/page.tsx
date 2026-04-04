@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
+import { apiFetch } from '@/lib/api-client';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
@@ -43,7 +44,6 @@ const statusLabels: Record<string, string> = {
 
 const deliveryModeLabels: Record<string, string> = {
   local: 'Livraison locale',
-  colissimo: 'Colissimo',
   chronopost: 'Chronopost Express'
 };
 
@@ -69,7 +69,7 @@ export default function Commandes() {
 
     try {
       setLoading(true);
-      const res = await fetch(`/api/orders?email=${encodeURIComponent(user.email)}`);
+      const res = await apiFetch('/api/orders');
       const data = await res.json();
       
       if (data.error) {

@@ -1,59 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { sql } from '@/lib/db';
+import { requireAdmin, isAuthError } from '@/lib/api-auth';
 
 // GET /api/users - Liste des utilisateurs (admin only)
 export async function GET(request: NextRequest) {
+  // Auth admin requise
+  const auth = await requireAdmin(request);
+  if (isAuthError(auth)) return auth;
+
   try {
-    // Vérifier auth admin
-    const { verifyAdminToken } = await import('@/lib/admin-auth');
-    const token = request.cookies.get('admin-token')?.value;
-    if (!token || !(await verifyAdminToken(token))) {
-      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
-    }
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search');
     const isAdmin = searchParams.get('isAdmin');
 
-    // Requête avec stats commandes jointes
+    // Query unique avec JOIN pour éviter le N+1
     let result;
 
-    if (isAdmin === 'false' && search) {
+    if (search && isAdmin !== null) {
       const searchPattern = `%${search}%`;
+      const adminBool = isAdmin === 'true';
       result = await sql`
         SELECT 
           u.id, u.email, u.first_name, u.last_name, u.phone,
-          u.address, u.postal_code, u.city, u.is_admin,
+          u.address, u.address_complement, u.postal_code, u.city,
+          u.loyalty_points, u.total_spent, u.is_admin,
           u.created_at, u.updated_at,
-          COALESCE(os.orders_count, 0) as orders_count,
-          COALESCE(os.total_spent, 0) as total_spent
+          COALESCE(o.orders_count, 0)::int as orders_count,
+          o.last_order_date
         FROM users u
         LEFT JOIN (
-          SELECT customer_email, COUNT(*) as orders_count, SUM(total_amount) as total_spent
-          FROM orders WHERE status != 'cancelled'
-          GROUP BY customer_email
-        ) os ON os.customer_email = u.email
-        WHERE u.is_admin = false
-        AND (
-          LOWER(u.first_name || ' ' || u.last_name) LIKE LOWER(${searchPattern})
-          OR LOWER(u.email) LIKE LOWER(${searchPattern})
-        )
-        ORDER BY u.created_at DESC
-      `;
-    } else if (isAdmin === 'false') {
-      result = await sql`
-        SELECT 
-          u.id, u.email, u.first_name, u.last_name, u.phone,
-          u.address, u.postal_code, u.city, u.is_admin,
-          u.created_at, u.updated_at,
-          COALESCE(os.orders_count, 0) as orders_count,
-          COALESCE(os.total_spent, 0) as total_spent
-        FROM users u
-        LEFT JOIN (
-          SELECT customer_email, COUNT(*) as orders_count, SUM(total_amount) as total_spent
-          FROM orders WHERE status != 'cancelled'
-          GROUP BY customer_email
-        ) os ON os.customer_email = u.email
-        WHERE u.is_admin = false
+          SELECT customer_email, 
+                 COUNT(*)::int as orders_count,
+                 MAX(created_at) as last_order_date
+          FROM orders GROUP BY customer_email
+        ) o ON o.customer_email = u.email
+        WHERE u.is_admin = ${adminBool}
+          AND (LOWER(u.first_name || ' ' || u.last_name) LIKE LOWER(${searchPattern})
+               OR LOWER(u.email) LIKE LOWER(${searchPattern}))
         ORDER BY u.created_at DESC
       `;
     } else if (search) {
@@ -61,34 +44,58 @@ export async function GET(request: NextRequest) {
       result = await sql`
         SELECT 
           u.id, u.email, u.first_name, u.last_name, u.phone,
-          u.address, u.postal_code, u.city, u.is_admin,
+          u.address, u.address_complement, u.postal_code, u.city,
+          u.loyalty_points, u.total_spent, u.is_admin,
           u.created_at, u.updated_at,
-          COALESCE(os.orders_count, 0) as orders_count,
-          COALESCE(os.total_spent, 0) as total_spent
+          COALESCE(o.orders_count, 0)::int as orders_count,
+          o.last_order_date
         FROM users u
         LEFT JOIN (
-          SELECT customer_email, COUNT(*) as orders_count, SUM(total_amount) as total_spent
-          FROM orders WHERE status != 'cancelled'
-          GROUP BY customer_email
-        ) os ON os.customer_email = u.email
+          SELECT customer_email, 
+                 COUNT(*)::int as orders_count,
+                 MAX(created_at) as last_order_date
+          FROM orders GROUP BY customer_email
+        ) o ON o.customer_email = u.email
         WHERE LOWER(u.first_name || ' ' || u.last_name) LIKE LOWER(${searchPattern})
-          OR LOWER(u.email) LIKE LOWER(${searchPattern})
+           OR LOWER(u.email) LIKE LOWER(${searchPattern})
+        ORDER BY u.created_at DESC
+      `;
+    } else if (isAdmin !== null) {
+      const adminBool = isAdmin === 'true';
+      result = await sql`
+        SELECT 
+          u.id, u.email, u.first_name, u.last_name, u.phone,
+          u.address, u.address_complement, u.postal_code, u.city,
+          u.loyalty_points, u.total_spent, u.is_admin,
+          u.created_at, u.updated_at,
+          COALESCE(o.orders_count, 0)::int as orders_count,
+          o.last_order_date
+        FROM users u
+        LEFT JOIN (
+          SELECT customer_email, 
+                 COUNT(*)::int as orders_count,
+                 MAX(created_at) as last_order_date
+          FROM orders GROUP BY customer_email
+        ) o ON o.customer_email = u.email
+        WHERE u.is_admin = ${adminBool}
         ORDER BY u.created_at DESC
       `;
     } else {
       result = await sql`
         SELECT 
           u.id, u.email, u.first_name, u.last_name, u.phone,
-          u.address, u.postal_code, u.city, u.is_admin,
+          u.address, u.address_complement, u.postal_code, u.city,
+          u.loyalty_points, u.total_spent, u.is_admin,
           u.created_at, u.updated_at,
-          COALESCE(os.orders_count, 0) as orders_count,
-          COALESCE(os.total_spent, 0) as total_spent
+          COALESCE(o.orders_count, 0)::int as orders_count,
+          o.last_order_date
         FROM users u
         LEFT JOIN (
-          SELECT customer_email, COUNT(*) as orders_count, SUM(total_amount) as total_spent
-          FROM orders WHERE status != 'cancelled'
-          GROUP BY customer_email
-        ) os ON os.customer_email = u.email
+          SELECT customer_email, 
+                 COUNT(*)::int as orders_count,
+                 MAX(created_at) as last_order_date
+          FROM orders GROUP BY customer_email
+        ) o ON o.customer_email = u.email
         ORDER BY u.created_at DESC
       `;
     }
@@ -96,9 +103,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ users: result.rows });
   } catch (error: unknown) {
     console.error('❌ Erreur GET /api/users:', error);
-    return NextResponse.json(
-      { error: 'Erreur serveur' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
   }
 }

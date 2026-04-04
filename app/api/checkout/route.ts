@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { rateLimit } from '@/lib/rate-limit';
 
 interface CartItem {
-  id: string; // Format: "product-uuid-sizeName" ou "product-uuid-default"
+  id: string;
   name: string;
   size: string;
-  price: number; // ⚠️ NE PAS FAIRE CONFIANCE
+  price: number;
   quantity: number;
   image: string;
   category: string;
@@ -14,12 +14,12 @@ interface CartItem {
 interface CheckoutBody {
   items: CartItem[];
   delivery: {
-    mode: string; // local | colissimo | chronopost
+    mode: string;
     date: string;
-    fee: number; // ⚠️ NE PAS FAIRE CONFIANCE
-    discount: number; // ⚠️ NE PAS FAIRE CONFIANCE
-    subtotal: number; // ⚠️ NE PAS FAIRE CONFIANCE
-    total: number; // ⚠️ NE PAS FAIRE CONFIANCE
+    fee: number;
+    discount: number;
+    subtotal: number;
+    total: number;
   };
   customer: {
     email: string;
@@ -31,14 +31,18 @@ interface CheckoutBody {
     city: string;
   };
   cardMessage?: string;
-  cardSupplement?: number; // ⚠️ NE PAS FAIRE CONFIANCE
-  promoCode?: string; // Code promo à valider
+  cardSupplement?: number;
 }
 
 export async function POST(req: NextRequest) {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  if (!rateLimit(`checkout:${ip}`, 10, 15 * 60 * 1000)) {
+    return NextResponse.json({ error: 'Trop de tentatives. Réessayez dans quelques minutes.' }, { status: 429 });
+  }
+
   try {
     const body: CheckoutBody = await req.json();
-    const { items, delivery, customer, cardMessage, promoCode } = body;
+    const { items, delivery, customer, cardMessage, cardSupplement } = body;
 
     if (!items?.length || !customer?.email) {
       return NextResponse.json({ error: 'Données manquantes' }, { status: 400 });
@@ -51,135 +55,7 @@ export async function POST(req: NextRequest) {
 
     const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://anne-freret-fleuriste.vercel.app').trim();
 
-    // ========================================
-    // 🔒 VALIDATION 1 : Vérifier les prix réels en base
-    // ========================================
-    const validatedItems: Array<{ name: string; size: string; price: number; quantity: number; image: string }> = [];
-    let subtotal = 0;
-
-    for (const item of items) {
-      // Extraire product_id depuis item.id (format: "uuid-sizeName")
-      const productId = item.id.split('-').slice(0, 5).join('-'); // Récupère l'UUID (5 segments)
-      
-      const productResult = await sql`
-        SELECT name, price, sizes, images FROM products WHERE id = ${productId} AND is_active = true
-      `;
-
-      if (productResult.rows.length === 0) {
-        return NextResponse.json({ error: `Produit ${item.name} introuvable ou inactif` }, { status: 400 });
-      }
-
-      const product = productResult.rows[0];
-      let realPrice = parseFloat(product.price);
-
-      // Si le produit a des tailles (sizes), vérifier le prix de la taille sélectionnée
-      if (product.sizes && Array.isArray(product.sizes) && product.sizes.length > 0) {
-        const selectedSize = product.sizes.find((s: any) => s.name === item.size);
-        if (selectedSize && selectedSize.price) {
-          realPrice = parseFloat(selectedSize.price);
-        }
-      }
-
-      // Ajouter à la liste validée
-      validatedItems.push({
-        name: product.name,
-        size: item.size,
-        price: realPrice,
-        quantity: item.quantity,
-        image: product.images?.[0] || '',
-      });
-
-      subtotal += realPrice * item.quantity;
-    }
-
-    // ========================================
-    // 🔒 VALIDATION 2 : Vérifier les frais de livraison
-    // ========================================
-    let realDeliveryFee = 0;
-
-    if (delivery.mode === 'chronopost') {
-      realDeliveryFee = 12.0;
-    } else if (delivery.mode === 'local') {
-      // Livraison locale : vérifier le code postal (simplification : 0€ si 50xxx, sinon 7€)
-      const postalCode = customer.postalCode;
-      if (postalCode.startsWith('50')) {
-        realDeliveryFee = 0; // Gratuit pour la Manche
-      } else {
-        realDeliveryFee = 7.0; // Sinon Colissimo
-      }
-    }
-
-    // ========================================
-    // 🔒 VALIDATION 3 : Vérifier le code promo
-    // ========================================
-    let discount = 0;
-    let promoCodeUsed = '';
-
-    if (promoCode) {
-      const promoResult = await sql`
-        SELECT code, type, value, min_order, max_uses, used_count, valid_from, valid_until, is_active
-        FROM promo_codes
-        WHERE LOWER(code) = LOWER(${promoCode})
-      `;
-
-      if (promoResult.rows.length > 0) {
-        const promo = promoResult.rows[0];
-        const now = new Date();
-        const validFrom = promo.valid_from ? new Date(promo.valid_from) : null;
-        const validUntil = promo.valid_until ? new Date(promo.valid_until) : null;
-
-        // Vérifications
-        if (!promo.is_active) {
-          return NextResponse.json({ error: 'Code promo inactif' }, { status: 400 });
-        }
-        if (validFrom && now < validFrom) {
-          return NextResponse.json({ error: 'Code promo pas encore valide' }, { status: 400 });
-        }
-        if (validUntil && now > validUntil) {
-          return NextResponse.json({ error: 'Code promo expiré' }, { status: 400 });
-        }
-        if (promo.max_uses && promo.used_count >= promo.max_uses) {
-          return NextResponse.json({ error: 'Code promo épuisé' }, { status: 400 });
-        }
-        if (promo.min_order && subtotal < parseFloat(promo.min_order)) {
-          return NextResponse.json({ error: `Commande minimum ${promo.min_order}€ pour ce code` }, { status: 400 });
-        }
-
-        // Calculer la réduction
-        if (promo.type === 'percentage') {
-          discount = (subtotal * parseFloat(promo.value)) / 100;
-        } else if (promo.type === 'fixed') {
-          discount = parseFloat(promo.value);
-        }
-
-        // Ne pas dépasser le subtotal
-        if (discount > subtotal) {
-          discount = subtotal;
-        }
-
-        promoCodeUsed = promo.code;
-      } else {
-        return NextResponse.json({ error: 'Code promo invalide' }, { status: 400 });
-      }
-    }
-
-    // ========================================
-    // 🔒 VALIDATION 4 : Carte message (fixe 5€)
-    // ========================================
-    const realCardSupplement = cardMessage ? 5.0 : 0;
-
-    // ========================================
-    // 🧮 CALCUL FINAL
-    // ========================================
-    const total = subtotal - discount + realDeliveryFee + realCardSupplement;
-
-    if (total < 0) {
-      return NextResponse.json({ error: 'Total invalide' }, { status: 400 });
-    }
-
-    // ========================================
-    // 🎯 CRÉATION SESSION STRIPE (avec prix validés)
-    // ========================================
+    // Build form data for Stripe API
     const params = new URLSearchParams();
     params.append('mode', 'payment');
     params.append('payment_method_types[0]', 'card');
@@ -189,9 +65,9 @@ export async function POST(req: NextRequest) {
     params.append('locale', 'fr');
     params.append('billing_address_collection', 'required');
 
-    // Line items (validés)
+    // Add line items
     let idx = 0;
-    validatedItems.forEach((item) => {
+    items.forEach((item) => {
       params.append(`line_items[${idx}][price_data][currency]`, 'eur');
       params.append(`line_items[${idx}][price_data][product_data][name]`, item.name);
       params.append(`line_items[${idx}][price_data][product_data][description]`, `Taille : ${item.size}`);
@@ -203,32 +79,26 @@ export async function POST(req: NextRequest) {
       idx++;
     });
 
-    // Livraison
-    if (realDeliveryFee > 0) {
+    // Delivery fee
+    if (delivery.fee > 0) {
       const modeLabel =
         delivery.mode === 'local' ? 'Livraison locale' :
-        delivery.mode === 'colissimo' ? 'Colissimo (48h)' :
         delivery.mode === 'chronopost' ? 'Chronopost Express (24h)' :
         'Livraison';
       params.append(`line_items[${idx}][price_data][currency]`, 'eur');
       params.append(`line_items[${idx}][price_data][product_data][name]`, modeLabel);
-      params.append(`line_items[${idx}][price_data][unit_amount]`, Math.round(realDeliveryFee * 100).toString());
+      params.append(`line_items[${idx}][price_data][unit_amount]`, Math.round(delivery.fee * 100).toString());
       params.append(`line_items[${idx}][quantity]`, '1');
       idx++;
     }
 
-    // Carte message
-    if (realCardSupplement > 0) {
+    // Card supplement
+    if (cardSupplement && cardSupplement > 0) {
       params.append(`line_items[${idx}][price_data][currency]`, 'eur');
       params.append(`line_items[${idx}][price_data][product_data][name]`, 'Carte message artisanale');
-      params.append(`line_items[${idx}][price_data][unit_amount]`, Math.round(realCardSupplement * 100).toString());
+      params.append(`line_items[${idx}][price_data][unit_amount]`, Math.round(cardSupplement * 100).toString());
       params.append(`line_items[${idx}][quantity]`, '1');
       idx++;
-    }
-
-    // Réduction (si applicable)
-    if (discount > 0 && promoCodeUsed) {
-      params.append('discounts[0][coupon]', await createStripeCoupon(discount, key));
     }
 
     // Metadata
@@ -238,9 +108,8 @@ export async function POST(req: NextRequest) {
     params.append('metadata[delivery_date]', delivery.date);
     params.append('metadata[delivery_address]', `${customer.address}, ${customer.postalCode} ${customer.city}`);
     params.append('metadata[card_message]', cardMessage || '');
-    params.append('metadata[promo_code]', promoCodeUsed || '');
-    params.append('metadata[order_items]', validatedItems.map(i => `${i.quantity}x ${i.name} (${i.size})`).join(' | '));
-    params.append('metadata[order_items_json]', JSON.stringify(validatedItems.map(i => ({
+    params.append('metadata[order_items]', items.map(i => `${i.quantity}x ${i.name} (${i.size})`).join(' | '));
+    params.append('metadata[order_items_json]', JSON.stringify(items.map(i => ({
       name: i.name,
       size: i.size,
       price: i.price,
@@ -248,7 +117,7 @@ export async function POST(req: NextRequest) {
       image: i.image,
     }))));
 
-    // Appel Stripe
+    // Direct fetch to Stripe API
     const res = await fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
       headers: {
@@ -274,24 +143,4 @@ export async function POST(req: NextRequest) {
     console.error('Checkout error:', errMsg);
     return NextResponse.json({ error: 'Erreur serveur', details: errMsg }, { status: 500 });
   }
-}
-
-// Créer un coupon Stripe à usage unique
-async function createStripeCoupon(amountOff: number, key: string): Promise<string> {
-  const params = new URLSearchParams();
-  params.append('amount_off', Math.round(amountOff * 100).toString());
-  params.append('currency', 'eur');
-  params.append('duration', 'once');
-
-  const res = await fetch('https://api.stripe.com/v1/coupons', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${key}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: params.toString(),
-  });
-
-  const data = await res.json();
-  return data.id;
 }

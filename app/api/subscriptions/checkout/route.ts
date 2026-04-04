@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { stripe } from '@/lib/stripe';
+import { rateLimit } from '@/lib/rate-limit';
 
 // Mapping des formules/fréquences vers les Price IDs Stripe (créés le 2026-03-29)
 const PRICE_IDS: Record<string, Record<string, string>> = {
@@ -28,6 +29,11 @@ interface CheckoutBody {
 }
 
 export async function POST(req: NextRequest) {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  if (!rateLimit(`sub-checkout:${ip}`, 5, 15 * 60 * 1000)) {
+    return NextResponse.json({ error: 'Trop de tentatives. Réessayez dans quelques minutes.' }, { status: 429 });
+  }
+
   try {
     const body: CheckoutBody = await req.json();
     const { formula, frequency, email, userId } = body;

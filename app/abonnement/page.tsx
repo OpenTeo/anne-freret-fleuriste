@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
+import { apiFetch } from '@/lib/api-client';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
@@ -148,7 +149,7 @@ export default function AbonnementStripe() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/subscriptions/checkout', {
+      const response = await apiFetch('/api/subscriptions/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -1,59 +1,69 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { sql } from '@/lib/db';
+import { requireAuth, requireAdmin, isAuthError } from '@/lib/api-auth';
 
-// GET /api/subscriptions - Liste des abonnements (admin ou user filtré)
+// GET /api/subscriptions - Liste des abonnements
 export async function GET(request: NextRequest) {
+  const auth = await requireAuth(request);
+  if (isAuthError(auth)) return auth;
+
   try {
     const { searchParams } = new URL(request.url);
-    const userId = searchParams.get('userId');
     const status = searchParams.get('status');
 
-    // Construction dynamique de la requête
-    const conditions: string[] = [];
-    const values: string[] = [];
-    let paramIndex = 1;
+    let result;
 
-    if (userId) {
-      conditions.push(`s.user_id = $${paramIndex++}`);
-      values.push(userId);
+    if (auth.is_admin) {
+      // Admin voit tout
+      if (status) {
+        result = await sql`
+          SELECT s.*, u.email, u.first_name, u.last_name, u.phone
+          FROM subscriptions s
+          JOIN users u ON s.user_id = u.id
+          WHERE s.status = ${status}
+          ORDER BY s.created_at DESC
+        `;
+      } else {
+        result = await sql`
+          SELECT s.*, u.email, u.first_name, u.last_name, u.phone
+          FROM subscriptions s
+          JOIN users u ON s.user_id = u.id
+          ORDER BY s.created_at DESC
+        `;
+      }
+    } else {
+      // User normal voit seulement ses abonnements
+      if (status) {
+        result = await sql`
+          SELECT s.*, u.email, u.first_name, u.last_name, u.phone
+          FROM subscriptions s
+          JOIN users u ON s.user_id = u.id
+          WHERE s.user_id = ${auth.id} AND s.status = ${status}
+          ORDER BY s.created_at DESC
+        `;
+      } else {
+        result = await sql`
+          SELECT s.*, u.email, u.first_name, u.last_name, u.phone
+          FROM subscriptions s
+          JOIN users u ON s.user_id = u.id
+          WHERE s.user_id = ${auth.id}
+          ORDER BY s.created_at DESC
+        `;
+      }
     }
 
-    if (status) {
-      conditions.push(`s.status = $${paramIndex++}`);
-      values.push(status);
-    }
-
-    const whereClause = conditions.length > 0 ? `AND ${conditions.join(' AND ')}` : '';
-
-    const query = `
-      SELECT 
-        s.*,
-        u.email,
-        u.first_name,
-        u.last_name,
-        u.phone
-      FROM subscriptions s
-      JOIN users u ON s.user_id = u.id
-      WHERE 1=1 ${whereClause}
-      ORDER BY s.created_at DESC
-    `;
-
-    const result = await sql.query(query, values);
-
-    return NextResponse.json({
-      subscriptions: result.rows,
-    });
+    return NextResponse.json({ subscriptions: result.rows });
   } catch (error: unknown) {
     console.error('❌ Erreur GET /api/subscriptions:', error);
-    return NextResponse.json(
-      { error: 'Erreur serveur' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
   }
 }
 
-// POST /api/subscriptions - Créer un abonnement
+// POST /api/subscriptions - Créer un abonnement (admin only)
 export async function POST(request: NextRequest) {
+  const auth = await requireAdmin(request);
+  if (isAuthError(auth)) return auth;
+
   try {
     const body = await request.json();
     const { userId, formula, frequency, price } = body;
@@ -65,46 +75,37 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Vérifier que l'utilisateur existe
-    const userCheck = await sql`SELECT id FROM users WHERE id = ${userId}`;
-    if (userCheck.rows.length === 0) {
-      return NextResponse.json(
-        { error: 'Utilisateur introuvable' },
-        { status: 404 }
-      );
+    // Valider la fréquence (prévient injection SQL)
+    const validFrequencies = ['weekly', 'biweekly', 'monthly'];
+    if (!validFrequencies.includes(frequency)) {
+      return NextResponse.json({ error: 'Fréquence invalide' }, { status: 400 });
     }
 
-    // Calculer la prochaine date de livraison
-    const intervalMap: Record<string, string> = {
-      weekly: '7 days',
-      biweekly: '14 days',
-      monthly: '1 month',
-    };
-    const interval = intervalMap[frequency] || '1 month';
+    const userCheck = await sql`SELECT id FROM users WHERE id = ${userId}`;
+    if (userCheck.rows.length === 0) {
+      return NextResponse.json({ error: 'Utilisateur introuvable' }, { status: 404 });
+    }
 
-    const result = await sql.query(
-      `INSERT INTO subscriptions (
-        user_id,
-        formula,
-        status,
-        frequency,
-        price,
-        next_delivery_date,
-        start_date
-      ) VALUES ($1, $2, 'active', $3, $4, CURRENT_DATE + INTERVAL '${interval}', CURRENT_DATE)
-      RETURNING *`,
-      [userId, formula, frequency, price]
-    );
+    // Utiliser calculate_next_delivery_smart si elle existe, sinon fallback
+    const result = await sql`
+      INSERT INTO subscriptions (
+        user_id, formula, status, frequency, price,
+        next_delivery_date, start_date
+      ) VALUES (
+        ${userId}, ${formula}, 'active', ${frequency}, ${price},
+        CURRENT_DATE + CASE 
+          WHEN ${frequency} = 'weekly' THEN INTERVAL '7 days'
+          WHEN ${frequency} = 'biweekly' THEN INTERVAL '14 days'
+          ELSE INTERVAL '1 month'
+        END,
+        CURRENT_DATE
+      )
+      RETURNING *
+    `;
 
-    return NextResponse.json({
-      success: true,
-      subscription: result.rows[0],
-    });
+    return NextResponse.json({ success: true, subscription: result.rows[0] }, { status: 201 });
   } catch (error: unknown) {
     console.error('❌ Erreur POST /api/subscriptions:', error);
-    return NextResponse.json(
-      { error: 'Erreur serveur' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Erreur serveur' }, { status: 500 });
   }
 }

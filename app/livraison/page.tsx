@@ -22,7 +22,7 @@ export default function Livraison() {
   const faqItems = [
     {
       question: 'À quelle heure sont effectuées les livraisons ?',
-      answer: 'Nos livraisons locales s\'effectuent du mardi au samedi, de 9h à 18h (dimanche sur demande). Les envois Colissimo et Chronopost sont livrés du lundi au samedi uniquement — La Poste ne livre pas le dimanche. Pour les commandes urgentes, nous proposons un service express avec supplément.'
+      answer: 'Nos livraisons locales s\'effectuent du mardi au samedi, de 9h à 18h (dimanche sur demande). Les envois Chronopost sont livrés du lundi au samedi uniquement. Pour les commandes urgentes, nous proposons un service express avec supplément.'
     },
     {
       question: 'Puis-je choisir un créneau de livraison ?',
@@ -164,7 +164,7 @@ export default function Livraison() {
             </div>
 
             {/* Modes de livraison */}
-            <div className="max-w-5xl mx-auto mt-16 grid md:grid-cols-3 gap-6">
+            <div className="max-w-5xl mx-auto mt-16 grid md:grid-cols-2 gap-6">
               {/* Local */}
               <div className="border border-[#e8e0d8] p-6">
                 <div className="flex items-center gap-3 mb-4">
@@ -182,24 +182,6 @@ export default function Livraison() {
                   <div className="flex justify-between"><span>10 a 35 km</span><span>10,00 €</span></div>
                 </div>
                 <p className="text-[10px] text-[#b8935a] mt-3">Offerte des 60 € d&apos;achat</p>
-              </div>
-
-              {/* Colissimo */}
-              <div className="border border-[#e8e0d8] p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 flex items-center justify-center text-white" style={{ backgroundColor: '#003DA5' }}>
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>
-                  </div>
-                  <div>
-                    <p className="text-xs font-semibold tracking-wide" style={{ color: '#003DA5' }}>COLISSIMO</p>
-                    <p className="text-[10px] text-[#2d2a26]/40">La Poste · Suivi inclus · 48h (J+2) · Lun-Sam</p>
-                  </div>
-                </div>
-                <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
-                  <div className="flex justify-between"><span>France metropolitaine</span><span>12,90 €</span></div>
-                </div>
-                <p className="text-[10px] mt-2 text-[#2d2a26]/40">⚠ Pas de livraison le dimanche</p>
-                <p className="text-[10px] mt-1" style={{ color: '#003DA5' }}>Offerte des 60 € d&apos;achat</p>
               </div>
 
               {/* Chronopost */}
