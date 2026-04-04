@@ -156,18 +156,22 @@ export default function OrderDetail({
   const handleDownloadLabel = async () => {
     setDownloadingLabel(true);
     try {
-      const res = await fetch(`/api/admin/shipping/label?parcel_id=${order.sendcloud_parcel_id}`);
+      const res = await fetch(`/api/admin/shipping/label?orderId=${order.id}`);
       if (res.ok) {
-        const blob = await res.blob();
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `etiquette-${order.order_number}.pdf`;
-        a.click();
-        URL.revokeObjectURL(url);
+        const data = await res.json();
+        if (data.labelUrl) {
+          // Ouvrir le PDF dans un nouvel onglet
+          window.open(data.labelUrl, '_blank');
+        } else {
+          alert('Étiquette non disponible pour cette commande');
+        }
+      } else {
+        const err = await res.json();
+        alert(err.error || 'Étiquette non disponible');
       }
     } catch (e) {
       console.error('Erreur téléchargement étiquette:', e);
+      alert('Erreur lors du téléchargement');
     } finally {
       setDownloadingLabel(false);
     }

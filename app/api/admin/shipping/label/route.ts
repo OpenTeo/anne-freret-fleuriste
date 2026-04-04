@@ -6,16 +6,17 @@ import { getLabelUrl } from '@/lib/sendcloud';
 // Récupère l'URL du bon de livraison SendCloud
 export async function GET(request: NextRequest) {
   const orderId = request.nextUrl.searchParams.get('orderId');
+  const parcelId = request.nextUrl.searchParams.get('parcel_id');
   
-  if (!orderId) {
-    return NextResponse.json({ error: 'orderId requis' }, { status: 400 });
+  if (!orderId && !parcelId) {
+    return NextResponse.json({ error: 'orderId ou parcel_id requis' }, { status: 400 });
   }
 
   try {
-    const result = await sql`
-      SELECT label_url, sendcloud_parcel_id, tracking_number, tracking_url
-      FROM orders WHERE id = ${orderId}
-    `;
+    const result = orderId
+      ? await sql`SELECT label_url, sendcloud_parcel_id, tracking_number, tracking_url FROM orders WHERE id = ${orderId}`
+      : await sql`SELECT label_url, sendcloud_parcel_id, tracking_number, tracking_url FROM orders WHERE sendcloud_parcel_id = ${parseInt(parcelId!)}`;
+    const effectiveOrderId = orderId || (result.rows.length > 0 ? result.rows[0].id : null);
     
     if (result.rows.length === 0) {
       return NextResponse.json({ error: 'Commande non trouvée' }, { status: 404 });
