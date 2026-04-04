@@ -118,9 +118,10 @@ export default function Mariages() {
                   <span className="italic" style={{ color: '#b8935a' }}>Votre histoire.</span>
                 </h2>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-4">
-                  Depuis plus de 20 ans, Anne conçoit les décorations florales de mariages dans le Cotentin 
-                  et toute la Normandie. Chaque couple est différent, chaque lieu a son caractère — 
-                  c'est ce qui rend ce métier passionnant.
+                  Depuis plus de 20 ans, Anne conçoit les décorations florales de mariages en Normandie 
+                  et au-delà. Accompagnée par Charles, qui suit son parcours depuis le début, 
+                  chaque projet est porté par cette passion commune. Chaque couple est différent, 
+                  chaque lieu a son caractère — c'est ce qui rend ce métier passionnant.
                 </p>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-6">
                   Du premier rendez-vous à l'installation le jour J, Anne est là. Elle écoute, 
@@ -226,7 +227,7 @@ export default function Mariages() {
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-4">
                   Derrière chaque composition, il y a des heures de préparation. 
                   Sélection des fleurs au marché, conditionnement, assemblage minutieux — 
-                  tout est fait à la main dans notre atelier de Barneville-Carteret.
+                  tout est fait à la main dans notre atelier de Saint-Pair-sur-Mer.
                 </p>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-8">
                   Le jour J, Anne et son équipe installent tout sur place. 
@@ -269,9 +270,9 @@ export default function Mariages() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {[
                 { num: '20+', label: 'ans d\'expérience' },
-                { num: '200+', label: 'mariages fleuris' },
+                { num: '1000+', label: 'mariages fleuris' },
                 { num: '100%', label: 'sur-mesure' },
-                { num: '50km', label: 'autour de Barneville' },
+                { num: 'Normandie', label: 'et au-delà' },
               ].map((stat) => (
                 <div key={stat.label}>
                   <p className="font-serif text-3xl md:text-4xl text-[#b8935a] mb-1">{stat.num}</p>
