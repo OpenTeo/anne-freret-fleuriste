@@ -177,7 +177,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-[#b8935a]/20 pt-8 text-center">
           <p className="text-white/60 text-sm">
-            © 2025 Anne Freret Fleuriste. Tous droits réservés.
+            © {new Date().getFullYear()} Anne Freret Fleuriste. Tous droits réservés.
           </p>
         </div>
       </div>

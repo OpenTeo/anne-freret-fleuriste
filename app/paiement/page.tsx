@@ -24,6 +24,7 @@ interface DeliveryInfo {
   discount: number;
   subtotal: number;
   total: number;
+  promoCode?: string;
 }
 
 export default function Paiement() {
@@ -71,6 +72,7 @@ export default function Paiement() {
           items: cartItems,
           delivery: deliveryInfo,
           customer: form,
+          promoCode: deliveryInfo?.promoCode || undefined,
         }),
       });
 

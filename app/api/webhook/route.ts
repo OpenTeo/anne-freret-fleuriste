@@ -198,6 +198,18 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
       }
     }
 
+    // Incrémenter le compteur d'utilisation du code promo
+    if (meta.promo_code) {
+      try {
+        await sql`
+          UPDATE promo_codes SET used_count = used_count + 1 WHERE LOWER(code) = LOWER(${meta.promo_code})
+        `;
+        console.log(`🎟️ Code promo ${meta.promo_code} utilisé, compteur incrémenté`);
+      } catch (promoErr) {
+        console.error('Erreur incrémentation promo:', promoErr);
+      }
+    }
+
     console.log(`✅ Commande ${orderNumber} sauvegardée avec succès (ID: ${orderId})`);
 
   } catch (err) {
@@ -214,7 +226,6 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
 
   const deliveryModeLabel =
     meta.delivery_mode === 'local' ? '🌸 Livraison locale (à la main)' :
-    meta.delivery_mode === 'colissimo' ? '📦 Colissimo (48h)' :
     meta.delivery_mode === 'chronopost' ? '⚡ Chronopost Express (24h)' :
     'Livraison';
 

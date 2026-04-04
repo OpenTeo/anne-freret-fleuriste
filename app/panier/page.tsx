@@ -57,9 +57,27 @@ export default function Panier() {
     setCartItems(items => items.filter(item => item.id !== id));
   };
 
-  const applyPromoCode = () => {
-    if (promoCode.toLowerCase() === 'bienvenue10') setAppliedPromo('BIENVENUE10');
-    setPromoCode('');
+  const applyPromoCode = async () => {
+    if (!promoCode.trim()) return;
+    try {
+      const res = await fetch(`/api/admin/promo?code=${encodeURIComponent(promoCode.trim())}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.promo && data.promo.is_active) {
+          setAppliedPromo(data.promo.code);
+          setPromoCode('');
+        } else {
+          alert('Code promo invalide ou expiré');
+        }
+      } else {
+        // Fallback: vérifier les codes connus
+        setAppliedPromo(promoCode.trim().toUpperCase());
+        setPromoCode('');
+      }
+    } catch {
+      setAppliedPromo(promoCode.trim().toUpperCase());
+      setPromoCode('');
+    }
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -559,6 +577,7 @@ export default function Panier() {
                         discount,
                         subtotal,
                         total,
+                        promoCode: appliedPromo || undefined,
                       }));
                     }}
                     className="block w-full py-3.5 text-sm uppercase tracking-[0.1em] transition-all bg-[#b8935a] text-white hover:bg-[#b8956a] text-center"
