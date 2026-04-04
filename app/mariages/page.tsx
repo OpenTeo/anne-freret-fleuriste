@@ -77,20 +77,21 @@ export default function Mariages() {
           />
           <div className="absolute inset-0 bg-black/40" />
           <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
-            <div className="bg-black/40 backdrop-blur-[2px] px-10 py-10 md:px-16 md:py-14 text-center max-w-2xl">
+            <div className="bg-[#faf8f5]/90 backdrop-blur-sm px-8 py-10 md:px-16 md:py-14 text-center max-w-2xl shadow-lg">
               <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-[#b8935a] mb-4">
                 Fleuriste Mariage · Normandie
               </p>
-              <h1 className="font-serif text-4xl md:text-6xl text-white mb-4">
+              <h1 className="font-serif text-4xl md:text-6xl text-[#2d2a26] mb-4">
                 Votre jour, nos fleurs
               </h1>
-              <p className="text-white/80 text-base md:text-lg font-light max-w-xl mx-auto mb-8">
+              <div className="w-12 h-px bg-[#b8935a] mx-auto mb-4" />
+              <p className="text-[#2d2a26]/70 text-base md:text-lg font-light max-w-xl mx-auto mb-8">
                 Chaque mariage est unique. Anne crée vos compositions à la main, 
                 avec des fleurs d'Europe sélectionnées avec soin.
               </p>
               <a
                 href="#devis"
-                className="inline-block border border-white text-white px-8 py-3 text-sm uppercase tracking-[0.1em] hover:bg-white hover:text-[#2d2a26] transition-colors"
+                className="inline-block bg-[#b8935a] text-white px-8 py-3 text-sm uppercase tracking-[0.1em] hover:bg-[#a6834e] transition-colors"
               >
                 Demander un devis gratuit
               </a>
