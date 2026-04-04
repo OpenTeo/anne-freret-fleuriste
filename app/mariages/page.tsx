@@ -75,7 +75,7 @@ export default function Mariages() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
           <div className="absolute inset-0 flex flex-col items-center justify-end pb-16 md:pb-20 px-6">
             <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-white/70 mb-4">
               Fleuriste Mariage · Normandie
