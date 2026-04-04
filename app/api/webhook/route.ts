@@ -273,22 +273,80 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
     console.log(`📦 Tentative création colis SendCloud pour ${meta.customer_name} (mode: ${meta.delivery_mode})`);
     
     try {
-      const addressParts = (meta.delivery_address || '').split(', ');
-      const cityParts = addressParts[1]?.split(' ') || [];
-
       const parcel = await createParcel({
         name: meta.customer_name || '',
-        address: addressParts[0] || '',
-        city: cityParts.slice(1).join(' ') || '',
-        postalCode: cityParts[0] || '',
+        address: streetAddress,
+        city: city,
+        postalCode: postalCode,
         country: 'FR',
         email,
-        phone: '',
-        orderNumber: session.id.slice(-8).toUpperCase(),
+        phone: meta.customer_phone || '',
+        orderNumber: orderNumber,
         weight: 1.5,
-        shipmentMethod: 8, // À ajuster selon les méthodes disponibles
+        shipmentMethod: meta.delivery_mode === 'chronopost' ? 9 : 8,
       });
-      console.log(`✅ Colis SendCloud créé: ${parcel.tracking_number}`);
+      
+      const trackingNumber = parcel.tracking_number || '';
+      const trackingUrl = parcel.tracking_url || '';
+      const labelUrl = parcel.label?.label_printer || parcel.label?.normal_printer?.[0] || '';
+      
+      console.log(`✅ Colis SendCloud créé: ${trackingNumber}`);
+      
+      // Sauvegarder le tracking en DB
+      await sql`
+        UPDATE orders 
+        SET tracking_number = ${trackingNumber},
+            tracking_url = ${trackingUrl},
+            label_url = ${labelUrl},
+            sendcloud_parcel_id = ${parcel.id},
+            shipped_at = NOW(),
+            status = 'shipped'
+        WHERE order_number = ${orderNumber}
+      `;
+      
+      // Envoyer email d'expédition au client
+      try {
+        await resend.emails.send({
+          from: FROM_EMAIL,
+          to: email,
+          subject: `Votre commande est en route ! 🚚 — Anne Freret Fleuriste`,
+          html: `
+            <!DOCTYPE html>
+            <html lang="fr">
+            <head><meta charset="utf-8"></head>
+            <body style="margin:0;padding:0;background:#faf8f5;font-family:Georgia,'Times New Roman',serif;">
+              <div style="max-width:600px;margin:0 auto;padding:40px 20px;">
+                <div style="text-align:center;margin-bottom:32px;">
+                  <h1 style="font-size:24px;color:#2d2a26;margin:0;">Anne Freret</h1>
+                  <p style="font-size:12px;color:#b8935a;letter-spacing:3px;margin:4px 0 0;">FLEURISTE</p>
+                </div>
+                <div style="background:white;border:1px solid #e8e0d8;padding:32px;">
+                  <h2 style="font-size:18px;color:#2d2a26;margin:0 0 8px;">Votre commande est en route ! 🚚</h2>
+                  <p style="font-size:14px;color:#2d2a26;opacity:0.7;margin:0 0 24px;line-height:1.6;">
+                    ${meta.customer_name || ''}, votre colis a été confié au transporteur.
+                  </p>
+                  <div style="background:#f5f0eb;padding:16px;margin-bottom:20px;">
+                    <p style="font-size:13px;color:#2d2a26;margin:0 0 8px;"><strong>N° de suivi :</strong> ${trackingNumber}</p>
+                    <p style="font-size:13px;color:#2d2a26;margin:0 0 8px;"><strong>Commande :</strong> ${orderNumber}</p>
+                    <p style="font-size:13px;color:#2d2a26;margin:0;"><strong>Mode :</strong> ${meta.delivery_mode === 'chronopost' ? 'Chronopost Express (24h)' : 'Colissimo (48h)'}</p>
+                  </div>
+                  ${trackingUrl ? `
+                  <div style="text-align:center;margin-top:24px;">
+                    <a href="${trackingUrl}" style="display:inline-block;background:#b8935a;color:white;padding:12px 32px;text-decoration:none;">Suivre mon colis</a>
+                  </div>` : ''}
+                </div>
+                <div style="text-align:center;margin-top:24px;">
+                  <p style="font-size:12px;color:#2d2a26;opacity:0.4;">Anne Freret Fleuriste · Saint-Pair-sur-Mer</p>
+                </div>
+              </div>
+            </body>
+            </html>
+          `,
+        });
+        console.log(`✅ Email expédition envoyé à ${email}`);
+      } catch (emailErr) {
+        console.error('❌ Erreur envoi email expédition:', emailErr);
+      }
     } catch (err) {
       console.error('❌ Erreur création colis SendCloud:', err instanceof Error ? err.message : err);
     }
