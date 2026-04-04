@@ -173,7 +173,7 @@ export default function Livraison() {
                   </div>
                   <div>
                     <p className="text-sm text-[#2d2a26]">Livraison locale</p>
-                    <p className="text-[10px] text-[#2d2a26]/40">Rayon de 35 km · Livrée le jour même si commandée avant midi</p>
+                    <p className="text-[10px] text-[#2d2a26]/40">Rayon de 35 km · Commande avant 12h = livrée le jour même</p>
                   </div>
                 </div>
                 <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
