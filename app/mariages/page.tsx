@@ -69,13 +69,13 @@ export default function Mariages() {
         {/* ════ HERO ════ */}
         <section className="relative h-[60vh] md:h-[70vh] overflow-hidden">
           <Image
-            src="/images/mariages/table-vue-mer.jpg"
-            alt="Décoration florale mariage vue mer — Anne Freret"
+            src="/images/mariages/salle-reception.jpg"
+            alt="Salle de réception mariage fleurie — Anne Freret"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+          <div className="absolute inset-0 bg-black/50" />
           <div className="absolute inset-0 flex flex-col items-center justify-end pb-16 md:pb-20 px-6">
             <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-white/70 mb-4">
               Fleuriste Mariage · Normandie
