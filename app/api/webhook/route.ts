@@ -5,6 +5,15 @@ import { createParcel } from '@/lib/sendcloud';
 import { sql } from '@/lib/db';
 import Stripe from 'stripe';
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export async function POST(req: NextRequest) {
   const body = await req.text();
   const sig = req.headers.get('stripe-signature');
@@ -249,7 +258,7 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
             </div>
 
             <div style="background:white;border:1px solid #e8e0d8;padding:32px;">
-              <h2 style="font-size:18px;color:#2d2a26;margin:0 0 8px;">Merci ${meta.customer_name || ''} !</h2>
+              <h2 style="font-size:18px;color:#2d2a26;margin:0 0 8px;">Merci ${escapeHtml(meta.customer_name || '')} !</h2>
               <p style="font-size:14px;color:#2d2a26;opacity:0.7;margin:0 0 24px;line-height:1.6;">
                 Votre commande a bien été enregistrée. Nous préparons vos créations florales avec soin.
               </p>
@@ -258,7 +267,7 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
                 <table style="width:100%;font-size:14px;color:#2d2a26;">
                   <tr>
                     <td style="padding:8px 0;color:#2d2a26;opacity:0.5;">Articles</td>
-                    <td style="padding:8px 0;text-align:right;">${meta.order_items || '—'}</td>
+                    <td style="padding:8px 0;text-align:right;">${escapeHtml(meta.order_items || '—')}</td>
                   </tr>
                   <tr>
                     <td style="padding:8px 0;color:#2d2a26;opacity:0.5;">Livraison</td>
@@ -270,12 +279,12 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
                   </tr>
                   <tr>
                     <td style="padding:8px 0;color:#2d2a26;opacity:0.5;">Adresse</td>
-                    <td style="padding:8px 0;text-align:right;">${meta.delivery_address || '—'}</td>
+                    <td style="padding:8px 0;text-align:right;">${escapeHtml(meta.delivery_address || '—')}</td>
                   </tr>
                   ${meta.card_message ? `
                   <tr>
                     <td style="padding:8px 0;color:#2d2a26;opacity:0.5;">Message carte</td>
-                    <td style="padding:8px 0;text-align:right;font-style:italic;">"${meta.card_message}"</td>
+                    <td style="padding:8px 0;text-align:right;font-style:italic;">"${escapeHtml(meta.card_message)}"</td>
                   </tr>` : ''}
                 </table>
               </div>
@@ -289,7 +298,7 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
             <div style="text-align:center;margin-top:24px;">
               <p style="font-size:12px;color:#2d2a26;opacity:0.4;line-height:1.6;">
                 Une question ? Répondez directement à cet email ou appelez-nous.<br>
-                Anne Freret Fleuriste · Barneville-Carteret, Normandie
+                Anne Freret Fleuriste · Saint-Pair-sur-Mer, Normandie
               </p>
             </div>
           </div>
@@ -664,7 +673,7 @@ async function handleSubscriptionPaymentFailed(invoice: Stripe.Invoice) {
               <div style="background:white;border:1px solid #e8e0d8;padding:32px;">
                 <h2 style="font-size:18px;color:#d9534f;margin:0 0 8px;">⚠️ Problème de paiement</h2>
                 <p style="font-size:14px;color:#2d2a26;opacity:0.7;margin:0 0 24px;line-height:1.6;">
-                  Bonjour ${sub.first_name || ''},
+                  Bonjour ${escapeHtml(sub.first_name || '')},
                   <br><br>
                   Nous n'avons pas pu débiter votre carte pour votre abonnement fleurs.
                   <br>
@@ -687,7 +696,7 @@ async function handleSubscriptionPaymentFailed(invoice: Stripe.Invoice) {
               <div style="text-align:center;margin-top:24px;">
                 <p style="font-size:12px;color:#2d2a26;opacity:0.4;line-height:1.6;">
                   Une question ? Répondez directement à cet email.<br>
-                  Anne Freret Fleuriste · Barneville-Carteret, Normandie
+                  Anne Freret Fleuriste · Saint-Pair-sur-Mer, Normandie
                 </p>
               </div>
             </div>

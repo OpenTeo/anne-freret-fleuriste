@@ -1,8 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@/lib/db';
 import { hashPassword, isValidEmail, isValidPassword, sanitizeUser } from '@/lib/auth';
+import { rateLimit } from '@/lib/rate-limit';
 
 export async function POST(req: NextRequest) {
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  if (!rateLimit(ip, 5, 15 * 60 * 1000)) {
+    return NextResponse.json(
+      { error: 'Trop de tentatives. Réessayez dans quelques minutes.' },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await req.json();
     const { email, password, firstName, lastName, phone } = body;
