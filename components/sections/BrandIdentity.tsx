@@ -78,8 +78,8 @@ export default function BrandIdentity() {
                   <path d="M8 18h8"/>
                 </svg>
               ),
-              title: 'Fleurs d\u2019Europe', 
-              desc: 'Sélectionnées avec soin, fraîches' 
+              title: 'Fleurs responsables', 
+              desc: 'Circuit court, fraîcheur garantie' 
             },
             { 
               icon: (
