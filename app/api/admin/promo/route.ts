@@ -22,14 +22,31 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Code et type requis' }, { status: 400 });
     }
 
+    // Sanitize: code promo = alphanumérique + tirets uniquement
+    const sanitizedCode = code.replace(/[^a-zA-Z0-9\-_]/g, '').toUpperCase();
+    if (!sanitizedCode || sanitizedCode.length < 3) {
+      return NextResponse.json({ error: 'Code invalide (3 caract\u00e8res alphanum\u00e9riques minimum)' }, { status: 400 });
+    }
+
     if (!['percentage', 'fixed', 'free_shipping'].includes(type)) {
       return NextResponse.json({ error: 'Type invalide' }, { status: 400 });
+    }
+
+    // Validation valeurs
+    if (type !== 'free_shipping' && (!value || value <= 0)) {
+      return NextResponse.json({ error: 'La valeur doit être positive' }, { status: 400 });
+    }
+    if (type === 'percentage' && value > 100) {
+      return NextResponse.json({ error: 'Le pourcentage ne peut pas dépasser 100%' }, { status: 400 });
+    }
+    if (min_order !== undefined && min_order < 0) {
+      return NextResponse.json({ error: 'Commande minimum invalide' }, { status: 400 });
     }
 
     const result = await sql`
       INSERT INTO promo_codes (code, type, value, min_order, max_uses, valid_from, valid_until)
       VALUES (
-        ${code.toUpperCase()}, 
+        ${sanitizedCode}, 
         ${type}, 
         ${value || 0}, 
         ${min_order || 0}, 

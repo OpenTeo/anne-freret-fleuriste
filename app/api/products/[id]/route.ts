@@ -47,7 +47,18 @@ export async function PATCH(
 
     const { id } = await params;
     const body = await request.json();
-    console.log('PATCH /api/products/', id, 'body keys:', Object.keys(body), 'images type:', typeof body.images, Array.isArray(body.images), 'tags type:', typeof body.tags, Array.isArray(body.tags));
+
+    // Validation
+    if (body.price !== undefined && (typeof body.price !== 'number' || body.price < 0)) {
+      return NextResponse.json({ error: 'Prix invalide (doit être >= 0)' }, { status: 400 });
+    }
+    if (body.stock !== undefined && (typeof body.stock !== 'number' || body.stock < 0 || !Number.isInteger(body.stock))) {
+      return NextResponse.json({ error: 'Stock invalide (entier >= 0)' }, { status: 400 });
+    }
+    if (body.original_price !== undefined && body.original_price !== null && (typeof body.original_price !== 'number' || body.original_price < 0)) {
+      return NextResponse.json({ error: 'Prix original invalide' }, { status: 400 });
+    }
+
     const {
       name,
       description,
