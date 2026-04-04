@@ -191,7 +191,11 @@ export default function ProductsList() {
 
               {/* Stats */}
               <div className="flex gap-3 text-xs text-[#2d2a26]/60 mb-3">
-                <span>Stock: {product.stock}</span>
+                <span className={`font-medium ${
+                  product.stock === 0 ? 'text-red-600' : product.stock < 5 ? 'text-orange-500' : 'text-green-600'
+                }`}>
+                  {product.stock === 0 ? '🔴' : product.stock < 5 ? '🟠' : '🟢'} Stock: {product.stock}
+                </span>
                 {product.rating && (
                   <span>
                     ⭐ {product.rating} ({product.review_count || 0})
