@@ -105,7 +105,7 @@ export default function Mariages() {
               <div className="w-12 h-px bg-[#b8935a] mx-auto mb-4" />
               <p className="text-[#2d2a26]/70 text-base md:text-lg font-light max-w-xl mx-auto mb-8">
                 Chaque mariage est unique. Notre équipe crée vos 
-                compositions à la main, avec des fleurs d'Europe sélectionnées avec soin.
+                compositions à la main, avec des fleurs fraîches sélectionnées en circuit court.
               </p>
               <a
                 href="#devis"
@@ -147,7 +147,7 @@ export default function Mariages() {
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-6">
                   Du premier rendez-vous à l'installation le jour J, Anne est là. Elle écoute, 
                   propose, ajuste. Le résultat ? Des compositions qui vous ressemblent, 
-                  réalisées avec des fleurs fraîches, toutes de provenance européenne.
+                  réalisées avec des fleurs fraîches, sélectionnées avec soin.
                 </p>
                 <div className="flex flex-wrap gap-4 text-[11px] uppercase tracking-[0.15em] text-[#b8935a]">
                   <span className="border border-[#b8935a]/30 px-4 py-2">Bouquets de mariée</span>
@@ -247,7 +247,7 @@ export default function Mariages() {
                 </h2>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-4">
                   Derrière chaque composition, il y a des heures de préparation. 
-                  Sélection de fleurs de provenance européenne, conditionnement, assemblage minutieux, 
+                  Sélection de fleurs fraîches en circuit court, conditionnement, assemblage minutieux, 
                   tout est fait à la main dans notre atelier de Saint-Pair-sur-Mer.
                 </p>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-8">
