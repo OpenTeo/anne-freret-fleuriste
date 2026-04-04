@@ -412,7 +412,9 @@ export default function ProductPageClient({ params }: ProductPageProps) {
 
                 <div className="flex gap-3">
                   <button 
+                    disabled={!product.in_stock && !product.inStock}
                     onClick={() => {
+                      if (!product.in_stock && !product.inStock) return;
                       const cart = JSON.parse(localStorage.getItem('af-cart') || '[]');
                       const newItem = {
                         id: product.id + '-' + (selectedSize?.name || 'default'),
@@ -432,12 +434,12 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                       localStorage.setItem('af-cart', JSON.stringify(cart));
                       window.location.href = '/panier';
                     }}
-                    className="flex-grow bg-[#b8935a] text-white py-3.5 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors flex items-center justify-center gap-2"
+                    className={`flex-grow py-3.5 text-sm uppercase tracking-[0.1em] transition-colors flex items-center justify-center gap-2 ${!product.in_stock && !product.inStock ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#b8935a] text-white hover:bg-[#b8956a]'}`}
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                     </svg>
-                    Ajouter au panier — {currentPrice.toFixed(2)}€
+                    {!product.in_stock || false ? 'Rupture de stock' : `Ajouter au panier — ${currentPrice.toFixed(2)}€`}
                   </button>
                   
                   <button
@@ -648,7 +650,9 @@ export default function ProductPageClient({ params }: ProductPageProps) {
         {/* Bouton panier sticky sur mobile */}
         <div className="lg:hidden fixed bottom-0 left-0 right-0 px-5 pt-3 pb-8 bg-[#faf8f5]/95 backdrop-blur-sm border-t border-[#e8e0d8] z-50" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom, 2rem))' }}>
           <button 
+            disabled={!product.in_stock || false}
             onClick={() => {
+              if (!product.in_stock || false) return;
               const cart = JSON.parse(localStorage.getItem('af-cart') || '[]');
               const newItem = {
                 id: product.id + '-' + (selectedSize?.name || 'default'),
@@ -668,12 +672,12 @@ export default function ProductPageClient({ params }: ProductPageProps) {
               localStorage.setItem('af-cart', JSON.stringify(cart));
               window.location.href = '/panier';
             }}
-            className="w-full bg-[#b8935a] text-white py-3.5 text-sm uppercase tracking-[0.1em] hover:bg-[#b8956a] transition-colors flex items-center justify-center gap-2"
+            className={`w-full py-3.5 text-sm uppercase tracking-[0.1em] transition-colors flex items-center justify-center gap-2 ${!product.in_stock || false ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#b8935a] text-white hover:bg-[#b8956a]'}`}
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
             </svg>
-            Ajouter au panier — {currentPrice.toFixed(2)}€
+            {!product.in_stock || false ? 'Rupture de stock' : `Ajouter au panier — ${currentPrice.toFixed(2)}€`}
           </button>
         </div>
       </main>

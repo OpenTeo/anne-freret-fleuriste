@@ -86,14 +86,37 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
   const postalCode = cityParts[0] || '';
   const city = cityParts.slice(1).join(' ') || '';
 
-  // Parser les articles depuis metadata (format JSON attendu dans order_items_json)
+  // Parser les articles depuis metadata OU depuis line_items Stripe (fallback)
   let orderItems: Array<{ name: string; size: string; image?: string; quantity: number; price: number }> = [];
   try {
     if (meta.order_items_json) {
       orderItems = JSON.parse(meta.order_items_json);
     }
   } catch (err) {
-    console.error('Erreur parsing order_items_json:', err);
+    console.error('Erreur parsing order_items_json (peut-être tronqué > 500 chars):', err);
+  }
+
+  // Fallback: récupérer depuis Stripe line_items si orderItems est vide
+  if (orderItems.length === 0) {
+    try {
+      const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { limit: 100 });
+      orderItems = lineItems.data
+        .filter(item => !item.description?.includes('Livraison') && !item.description?.includes('Carte message'))
+        .map(item => {
+          const desc = item.description || '';
+          const sizeMatch = desc.match(/Taille\s*:\s*([^,]+)/);
+          return {
+            name: item.description?.split('Taille :')[0]?.trim() || (typeof item.price?.product === 'object' && 'name' in item.price.product ? item.price.product.name : undefined) || 'Produit',
+            size: sizeMatch ? sizeMatch[1].trim() : 'Standard',
+            quantity: item.quantity || 1,
+            price: (item.amount_total || 0) / 100 / (item.quantity || 1),
+            image: undefined,
+          };
+        });
+      console.log(`ℹ️ Reconstruit ${orderItems.length} articles depuis Stripe line_items (metadata tronquée)`);
+    } catch (lineErr) {
+      console.error('Impossible de récupérer line_items depuis Stripe:', lineErr);
+    }
   }
 
   // Chercher si un compte utilisateur existe avec cet email
