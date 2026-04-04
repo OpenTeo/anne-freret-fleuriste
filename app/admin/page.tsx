@@ -1,129 +1,174 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import DashboardStats from './components/DashboardStats';
 import OrdersList from './components/OrdersList';
 import ClientsList from './components/ClientsList';
-import SubscriptionsList from './components/SubscriptionsList';
 import ProductsList from './components/ProductsList';
+import SubscriptionsList from './components/SubscriptionsList';
 import ReviewsList from './components/ReviewsList';
 import PromoCodesList from './components/PromoCodesList';
 
-type Tab = 'dashboard' | 'orders' | 'clients' | 'products' | 'subscriptions' | 'reviews' | 'promo';
+type Tab = 'dashboard' | 'orders' | 'clients' | 'products' | 'subscriptions' | 'reviews' | 'promos';
 
-const tabs: { id: Tab; label: string; icon: string }[] = [
-  { id: 'dashboard', label: 'Tableau de bord', icon: '📊' },
-  { id: 'orders', label: 'Commandes', icon: '📦' },
-  { id: 'clients', label: 'Clients', icon: '👥' },
-  { id: 'products', label: 'Produits', icon: '🛍️' },
-  { id: 'subscriptions', label: 'Abonnements', icon: '🔄' },
-  { id: 'reviews', label: 'Avis', icon: '⭐' },
-  { id: 'promo', label: 'Codes promo', icon: '🏷️' },
+const tabs: { key: Tab; label: string; icon: string }[] = [
+  { key: 'dashboard', label: 'Dashboard', icon: '📊' },
+  { key: 'orders', label: 'Commandes', icon: '📦' },
+  { key: 'clients', label: 'Clients', icon: '👥' },
+  { key: 'products', label: 'Produits', icon: '🌸' },
+  { key: 'subscriptions', label: 'Abonnements', icon: '🔄' },
+  { key: 'reviews', label: 'Avis', icon: '⭐' },
+  { key: 'promos', label: 'Promos', icon: '🏷️' },
 ];
 
-const tabTitles: Record<Tab, string> = {
-  dashboard: 'Tableau de bord',
-  orders: 'Commandes',
-  clients: 'Clients',
-  products: 'Produits',
-  subscriptions: 'Abonnements',
-  reviews: 'Avis clients',
-  promo: 'Codes promo',
-};
-
 export default function AdminPage() {
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState<Tab>('dashboard');
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [pendingCount, setPendingCount] = useState(0);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    fetch('/api/admin/stats')
+      .then((r) => r.json())
+      .then((data) => {
+        if (data.pendingOrders !== undefined) setPendingCount(data.pendingOrders);
+      })
+      .catch(() => {});
+  }, [activeTab]);
 
   const handleLogout = async () => {
-    setIsLoggingOut(true);
-    try {
-      await fetch('/api/admin/auth/logout', { method: 'POST' });
-      router.push('/admin/login');
-    } catch {
-      setIsLoggingOut(false);
+    await fetch('/api/admin/auth/logout', { method: 'POST' });
+    router.push('/admin/login');
+  };
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'dashboard':
+        return <DashboardStats onNavigate={(tab: string) => setActiveTab(tab as Tab)} />;
+      case 'orders':
+        return <OrdersList />;
+      case 'clients':
+        return <ClientsList />;
+      case 'products':
+        return <ProductsList />;
+      case 'subscriptions':
+        return <SubscriptionsList />;
+      case 'reviews':
+        return <ReviewsList />;
+      case 'promos':
+        return <PromoCodesList />;
     }
   };
 
+  const currentTab = tabs.find((t) => t.key === activeTab);
+
   return (
     <div className="min-h-screen bg-[#faf8f5] flex">
-      {/* Sidebar - Desktop */}
-      <aside className="w-64 bg-gradient-to-b from-[#1a1714] to-[#2d2a26] text-white min-h-screen fixed left-0 top-0 z-50 hidden md:flex md:flex-col shadow-2xl">
-        <div className="p-6 border-b border-white/10 bg-gradient-to-r from-[#b8935a]/10 to-transparent">
-          <span className="font-serif text-2xl text-white/95 tracking-wide">Anne Freret</span>
-          <p className="text-[11px] tracking-[0.2em] uppercase text-[#b8935a] mt-2 font-medium">
-            Administration
-          </p>
+      {/* Sidebar overlay mobile */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/30 z-40 lg:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      {/* Sidebar desktop */}
+      <aside
+        className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-[#e8e0d8] flex flex-col transition-transform lg:translate-x-0 ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="p-6 border-b border-[#e8e0d8]">
+          <h1 className="text-lg font-semibold text-[#2d2a26]">Anne Freret</h1>
+          <p className="text-xs text-[#2d2a26]/50 mt-1">Administration</p>
         </div>
 
-        <nav className="p-4 space-y-1 flex-1 overflow-y-auto">
+        <nav className="flex-1 py-4 overflow-y-auto">
           {tabs.map((tab) => (
             <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm transition-all duration-200 ${
-                activeTab === tab.id
-                  ? 'bg-gradient-to-r from-[#b8935a] to-[#b8956a] text-white shadow-lg'
-                  : 'text-white/70 hover:text-white hover:bg-white/10'
+              key={tab.key}
+              onClick={() => {
+                setActiveTab(tab.key);
+                setSidebarOpen(false);
+              }}
+              className={`w-full flex items-center gap-3 px-6 py-3 text-sm transition-colors relative ${
+                activeTab === tab.key
+                  ? 'bg-[#b8935a]/10 text-[#b8935a] font-medium border-r-2 border-[#b8935a]'
+                  : 'text-[#2d2a26]/70 hover:bg-[#faf8f5] hover:text-[#2d2a26]'
               }`}
             >
               <span className="text-base">{tab.icon}</span>
-              <span className="font-medium">{tab.label}</span>
+              <span>{tab.label}</span>
+              {tab.key === 'orders' && pendingCount > 0 && (
+                <span className="ml-auto bg-red-500 text-white text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {pendingCount}
+                </span>
+              )}
             </button>
           ))}
         </nav>
 
-        <div className="p-4 border-t border-white/10 space-y-3 bg-gradient-to-r from-[#b8935a]/5 to-transparent">
-          <a
-            href="/"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center gap-2 text-xs text-white/50 hover:text-[#b8935a] transition-colors duration-200"
-          >
-            🌐 Voir le site web
-          </a>
+        <div className="p-4 border-t border-[#e8e0d8]">
           <button
             onClick={handleLogout}
-            disabled={isLoggingOut}
-            className="w-full flex items-center gap-2 text-xs text-white/50 hover:text-red-400 transition-colors duration-200 disabled:opacity-50"
+            className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 rounded-lg transition-colors"
           >
-            🚪 {isLoggingOut ? 'Déconnexion...' : 'Se déconnecter'}
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Déconnexion
           </button>
         </div>
       </aside>
 
-      {/* Mobile nav - bottom tabs */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-gradient-to-r from-[#1a1714] to-[#2d2a26] z-50 border-t border-white/10 shadow-2xl">
-        <div className="flex justify-around px-1 py-2 overflow-x-auto">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-all duration-200 min-w-[50px] ${
-                activeTab === tab.id ? 'text-[#b8935a]' : 'text-white/50'
-              }`}
-            >
-              <span className="text-lg">{tab.icon}</span>
-              <span className="text-[8px] font-medium leading-tight">{tab.label.split(' ')[0]}</span>
-            </button>
-          ))}
-        </div>
-      </div>
+      {/* Main content */}
+      <main className="flex-1 min-w-0">
+        {/* Top header */}
+        <header className="sticky top-0 z-30 bg-white border-b border-[#e8e0d8] px-4 lg:px-8 py-4 flex items-center gap-4">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="lg:hidden p-2 -ml-2 text-[#2d2a26]/70 hover:text-[#2d2a26]"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <h2 className="text-lg font-semibold text-[#2d2a26]">
+            {currentTab?.icon} {currentTab?.label}
+          </h2>
+        </header>
 
-      {/* Content */}
-      <main className="flex-1 md:ml-64 p-4 md:p-10 pb-24 md:pb-10 bg-gradient-to-br from-[#faf8f5] to-[#f5f0eb] min-h-screen">
-        <h1 className="font-serif text-2xl text-[#2d2a26] mb-8">{tabTitles[activeTab]}</h1>
-
-        {activeTab === 'dashboard' && <DashboardStats />}
-        {activeTab === 'orders' && <OrdersList />}
-        {activeTab === 'clients' && <ClientsList />}
-        {activeTab === 'products' && <ProductsList />}
-        {activeTab === 'subscriptions' && <SubscriptionsList />}
-        {activeTab === 'reviews' && <ReviewsList />}
-        {activeTab === 'promo' && <PromoCodesList />}
+        <div className="p-4 lg:p-8">{renderContent()}</div>
       </main>
+
+      {/* Bottom nav mobile */}
+      <nav className="fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-[#e8e0d8] flex lg:hidden">
+        {tabs.slice(0, 5).map((tab) => (
+          <button
+            key={tab.key}
+            onClick={() => setActiveTab(tab.key)}
+            className={`flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] relative ${
+              activeTab === tab.key ? 'text-[#b8935a]' : 'text-[#2d2a26]/50'
+            }`}
+          >
+            <span className="text-lg">{tab.icon}</span>
+            <span>{tab.label}</span>
+            {tab.key === 'orders' && pendingCount > 0 && (
+              <span className="absolute top-1 right-1/4 bg-red-500 text-white text-[8px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                {pendingCount}
+              </span>
+            )}
+          </button>
+        ))}
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className={`flex-1 flex flex-col items-center gap-0.5 py-2 text-[10px] text-[#2d2a26]/50`}
+        >
+          <span className="text-lg">•••</span>
+          <span>Plus</span>
+        </button>
+      </nav>
     </div>
   );
 }

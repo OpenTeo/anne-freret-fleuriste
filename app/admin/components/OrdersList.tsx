@@ -1,14 +1,16 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
+import OrderDetail from './OrderDetail';
 
 interface OrderItem {
-  id: string;
   product_name: string;
-  product_image: string;
+  product_image?: string;
   quantity: number;
-  unit_price: string;
-  total_price: string;
+  unit_price: number;
+  total_price: number;
+  size?: string;
+  variant?: string;
 }
 
 interface Order {
@@ -16,205 +18,288 @@ interface Order {
   order_number: string;
   customer_name: string;
   customer_email: string;
-  total_amount: string;
+  customer_phone: string;
+  total_amount: number;
   status: string;
+  delivery_address: string;
+  delivery_city: string;
+  delivery_postal_code: string;
   delivery_mode: string;
-  shipping_address: string;
-  tracking_number?: string;
+  delivery_date: string;
+  card_message: string;
+  tracking_number: string;
+  tracking_url: string;
+  label_url: string;
+  sendcloud_parcel_id: number | null;
+  shipped_at: string;
+  delivered_at: string;
   created_at: string;
-  items?: OrderItem[];
+  items: OrderItem[] | null;
+  shipping_address: Record<string, string> | null;
 }
 
-const statusLabels: Record<string, { label: string; color: string }> = {
-  pending: { label: 'En attente', color: 'bg-yellow-100 text-yellow-800 border-yellow-200' },
-  confirmed: { label: 'Confirmée', color: 'bg-blue-100 text-blue-800 border-blue-200' },
-  preparing: { label: 'En préparation', color: 'bg-purple-100 text-purple-800 border-purple-200' },
-  shipped: { label: 'Expédiée', color: 'bg-indigo-100 text-indigo-800 border-indigo-200' },
-  delivered: { label: 'Livrée', color: 'bg-green-100 text-green-800 border-green-200' },
+const statuses = [
+  { value: '', label: 'Tous' },
+  { value: 'pending', label: 'En attente' },
+  { value: 'confirmed', label: 'Confirmée' },
+  { value: 'shipped', label: 'Expédiée' },
+  { value: 'delivered', label: 'Livrée' },
+  { value: 'cancelled', label: 'Annulée' },
+];
+
+const statusBadge: Record<string, { label: string; cls: string }> = {
+  pending: { label: 'En attente', cls: 'bg-yellow-100 text-yellow-800' },
+  confirmed: { label: 'Confirmée', cls: 'bg-blue-100 text-blue-800' },
+  shipped: { label: 'Expédiée', cls: 'bg-purple-100 text-purple-800' },
+  delivered: { label: 'Livrée', cls: 'bg-green-100 text-green-800' },
+  cancelled: { label: 'Annulée', cls: 'bg-red-100 text-red-800' },
 };
 
-const allStatuses = ['pending', 'confirmed', 'preparing', 'shipped', 'delivered'];
+function fmt(n: number): string {
+  return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(n);
+}
+
+const PER_PAGE = 20;
 
 export default function OrdersList() {
   const [orders, setOrders] = useState<Order[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [dateFilter, setDateFilter] = useState('');
-  const [expandedOrder, setExpandedOrder] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [statusFilter, setStatusFilter] = useState('');
+  const [search, setSearch] = useState('');
+  const [page, setPage] = useState(1);
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [selectedOrderItems, setSelectedOrderItems] = useState<OrderItem[]>([]);
+  const [updatingId, setUpdatingId] = useState<string | null>(null);
 
-  const loadOrders = async () => {
+  const loadOrders = useCallback(async () => {
+    setLoading(true);
     try {
-      // Fetch all orders via admin stats + regular endpoint
-      const res = await fetch('/api/orders?userId=all');
+      const res = await fetch('/api/orders');
       const data = await res.json();
       setOrders(data.orders || []);
-    } catch (error) {
-      console.error('Erreur chargement commandes:', error);
+    } catch (e) {
+      console.error('Erreur chargement commandes:', e);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     loadOrders();
-  }, []);
+  }, [loadOrders]);
 
-  const changeStatus = async (orderId: string, newStatus: string) => {
+  const updateStatus = async (orderId: string, newStatus: string) => {
+    setUpdatingId(orderId);
     try {
-      const res = await fetch(`/api/orders/${orderId}`, {
+      const res = await fetch(`/api/admin/orders/${orderId}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: newStatus }),
       });
-      if (res.ok) loadOrders();
-    } catch (error) {
-      console.error('Erreur mise à jour statut:', error);
+      if (res.ok) {
+        setOrders((prev) =>
+          prev.map((o) => (o.id === orderId ? { ...o, status: newStatus } : o))
+        );
+      }
+    } catch (e) {
+      console.error('Erreur changement statut:', e);
+    } finally {
+      setUpdatingId(null);
     }
   };
 
-  const filteredOrders = orders.filter((o) => {
-    if (statusFilter !== 'all' && o.status !== statusFilter) return false;
-    if (dateFilter) {
-      const orderDate = new Date(o.created_at).toISOString().split('T')[0];
-      if (orderDate < dateFilter) return false;
+  const openDetail = async (order: Order) => {
+    setSelectedOrder(order);
+    // Try to fetch order_items from DB
+    try {
+      const res = await fetch(`/api/orders/${order.id}`);
+      const data = await res.json();
+      setSelectedOrderItems(data.order_items || []);
+    } catch {
+      setSelectedOrderItems([]);
+    }
+  };
+
+  // Filter and search
+  const filtered = orders.filter((o) => {
+    if (statusFilter && o.status !== statusFilter) return false;
+    if (search) {
+      const q = search.toLowerCase();
+      return (
+        (o.order_number || '').toLowerCase().includes(q) ||
+        (o.customer_name || '').toLowerCase().includes(q) ||
+        (o.customer_email || '').toLowerCase().includes(q)
+      );
     }
     return true;
   });
 
-  if (isLoading) {
-    return <div className="text-center py-8 text-[#2d2a26]/40">Chargement...</div>;
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PER_PAGE));
+  const paginated = filtered.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+
+  // Reset page when filters change
+  useEffect(() => {
+    setPage(1);
+  }, [statusFilter, search]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="w-8 h-8 border-2 border-[#b8935a] border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
   }
 
   return (
     <div>
       {/* Filters */}
-      <div className="mb-4 flex flex-wrap gap-3 items-center">
-        <div className="flex gap-2 flex-wrap">
-          <button
-            onClick={() => setStatusFilter('all')}
-            className={`px-3 py-1.5 text-sm rounded-lg transition ${
-              statusFilter === 'all' ? 'bg-[#b8935a] text-white' : 'bg-white text-[#2d2a26] border border-[#e8e0d8] hover:border-[#b8935a]'
-            }`}
-          >
-            Toutes ({orders.length})
-          </button>
-          {Object.entries(statusLabels).map(([key, { label }]) => (
-            <button
-              key={key}
-              onClick={() => setStatusFilter(key)}
-              className={`px-3 py-1.5 text-sm rounded-lg transition ${
-                statusFilter === key ? 'bg-[#b8935a] text-white' : 'bg-white text-[#2d2a26] border border-[#e8e0d8] hover:border-[#b8935a]'
-              }`}
-            >
-              {label} ({orders.filter((o) => o.status === key).length})
-            </button>
-          ))}
+      <div className="flex flex-col sm:flex-row gap-3 mb-6">
+        <div className="relative flex-1">
+          <input
+            type="text"
+            placeholder="Rechercher par n°, nom ou email…"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-9 pr-4 py-2.5 border border-[#e8e0d8] rounded-lg text-sm bg-white focus:outline-none focus:border-[#b8935a] text-[#2d2a26]"
+          />
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#2d2a26]/30">🔍</span>
         </div>
-        <input
-          type="date"
-          value={dateFilter}
-          onChange={(e) => setDateFilter(e.target.value)}
-          className="px-3 py-1.5 text-sm border border-[#e8e0d8] rounded-lg text-[#2d2a26] focus:outline-none focus:border-[#b8935a]"
-        />
-        {dateFilter && (
-          <button onClick={() => setDateFilter('')} className="text-xs text-[#b8935a] hover:underline">
-            Réinitialiser date
-          </button>
-        )}
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="px-4 py-2.5 border border-[#e8e0d8] rounded-lg text-sm bg-white focus:outline-none focus:border-[#b8935a] text-[#2d2a26]"
+        >
+          {statuses.map((s) => (
+            <option key={s.value} value={s.value}>
+              {s.label}
+            </option>
+          ))}
+        </select>
       </div>
 
-      {/* Orders table */}
-      <div className="bg-white border border-[#e8e0d8] rounded-lg overflow-x-auto">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-[#e8e0d8] bg-[#f5f0eb]">
-              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">N° Commande</th>
-              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Client</th>
-              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Montant</th>
-              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Statut</th>
-              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Date</th>
-              <th className="p-3 text-left text-[10px] tracking-[0.12em] uppercase text-[#2d2a26]/60">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredOrders.length === 0 ? (
-              <tr>
-                <td colSpan={6} className="p-8 text-center text-[#2d2a26]/40">Aucune commande</td>
+      {/* Count */}
+      <p className="text-xs text-[#2d2a26]/50 mb-3">
+        {filtered.length} commande{filtered.length > 1 ? 's' : ''}
+        {statusFilter && ` · filtre: ${statuses.find((s) => s.value === statusFilter)?.label}`}
+      </p>
+
+      {/* Table */}
+      <div className="bg-white border border-[#e8e0d8] rounded-lg overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-[#faf8f5] text-[#2d2a26]/50 text-xs uppercase">
+                <th className="text-left px-4 py-3">N° commande</th>
+                <th className="text-left px-4 py-3">Date</th>
+                <th className="text-left px-4 py-3">Client</th>
+                <th className="text-left px-4 py-3 hidden md:table-cell">Email</th>
+                <th className="text-right px-4 py-3">Montant</th>
+                <th className="text-left px-4 py-3 hidden lg:table-cell">Livraison</th>
+                <th className="text-center px-4 py-3">Statut</th>
+                <th className="text-center px-4 py-3">Actions</th>
               </tr>
-            ) : (
-              filteredOrders.map((order) => (
-                <>
-                  <tr
-                    key={order.id}
-                    className={`border-b border-[#e8e0d8] hover:bg-[#faf8f5] cursor-pointer ${expandedOrder === order.id ? 'bg-[#faf8f5]' : ''}`}
-                    onClick={() => setExpandedOrder(expandedOrder === order.id ? null : order.id)}
-                  >
-                    <td className="p-3 font-medium text-[#2d2a26]">{order.order_number}</td>
-                    <td className="p-3">
-                      <div className="text-[#2d2a26]">{order.customer_name}</div>
-                      <div className="text-[10px] text-[#2d2a26]/40">{order.customer_email}</div>
+            </thead>
+            <tbody className="divide-y divide-[#e8e0d8]">
+              {paginated.map((order) => {
+                const badge = statusBadge[order.status] || {
+                  label: order.status,
+                  cls: 'bg-gray-100 text-gray-800',
+                };
+                return (
+                  <tr key={order.id} className="hover:bg-[#faf8f5] transition-colors">
+                    <td className="px-4 py-3 font-mono text-xs text-[#b8935a]">
+                      {order.order_number || order.id.slice(0, 8)}
                     </td>
-                    <td className="p-3 text-[#2d2a26] font-medium">{parseFloat(order.total_amount).toFixed(2)} €</td>
-                    <td className="p-3">
-                      <span className={`inline-block px-2 py-0.5 text-[10px] rounded border ${statusLabels[order.status]?.color || 'bg-gray-100 text-gray-800'}`}>
-                        {statusLabels[order.status]?.label || order.status}
-                      </span>
-                    </td>
-                    <td className="p-3 text-[#2d2a26]/60 text-xs">
+                    <td className="px-4 py-3 text-[#2d2a26]/70">
                       {new Date(order.created_at).toLocaleDateString('fr-FR')}
                     </td>
-                    <td className="p-3" onClick={(e) => e.stopPropagation()}>
+                    <td className="px-4 py-3 text-[#2d2a26] font-medium">
+                      {order.customer_name || '—'}
+                    </td>
+                    <td className="px-4 py-3 text-[#2d2a26]/60 hidden md:table-cell">
+                      {order.customer_email || '—'}
+                    </td>
+                    <td className="px-4 py-3 text-right font-medium text-[#2d2a26]">
+                      {fmt(Number(order.total_amount))}
+                    </td>
+                    <td className="px-4 py-3 text-[#2d2a26]/60 hidden lg:table-cell">
+                      {order.delivery_mode || '—'}
+                    </td>
+                    <td className="px-4 py-3 text-center">
                       <select
                         value={order.status}
-                        onChange={(e) => changeStatus(order.id, e.target.value)}
-                        className="text-xs border border-[#e8e0d8] rounded px-2 py-1 text-[#2d2a26] focus:outline-none focus:border-[#b8935a] bg-white"
+                        onChange={(e) => updateStatus(order.id, e.target.value)}
+                        disabled={updatingId === order.id}
+                        className={`text-xs rounded-full px-2 py-1 border-0 cursor-pointer ${badge.cls} ${
+                          updatingId === order.id ? 'opacity-50' : ''
+                        }`}
                       >
-                        {allStatuses.map((s) => (
-                          <option key={s} value={s}>{statusLabels[s]?.label}</option>
-                        ))}
+                        {statuses
+                          .filter((s) => s.value)
+                          .map((s) => (
+                            <option key={s.value} value={s.value}>
+                              {s.label}
+                            </option>
+                          ))}
                       </select>
                     </td>
+                    <td className="px-4 py-3 text-center">
+                      <button
+                        onClick={() => openDetail(order)}
+                        className="text-xs text-[#b8935a] hover:text-[#a07d4a] font-medium hover:underline"
+                      >
+                        Voir détail
+                      </button>
+                    </td>
                   </tr>
-                  {/* Expanded detail */}
-                  {expandedOrder === order.id && (
-                    <tr key={`${order.id}-detail`} className="bg-[#f5f0eb]/50">
-                      <td colSpan={6} className="p-4">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                          <div>
-                            <p className="text-[10px] uppercase tracking-wide text-[#2d2a26]/50 mb-1">Articles</p>
-                            {order.items && Array.isArray(order.items) ? (
-                              <ul className="space-y-1">
-                                {order.items.filter((item: OrderItem) => item.id).map((item: OrderItem, idx: number) => (
-                                  <li key={idx} className="text-sm text-[#2d2a26]">
-                                    {item.product_name} × {item.quantity} — {parseFloat(item.total_price).toFixed(2)} €
-                                  </li>
-                                ))}
-                              </ul>
-                            ) : (
-                              <p className="text-sm text-[#2d2a26]/40">Détails non disponibles</p>
-                            )}
-                          </div>
-                          <div>
-                            <p className="text-[10px] uppercase tracking-wide text-[#2d2a26]/50 mb-1">Adresse de livraison</p>
-                            <p className="text-sm text-[#2d2a26]">{order.shipping_address || 'Non renseignée'}</p>
-                          </div>
-                          <div>
-                            <p className="text-[10px] uppercase tracking-wide text-[#2d2a26]/50 mb-1">Livraison</p>
-                            <p className="text-sm text-[#2d2a26]">{order.delivery_mode || '-'}</p>
-                            {order.tracking_number && (
-                              <p className="text-xs text-[#b8935a] mt-1">Suivi: {order.tracking_number}</p>
-                            )}
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  )}
-                </>
-              ))
-            )}
-          </tbody>
-        </table>
+                );
+              })}
+              {paginated.length === 0 && (
+                <tr>
+                  <td colSpan={8} className="px-4 py-12 text-center text-[#2d2a26]/40">
+                    Aucune commande trouvée
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-center gap-2 mt-4">
+          <button
+            onClick={() => setPage((p) => Math.max(1, p - 1))}
+            disabled={page === 1}
+            className="px-3 py-1.5 text-sm border border-[#e8e0d8] rounded-lg disabled:opacity-30 hover:border-[#b8935a] transition-colors"
+          >
+            ←
+          </button>
+          <span className="text-sm text-[#2d2a26]/60">
+            Page {page} / {totalPages}
+          </span>
+          <button
+            onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+            disabled={page === totalPages}
+            className="px-3 py-1.5 text-sm border border-[#e8e0d8] rounded-lg disabled:opacity-30 hover:border-[#b8935a] transition-colors"
+          >
+            →
+          </button>
+        </div>
+      )}
+
+      {/* Order detail modal */}
+      {selectedOrder && (
+        <OrderDetail
+          order={selectedOrder}
+          orderItems={selectedOrderItems}
+          onClose={() => {
+            setSelectedOrder(null);
+            setSelectedOrderItems([]);
+          }}
+        />
+      )}
     </div>
   );
 }

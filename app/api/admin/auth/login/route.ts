@@ -3,8 +3,33 @@ import { sql } from '@vercel/postgres';
 import bcryptjs from 'bcryptjs';
 import { createAdminToken } from '@/lib/admin-auth';
 
+// Rate limiting simple en mémoire (reset au redeploy, suffisant pour bloquer brute force)
+const loginAttempts = new Map<string, { count: number; lastAttempt: number }>();
+const MAX_ATTEMPTS = 5;
+const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+
+function checkRateLimit(ip: string): boolean {
+  const now = Date.now();
+  const record = loginAttempts.get(ip);
+  if (!record || now - record.lastAttempt > WINDOW_MS) {
+    loginAttempts.set(ip, { count: 1, lastAttempt: now });
+    return true;
+  }
+  record.count++;
+  record.lastAttempt = now;
+  return record.count <= MAX_ATTEMPTS;
+}
+
 export async function POST(request: NextRequest) {
   try {
+    const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+    if (!checkRateLimit(ip)) {
+      return NextResponse.json(
+        { error: 'Trop de tentatives. Réessayez dans 15 minutes.' },
+        { status: 429 }
+      );
+    }
+
     const { email, password } = await request.json();
 
     if (!email || !password) {

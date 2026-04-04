@@ -83,9 +83,9 @@ export default function Connexion() {
                   <input type="checkbox" className="w-4 h-4 accent-[#b8935a] flex-shrink-0" />
                   <span className="text-xs text-[#2d2a26]/60 whitespace-nowrap">Se souvenir de moi</span>
                 </label>
-                <button type="button" className="text-xs text-[#b8935a] hover:underline whitespace-nowrap">
+                <a href="/compte/mot-de-passe-oublie" className="text-xs text-[#b8935a] hover:underline whitespace-nowrap">
                   Mot de passe oublié ?
-                </button>
+                </a>
               </div>
 
               <button

@@ -49,7 +49,7 @@ export default function BrandIdentity() {
         </div>
 
         <p className="text-[#6b6560] text-base md:text-lg leading-relaxed mb-14 font-light max-w-xl mx-auto text-center">
-          Chaque bouquet est enveloppé dans notre papier au dessin exclusif — 
+          Chaque bouquet est enveloppé dans notre papier au dessin exclusif, 
           une illustration originale qui raconte l'univers Anne Freret. 
           Parce que la beauté commence avant même de découvrir les fleurs.
         </p>

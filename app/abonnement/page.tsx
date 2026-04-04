@@ -14,7 +14,7 @@ const plans = [
     biweeklyPrice: 27.50,
     weeklyPrice: 25.50,
     tagline: 'Le rituel simple et élégant',
-    description: 'Imaginez rentrer chez vous et découvrir un bouquet frais qui transforme votre salon en refuge parfumé. C\'est votre petit luxe hebdomadaire — sans effort, sans stress.',
+    description: 'Imaginez rentrer chez vous et découvrir un bouquet frais qui transforme votre salon en refuge parfumé. C\'est votre petit luxe hebdomadaire , sans effort, sans stress.',
     features: [
       'Votre dose de fraîcheur (30-35cm)',
       'Un message écrit de notre main',
