@@ -227,7 +227,7 @@ export const DELIVERY_CONFIG = {
     label: 'Chronopost',
     description: 'Express · Suivi en temps réel · 24h',
     delay: '24h (J+1, avant 18h)',
-    fee: 18.90,
+    fee: 11.99,
     freeThreshold: 90,
     color: '#D4003C',
   },

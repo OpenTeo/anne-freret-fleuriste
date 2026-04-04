@@ -89,7 +89,7 @@ export default function Panier() {
       return subtotal >= 60 ? 0 : localDeliveryFee;
     }
     if (deliveryMode === 'chronopost') {
-      return subtotal >= 90 ? 0 : 18.90;
+      return subtotal >= 90 ? 0 : 11.99;
     }
     return 0;
   };
@@ -372,7 +372,7 @@ export default function Panier() {
                                 <span className="text-[11px] font-semibold tracking-wide" style={{ color: '#D4003C' }}>CHRONOPOST</span>
                                 <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#D4003C' }}>Express 24h</span>
                               </div>
-                              <p className="text-sm" style={{ color: '#D4003C' }}>{subtotal >= 90 ? 'Offerte' : '18,90€'}</p>
+                              <p className="text-sm" style={{ color: '#D4003C' }}>{subtotal >= 90 ? 'Offerte' : '11,99€'}</p>
                             </div>
                             <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
                               Livraison avant 18h · Suivi en temps reel
@@ -396,7 +396,7 @@ export default function Panier() {
                                   <p className="text-[10px] text-[#2d2a26]/40">Express · Avant 18h · J+1</p>
                                 </div>
                               </div>
-                              <p className="text-sm text-[#2d2a26] font-medium">{subtotal >= 90 ? <span style={{ color: '#D4003C' }}>Offerte</span> : '18,90€'}</p>
+                              <p className="text-sm text-[#2d2a26] font-medium">{subtotal >= 90 ? <span style={{ color: '#D4003C' }}>Offerte</span> : '11,99€'}</p>
                             </div>
                             {subtotal >= 90 && (
                               <p className="text-[10px] mt-2" style={{ color: '#D4003C' }}>Livraison offerte — votre commande depasse 90€</p>

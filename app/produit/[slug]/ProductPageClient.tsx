@@ -586,7 +586,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                       </svg>
                       <div>
                         <p className="text-sm text-[#2d2a26] mb-0.5">Livraison offerte des 60€</p>
-                        <p className="text-xs text-[#2d2a26]/40 font-light">Locale : 6-10€ · Chronopost : 18,90€</p>
+                        <p className="text-xs text-[#2d2a26]/40 font-light">Locale : 6-10€ · Chronopost : 11,99€</p>
                       </div>
                     </div>
                   </div>
