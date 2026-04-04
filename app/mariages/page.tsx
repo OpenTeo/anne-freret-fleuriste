@@ -77,7 +77,7 @@ export default function Mariages() {
           />
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
-            <div className="bg-white/60 backdrop-blur-[3px] px-8 py-8 md:px-14 md:py-12 text-center max-w-xl border border-white/40">
+            <div className="bg-white/80 backdrop-blur-sm px-8 py-8 md:px-14 md:py-12 text-center max-w-xl border border-white/50">
               <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-[#b8935a] mb-4">
                 Fleuriste Mariage · Normandie
               </p>
