@@ -135,6 +135,13 @@ const Footer = () => {
                 <span className="text-white/50 text-xs">02 99 48 03 63</span>
               </div>
             </div>
+            <div className="flex items-start space-x-3">
+              <Store className="w-4 h-4 text-[#b8935a] mt-0.5 flex-shrink-0" />
+              <div>
+                <span className="text-white/80 text-sm block">Dinard</span>
+                <span className="text-white/50 text-xs">02 99 88 34 33</span>
+              </div>
+            </div>
           </div>
         </div>
 

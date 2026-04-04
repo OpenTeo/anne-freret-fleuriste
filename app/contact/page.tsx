@@ -169,6 +169,15 @@ export default function Contact() {
                         <p className="text-[#2d2a26]/40">Fermé dim</p>
                       </div>
                     </div>
+                    {/* Dinard */}
+                    <div className="border-l-2 border-[#b8935a]/60 pl-4">
+                      <p className="font-serif text-[#2d2a26] mb-1">Dinard</p>
+                      <p className="text-xs text-[#2d2a26]/50 mb-1">5 Place de la République</p>
+                      <a href="tel:0299883433" className="text-xs text-[#b8935a] hover:text-[#b8956a] transition-colors">📞 02 99 88 34 33</a>
+                      <div className="text-sm text-[#2d2a26] font-light space-y-0.5 mt-2">
+                        <p>Horaires à confirmer</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

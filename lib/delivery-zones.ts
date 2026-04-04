@@ -46,6 +46,7 @@ export const DELIVERY_ZONES: DeliveryZone[] = [
 
   // North Brittany - nearby cities
   { postalCode: '35120', city: 'Dol-de-Bretagne', distance: 40, deliveryFee: 10, deliveryTime: '6-8h', zone: 'regional' },
+  { postalCode: '35800', city: 'Dinard', distance: 55, deliveryFee: 18, deliveryTime: '24h', zone: 'regional' },
   { postalCode: '35260', city: 'Cancale', distance: 45, deliveryFee: 10, deliveryTime: '6-8h', zone: 'regional' },
   { postalCode: '35400', city: 'Saint-Malo', distance: 50, deliveryFee: 18, deliveryTime: '24h', zone: 'regional' },
   { postalCode: '22100', city: 'Dinan', distance: 65, deliveryFee: 18, deliveryTime: '24h', zone: 'regional' },
