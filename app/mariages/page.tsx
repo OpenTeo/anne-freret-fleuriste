@@ -55,9 +55,27 @@ export default function Mariages() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Demande de devis:', formData);
+    setSending(true);
+    setError('');
+    try {
+      const res = await fetch('/api/devis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error('Erreur');
+      setSent(true);
+    } catch {
+      setError('Une erreur est survenue. Réessayez ou écrivez-nous directement.');
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -303,6 +321,13 @@ export default function Mariages() {
                 </p>
               </div>
 
+              {sent ? (
+                <div className="bg-white p-12 text-center border border-[#e8e0d8]">
+                  <p className="text-4xl mb-4">💐</p>
+                  <h3 className="font-serif text-2xl text-[#2d2a26] mb-3">Merci {formData.nom} !</h3>
+                  <p className="text-[#2d2a26]/60 font-light">Votre demande a bien été envoyée. Notre équipe vous répondra sous 48h.</p>
+                </div>
+              ) : (
               <form onSubmit={handleSubmit} className="bg-white p-8 md:p-12 space-y-6 border border-[#e8e0d8]">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
@@ -401,11 +426,13 @@ export default function Mariages() {
                   />
                 </div>
                 <div className="text-center pt-4">
+                  {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
                   <button
                     type="submit"
-                    className="bg-[#b8935a] text-white px-10 py-4 text-sm uppercase tracking-[0.1em] hover:bg-[#a6834e] transition-colors"
+                    disabled={sending}
+                    className="bg-[#b8935a] text-white px-10 py-4 text-sm uppercase tracking-[0.1em] hover:bg-[#a6834e] transition-colors disabled:opacity-50"
                   >
-                    Envoyer ma demande
+                    {sending ? 'Envoi en cours...' : 'Envoyer ma demande'}
                   </button>
                   <p className="text-[11px] text-[#2d2a26]/40 mt-4">
                     Ou écrivez directement à{' '}
@@ -415,6 +442,7 @@ export default function Mariages() {
                   </p>
                 </div>
               </form>
+              )}
             </div>
           </div>
         </section>

@@ -60,24 +60,26 @@ export default function BrandIdentity() {
             { 
               icon: (
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18.37 2.63a1 1 0 0 1 1.41 0l1.59 1.59a1 1 0 0 1 0 1.41L9.54 17.46l-4.2.6.6-4.2L18.37 2.63z"/>
-                  <path d="M15 5l4 4"/>
+                  <path d="M12 22c-4-3-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 9-8 12z"/>
+                  <path d="M12 11c1.5-3 4-5 4-5s-1 3-4 5z"/>
+                  <path d="M12 11c-1.5-3-4-5-4-5s1 3 4 5z"/>
+                  <line x1="12" y1="22" x2="12" y2="11"/>
                 </svg>
               ),
-              title: 'Dessin exclusif', 
-              desc: 'Créé spécialement pour Anne Freret' 
+              title: 'Composé à la main', 
+              desc: 'Chaque bouquet est unique' 
             },
             { 
               icon: (
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                  <path d="M9 15c0-1 .6-3 3-3s3 2 3 3"/>
-                  <circle cx="12" cy="10" r="1" fill="currentColor"/>
+                  <path d="M17.5 6.5C17.5 4 15.5 2 12 2S6.5 4 6.5 6.5c0 3 3 5 5.5 8 2.5-3 5.5-5 5.5-8z"/>
+                  <circle cx="12" cy="6.5" r="1.5"/>
+                  <path d="M4 14c0 4.4 3.6 8 8 8s8-3.6 8-8"/>
+                  <path d="M8 18h8"/>
                 </svg>
               ),
-              title: 'Papier noble', 
-              desc: 'Qualité premium et responsable' 
+              title: 'Fleurs d\u2019Europe', 
+              desc: 'Sélectionnées avec soin, fraîches' 
             },
             { 
               icon: (
