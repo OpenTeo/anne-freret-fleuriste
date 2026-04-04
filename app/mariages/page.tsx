@@ -122,7 +122,7 @@ export default function Mariages() {
                 </h2>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-4">
                   Depuis plus de 20 ans, Anne conçoit les décorations florales de mariages en Normandie 
-                  et au-delà. Accompagnée par Charles, qui partage cette aventure depuis quelques années, 
+                  et au-delà. Accompagnée par Charles et toute l'équipe, qui partagent cette aventure depuis quelques années, 
                   chaque projet est porté par cette passion commune. Chaque couple est différent, 
                   chaque lieu a son caractère — c'est ce qui rend ce métier passionnant.
                 </p>
