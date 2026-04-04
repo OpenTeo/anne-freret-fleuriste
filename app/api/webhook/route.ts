@@ -283,7 +283,10 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
         phone: meta.customer_phone || '',
         orderNumber: orderNumber,
         weight: 1.5,
-        shipmentMethod: meta.delivery_mode === 'chronopost' ? 9 : 8,
+        // SendCloud shipping method IDs pour France (Chronopost)
+        // Chrono 13 0-2kg = 1394, Chrono 13 2-5kg = 1395
+        // Chrono 18 0-2kg = 1345, Chrono 18 2-5kg = 1346
+        shipmentMethod: 1394, // Chrono 13 0-2kg (bouquets ~1.5kg)
       });
       
       const trackingNumber = parcel.tracking_number || '';
