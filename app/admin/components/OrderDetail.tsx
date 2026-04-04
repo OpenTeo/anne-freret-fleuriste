@@ -153,28 +153,9 @@ export default function OrderDetail({
     printWindow.document.close();
   };
 
-  const handleDownloadLabel = async () => {
-    setDownloadingLabel(true);
-    try {
-      const res = await fetch(`/api/admin/shipping/label?orderId=${order.id}`);
-      if (res.ok) {
-        const data = await res.json();
-        if (data.labelUrl) {
-          // Ouvrir le PDF dans un nouvel onglet
-          window.open(data.labelUrl, '_blank');
-        } else {
-          alert('Étiquette non disponible pour cette commande');
-        }
-      } else {
-        const err = await res.json();
-        alert(err.error || 'Étiquette non disponible');
-      }
-    } catch (e) {
-      console.error('Erreur téléchargement étiquette:', e);
-      alert('Erreur lors du téléchargement');
-    } finally {
-      setDownloadingLabel(false);
-    }
+  const handleDownloadLabel = () => {
+    // Ouvrir le proxy PDF dans un nouvel onglet (auth gérée côté serveur)
+    window.open(`/api/admin/shipping/label?orderId=${order.id}`, '_blank');
   };
 
   return (
