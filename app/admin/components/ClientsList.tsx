@@ -33,7 +33,7 @@ export default function ClientsList() {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    fetch('/api/users')
+    fetch('/api/users?isAdmin=false')
       .then((r) => r.json())
       .then((data) => {
         // data.users expected with joined stats

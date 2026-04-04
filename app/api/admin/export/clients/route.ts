@@ -13,12 +13,15 @@ export async function GET() {
         u.city,
         u.postal_code,
         u.created_at,
-        COALESCE(u.total_spent, 0) as total_spent,
-        COUNT(o.id) as orders_count
+        COALESCE(os.total_spent, 0) as total_spent,
+        COALESCE(os.orders_count, 0) as orders_count
       FROM users u
-      LEFT JOIN orders o ON o.customer_email = u.email
+      LEFT JOIN (
+        SELECT customer_email, COUNT(*) as orders_count, SUM(total_amount) as total_spent
+        FROM orders WHERE status != 'cancelled'
+        GROUP BY customer_email
+      ) os ON os.customer_email = u.email
       WHERE u.is_admin = false
-      GROUP BY u.id
       ORDER BY u.created_at DESC
     `;
 

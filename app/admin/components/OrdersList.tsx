@@ -59,7 +59,7 @@ function fmt(n: number): string {
   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(n);
 }
 
-const PER_PAGE = 20;
+const PER_PAGE = 15;
 
 export default function OrdersList() {
   const [orders, setOrders] = useState<Order[]>([]);

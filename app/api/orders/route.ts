@@ -8,17 +8,25 @@ export async function GET(req: NextRequest) {
     const userId = searchParams.get('userId');
     const status = searchParams.get('status');
 
-    if (!email && !userId) {
-      return NextResponse.json(
-        { error: 'Email ou userId requis' },
-        { status: 400 }
-      );
-    }
-
     let result;
 
-    // Query selon les filtres
-    if (email && status) {
+    // Admin: pas de filtre email/userId → retourne toutes les commandes
+    if (!email && !userId) {
+      if (status) {
+        result = await sql`
+          SELECT o.*
+          FROM orders o
+          WHERE o.status = ${status}
+          ORDER BY o.created_at DESC
+        `;
+      } else {
+        result = await sql`
+          SELECT o.*
+          FROM orders o
+          ORDER BY o.created_at DESC
+        `;
+      }
+    } else if (email && status) {
       result = await sql`
         SELECT 
           o.*,

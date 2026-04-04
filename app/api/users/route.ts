@@ -8,78 +8,86 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get('search');
     const isAdmin = searchParams.get('isAdmin');
 
-    // Construction dynamique de la requête
-    const conditions: string[] = [];
-    const values: (string | boolean)[] = [];
-    let paramIndex = 1;
+    // Requête avec stats commandes jointes
+    let result;
 
-    // Filtrer par admin/client
-    if (isAdmin !== null) {
-      conditions.push(`is_admin = $${paramIndex++}`);
-      values.push(isAdmin === 'true');
+    if (isAdmin === 'false' && search) {
+      const searchPattern = `%${search}%`;
+      result = await sql`
+        SELECT 
+          u.id, u.email, u.first_name, u.last_name, u.phone,
+          u.address, u.postal_code, u.city, u.is_admin,
+          u.created_at, u.updated_at,
+          COALESCE(os.orders_count, 0) as orders_count,
+          COALESCE(os.total_spent, 0) as total_spent
+        FROM users u
+        LEFT JOIN (
+          SELECT customer_email, COUNT(*) as orders_count, SUM(total_amount) as total_spent
+          FROM orders WHERE status != 'cancelled'
+          GROUP BY customer_email
+        ) os ON os.customer_email = u.email
+        WHERE u.is_admin = false
+        AND (
+          LOWER(u.first_name || ' ' || u.last_name) LIKE LOWER(${searchPattern})
+          OR LOWER(u.email) LIKE LOWER(${searchPattern})
+        )
+        ORDER BY u.created_at DESC
+      `;
+    } else if (isAdmin === 'false') {
+      result = await sql`
+        SELECT 
+          u.id, u.email, u.first_name, u.last_name, u.phone,
+          u.address, u.postal_code, u.city, u.is_admin,
+          u.created_at, u.updated_at,
+          COALESCE(os.orders_count, 0) as orders_count,
+          COALESCE(os.total_spent, 0) as total_spent
+        FROM users u
+        LEFT JOIN (
+          SELECT customer_email, COUNT(*) as orders_count, SUM(total_amount) as total_spent
+          FROM orders WHERE status != 'cancelled'
+          GROUP BY customer_email
+        ) os ON os.customer_email = u.email
+        WHERE u.is_admin = false
+        ORDER BY u.created_at DESC
+      `;
+    } else if (search) {
+      const searchPattern = `%${search}%`;
+      result = await sql`
+        SELECT 
+          u.id, u.email, u.first_name, u.last_name, u.phone,
+          u.address, u.postal_code, u.city, u.is_admin,
+          u.created_at, u.updated_at,
+          COALESCE(os.orders_count, 0) as orders_count,
+          COALESCE(os.total_spent, 0) as total_spent
+        FROM users u
+        LEFT JOIN (
+          SELECT customer_email, COUNT(*) as orders_count, SUM(total_amount) as total_spent
+          FROM orders WHERE status != 'cancelled'
+          GROUP BY customer_email
+        ) os ON os.customer_email = u.email
+        WHERE LOWER(u.first_name || ' ' || u.last_name) LIKE LOWER(${searchPattern})
+          OR LOWER(u.email) LIKE LOWER(${searchPattern})
+        ORDER BY u.created_at DESC
+      `;
+    } else {
+      result = await sql`
+        SELECT 
+          u.id, u.email, u.first_name, u.last_name, u.phone,
+          u.address, u.postal_code, u.city, u.is_admin,
+          u.created_at, u.updated_at,
+          COALESCE(os.orders_count, 0) as orders_count,
+          COALESCE(os.total_spent, 0) as total_spent
+        FROM users u
+        LEFT JOIN (
+          SELECT customer_email, COUNT(*) as orders_count, SUM(total_amount) as total_spent
+          FROM orders WHERE status != 'cancelled'
+          GROUP BY customer_email
+        ) os ON os.customer_email = u.email
+        ORDER BY u.created_at DESC
+      `;
     }
 
-    // Recherche par nom/email
-    if (search) {
-      conditions.push(`(
-        LOWER(first_name || ' ' || last_name) LIKE LOWER($${paramIndex}) OR
-        LOWER(email) LIKE LOWER($${paramIndex})
-      )`);
-      values.push(`%${search}%`);
-      paramIndex++;
-    }
-
-    const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
-    
-    const query = `
-      SELECT 
-        id,
-        email,
-        first_name,
-        last_name,
-        phone,
-        address,
-        address_complement,
-        postal_code,
-        city,
-        loyalty_points,
-        total_spent,
-        is_admin,
-        created_at,
-        updated_at
-      FROM users
-      ${whereClause}
-      ORDER BY created_at DESC
-    `;
-
-    const result = await sql.query(query, values);
-
-    // Ajouter des stats pour chaque client
-    const users = await Promise.all(
-      result.rows.map(async (user) => {
-        const ordersCount = await sql`
-          SELECT COUNT(*) as count
-          FROM orders
-          WHERE customer_email = ${user.email}
-        `;
-
-        const lastOrder = await sql`
-          SELECT created_at
-          FROM orders
-          WHERE customer_email = ${user.email}
-          ORDER BY created_at DESC
-          LIMIT 1
-        `;
-
-        return {
-          ...user,
-          orders_count: parseInt(ordersCount.rows[0]?.count || '0'),
-          last_order_date: lastOrder.rows[0]?.created_at || null,
-        };
-      })
-    );
-
-    return NextResponse.json({ users });
+    return NextResponse.json({ users: result.rows });
   } catch (error: unknown) {
     console.error('❌ Erreur GET /api/users:', error);
     return NextResponse.json(
