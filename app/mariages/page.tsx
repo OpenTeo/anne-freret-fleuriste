@@ -85,7 +85,7 @@ export default function Mariages() {
             </h1>
             <p className="text-white/80 text-base md:text-lg font-light text-center max-w-xl mb-8">
               Chaque mariage est unique. Anne crée vos compositions à la main, 
-              avec les fleurs de saison et toute son attention.
+              avec des fleurs d'Europe sélectionnées avec soin.
             </p>
             <a
               href="#devis"
@@ -119,14 +119,14 @@ export default function Mariages() {
                 </h2>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-4">
                   Depuis plus de 20 ans, Anne conçoit les décorations florales de mariages en Normandie 
-                  et au-delà. Accompagnée par Charles, qui suit son parcours depuis le début, 
+                  et au-delà. Accompagnée par Charles, qui partage cette aventure depuis quelques années, 
                   chaque projet est porté par cette passion commune. Chaque couple est différent, 
                   chaque lieu a son caractère — c'est ce qui rend ce métier passionnant.
                 </p>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-6">
                   Du premier rendez-vous à l'installation le jour J, Anne est là. Elle écoute, 
                   propose, ajuste. Le résultat ? Des compositions qui vous ressemblent, 
-                  réalisées avec des fleurs fraîches de saison.
+                  réalisées avec des fleurs fraîches, toutes de provenance européenne.
                 </p>
                 <div className="flex flex-wrap gap-4 text-[11px] uppercase tracking-[0.15em] text-[#b8935a]">
                   <span className="border border-[#b8935a]/30 px-4 py-2">Bouquets de mariée</span>
@@ -226,7 +226,7 @@ export default function Mariages() {
                 </h2>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-4">
                   Derrière chaque composition, il y a des heures de préparation. 
-                  Sélection des fleurs au marché, conditionnement, assemblage minutieux — 
+                  Sélection de fleurs de provenance européenne, conditionnement, assemblage minutieux — 
                   tout est fait à la main dans notre atelier de Saint-Pair-sur-Mer.
                 </p>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-8">
