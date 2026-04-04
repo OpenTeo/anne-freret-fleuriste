@@ -97,9 +97,7 @@ export async function POST(req: NextRequest) {
     // ========================================
     let realDeliveryFee = 0;
 
-    if (delivery.mode === 'colissimo') {
-      realDeliveryFee = 7.0;
-    } else if (delivery.mode === 'chronopost') {
+    if (delivery.mode === 'chronopost') {
       realDeliveryFee = 12.0;
     } else if (delivery.mode === 'local') {
       // Livraison locale : vérifier le code postal (simplification : 0€ si 50xxx, sinon 7€)
