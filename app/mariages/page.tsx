@@ -75,24 +75,26 @@ export default function Mariages() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-0 flex flex-col items-center justify-end pb-16 md:pb-20 px-6">
-            <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-white/70 mb-4">
-              Fleuriste Mariage · Normandie
-            </p>
-            <h1 className="font-serif text-4xl md:text-6xl text-white text-center mb-4 drop-shadow-lg">
-              Votre jour, nos fleurs
-            </h1>
-            <p className="text-white/80 text-base md:text-lg font-light text-center max-w-xl mb-8">
-              Chaque mariage est unique. Anne crée vos compositions à la main, 
-              avec des fleurs d'Europe sélectionnées avec soin.
-            </p>
-            <a
-              href="#devis"
-              className="bg-white/90 text-[#2d2a26] px-8 py-3 text-sm uppercase tracking-[0.1em] hover:bg-white transition-colors"
-            >
-              Demander un devis gratuit
-            </a>
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-6">
+            <div className="bg-black/40 backdrop-blur-[2px] px-10 py-10 md:px-16 md:py-14 text-center max-w-2xl">
+              <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-[#b8935a] mb-4">
+                Fleuriste Mariage · Normandie
+              </p>
+              <h1 className="font-serif text-4xl md:text-6xl text-white mb-4">
+                Votre jour, nos fleurs
+              </h1>
+              <p className="text-white/80 text-base md:text-lg font-light max-w-xl mx-auto mb-8">
+                Chaque mariage est unique. Anne crée vos compositions à la main, 
+                avec des fleurs d'Europe sélectionnées avec soin.
+              </p>
+              <a
+                href="#devis"
+                className="inline-block border border-white text-white px-8 py-3 text-sm uppercase tracking-[0.1em] hover:bg-white hover:text-[#2d2a26] transition-colors"
+              >
+                Demander un devis gratuit
+              </a>
+            </div>
           </div>
         </section>
 
