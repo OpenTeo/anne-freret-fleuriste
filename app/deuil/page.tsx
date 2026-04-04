@@ -46,7 +46,7 @@ export default function DeuilPage() {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const res = await fetch('/api/products?active=true&category=Deuil & Hommages');
+        const res = await fetch('/api/products?active=true&category=' + encodeURIComponent('Deuil & Hommages'));
         const data = await res.json();
         // Normaliser les données
         const normalizedProducts = (data.products || []).map((p: any) => ({
