@@ -124,7 +124,7 @@ export default function Mariages() {
                   Depuis plus de 20 ans, Anne conçoit les décorations florales de mariages en Normandie 
                   et au-delà. Accompagnée par Charles et toute l'équipe, qui partagent cette aventure depuis quelques années, 
                   chaque projet est porté par cette passion commune. Chaque couple est différent, 
-                  chaque lieu a son caractère — c'est ce qui rend ce métier passionnant.
+                  chaque lieu a son caractère, et c'est ce qui rend ce métier passionnant.
                 </p>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-6">
                   Du premier rendez-vous à l'installation le jour J, Anne est là. Elle écoute, 
@@ -152,7 +152,7 @@ export default function Mariages() {
                 L'accessoire le plus photographié
               </h2>
               <p className="text-[#2d2a26]/60 font-light max-w-lg mx-auto">
-                Rond, cascade, champêtre ou structuré — votre bouquet est composé selon 
+                Rond, cascade, champêtre ou structuré, votre bouquet est composé selon 
                 vos goûts, votre robe et la palette de votre mariage.
               </p>
             </div>
@@ -200,7 +200,7 @@ export default function Mariages() {
                 Chaque lieu raconte une histoire
               </h2>
               <p className="text-[#2d2a26]/60 font-light max-w-lg mx-auto">
-                Manoir normand, bord de mer, jardin champêtre — Anne adapte 
+                Manoir normand, bord de mer, jardin champêtre, l'équipe adapte 
                 ses créations à votre lieu et à votre univers.
               </p>
             </div>
@@ -229,12 +229,12 @@ export default function Mariages() {
                 </h2>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-4">
                   Derrière chaque composition, il y a des heures de préparation. 
-                  Sélection de fleurs de provenance européenne, conditionnement, assemblage minutieux — 
+                  Sélection de fleurs de provenance européenne, conditionnement, assemblage minutieux, 
                   tout est fait à la main dans notre atelier de Saint-Pair-sur-Mer.
                 </p>
                 <p className="text-[#2d2a26]/70 font-light leading-relaxed mb-8">
                   Le jour J, Anne et son équipe installent tout sur place. 
-                  Vous n'avez rien à faire — juste profiter.
+                  Vous n'avez rien à faire, juste profiter.
                 </p>
 
                 {/* Étapes */}
@@ -243,7 +243,7 @@ export default function Mariages() {
                     { step: '01', title: 'Rencontre', desc: 'On se rencontre, on parle de vos envies, du lieu, des couleurs.' },
                     { step: '02', title: 'Proposition', desc: 'Anne vous envoie un projet détaillé avec ses recommandations.' },
                     { step: '03', title: 'Création', desc: 'Les compositions sont réalisées la veille et le matin du mariage.' },
-                    { step: '04', title: 'Installation', desc: 'Tout est mis en place sur le lieu — vous arrivez, c\'est prêt.' },
+                    { step: '04', title: 'Installation', desc: 'Tout est mis en place sur le lieu, vous arrivez et c\'est prêt.' },
                   ].map((item) => (
                     <div key={item.step} className="flex gap-4">
                       <span className="font-serif text-2xl text-[#b8935a]/30 leading-none">{item.step}</span>
