@@ -60,8 +60,8 @@ export default function BrandIdentity() {
             { 
               icon: (
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/>
-                  <circle cx="11" cy="11" r="2"/>
+                  <path d="M18.37 2.63a1 1 0 0 1 1.41 0l1.59 1.59a1 1 0 0 1 0 1.41L9.54 17.46l-4.2.6.6-4.2L18.37 2.63z"/>
+                  <path d="M15 5l4 4"/>
                 </svg>
               ),
               title: 'Dessin exclusif', 
@@ -70,7 +70,10 @@ export default function BrandIdentity() {
             { 
               icon: (
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                  <path d="M9 15c0-1 .6-3 3-3s3 2 3 3"/>
+                  <circle cx="12" cy="10" r="1" fill="currentColor"/>
                 </svg>
               ),
               title: 'Papier noble', 
@@ -79,7 +82,12 @@ export default function BrandIdentity() {
             { 
               icon: (
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+                  <path d="M20 12v10H4V12"/>
+                  <path d="M2 7h20v5H2z"/>
+                  <path d="M12 22V7"/>
+                  <path d="M12 7s-1.5-5-5-5c-1.5 0-3 1-3 2.5S5.5 7 7 7h5"/>
+                  <path d="M12 7s1.5-5 5-5c1.5 0 3 1 3 2.5S18.5 7 17 7h-5"/>
+                  <path d="M7 12v2"/><path d="M17 12v2"/>
                 </svg>
               ),
               title: 'Expérience cadeau', 
