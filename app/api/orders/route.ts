@@ -10,8 +10,13 @@ export async function GET(req: NextRequest) {
 
     let result;
 
-    // Admin: pas de filtre email/userId → retourne toutes les commandes
+    // Admin: pas de filtre email/userId → retourne toutes les commandes (auth requise)
     if (!email && !userId) {
+      const { verifyAdminToken } = await import('@/lib/admin-auth');
+      const token = req.cookies.get('admin-token')?.value;
+      if (!token || !(await verifyAdminToken(token))) {
+        return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
+      }
       if (status) {
         result = await sql`
           SELECT o.*

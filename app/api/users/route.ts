@@ -4,6 +4,12 @@ import { sql } from '@vercel/postgres';
 // GET /api/users - Liste des utilisateurs (admin only)
 export async function GET(request: NextRequest) {
   try {
+    // Vérifier auth admin
+    const { verifyAdminToken } = await import('@/lib/admin-auth');
+    const token = request.cookies.get('admin-token')?.value;
+    if (!token || !(await verifyAdminToken(token))) {
+      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
+    }
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search');
     const isAdmin = searchParams.get('isAdmin');

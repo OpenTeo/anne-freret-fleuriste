@@ -41,7 +41,7 @@ export async function GET() {
       // Low stock products
       sql`SELECT id, name, stock FROM products WHERE is_active = true AND stock < 5 ORDER BY stock ASC`,
       // Pending reviews
-      sql`SELECT COUNT(*) as count FROM reviews WHERE is_approved = false`,
+      sql`SELECT COUNT(*) as count FROM reviews WHERE status = 'pending'`,
     ]);
 
     const subsByPlan: Record<string, number> = { essentiel: 0, signature: 0, prestige: 0 };

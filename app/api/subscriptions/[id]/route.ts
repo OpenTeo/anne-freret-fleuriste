@@ -47,6 +47,11 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { verifyAdminToken } = await import('@/lib/admin-auth');
+    const token = request.cookies.get('admin-token')?.value;
+    if (!token || !(await verifyAdminToken(token))) {
+      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
+    }
     const { id } = await params;
     const body = await request.json();
     const { status, frequency, price, next_delivery_date, pause_reason } = body;
@@ -127,6 +132,11 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { verifyAdminToken } = await import('@/lib/admin-auth');
+    const token = request.cookies.get('admin-token')?.value;
+    if (!token || !(await verifyAdminToken(token))) {
+      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
+    }
     const { id } = await params;
 
     // Soft delete: on marque comme cancelled au lieu de supprimer

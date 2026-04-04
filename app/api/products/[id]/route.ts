@@ -28,12 +28,23 @@ export async function GET(
   }
 }
 
-// PATCH /api/products/[id] - Modifier un produit
+// PATCH /api/products/[id] - Modifier un produit (admin uniquement)
 export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Vérifier auth admin
+    const { verifyAdminToken } = await import('@/lib/admin-auth');
+    const token = request.cookies.get('admin-token')?.value;
+    if (!token) {
+      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
+    }
+    const admin = await verifyAdminToken(token);
+    if (!admin) {
+      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
+    }
+
     const { id } = await params;
     const body = await request.json();
     console.log('PATCH /api/products/', id, 'body keys:', Object.keys(body), 'images type:', typeof body.images, Array.isArray(body.images), 'tags type:', typeof body.tags, Array.isArray(body.tags));
@@ -191,6 +202,11 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { verifyAdminToken } = await import('@/lib/admin-auth');
+    const token = request.cookies.get('admin-token')?.value;
+    if (!token || !(await verifyAdminToken(token))) {
+      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
+    }
     const { id } = await params;
 
     // Soft delete: désactiver au lieu de supprimer
