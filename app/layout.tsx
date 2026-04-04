@@ -81,7 +81,7 @@ export default function RootLayout({
         <JsonLd type="Organization" />
       </head>
       <body
-        className={`${playfair.variable} ${lato.variable} antialiased`}
+        className={`${playfair.variable} ${lato.variable} antialiased overflow-x-hidden`}
       >
         <Providers>
           <TopBanner />
