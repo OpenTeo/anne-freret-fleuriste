@@ -86,7 +86,7 @@ export default function Mariages() {
               </h1>
               <div className="w-12 h-px bg-[#b8935a] mx-auto mb-4" />
               <p className="text-[#2d2a26]/70 text-base md:text-lg font-light max-w-xl mx-auto mb-8">
-                Chaque mariage est unique. Anne, Charles et toute l'équipe créent vos 
+                Chaque mariage est unique. Notre équipe crée vos 
                 compositions à la main, avec des fleurs d'Europe sélectionnées avec soin.
               </p>
               <a
