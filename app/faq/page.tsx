@@ -12,65 +12,86 @@ interface FAQItem {
 }
 
 const faqData: FAQItem[] = [
+  // --- COMMANDES ---
   {
     id: 1,
     question: "Comment passer commande ?",
-    answer: "Vous pouvez passer commande de plusieurs façons : directement en magasin (39 Place du Général de Gaulle, 50270 Saint-Pair-sur-Mer), par téléphone (02 33 50 26 15), sur notre site internet, ou par email (contact@fleuriste-annefreret.com). Pour les commandes urgentes, nous recommandons le téléphone pour vérifier la disponibilité en temps réel."
+    answer: "Plusieurs options s'offrent à vous : directement sur notre site internet (24h/24), en boutique dans l'un de nos 5 magasins (Saint-Pair-sur-Mer, Jullouville, Yquelon, Dol-de-Bretagne, Dinard), par téléphone au 02 33 50 26 15, ou par email à contact@fleuriste-annefreret.com. Pour les commandes urgentes, privilégiez le téléphone afin de vérifier la disponibilité en temps réel."
   },
   {
     id: 2,
-    question: "Quels sont les délais de livraison ?",
-    answer: "Livraison locale (rayon 35 km) : en 24h, du mardi au samedi. Chronopost express (France métropolitaine) : 24h, du lundi au samedi avant 18h. Pour une livraison le dimanche, seule la livraison locale est possible (nous contacter). Pour les événements spéciaux (mariages, obsèques), nous recommandons de commander la veille avant 17h pour garantir la préparation et la livraison. Contactez-nous par téléphone pour les urgences."
+    question: "Puis-je ajouter un message personnalisé à ma commande ?",
+    answer: "Oui, une carte message est incluse gratuitement avec chaque commande. Vous pouvez rédiger votre texte directement lors de la commande en ligne, ou nous le transmettre par téléphone ou email."
   },
   {
     id: 3,
-    question: "Livrez-vous partout en France ?",
-    answer: "Oui, nous livrons sur toute la France métropolitaine. Notre zone de livraison prioritaire couvre la Normandie avec des délais raccourcis. Pour la Corse et les DOM-TOM, des conditions particulières s'appliquent - n'hésitez pas à nous contacter pour plus d'informations."
+    question: "Peut-on annuler ou modifier une commande ?",
+    answer: "Toute modification ou annulation est possible jusqu'à 24h avant la date de livraison prévue. Pour les commandes en livraison le jour même, contactez-nous avant 10h. Au-delà de ces délais, la préparation est généralement en cours et nous ne pouvons plus garantir de changement."
   },
   {
     id: 4,
-    question: "Puis-je choisir une date de livraison ?",
-    answer: "Absolument ! Nous proposons un service de livraison à date choisie, particulièrement apprécié pour les anniversaires, fêtes et événements spéciaux. Lors de votre commande, indiquez simplement la date souhaitée. Nous recommandons de commander au moins 48h à l'avance. Attention : pour une livraison le dimanche, seule la livraison locale est disponible (Chronopost ne livre pas le dimanche)."
+    question: "Quels sont les moyens de paiement acceptés ?",
+    answer: "En ligne : carte bancaire (Visa, Mastercard, American Express) via notre paiement sécurisé Stripe. En boutique : carte bancaire, espèces et chèques. Pour les commandes importantes (mariages, événements), le virement bancaire est également possible."
   },
+  // --- LIVRAISON ---
   {
     id: 5,
-    question: "Comment sont emballées les fleurs ?",
-    answer: "Nos fleurs sont emballées avec le plus grand soin dans des contenants spécialisés avec réserve d'eau pour maintenir leur fraîcheur pendant le transport. Nous utilisons des matériaux de protection adaptés et un emballage isotherme si nécessaire."
+    question: "Quels sont vos modes de livraison ?",
+    answer: "Nous proposons deux modes de livraison. La livraison locale (rayon de 35 km autour de Saint-Pair-sur-Mer) : livrée le jour même pour toute commande passée avant 12h, du mardi au samedi. Et la livraison Chronopost Express (France métropolitaine) : livrée en 24h (J+1), du lundi au samedi avant 18h."
   },
   {
     id: 6,
-    question: "Que faire si mon bouquet arrive endommagé ?",
-    answer: "Si vous constatez que vos fleurs sont fanées ou endommagées à la réception, contactez-nous immédiatement (dans les 24h) avec des photos à l'appui. Nous nous engageons à remplacer gratuitement tout bouquet qui ne correspondrait pas à nos standards de qualité."
+    question: "Combien coûte la livraison ?",
+    answer: "Livraison locale : de 6 € à 10 € selon la distance (0-5 km : 6 €, 5-10 km : 8 €, 10-35 km : 10 €), offerte dès 60 € d'achat. Livraison Chronopost : 11,99 €, offerte dès 90 € d'achat. Dans les deux cas, le suivi est inclus."
   },
   {
     id: 7,
-    question: "Puis-je ajouter un message personnalisé ?",
-    answer: "Bien sûr ! Nous incluons gratuitement une carte avec votre message personnalisé avec chaque commande. Vous pouvez rédiger votre message lors de la commande en ligne, ou nous le communiquer par téléphone ou email."
+    question: "Puis-je choisir une date de livraison ?",
+    answer: "Oui ! Lors de votre commande, vous pouvez sélectionner la date de livraison souhaitée. Nous recommandons de commander au moins 48h à l'avance pour les événements importants. À noter : Chronopost ne livre pas le dimanche, seule la livraison locale est disponible ce jour-là (sur demande)."
   },
   {
     id: 8,
-    question: "Quels sont les moyens de paiement acceptés ?",
-    answer: "Nous acceptons tous les moyens de paiement courants : carte bancaire (Visa, Mastercard, American Express) en ligne et en magasin, espèces et chèques pour les achats en boutique, et virement bancaire pour les commandes importantes."
+    question: "Comment sont emballées les fleurs pour l'expédition ?",
+    answer: "Chaque bouquet est préparé avec soin : les tiges sont placées dans une réserve d'eau, protégées par un emballage adapté et, si nécessaire, isotherme pour les périodes de chaleur ou de froid. L'objectif est que vos fleurs arrivent aussi fraîches qu'en boutique."
   },
   {
     id: 9,
-    question: "Peut-on annuler ou modifier une commande ?",
-    answer: "Les modifications et annulations sont possibles jusqu'à 24h avant la date de livraison prévue. Pour les livraisons le jour même, contactez-nous avant 10h du matin. Après ces délais, nous ne pouvons plus garantir les modifications car la préparation est souvent en cours."
+    question: "Que faire si mon bouquet arrive endommagé ?",
+    answer: "Contactez-nous dans les 24h suivant la réception avec des photos du bouquet. Nous nous engageons à trouver une solution (remplacement ou remboursement) pour tout bouquet qui ne correspondrait pas à nos standards de qualité. Appelez-nous au 02 33 50 26 15 ou écrivez-nous via le formulaire de contact."
   },
+  // --- ABONNEMENTS ---
   {
     id: 10,
-    question: "Comment entretenir mon bouquet ?",
-    answer: "Pour prolonger la vie de vos fleurs : coupez les tiges en biseau sous l'eau froide, placez-les dans un vase propre avec de l'eau fraîche, changez l'eau tous les 2-3 jours, retirez les feuilles qui trempent dans l'eau, et gardez votre bouquet loin des sources de chaleur."
+    question: "Comment fonctionnent vos abonnements fleurs ?",
+    answer: "Nous proposons trois formules d'abonnement (Essentiel, Signature, Prestige) avec une fréquence au choix : hebdomadaire, bi-mensuelle ou mensuelle. À chaque livraison, notre équipe compose un bouquet de saison unique. Vous pouvez mettre en pause ou annuler votre abonnement à tout moment depuis votre espace client."
   },
+  // --- BOUTIQUES ---
   {
     id: 11,
-    question: "Proposez-vous des services pour les mariages ?",
-    answer: "Oui ! Nous sommes spécialisés dans les décorations florales de mariage. Nous proposons : bouquet de mariée, boutonnières et corsages, centres de table, décoration de cérémonie et de réception, arches florales. Consultation gratuite disponible."
+    question: "Où se trouvent vos boutiques ?",
+    answer: "Nous avons 5 boutiques : Saint-Pair-sur-Mer (39 Place du Général de Gaulle — 02 33 50 26 15), Jullouville (7 Avenue Armand Jullou — 02 33 91 71 07), Yquelon (577 Route de Villedieu — 02 61 90 04 00), Dol-de-Bretagne (17 Grande Rue des Stuarts — 02 99 48 03 63) et Dinard (5 Place de la République — 02 99 88 34 33). Les horaires détaillés sont sur notre page Contact."
   },
+  // --- MARIAGES & ÉVÉNEMENTS ---
   {
     id: 12,
+    question: "Proposez-vous des services pour les mariages ?",
+    answer: "Oui, c'est l'une de nos spécialités ! Avec plus de 1 000 mariages accompagnés, nous proposons : bouquet de mariée, boutonnières, corsages, centres de table, décoration de cérémonie et de réception, arches florales. Une consultation gratuite est disponible pour discuter de votre projet. Remplissez notre formulaire de devis mariage ou contactez-nous directement."
+  },
+  {
+    id: 13,
+    question: "Réalisez-vous des compositions pour les obsèques ?",
+    answer: "Oui, nous réalisons des compositions florales de deuil avec respect et délicatesse : gerbes, couronnes, coussins, dessus de cercueil. Pour les obsèques, nous recommandons de nous contacter par téléphone au 02 33 50 26 15 afin de garantir les délais de préparation."
+  },
+  // --- ENTRETIEN ---
+  {
+    id: 14,
+    question: "Comment entretenir mon bouquet pour qu'il dure plus longtemps ?",
+    answer: "Quelques gestes simples prolongent la vie de vos fleurs : recoupez les tiges en biseau (2-3 cm) sous l'eau froide dès réception, utilisez un vase propre avec de l'eau fraîche, changez l'eau tous les 2 jours, retirez les feuilles qui trempent dans l'eau, éloignez le bouquet des fruits (l'éthylène accélère le flétrissement) et des sources de chaleur directe. Pour des conseils détaillés, consultez notre guide d'entretien."
+  },
+  {
+    id: 15,
     question: "Y a-t-il un minimum de commande ?",
-    answer: "Il n'y a pas de montant minimum pour les commandes en magasin. Pour les livraisons, un montant minimum peut s'appliquer selon la zone géographique (généralement 30€). Pour les livraisons gratuites, le seuil est fixé à 60€."
+    answer: "Aucun minimum en boutique. Pour les livraisons en ligne, le panier minimum est de 25 €. La livraison locale est offerte dès 60 € d'achat, et la livraison Chronopost est offerte dès 90 €."
   }
 ];
 
