@@ -251,7 +251,7 @@ export function getDeliveryFeeForMethod(method: DeliveryMethod, subtotal: number
 
 // National delivery for postal codes not in the list
 export const NATIONAL_DELIVERY = {
-  deliveryFee: 12.90,
+  deliveryFee: 11.99,
   deliveryTime: '48h (J+2)',
   zone: 'national' as const,
   description: 'Livraison nationale Chronopost — Suivi inclus'

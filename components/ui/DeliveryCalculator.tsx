@@ -157,7 +157,7 @@ export default function DeliveryCalculator({
           {/* Prix + Délai */}
           <div className="grid grid-cols-2 divide-x divide-[#e8e0d8]/50">
             <div className="p-4 flex flex-col items-center justify-center">
-              <p className="text-2xl font-serif text-[#2d2a26]">{deliveryResult.fee.toFixed(0)}€</p>
+              <p className="text-2xl font-serif text-[#2d2a26]">{deliveryResult.fee % 1 === 0 ? deliveryResult.fee.toFixed(0) : deliveryResult.fee.toFixed(2).replace('.', ',')}€</p>
               <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mt-1">Livraison</p>
             </div>
             <div className="p-4 flex flex-col items-center justify-center">
