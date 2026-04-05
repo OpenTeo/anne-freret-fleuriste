@@ -482,7 +482,7 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
   console.log(`🔄 Abonnement mis à jour: ${subscription.id}`);
   
   try {
-    // Mettre à jour le statut dans notre BDD
+    // Déterminer le statut
     let status = 'active';
     if (subscription.status === 'canceled' || subscription.status === 'unpaid') {
       status = 'cancelled';
@@ -490,13 +490,38 @@ async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
       status = 'paused';
     }
     
-    await sql`
-      UPDATE subscriptions
-      SET status = ${status}, updated_at = CURRENT_TIMESTAMP
-      WHERE stripe_subscription_id = ${subscription.id}
-    `;
+    // Récupérer formula/frequency depuis metadata (en cas d'upgrade/downgrade)
+    const meta = subscription.metadata || {};
+    const formula = meta.formula;
+    const frequency = meta.frequency;
     
-    console.log(`✅ Statut abonnement mis à jour: ${status}`);
+    // Récupérer le nouveau prix (en cas de changement)
+    const newPrice = subscription.items.data[0]?.price.unit_amount
+      ? (subscription.items.data[0].price.unit_amount / 100).toFixed(2)
+      : null;
+    
+    // Construire la requête UPDATE en fonction de ce qui a changé
+    if (formula && frequency && newPrice) {
+      // Cas upgrade/downgrade complet (formula + frequency + price)
+      await sql`
+        UPDATE subscriptions
+        SET status = ${status},
+            formula = ${formula},
+            frequency = ${frequency},
+            price = ${newPrice},
+            updated_at = CURRENT_TIMESTAMP
+        WHERE stripe_subscription_id = ${subscription.id}
+      `;
+      console.log(`✅ Abonnement mis à jour: status=${status}, formula=${formula}, frequency=${frequency}, price=${newPrice}€`);
+    } else {
+      // Cas simple (juste statut)
+      await sql`
+        UPDATE subscriptions
+        SET status = ${status}, updated_at = CURRENT_TIMESTAMP
+        WHERE stripe_subscription_id = ${subscription.id}
+      `;
+      console.log(`✅ Statut abonnement mis à jour: ${status}`);
+    }
   } catch (error) {
     console.error('❌ Erreur mise à jour abonnement:', error);
   }
