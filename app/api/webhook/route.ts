@@ -613,7 +613,90 @@ async function handleSubscriptionInvoicePaid(invoice: Stripe.Invoice) {
     
     console.log(`✅ Commande abonnement ${orderNumber} créée, prochaine livraison: ${nextDate}`);
     
-    // TODO: Envoyer email de confirmation (optionnel)
+    // Email de confirmation du renouvellement
+    try {
+      const formulaLabels: Record<string, string> = {
+        essentiel: '🌿 Essentiel',
+        signature: '🌸 Signature',
+        prestige: '🌹 Prestige'
+      };
+      const frequencyLabels: Record<string, string> = {
+        weekly: 'Hebdomadaire',
+        biweekly: 'Bi-mensuel',
+        monthly: 'Mensuel'
+      };
+      const deliveryDate = sub.next_delivery_date
+        ? new Date(sub.next_delivery_date).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })
+        : 'prochainement';
+      const nextDeliveryFormatted = nextDate
+        ? new Date(nextDate).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })
+        : '';
+      const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || '').trim();
+
+      await resend.emails.send({
+        from: FROM_EMAIL,
+        to: email,
+        subject: `💐 Votre bouquet ${formulaLabels[sub.formula] || sub.formula} est en préparation !`,
+        html: `
+          <!DOCTYPE html>
+          <html lang="fr">
+          <head><meta charset="utf-8"></head>
+          <body style="margin:0;padding:0;background:#faf8f5;font-family:Georgia,'Times New Roman',serif;">
+            <div style="max-width:600px;margin:0 auto;padding:40px 20px;">
+              <div style="text-align:center;margin-bottom:32px;">
+                <h1 style="font-size:24px;color:#2d2a26;margin:0;">Anne Freret</h1>
+                <p style="font-size:12px;color:#b8935a;letter-spacing:3px;margin:4px 0 0;">FLEURISTE</p>
+              </div>
+
+              <div style="background:white;border:1px solid #e8e0d8;padding:32px;">
+                <h2 style="font-size:18px;color:#2d2a26;margin:0 0 8px;">Votre bouquet est en route 🌺</h2>
+                <p style="font-size:14px;color:#2d2a26;opacity:0.7;margin:0 0 24px;line-height:1.6;">
+                  Bonjour ${escapeHtml(sub.first_name || '')},<br><br>
+                  Votre abonnement <strong>${formulaLabels[sub.formula] || sub.formula}</strong> (${frequencyLabels[sub.frequency] || sub.frequency}) a bien été renouvelé.
+                </p>
+
+                <table style="width:100%;border-collapse:collapse;font-size:14px;color:#2d2a26;">
+                  <tr style="border-bottom:1px solid #e8e0d8;">
+                    <td style="padding:12px 0;opacity:0.6;">Commande</td>
+                    <td style="padding:12px 0;text-align:right;font-weight:600;">${orderNumber}</td>
+                  </tr>
+                  <tr style="border-bottom:1px solid #e8e0d8;">
+                    <td style="padding:12px 0;opacity:0.6;">Livraison prévue</td>
+                    <td style="padding:12px 0;text-align:right;">${deliveryDate}</td>
+                  </tr>
+                  <tr style="border-bottom:1px solid #e8e0d8;">
+                    <td style="padding:12px 0;opacity:0.6;">Montant</td>
+                    <td style="padding:12px 0;text-align:right;">${sub.price}€</td>
+                  </tr>
+                  ${nextDeliveryFormatted ? `
+                  <tr>
+                    <td style="padding:12px 0;opacity:0.6;">Prochain renouvellement</td>
+                    <td style="padding:12px 0;text-align:right;">${nextDeliveryFormatted}</td>
+                  </tr>` : ''}
+                </table>
+
+                <div style="text-align:center;margin-top:24px;">
+                  <a href="${siteUrl}/compte/mes-abonnements" style="display:inline-block;background:#b8935a;color:white;padding:12px 32px;text-decoration:none;">
+                    Gérer mon abonnement
+                  </a>
+                </div>
+              </div>
+
+              <div style="text-align:center;margin-top:24px;">
+                <p style="font-size:12px;color:#2d2a26;opacity:0.4;line-height:1.6;">
+                  Une question ? Répondez directement à cet email.<br>
+                  Anne Freret Fleuriste · Saint-Pair-sur-Mer, Normandie
+                </p>
+              </div>
+            </div>
+          </body>
+          </html>
+        `,
+      });
+      console.log(`✅ Email renouvellement envoyé à ${email}`);
+    } catch (emailErr) {
+      console.error('❌ Erreur envoi email renouvellement:', emailErr);
+    }
     
   } catch (error) {
     console.error('❌ Erreur création commande abonnement:', error);
