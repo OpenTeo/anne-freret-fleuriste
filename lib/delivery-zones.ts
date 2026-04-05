@@ -18,17 +18,17 @@ export const REFERENCE_POINT = {
 // Delivery zones data - focused on South Manche / North Brittany region + major French cities
 export const DELIVERY_ZONES: DeliveryZone[] = [
   // Zone 0-5km - 8€
-  { postalCode: '50380', city: 'Saint-Pair-sur-Mer', distance: 0, deliveryFee: 6, deliveryTime: 'Jour même (commande avant 12h)', zone: 'local' },
-  { postalCode: '50400', city: 'Granville', distance: 2, deliveryFee: 6, deliveryTime: 'Jour même (commande avant 12h)', zone: 'local' },
-  { postalCode: '50350', city: 'Donville-les-Bains', distance: 3, deliveryFee: 6, deliveryTime: 'Jour même (commande avant 12h)', zone: 'local' },
-  { postalCode: '50410', city: 'Percy-en-Normandie', distance: 4, deliveryFee: 6, deliveryTime: 'Jour même (commande avant 12h)', zone: 'local' },
-  { postalCode: '50590', city: 'Montmartin-sur-Mer', distance: 5, deliveryFee: 6, deliveryTime: 'Jour même (commande avant 12h)', zone: 'local' },
+  { postalCode: '50380', city: 'Saint-Pair-sur-Mer', distance: 0, deliveryFee: 6, deliveryTime: 'Commandé avant 12h', zone: 'local' },
+  { postalCode: '50400', city: 'Granville', distance: 2, deliveryFee: 6, deliveryTime: 'Commandé avant 12h', zone: 'local' },
+  { postalCode: '50350', city: 'Donville-les-Bains', distance: 3, deliveryFee: 6, deliveryTime: 'Commandé avant 12h', zone: 'local' },
+  { postalCode: '50410', city: 'Percy-en-Normandie', distance: 4, deliveryFee: 6, deliveryTime: 'Commandé avant 12h', zone: 'local' },
+  { postalCode: '50590', city: 'Montmartin-sur-Mer', distance: 5, deliveryFee: 6, deliveryTime: 'Commandé avant 12h', zone: 'local' },
 
   // Zone 5-10km - 12€
-  { postalCode: '50290', city: 'Bréhal', distance: 8, deliveryFee: 8, deliveryTime: 'Jour même (commande avant 12h)', zone: 'local' },
-  { postalCode: '50540', city: 'Isigny-le-Buat', distance: 7, deliveryFee: 8, deliveryTime: 'Jour même (commande avant 12h)', zone: 'local' },
-  { postalCode: '50640', city: 'Villedieu-les-Poêles', distance: 9, deliveryFee: 8, deliveryTime: 'Jour même (commande avant 12h)', zone: 'local' },
-  { postalCode: '50450', city: 'Gavray-sur-Sienne', distance: 10, deliveryFee: 8, deliveryTime: 'Jour même (commande avant 12h)', zone: 'local' },
+  { postalCode: '50290', city: 'Bréhal', distance: 8, deliveryFee: 8, deliveryTime: 'Commandé avant 12h', zone: 'local' },
+  { postalCode: '50540', city: 'Isigny-le-Buat', distance: 7, deliveryFee: 8, deliveryTime: 'Commandé avant 12h', zone: 'local' },
+  { postalCode: '50640', city: 'Villedieu-les-Poêles', distance: 9, deliveryFee: 8, deliveryTime: 'Commandé avant 12h', zone: 'local' },
+  { postalCode: '50450', city: 'Gavray-sur-Sienne', distance: 10, deliveryFee: 8, deliveryTime: 'Commandé avant 12h', zone: 'local' },
 
   // Zone 10+ km local (Manche/Normandie) - 18€
   { postalCode: '50530', city: 'Sartilly-Baie-Bocage', distance: 12, deliveryFee: 10, deliveryTime: '24h', zone: 'local' },

@@ -65,20 +65,20 @@ export default function Livraison() {
               </p>
               
               <p className="text-base text-[#2d2a26]/60 font-light max-w-3xl mx-auto leading-relaxed mb-12">
-                Nous livrons vos bouquets dans tout le Cotentin et la Normandie : Granville, Avranches, Coutances, 
-                Saint-Lô, Cherbourg, Caen, Bayeux, Vire, Rouen, ainsi que partout en France métropolitaine.
+                Nous livrons vos bouquets en Normandie et en Bretagne : Granville, Avranches, Saint-Pair-sur-Mer, 
+                Jullouville, Yquelon, Dinard, Dol-de-Bretagne, Saint-Malo, ainsi que partout en France métropolitaine.
               </p>
 
               {/* Delivery Calculator - Featured */}
               <div className="max-w-2xl mx-auto">
-                <DeliveryCalculator showMap={false} className="mb-8" />
+                <DeliveryCalculator showMap={false} className="" />
               </div>
             </div>
           </div>
         </section>
 
         {/* Comment ça marche */}
-        <section className="py-24 md:py-32 bg-white">
+        <section className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-6 lg:px-8">
             
             <div className="text-center mb-16">
@@ -173,7 +173,7 @@ export default function Livraison() {
                   </div>
                   <div>
                     <p className="text-sm text-[#2d2a26]">Livraison locale</p>
-                    <p className="text-[10px] text-[#2d2a26]/40">Rayon de 35 km · Commande avant 12h = livrée le jour même</p>
+                    <p className="text-[10px] text-[#2d2a26]/40">Rayon de 35 km · Commandé avant 12h = livré le jour même</p>
                   </div>
                 </div>
                 <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
