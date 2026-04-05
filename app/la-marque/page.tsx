@@ -119,10 +119,14 @@ export default function LaMarque() {
 
               <div className="relative">
                 <img
-                  src="https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Bouquet de fleurs artisanal"
-                  className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-700"
+                  src="/images/team/anne-freret.jpg"
+                  alt="Anne Freret, fondatrice — artisan fleuriste depuis 2001"
+                  className="w-full aspect-[4/5] object-cover object-top hover:scale-105 transition-transform duration-700"
                 />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-6">
+                  <p className="text-white font-serif text-lg">Anne Freret</p>
+                  <p className="text-white/70 text-sm font-light">Fondatrice</p>
+                </div>
               </div>
             </div>
           </div>
@@ -169,10 +173,15 @@ export default function LaMarque() {
               
               <div className="relative">
                 <img
-                  src="https://images.pexels.com/photos/4466260/pexels-photo-4466260.jpeg?auto=compress&cs=tinysrgb&w=800"
-                  alt="Atelier floral — table de travail artisanale"
-                  className="w-full aspect-[4/5] object-cover hover:scale-105 transition-transform duration-700"
+                  src="/images/mariages/fleuriste-action.jpg"
+                  alt="Charles — l'équipe Anne Freret Fleuriste"
+                  className="w-full aspect-[4/5] object-cover object-top hover:scale-105 transition-transform duration-700"
                 />
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-6">
+                  <p className="text-white font-serif text-lg">Charles</p>
+                  <p className="text-white/70 text-sm font-light">Artisan fleuriste</p>
+                </div>
+                <p className="absolute top-3 right-3 text-[9px] text-white/60 drop-shadow-md">© Bastien Norrington</p>
               </div>
 
               <div>
