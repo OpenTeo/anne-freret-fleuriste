@@ -140,15 +140,15 @@ export default function DeliveryCalculator({
         <div className="mt-3 border border-[#e8e0d8] bg-white">
           {/* Header */}
           <div className="p-3 border-b border-[#e8e0d8]/50">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
               <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <svg className="w-4 h-4 text-[#b8935a] flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                 </svg>
                 <span className="text-sm text-[#2d2a26]">{deliveryResult.description}</span>
               </div>
-              <span className="text-[9px] uppercase tracking-[0.15em] text-[#b8935a] border border-[#b8935a]/30 px-2 py-0.5">
+              <span className="text-[9px] uppercase tracking-[0.15em] text-[#b8935a] border border-[#b8935a]/30 px-2 py-0.5 flex-shrink-0">
                 {getZoneLabel(deliveryResult.type)}
               </span>
             </div>
@@ -156,18 +156,16 @@ export default function DeliveryCalculator({
           
           {/* Prix + Délai */}
           <div className="grid grid-cols-2 divide-x divide-[#e8e0d8]/50">
-            <div className="p-3 text-center">
-              <p className="text-lg font-serif text-[#2d2a26]">{deliveryResult.fee.toFixed(0)}€</p>
-              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider">Livraison</p>
+            <div className="p-4 flex flex-col items-center justify-center">
+              <p className="text-2xl font-serif text-[#2d2a26]">{deliveryResult.fee.toFixed(0)}€</p>
+              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mt-1">Livraison</p>
             </div>
-            <div className="p-3 text-center">
-              <div className="flex items-center justify-center gap-1">
-                <svg className="w-3.5 h-3.5 text-[#b8935a]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <p className="text-lg font-serif text-[#2d2a26]">{deliveryResult.time}</p>
-              </div>
-              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider">Délai estimé</p>
+            <div className="p-4 flex flex-col items-center justify-center">
+              <svg className="w-4 h-4 text-[#b8935a] mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-sm md:text-lg font-serif text-[#2d2a26] text-center leading-tight">{deliveryResult.time}</p>
+              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mt-1">Délai estimé</p>
             </div>
           </div>
         </div>
