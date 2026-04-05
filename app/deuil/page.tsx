@@ -96,7 +96,7 @@ export default function DeuilPage() {
           Chaque composition est réalisée à la main avec le plus grand soin.
         </p>
         <p className="text-[#2d2a26]/60 text-sm max-w-2xl mx-auto leading-relaxed mb-3">
-          Depuis 2001, notre atelier de <strong>fleuriste à Granville</strong> et dans le <strong>Cotentin</strong> accompagne 
+          Depuis 2001, notre atelier de <strong>fleuriste à Granville</strong> et dans le <strong>Normandie</strong> accompagne 
           les familles avec respect et délicatesse. Nos <strong>compositions funéraires</strong> et <strong>gerbes d'enterrement</strong> sont 
           créées avec des fleurs fraîches pour un dernier hommage digne et émouvant.
         </p>

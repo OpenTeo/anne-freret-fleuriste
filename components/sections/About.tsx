@@ -15,7 +15,7 @@ export default function About() {
             
             <p className="text-xl text-white/80 leading-relaxed mb-8">
               Anne Freret perpétue la tradition de l'art floral français avec passion 
-              et savoir-faire. Notre boutique à Barneville-Carteret est devenue une 
+              et savoir-faire. Notre boutique à Saint-Pair-sur-Mer est devenue une 
               référence pour les amateurs de belles fleurs et de créations uniques 
               en Normandie.
             </p>

@@ -97,7 +97,7 @@ export default function Contact() {
                   <h3 className="text-xl font-serif text-[#2d2a26] mb-3">Adresse</h3>
                   <p className="text-[#2d2a26] font-light leading-relaxed">
                     39 Place du Général de Gaulle<br />
-                    50270 Saint-Pair-sur-Mer<br />
+                    50380 Saint-Pair-sur-Mer<br />
                     France
                   </p>
                 </div>

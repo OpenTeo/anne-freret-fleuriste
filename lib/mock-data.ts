@@ -38,7 +38,7 @@ export const mockProducts: Product[] = [
   // BOUQUETS
   {
     id: '2',
-    name: 'Barneville-Carteret',
+    name: 'Saint-Pair-sur-Mer',
     price: 49.90,
     image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/1_2c1fb84c-0074-4dce-9d4b-7161370a1a30.png?v=1684428619',
     images: [

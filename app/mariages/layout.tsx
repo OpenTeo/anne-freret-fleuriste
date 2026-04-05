@@ -4,7 +4,7 @@ import JsonLd from '@/components/seo/JsonLd';
 export const metadata: Metadata = {
   title: 'Fleuriste Mariage Normandie — Décoration Florale Sur Mesure',
   description:
-    'Fleuriste mariage en Normandie depuis 2001. Bouquets de mariée, décoration cérémonie et réception à Granville, Caen, Rouen, Bayeux et tout le Cotentin. Consultation personnalisée.',
+    'Fleuriste mariage en Normandie depuis 2001. Bouquets de mariée, décoration cérémonie et réception à Granville, Dinard, Saint-Malo et toute la Normandie. Consultation personnalisée.',
   alternates: {
     canonical: 'https://fleuriste-annefreret.com/mariages',
   },

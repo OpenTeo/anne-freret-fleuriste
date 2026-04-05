@@ -4,7 +4,7 @@ import JsonLd from '@/components/seo/JsonLd';
 export const metadata: Metadata = {
   title: 'Boutique en Ligne — Commander des Fleurs Artisanales',
   description:
-    'Commandez vos bouquets artisanaux en ligne. Livraison en Normandie (Granville, Caen, Cherbourg, Saint-Lô) et partout en France. Fleurs fraîches composées à la main.',
+    'Commandez vos bouquets artisanaux en ligne. Livraison en Normandie (Granville, Dinard, Saint-Malo, Dol-de-Bretagne) et partout en France. Fleurs fraîches composées à la main.',
   alternates: {
     canonical: 'https://fleuriste-annefreret.com/boutique',
   },

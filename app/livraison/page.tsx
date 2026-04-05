@@ -6,14 +6,14 @@ import DeliveryCalculator from '@/components/ui/DeliveryCalculator';
 export const metadata: Metadata = {
   title: 'Livraison de Fleurs en Normandie et France Entière',
   description:
-    'Livraison de fleurs fraîches à Granville, Caen, Cherbourg, Saint-Lô, Avranches, Bayeux, Rouen et partout en France. Livraison soignée, fraîcheur garantie 7 jours.',
+    'Livraison de fleurs fraîches à Granville, Avranches, Dinard, Saint-Malo, Dol-de-Bretagne et partout en France. Livraison soignée, fraîcheur garantie 7 jours.',
   alternates: {
     canonical: 'https://fleuriste-annefreret.com/livraison',
   },
   openGraph: {
     title: 'Livraison de Fleurs en Normandie et France Entière',
     description:
-      'Livraison de fleurs fraîches à Granville, Caen, Cherbourg, Saint-Lô, Avranches, Bayeux, Rouen et partout en France.',
+      'Livraison de fleurs fraîches à Granville, Avranches, Dinard, Saint-Malo, Dol-de-Bretagne et partout en France.',
     url: 'https://fleuriste-annefreret.com/livraison',
   },
 };
@@ -60,7 +60,7 @@ export default function Livraison() {
               <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
               
               <p className="text-xl text-[#2d2a26] font-light max-w-3xl mx-auto leading-relaxed mb-6">
-                Vos créations florales livrées avec le plus grand soin depuis Barneville-Carteret. 
+                Vos créations florales livrées avec le plus grand soin depuis Saint-Pair-sur-Mer. 
                 Fraîcheur garantie et service personnalisé pour chaque livraison.
               </p>
               

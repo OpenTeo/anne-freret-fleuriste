@@ -60,7 +60,7 @@ export default function MentionsLegales() {
                 2. Contact
               </h2>
               <div className="bg-gray/50 p-6 rounded-lg">
-                <p><strong>Adresse :</strong> 39 Place du Général de Gaulle, 50270 Saint-Pair-sur-Mer, France</p>
+                <p><strong>Adresse :</strong> 39 Place du Général de Gaulle, 50380 Saint-Pair-sur-Mer, France</p>
                 <p><strong>Téléphone :</strong> 02 33 50 26 15</p>
                 <p><strong>Email :</strong> contact@annefreret.fr</p>
                 <p><strong>Horaires d'ouverture :</strong></p>

@@ -7,14 +7,14 @@ import { Heart, Award, Leaf, Users, Clock, MapPin } from 'lucide-react';
 export const metadata: Metadata = {
   title: 'Notre Histoire — Anne Freret, Artisan Fleuriste depuis 2001',
   description:
-    'Découvrez l\'histoire d\'Anne Freret, artisan fleuriste passionné depuis 2001 à Barneville-Carteret. Notre savoir-faire et notre engagement pour des créations florales d\'exception en Normandie.',
+    'Découvrez l\'histoire d\'Anne Freret, artisan fleuriste passionné depuis 2001 à Saint-Pair-sur-Mer. Notre savoir-faire et notre engagement pour des créations florales d\'exception en Normandie.',
   alternates: {
     canonical: 'https://fleuriste-annefreret.com/a-propos',
   },
   openGraph: {
     title: 'Notre Histoire — Anne Freret, Artisan Fleuriste depuis 2001',
     description:
-      'Découvrez l\'histoire d\'Anne Freret, artisan fleuriste passionné depuis 2001 à Barneville-Carteret.',
+      'Découvrez l\'histoire d\'Anne Freret, artisan fleuriste passionné depuis 2001 à Saint-Pair-sur-Mer.',
     url: 'https://fleuriste-annefreret.com/a-propos',
   },
 };
@@ -54,7 +54,7 @@ export default function APropos() {
                   </h2>
                   <div className="space-y-4 text-muted leading-relaxed">
                     <p>
-                      Anne Freret est une fleuriste passionnée installée à Barneville-Carteret 
+                      Anne Freret est une fleuriste passionnée installée à Saint-Pair-sur-Mer 
                       en Normandie. Artisan fleuriste reconnue, elle a développé un style 
                       unique mêlant tradition française et inspiration locale normande.
                     </p>

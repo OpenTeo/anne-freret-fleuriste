@@ -136,7 +136,7 @@ export default function CGV() {
                     <strong className="font-normal">3.1. Passation de commande :</strong> Les commandes peuvent être passées :
                   </p>
                   <ul className="ml-6 space-y-2">
-                    <li>• En magasin : 39 Place du Général de Gaulle, 50270 Saint-Pair-sur-Mer</li>
+                    <li>• En magasin : 39 Place du Général de Gaulle, 50380 Saint-Pair-sur-Mer</li>
                     <li>• Par téléphone : 02 33 50 26 15</li>
                     <li>• Sur notre site internet</li>
                     <li>• Par email : contact@annefreret.fr</li>
@@ -269,7 +269,7 @@ export default function CGV() {
                   <ul className="ml-6 space-y-2">
                     <li>• Par email : contact@annefreret.fr</li>
                     <li>• Par téléphone : 02 33 50 26 15</li>
-                    <li>• Par courrier : 39 Place du Général de Gaulle, 50270 Saint-Pair-sur-Mer</li>
+                    <li>• Par courrier : 39 Place du Général de Gaulle, 50380 Saint-Pair-sur-Mer</li>
                   </ul>
                   <p>
                     <strong className="font-normal">7.4. Durée de vie :</strong> Nous ne pouvons garantir la durée de vie des fleurs au-delà de la livraison, 

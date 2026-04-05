@@ -170,7 +170,7 @@ const Header = () => {
             </div>
 
             <p className="mt-6 text-[#666] text-xs">
-              39 Place du Général de Gaulle, 50270 Saint-Pair-sur-Mer
+              39 Place du Général de Gaulle, 50380 Saint-Pair-sur-Mer
             </p>
           </div>
         </div>

@@ -29,15 +29,15 @@ export const viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://fleuriste-annefreret.com'),
   title: {
-    default: "Anne Freret — Fleuriste Artisanale à Barneville-Carteret | Livraison Normandie & France",
+    default: "Anne Freret — Fleuriste Artisanale à Saint-Pair-sur-Mer | Livraison Normandie & France",
     template: '%s | Anne Freret Fleuriste — Normandie',
   },
-  description: "Artisan fleuriste depuis 2001 à Barneville-Carteret. Bouquets d'exception composés à la main, livrés à Granville, Cotentin, Caen, Rouen et partout en France. Mariage, deuil, abonnement.",
+  description: "Artisan fleuriste depuis 2001 à Saint-Pair-sur-Mer. Bouquets d'exception composés à la main, livrés à Granville, Dinard, Saint-Malo, Dol-de-Bretagne et partout en France. Mariage, deuil, abonnement.",
   alternates: {
     canonical: 'https://fleuriste-annefreret.com',
   },
   openGraph: {
-    title: "Anne Freret — Fleuriste Artisanale à Barneville-Carteret",
+    title: "Anne Freret — Fleuriste Artisanale à Saint-Pair-sur-Mer",
     description: "Artisan fleuriste depuis 2001. Bouquets d'exception composés à la main, livrés en Normandie et partout en France.",
     type: "website",
     locale: "fr_FR",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Anne Freret Fleuriste — Barneville-Carteret, Normandie",
+    title: "Anne Freret Fleuriste — Saint-Pair-sur-Mer, Normandie",
     description: "Artisan fleuriste depuis 2001. Bouquets d'exception, livraison Normandie et France.",
     images: ['/images/og-image.jpg'],
   },
