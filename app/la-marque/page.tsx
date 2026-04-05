@@ -121,7 +121,7 @@ export default function LaMarque() {
                 <img
                   src="/images/team/anne-freret.jpg"
                   alt="Anne Freret, fondatrice — artisan fleuriste depuis 2001"
-                  className="w-full aspect-[4/5] object-cover object-top hover:scale-105 transition-transform duration-700"
+                  className="w-full aspect-[4/3] object-cover object-bottom hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-6">
                   <p className="text-white font-serif text-lg">Anne Freret</p>
