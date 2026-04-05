@@ -165,6 +165,9 @@ export default function DeliveryCalculator({
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <p className="text-sm md:text-lg font-serif text-[#2d2a26] text-center leading-tight">{deliveryResult.time}</p>
+              {deliveryResult.type === 'local' && (
+                <p className="text-[11px] text-[#b8935a] mt-1">Livré le jour même</p>
+              )}
               <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mt-1">Délai estimé</p>
             </div>
           </div>
