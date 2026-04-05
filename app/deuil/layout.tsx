@@ -4,14 +4,14 @@ import JsonLd from '@/components/seo/JsonLd';
 export const metadata: Metadata = {
   title: 'Fleurs de Deuil — Compositions Funéraires Livrées en Normandie',
   description:
-    'Compositions de deuil artisanales livrées avec soin à Granville, Avranches, Coutances, Caen et toute la Normandie. Gerbes, coussins, couronnes. Ruban personnalisé inclus.',
+    'Compositions de deuil artisanales livrées avec soin à Granville, Avranches, Dinard, Dol-de-Bretagne, Saint-Malo et toute la Normandie. Gerbes, coussins, couronnes. Ruban personnalisé inclus.',
   alternates: {
     canonical: 'https://fleuriste-annefreret.com/deuil',
   },
   openGraph: {
-    title: 'Fleurs de Deuil — Compositions Funéraires Livrées en Normandie',
+    title: 'Fleurs de Deuil — Compositions Funéraires Livrées en Normandie et Bretagne',
     description:
-      'Compositions de deuil artisanales livrées avec soin à Granville, Avranches, Coutances, Caen et toute la Normandie.',
+      'Compositions de deuil artisanales livrées avec soin à Granville, Avranches, Dinard, Dol-de-Bretagne, Saint-Malo et toute la Normandie.',
     url: 'https://fleuriste-annefreret.com/deuil',
   },
 };

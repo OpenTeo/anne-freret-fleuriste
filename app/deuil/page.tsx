@@ -101,8 +101,8 @@ export default function DeuilPage() {
           créées avec des fleurs fraîches pour un dernier hommage digne et émouvant.
         </p>
         <p className="text-[#2d2a26]/60 text-sm max-w-2xl mx-auto leading-relaxed">
-          Livraison de compositions funéraires dans la Manche, le Calvados et toute la Normandie. Nos arrangements sont 
-          livrés avec soin et respect à Granville, Avranches, Coutances, Caen et les communes environnantes.
+          Livraison de compositions funéraires dans la Manche, en Bretagne et toute la Normandie. Nos arrangements sont 
+          livrés avec soin et respect à Granville, Avranches, Dinard, Dol-de-Bretagne, Saint-Malo et les communes environnantes.
         </p>
       </section>
 
