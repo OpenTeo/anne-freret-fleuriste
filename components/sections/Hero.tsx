@@ -28,7 +28,7 @@ const Hero = () => {
           <div className="relative h-[55vh] md:h-[60vh]">
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url('https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-20250201-WA0008.jpg?v=1738607322')` }}
+              style={{ backgroundImage: `url('/images/bouquets/saint-pairais.png')` }}
             />
           </div>
           <div className="bg-[#faf8f5] px-6 md:px-16 lg:px-24 py-6 md:py-8">

@@ -7,7 +7,7 @@ import Link from 'next/link';
 const slides = [
   {
     href: '/produit/le-saint-pairais',
-    image: 'https://cdn.shopify.com/s/files/1/0295/6292/9231/files/IMG-20250201-WA0008.jpg?v=1738607322',
+    image: '/images/bouquets/saint-pairais.png',
     subtitle: 'Sélection de saison',
     title: 'Le bouquet du mois',
     cta: 'Découvrir →',
