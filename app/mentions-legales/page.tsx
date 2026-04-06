@@ -65,9 +65,10 @@ export default function MentionsLegales() {
                 <p><strong>Email :</strong> contact@annefreret.fr</p>
                 <p><strong>Horaires d'ouverture :</strong></p>
                 <ul className="ml-4 mt-2">
-                  <li>Lundi - Samedi : 9h00 - 19h00</li>
-                  <li>Dimanche : 10h00 - 17h00</li>
-                  <li>Fermé les jours fériés</li>
+                  <li>Mardi - Vendredi : 9h30 - 12h30 / 14h30 - 19h00</li>
+                  <li>Samedi : 9h30 - 13h00 / 14h00 - 19h00</li>
+                  <li>Dimanche : 9h30 - 13h00</li>
+                  <li>Fermé le lundi et les jours fériés</li>
                 </ul>
               </div>
             </section>

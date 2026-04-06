@@ -131,9 +131,10 @@ export default function Contact() {
                       <p className="text-xs text-[#2d2a26]/50 mb-1">39 Place du Général de Gaulle</p>
                       <a href="tel:0233502615" className="text-xs text-[#b8935a] hover:text-[#b8956a] transition-colors">📞 02 33 50 26 15</a>
                       <div className="text-sm text-[#2d2a26] font-light space-y-0.5 mt-2">
-                        <p>Lun-Ven : 9h-12h30 / 14h-19h</p>
-                        <p>Samedi : 9h-13h / 14h-19h30</p>
-                        <p>Dimanche : 9h-13h</p>
+                        <p>Mar-Ven : 9h30-12h30 / 14h30-19h</p>
+                        <p>Samedi : 9h30-13h / 14h-19h</p>
+                        <p>Dimanche : 9h30-13h</p>
+                        <p className="text-[#2d2a26]/40">Fermé le lundi</p>
                       </div>
                     </div>
                     {/* Yquelon */}
