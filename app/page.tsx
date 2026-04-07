@@ -45,40 +45,40 @@ export default function Home() {
                     Commande en ligne, retrait en boutique ou livraison locale le jour même.
                   </h2>
                   <div className="w-16 h-px bg-[#b8935a]/60 mb-6" />
-                  <p className="text-[#2d2a26]/65 text-base md:text-lg leading-relaxed max-w-2xl font-light mb-8">
+                  <p className="text-[#2d2a26]/65 text-base md:text-lg leading-relaxed max-w-2xl font-light mb-6 md:mb-8">
                     Bouquets composés à la main dans notre atelier de Saint-Pair-sur-Mer, avec un service attentif pour les commandes du quotidien, les mariages, le deuil et les abonnements floraux.
                   </p>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 max-w-2xl">
-                    {[
-                      'Livraison locale avant 12h',
-                      '5 boutiques entre Normandie & Bretagne',
-                      'Paiement 100% sécurisé',
-                    ].map((item) => (
-                      <div key={item} className="border border-[#b8935a]/10 bg-[#faf8f5]/80 px-4 py-4 text-sm text-[#2d2a26]/70 font-light">
-                        <span className="block text-[#b8935a] text-[11px] mb-1">✦</span>
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 md:mb-8">
                     <Link
                       href="/boutique"
-                      className="inline-flex items-center justify-center bg-[#2d2a26] text-white px-6 py-3 text-sm tracking-[0.12em] uppercase hover:bg-[#b8935a] transition-colors"
+                      className="inline-flex items-center justify-center bg-[#2d2a26] text-white px-6 py-3.5 text-sm tracking-[0.14em] uppercase hover:bg-[#b8935a] transition-colors"
                     >
                       Commander un bouquet
                     </Link>
                     <Link
                       href="/contact"
-                      className="inline-flex items-center justify-center border border-[#2d2a26]/15 text-[#2d2a26] px-6 py-3 text-sm tracking-[0.12em] uppercase hover:border-[#b8935a] hover:text-[#b8935a] transition-colors bg-white/80"
+                      className="inline-flex items-center justify-center border border-[#2d2a26]/15 text-[#2d2a26] px-6 py-3.5 text-sm tracking-[0.14em] uppercase hover:border-[#b8935a] hover:text-[#b8935a] transition-colors bg-white/80"
                     >
                       Nous contacter
                     </Link>
                   </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 md:gap-3 max-w-2xl">
+                    {[
+                      'Livraison locale le jour même pour toute commande passée avant 12h',
+                      '5 boutiques entre Normandie & Bretagne',
+                      'Paiement 100% sécurisé',
+                    ].map((item) => (
+                      <div key={item} className="rounded-sm border border-[#b8935a]/10 bg-[#faf8f5]/80 px-4 py-3 text-sm text-[#2d2a26]/72 font-light leading-relaxed">
+                        <span className="inline-block text-[#b8935a] mr-2">✦</span>
+                        {item}
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
                   {[
                     { title: 'Livraison aujourd’hui', href: '/livraison', desc: 'Consultez les zones, frais et délais.', accent: 'bg-[#f7f1eb]' },
                     { title: 'Mariage & événements', href: '/mariages', desc: 'Demandez un devis floral sur mesure.', accent: 'bg-white' },
@@ -88,10 +88,13 @@ export default function Home() {
                     <Link
                       key={item.title}
                       href={item.href}
-                      className={`group border border-[#b8935a]/12 ${item.accent} p-5 md:p-6 hover:border-[#b8935a]/40 hover:shadow-[0_12px_30px_rgba(45,42,38,0.06)] transition-all duration-300`}
+                      className={`group border border-[#b8935a]/12 ${item.accent} px-5 py-5 md:px-6 md:py-6 hover:border-[#b8935a]/40 hover:shadow-[0_12px_30px_rgba(45,42,38,0.06)] transition-all duration-300`}
                     >
-                      <span className="text-[10px] tracking-[0.18em] uppercase text-[#b8935a]/80">Service</span>
-                      <p className="font-serif text-xl text-[#2d2a26] mt-3 mb-2 group-hover:text-[#b8935a] transition-colors">{item.title}</p>
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <span className="text-[10px] tracking-[0.18em] uppercase text-[#b8935a]/80">Service</span>
+                        <span className="text-[#b8935a] transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      </div>
+                      <p className="font-serif text-[28px] md:text-xl text-[#2d2a26] mb-2 leading-tight group-hover:text-[#b8935a] transition-colors">{item.title}</p>
                       <p className="text-sm text-[#2d2a26]/60 font-light leading-relaxed">{item.desc}</p>
                     </Link>
                   ))}
