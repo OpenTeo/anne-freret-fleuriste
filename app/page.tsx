@@ -32,55 +32,70 @@ export default function Home() {
         <Hero />
 
         {/* 1bis. BLOC CONVERSION - Réassurance + accès rapides */}
-        <section className="border-y border-[#b8935a]/15 bg-white">
-          <div className="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-14">
-            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 md:gap-12 items-center">
-              <div>
-                <p className="text-[#b8935a] text-[10px] tracking-[0.25em] uppercase mb-4 font-light">
-                  Fleuriste artisan depuis 2001
-                </p>
-                <h2 className="font-serif text-3xl md:text-5xl text-[#2d2a26] mb-5 font-light leading-tight">
-                  Commande en ligne, retrait en boutique ou livraison locale le jour même.
-                </h2>
-                <p className="text-[#2d2a26]/65 text-base md:text-lg leading-relaxed max-w-2xl font-light mb-6">
-                  Bouquets composés à la main dans notre atelier de Saint-Pair-sur-Mer, avec un service attentif pour les commandes du quotidien, les mariages, le deuil et les abonnements floraux.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6">
-                  <Link
-                    href="/boutique"
-                    className="inline-flex items-center justify-center bg-[#2d2a26] text-white px-6 py-3 text-sm tracking-[0.12em] uppercase hover:bg-[#b8935a] transition-colors"
-                  >
-                    Commander un bouquet
-                  </Link>
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center border border-[#2d2a26]/20 text-[#2d2a26] px-6 py-3 text-sm tracking-[0.12em] uppercase hover:border-[#b8935a] hover:text-[#b8935a] transition-colors"
-                  >
-                    Nous contacter
-                  </Link>
+        <section className="py-12 md:py-16 bg-[#faf8f5]">
+          <div className="max-w-6xl mx-auto px-4 md:px-6">
+            <div className="relative overflow-hidden border border-[#b8935a]/15 bg-white shadow-[0_20px_60px_rgba(45,42,38,0.06)]">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(184,147,90,0.10),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(184,147,90,0.08),transparent_35%)]" />
+              <div className="relative grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 md:gap-14 items-stretch p-6 md:p-10 lg:p-14">
+                <div className="flex flex-col justify-center">
+                  <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-4 font-light">
+                    Fleuriste artisan depuis 2001
+                  </p>
+                  <h2 className="font-serif text-3xl md:text-5xl text-[#2d2a26] mb-5 font-light leading-tight max-w-3xl">
+                    Commande en ligne, retrait en boutique ou livraison locale le jour même.
+                  </h2>
+                  <div className="w-16 h-px bg-[#b8935a]/60 mb-6" />
+                  <p className="text-[#2d2a26]/65 text-base md:text-lg leading-relaxed max-w-2xl font-light mb-8">
+                    Bouquets composés à la main dans notre atelier de Saint-Pair-sur-Mer, avec un service attentif pour les commandes du quotidien, les mariages, le deuil et les abonnements floraux.
+                  </p>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8 max-w-2xl">
+                    {[
+                      'Livraison locale avant 12h',
+                      '5 boutiques entre Normandie & Bretagne',
+                      'Paiement 100% sécurisé',
+                    ].map((item) => (
+                      <div key={item} className="border border-[#b8935a]/10 bg-[#faf8f5]/80 px-4 py-4 text-sm text-[#2d2a26]/70 font-light">
+                        <span className="block text-[#b8935a] text-[11px] mb-1">✦</span>
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <Link
+                      href="/boutique"
+                      className="inline-flex items-center justify-center bg-[#2d2a26] text-white px-6 py-3 text-sm tracking-[0.12em] uppercase hover:bg-[#b8935a] transition-colors"
+                    >
+                      Commander un bouquet
+                    </Link>
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center justify-center border border-[#2d2a26]/15 text-[#2d2a26] px-6 py-3 text-sm tracking-[0.12em] uppercase hover:border-[#b8935a] hover:text-[#b8935a] transition-colors bg-white/80"
+                    >
+                      Nous contacter
+                    </Link>
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-[#2d2a26]/70 font-light">
-                  <span>✓ Livraison locale avant 12h</span>
-                  <span>✓ 5 boutiques entre Normandie & Bretagne</span>
-                  <span>✓ Paiement 100% sécurisé</span>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    { title: 'Livraison aujourd’hui', href: '/livraison', desc: 'Consultez les zones, frais et délais.', accent: 'bg-[#f7f1eb]' },
+                    { title: 'Mariage & événements', href: '/mariages', desc: 'Demandez un devis floral sur mesure.', accent: 'bg-white' },
+                    { title: 'Deuil & hommages', href: '/deuil', desc: 'Commandez une composition avec accompagnement.', accent: 'bg-white' },
+                    { title: 'Abonnement floral', href: '/abonnement', desc: 'Recevez des fleurs chaque mois, sans contrainte.', accent: 'bg-[#f7f1eb]' },
+                  ].map((item) => (
+                    <Link
+                      key={item.title}
+                      href={item.href}
+                      className={`group border border-[#b8935a]/12 ${item.accent} p-5 md:p-6 hover:border-[#b8935a]/40 hover:shadow-[0_12px_30px_rgba(45,42,38,0.06)] transition-all duration-300`}
+                    >
+                      <span className="text-[10px] tracking-[0.18em] uppercase text-[#b8935a]/80">Service</span>
+                      <p className="font-serif text-xl text-[#2d2a26] mt-3 mb-2 group-hover:text-[#b8935a] transition-colors">{item.title}</p>
+                      <p className="text-sm text-[#2d2a26]/60 font-light leading-relaxed">{item.desc}</p>
+                    </Link>
+                  ))}
                 </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {[
-                  { title: 'Livraison aujourd’hui', href: '/livraison', desc: 'Consultez les zones, frais et délais.' },
-                  { title: 'Mariage & événements', href: '/mariages', desc: 'Demandez un devis floral sur mesure.' },
-                  { title: 'Deuil & hommages', href: '/deuil', desc: 'Commandez une composition avec accompagnement.' },
-                  { title: 'Abonnement floral', href: '/abonnement', desc: 'Recevez des fleurs chaque mois, sans contrainte.' },
-                ].map((item) => (
-                  <Link
-                    key={item.title}
-                    href={item.href}
-                    className="group border border-[#b8935a]/15 bg-[#faf8f5] p-5 hover:border-[#b8935a]/40 hover:bg-[#f7f1eb] transition-colors"
-                  >
-                    <p className="font-serif text-xl text-[#2d2a26] mb-2 group-hover:text-[#b8935a] transition-colors">{item.title}</p>
-                    <p className="text-sm text-[#2d2a26]/60 font-light leading-relaxed">{item.desc}</p>
-                  </Link>
-                ))}
               </div>
             </div>
           </div>
