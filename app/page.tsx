@@ -36,7 +36,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto px-4 md:px-6">
             <div className="relative overflow-hidden border border-[#b8935a]/15 shadow-[0_20px_60px_rgba(45,42,38,0.06)] bg-[#f7f1eb]">
               <div
-                className="absolute inset-0 bg-repeat bg-center opacity-[0.34]"
+                className="absolute inset-0 bg-repeat bg-center opacity-[0.40]"
                 style={{
                   backgroundImage: 'url(/images/brand/papier-emballage.jpg)',
                   backgroundSize: '420px',
