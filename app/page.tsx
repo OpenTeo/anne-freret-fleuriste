@@ -34,16 +34,16 @@ export default function Home() {
         {/* 1bis. BLOC CONVERSION - Réassurance + accès rapides */}
         <section className="py-12 md:py-16 bg-[#faf8f5]">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
-            <div className="relative overflow-hidden border border-[#b8935a]/15 shadow-[0_20px_60px_rgba(45,42,38,0.06)]">
+            <div className="relative overflow-hidden border border-[#b8935a]/15 shadow-[0_20px_60px_rgba(45,42,38,0.06)] bg-[#f7f1eb]">
               <div
-                className="absolute inset-0 bg-repeat bg-center opacity-[0.18]"
+                className="absolute inset-0 bg-repeat bg-center opacity-[0.34]"
                 style={{
                   backgroundImage: 'url(/images/brand/papier-emballage.jpg)',
-                  backgroundSize: '520px',
+                  backgroundSize: '420px',
                 }}
               />
-              <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(250,248,245,0.95),rgba(255,255,255,0.92))]" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(184,147,90,0.10),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(184,147,90,0.08),transparent_35%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(247,241,235,0.82),rgba(255,255,255,0.88))] md:bg-[linear-gradient(135deg,rgba(247,241,235,0.78),rgba(255,255,255,0.84))]" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(184,147,90,0.16),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(184,147,90,0.10),transparent_35%)]" />
               <div className="relative grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 md:gap-14 items-stretch p-6 md:p-10 lg:p-14">
                 <div className="flex flex-col justify-center">
                   <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-4 font-light">
