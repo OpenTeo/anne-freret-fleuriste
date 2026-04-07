@@ -42,7 +42,7 @@ const Hero = () => {
 
   return (
     <section
-      className="relative overflow-hidden bg-[#faf8f5]"
+      className="relative overflow-hidden bg-[#faf8f5] touch-pan-y select-none"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -51,8 +51,8 @@ const Hero = () => {
 
         {/* ═══ SLIDE 1: Bouquet du mois ═══ */}
         <div
-          className="transition-opacity duration-700 ease-in-out"
-          style={{ opacity: current === 0 ? 1 : 0, position: current === 0 ? 'relative' : 'absolute', top: 0, left: 0, right: 0 }}
+          className="transition-opacity duration-700 ease-in-out pointer-events-auto"
+          style={{ opacity: current === 0 ? 1 : 0, position: current === 0 ? 'relative' : 'absolute', top: 0, left: 0, right: 0, pointerEvents: current === 0 ? 'auto' : 'none' }}
         >
           <div className="relative h-[55vh] md:h-[60vh]">
             <div
@@ -82,8 +82,8 @@ const Hero = () => {
 
         {/* ═══ SLIDE 2: Abonnement — fond crème + 3 cards élégantes ═══ */}
         <div
-          className="transition-opacity duration-700 ease-in-out"
-          style={{ opacity: current === 1 ? 1 : 0, position: current === 1 ? 'relative' : 'absolute', top: 0, left: 0, right: 0 }}
+          className="transition-opacity duration-700 ease-in-out pointer-events-auto"
+          style={{ opacity: current === 1 ? 1 : 0, position: current === 1 ? 'relative' : 'absolute', top: 0, left: 0, right: 0, pointerEvents: current === 1 ? 'auto' : 'none' }}
         >
           <div className="bg-[#f7f3ee] h-[55vh] md:h-[60vh] flex flex-col items-center justify-center px-4 md:px-12">
             <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-3" style={{ color: '#b8935a' }}>
@@ -161,8 +161,8 @@ const Hero = () => {
 
         {/* ═══ SLIDE 3: Deuil ═══ */}
         <div
-          className="transition-opacity duration-700 ease-in-out"
-          style={{ opacity: current === 2 ? 1 : 0, position: current === 2 ? 'relative' : 'absolute', top: 0, left: 0, right: 0 }}
+          className="transition-opacity duration-700 ease-in-out pointer-events-auto"
+          style={{ opacity: current === 2 ? 1 : 0, position: current === 2 ? 'relative' : 'absolute', top: 0, left: 0, right: 0, pointerEvents: current === 2 ? 'auto' : 'none' }}
         >
           <div className="relative h-[55vh] md:h-[60vh]">
             <div
@@ -192,8 +192,8 @@ const Hero = () => {
 
         {/* ═══ SLIDE 4: Mariages ═══ */}
         <div
-          className="transition-opacity duration-700 ease-in-out"
-          style={{ opacity: current === 3 ? 1 : 0, position: current === 3 ? 'relative' : 'absolute', top: 0, left: 0, right: 0 }}
+          className="transition-opacity duration-700 ease-in-out pointer-events-auto"
+          style={{ opacity: current === 3 ? 1 : 0, position: current === 3 ? 'relative' : 'absolute', top: 0, left: 0, right: 0, pointerEvents: current === 3 ? 'auto' : 'none' }}
         >
           <div className="relative h-[55vh] md:h-[60vh]">
             <div
