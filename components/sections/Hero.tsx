@@ -3,13 +3,37 @@
 import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
 
+const SWIPE_THRESHOLD = 50;
+
 const totalSlides = 4;
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
+  const [touchStartX, setTouchStartX] = useState<number | null>(null);
+  const [touchEndX, setTouchEndX] = useState<number | null>(null);
 
   const next = useCallback(() => setCurrent((c) => (c + 1) % totalSlides), []);
   const prev = useCallback(() => setCurrent((c) => (c - 1 + totalSlides) % totalSlides), []);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLElement>) => {
+    setTouchStartX(e.targetTouches[0]?.clientX ?? null);
+    setTouchEndX(null);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLElement>) => {
+    setTouchEndX(e.targetTouches[0]?.clientX ?? null);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX === null || touchEndX === null) return;
+
+    const distance = touchStartX - touchEndX;
+    if (distance > SWIPE_THRESHOLD) next();
+    if (distance < -SWIPE_THRESHOLD) prev();
+
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
 
   useEffect(() => {
     const timer = setInterval(next, 8000);
@@ -17,7 +41,12 @@ const Hero = () => {
   }, [next]);
 
   return (
-    <section className="relative overflow-hidden bg-[#faf8f5]">
+    <section
+      className="relative overflow-hidden bg-[#faf8f5]"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className="relative">
 
         {/* ═══ SLIDE 1: Bouquet du mois ═══ */}
