@@ -46,7 +46,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(184,147,90,0.16),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(184,147,90,0.10),transparent_35%)]" />
               <div className="relative grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 md:gap-14 items-stretch p-6 md:p-10 lg:p-14">
                 <div className="flex flex-col justify-center">
-                  <p className="text-[#b8935a] text-[10px] tracking-[0.3em] uppercase mb-4 font-light">
+                  <p className="text-[#2d2a26] text-[10px] tracking-[0.3em] uppercase mb-4 font-light text-center lg:text-left">
                     Fleuriste artisan depuis 2001
                   </p>
                   <h2 className="font-serif text-3xl md:text-5xl text-[#2d2a26] mb-5 font-light leading-tight max-w-3xl">
