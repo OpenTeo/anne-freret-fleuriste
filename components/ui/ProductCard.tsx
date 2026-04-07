@@ -37,38 +37,56 @@ const ProductCard = ({ product, className = '', featured = false }: ProductCardP
       href={`/produit/${product.slug}`}
       className={`group block ${className}`}
     >
-      {/* Image */}
-      <div className={`relative overflow-hidden mb-3 md:mb-8 ${featured ? 'aspect-[4/5]' : 'aspect-[3/4]'}`}>
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-          loading="lazy"
-        />
-        {/* Overlay on hover - more sophisticated */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2d2a26]/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        {featured && (
-          <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-            <p className="text-white text-xs md:text-sm font-light leading-relaxed">
-              {product.description}
-            </p>
+      <article className="bg-white border border-[#e8e0d8]/70 overflow-hidden transition-all duration-500 hover:shadow-[0_18px_45px_rgba(45,42,38,0.08)] hover:-translate-y-1">
+        {/* Image */}
+        <div className={`relative overflow-hidden ${featured ? 'aspect-[4/5]' : 'aspect-[3/4]'}`}>
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#2d2a26]/55 via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute top-3 left-3 flex flex-wrap gap-2">
+            <span className="bg-white/90 backdrop-blur-sm text-[#2d2a26] text-[9px] uppercase tracking-[0.16em] px-2.5 py-1 border border-[#e8e0d8]">
+              {product.category}
+            </span>
+            {product.featured && (
+              <span className="bg-[#b8935a] text-white text-[9px] uppercase tracking-[0.16em] px-2.5 py-1">
+                Signature
+              </span>
+            )}
           </div>
-        )}
-      </div>
+          <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+            <div className="bg-white/88 backdrop-blur-sm border border-white/70 px-4 py-3 transition-all duration-500 group-hover:bg-white/94">
+              <h3 className={`font-serif text-[#2d2a26] group-hover:text-[#b8935a] transition-colors leading-tight font-light ${featured ? 'text-lg md:text-2xl' : 'text-base md:text-xl'}`}>
+                {product.name}
+              </h3>
+              <div className="mt-2 flex items-end justify-between gap-3">
+                <p className="text-[#2d2a26]/50 text-[11px] md:text-sm font-light">
+                  À partir de {formatPrice(product.price)} €
+                </p>
+                <span className="text-[#b8935a] text-sm">→</span>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      {/* Content */}
-      <div className="space-y-1 md:space-y-2">
-        <p className="text-[9px] md:text-[10px] uppercase tracking-[0.15em] text-[#b8935a]">{product.category}</p>
-        <h3 className={`font-serif text-[#2d2a26] group-hover:text-[#b8935a] transition-colors leading-tight font-light ${featured ? 'text-lg md:text-2xl lg:text-3xl' : 'text-sm md:text-xl lg:text-2xl'}`}>
-          {product.name}
-        </h3>
-        {product.rating && product.reviewCount && (
-          <StarRating rating={product.rating} count={product.reviewCount} />
-        )}
-        <p className="text-[#2d2a26]/50 text-[11px] md:text-sm font-light">
-          À partir de {formatPrice(product.price)} €
-        </p>
-      </div>
+        {/* Content */}
+        <div className="p-4 md:p-5 space-y-2 bg-[#fffdfa]">
+          <p className="text-sm text-[#2d2a26]/58 font-light leading-relaxed line-clamp-2">
+            {product.description}
+          </p>
+          <div className="flex items-center justify-between pt-1">
+            {product.rating && product.reviewCount ? (
+              <StarRating rating={product.rating} count={product.reviewCount} />
+            ) : (
+              <span className="text-[10px] uppercase tracking-[0.14em] text-[#b8935a]/80">Composition artisanale</span>
+            )}
+            <span className="text-[10px] uppercase tracking-[0.14em] text-[#2d2a26]/35">Voir le produit</span>
+          </div>
+        </div>
+      </article>
     </Link>
   );
 };

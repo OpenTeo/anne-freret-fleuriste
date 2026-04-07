@@ -118,17 +118,26 @@ function BoutiqueContent() {
         </section>
 
         {/* Category Filter */}
-        <section className="py-10 md:py-12 border-b border-[#b8935a]/20 bg-white/50">
-          <div className="container mx-auto px-6 lg:px-8">
-            <div className="flex flex-wrap justify-center gap-3">
+        <section className="py-8 md:py-10 border-b border-[#b8935a]/20 bg-white/60 backdrop-blur-sm sticky top-[56px] md:top-[108px] z-30">
+          <div className="container mx-auto px-4 md:px-6 lg:px-8">
+            <div className="flex items-center justify-between gap-4 mb-5">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.22em] text-[#b8935a] mb-1">Sélection</p>
+                <h2 className="font-serif text-2xl text-[#2d2a26] font-light">Choisissez votre univers floral</h2>
+              </div>
+              <div className="hidden md:block text-[#6b6560] luxury-label">
+                {filteredProducts.length} produit{filteredProducts.length > 1 ? 's' : ''}
+              </div>
+            </div>
+            <div className="flex gap-2 md:gap-3 overflow-x-auto pb-1">
               {allCategories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full transition-all duration-500 border luxury-label ${
+                  className={`px-4 md:px-5 py-2.5 transition-all duration-300 border whitespace-nowrap text-[11px] md:text-[12px] uppercase tracking-[0.14em] ${
                     selectedCategory === category
-                      ? 'bg-[#b8935a] text-white border-[#b8935a]'
-                      : 'bg-transparent text-[#2d2a26] border-[#b8935a]/30 hover:bg-[#b8935a] hover:text-white hover:border-[#b8935a]'
+                      ? 'bg-[#2d2a26] text-white border-[#2d2a26]'
+                      : 'bg-white text-[#2d2a26] border-[#b8935a]/20 hover:border-[#b8935a] hover:text-[#b8935a]'
                   }`}
                 >
                   {category}
@@ -139,27 +148,47 @@ function BoutiqueContent() {
         </section>
 
         {/* Products Grid */}
-        <section className="py-20">
-          <div className="container mx-auto px-6 lg:px-8">
+        <section className="py-12 md:py-16 lg:py-20">
+          <div className="container mx-auto px-4 md:px-6 lg:px-8">
             {isLoading ? (
               <div className="text-center py-20">
                 <div className="text-[#2d2a26]/60">Chargement des produits...</div>
               </div>
             ) : filteredProducts.length > 0 ? (
               <>
-                <div className="flex items-center justify-between mb-12">
-                  <h2 className="text-2xl font-serif text-[#2d2a26] font-light">
-                    {selectedCategory}
-                  </h2>
-                  <div className="text-[#6b6560] luxury-label">
-                    {filteredProducts.length} produit{filteredProducts.length > 1 ? 's' : ''}
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-12">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.22em] text-[#b8935a] mb-2">Collection en cours</p>
+                    <h2 className="text-3xl md:text-4xl font-serif text-[#2d2a26] font-light">
+                      {selectedCategory}
+                    </h2>
+                  </div>
+                  <div className="text-[#6b6560] text-sm md:text-base font-light">
+                    {filteredProducts.length} création{filteredProducts.length > 1 ? 's' : ''} disponible{filteredProducts.length > 1 ? 's' : ''}
                   </div>
                 </div>
                 
-                <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 lg:gap-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-7 lg:gap-8">
                   {filteredProducts.map((product) => (
                     <ProductCard key={product.id} product={product} />
                   ))}
+                </div>
+
+                <div className="mt-14 md:mt-16 border border-[#b8935a]/12 bg-white p-6 md:p-8 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6 md:gap-10 items-center">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.22em] text-[#b8935a] mb-3">Notre promesse</p>
+                    <h3 className="font-serif text-2xl md:text-3xl text-[#2d2a26] font-light mb-4 leading-tight">
+                      Chaque bouquet est composé à la main dans notre atelier, avec le même soin qu’en boutique.
+                    </h3>
+                    <p className="text-[#2d2a26]/60 font-light leading-relaxed">
+                      Pour une attention de dernière minute, un grand événement ou une livraison du quotidien, nous sélectionnons des fleurs fraîches et des harmonies pensées pour durer.
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-[#2d2a26]/70 font-light">
+                    <div className="border border-[#e8e0d8] bg-[#faf8f5] px-4 py-4"><span className="block text-[#b8935a] mb-1">✦</span>Livraison locale le jour même avant 12h</div>
+                    <div className="border border-[#e8e0d8] bg-[#faf8f5] px-4 py-4"><span className="block text-[#b8935a] mb-1">✦</span>Retrait en boutique à Saint-Pair et dans nos autres adresses</div>
+                    <div className="border border-[#e8e0d8] bg-[#faf8f5] px-4 py-4"><span className="block text-[#b8935a] mb-1">✦</span>Paiement sécurisé et accompagnement humain</div>
+                  </div>
                 </div>
               </>
             ) : (
