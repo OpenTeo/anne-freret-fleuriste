@@ -79,23 +79,46 @@ function BoutiqueContent() {
       <main className="bg-[#faf8f5] min-h-screen pt-20">
         
         {/* Hero Section */}
-        <section className="py-20 bg-[#f5f0eb]">
-          <div className="container mx-auto px-6 lg:px-8">
-            <div className="text-center">
-              <h1 className="text-4xl md:text-6xl text-[#2d2a26] mb-8 font-serif font-light">
-                Notre Boutique
+        <section className="py-16 md:py-24 bg-[#f5f0eb] relative overflow-hidden">
+          <div
+            className="absolute inset-0 bg-repeat bg-center opacity-[0.18]"
+            style={{
+              backgroundImage: 'url(/images/brand/papier-emballage.jpg)',
+              backgroundSize: '520px',
+            }}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,240,235,0.92),rgba(250,248,245,0.95))]" />
+          <div className="container mx-auto px-6 lg:px-8 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase text-[#b8935a] mb-4 font-light">
+                Boutique florale
+              </p>
+              <h1 className="text-4xl md:text-6xl text-[#2d2a26] mb-6 font-serif font-light leading-tight">
+                Des créations pensées pour offrir, célébrer et fleurir le quotidien.
               </h1>
               <div className="gold-separator mb-8"></div>
-              <p className="text-xl text-[#6b6560] max-w-2xl mx-auto font-light leading-relaxed">
-                Découvrez toutes nos créations florales, bouquets et arrangements 
-                pour chaque occasion de la vie.
+              <p className="text-lg md:text-xl text-[#6b6560] max-w-3xl mx-auto font-light leading-relaxed mb-10">
+                Bouquets de saison, compositions signature et attentions fleuries composés à la main dans notre atelier de Saint-Pair-sur-Mer, avec retrait en boutique ou livraison locale.
               </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 text-left">
+                {[
+                  'Livraison locale le jour même pour toute commande passée avant 12h',
+                  'Créations artisanales composées à la main à Saint-Pair-sur-Mer',
+                  'Retrait en boutique ou livraison dans nos zones locales',
+                ].map((item) => (
+                  <div key={item} className="border border-[#b8935a]/10 bg-white/70 backdrop-blur-sm px-4 py-4 text-sm text-[#2d2a26]/70 font-light leading-relaxed">
+                    <span className="inline-block text-[#b8935a] mr-2">✦</span>
+                    {item}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
         {/* Category Filter */}
-        <section className="py-12 border-b border-[#b8935a]/20">
+        <section className="py-10 md:py-12 border-b border-[#b8935a]/20 bg-white/50">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="flex flex-wrap justify-center gap-3">
               {allCategories.map((category) => (
