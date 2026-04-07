@@ -81,10 +81,10 @@ function BoutiqueContent() {
         {/* Hero Section */}
         <section className="py-16 md:py-24 bg-[#f5f0eb] relative overflow-hidden">
           <div
-            className="absolute inset-0 bg-repeat bg-center opacity-[0.18]"
+            className="absolute inset-0 bg-repeat bg-center opacity-[0.24]"
             style={{
               backgroundImage: 'url(/images/brand/papier-emballage.jpg)',
-              backgroundSize: '520px',
+              backgroundSize: '460px',
             }}
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(245,240,235,0.92),rgba(250,248,245,0.95))]" />
@@ -107,7 +107,7 @@ function BoutiqueContent() {
                   'Créations artisanales composées à la main à Saint-Pair-sur-Mer',
                   'Retrait en boutique ou livraison dans nos zones locales',
                 ].map((item) => (
-                  <div key={item} className="border border-[#b8935a]/10 bg-white/70 backdrop-blur-sm px-4 py-4 text-sm text-[#2d2a26]/70 font-light leading-relaxed">
+                  <div key={item} className="border border-[#b8935a]/10 bg-[#fffdfa]/85 backdrop-blur-sm px-4 py-4 text-sm text-[#2d2a26]/70 font-light leading-relaxed shadow-sm">
                     <span className="inline-block text-[#b8935a] mr-2">✦</span>
                     {item}
                   </div>
@@ -174,8 +174,16 @@ function BoutiqueContent() {
                   ))}
                 </div>
 
-                <div className="mt-14 md:mt-16 border border-[#b8935a]/12 bg-white p-6 md:p-8 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6 md:gap-10 items-center">
-                  <div>
+                <div className="mt-14 md:mt-16 relative overflow-hidden border border-[#b8935a]/12 bg-white p-6 md:p-8 grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6 md:gap-10 items-center">
+                  <div
+                    className="absolute inset-0 bg-repeat bg-center opacity-[0.10]"
+                    style={{
+                      backgroundImage: 'url(/images/brand/papier-emballage.jpg)',
+                      backgroundSize: '420px',
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-white/82" />
+                  <div className="relative">
                     <p className="text-[10px] uppercase tracking-[0.22em] text-[#b8935a] mb-3">Notre promesse</p>
                     <h3 className="font-serif text-2xl md:text-3xl text-[#2d2a26] font-light mb-4 leading-tight">
                       Chaque bouquet est composé à la main dans notre atelier, avec le même soin qu’en boutique.
@@ -184,10 +192,10 @@ function BoutiqueContent() {
                       Pour une attention de dernière minute, un grand événement ou une livraison du quotidien, nous sélectionnons des fleurs fraîches et des harmonies pensées pour durer.
                     </p>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-[#2d2a26]/70 font-light">
-                    <div className="border border-[#e8e0d8] bg-[#faf8f5] px-4 py-4"><span className="block text-[#b8935a] mb-1">✦</span>Livraison locale le jour même avant 12h</div>
-                    <div className="border border-[#e8e0d8] bg-[#faf8f5] px-4 py-4"><span className="block text-[#b8935a] mb-1">✦</span>Retrait en boutique à Saint-Pair et dans nos autres adresses</div>
-                    <div className="border border-[#e8e0d8] bg-[#faf8f5] px-4 py-4"><span className="block text-[#b8935a] mb-1">✦</span>Paiement sécurisé et accompagnement humain</div>
+                  <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm text-[#2d2a26]/70 font-light">
+                    <div className="border border-[#e8e0d8] bg-[#faf8f5]/92 px-4 py-4"><span className="block text-[#b8935a] mb-1">✦</span>Livraison locale le jour même avant 12h</div>
+                    <div className="border border-[#e8e0d8] bg-[#faf8f5]/92 px-4 py-4"><span className="block text-[#b8935a] mb-1">✦</span>Retrait en boutique à Saint-Pair et dans nos autres adresses</div>
+                    <div className="border border-[#e8e0d8] bg-[#faf8f5]/92 px-4 py-4"><span className="block text-[#b8935a] mb-1">✦</span>Paiement sécurisé et accompagnement humain</div>
                   </div>
                 </div>
               </>
