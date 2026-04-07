@@ -211,11 +211,11 @@ export default function ProductPageClient({ params }: ProductPageProps) {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="container mx-auto px-4 py-8 lg:py-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-8 lg:gap-14 items-start">
             {/* IMAGES (colonne gauche) */}
-            <div className="order-1 lg:order-1 lg:sticky lg:top-8 lg:self-start">
-              <div className="relative aspect-square lg:aspect-square aspect-[3/4] mb-4 overflow-hidden bg-white">
+            <div className="order-1 lg:sticky lg:top-8 lg:self-start space-y-4">
+              <div className="relative aspect-[4/5] md:aspect-square overflow-hidden border border-[#e8e0d8]/70 bg-white shadow-[0_18px_50px_rgba(45,42,38,0.06)]">
                 <Image
                   src={productImages[selectedImageIndex]}
                   alt={product.name}
@@ -223,26 +223,33 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                   className="object-cover"
                   priority
                 />
-                {product.originalPrice && (
-                  <div className="absolute top-4 left-4 bg-[#b8935a] text-white text-[10px] uppercase tracking-[0.1em] px-2.5 py-1">
-                    PROMO
-                  </div>
-                )}
-                {product.featured && (
-                  <div className="absolute top-4 right-4 bg-[#b8935a] text-white text-[10px] uppercase tracking-[0.1em] px-2.5 py-1">
-                    Best-seller
-                  </div>
-                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#2d2a26]/12 via-transparent to-transparent" />
+                <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+                  {product.originalPrice && (
+                    <div className="bg-[#b8935a] text-white text-[10px] uppercase tracking-[0.16em] px-3 py-1.5">
+                      Promo
+                    </div>
+                  )}
+                  {product.featured && (
+                    <div className="bg-white/90 backdrop-blur-sm text-[#2d2a26] text-[10px] uppercase tracking-[0.16em] px-3 py-1.5 border border-[#e8e0d8]">
+                      Best-seller
+                    </div>
+                  )}
+                </div>
+                <div className="absolute bottom-4 left-4 right-4 hidden md:flex items-center justify-between bg-white/78 backdrop-blur-sm border border-white/60 px-4 py-3">
+                  <span className="text-[10px] tracking-[0.18em] uppercase text-[#b8935a]">Composition artisanale</span>
+                  <span className="text-xs text-[#2d2a26]/60">Atelier de Saint-Pair-sur-Mer</span>
+                </div>
               </div>
               
               {productImages.length > 1 && (
-                <div className="flex space-x-2 overflow-x-auto">
+                <div className="grid grid-cols-4 md:grid-cols-5 gap-2 md:gap-3">
                   {productImages.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`relative w-16 h-16 lg:w-20 lg:h-20 overflow-hidden bg-white flex-shrink-0 ${
-                        selectedImageIndex === index ? 'border-2 border-[#b8935a]' : 'border border-[#e8e0d8]'
+                      className={`relative aspect-square overflow-hidden bg-white ${
+                        selectedImageIndex === index ? 'border-2 border-[#b8935a] shadow-sm' : 'border border-[#e8e0d8]'
                       }`}
                     >
                       <Image
@@ -257,42 +264,55 @@ export default function ProductPageClient({ params }: ProductPageProps) {
               )}
             </div>
 
-            {/* INFOS PRODUIT (colonne droite) - ORDRE OPTIMISÉ */}
-            <div className="order-2 lg:order-2 space-y-6">
-              
-              {/* Catégorie */}
-              <p className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a]">
-                {product.category}
-              </p>
+            {/* INFOS PRODUIT (colonne droite) */}
+            <div className="order-2 space-y-6">
+              <div className="border border-[#e8e0d8]/70 bg-white/90 backdrop-blur-sm p-6 md:p-8 shadow-[0_18px_50px_rgba(45,42,38,0.05)]">
+                <p className="text-[10px] uppercase tracking-[0.24em] text-[#b8935a] mb-3">
+                  {product.category}
+                </p>
 
-              {/* Nom produit */}
-              <h1 className="font-serif text-2xl md:text-3xl text-[#2d2a26] leading-tight -mt-2">
-                {product.name}
-              </h1>
+                <h1 className="font-serif text-3xl md:text-5xl text-[#2d2a26] leading-tight mb-4">
+                  {product.name}
+                </h1>
 
-              {/* Avis */}
-              <div className="flex items-center gap-2 -mt-2">
-                <div className="flex">
-                  {[1,2,3,4,5].map(s => (
-                    <svg key={s} className="w-3.5 h-3.5 text-[#b8935a]" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
+                <div className="flex flex-wrap items-center gap-3 mb-5">
+                  <div className="flex">
+                    {[1,2,3,4,5].map(s => (
+                      <svg key={s} className="w-3.5 h-3.5 text-[#b8935a]" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <span className="text-xs text-[#2d2a26]/40">27 avis</span>
+                  <span className="hidden md:inline text-[#2d2a26]/20">•</span>
+                  <span className="text-xs text-[#2d2a26]/55">Création réalisée à la main</span>
                 </div>
-                <span className="text-xs text-[#2d2a26]/40">27 avis</span>
-              </div>
 
-              {/* Prix */}
-              <div>
-                <div className="flex items-baseline gap-3">
-                  <span className="text-2xl font-serif text-[#2d2a26]">
+                <div className="flex flex-wrap items-end gap-3 mb-5">
+                  <span className="text-3xl md:text-4xl font-serif text-[#2d2a26]">
                     {(product.sizes && product.sizes.length > 1) ? 'Dès ' : ''}{currentPrice.toFixed(2)}€
                   </span>
                   {product.originalPrice && (
-                    <span className="text-sm text-[#2d2a26]/30 line-through">
+                    <span className="text-base text-[#2d2a26]/30 line-through pb-1">
                       {product.originalPrice}€
                     </span>
                   )}
+                </div>
+
+                <p className="text-base text-[#2d2a26]/62 font-light leading-relaxed mb-6">
+                  {product.description}
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+                  {[
+                    'Livraison locale le jour même avant 12h',
+                    'Retrait en boutique possible',
+                    'Paiement 100% sécurisé',
+                  ].map((item) => (
+                    <div key={item} className="border border-[#b8935a]/10 bg-[#faf8f5] px-4 py-3 text-sm text-[#2d2a26]/70 font-light leading-relaxed">
+                      <span className="inline-block text-[#b8935a] mr-2">✦</span>{item}
+                    </div>
+                  ))}
                 </div>
               </div>
 
@@ -340,10 +360,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 </div>
               )}
 
-              {/* Description */}
-              <p className="text-sm text-[#2d2a26]/60 font-light leading-relaxed">
-                {product.description}
-              </p>
+              {/* Description reprise plus haut dans le hero produit */}
 
               {/* ——— CARTE MESSAGE — visible directement, SAUF Deuil ——— */}
               {product.category !== 'Deuil & Hommages' && (
