@@ -39,7 +39,7 @@ const Hero = () => {
               Le bouquet du mois
             </h2>
             <p className="text-sm md:text-base text-[#2d2a26]/60 font-light mb-3 max-w-xl">
-              Une création délicate inspirée par Saint-Pair-sur-Mer, composée à la main dans notre atelier.
+              Une création délicate inspirée par notre boutique de Saint-Pair-sur-Mer, composée à la main dans notre atelier.
             </p>
             <Link
               href="/produit/le-saint-pairais"
