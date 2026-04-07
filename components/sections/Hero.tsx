@@ -35,15 +35,18 @@ const Hero = () => {
             <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-2" style={{ color: '#b8935a' }}>
               Sélection de saison
             </p>
-            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl mb-3 font-light" style={{ color: '#2d2a26' }}>
+            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl mb-2 font-light" style={{ color: '#2d2a26' }}>
               Le bouquet du mois
             </h2>
+            <p className="text-sm md:text-base text-[#2d2a26]/60 font-light mb-3 max-w-xl">
+              Une création délicate inspirée par Saint-Pair-sur-Mer, composée à la main dans notre atelier.
+            </p>
             <Link
               href="/produit/le-saint-pairais"
               className="inline-block text-sm font-light border-b pb-0.5 transition-colors hover:text-[#b8935a] hover:border-[#b8935a]"
               style={{ color: '#2d2a26', borderColor: '#2d2a26' }}
             >
-              Découvrir →
+              Voir le Saint-Pairais →
             </Link>
           </div>
         </div>
@@ -111,15 +114,18 @@ const Hero = () => {
             <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-2" style={{ color: '#b8935a' }}>
               Abonnement Floral
             </p>
-            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl mb-3 font-light" style={{ color: '#2d2a26' }}>
+            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl mb-2 font-light" style={{ color: '#2d2a26' }}>
               Des fleurs chaque mois
             </h2>
+            <p className="text-sm md:text-base text-[#2d2a26]/60 font-light mb-3 max-w-xl">
+              Une parenthèse florale pensée pour durer, avec des créations de saison et sans engagement.
+            </p>
             <Link
               href="/abonnement"
               className="inline-block text-sm font-light border-b pb-0.5 transition-colors hover:text-[#b8935a] hover:border-[#b8935a]"
               style={{ color: '#2d2a26', borderColor: '#2d2a26' }}
             >
-              Découvrir →
+              Découvrir les formules →
             </Link>
           </div>
         </div>
@@ -139,15 +145,18 @@ const Hero = () => {
             <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-2" style={{ color: '#b8935a' }}>
               Hommages & Recueillement
             </p>
-            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl mb-3 font-light" style={{ color: '#2d2a26' }}>
+            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl mb-2 font-light" style={{ color: '#2d2a26' }}>
               Compositions de deuil
             </h2>
+            <p className="text-sm md:text-base text-[#2d2a26]/60 font-light mb-3 max-w-xl">
+              Des hommages floraux réalisés avec délicatesse, pour accompagner chaque moment avec justesse.
+            </p>
             <Link
               href="/deuil"
               className="inline-block text-sm font-light border-b pb-0.5 transition-colors hover:text-[#b8935a] hover:border-[#b8935a]"
               style={{ color: '#2d2a26', borderColor: '#2d2a26' }}
             >
-              Découvrir →
+              Voir les hommages floraux →
             </Link>
           </div>
         </div>
@@ -182,15 +191,18 @@ const Hero = () => {
             <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-2" style={{ color: '#b8935a' }}>
               Jour J
             </p>
-            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl mb-3 font-light" style={{ color: '#2d2a26' }}>
+            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl mb-2 font-light" style={{ color: '#2d2a26' }}>
               Fleurs de mariage
             </h2>
+            <p className="text-sm md:text-base text-[#2d2a26]/60 font-light mb-3 max-w-xl">
+              Des créations pensées sur mesure pour sublimer votre histoire, du bouquet aux décors de réception.
+            </p>
             <Link
               href="/mariages"
               className="inline-block text-sm font-light border-b pb-0.5 transition-colors hover:text-[#b8935a] hover:border-[#b8935a]"
               style={{ color: '#2d2a26', borderColor: '#2d2a26' }}
             >
-              Découvrir →
+              Découvrir l'univers mariage →
             </Link>
           </div>
         </div>
