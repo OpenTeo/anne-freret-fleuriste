@@ -92,8 +92,12 @@ const FeaturedProducts = () => {
 
         {/* Grille uniforme 2 colonnes mobile, 3 colonnes desktop */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-16">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {featuredProducts.map((product, index) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              eyebrow={index < 2 ? 'Signature' : undefined}
+            />
           ))}
         </div>
 

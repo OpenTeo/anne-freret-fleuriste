@@ -25,9 +25,10 @@ interface ProductCardProps {
   product: Product;
   className?: string;
   featured?: boolean;
+  eyebrow?: string;
 }
 
-const ProductCard = ({ product, className = '', featured = false }: ProductCardProps) => {
+const ProductCard = ({ product, className = '', featured = false, eyebrow }: ProductCardProps) => {
   const formatPrice = (price: number | string) => {
     return Number(price).toFixed(2).replace('.', ',');
   };
