@@ -27,9 +27,9 @@ const gallery = {
     { src: '/images/mariages/roses-alignees.jpg', alt: 'Roses alignées en décoration' },
   ],
   coulisses: [
-    { src: '/images/mariages/fleuriste-action.jpg', alt: 'Anne en pleine création', credit: '© Bastien Norrington' },
-    { src: '/images/mariages/fleuriste-preparation.jpg', alt: 'Préparation des compositions', credit: '© Bastien Norrington' },
-    { src: '/images/mariages/fleuriste-preparation-2.jpg', alt: 'Les mains dans les fleurs', credit: '© Bastien Norrington' },
+    { src: '/images/mariages/table-cheminee.jpg', alt: 'Table de mariage fleurie près d une cheminée' },
+    { src: '/images/mariages/roses-alignees.jpg', alt: 'Alignement de roses pour décoration de mariage' },
+    { src: '/images/mariages/table-bougies-rouge.jpg', alt: 'Décoration de table rouge avec bougies', credit: '© Bastien Norrington' },
     { src: '/images/mariages/vase-pierre.jpg', alt: 'Vase en pierre avec composition', credit: '© Bastien Norrington' },
   ],
 };
