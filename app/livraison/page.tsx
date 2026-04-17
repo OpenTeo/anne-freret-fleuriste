@@ -197,7 +197,7 @@ export default function Livraison() {
                   </div>
                 </div>
                 <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
-                  <div className="flex justify-between"><span>France metropolitaine</span><span>11,99 €</span></div>
+                  <div className="flex justify-between"><span>France metropolitaine</span><span>18,90 €</span></div>
                   <div className="flex justify-between"><span>Suivi en temps reel</span><span className="text-[#b8935a]">Inclus</span></div>
                 </div>
                 <p className="text-[10px] mt-3" style={{ color: '#D4003C' }}>Offerte des 90 € d&apos;achat</p>

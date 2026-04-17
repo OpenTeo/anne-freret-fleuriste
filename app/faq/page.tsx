@@ -37,12 +37,12 @@ const faqData: FAQItem[] = [
   {
     id: 5,
     question: "Quels sont vos modes de livraison ?",
-    answer: "Nous proposons deux modes de livraison. La livraison locale (rayon de 35 km autour de Saint-Pair-sur-Mer) : livrée le jour même pour toute commande passée avant 12h, du mardi au samedi. Et la livraison Chronopost Express (France métropolitaine) : livrée en 24h (J+1), du lundi au samedi avant 18h."
+    answer: "Nous proposons deux modes de livraison. La livraison locale (rayon de 35 km autour de Saint-Pair-sur-Mer) : livrée le jour même pour toute commande passée avant 12h, du mardi au samedi. Et la livraison Chronopost Express (France métropolitaine) : en 24h ouvrées, hors week-end."
   },
   {
     id: 6,
     question: "Combien coûte la livraison ?",
-    answer: "Livraison locale : de 6 € à 10 € selon la distance (0-5 km : 6 €, 5-10 km : 8 €, 10-35 km : 10 €), offerte dès 60 € d'achat. Livraison Chronopost : 11,99 €, offerte dès 90 € d'achat. Dans les deux cas, le suivi est inclus."
+    answer: "Livraison locale : de 6 € à 18 € selon la distance (0-5 km : 6 €, 5-10 km : 8 €, 10-15 km : 13 €, 15-35 km : 18 €), offerte dès 60 € d'achat. Livraison Chronopost : offerte dès 90 € d'achat. Dans les deux cas, le suivi est inclus."
   },
   {
     id: 7,

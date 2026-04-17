@@ -27,7 +27,7 @@ const gallery = {
     { src: '/images/mariages/roses-alignees.jpg', alt: 'Roses alignées en décoration' },
   ],
   coulisses: [
-    { src: '/images/mariages/table-cheminee.jpg', alt: 'Table de mariage fleurie près d une cheminée' },
+    { src: '/images/mariages/centre-table-blanc.jpg', alt: 'Centre de table blanc et vert pour mariage' },
     { src: '/images/mariages/roses-alignees.jpg', alt: 'Alignement de roses pour décoration de mariage' },
     { src: '/images/mariages/table-bougies-rouge.jpg', alt: 'Décoration de table rouge avec bougies', credit: '© Bastien Norrington' },
     { src: '/images/mariages/vase-pierre.jpg', alt: 'Vase en pierre avec composition', credit: '© Bastien Norrington' },
