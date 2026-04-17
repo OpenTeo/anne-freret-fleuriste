@@ -195,7 +195,7 @@ export default function DeliveryCalculator({
             />
           </div>
 
-          <div className="grid grid-cols-3 border border-t-0 border-[#e8e0d8] divide-x divide-[#e8e0d8]">
+          <div className="grid grid-cols-4 border border-t-0 border-[#e8e0d8] divide-x divide-[#e8e0d8]">
             <div className="p-3 text-center">
               <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mb-1">0-5 km</p>
               <p className="text-sm font-serif text-[#2d2a26]">6€</p>
@@ -207,8 +207,13 @@ export default function DeliveryCalculator({
               <p className="text-[9px] text-[#2d2a26]/30 mt-1">Bréhal, Cérences</p>
             </div>
             <div className="p-3 text-center">
-              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mb-1">10-35 km</p>
-              <p className="text-sm font-serif text-[#2d2a26]">10€</p>
+              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mb-1">10-15 km</p>
+              <p className="text-sm font-serif text-[#2d2a26]">13€</p>
+              <p className="text-[9px] text-[#2d2a26]/30 mt-1">Sartilly, Cérences</p>
+            </div>
+            <div className="p-3 text-center">
+              <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mb-1">15-35 km</p>
+              <p className="text-sm font-serif text-[#2d2a26]">18€</p>
               <p className="text-[9px] text-[#2d2a26]/30 mt-1">Avranches, Villedieu</p>
             </div>
           </div>

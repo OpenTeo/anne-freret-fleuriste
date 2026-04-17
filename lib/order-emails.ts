@@ -74,7 +74,7 @@ export async function sendOrderShippedEmail(data: OrderEmailData) {
   const trackingSection = data.trackingNumber ? `
     <div style="background:#f5f0eb;padding:16px;margin:20px 0;">
       <p style="font-size:13px;color:#2d2a26;margin:0 0 8px;"><strong>N° de suivi :</strong> ${data.trackingNumber}</p>
-      <p style="font-size:13px;color:#2d2a26;margin:0;"><strong>Mode :</strong> ${data.deliveryMode === 'chronopost' ? 'Chronopost Express (24h)' : 'Colissimo (48h)'}</p>
+      <p style="font-size:13px;color:#2d2a26;margin:0;"><strong>Mode :</strong> ${data.deliveryMode === 'chronopost' ? 'Chronopost Express (24h ouvrées, hors week-end)' : 'Colissimo (48h)'}</p>
     </div>
     ${data.trackingUrl ? `
     <div style="text-align:center;margin-top:24px;">

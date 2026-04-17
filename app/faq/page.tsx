@@ -20,8 +20,8 @@ const faqData: FAQItem[] = [
   },
   {
     id: 2,
-    question: "Puis-je ajouter un message personnalisé à ma commande ?",
-    answer: "Oui, une carte message est incluse gratuitement avec chaque commande. Vous pouvez rédiger votre texte directement lors de la commande en ligne, ou nous le transmettre par téléphone ou email."
+    question: "Quels sont les délais de livraison ?",
+    answer: "Livraison locale (rayon 35 km) : en 24h, du mardi au samedi. Colissimo (France métropolitaine) : 48h ouvrées. Chronopost express : 24h ouvrées, hors week-end. Pour une livraison le dimanche, seule la livraison locale est possible (nous contacter). Pour les événements spéciaux (mariages, obsèques), nous recommandons de commander la veille avant 17h pour garantir la préparation et la livraison. Contactez-nous par téléphone pour les urgences."
   },
   {
     id: 3,

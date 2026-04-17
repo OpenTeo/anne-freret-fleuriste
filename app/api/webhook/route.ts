@@ -232,7 +232,7 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
 
   const deliveryModeLabel =
     meta.delivery_mode === 'local' ? '🌸 Livraison locale (à la main)' :
-    meta.delivery_mode === 'chronopost' ? '⚡ Chronopost Express (24h)' :
+    meta.delivery_mode === 'chronopost' ? '⚡ Chronopost Express (24h ouvrées, hors week-end)' :
     'Livraison';
 
   console.log(`📧 Tentative envoi email à ${email} depuis ${FROM_EMAIL}`);
@@ -371,7 +371,7 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
                   <div style="background:#f5f0eb;padding:16px;margin-bottom:20px;">
                     <p style="font-size:13px;color:#2d2a26;margin:0 0 8px;"><strong>N° de suivi :</strong> ${trackingNumber}</p>
                     <p style="font-size:13px;color:#2d2a26;margin:0 0 8px;"><strong>Commande :</strong> ${orderNumber}</p>
-                    <p style="font-size:13px;color:#2d2a26;margin:0;"><strong>Mode :</strong> ${meta.delivery_mode === 'chronopost' ? 'Chronopost Express (24h)' : 'Colissimo (48h)'}</p>
+                    <p style="font-size:13px;color:#2d2a26;margin:0;"><strong>Mode :</strong> ${meta.delivery_mode === 'chronopost' ? 'Chronopost Express (24h ouvrées, hors week-end)' : 'Colissimo (48h)'}</p>
                   </div>
                   ${trackingUrl ? `
                   <div style="text-align:center;margin-top:24px;">

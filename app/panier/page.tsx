@@ -322,7 +322,8 @@ export default function Panier() {
                               {[
                                 { dist: '0-5 km', price: '6€' },
                                 { dist: '5-10 km', price: '8€' },
-                                { dist: '10-35 km', price: '10€' },
+                                { dist: '10-15 km', price: '13€' },
+                                { dist: '15-35 km', price: '18€' },
                               ].map(t => (
                                 <div key={t.dist} className="text-center py-2 bg-white border border-[#e8e0d8]/50">
                                   <p className="text-[10px] text-[#2d2a26]/40 uppercase tracking-wider">{t.dist}</p>
@@ -375,7 +376,7 @@ export default function Panier() {
                               <p className="text-sm" style={{ color: '#D4003C' }}>{subtotal >= 90 ? 'Offerte' : '11,99€'}</p>
                             </div>
                             <p className="text-xs text-[#2d2a26]/40 mt-1 leading-relaxed">
-                              Livraison avant 18h · Suivi en temps reel
+                              Livraison en 24h ouvrées · Hors week-end · Suivi en temps reel
                             </p>
                             {hasDeuil && (
                               <p className="text-[10px] text-red-400 mt-1">Les compositions de deuil sont livrees localement uniquement.</p>
@@ -393,7 +394,7 @@ export default function Panier() {
                                 </div>
                                 <div>
                                   <p className="text-xs font-semibold tracking-wide" style={{ color: '#D4003C' }}>CHRONOPOST</p>
-                                  <p className="text-[10px] text-[#2d2a26]/40">Express · Avant 18h · J+1</p>
+                                  <p className="text-[10px] text-[#2d2a26]/40">Express · 24h ouvrées · Hors week-end</p>
                                 </div>
                               </div>
                               <p className="text-sm text-[#2d2a26] font-medium">{subtotal >= 90 ? <span style={{ color: '#D4003C' }}>Offerte</span> : '11,99€'}</p>
@@ -505,7 +506,7 @@ export default function Panier() {
                             </svg>
                             <p className="text-[11px] text-[#2d2a26]">
                               Livraison le <span className="font-medium">{new Date(selectedDate + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}</span>
-                              <span className="text-[#2d2a26]/40"> · Sous 24h</span>
+                              <span className="text-[#2d2a26]/40"> · Livraison locale</span>
                             </p>
                           </div>
                         )}

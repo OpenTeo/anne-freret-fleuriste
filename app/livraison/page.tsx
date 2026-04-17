@@ -22,7 +22,7 @@ export default function Livraison() {
   const faqItems = [
     {
       question: 'À quelle heure sont effectuées les livraisons ?',
-      answer: 'Nos livraisons locales s\'effectuent du mardi au samedi, de 9h à 18h (dimanche sur demande). Les envois Chronopost sont livrés du lundi au samedi uniquement. Pour les commandes urgentes, nous proposons un service express avec supplément.'
+      answer: 'Nos livraisons locales s\'effectuent du mardi au samedi, de 9h à 18h (dimanche sur demande). Les envois Colissimo et Chronopost sont livrés hors week-end uniquement. Pour les commandes urgentes, nous proposons un service express avec supplément.'
     },
     {
       question: 'Puis-je choisir un créneau de livraison ?',
@@ -179,7 +179,8 @@ export default function Livraison() {
                 <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
                   <div className="flex justify-between border-b border-[#e8e0d8]/50 pb-1"><span>0 a 5 km</span><span>6,00 €</span></div>
                   <div className="flex justify-between border-b border-[#e8e0d8]/50 pb-1"><span>5 a 10 km</span><span>8,00 €</span></div>
-                  <div className="flex justify-between"><span>10 a 35 km</span><span>10,00 €</span></div>
+                  <div className="flex justify-between border-b border-[#e8e0d8]/50 pb-1"><span>10 a 15 km</span><span>13,00 €</span></div>
+                  <div className="flex justify-between"><span>15 a 35 km</span><span>18,00 €</span></div>
                 </div>
                 <p className="text-[10px] text-[#b8935a] mt-3">Offerte des 60 € d&apos;achat</p>
               </div>
@@ -192,7 +193,7 @@ export default function Livraison() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold tracking-wide" style={{ color: '#D4003C' }}>CHRONOPOST</p>
-                    <p className="text-[10px] text-[#2d2a26]/40">Express · Avant 18h · 24h (J+1)</p>
+                    <p className="text-[10px] text-[#2d2a26]/40">Express · 24h ouvrées · Hors week-end</p>
                   </div>
                 </div>
                 <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">

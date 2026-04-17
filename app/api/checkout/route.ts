@@ -92,7 +92,8 @@ export async function POST(req: NextRequest) {
     if (delivery.fee > 0) {
       const modeLabel =
         delivery.mode === 'local' ? 'Livraison locale' :
-        delivery.mode === 'chronopost' ? 'Chronopost Express (24h)' :
+        delivery.mode === 'colissimo' ? 'Colissimo (48h)' :
+        delivery.mode === 'chronopost' ? 'Chronopost Express (24h ouvrées, hors week-end)' :
         'Livraison';
       params.append(`line_items[${idx}][price_data][currency]`, 'eur');
       params.append(`line_items[${idx}][price_data][product_data][name]`, modeLabel);

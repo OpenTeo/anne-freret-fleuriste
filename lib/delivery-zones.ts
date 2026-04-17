@@ -30,31 +30,31 @@ export const DELIVERY_ZONES: DeliveryZone[] = [
   { postalCode: '50640', city: 'Villedieu-les-Poêles', distance: 9, deliveryFee: 8, deliveryTime: 'Commandé avant 12h', zone: 'local' },
   { postalCode: '50450', city: 'Gavray-sur-Sienne', distance: 10, deliveryFee: 8, deliveryTime: 'Commandé avant 12h', zone: 'local' },
 
-  // Zone 10+ km local (Manche/Normandie) - 18€
-  { postalCode: '50530', city: 'Sartilly-Baie-Bocage', distance: 12, deliveryFee: 10, deliveryTime: '24h', zone: 'local' },
-  { postalCode: '50300', city: 'Avranches', distance: 25, deliveryFee: 10, deliveryTime: '6-8h', zone: 'regional' },
-  { postalCode: '50170', city: 'Pontorson', distance: 30, deliveryFee: 10, deliveryTime: '6-8h', zone: 'regional' },
-  { postalCode: '50220', city: 'Ducey-Les Chéris', distance: 20, deliveryFee: 10, deliveryTime: '6-8h', zone: 'regional' },
-  { postalCode: '50600', city: 'Saint-Hilaire-du-Harcouët', distance: 35, deliveryFee: 10, deliveryTime: '6-8h', zone: 'regional' },
+  // Zone 10+ km local / régional
+  { postalCode: '50530', city: 'Sartilly-Baie-Bocage', distance: 12, deliveryFee: 13, deliveryTime: '24h', zone: 'local' },
+  { postalCode: '50300', city: 'Avranches', distance: 25, deliveryFee: 18, deliveryTime: '6-8h', zone: 'regional' },
+  { postalCode: '50170', city: 'Pontorson', distance: 30, deliveryFee: 18, deliveryTime: '6-8h', zone: 'regional' },
+  { postalCode: '50220', city: 'Ducey-Les Chéris', distance: 20, deliveryFee: 18, deliveryTime: '6-8h', zone: 'regional' },
+  { postalCode: '50600', city: 'Saint-Hilaire-du-Harcouët', distance: 35, deliveryFee: 18, deliveryTime: '6-8h', zone: 'regional' },
   
   // Manche department - main cities
   { postalCode: '50100', city: 'Cherbourg-en-Cotentin', distance: 85, deliveryFee: 18, deliveryTime: '24h', zone: 'regional' },
   { postalCode: '50000', city: 'Saint-Lô', distance: 45, deliveryFee: 18, deliveryTime: '24h', zone: 'regional' },
-  { postalCode: '50200', city: 'Coutances', distance: 35, deliveryFee: 10, deliveryTime: '6-8h', zone: 'regional' },
+  { postalCode: '50200', city: 'Coutances', distance: 35, deliveryFee: 18, deliveryTime: '6-8h', zone: 'regional' },
   { postalCode: '50700', city: 'Valognes', distance: 70, deliveryFee: 18, deliveryTime: '24h', zone: 'regional' },
   { postalCode: '50500', city: 'Carentan-les-Marais', distance: 60, deliveryFee: 18, deliveryTime: '24h', zone: 'regional' },
 
   // North Brittany - nearby cities
-  { postalCode: '35120', city: 'Dol-de-Bretagne', distance: 40, deliveryFee: 10, deliveryTime: '6-8h', zone: 'regional' },
+  { postalCode: '35120', city: 'Dol-de-Bretagne', distance: 40, deliveryFee: 18, deliveryTime: '6-8h', zone: 'regional' },
   { postalCode: '35800', city: 'Dinard', distance: 55, deliveryFee: 18, deliveryTime: '24h', zone: 'regional' },
-  { postalCode: '35260', city: 'Cancale', distance: 45, deliveryFee: 10, deliveryTime: '6-8h', zone: 'regional' },
+  { postalCode: '35260', city: 'Cancale', distance: 45, deliveryFee: 18, deliveryTime: '6-8h', zone: 'regional' },
   { postalCode: '35400', city: 'Saint-Malo', distance: 50, deliveryFee: 18, deliveryTime: '24h', zone: 'regional' },
   { postalCode: '22100', city: 'Dinan', distance: 65, deliveryFee: 18, deliveryTime: '24h', zone: 'regional' },
 
   // Additional South Manche cities
-  { postalCode: '50320', city: 'La Haye-Pesnel', distance: 15, deliveryFee: 10, deliveryTime: '6-8h', zone: 'regional' },
-  { postalCode: '50510', city: 'Cerences', distance: 12, deliveryFee: 10, deliveryTime: '24h', zone: 'local' },
-  { postalCode: '50870', city: 'Tirepied-sur-Sée', distance: 18, deliveryFee: 10, deliveryTime: '6-8h', zone: 'regional' },
+  { postalCode: '50320', city: 'La Haye-Pesnel', distance: 15, deliveryFee: 13, deliveryTime: '6-8h', zone: 'regional' },
+  { postalCode: '50510', city: 'Cerences', distance: 12, deliveryFee: 13, deliveryTime: '24h', zone: 'local' },
+  { postalCode: '50870', city: 'Tirepied-sur-Sée', distance: 18, deliveryFee: 18, deliveryTime: '6-8h', zone: 'regional' },
   { postalCode: '50720', city: 'Barenton', distance: 45, deliveryFee: 18, deliveryTime: '24h', zone: 'regional' },
 
   // Additional Normandy cities
@@ -220,14 +220,15 @@ export const DELIVERY_CONFIG = {
     zones: [
       { range: '0-5 km', maxDistance: 5, fee: 6 },
       { range: '5-10 km', maxDistance: 10, fee: 8 },
-      { range: '10-35 km', maxDistance: 35, fee: 10 },
+      { range: '10-15 km', maxDistance: 15, fee: 13 },
+      { range: '15-35 km', maxDistance: 35, fee: 18 },
     ],
   },
   chronopost: {
     label: 'Chronopost',
-    description: 'Express · Suivi en temps réel · 24h',
-    delay: '24h (J+1, avant 18h)',
-    fee: 11.99,
+    description: 'Express · Suivi en temps réel · 24h ouvrées',
+    delay: '24h ouvrées (hors week-end)',
+    fee: 18.90,
     freeThreshold: 90,
     color: '#D4003C',
   },
@@ -243,7 +244,7 @@ export function getDeliveryFeeForMethod(method: DeliveryMethod, subtotal: number
     for (const zone of DELIVERY_CONFIG.local.zones) {
       if (localDistance <= zone.maxDistance) return zone.fee;
     }
-    return 10; // max local fee
+    return 18; // max local fee
   }
   
   return 'fee' in config ? config.fee : 0;
