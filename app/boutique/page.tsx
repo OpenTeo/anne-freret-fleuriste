@@ -118,7 +118,7 @@ function BoutiqueContent() {
         </section>
 
         {/* Category Filter */}
-        <section className="py-8 md:py-10 border-b border-[#b8935a]/20 bg-white/60 backdrop-blur-sm sticky top-[56px] md:top-[108px] z-30">
+        <section className="py-8 md:py-10 border-b border-[#b8935a]/20 bg-white/60 backdrop-blur-sm sticky top-[84px] md:top-[108px] z-30">
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex items-center justify-between gap-4 mb-5">
               <div>

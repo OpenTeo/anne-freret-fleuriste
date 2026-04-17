@@ -51,7 +51,7 @@ const Header = () => {
   return (
     <>
       <header className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? 'top-0 bg-[#faf8f5]/95 backdrop-blur-md shadow-sm' : 'top-7 bg-[#faf8f5]'
+        isScrolled ? 'top-7 bg-[#faf8f5]/95 backdrop-blur-md shadow-sm' : 'top-7 bg-[#faf8f5]'
       }`}>
         {/* border bottom */}
         <div className="border-b border-[#e8e0d8]/30" />

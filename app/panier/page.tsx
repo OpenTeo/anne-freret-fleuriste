@@ -487,7 +487,7 @@ export default function Panier() {
                               <button
                                 key={day}
                                 disabled={isDisabled}
-                                onClick={() => setSelectedDate(isSelected ? '' : dateStr)}
+                                onClick={() => setSelectedDate(dateStr)}
                                 className={`relative aspect-square flex items-center justify-center text-[11px] transition-all rounded-md border
                                   ${isDisabled
                                     ? 'border-transparent bg-[#faf8f5] text-[#2d2a26]/18 cursor-not-allowed'
