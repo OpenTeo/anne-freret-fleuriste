@@ -31,6 +31,8 @@ export interface Order {
   order_number: string;
   user_id: string | null;
   stripe_session_id: string | null;
+  customer_type: 'particulier' | 'professionnel';
+  customer_siren: string | null;
   customer_email: string;
   customer_name: string;
   customer_phone: string | null;

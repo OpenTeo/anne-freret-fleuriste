@@ -29,6 +29,8 @@ CREATE TABLE orders (
   order_number VARCHAR(50) UNIQUE NOT NULL,
   user_id UUID REFERENCES users(id) ON DELETE SET NULL,
   stripe_session_id VARCHAR(255) UNIQUE,
+  customer_type VARCHAR(20) NOT NULL DEFAULT 'particulier',
+  customer_siren VARCHAR(9),
   customer_email VARCHAR(255) NOT NULL,
   customer_name VARCHAR(255) NOT NULL,
   customer_phone VARCHAR(20),
@@ -78,6 +80,7 @@ CREATE TABLE products (
 CREATE INDEX idx_orders_user_id ON orders(user_id);
 CREATE INDEX idx_orders_email ON orders(customer_email);
 CREATE INDEX idx_orders_status ON orders(status);
+CREATE INDEX idx_orders_customer_type ON orders(customer_type);
 CREATE INDEX idx_orders_created ON orders(created_at DESC);
 CREATE INDEX idx_order_items_order_id ON order_items(order_id);
 CREATE INDEX idx_users_email ON users(email);

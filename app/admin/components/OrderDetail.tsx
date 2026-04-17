@@ -1,7 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-
 interface OrderItem {
   product_name: string;
   product_image?: string;
@@ -15,6 +13,8 @@ interface OrderItem {
 interface Order {
   id: string;
   order_number: string;
+  customer_type: 'particulier' | 'professionnel';
+  customer_siren: string | null;
   customer_name: string;
   customer_email: string;
   customer_phone: string;
@@ -58,7 +58,6 @@ export default function OrderDetail({
   orderItems: OrderItem[];
   onClose: () => void;
 }) {
-  const [downloadingLabel, setDownloadingLabel] = useState(false);
   const badge = statusBadge[order.status] || { label: order.status, cls: 'bg-gray-100 text-gray-800' };
 
   // Use order_items from DB if available, otherwise fall back to order.items JSONB
@@ -120,6 +119,8 @@ export default function OrderDetail({
     <div class="info-block">
       <h3>Client</h3>
       <p><strong>${order.customer_name || '—'}</strong></p>
+      <p>${order.customer_type === 'professionnel' ? 'Client professionnel' : 'Client particulier'}</p>
+      ${order.customer_siren ? `<p>SIREN : ${order.customer_siren}</p>` : ''}
       <p>${order.customer_email || ''}</p>
       <p>${order.customer_phone || ''}</p>
     </div>
@@ -194,6 +195,12 @@ export default function OrderDetail({
             <div>
               <h3 className="text-xs uppercase tracking-wider text-[#b8935a] font-semibold mb-2">Client</h3>
               <p className="text-sm font-medium text-[#2d2a26]">{order.customer_name || '—'}</p>
+              <p className="text-sm text-[#2d2a26]/70">
+                {order.customer_type === 'professionnel' ? 'Client professionnel' : 'Client particulier'}
+              </p>
+              {order.customer_siren && (
+                <p className="text-sm text-[#2d2a26]/70">SIREN : {order.customer_siren}</p>
+              )}
               <p className="text-sm text-[#2d2a26]/70">{order.customer_email}</p>
               {order.customer_phone && (
                 <p className="text-sm text-[#2d2a26]/70">{order.customer_phone}</p>
@@ -300,10 +307,9 @@ export default function OrderDetail({
             {order.sendcloud_parcel_id && (
               <button
                 onClick={handleDownloadLabel}
-                disabled={downloadingLabel}
-                className="px-4 py-2 text-sm bg-[#b8935a] text-white rounded-lg hover:bg-[#b8935a]/90 transition-colors disabled:opacity-50"
+                className="px-4 py-2 text-sm bg-[#b8935a] text-white rounded-lg hover:bg-[#b8935a]/90 transition-colors"
               >
-                {downloadingLabel ? '⏳ Téléchargement…' : '📄 Télécharger étiquette'}
+                📄 Télécharger étiquette
               </button>
             )}
           </div>

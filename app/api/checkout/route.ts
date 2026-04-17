@@ -26,6 +26,8 @@ interface CheckoutBody {
     firstName: string;
     lastName: string;
     phone: string;
+    customerType?: 'particulier' | 'professionnel';
+    siren?: string;
     address: string;
     postalCode: string;
     city: string;
@@ -46,6 +48,13 @@ export async function POST(req: NextRequest) {
 
     if (!items?.length || !customer?.email) {
       return NextResponse.json({ error: 'Données manquantes' }, { status: 400 });
+    }
+
+    const customerType = customer.customerType === 'professionnel' ? 'professionnel' : 'particulier';
+    const customerSiren = (customer.siren || '').trim();
+
+    if (customerType === 'professionnel' && !/^\d{9}$/.test(customerSiren)) {
+      return NextResponse.json({ error: 'SIREN invalide' }, { status: 400 });
     }
 
     const key = process.env.STRIPE_SECRET_KEY;
@@ -104,6 +113,8 @@ export async function POST(req: NextRequest) {
     // Metadata
     params.append('metadata[customer_name]', `${customer.firstName} ${customer.lastName}`);
     params.append('metadata[customer_phone]', customer.phone);
+    params.append('metadata[customer_type]', customerType);
+    params.append('metadata[customer_siren]', customerType === 'professionnel' ? customerSiren : '');
     params.append('metadata[delivery_mode]', delivery.mode);
     params.append('metadata[delivery_date]', delivery.date);
     params.append('metadata[delivery_address]', `${customer.address}, ${customer.postalCode} ${customer.city}`);

@@ -6,6 +6,8 @@ import { apiFetch } from '@/lib/api-client';
 interface Order {
   id: string;
   order_number: string;
+  customer_type: 'particulier' | 'professionnel';
+  customer_siren: string | null;
   customer_name: string;
   customer_email: string;
   total_amount: string;

@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 
@@ -28,7 +27,6 @@ interface DeliveryInfo {
 }
 
 export default function Paiement() {
-  const router = useRouter();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [deliveryInfo, setDeliveryInfo] = useState<DeliveryInfo | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,6 +36,8 @@ export default function Paiement() {
     firstName: '',
     lastName: '',
     phone: '',
+    customerType: 'particulier',
+    siren: '',
     address: '',
     postalCode: '',
     city: '',
@@ -54,7 +54,16 @@ export default function Paiement() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const isFormValid = form.email && form.firstName && form.lastName && form.phone && form.address && form.postalCode && form.city;
+  const sirenIsValid = form.customerType === 'particulier' || /^\d{9}$/.test(form.siren.trim());
+  const isFormValid =
+    form.email &&
+    form.firstName &&
+    form.lastName &&
+    form.phone &&
+    form.address &&
+    form.postalCode &&
+    form.city &&
+    sirenIsValid;
 
   const [error, setError] = useState('');
 
@@ -136,6 +145,25 @@ export default function Paiement() {
                   <h2 className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-4">Vos coordonnees</h2>
                   <div className="space-y-4">
                     <div>
+                      <span className="block text-xs uppercase tracking-[0.1em] text-[#2d2a26]/50 mb-2">Type de client</span>
+                      <label className="flex items-center gap-3 text-sm text-[#2d2a26] mb-2">
+                        <input
+                          type="checkbox"
+                          name="customerType"
+                          checked={form.customerType === 'professionnel'}
+                          onChange={(e) =>
+                            setForm((prev) => ({
+                              ...prev,
+                              customerType: e.target.checked ? 'professionnel' : 'particulier',
+                              siren: e.target.checked ? prev.siren : '',
+                            }))
+                          }
+                          className="h-4 w-4 rounded border-[#e8e0d8] text-[#b8935a] focus:ring-[#b8935a]"
+                        />
+                        Je commande en tant que professionnel
+                      </label>
+                    </div>
+                    <div>
                       <label className="block text-xs uppercase tracking-[0.1em] text-[#2d2a26]/50 mb-1.5">Email</label>
                       <input
                         type="email"
@@ -171,6 +199,26 @@ export default function Paiement() {
                         />
                       </div>
                     </div>
+                    {form.customerType === 'professionnel' && (
+                      <div>
+                        <label className="block text-xs uppercase tracking-[0.1em] text-[#2d2a26]/50 mb-1.5">
+                          SIREN
+                        </label>
+                        <input
+                          type="text"
+                          name="siren"
+                          value={form.siren}
+                          onChange={handleChange}
+                          required={form.customerType === 'professionnel'}
+                          inputMode="numeric"
+                          pattern="\d{9}"
+                          maxLength={9}
+                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
+                          placeholder="123456789"
+                        />
+                        <p className="mt-1 text-[11px] text-[#2d2a26]/40">9 chiffres, obligatoire pour une commande pro.</p>
+                      </div>
+                    )}
                     <div>
                       <label className="block text-xs uppercase tracking-[0.1em] text-[#2d2a26]/50 mb-1.5">Telephone</label>
                       <input

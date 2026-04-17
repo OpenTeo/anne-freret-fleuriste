@@ -64,7 +64,8 @@ export default function CGV() {
               <div className="bg-white p-8 border border-[#b8935a]/20">
                 <p className="text-[#2d2a26] font-light leading-relaxed text-lg">
                   Les présentes Conditions Générales de Vente (CGV) régissent toutes les ventes de produits et services réalisées par Anne Freret Fleuriste, 
-                  entreprise individuelle située 39 Place du Général de Gaulle, Saint-Pair-sur-Mer. 
+                  SAS au capital de 7 120,00 €, immatriculée sous le numéro 843 755 604 R.C.S. Coutances et identifiée à la TVA intracommunautaire FR26843755604,
+                  située 39 Place du Général de Gaulle, Saint-Pair-sur-Mer. 
                   Toute commande implique l'acceptation pleine et entière de ces conditions.
                 </p>
               </div>
@@ -359,7 +360,7 @@ export default function CGV() {
                 <h3 className="text-2xl font-serif text-[#2d2a26] mb-4">Contact et mise à jour</h3>
                 <div className="w-16 h-px bg-[#b8935a] mb-6"></div>
                 <div className="space-y-2 text-[#2d2a26] font-light">
-                  <p><strong className="font-normal">Dernière mise à jour :</strong> Février 2025</p>
+                  <p><strong className="font-normal">Dernière mise à jour :</strong> Avril 2026</p>
                   <p>
                     Pour toute question concernant ces CGV : contact@annefreret.fr ou 02 33 50 26 15
                   </p>
