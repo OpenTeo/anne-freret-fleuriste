@@ -26,6 +26,10 @@ interface Product {
   review_count?: number;
 }
 
+interface ApiProduct extends Product {
+  is_active?: boolean;
+}
+
 const FeaturedProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -35,9 +39,9 @@ const FeaturedProducts = () => {
       try {
         const res = await fetch('/api/products?active=true');
         const data = await res.json();
-        const normalizedProducts = (data.products || [])
-          .filter((p: any) => p.featured && p.is_active)
-          .map((p: any) => ({
+        const normalizedProducts = ((data.products || []) as ApiProduct[])
+          .filter((p) => p.featured && p.is_active)
+          .map((p) => ({
             ...p,
             image: p.images?.[0] || '',
             inStock: p.in_stock ?? true,
