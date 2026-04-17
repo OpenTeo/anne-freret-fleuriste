@@ -64,7 +64,7 @@ export default function CGV() {
               <div className="bg-white p-8 border border-[#b8935a]/20">
                 <p className="text-[#2d2a26] font-light leading-relaxed text-lg">
                   Les présentes Conditions Générales de Vente (CGV) régissent toutes les ventes de produits et services réalisées par Anne Freret Fleuriste, 
-                  SAS au capital de 7 120,00 €, immatriculée sous le numéro 843 755 604 R.C.S. Coutances et identifiée à la TVA intracommunautaire FR26843755604,
+                  SAS au capital de 7 120,00 €, immatriculée sous le numéro 843 755 604 R.C.S. Coutances,
                   située 39 Place du Général de Gaulle, Saint-Pair-sur-Mer. 
                   Toute commande implique l'acceptation pleine et entière de ces conditions.
                 </p>

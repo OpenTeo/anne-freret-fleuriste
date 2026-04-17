@@ -46,12 +46,9 @@ export default function MentionsLegales() {
               <div className="bg-gray/50 p-6 rounded-lg">
                 <p><strong>Raison sociale :</strong> Anne Freret Fleuriste</p>
                 <p><strong>Forme juridique :</strong> SAS, société par actions simplifiée</p>
-                <p><strong>SIREN :</strong> 843 755 604</p>
-                <p><strong>SIRET (siège) :</strong> 843 755 604 00017</p>
+                <p><strong>Siège social :</strong> 39 Place du Général de Gaulle, 50270 Saint-Pair-sur-Mer, France</p>
                 <p><strong>RCS :</strong> 843 755 604 R.C.S. Coutances</p>
                 <p><strong>Capital social :</strong> 7 120,00 €</p>
-                <p><strong>Code APE :</strong> 4776Z - Commerce de détail de fleurs, plantes, graines, engrais</p>
-                <p><strong>TVA intracommunautaire :</strong> FR26843755604</p>
                 <p><strong>Directrice de publication :</strong> Anne Freret</p>
               </div>
             </section>
