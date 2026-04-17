@@ -51,7 +51,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
   const [personalMessage, setPersonalMessage] = useState('');
   const [selectedCardImage, setSelectedCardImage] = useState<string | null>(null);
   const [ribbonText, setRibbonText] = useState('');
-  const [ribbonColor, setRibbonColor] = useState('or');
+  const [ribbonColor, setRibbonColor] = useState('blanc');
   const [ribbonEnabled, setRibbonEnabled] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [isFavorited, setIsFavorited] = useState(false);
@@ -142,12 +142,13 @@ export default function ProductPageClient({ params }: ProductPageProps) {
     chocolats: { name: 'Boîte de chocolats', price: 14.90 },
     bougie: { name: 'Bougie parfumée', price: 12.90 }
   };
+  const ribbonPrice = product.category === 'Deuil & Hommages' && ribbonEnabled ? 9.90 : 0;
   
   const basePrice = Number(selectedSize?.price || product.price);
   const addOnsTotal = Object.entries(selectedAddOns)
     .filter(([_, selected]) => selected)
     .reduce((total, [key, _]) => total + addOns[key as keyof typeof addOns].price, 0);
-  const currentPrice = basePrice + addOnsTotal;
+  const currentPrice = basePrice + addOnsTotal + ribbonPrice;
 
   const handleAddOnChange = (addOnKey: string) => {
     setSelectedAddOns(prev => ({
@@ -517,9 +518,9 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                         <div className="w-9 h-5 bg-[#e8e0d8] peer-checked:bg-[#b8935a] relative transition-colors">
                           <div className={`absolute top-0.5 left-0.5 w-4 h-4 bg-white transition-transform ${ribbonEnabled ? 'translate-x-4' : ''}`} />
                         </div>
-                        <span className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40">Ajouter un ruban personnalisé</span>
+                        <span className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40">Ajouter un ruban blanc personnalisé</span>
                       </label>
-                      <span className="text-sm text-[#b8935a]">+ 7,99 €</span>
+                      <span className="text-sm text-[#b8935a]">+ 9,90 €</span>
                     </div>
                     {ribbonEnabled && (
                       <RibbonConfigurator
@@ -527,6 +528,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                         setRibbonText={setRibbonText}
                         ribbonColor={ribbonColor}
                         setRibbonColor={setRibbonColor}
+                        allowedColors={['blanc']}
                       />
                     )}
                   </div>

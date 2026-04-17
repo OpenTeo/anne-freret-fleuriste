@@ -54,6 +54,14 @@ export default function Paiement() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleCustomerTypeChange = (customerType: 'particulier' | 'professionnel') => {
+    setForm((prev) => ({
+      ...prev,
+      customerType,
+      siren: customerType === 'professionnel' ? prev.siren : '',
+    }));
+  };
+
   const sirenIsValid = form.customerType === 'particulier' || /^\d{9}$/.test(form.siren.trim());
   const isFormValid =
     form.email &&
@@ -144,25 +152,56 @@ export default function Paiement() {
                 <div>
                   <h2 className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-4">Vos coordonnees</h2>
                   <div className="space-y-4">
-                    <div>
-                      <span className="block text-xs uppercase tracking-[0.1em] text-[#2d2a26]/50 mb-2">Type de client</span>
-                      <label className="flex items-center gap-3 text-sm text-[#2d2a26] mb-2">
-                        <input
-                          type="checkbox"
-                          name="customerType"
-                          checked={form.customerType === 'professionnel'}
-                          onChange={(e) =>
-                            setForm((prev) => ({
-                              ...prev,
-                              customerType: e.target.checked ? 'professionnel' : 'particulier',
-                              siren: e.target.checked ? prev.siren : '',
-                            }))
-                          }
-                          className="h-4 w-4 rounded border-[#e8e0d8] text-[#b8935a] focus:ring-[#b8935a]"
-                        />
-                        Je commande en tant que professionnel
-                      </label>
-                    </div>
+                    <fieldset>
+                      <legend className="block text-xs uppercase tracking-[0.1em] text-[#2d2a26]/50 mb-3">Type de client</legend>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <label
+                          className={`group relative flex cursor-pointer items-start rounded-2xl border px-4 py-4 transition-all ${
+                            form.customerType === 'particulier'
+                              ? 'border-[#b8935a] bg-[#f7efe5] shadow-[0_10px_30px_rgba(184,147,90,0.12)]'
+                              : 'border-[#e8e0d8] bg-white hover:border-[#d9c7ae]'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="customerType"
+                            value="particulier"
+                            checked={form.customerType === 'particulier'}
+                            onChange={() => handleCustomerTypeChange('particulier')}
+                            className="sr-only"
+                          />
+                          <span className="block w-full">
+                            <span className="block text-sm font-medium text-[#2d2a26]">Particulier</span>
+                            <span className="mt-1 block text-xs leading-relaxed text-[#2d2a26]/55">
+                              Pour une commande personnelle, cadeau ou livraison a domicile.
+                            </span>
+                          </span>
+                        </label>
+
+                        <label
+                          className={`group relative flex cursor-pointer items-start rounded-2xl border px-4 py-4 transition-all ${
+                            form.customerType === 'professionnel'
+                              ? 'border-[#b8935a] bg-[#f7efe5] shadow-[0_10px_30px_rgba(184,147,90,0.12)]'
+                              : 'border-[#e8e0d8] bg-white hover:border-[#d9c7ae]'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="customerType"
+                            value="professionnel"
+                            checked={form.customerType === 'professionnel'}
+                            onChange={() => handleCustomerTypeChange('professionnel')}
+                            className="sr-only"
+                          />
+                          <span className="block w-full">
+                            <span className="block text-sm font-medium text-[#2d2a26]">Professionnel</span>
+                            <span className="mt-1 block text-xs leading-relaxed text-[#2d2a26]/55">
+                              Pour une entreprise, un evenement ou une commande avec facturation pro.
+                            </span>
+                          </span>
+                        </label>
+                      </div>
+                    </fieldset>
                     <div>
                       <label className="block text-xs uppercase tracking-[0.1em] text-[#2d2a26]/50 mb-1.5">Email</label>
                       <input

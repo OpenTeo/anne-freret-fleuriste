@@ -123,8 +123,8 @@ export default function Mariages() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="relative aspect-[3/4] lg:aspect-[4/5] overflow-hidden">
                 <Image
-                  src="/images/mariages/fleuriste-preparation.jpg"
-                  alt="Décoration de table en préparation pour un mariage"
+                  src="/images/mariages/fleuriste-action.jpg"
+                  alt="Charles en train de composer un centre de table de mariage"
                   fill
                   className="object-cover"
                 />

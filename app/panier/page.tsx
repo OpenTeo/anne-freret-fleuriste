@@ -446,7 +446,7 @@ export default function Panier() {
                     const canGoPrev = new Date(year, month, 1) > new Date(today.getFullYear(), today.getMonth(), 1);
                     
                     return (
-                      <div className="border border-[#e8e0d8] p-3">
+                      <div className="border border-[#e8e0d8] p-3 bg-white/70">
                         <div className="flex items-center justify-between mb-2">
                           <button 
                             onClick={() => canGoPrev && setCalendarMonth(new Date(year, month - 1, 1))}
@@ -471,7 +471,7 @@ export default function Panier() {
                             <div key={i} className="text-center text-[8px] text-[#2d2a26]/25 uppercase py-1">{d}</div>
                           ))}
                         </div>
-                        <div className="grid grid-cols-7 gap-px">
+                        <div className="grid grid-cols-7 gap-1">
                           {Array.from({ length: startDay }, (_, i) => <div key={`e-${i}`} />)}
                           {Array.from({ length: daysInMonth }, (_, i) => {
                             const day = i + 1;
@@ -488,16 +488,36 @@ export default function Panier() {
                                 key={day}
                                 disabled={isDisabled}
                                 onClick={() => setSelectedDate(isSelected ? '' : dateStr)}
-                                className={`aspect-square flex items-center justify-center text-[11px] transition-all rounded-sm
-                                  ${isDisabled ? 'text-[#2d2a26]/12' : 'hover:bg-[#b8935a]/10 cursor-pointer'}
-                                  ${isSelected ? 'bg-[#b8935a] text-white rounded-sm' : 'text-[#2d2a26]/60'}
-                                  ${isToday && !isSelected ? 'text-[#b8935a] font-medium' : ''}
+                                className={`relative aspect-square flex items-center justify-center text-[11px] transition-all rounded-md border
+                                  ${isDisabled
+                                    ? 'border-transparent bg-[#faf8f5] text-[#2d2a26]/18 cursor-not-allowed'
+                                    : isSelected
+                                      ? 'border-[#b8935a] bg-[#b8935a] text-white shadow-[0_8px_20px_rgba(184,147,90,0.22)] cursor-pointer'
+                                      : 'border-[#eadfce] bg-white text-[#2d2a26] hover:border-[#b8935a]/60 hover:bg-[#b8935a]/8 cursor-pointer'}
+                                  ${isToday && !isSelected ? 'text-[#b8935a] font-semibold border-[#d9c2a0]' : ''}
                                 `}
                               >
                                 {day}
+                                {!isDisabled && !isSelected && (
+                                  <span className={`absolute bottom-1 h-1 w-1 rounded-full ${isToday ? 'bg-[#b8935a]' : 'bg-[#d8c3a3]'}`} />
+                                )}
                               </button>
                             );
                           })}
+                        </div>
+                        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2 border-t border-[#e8e0d8]/70 pt-3 text-[10px] uppercase tracking-[0.12em] text-[#2d2a26]/45">
+                          <span className="flex items-center gap-1.5">
+                            <span className="h-2 w-2 rounded-full bg-[#d8c3a3]" />
+                            Disponible
+                          </span>
+                          <span className="flex items-center gap-1.5">
+                            <span className="h-2 w-2 rounded-full bg-[#b8935a]" />
+                            Aujourd'hui
+                          </span>
+                          <span className="flex items-center gap-1.5">
+                            <span className="h-2 w-2 rounded-full border border-[#c9b08b] bg-[#f7efe5]" />
+                            Selectionnee
+                          </span>
                         </div>
                         {selectedDate && (
                           <div className="mt-2 pt-2 border-t border-[#e8e0d8]/50 flex items-center gap-2">

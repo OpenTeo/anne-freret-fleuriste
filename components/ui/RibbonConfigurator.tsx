@@ -5,6 +5,7 @@ interface RibbonConfiguratorProps {
   setRibbonText: (text: string) => void;
   ribbonColor: string;
   setRibbonColor: (color: string) => void;
+  allowedColors?: string[];
 }
 
 const colorSchemes: Record<string, { base: string; light: string; dark: string; darker: string; border: string; text: string; name: string }> = {
@@ -13,17 +14,27 @@ const colorSchemes: Record<string, { base: string; light: string; dark: string; 
   violet: { base: '#5a4475', light: '#7a6295', dark: '#3d2d55', darker: '#2a1e3d', border: '#b8935a', text: '#ede6f5', name: 'Violet' },
 };
 
-export default function RibbonConfigurator({ ribbonText, setRibbonText, ribbonColor, setRibbonColor }: RibbonConfiguratorProps) {
+export default function RibbonConfigurator({
+  ribbonText,
+  setRibbonText,
+  ribbonColor,
+  setRibbonColor,
+  allowedColors,
+}: RibbonConfiguratorProps) {
   const scheme = colorSchemes[ribbonColor] || colorSchemes.or;
   const displayText = ribbonText || 'Votre message ici';
   const fontSize = displayText.length > 30 ? 12 : displayText.length > 20 ? 14 : 17;
   const isPlaceholder = !ribbonText;
+  const availableColors = (allowedColors && allowedColors.length > 0 ? allowedColors : Object.keys(colorSchemes))
+    .filter((key) => colorSchemes[key]);
 
   return (
     <div className="space-y-4">
       {/* Couleur + Input EN HAUT */}
       <div className="flex gap-2">
-        {Object.entries(colorSchemes).map(([key, val]) => (
+        {availableColors.map((key) => {
+          const val = colorSchemes[key];
+          return (
           <button
             key={key}
             onClick={() => setRibbonColor(key)}
@@ -36,7 +47,7 @@ export default function RibbonConfigurator({ ribbonText, setRibbonText, ribbonCo
             <span className="w-3.5 h-3.5 border border-[#e8e0d8]" style={{ backgroundColor: val.base }} />
             {val.name}
           </button>
-        ))}
+        )})}
       </div>
 
       <input
