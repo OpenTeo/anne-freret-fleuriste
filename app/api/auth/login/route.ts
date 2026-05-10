@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@/lib/db';
-import { verifyPassword, sanitizeUser } from '@/lib/auth';
+import { verifyPassword, sanitizeUser, createUserToken } from '@/lib/auth';
 import { rateLimit } from '@/lib/rate-limit';
 
 export async function POST(req: NextRequest) {
@@ -47,13 +47,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Retourner user sans password_hash
     const sanitized = sanitizeUser(user);
+    const token = await createUserToken(user.id);
 
-    return NextResponse.json({
-      success: true,
-      user: sanitized
+    const response = NextResponse.json({ success: true, user: sanitized });
+    response.cookies.set('user-token', token, {
+      httpOnly: true,
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 7 * 24 * 60 * 60,
+      secure: process.env.NODE_ENV === 'production',
     });
+    return response;
 
   } catch (error) {
     console.error('Erreur login:', error);

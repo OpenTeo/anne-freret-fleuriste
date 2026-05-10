@@ -22,7 +22,7 @@ export default function Livraison() {
   const faqItems = [
     {
       question: 'À quelle heure sont effectuées les livraisons ?',
-      answer: 'Nos livraisons locales s\'effectuent du mardi au samedi, de 9h à 18h (dimanche sur demande). Les envois Colissimo et Chronopost sont livrés hors week-end uniquement. Pour les commandes urgentes, nous proposons un service express avec supplément.'
+      answer: 'Nos livraisons locales sont possibles 7j/7. Toute commande locale passée avant 12h peut être livrée le jour même. Pour Chronopost, les expéditions partent du lundi au jeudi uniquement, avec un délai indicatif en 24h ouvrées selon le transporteur.'
     },
     {
       question: 'Puis-je choisir un créneau de livraison ?',
@@ -173,7 +173,7 @@ export default function Livraison() {
                   </div>
                   <div>
                     <p className="text-sm text-[#2d2a26]">Livraison locale</p>
-                    <p className="text-[10px] text-[#2d2a26]/40">Rayon de 35 km · Commandé avant 12h = livré le jour même</p>
+                    <p className="text-[10px] text-[#2d2a26]/40">Rayon de 35 km · 7j/7 · Avant 12h = livré le jour même</p>
                   </div>
                 </div>
                 <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
@@ -193,7 +193,7 @@ export default function Livraison() {
                   </div>
                   <div>
                     <p className="text-xs font-semibold tracking-wide" style={{ color: '#D4003C' }}>CHRONOPOST</p>
-                    <p className="text-[10px] text-[#2d2a26]/40">Express · 24h ouvrées · Hors week-end</p>
+                    <p className="text-[10px] text-[#2d2a26]/40">Expédié du lundi au jeudi · 24h ouvrées indicatives</p>
                   </div>
                 </div>
                 <div className="space-y-2 text-xs text-[#2d2a26]/60 font-light">
@@ -201,6 +201,7 @@ export default function Livraison() {
                   <div className="flex justify-between"><span>Suivi en temps reel</span><span className="text-[#b8935a]">Inclus</span></div>
                 </div>
                 <p className="text-[10px] mt-3" style={{ color: '#D4003C' }}>Offerte des 90 € d&apos;achat</p>
+                <p className="text-[10px] text-[#2d2a26]/45 mt-2">Délais indicatifs sous réserve des aléas transporteur, grèves et intempéries.</p>
               </div>
             </div>
           </div>
@@ -234,7 +235,7 @@ export default function Livraison() {
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-[#b8935a] rounded-full mt-2"></div>
-                    <span className="text-[#2d2a26] font-light">Maintien de l'hydratation</span>
+                    <span className="text-[#2d2a26] font-light">Maintien de l&apos;hydratation</span>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-[#b8935a] rounded-full mt-2"></div>
@@ -242,7 +243,7 @@ export default function Livraison() {
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 bg-[#b8935a] rounded-full mt-2"></div>
-                    <span className="text-[#2d2a26] font-light">Présentation soignée à l'arrivée</span>
+                    <span className="text-[#2d2a26] font-light">Présentation soignée à l&apos;arrivée</span>
                   </div>
                 </div>
               </div>

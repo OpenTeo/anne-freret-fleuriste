@@ -11,7 +11,7 @@ interface Product {
   category: string;
   price: number;
   original_price: number | null;
-  stock: number;
+  stock: number | null;
   images: string[];
   tags: string[];
   sizes: Array<{ name: string; price: number | string }> | null;
@@ -27,7 +27,8 @@ function fmt(n: number): string {
   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(n);
 }
 
-function stockIndicator(stock: number): string {
+function stockIndicator(stock: number | null): string {
+  if (stock === null || stock === undefined) return '🟢';
   if (stock > 10) return '🟢';
   if (stock >= 1) return '🟠';
   return '🔴';
@@ -163,8 +164,8 @@ export default function ProductsList() {
                   )}
                 </div>
                 <div className="absolute top-2 right-2">
-                  <span className="text-sm" title={`Stock: ${product.stock}`}>
-                    {stockIndicator(product.stock)} {product.stock}
+                  <span className="text-sm" title={`Stock: ${product.stock ?? 'illimité'}`}>
+                    {stockIndicator(product.stock)} {product.stock ?? '∞'}
                   </span>
                 </div>
               </div>
@@ -234,7 +235,7 @@ export default function ProductsList() {
                   category: editProduct.category,
                   price: editProduct.price,
                   original_price: editProduct.original_price || '',
-                  stock: editProduct.stock,
+                  stock: editProduct.stock ?? '',
                   images: editProduct.images || [],
                   tags: editProduct.tags || [],
                   sizes: editProduct.sizes || [],

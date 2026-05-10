@@ -21,6 +21,7 @@ export default function ClientsList() {
   const [clients, setClients] = useState<Client[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [loadError, setLoadError] = useState('');
 
   useEffect(() => {
     const loadClients = async () => {
@@ -28,8 +29,10 @@ export default function ClientsList() {
         const res = await apiFetch(`/api/users?isAdmin=false&search=${search}`);
         const data = await res.json();
         setClients(data.users || []);
+        setLoadError('');
       } catch (error) {
         console.error('Erreur chargement clients:', error);
+        setLoadError('Impossible de charger les clients. Vérifiez votre connexion.');
       } finally {
         setIsLoading(false);
       }
@@ -48,6 +51,11 @@ export default function ClientsList() {
 
   return (
     <div>
+      {loadError && (
+        <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-sm">
+          {loadError}
+        </div>
+      )}
       {/* Search */}
       <div className="mb-4">
         <input

@@ -1,29 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { sql } from '@/lib/db';
 import bcryptjs from 'bcryptjs';
 import { createAdminToken } from '@/lib/admin-auth';
-
-// Rate limiting simple en mémoire (reset au redeploy, suffisant pour bloquer brute force)
-const loginAttempts = new Map<string, { count: number; lastAttempt: number }>();
-const MAX_ATTEMPTS = 5;
-const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
-
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now();
-  const record = loginAttempts.get(ip);
-  if (!record || now - record.lastAttempt > WINDOW_MS) {
-    loginAttempts.set(ip, { count: 1, lastAttempt: now });
-    return true;
-  }
-  record.count++;
-  record.lastAttempt = now;
-  return record.count <= MAX_ATTEMPTS;
-}
+import { rateLimit } from '@/lib/rate-limit';
 
 export async function POST(request: NextRequest) {
   try {
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
-    if (!checkRateLimit(ip)) {
+    if (!(await rateLimit(`admin-login:${ip}`, 5, 15 * 60 * 1000))) {
       return NextResponse.json(
         { error: 'Trop de tentatives. Réessayez dans 15 minutes.' },
         { status: 429 }

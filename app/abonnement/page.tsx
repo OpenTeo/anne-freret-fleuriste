@@ -6,55 +6,7 @@ import { useAuth } from '@/lib/auth-context';
 import { apiFetch } from '@/lib/api-client';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
-
-const plans = [
-  {
-    id: 'essentiel',
-    name: 'Essentiel',
-    monthlyPrice: 29.90,
-    biweeklyPrice: 27.50,
-    weeklyPrice: 25.50,
-    tagline: 'Le rituel simple et élégant',
-    description: 'Imaginez rentrer chez vous et découvrir un bouquet frais qui transforme votre salon en refuge parfumé. C\'est votre petit luxe hebdomadaire , sans effort, sans stress.',
-    features: [
-      'Votre dose de fraîcheur (30-35cm)',
-      'Un message écrit de notre main',
-      'Sélection artisanale de saison',
-    ],
-    dailyCost: 0.99, // weekly price / 7
-  },
-  {
-    id: 'signature',
-    name: 'Signature',
-    monthlyPrice: 44.90,
-    biweeklyPrice: 41.50,
-    weeklyPrice: 38.00,
-    tagline: 'Notre création favorite',
-    description: 'Ce bouquet, c\'est celui que nous offririons à nos proches. Généreux, raffiné, conçu pour impressionner. Parce que votre intérieur mérite ce qu\'il y a de mieux.',
-    popular: true,
-    features: [
-      'Composition généreuse premium (35-40cm)',
-      'Un message écrit de notre main',
-      'Fleurs rares et variétés d\'exception',
-    ],
-    dailyCost: 1.27, // weekly price / 7 (arrondi)
-  },
-  {
-    id: 'prestige',
-    name: 'Prestige',
-    monthlyPrice: 69.90,
-    biweeklyPrice: 64.50,
-    weeklyPrice: 59.00,
-    tagline: 'L\'excellence florale absolue',
-    description: 'Une œuvre d\'art vivante. Ce bouquet attire les regards, suscite l\'admiration, et transforme chaque pièce en galerie d\'exception. C\'est plus qu\'un abonnement : c\'est une signature.',
-    features: [
-      'Grande composition d\'exception (40-45cm)',
-      'Vase design offert (1ère livraison)',
-      'Message personnalisé calligraphié',
-    ],
-    dailyCost: 1.97, // weekly price / 7 (arrondi)
-  },
-];
+import { SUBSCRIPTION_PLANS, getSubscriptionPrice } from '@/lib/subscription-plans';
 
 const frequencies = [
   {
@@ -123,15 +75,14 @@ export default function AbonnementStripe() {
   const [nextDelivery, setNextDelivery] = useState('');
 
   const getPriceForPlan = (planId: string, frequency: string) => {
-    const plan = plans.find((p) => p.id === planId);
-    if (!plan) return 0;
+    if (frequency !== 'weekly' && frequency !== 'biweekly' && frequency !== 'monthly') {
+      return 0;
+    }
 
-    if (frequency === 'weekly') return plan.weeklyPrice;
-    if (frequency === 'biweekly') return plan.biweeklyPrice;
-    return plan.monthlyPrice;
+    return getSubscriptionPrice(planId, frequency);
   };
 
-  const selectedPlanData = plans.find((p) => p.id === selectedPlan);
+  const selectedPlanData = SUBSCRIPTION_PLANS.find((p) => p.id === selectedPlan);
   const selectedFrequencyData = frequencies.find((f) => f.id === selectedFrequency);
   const price = getPriceForPlan(selectedPlan, selectedFrequency);
 
@@ -216,7 +167,7 @@ export default function AbonnementStripe() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-              {plans.map((plan) => (
+              {SUBSCRIPTION_PLANS.map((plan) => (
                 <button
                   key={plan.id}
                   onClick={() => setSelectedPlan(plan.id)}

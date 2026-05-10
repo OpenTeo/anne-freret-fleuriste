@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useCallback } from 'react';
+import { SUBSCRIPTION_PLANS } from '@/lib/subscription-plans';
 
 const SWIPE_THRESHOLD = 50;
 
-const totalSlides = 4;
+const totalSlides = 5;
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
@@ -80,10 +81,50 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* ═══ SLIDE 2: Abonnement — fond crème + 3 cards élégantes ═══ */}
+        {/* ═══ SLIDE 2: Qui sommes-nous ═══ */}
         <div
           className="transition-opacity duration-700 ease-in-out pointer-events-auto"
           style={{ opacity: current === 1 ? 1 : 0, position: current === 1 ? 'relative' : 'absolute', top: 0, left: 0, right: 0, pointerEvents: current === 1 ? 'auto' : 'none' }}
+        >
+          <div className="relative h-[55vh] md:h-[60vh]">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url('/images/team/anne-freret.jpg')`, backgroundPosition: 'center 28%' }}
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(24,18,13,0.10),rgba(24,18,13,0.38))]" />
+            <div className="absolute bottom-10 left-6 right-6 md:left-16 md:right-16">
+              <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-3 text-white/85">
+                La Maison Anne Freret
+              </p>
+              <p className="font-serif text-2xl md:text-4xl lg:text-5xl font-light text-white max-w-3xl drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)]">
+                Une histoire florale née en Normandie, entre atelier, transmission et sens du détail.
+              </p>
+            </div>
+          </div>
+          <div className="bg-[#faf8f5] px-6 md:px-16 lg:px-24 py-6 md:py-8">
+            <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-2" style={{ color: '#b8935a' }}>
+              Qui sommes nous
+            </p>
+            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl mb-2 font-light" style={{ color: '#2d2a26' }}>
+              Notre histoire, notre signature
+            </h2>
+            <p className="text-sm md:text-base text-[#2d2a26]/60 font-light mb-3 max-w-xl">
+              Depuis Saint Pair sur Mer, nous composons des créations florales avec exigence, sens du détail et une vraie culture du beau.
+            </p>
+            <Link
+              href="/la-marque"
+              className="inline-block text-sm font-light border-b pb-0.5 transition-colors hover:text-[#b8935a] hover:border-[#b8935a]"
+              style={{ color: '#2d2a26', borderColor: '#2d2a26' }}
+            >
+              Découvrir notre histoire →
+            </Link>
+          </div>
+        </div>
+
+        {/* ═══ SLIDE 3: Abonnement — fond crème + 3 cards élégantes ═══ */}
+        <div
+          className="transition-opacity duration-700 ease-in-out pointer-events-auto"
+          style={{ opacity: current === 2 ? 1 : 0, position: current === 2 ? 'relative' : 'absolute', top: 0, left: 0, right: 0, pointerEvents: current === 2 ? 'auto' : 'none' }}
         >
           <div className="bg-[#f7f3ee] h-[55vh] md:h-[60vh] flex flex-col items-center justify-center px-4 md:px-12">
             <p className="text-[10px] md:text-[11px] tracking-[0.3em] uppercase font-light mb-3" style={{ color: '#b8935a' }}>
@@ -95,21 +136,17 @@ const Hero = () => {
 
             {/* 3 cards */}
             <div className="flex flex-row items-stretch justify-center gap-3 md:gap-6 w-full max-w-4xl">
-              {[
-                { name: 'Essentiel', tagline: 'La douceur mensuelle', price: '29.90', features: ['3-5 variétés', 'Bouquet classique', 'Livraison incluse'], highlight: false },
-                { name: 'Signature', tagline: 'Notre création favorite', price: '44.90', features: ['5-7 variétés', 'Composition premium', 'Carte personnalisée'], highlight: true },
-                { name: 'Prestige', tagline: "L'excellence absolue", price: '59.90', features: ['8-10 variétés', "Fleurs d'exception", 'Service prioritaire'], highlight: false },
-              ].map((plan) => (
+              {SUBSCRIPTION_PLANS.map((plan) => (
                 <Link
                   key={plan.name}
                   href={`/abonnement?plan=${plan.name.toLowerCase()}`}
                   className={`flex-1 bg-white px-3 md:px-6 py-4 md:py-6 text-center flex flex-col transition-all hover:shadow-md ${
-                    plan.highlight
+                    plan.popular
                       ? 'border-2 border-[#b8935a] shadow-sm'
                       : 'border border-[#e8e0d8]'
                   }`}
                 >
-                  {plan.highlight && (
+                  {plan.popular && (
                     <span className="inline-block mb-2 text-[7px] md:text-[8px] tracking-[0.2em] uppercase px-2 py-0.5 bg-[#b8935a] text-white">
                       Le + choisi
                     </span>
@@ -117,7 +154,7 @@ const Hero = () => {
                   <p className="font-serif text-base md:text-xl mb-0.5" style={{ color: '#2d2a26' }}>{plan.name}</p>
                   <p className="text-[9px] md:text-[10px] italic font-light mb-2" style={{ color: '#b8935a' }}>{plan.tagline}</p>
                   <div className="w-8 h-px bg-[#e8e0d8] mx-auto mb-2" />
-                  <p className="font-serif text-xl md:text-3xl mb-1" style={{ color: '#2d2a26' }}>{plan.price}€</p>
+                  <p className="font-serif text-xl md:text-3xl mb-1" style={{ color: '#2d2a26' }}>{plan.prices.monthly.toFixed(2)}€</p>
                   <p className="text-[9px] md:text-[10px] text-[#2d2a26]/40 mb-2">par livraison</p>
                   <div className="hidden md:block space-y-1 mt-auto pt-2 border-t border-[#e8e0d8]">
                     {plan.features.map((f, i) => (
@@ -159,10 +196,10 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* ═══ SLIDE 3: Deuil ═══ */}
+        {/* ═══ SLIDE 4: Deuil ═══ */}
         <div
           className="transition-opacity duration-700 ease-in-out pointer-events-auto"
-          style={{ opacity: current === 2 ? 1 : 0, position: current === 2 ? 'relative' : 'absolute', top: 0, left: 0, right: 0, pointerEvents: current === 2 ? 'auto' : 'none' }}
+          style={{ opacity: current === 3 ? 1 : 0, position: current === 3 ? 'relative' : 'absolute', top: 0, left: 0, right: 0, pointerEvents: current === 3 ? 'auto' : 'none' }}
         >
           <div className="relative h-[55vh] md:h-[60vh]">
             <div
@@ -190,10 +227,10 @@ const Hero = () => {
           </div>
         </div>
 
-        {/* ═══ SLIDE 4: Mariages ═══ */}
+        {/* ═══ SLIDE 5: Mariages ═══ */}
         <div
           className="transition-opacity duration-700 ease-in-out pointer-events-auto"
-          style={{ opacity: current === 3 ? 1 : 0, position: current === 3 ? 'relative' : 'absolute', top: 0, left: 0, right: 0, pointerEvents: current === 3 ? 'auto' : 'none' }}
+          style={{ opacity: current === 4 ? 1 : 0, position: current === 4 ? 'relative' : 'absolute', top: 0, left: 0, right: 0, pointerEvents: current === 4 ? 'auto' : 'none' }}
         >
           <div className="relative h-[55vh] md:h-[60vh]">
             <div

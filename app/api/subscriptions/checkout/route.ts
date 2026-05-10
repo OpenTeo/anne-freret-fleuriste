@@ -30,7 +30,7 @@ interface CheckoutBody {
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
-  if (!rateLimit(`sub-checkout:${ip}`, 5, 15 * 60 * 1000)) {
+  if (!(await rateLimit(`sub-checkout:${ip}`, 5, 15 * 60 * 1000))) {
     return NextResponse.json({ error: 'Trop de tentatives. Réessayez dans quelques minutes.' }, { status: 429 });
   }
 

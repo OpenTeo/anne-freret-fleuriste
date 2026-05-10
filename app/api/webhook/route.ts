@@ -64,6 +64,8 @@ export async function POST(req: NextRequest) {
     }
   } catch (error) {
     console.error('❌ Erreur traitement webhook:', error);
+    // Retourner 500 pour que Stripe retente (ne pas avaler l'erreur silencieusement)
+    return NextResponse.json({ error: 'Erreur interne' }, { status: 500 });
   }
 
   return NextResponse.json({ received: true });
@@ -89,7 +91,7 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
   const city = cityParts.slice(1).join(' ') || '';
 
   // Parser les articles depuis metadata OU depuis line_items Stripe (fallback)
-  let orderItems: Array<{ name: string; size: string; image?: string; quantity: number; price: number }> = [];
+  let orderItems: Array<{ id?: string; name: string; size: string; image?: string; quantity: number; price: number }> = [];
   try {
     if (meta.order_items_json) {
       orderItems = JSON.parse(meta.order_items_json);
@@ -134,10 +136,22 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
     console.error('Erreur recherche user:', err);
   }
 
+  // Supprimer le panier abandonné si l'utilisateur en avait un
+  if (userId) {
+    sql`DELETE FROM carts WHERE user_id = ${userId}`.catch(() => {});
+  }
+
+  // Idempotency : ne pas créer la commande si elle existe déjà (retry Stripe)
+  const existing = await sql`SELECT id FROM orders WHERE stripe_session_id = ${session.id} LIMIT 1`;
+  if (existing.rows.length > 0) {
+    console.log(`ℹ️ Commande déjà créée pour session ${session.id}, skip`);
+    return;
+  }
+
   // Sauvegarder la commande en base de données
   try {
     console.log(`💾 Sauvegarde commande ${orderNumber} en base de données...`);
-    
+
     const orderResult = await sql`
       INSERT INTO orders (
         order_number, 
@@ -201,6 +215,14 @@ async function handleOrderCompleted(session: Stripe.Checkout.Session) {
             ${item.quantity * item.price}
           )
         `;
+      }
+    }
+
+    // Décrémenter le stock des produits achetés (NULL = illimité, pas de décrémentation)
+    for (const item of orderItems) {
+      if (item.id) {
+        sql`UPDATE products SET stock = GREATEST(0, stock - ${item.quantity}) WHERE id = ${item.id} AND stock IS NOT NULL`
+          .catch((err: unknown) => console.error('Erreur décrémentation stock:', err));
       }
     }
 
@@ -461,7 +483,8 @@ async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
         start_date,
         stripe_subscription_id,
         stripe_customer_id,
-        stripe_price_id
+        stripe_price_id,
+        delivery_mode
       ) VALUES (
         ${userId},
         ${formula},
@@ -472,7 +495,8 @@ async function handleSubscriptionCreated(subscription: Stripe.Subscription) {
         CURRENT_DATE,
         ${subscription.id},
         ${customerId},
-        ${subscription.items.data[0]?.price.id || null}
+        ${subscription.items.data[0]?.price.id || null},
+        ${meta.delivery_mode || 'local'}
       )
     `;
     
@@ -556,7 +580,7 @@ async function handleSubscriptionInvoicePaid(invoice: Stripe.Invoice) {
   if (!email) return;
   
   try {
-    // Récupérer l'abonnement en BDD
+    // Récupérer l'abonnement en BDD (avec delivery_mode)
     const subResult = await sql`
       SELECT s.*, u.first_name, u.last_name, u.address, u.city, u.postal_code, u.phone
       FROM subscriptions s
@@ -604,7 +628,7 @@ async function handleSubscriptionInvoicePaid(invoice: Stripe.Invoice) {
         ${sub.address || ''},
         ${sub.city || ''},
         ${sub.postal_code || ''},
-        'local',
+        ${sub.delivery_mode || 'local'},
         ${sub.next_delivery_date},
         ${sub.price},
         'confirmed'
@@ -645,7 +669,43 @@ async function handleSubscriptionInvoicePaid(invoice: Stripe.Invoice) {
     `;
     
     console.log(`✅ Commande abonnement ${orderNumber} créée, prochaine livraison: ${nextDate}`);
-    
+
+    // Créer colis Sendcloud si livraison Chronopost et adresse complète
+    if (sub.delivery_mode === 'chronopost' && sub.address && sub.city && sub.postal_code) {
+      try {
+        const parcel = await createParcel({
+          name: sub.first_name + ' ' + sub.last_name,
+          address: sub.address,
+          city: sub.city,
+          postalCode: sub.postal_code,
+          country: 'FR',
+          email,
+          phone: sub.phone || '',
+          orderNumber,
+          weight: 1.5,
+          shipmentMethod: 1394,
+        });
+
+        const trackingNumber = parcel.tracking_number || '';
+        const trackingUrl = parcel.tracking_url || '';
+        const labelUrl = parcel.label?.label_printer || parcel.label?.normal_printer?.[0] || '';
+
+        await sql`
+          UPDATE orders
+          SET tracking_number = ${trackingNumber},
+              tracking_url = ${trackingUrl},
+              label_url = ${labelUrl},
+              sendcloud_parcel_id = ${parcel.id},
+              shipped_at = NOW(),
+              status = 'shipped'
+          WHERE order_number = ${orderNumber}
+        `;
+        console.log(`✅ Colis Sendcloud créé pour abonnement: ${trackingNumber}`);
+      } catch (err) {
+        console.error('❌ Erreur Sendcloud abonnement:', err instanceof Error ? err.message : err);
+      }
+    }
+
     // Email de confirmation du renouvellement
     try {
       const formulaLabels: Record<string, string> = {

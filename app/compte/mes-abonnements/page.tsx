@@ -41,6 +41,7 @@ export default function MesAbonnements() {
   const router = useRouter();
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -56,10 +57,13 @@ export default function MesAbonnements() {
   const loadSubscriptions = async () => {
     try {
       const res = await apiFetch('/api/subscriptions');
+      if (!res.ok) throw new Error('Erreur serveur');
       const data = await res.json();
       setSubscriptions(data.subscriptions || []);
-    } catch (error) {
-      console.error('Erreur chargement abonnements:', error);
+      setError('');
+    } catch (err) {
+      console.error('Erreur chargement abonnements:', err);
+      setError('Impossible de charger vos abonnements. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
@@ -77,9 +81,11 @@ export default function MesAbonnements() {
 
       if (res.ok) {
         loadSubscriptions();
+      } else {
+        setError('Impossible de mettre en pause. Veuillez réessayer.');
       }
-    } catch (error) {
-      console.error('Erreur pause abonnement:', error);
+    } catch {
+      setError('Impossible de mettre en pause. Vérifiez votre connexion.');
     }
   };
 
@@ -93,9 +99,11 @@ export default function MesAbonnements() {
 
       if (res.ok) {
         loadSubscriptions();
+      } else {
+        setError('Impossible de réactiver. Veuillez réessayer.');
       }
-    } catch (error) {
-      console.error('Erreur réactivation:', error);
+    } catch {
+      setError('Impossible de réactiver. Vérifiez votre connexion.');
     }
   };
 
@@ -109,9 +117,11 @@ export default function MesAbonnements() {
 
       if (res.ok) {
         loadSubscriptions();
+      } else {
+        setError("Impossible d'annuler l'abonnement. Veuillez réessayer.");
       }
-    } catch (error) {
-      console.error('Erreur annulation:', error);
+    } catch {
+      setError("Impossible d'annuler l'abonnement. Vérifiez votre connexion.");
     }
   };
 
@@ -142,6 +152,12 @@ export default function MesAbonnements() {
             </button>
 
             <h1 className="font-serif text-2xl md:text-3xl text-[#2d2a26] mb-8">Mes abonnements</h1>
+
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 text-sm">
+                {error}
+              </div>
+            )}
 
             {subscriptions.length === 0 ? (
               <div className="bg-white border border-[#e8e0d8] p-8 text-center">

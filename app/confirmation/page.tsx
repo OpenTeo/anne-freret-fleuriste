@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { useAuth } from '@/lib/auth-context';
+import { CardPreview } from '@/components/ui/CardSelector';
+import { DeliveryMode, getDeliveryModeDetails, getDeliveryModeLabel } from '@/lib/delivery-rules';
 
 interface OrderData {
   items: Array<{
@@ -15,14 +17,18 @@ interface OrderData {
     price: number;
     quantity: number;
     image: string;
+    category?: string;
+    message?: string;
+    cardId?: string;
   }>;
   delivery: {
-    mode: string;
+    mode: DeliveryMode;
     date: string;
     fee: number;
     discount: number;
     subtotal: number;
     total: number;
+    details?: string;
   };
   customer: {
     email: string;
@@ -37,8 +43,23 @@ interface OrderData {
   date: string;
 }
 
+interface StoredOrderItem {
+  name: string;
+  size: string;
+  price: number;
+  quantity: number;
+  image: string;
+  category?: string;
+  message?: string;
+  cardId?: string;
+}
+
 export default function Confirmation() {
-  const [order, setOrder] = useState<OrderData | null>(null);
+  const [order, setOrder] = useState<OrderData | null>(() => {
+    if (typeof window === 'undefined') return null;
+    const stored = localStorage.getItem('af-last-order');
+    return stored ? JSON.parse(stored) as OrderData : null;
+  });
   const [password, setPassword] = useState('');
   const [accountCreated, setAccountCreated] = useState(false);
   const [showRecap, setShowRecap] = useState(false);
@@ -60,11 +81,12 @@ export default function Confirmation() {
             const addressParts = (meta.delivery_address || '').split(', ');
             const cityParts = addressParts[1]?.split(' ') || [];
 
-            const items = meta.order_items_json 
-              ? JSON.parse(meta.order_items_json).map((item: any, i: number) => ({
-                  id: String(i),
-                  ...item,
-                }))
+            let parsedItems: StoredOrderItem[] | null = null;
+            if (meta.order_items_json) {
+              try { parsedItems = JSON.parse(meta.order_items_json) as StoredOrderItem[]; } catch { /* fallback ci-dessous */ }
+            }
+            const items = parsedItems
+              ? parsedItems.map((item, i: number) => ({ id: String(i), ...item }))
               : (meta.order_items || '').split(' | ').map((s: string, i: number) => {
                   const match = s.match(/^(\d+)x (.+) \((.+)\)$/);
                   return {
@@ -80,12 +102,13 @@ export default function Confirmation() {
             setOrder({
               items,
               delivery: {
-                mode: meta.delivery_mode || '',
+                mode: (meta.delivery_mode || 'local') as DeliveryMode,
                 date: meta.delivery_date || '',
-                fee: 0,
-                discount: 0,
-                subtotal: (data.amount_total || 0) / 100,
-                total: (data.amount_total || 0) / 100,
+                fee: Number(meta.delivery_fee || 0),
+                discount: Number(meta.delivery_discount || 0),
+                subtotal: Number(meta.delivery_subtotal || ((data.amount_total || 0) / 100)),
+                total: Number(meta.delivery_total || ((data.amount_total || 0) / 100)),
+                details: meta.delivery_details || getDeliveryModeDetails((meta.delivery_mode || 'local') as DeliveryMode),
               },
               customer: {
                 email: data.customer_email || '',
@@ -106,12 +129,6 @@ export default function Confirmation() {
           }
         })
         .catch(() => {});
-    } else {
-      // Fallback to localStorage
-      const stored = localStorage.getItem('af-last-order');
-      if (stored) {
-        setOrder(JSON.parse(stored));
-      }
     }
   }, []);
 
@@ -195,11 +212,18 @@ export default function Confirmation() {
                 {order.items.map((item) => (
                   <div key={item.id} className="flex gap-3">
                     <div className="w-12 h-12 flex-shrink-0 bg-[#faf8f5] overflow-hidden">
-                      <Image src={item.image} alt={item.name} width={48} height={48} className="w-full h-full object-cover" />
+                      {'cardId' in item && item.cardId ? (
+                        <CardPreview cardId={item.cardId} />
+                      ) : (
+                        <Image src={item.image || '/icons/envelope.svg'} alt={item.name} width={48} height={48} className="w-full h-full object-cover" />
+                      )}
                     </div>
                     <div className="flex-grow min-w-0">
                       <p className="text-sm text-[#2d2a26]">{item.name}</p>
                       <p className="text-[10px] text-[#2d2a26]/35">{item.size} — Qté : {item.quantity}</p>
+                      {'message' in item && item.message && (
+                        <p className="text-[10px] text-[#2d2a26]/55 italic mt-1 tracking-[0.04em]">&ldquo;{item.message}&rdquo;</p>
+                      )}
                     </div>
                     <p className="text-sm text-[#2d2a26] flex-shrink-0">{(item.price * item.quantity).toFixed(2)}€</p>
                   </div>
@@ -293,20 +317,15 @@ export default function Confirmation() {
               {/* Mode de livraison */}
               <div>
                 <p className="text-xs uppercase tracking-[0.15em] text-[#2d2a26] font-medium mb-2">Livraison</p>
-                <p className="text-sm text-[#2d2a26]/60 flex items-center gap-2">
-                  {order.delivery.mode === 'local' && (
-                    <><span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#b8935a' }}>Locale</span> Livraison locale — Sous 24h</>
-                  )}
-                  {order.delivery.mode === 'chronopost' && (
-                    <><span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#D4003C' }}>Chronopost</span> Express — 24h ouvrées hors week-end</>
-                  )}
-                  {!['local', 'chronopost'].includes(order.delivery.mode) && (
-                    <>Livraison — {order.delivery.mode}</>
-                  )}
-                </p>
+                <p className="text-sm text-[#2d2a26]/60">{getDeliveryModeLabel(order.delivery.mode)}</p>
                 {deliveryDateFormatted && (
                   <p className="text-sm text-[#2d2a26]/60">
                     Date souhaitée : {deliveryDateFormatted}
+                  </p>
+                )}
+                {order.delivery.details && (
+                  <p className="text-sm text-[#2d2a26]/50">
+                    {order.delivery.details}
                   </p>
                 )}
               </div>

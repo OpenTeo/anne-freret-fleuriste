@@ -21,7 +21,7 @@ const faqData: FAQItem[] = [
   {
     id: 2,
     question: "Quels sont les délais de livraison ?",
-    answer: "Livraison locale (rayon 35 km) : en 24h, du mardi au samedi. Colissimo (France métropolitaine) : 48h ouvrées. Chronopost express : 24h ouvrées, hors week-end. Pour une livraison le dimanche, seule la livraison locale est possible (nous contacter). Pour les événements spéciaux (mariages, obsèques), nous recommandons de commander la veille avant 17h pour garantir la préparation et la livraison. Contactez-nous par téléphone pour les urgences."
+    answer: "Livraison locale (rayon 35 km) : 7j/7, avec livraison le jour même pour toute commande passée avant 12h. Chronopost express : expédition du lundi au jeudi, pour une livraison indicative en 24h ouvrées. Les délais transporteur restent indicatifs et peuvent être impactés par des grèves, intempéries ou autres aléas logistiques. Pour les événements spéciaux (mariages, obsèques), nous recommandons de commander à l'avance. Contactez-nous par téléphone pour les urgences."
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const faqData: FAQItem[] = [
   {
     id: 5,
     question: "Quels sont vos modes de livraison ?",
-    answer: "Nous proposons deux modes de livraison. La livraison locale (rayon de 35 km autour de Saint-Pair-sur-Mer) : livrée le jour même pour toute commande passée avant 12h, du mardi au samedi. Et la livraison Chronopost Express (France métropolitaine) : en 24h ouvrées, hors week-end."
+    answer: "Nous proposons deux modes de livraison. La livraison locale (rayon de 35 km autour de Saint-Pair-sur-Mer) : 7j/7, avec livraison le jour même pour toute commande passée avant 12h. Et la livraison Chronopost (France métropolitaine) : expédiée du lundi au jeudi, avec un délai indicatif de 24h ouvrées."
   },
   {
     id: 6,
@@ -47,7 +47,7 @@ const faqData: FAQItem[] = [
   {
     id: 7,
     question: "Puis-je choisir une date de livraison ?",
-    answer: "Oui ! Lors de votre commande, vous pouvez sélectionner la date de livraison souhaitée. Nous recommandons de commander au moins 48h à l'avance pour les événements importants. À noter : Chronopost ne livre pas le dimanche, seule la livraison locale est disponible ce jour-là (sur demande)."
+    answer: "Oui. Lors de votre commande, vous pouvez sélectionner une date de livraison disponible. En livraison locale, des créneaux 7j/7 sont proposés, avec le jour même avant 12h. En Chronopost, seules les dates compatibles avec une expédition du lundi au jeudi sont proposées automatiquement."
   },
   {
     id: 8,
@@ -139,7 +139,7 @@ export default function FAQ() {
             <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
             
             <p className="text-xl text-[#2d2a26] font-light max-w-2xl mx-auto leading-relaxed">
-              Trouvez rapidement les réponses à vos questions sur nos services, nos livraisons et l'entretien de vos fleurs.
+              Trouvez rapidement les réponses à vos questions sur nos services, nos livraisons et l&apos;entretien de vos fleurs.
             </p>
           </div>
         </section>
@@ -150,7 +150,7 @@ export default function FAQ() {
             <div className="max-w-3xl mx-auto text-center">
               <p className="text-lg text-[#2d2a26] font-light mb-8 leading-relaxed">
                 Vous trouverez ci-dessous les réponses aux questions les plus fréquemment posées. 
-                Si vous ne trouvez pas l'information recherchée, n'hésitez pas à nous contacter directement.
+                Si vous ne trouvez pas l&apos;information recherchée, n&apos;hésitez pas à nous contacter directement.
               </p>
               <div className="flex flex-col sm:flex-row gap-8 justify-center">
                 <Link
@@ -231,7 +231,7 @@ export default function FAQ() {
               </div>
               
               <h2 className="text-3xl md:text-4xl font-serif text-[#2d2a26] mb-8">
-                Besoin d'un Conseil Personnalisé ?
+                Besoin d&apos;un Conseil Personnalisé ?
               </h2>
               
               <div className="w-16 h-px bg-[#b8935a] mx-auto mb-8"></div>
@@ -254,7 +254,7 @@ export default function FAQ() {
                   href="/entretien" 
                   className="text-[#b8935a] underline hover:text-[#b8956a] transition-colors"
                 >
-                  Guide d'entretien
+                  Guide d&apos;entretien
                 </Link>
               </div>
 

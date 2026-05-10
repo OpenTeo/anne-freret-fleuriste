@@ -7,20 +7,27 @@ import Footer from '@/components/layout/Footer';
 
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'loading' | 'sent'>('idle');
+  const [status, setStatus] = useState<'idle' | 'loading' | 'sent' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
 
-    await fetch('/api/auth/forgot-password', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
-    });
-
-    // Toujours afficher "envoyé" (sécurité)
-    setStatus('sent');
+    try {
+      const res = await fetch('/api/auth/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      // Toujours afficher "envoyé" sur 2xx/404 (sécurité — évite l'énumération d'emails)
+      if (res.ok || res.status === 404) {
+        setStatus('sent');
+      } else {
+        setStatus('error');
+      }
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (
@@ -35,6 +42,12 @@ export default function ForgotPasswordPage() {
               Entrez votre email et nous vous enverrons un lien pour réinitialiser votre mot de passe.
             </p>
           </div>
+
+          {status === 'error' && (
+            <div className="mb-4 bg-red-50 border border-red-200 text-red-700 text-sm p-4">
+              Une erreur est survenue. Veuillez réessayer dans quelques instants.
+            </div>
+          )}
 
           {status === 'sent' ? (
             <div className="bg-white border border-[#e8e0d8] p-8 text-center">
@@ -68,7 +81,7 @@ export default function ForgotPasswordPage() {
                 disabled={status === 'loading'}
                 className="w-full bg-[#b8935a] text-white py-3 text-sm uppercase tracking-[0.1em] hover:bg-[#a6834e] transition-colors disabled:opacity-50"
               >
-                {status === 'loading' ? 'Envoi en cours...' : 'Envoyer le lien'}
+                {status === 'loading' ? 'Envoi en cours...' : status === 'error' ? 'Réessayer' : 'Envoyer le lien'}
               </button>
               <p className="text-center">
                 <Link href="/compte/connexion" className="text-[#b8935a] text-sm underline">

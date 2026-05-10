@@ -57,11 +57,6 @@ export async function PATCH(
   if (isAuthError(auth)) return auth;
 
   try {
-    const { verifyAdminToken } = await import('@/lib/admin-auth');
-    const token = req.cookies.get('admin-token')?.value;
-    if (!token || !(await verifyAdminToken(token))) {
-      return NextResponse.json({ error: 'Non autorisé' }, { status: 401 });
-    }
     const { id } = await params;
     const body = await req.json();
     const { status, tracking_number } = body;

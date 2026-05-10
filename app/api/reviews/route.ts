@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { sql } from '@/lib/db';
+import { requireAdmin, isAuthError } from '@/lib/api-auth';
 
 // GET /api/reviews - Liste des avis
 export async function GET(request: NextRequest) {
@@ -24,6 +25,9 @@ export async function GET(request: NextRequest) {
       `;
       result = await sql.query(query, [productId]);
     } else if (all === 'true') {
+      const auth = await requireAdmin(request);
+      if (isAuthError(auth)) return auth;
+
       // Tous les avis (admin)
       query = `
         SELECT r.*, p.name as product_name, p.slug as product_slug

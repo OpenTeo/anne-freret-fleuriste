@@ -8,6 +8,7 @@ import TestimonialsCarousel from '@/components/sections/TestimonialsCarousel';
 import BrandIdentity from '@/components/sections/BrandIdentity';
 import { blogPosts } from '@/lib/mock-data';
 import Link from 'next/link';
+import { SUBSCRIPTION_PLANS } from '@/lib/subscription-plans';
 
 export const metadata: Metadata = {
   title: "Anne Freret — Fleuriste Artisanale à Saint-Pair-sur-Mer | Livraison Normandie & France",
@@ -32,7 +33,7 @@ export default function Home() {
         <Hero />
 
         {/* 1bis. BLOC CONVERSION - Réassurance + accès rapides */}
-        <section className="py-12 md:py-16 bg-[#faf8f5]">
+        <section className="hidden md:block py-12 md:py-16 bg-[#faf8f5]">
           <div className="max-w-6xl mx-auto px-4 md:px-6">
             <div className="relative overflow-hidden border border-[#b8935a]/15 shadow-[0_20px_60px_rgba(45,42,38,0.06)] bg-[#f7f1eb]">
               <div
@@ -145,29 +146,7 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-              {[
-                { 
-                  name: 'Essentiel', 
-                  price: '39.90', 
-                  desc: 'La douceur mensuelle',
-                  features: ['3-5 variétés', 'Bouquet classique', 'Livraison incluse'],
-                  popular: false 
-                },
-                { 
-                  name: 'Signature', 
-                  price: '49.90', 
-                  desc: "L'équilibre parfait",
-                  features: ['5-7 variétés', 'Composition premium', 'Carte personnalisée'],
-                  popular: true 
-                },
-                { 
-                  name: 'Prestige', 
-                  price: '69.90', 
-                  desc: "L'excellence absolue",
-                  features: ['8-10 variétés', "Fleurs d'exception", 'Service prioritaire'],
-                  popular: false 
-                },
-              ].map((plan) => (
+              {SUBSCRIPTION_PLANS.map((plan) => (
                 <a 
                   key={plan.name} 
                   href={`/abonnement?plan=${plan.name.toLowerCase()}`}
@@ -184,10 +163,10 @@ export default function Home() {
                   )}
                   <div className="text-center mb-6">
                     <h3 className="font-serif text-2xl text-[#2d2a26] mb-2">{plan.name}</h3>
-                    <p className="text-xs text-[#2d2a26]/50 tracking-wide uppercase">{plan.desc}</p>
+                    <p className="text-xs text-[#2d2a26]/50 tracking-wide uppercase">{plan.tagline}</p>
                   </div>
                   <div className="text-center mb-8 pb-8 border-b border-[#e8e0d8]">
-                    <span className="font-serif text-4xl text-[#2d2a26]">{plan.price}€</span>
+                    <span className="font-serif text-4xl text-[#2d2a26]">{plan.prices.monthly.toFixed(2)}€</span>
                     <span className="text-sm text-[#2d2a26]/50">/mois</span>
                   </div>
                   <div className="space-y-3 mb-8">

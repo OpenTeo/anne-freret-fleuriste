@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /* ────────────────────────────────────────────────────
    Cartes message « fleur séchée collée » — style polaroid artisanal
@@ -187,9 +187,52 @@ interface CardSelectorProps {
   onMessageChange?: (message: string) => void;
 }
 
+export function CardPreview({ cardId }: { cardId: string }) {
+  const FlowerSvg = FLOWER_COMPONENTS[cardId];
+  const tapeColor = TAPE_COLORS[cardId];
+
+  if (!FlowerSvg || !tapeColor) {
+    return null;
+  }
+
+  return (
+    <div className="relative h-full w-full bg-white shadow-sm">
+      <div className="absolute left-1 right-1 top-1 bottom-4 bg-[#f0f0ea]">
+        <div className="absolute inset-1 flex items-center justify-center">
+          <div className="h-[72%] w-[58%]">
+            <FlowerSvg />
+          </div>
+        </div>
+        <div
+          className="absolute left-[22%] top-[15%] h-[7px] w-[56%] opacity-70 shadow-sm"
+          style={{ backgroundColor: tapeColor, transform: 'rotate(-15deg)' }}
+        />
+      </div>
+      <div className="absolute bottom-0 left-0 right-0 flex h-4 items-center justify-center">
+        <span
+          style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: 6,
+            letterSpacing: '0.18em',
+            color: '#2d2a26',
+            opacity: 0.42,
+            textTransform: 'uppercase',
+          }}
+        >
+          Anne Freret
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function CardSelector({ selectedCard, onSelect, message = '', onMessageChange }: CardSelectorProps) {
   const [localMessage, setLocalMessage] = useState(message);
   const selectedCardData = MESSAGE_CARDS.find(c => c.id === selectedCard);
+
+  useEffect(() => {
+    setLocalMessage(message);
+  }, [message]);
 
   const handleMessageChange = (value: string) => {
     setLocalMessage(value);

@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { CardPreview } from '@/components/ui/CardSelector';
+import { DeliveryMode, getDeliveryModeLabel, isSelectableDeliveryDate } from '@/lib/delivery-rules';
 
 interface CartItem {
   id: string;
@@ -14,17 +16,42 @@ interface CartItem {
   quantity: number;
   image: string;
   category: string;
+  message?: string;
+  cardId?: string;
+}
+
+type CardType = 'none' | 'standard' | 'artisanal';
+
+interface CheckoutCardInfo {
+  type: CardType;
+  message: string;
+  selectedCardImage?: string;
+  supplement: number;
 }
 
 interface DeliveryInfo {
-  mode: string;
+  mode: DeliveryMode;
   date: string;
   fee: number;
   discount: number;
   subtotal: number;
   total: number;
   promoCode?: string;
+  details?: string;
+  card?: CheckoutCardInfo;
 }
+
+const getItemOptionLabel = (item: CartItem) => {
+  if (
+    item.category === 'Cartes message' ||
+    item.id === 'addon-vase-decoratif' ||
+    item.id === 'addon-chocolats-artisanaux'
+  ) {
+    return 'Modèle choisi';
+  }
+
+  return 'Taille';
+};
 
 export default function Paiement() {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -72,12 +99,20 @@ export default function Paiement() {
     form.postalCode &&
     form.city &&
     sirenIsValid;
+  const deliverySelectionIsValid = deliveryInfo ? isSelectableDeliveryDate(deliveryInfo.mode, deliveryInfo.date) : false;
+  const cartCardItem = cartItems.find((item) => item.category === 'Cartes message');
 
   const [error, setError] = useState('');
+  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
+
+  const fieldBorder = (value: string) =>
+    hasAttemptedSubmit && !value.trim()
+      ? 'border-red-300 bg-red-50/30'
+      : 'border-[#e8e0d8]';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isFormValid) return;
+    if (!isFormValid || !deliverySelectionIsValid) return;
     setIsSubmitting(true);
     setError('');
 
@@ -89,6 +124,9 @@ export default function Paiement() {
           items: cartItems,
           delivery: deliveryInfo,
           customer: form,
+          cardMessage: cartCardItem?.message || deliveryInfo?.card?.message || undefined,
+          cardSupplement: cartCardItem ? cartCardItem.price * cartCardItem.quantity : deliveryInfo?.card?.supplement || 0,
+          cardType: cartCardItem?.cardId ? 'artisanal' : cartCardItem ? 'standard' : deliveryInfo?.card?.type || 'none',
           promoCode: deliveryInfo?.promoCode || undefined,
         }),
       });
@@ -210,7 +248,7 @@ export default function Paiement() {
                         value={form.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors placeholder:text-[#2d2a26]/25"
+                        className={`w-full px-4 py-3 border ${fieldBorder(form.email)} text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors placeholder:text-[#2d2a26]/25`}
                         placeholder="votre@email.fr"
                       />
                     </div>
@@ -223,7 +261,7 @@ export default function Paiement() {
                           value={form.firstName}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
+                          className={`w-full px-4 py-3 border ${fieldBorder(form.firstName)} text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors`}
                         />
                       </div>
                       <div>
@@ -234,7 +272,7 @@ export default function Paiement() {
                           value={form.lastName}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
+                          className={`w-full px-4 py-3 border ${fieldBorder(form.lastName)} text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors`}
                         />
                       </div>
                     </div>
@@ -266,7 +304,7 @@ export default function Paiement() {
                         value={form.phone}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
+                        className={`w-full px-4 py-3 border ${fieldBorder(form.phone)} text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors`}
                         placeholder="06 00 00 00 00"
                       />
                     </div>
@@ -285,7 +323,7 @@ export default function Paiement() {
                         value={form.address}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
+                        className={`w-full px-4 py-3 border ${fieldBorder(form.address)} text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors`}
                         placeholder="12 rue des Fleurs"
                       />
                     </div>
@@ -298,7 +336,7 @@ export default function Paiement() {
                           value={form.postalCode}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
+                          className={`w-full px-4 py-3 border ${fieldBorder(form.postalCode)} text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors`}
                           placeholder="50000"
                         />
                       </div>
@@ -310,7 +348,7 @@ export default function Paiement() {
                           value={form.city}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-[#e8e0d8] text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors"
+                          className={`w-full px-4 py-3 border ${fieldBorder(form.city)} text-sm text-[#2d2a26] bg-white focus:outline-none focus:border-[#b8935a] transition-colors`}
                           placeholder="Saint-Lo"
                         />
                       </div>
@@ -341,17 +379,24 @@ export default function Paiement() {
                     {cartItems.map((item) => (
                       <div key={item.id} className="flex gap-3">
                         <div className="w-16 h-16 flex-shrink-0 bg-[#faf8f5] overflow-hidden">
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            width={64}
-                            height={64}
-                            className="w-full h-full object-cover"
-                          />
+                          {item.category === 'Cartes message' && item.cardId ? (
+                            <CardPreview cardId={item.cardId} />
+                          ) : (
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              width={64}
+                              height={64}
+                              className="w-full h-full object-cover"
+                            />
+                          )}
                         </div>
                         <div className="flex-grow min-w-0">
                           <p className="text-sm text-[#2d2a26] font-serif leading-tight">{item.name}</p>
-                          <p className="text-[10px] text-[#2d2a26]/40 mt-0.5">{item.size} — Qte : {item.quantity}</p>
+                          <p className="text-[10px] text-[#2d2a26]/40 mt-0.5">{getItemOptionLabel(item)} : {item.size} — Qte : {item.quantity}</p>
+                          {item.message && (
+                            <p className="text-[10px] text-[#2d2a26]/55 italic mt-1 tracking-[0.04em]">&ldquo;{item.message.toUpperCase()}&rdquo;</p>
+                          )}
                         </div>
                         <p className="text-sm text-[#2d2a26] flex-shrink-0">{(item.price * item.quantity).toFixed(2)}€</p>
                       </div>
@@ -372,11 +417,16 @@ export default function Paiement() {
                             <span>-{deliveryInfo.discount.toFixed(2)}€</span>
                           </div>
                         )}
+                        {cartCardItem && (
+                          <div className="flex justify-between text-sm text-[#2d2a26]/70">
+                            <span>{cartCardItem.cardId ? 'Carte artisanale' : 'Carte standard'}</span>
+                            <span className={cartCardItem.price === 0 ? 'text-[#b8935a]' : ''}>
+                              {cartCardItem.price === 0 ? 'Offerte' : `${(cartCardItem.price * cartCardItem.quantity).toFixed(2)}€`}
+                            </span>
+                          </div>
+                        )}
                         <div className="flex justify-between text-sm text-[#2d2a26]/70">
-                          <span className="flex items-center gap-1.5">
-                            Livraison
-                            {deliveryInfo.mode === 'local' && <span className="text-[9px] px-1.5 py-0.5 rounded-sm text-white" style={{ backgroundColor: '#b8935a' }}>Locale</span>}
-                          </span>
+                          <span>{getDeliveryModeLabel(deliveryInfo.mode)}</span>
                           <span className={deliveryInfo.fee === 0 ? 'text-[#b8935a]' : ''}>
                             {deliveryInfo.fee === 0 ? 'Offerte' : `${deliveryInfo.fee.toFixed(2)}€`}
                           </span>
@@ -389,6 +439,17 @@ export default function Paiement() {
                             {new Date(deliveryInfo.date + 'T12:00:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' })}
                           </span>
                         </div>
+                        {deliveryInfo.details && (
+                          <p className="text-xs text-[#2d2a26]/45 leading-relaxed">
+                            {deliveryInfo.details}
+                          </p>
+                        )}
+                        {(cartCardItem?.message || deliveryInfo.card?.message) && (
+                          <div className="rounded-sm border border-[#e8e0d8] bg-[#faf8f5] px-3 py-2">
+                            <p className="text-[10px] uppercase tracking-[0.12em] text-[#2d2a26]/35 mb-1">Message carte</p>
+                            <p className="text-sm italic text-[#2d2a26]/70">&ldquo;{cartCardItem?.message || deliveryInfo.card?.message}&rdquo;</p>
+                          </div>
+                        )}
                       </div>
 
                       <div className="flex justify-between items-baseline pt-4 border-t border-[#2d2a26]/10">
@@ -399,20 +460,32 @@ export default function Paiement() {
                   )}
 
                   {/* Pay button */}
-                  <button
-                    type="submit"
-                    disabled={!isFormValid || isSubmitting}
-                    className={`w-full py-3.5 text-sm uppercase tracking-[0.1em] transition-all ${
-                      isFormValid && !isSubmitting
-                        ? 'bg-[#b8935a] text-white hover:bg-[#b8956a]'
-                        : 'bg-[#e8e0d8] text-[#2d2a26]/30 cursor-not-allowed'
-                    }`}
-                  >
-                    {isSubmitting ? 'Traitement en cours...' : 'Payer'}
-                  </button>
+                  <div onClick={() => !isFormValid && setHasAttemptedSubmit(true)}>
+                    <button
+                      type="submit"
+                      disabled={!isFormValid || !deliverySelectionIsValid || isSubmitting}
+                      className={`w-full py-3.5 text-sm uppercase tracking-[0.1em] transition-all ${
+                        isFormValid && deliverySelectionIsValid && !isSubmitting
+                          ? 'bg-[#b8935a] text-white hover:bg-[#b8956a]'
+                          : 'bg-[#e8e0d8] text-[#2d2a26]/30 cursor-not-allowed'
+                      }`}
+                    >
+                      {isSubmitting ? 'Traitement en cours...' : 'Valider la commande'}
+                    </button>
+                  </div>
 
                   {error && (
                     <p className="text-xs text-red-500 text-center">{error}</p>
+                  )}
+                  {hasAttemptedSubmit && !isFormValid && (
+                    <p className="text-xs text-red-500 text-center">
+                      Veuillez renseigner votre adresse complète, numéro de téléphone et adresse email pour valider votre commande.
+                    </p>
+                  )}
+                  {!deliverySelectionIsValid && deliveryInfo && (
+                    <p className="text-xs text-red-500 text-center">
+                      La date de livraison sélectionnée n&apos;est plus disponible. Reviens au panier pour choisir un créneau valide.
+                    </p>
                   )}
 
                   <div className="flex items-center justify-center gap-2 pt-1">

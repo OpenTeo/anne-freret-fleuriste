@@ -4,8 +4,8 @@ import Footer from '@/components/layout/Footer';
 export default function LaMarque() {
   const values = [
     {
-      title: 'Artisanat Local',
-      description: 'Chaque création est réalisée à la main avec des fleurs fraîches, privilégiant les producteurs locaux de Normandie.'
+      title: 'Artisanat Floral',
+      description: 'Chaque création est réalisée à la main avec des fleurs sélectionnées avec soin auprès de productions françaises, belges ou hollandaises.'
     },
     {
       title: 'Passion & Émotion',
@@ -33,25 +33,31 @@ export default function LaMarque() {
             <div className="max-w-4xl mx-auto text-center">
               
               <div className="text-sm md:text-base uppercase tracking-[0.25em] text-[#b8935a] mb-10 font-medium">
-                Qui sommes-nous
+                Qui sommes nous
               </div>
 
-              <div className="bg-white shadow-md px-8 py-12 md:px-16 md:py-16 max-w-xl mx-auto mb-10">
-                <h1 className="font-serif text-[#2d2a26] mb-1 leading-none">
-                  <span className="block text-[13px] md:text-[16px] uppercase tracking-[0.35em]">A N N E</span>
-                </h1>
-                <h1 className="font-serif text-[#2d2a26] mb-3 leading-none">
-                  <span className="block text-5xl md:text-7xl lg:text-8xl uppercase tracking-[0.15em]">FRERET</span>
-                </h1>
-                <div className="text-[11px] md:text-[13px] uppercase tracking-[0.35em] text-[#b8935a]">
-                  — fleuriste —
+              <div className="bg-white shadow-md px-8 py-12 md:px-16 md:py-16 max-w-5xl mx-auto mb-10 overflow-hidden">
+                <div className="flex flex-col items-center text-center">
+                  <h1 className="font-serif text-[#2d2a26] mb-1 leading-none">
+                    <span className="inline-block pl-[0.35em] text-[13px] md:text-[16px] uppercase tracking-[0.35em]">
+                      ANNE
+                    </span>
+                  </h1>
+                  <h1 className="font-serif text-[#2d2a26] mb-3 leading-none">
+                    <span className="inline-block pl-[0.12em] text-5xl md:text-7xl lg:text-8xl uppercase tracking-[0.12em]">
+                      FRERET
+                    </span>
+                  </h1>
+                  <div className="inline-block pl-[0.35em] text-[11px] md:text-[13px] uppercase tracking-[0.35em] text-[#b8935a]">
+                    fleuriste
+                  </div>
                 </div>
               </div>
 
               <div className="w-16 h-px bg-[#b8935a] mx-auto mb-10"></div>
 
               <p className="text-lg md:text-xl text-[#2d2a26]/70 font-light leading-relaxed max-w-2xl mx-auto italic">
-                Quand les fleurs racontent l'histoire d'une vie — de Lessay à Saint-Pair-sur-Mer, 
+                Quand les fleurs racontent l'histoire d'une vie, de Lessay à Saint Pair sur Mer, 
                 chaque bouquet porte l'âme de la Normandie.
               </p>
             </div>
@@ -78,7 +84,7 @@ export default function LaMarque() {
                     L'histoire a commencé dans la petite ville de Lessay, au cœur du Cotentin, 
                     dans une boutique verte nichée entre les ruelles pavées et l'abbaye millénaire. 
                     C'est là, bercée par le vent marin et les bruyères de la lande, qu'Anne Freret 
-                    a posé ses premières fleurs sur un comptoir en bois — et qu'une passion est 
+                    a posé ses premières fleurs sur un comptoir en bois, et qu'une passion est 
                     devenue un métier.
                   </p>
                   
@@ -86,14 +92,14 @@ export default function LaMarque() {
                     Pendant des années, la petite boutique de Lessay a vu défiler les saisons et les 
                     émotions. Des bouquets de mariée tremblants d'émotion, des couronnes de deuil 
                     composées avec respect, des compositions de Noël qui illuminaient les foyers normands. 
-                    Anne y a forgé son style — un mélange d'élégance naturelle et de générosité, 
+                    Anne y a forgé son style, un mélange d'élégance naturelle et de générosité, 
                     à l'image de cette terre normande qu'elle aime tant.
                   </p>
                   
                   <p>
-                    En 2008, un nouveau chapitre s'ouvre. Anne pose ses valises à Saint-Pair-sur-Mer, 
+                    En 2008, un nouveau chapitre s'ouvre. Anne pose ses valises à Saint Pair sur Mer, 
                     face à la mer, sur la Place du Général de Gaulle. Un atelier plus grand, une lumière 
-                    différente — celle de l'océan qui baigne chaque création d'une douceur particulière. 
+                    différente, celle de l'océan qui baigne chaque création d'une douceur particulière. 
                     Mais l'âme reste la même : ce souci du détail, cette écoute sincère, cette envie 
                     de mettre du beau dans le quotidien des gens.
                   </p>
@@ -101,17 +107,17 @@ export default function LaMarque() {
                   <p>
                     Le succès de Saint-Pair appelle de nouvelles aventures. En 2014, une deuxième 
                     boutique voit le jour à Jullouville, à quelques kilomètres le long de la côte. 
-                    Puis en 2017, c'est Donville-les-Bains qui accueille l'univers Anne Freret. 
+                    Puis en 2017, c'est Donville les Bains qui accueille l'univers Anne Freret. 
                     Et en 2019, l'histoire franchit la frontière bretonne avec l'ouverture d'un 
-                    atelier à Dol-de-Bretagne — comme un clin d'œil à ces racines normandes 
+                    atelier à Dol de Bretagne, comme un clin d'œil à ces racines normandes 
                     qui n'ont jamais eu peur de s'étendre.
                   </p>
 
                   <p>
-                    Aujourd'hui, avec quatre boutiques entre Normandie et Bretagne, Anne Freret 
+                    Aujourd'hui, avec cinq boutiques entre Normandie et Bretagne, Anne Freret 
                     est devenue une référence du littoral. De la composition quotidienne aux 
                     grands événements, chaque création porte en elle plus de vingt ans de 
-                    savoir-faire — et toute la tendresse de cette petite boutique verte 
+                    savoir faire, et toute la tendresse de cette petite boutique verte 
                     de Lessay où tout a commencé.
                   </p>
                 </div>
@@ -120,7 +126,7 @@ export default function LaMarque() {
               <div className="relative">
                 <img
                   src="/images/team/anne-freret.jpg"
-                  alt="Anne Freret, fondatrice — artisan fleuriste depuis 2001"
+                  alt="Anne Freret, fondatrice, artisan fleuriste depuis 2001"
                   className="w-full aspect-square object-cover object-center hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-6">
@@ -174,7 +180,7 @@ export default function LaMarque() {
               <div className="relative">
                 <img
                   src="/images/mariages/fleuriste-action.jpg"
-                  alt="Charles — l'équipe Anne Freret Fleuriste"
+                  alt="Charles, l'équipe Anne Freret Fleuriste"
                   className="w-full aspect-[4/5] object-cover object-top hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-6">
@@ -197,8 +203,7 @@ export default function LaMarque() {
                 <div className="space-y-6 text-[#2d2a26] font-light leading-relaxed text-lg">
                   <p>
                     Chaque composition naît d'une rencontre entre votre émotion et notre expertise. 
-                    Nous sélectionnons avec soin les plus belles fleurs de saison, en privilégiant 
-                    les producteurs locaux et les circuits courts.
+                    Nous sélectionnons avec soin les plus belles fleurs de saison, issues de productions françaises, belges ou hollandaises, en privilégiant les circuits courts dès que possible pour garantir un maximum de fraîcheur.
                   </p>
                   
                   <p>
@@ -239,25 +244,23 @@ export default function LaMarque() {
               <div className="space-y-6 text-[#2d2a26] font-light leading-relaxed text-lg mb-12">
                 <p>
                   Notre attachement à la Normandie va bien au-delà de notre localisation. 
-                  Nous travaillons en étroite collaboration avec les producteurs locaux 
-                  pour privilégier les fleurs de saison et réduire notre empreinte environnementale.
+                  Nous travaillons avec des partenaires de confiance en France, en Belgique et en Hollande pour privilégier les fleurs de saison, les approvisionnements réactifs et les circuits les plus courts possibles.
                 </p>
                 
                 <p>
                   Cette démarche nous permet de vous offrir des créations plus fraîches, 
-                  plus authentiques, tout en soutenant l'économie locale et les savoir-faire 
-                  traditionnels de notre belle région.
+                  plus régulières et plus qualitatives, tout en conservant un ancrage artisanal fort dans nos ateliers normands.
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center">
                   <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-2">Origine</div>
-                  <div className="text-[#2d2a26] font-light">Fleurs locales</div>
+                  <div className="text-[#2d2a26] font-light">France, Belgique, Hollande</div>
                 </div>
                 <div className="text-center">
                   <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-2">Partenaires</div>
-                  <div className="text-[#2d2a26] font-light">Producteurs normands</div>
+                  <div className="text-[#2d2a26] font-light">Producteurs et grossistes de confiance</div>
                 </div>
                 <div className="text-center">
                   <div className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a] mb-2">Qualité</div>

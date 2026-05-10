@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@/lib/db';
-import { resend } from '@/lib/resend';
+import { resend, FROM_EMAIL } from '@/lib/resend';
 import { escapeHtml } from '@/lib/sanitize';
-
-const FROM_EMAIL = 'Anne Freret Fleuriste <noreply@fleuriste-annefreret.com>';
 
 // GET /api/cron/subscription-reminders
 // Appelé chaque jour à 8h — envoie un rappel pour les livraisons du lendemain
@@ -15,13 +13,15 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    // Trouver les abonnements actifs dont la livraison est demain
+    // Rappel uniquement pour les livraisons locales (Anne livre elle-même)
+    // Les abonnements Chronopost reçoivent le suivi via Sendcloud automatiquement
     const result = await sql`
       SELECT s.*, u.email, u.first_name, u.last_name
       FROM subscriptions s
       JOIN users u ON s.user_id = u.id
       WHERE s.status = 'active'
         AND s.next_delivery_date = CURRENT_DATE + INTERVAL '1 day'
+        AND (s.delivery_mode = 'local' OR s.delivery_mode IS NULL)
     `;
 
     const subs = result.rows;

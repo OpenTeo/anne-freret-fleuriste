@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { sql } from '@/lib/db';
 
 // Force Node.js runtime (pas Edge) pour fetch avec auth
 export const runtime = 'nodejs';
@@ -15,9 +15,13 @@ export async function GET(request: NextRequest) {
   }
 
   try {
+    const parsedParcelId = parcelId ? parseInt(parcelId, 10) : NaN;
+    if (!orderId && isNaN(parsedParcelId)) {
+      return NextResponse.json({ error: 'parcel_id doit être un nombre' }, { status: 400 });
+    }
     const result = orderId
       ? await sql`SELECT label_url, sendcloud_parcel_id, tracking_number, order_number FROM orders WHERE id = ${orderId}`
-      : await sql`SELECT label_url, sendcloud_parcel_id, tracking_number, order_number FROM orders WHERE sendcloud_parcel_id = ${parseInt(parcelId!)}`;
+      : await sql`SELECT label_url, sendcloud_parcel_id, tracking_number, order_number FROM orders WHERE sendcloud_parcel_id = ${parsedParcelId}`;
 
     if (result.rows.length === 0) {
       return NextResponse.json({ error: 'Commande non trouvée' }, { status: 404 });

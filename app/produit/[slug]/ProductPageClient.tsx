@@ -10,8 +10,9 @@ import ProductCard from '@/components/ui/ProductCard';
 import AuthPromptModal from '@/components/ui/AuthPromptModal';
 import { useAuth } from '@/lib/auth-context';
 import RibbonConfigurator from '@/components/ui/RibbonConfigurator';
-import CardSelector from '@/components/ui/CardSelector';
+import CardSelector, { MESSAGE_CARDS } from '@/components/ui/CardSelector';
 import ProductReviews from '@/components/reviews/ProductReviews';
+import { resolveProductSlug } from '@/lib/product-slugs';
 // No lucide imports — using inline SVGs for consistency
 
 interface Product {
@@ -40,15 +41,32 @@ interface ProductPageProps {
   params: { slug: string };
 }
 
+interface CartItem {
+  id: string;
+  name: string;
+  size: string;
+  price: number;
+  quantity: number;
+  image: string;
+  category: string;
+  message?: string;
+  cardId?: string;
+}
+
+const removeCardMessageItems = (cart: CartItem[]) =>
+  cart.filter((item) => item.category !== 'Cartes message');
+
 export default function ProductPageClient({ params }: ProductPageProps) {
   const [product, setProduct] = useState<Product | null>(null);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [fetchError, setFetchError] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState<{ name: string; price: number } | null>(null);
   const [selectedVariant, setSelectedVariant] = useState<{ name: string; price?: number } | null>(null);
   const [personalMessage, setPersonalMessage] = useState('');
+  const [cardMessage, setCardMessage] = useState('');
   const [selectedCardImage, setSelectedCardImage] = useState<string | null>(null);
   const [ribbonText, setRibbonText] = useState('');
   const [ribbonColor, setRibbonColor] = useState('blanc');
@@ -70,8 +88,10 @@ export default function ProductPageClient({ params }: ProductPageProps) {
     const loadProduct = async () => {
       try {
         const res = await fetch('/api/products');
+        if (!res.ok) throw new Error(`API ${res.status}`);
         const data = await res.json();
-        const foundProduct = (data.products || []).find((p: any) => p.slug === params.slug);
+        const canonicalSlug = resolveProductSlug(params.slug);
+        const foundProduct = (data.products || []).find((p: any) => p.slug === canonicalSlug);
         
         if (foundProduct) {
           // Normaliser les données
@@ -100,6 +120,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
         }
       } catch (error) {
         console.error('Erreur chargement produit:', error);
+        setFetchError(true);
       } finally {
         setIsLoading(false);
       }
@@ -132,23 +153,40 @@ export default function ProductPageClient({ params }: ProductPageProps) {
     );
   }
 
+  if (fetchError) {
+    return (
+      <>
+        <Header />
+        <main className="min-h-screen bg-[#faf8f5] flex items-center justify-center">
+          <div className="text-center">
+            <p className="text-[#2d2a26]/60 mb-4">Impossible de charger ce produit.</p>
+            <button onClick={() => window.location.reload()} className="text-sm text-[#b8935a] underline">Réessayer</button>
+          </div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
   if (!product) {
     notFound();
   }
 
   // Calculer le prix actuel avec add-ons
   const addOns = {
-    vase: { name: 'Vase en verre artisanal', price: 19.90 },
+    vase: { name: 'Vase décoratif', price: 12.90 },
     chocolats: { name: 'Boîte de chocolats', price: 14.90 },
-    bougie: { name: 'Bougie parfumée', price: 12.90 }
+    bougie: { name: 'Bougie parfumée Geodesis Figuier', price: 12.90 }
   };
   const ribbonPrice = product.category === 'Deuil & Hommages' && ribbonEnabled ? 9.90 : 0;
+  const cardPrice = selectedCardImage ? 4.99 : 0;
   
   const basePrice = Number(selectedSize?.price || product.price);
   const addOnsTotal = Object.entries(selectedAddOns)
     .filter(([_, selected]) => selected)
     .reduce((total, [key, _]) => total + addOns[key as keyof typeof addOns].price, 0);
-  const currentPrice = basePrice + addOnsTotal + ribbonPrice;
+  const currentPrice = basePrice;
+  const orderTotal = (basePrice * quantity) + addOnsTotal + ribbonPrice + cardPrice;
 
   const handleAddOnChange = (addOnKey: string) => {
     setSelectedAddOns(prev => ({
@@ -159,6 +197,93 @@ export default function ProductPageClient({ params }: ProductPageProps) {
 
   const toggleAccordion = (section: string) => {
     setOpenAccordion(openAccordion === section ? null : section);
+  };
+
+  const addOrUpdateCartItem = (cart: CartItem[], newItem: CartItem) => {
+    const existingIndex = cart.findIndex((item) => item.id === newItem.id);
+
+    if (existingIndex >= 0) {
+      cart[existingIndex].quantity += newItem.quantity;
+      if (newItem.message) {
+        cart[existingIndex].message = newItem.message;
+      }
+      return;
+    }
+
+    cart.push(newItem);
+  };
+
+  const addConfiguredProductToCart = () => {
+    if (!product.in_stock && !product.inStock) return;
+
+    const cart: CartItem[] = JSON.parse(localStorage.getItem('af-cart') || '[]');
+    const sizeLabel = selectedSize?.name || 'Standard';
+    const variantLabel = selectedVariant?.name ? ` · ${selectedVariant.name}` : '';
+    const baseItemId = `${product.id}-${sizeLabel}-${selectedVariant?.name || 'default'}`;
+
+    addOrUpdateCartItem(cart, {
+      id: baseItemId,
+      name: product.name,
+      size: `${sizeLabel}${variantLabel}`,
+      price: basePrice,
+      quantity,
+      image: product.image,
+      category: product.category || 'Bouquets',
+    });
+
+    const addOnCatalog = {
+      vase: { id: 'addon-vase-decoratif', name: 'Vase décoratif', price: 12.90, image: '/vase-addon.jpg', size: '19 cm de haut, 15 cm de large' },
+      chocolats: { id: 'addon-chocolats-artisanaux', name: 'Chocolats artisanaux', price: 14.90, image: '/chocolats-addon.jpg', size: 'Coffret normand' },
+      bougie: { id: 'addon-bougie-geodesis-figuier', name: 'Bougie Geodesis Figuier', price: 12.90, image: '/bougie-geodesis-addon.jpg', size: 'Parfum figuier' },
+    } as const;
+
+    (Object.entries(selectedAddOns) as Array<[keyof typeof addOnCatalog, boolean]>).forEach(([key, selected]) => {
+      if (!selected) return;
+      const addOn = addOnCatalog[key];
+      addOrUpdateCartItem(cart, {
+        id: addOn.id,
+        name: addOn.name,
+        size: addOn.size,
+        price: addOn.price,
+        quantity: 1,
+        image: addOn.image,
+        category: 'Compléments',
+      });
+    });
+
+    if (selectedCardImage) {
+      const cartWithoutCardMessage = removeCardMessageItems(cart);
+      const selectedCard = MESSAGE_CARDS.find((card) => card.id === selectedCardImage);
+      addOrUpdateCartItem(cartWithoutCardMessage, {
+        id: `${baseItemId}-card-${selectedCardImage}`,
+        name: 'Carte message artisanale',
+        size: selectedCard?.name || 'Carte artisanale',
+        price: 4.99,
+        quantity: 1,
+        image: '/icons/envelope.svg',
+        category: 'Cartes message',
+        message: cardMessage.trim() ? cardMessage.trim().toUpperCase() : undefined,
+        cardId: selectedCardImage,
+      });
+      cart.length = 0;
+      cart.push(...cartWithoutCardMessage);
+    }
+
+    if (product.category === 'Deuil & Hommages' && ribbonEnabled) {
+      addOrUpdateCartItem(cart, {
+        id: `${baseItemId}-ribbon`,
+        name: 'Ruban personnalisé',
+        size: ribbonColor === 'blanc' ? 'Ruban blanc' : ribbonColor,
+        price: 9.90,
+        quantity: 1,
+        image: product.image,
+        category: 'Compléments',
+        message: ribbonText.trim() || undefined,
+      });
+    }
+
+    localStorage.setItem('af-cart', JSON.stringify(cart));
+    window.location.href = '/panier';
   };
 
   const productImages = product.images || [product.image];
@@ -356,6 +481,8 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                   <CardSelector
                     selectedCard={selectedCardImage}
                     onSelect={setSelectedCardImage}
+                    message={cardMessage}
+                    onMessageChange={setCardMessage}
                   />
                 </div>
               )}
@@ -366,9 +493,9 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                   <h3 className="text-xs uppercase tracking-[0.15em] text-[#2d2a26]/40 mb-3">Complétez votre cadeau</h3>
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { key: 'vase', name: 'Vase artisanal', price: 19.90, image: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=300&q=85', desc: 'Céramique fait main' },
+                      { key: 'vase', name: 'Vase décoratif', price: 12.90, image: '/vase-addon.jpg', desc: '19 cm de haut, 15 cm de large' },
                       { key: 'chocolats', name: 'Chocolats artisanaux', price: 14.90, image: '/chocolats-addon.jpg', desc: 'Coffret normand' },
-                      { key: 'bougie', name: 'Bougie parfumée', price: 12.90, image: '/bougie-addon.jpg', desc: 'Cire de soja naturelle' },
+                      { key: 'bougie', name: 'Bougie Geodesis Figuier', price: 12.90, image: '/bougie-geodesis-addon.jpg', desc: 'Parfum figuier, allure élégante' },
                     ].map(addon => (
                       <button
                         key={addon.key}
@@ -414,33 +541,13 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                 <div className="flex gap-3">
                   <button 
                     disabled={!product.in_stock && !product.inStock}
-                    onClick={() => {
-                      if (!product.in_stock && !product.inStock) return;
-                      const cart = JSON.parse(localStorage.getItem('af-cart') || '[]');
-                      const newItem = {
-                        id: product.id + '-' + (selectedSize?.name || 'default'),
-                        name: product.name,
-                        size: selectedSize?.name || 'Standard',
-                        price: currentPrice,
-                        quantity: quantity,
-                        image: product.image,
-                        category: product.category || 'Bouquets',
-                      };
-                      const existingIndex = cart.findIndex((item: any) => item.id === newItem.id);
-                      if (existingIndex >= 0) {
-                        cart[existingIndex].quantity += quantity;
-                      } else {
-                        cart.push(newItem);
-                      }
-                      localStorage.setItem('af-cart', JSON.stringify(cart));
-                      window.location.href = '/panier';
-                    }}
+                    onClick={addConfiguredProductToCart}
                     className={`flex-grow py-3.5 text-sm uppercase tracking-[0.1em] transition-colors flex items-center justify-center gap-2 ${!product.in_stock && !product.inStock ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#b8935a] text-white hover:bg-[#b8956a]'}`}
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
                     </svg>
-                    {!product.in_stock || false ? 'Rupture de stock' : `Ajouter au panier — ${currentPrice.toFixed(2)}€`}
+                    {!product.in_stock || false ? 'Rupture de stock' : `Ajouter au panier — ${orderTotal.toFixed(2)}€`}
                   </button>
                   
                   <button
@@ -561,7 +668,7 @@ export default function ProductPageClient({ params }: ProductPageProps) {
                       </svg>
                       <div>
                         <p className="text-sm text-[#2d2a26] mb-0.5">Livraison partout en France</p>
-                        <p className="text-xs text-[#2d2a26]/40 font-light">Locale 24h · Colissimo 48h · Chronopost express 24h ouvrées hors week-end</p>
+                        <p className="text-xs text-[#2d2a26]/40 font-light">Locale 7j/7, jour même avant 12h · Chronopost expédié du lundi au jeudi</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
@@ -653,33 +760,13 @@ export default function ProductPageClient({ params }: ProductPageProps) {
         <div className="lg:hidden fixed bottom-0 left-0 right-0 px-5 pt-3 pb-8 bg-[#faf8f5]/95 backdrop-blur-sm border-t border-[#e8e0d8] z-50" style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom, 2rem))' }}>
           <button 
             disabled={!product.in_stock || false}
-            onClick={() => {
-              if (!product.in_stock || false) return;
-              const cart = JSON.parse(localStorage.getItem('af-cart') || '[]');
-              const newItem = {
-                id: product.id + '-' + (selectedSize?.name || 'default'),
-                name: product.name,
-                size: selectedSize?.name || 'Standard',
-                price: currentPrice,
-                quantity: quantity,
-                image: product.image,
-                category: product.category || 'Bouquets',
-              };
-              const existingIndex = cart.findIndex((item: any) => item.id === newItem.id);
-              if (existingIndex >= 0) {
-                cart[existingIndex].quantity += quantity;
-              } else {
-                cart.push(newItem);
-              }
-              localStorage.setItem('af-cart', JSON.stringify(cart));
-              window.location.href = '/panier';
-            }}
+            onClick={addConfiguredProductToCart}
             className={`w-full py-3.5 text-sm uppercase tracking-[0.1em] transition-colors flex items-center justify-center gap-2 ${!product.in_stock || false ? 'bg-gray-300 text-gray-500 cursor-not-allowed' : 'bg-[#b8935a] text-white hover:bg-[#b8956a]'}`}
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
             </svg>
-            {!product.in_stock || false ? 'Rupture de stock' : `Ajouter au panier — ${currentPrice.toFixed(2)}€`}
+            {!product.in_stock || false ? 'Rupture de stock' : `Ajouter au panier — ${orderTotal.toFixed(2)}€`}
           </button>
         </div>
       </main>

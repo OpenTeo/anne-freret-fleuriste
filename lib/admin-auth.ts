@@ -1,8 +1,10 @@
 import { SignJWT, jwtVerify } from 'jose';
 
-const SECRET = new TextEncoder().encode(
-  process.env.ADMIN_JWT_SECRET || 'fallback-dev-secret-change-me'
-);
+function getSecret(): Uint8Array {
+  const s = process.env.ADMIN_JWT_SECRET;
+  if (!s) throw new Error('ADMIN_JWT_SECRET non configuré');
+  return new TextEncoder().encode(s);
+}
 
 export interface AdminPayload {
   id: string;
@@ -23,14 +25,14 @@ export async function createAdminToken(user: AdminPayload): Promise<string> {
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
     .setExpirationTime('24h')
-    .sign(SECRET);
+    .sign(getSecret());
 }
 
 export async function verifyAdminToken(
   token: string
 ): Promise<AdminPayload | null> {
   try {
-    const { payload } = await jwtVerify(token, SECRET);
+    const { payload } = await jwtVerify(token, getSecret());
     if (!payload.is_admin) return null;
     return payload as unknown as AdminPayload;
   } catch {

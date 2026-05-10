@@ -13,18 +13,18 @@ const gallery = {
     { src: '/images/mariages/boutonniere.jpg', alt: 'Boutonnière marié', credit: '© Bastien Norrington' },
   ],
   tables: [
-    { src: '/images/mariages/centre-table-rose.jpg', alt: 'Centre de table roses et pivoines' },
+    { src: '/images/mariages/centre-table-nappe-elegante.jpg', alt: 'Centre de table nappe élégante bougies et fleurs' },
     { src: '/images/mariages/centre-table-blanc.jpg', alt: 'Centre de table blanc et vert' },
     { src: '/images/mariages/centre-table-rouge.jpg', alt: 'Centre de table rouge passion', credit: '© Bastien Norrington' },
     { src: '/images/mariages/couverts-fleurs.jpg', alt: 'Détail couverts et fleurs' },
   ],
   ambiances: [
     { src: '/images/mariages/salle-reception.jpg', alt: 'Salle de réception décorée de fleurs' },
-    { src: '/images/mariages/table-vue-mer.jpg', alt: 'Table dressée avec vue mer en Normandie' },
+    { src: '/images/mariages/ambiance-mariage-client.jpg', alt: 'Décor de mariage fleuri dans un lieu de réception' },
     { src: '/images/mariages/table-cheminee.jpg', alt: 'Table intimiste cheminée et bougies' },
     { src: '/images/mariages/table-bougies-rouge.jpg', alt: 'Ambiance chaleureuse bougies et roses rouges', credit: '© Bastien Norrington' },
     { src: '/images/mariages/velo-tournesols.jpg', alt: 'Vélo vintage décoré de tournesols' },
-    { src: '/images/mariages/roses-alignees.jpg', alt: 'Roses alignées en décoration' },
+    { src: '/images/mariages/arche-fleurie-exterieur.jpg', alt: 'Arche fleurie extérieure mariage champêtre' },
   ],
   coulisses: [
     { src: '/images/mariages/centre-table-blanc.jpg', alt: 'Centre de table blanc et vert pour mariage' },
@@ -58,6 +58,8 @@ export default function Mariages() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState('');
+  const [expanded, setExpanded] = useState<string | null>(null);
+  const toggle = (key: string) => setExpanded(prev => prev === key ? null : key);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -161,17 +163,22 @@ export default function Mariages() {
         </section>
 
         {/* ════ BOUQUETS DE MARIÉE ════ */}
-        <section className="py-16 md:py-24 bg-white">
+        <section className="py-16 md:py-24 bg-white border-t-2 border-[#e8e0d8]">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center mb-12">
               <p className="text-[10px] uppercase tracking-[0.3em] text-[#b8935a] mb-3">Le bouquet</p>
-              <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">
+              <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-3">
                 L'accessoire le plus photographié
               </h2>
-              <p className="text-[#2d2a26]/60 font-light max-w-lg mx-auto">
-                Rond, cascade, champêtre ou structuré, votre bouquet est composé selon 
-                vos goûts, votre robe et la palette de votre mariage.
-              </p>
+              <button onClick={() => toggle('bouquets')} className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a]/70 hover:text-[#b8935a] transition-colors">
+                {expanded === 'bouquets' ? '− Réduire' : '+ En savoir plus'}
+              </button>
+              {expanded === 'bouquets' && (
+                <p className="text-[#2d2a26]/60 font-light max-w-lg mx-auto mt-3">
+                  Rond, cascade, champêtre ou structuré, votre bouquet est composé selon
+                  vos goûts, votre robe et la palette de votre mariage.
+                </p>
+              )}
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {gallery.bouquets.map((img, i) => (
@@ -185,17 +192,22 @@ export default function Mariages() {
         </section>
 
         {/* ════ CENTRES DE TABLE ════ */}
-        <section className="py-16 md:py-24">
+        <section className="py-16 md:py-24 border-t-2 border-[#e8e0d8]">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center mb-12">
               <p className="text-[10px] uppercase tracking-[0.3em] text-[#b8935a] mb-3">Les tables</p>
-              <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">
+              <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-3">
                 Là où tout le monde s'assoit et se souvient
               </h2>
-              <p className="text-[#2d2a26]/60 font-light max-w-lg mx-auto">
-                Compositions basses, hautes, chemins de table fleuris... 
-                Chaque détail compte pour créer l'ambiance parfaite.
-              </p>
+              <button onClick={() => toggle('tables')} className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a]/70 hover:text-[#b8935a] transition-colors">
+                {expanded === 'tables' ? '− Réduire' : '+ En savoir plus'}
+              </button>
+              {expanded === 'tables' && (
+                <p className="text-[#2d2a26]/60 font-light max-w-lg mx-auto mt-3">
+                  Compositions basses, hautes, chemins de table fleuris...
+                  Chaque détail compte pour créer l'ambiance parfaite.
+                </p>
+              )}
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {gallery.tables.map((img, i) => (
@@ -209,17 +221,22 @@ export default function Mariages() {
         </section>
 
         {/* ════ AMBIANCES & LIEUX ════ */}
-        <section className="py-16 md:py-24 bg-white">
+        <section className="py-16 md:py-24 bg-white border-t-2 border-[#e8e0d8]">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="text-center mb-12">
               <p className="text-[10px] uppercase tracking-[0.3em] text-[#b8935a] mb-3">Ambiances</p>
-              <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-4">
+              <h2 className="font-serif text-3xl md:text-4xl text-[#2d2a26] mb-3">
                 Chaque lieu raconte une histoire
               </h2>
-              <p className="text-[#2d2a26]/60 font-light max-w-lg mx-auto">
-                Manoir normand, bord de mer, jardin champêtre, l'équipe adapte 
-                ses créations à votre lieu et à votre univers.
-              </p>
+              <button onClick={() => toggle('ambiances')} className="text-[10px] uppercase tracking-[0.2em] text-[#b8935a]/70 hover:text-[#b8935a] transition-colors">
+                {expanded === 'ambiances' ? '− Réduire' : '+ En savoir plus'}
+              </button>
+              {expanded === 'ambiances' && (
+                <p className="text-[#2d2a26]/60 font-light max-w-lg mx-auto mt-3">
+                  Manoir normand, bord de mer, jardin champêtre, l'équipe adapte
+                  ses créations à votre lieu et à votre univers.
+                </p>
+              )}
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {gallery.ambiances.map((img, i) => (
@@ -233,7 +250,7 @@ export default function Mariages() {
         </section>
 
         {/* ════ EN COULISSES ════ */}
-        <section className="py-16 md:py-24">
+        <section className="py-16 md:py-24 border-t-2 border-[#e8e0d8]">
           <div className="container mx-auto px-6 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div className="order-2 lg:order-1">

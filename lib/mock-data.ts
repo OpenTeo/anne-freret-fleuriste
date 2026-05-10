@@ -586,9 +586,9 @@ export const mockProducts: Product[] = [
     id: '27',
     name: 'Bougie parfumée',
     price: 12.90,
-    image: 'https://images.unsplash.com/photo-1602607207102-04a2d3beeab4?w=800&q=85',
+    image: '/bougie-geodesis-addon.jpg',
     images: [
-      'https://images.unsplash.com/photo-1602607207102-04a2d3beeab4?w=800&q=85'
+      '/bougie-geodesis-addon.jpg'
     ],
     category: 'Accessoires',
     description: 'Coulée à la main en Normandie dans de la cire de soja naturelle, cette bougie au parfum délicat de fleur de coton diffuse une lumière douce et un sillage aérien dans toute la pièce. Sa mèche en coton naturel assure une combustion propre et régulière pendant environ 40 heures. Présentée dans un contenant en verre fumé réutilisable, elle accompagne idéalement un bouquet pour un cadeau complet et raffiné.',
@@ -601,14 +601,14 @@ export const mockProducts: Product[] = [
   },
   {
     id: '28',
-    name: 'Vase en céramique',
-    price: 19.90,
-    image: 'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=800&q=85',
+    name: 'Vase décoratif',
+    price: 12.90,
+    image: '/vase-addon.jpg',
     images: [
-      'https://images.unsplash.com/photo-1612196808214-b8e1d6145a8c?w=800&q=85'
+      '/vase-addon.jpg'
     ],
     category: 'Accessoires',
-    description: 'Vase en céramique tourné à la main, aux lignes organiques et à la finition crème mat légèrement texturée au toucher. D\'une hauteur de 18 cm, sa silhouette épurée met en valeur aussi bien un bouquet généreux qu\'une branche unique. Chaque pièce est légèrement différente, témoignage du geste artisanal. Un objet décoratif à part entière, même sans fleurs.',
+    description: 'Vase décoratif aux lignes élégantes, pensé pour mettre en valeur un bouquet tout en restant une belle pièce déco. Son format de 19 cm de haut sur 15 cm de large convient aussi bien à une composition généreuse qu\'à quelques tiges choisies. Une silhouette sobre et raffinée, facile à offrir avec des fleurs.',
     slug: 'vase-ceramique',
     featured: false,
     inStock: true,

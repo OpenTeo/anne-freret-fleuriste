@@ -213,8 +213,8 @@ export type DeliveryMethod = 'local' | 'chronopost';
 export const DELIVERY_CONFIG = {
   local: {
     label: 'Livraison locale',
-    description: 'Livrée à la main · Rayon 35 km · Sous 24h',
-    delay: '24h (J+1)',
+    description: 'Livrée à la main · Rayon 35 km · 7j/7',
+    delay: 'Le jour même avant 12h',
     freeThreshold: 60,
     color: '#c4a47a',
     zones: [
@@ -226,8 +226,8 @@ export const DELIVERY_CONFIG = {
   },
   chronopost: {
     label: 'Chronopost',
-    description: 'Express · Suivi en temps réel · 24h ouvrées',
-    delay: '24h ouvrées (hors week-end)',
+    description: 'Express · Expédié du lundi au jeudi · Suivi en temps réel',
+    delay: '24h ouvrées indicatives',
     fee: 18.90,
     freeThreshold: 90,
     color: '#D4003C',
@@ -253,9 +253,9 @@ export function getDeliveryFeeForMethod(method: DeliveryMethod, subtotal: number
 // National delivery for postal codes not in the list
 export const NATIONAL_DELIVERY = {
   deliveryFee: 11.99,
-  deliveryTime: '48h (J+2)',
+  deliveryTime: '24h-48h ouvrées',
   zone: 'national' as const,
-  description: 'Livraison nationale Chronopost — Suivi inclus'
+  description: 'Livraison nationale Chronopost — délai indicatif'
 };
 
 // Search function for delivery zones

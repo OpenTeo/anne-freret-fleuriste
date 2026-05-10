@@ -167,7 +167,7 @@ VALUES (
 INSERT INTO products (name, slug, description, category, price, images, featured, in_stock, sizes, variants, is_active)
 VALUES (
   'Le Chausiais',
-  'le-saint-pairais',
+  'le-chausiais',
   'Description : Le Bouquet du fleuriste est le mélange parfait pour sublimer vos intérieurs ou bien même pour faire plaisir à vos proches. N''hésitez plus pour l''offrir à quelqu''un d''important à vos yeux. Composition : Bouquet frais composé de Rose branchue rose, Renoncule Clone du Var, Wax Flower, Lisianthus double rose, Graminée rose, Feuillages d''hivers ( Moyen 49.90€ / Grand 59.90€ / Très grand 99.90€) Charte qualité Anne Freret : Votre bouquet sera réalisé à la main juste avant sa livraison par un artisan fleuriste dans nos ateliers Normands et Bretons vous garantissant ainsi un produit d''une qualité optimale. Maître artisan bouquetiste et son équipe de pro ! Laboratoire créatif en Baie du Mont Saint Michel. Note : Votre arrangement floral Anne Freret, composé de fleurs fraîches, pourra être quelque peu différent du visuel présenté qui a valeur indicative. Votre composition, créée spécialement pour vous par un de nos artisans, est susceptible de varier légèrement en fonction de la saisonnalité des végétaux qui la composent (Certains végétaux peuvent être remplacés par un substitut en fonction de la saison ou bien des récoltes de nos producteurs).',
   'Bouquets',
   49.9,
@@ -517,7 +517,7 @@ VALUES (
 INSERT INTO products (name, slug, description, category, price, images, featured, in_stock, sizes, variants, is_active)
 VALUES (
   'Le Saint-Pairais',
-  'le-chausiais-1',
+  'le-saint-pairais',
   'Description : Hommage floral à la ville qui l''a inspiré, Le Saint Pairais est une composition élégante et romantique. Avec ses roses délicates aux nuances pastel, ses fleurs champêtres et son feuillage verdoyant, ce bouquet respire la douceur et l''authenticité. Parfait pour marquer une occasion spéciale ou simplement pour faire plaisir, il incarne l''esprit chaleureux et accueillant de Saint-Pair-sur-Mer. Offrez ce bouquet unique, reflet d''un savoir-faire local et d''une nature sublimée. Composition : Rose Sweat Advance, Rose branchue, Statice rose, Astrancia blanc, Hypericum pastel (Moyen 49,90€ / Grand 59,90€ / Très grand 99,90€) Taille moyenne en photo. Charte qualité Anne Freret : Votre bouquet est confectionné à la main par un artisan fleuriste dans nos ateliers Normands et Bretons pour garantir une qualité optimale. Maître artisan bouquetiste et son équipe créent dans notre laboratoire en Baie du Mont-Saint-Michel. Note : Votre arrangement floral, réalisé avec des fleurs fraîches, peut légèrement différer du visuel présenté en raison de la saisonnalité ou des récoltes. Certains végétaux peuvent être remplacés par des équivalents pour maintenir la qualité.',
   'Bouquets',
   49.9,

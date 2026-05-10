@@ -1,34 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
-import { cookies } from 'next/headers';
-
-// Vérifier si l'utilisateur est admin
-async function isAdmin() {
-  try {
-    const cookieStore = await cookies();
-    const sessionCookie = cookieStore.get('session');
-    
-    if (!sessionCookie) {
-      return false;
-    }
-
-    const sessionData = JSON.parse(sessionCookie.value);
-    const userId = sessionData.user?.id;
-
-    if (!userId) {
-      return false;
-    }
-
-    const result = await sql`
-      SELECT is_admin FROM users WHERE id = ${userId}
-    `;
-
-    return result.rows[0]?.is_admin || false;
-  } catch (error) {
-    console.error('Erreur vérification admin:', error);
-    return false;
-  }
-}
+import { sql } from '@/lib/db';
+import { requireAdmin, isAuthError } from '@/lib/api-auth';
 
 // Mettre à jour le rating produit
 async function updateProductRating(productId: string) {
@@ -63,13 +35,8 @@ export async function PATCH(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const admin = await isAdmin();
-    if (!admin) {
-      return NextResponse.json(
-        { error: 'Accès non autorisé' },
-        { status: 403 }
-      );
-    }
+    const auth = await requireAdmin(request);
+    if (isAuthError(auth)) return auth;
 
     const { id } = await context.params;
     const body = await request.json();
@@ -125,13 +92,8 @@ export async function DELETE(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const admin = await isAdmin();
-    if (!admin) {
-      return NextResponse.json(
-        { error: 'Accès non autorisé' },
-        { status: 403 }
-      );
-    }
+    const auth = await requireAdmin(request);
+    if (isAuthError(auth)) return auth;
 
     const { id } = await context.params;
 

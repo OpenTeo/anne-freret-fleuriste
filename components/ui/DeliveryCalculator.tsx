@@ -166,7 +166,7 @@ export default function DeliveryCalculator({
               </svg>
               <p className="text-sm md:text-lg font-serif text-[#2d2a26] text-center leading-tight">{deliveryResult.time}</p>
               {deliveryResult.type === 'local' && (
-                <p className="text-[11px] text-[#b8935a] mt-1">Livré le jour même</p>
+                <p className="text-[11px] text-[#b8935a] mt-1">Jour même avant 12h</p>
               )}
               <p className="text-[10px] text-[#2d2a26]/35 uppercase tracking-wider mt-1">Délai estimé</p>
             </div>

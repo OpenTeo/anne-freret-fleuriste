@@ -1,7 +1,11 @@
-import { NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { NextRequest, NextResponse } from 'next/server';
+import { sql } from '@/lib/db';
+import { requireAdmin, isAuthError } from '@/lib/api-auth';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const auth = await requireAdmin(request);
+  if (isAuthError(auth)) return auth;
+
   try {
     // All queries in parallel
     const [

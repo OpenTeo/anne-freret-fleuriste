@@ -70,13 +70,13 @@ export default function Commandes() {
     try {
       setLoading(true);
       const res = await apiFetch('/api/orders');
-      const data = await res.json();
-      
-      if (data.error) {
-        setError(data.error);
-      } else {
-        setOrders(data.orders || []);
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        setError(data.error || 'Impossible de charger les commandes');
+        return;
       }
+      const data = await res.json();
+      setOrders(data.orders || []);
     } catch (err) {
       console.error('Erreur chargement commandes:', err);
       setError('Impossible de charger les commandes');

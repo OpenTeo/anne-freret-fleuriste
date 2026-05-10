@@ -6,7 +6,7 @@ import { rateLimit } from '@/lib/rate-limit';
 export async function POST(req: NextRequest) {
   // Rate limit: 3 requêtes / 15 min par IP
   const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown';
-  if (!rateLimit(ip, 3, 15 * 60 * 1000)) {
+  if (!(await rateLimit(ip, 3, 15 * 60 * 1000))) {
     return NextResponse.json(
       { error: 'Trop de messages envoyés. Réessayez dans quelques minutes.' },
       { status: 429 }
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     // Envoyer l'email
     await resend.emails.send({
       from: FROM_EMAIL,
-      to: 'contact@fleuriste-annefreret.com',
+      to: process.env.CONTACT_EMAIL || 'contact@fleuriste-annefreret.com',
       replyTo: email,
       subject: `[Site web] ${subjectLabel} — ${escapeHtml(name)}`,
       html: `

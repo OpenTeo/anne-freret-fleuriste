@@ -26,7 +26,7 @@ export interface User {
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
-  login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
+  login: (email: string, password: string) => Promise<{ success: boolean; error?: string; isAdmin?: boolean }>;
   register: (data: RegisterData) => Promise<{ success: boolean; error?: string }>;
   logout: () => void;
   updateProfile: (data: Partial<User>) => void;
@@ -98,7 +98,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       setUser(userData);
       localStorage.setItem('af-current-user', JSON.stringify(userData));
-      return { success: true };
+      return { success: true, isAdmin: userData.is_admin };
     } catch (error) {
       console.error('Erreur login:', error);
       return { success: false, error: 'Erreur de connexion au serveur' };
@@ -146,6 +146,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = () => {
+    fetch('/api/auth/logout', { method: 'POST' }).catch(() => {});
     setUser(null);
     localStorage.removeItem('af-current-user');
   };

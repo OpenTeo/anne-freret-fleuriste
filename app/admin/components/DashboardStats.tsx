@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { apiFetch } from '@/lib/api-client';
 
 interface Stats {
   totalRevenue: number;
@@ -22,26 +21,18 @@ export default function DashboardStats({ onNavigate }: DashboardStatsProps = {})
   useEffect(() => {
     const loadStats = async () => {
       try {
-        // Charger commandes
-        const ordersRes = await apiFetch('/api/orders');
-        const ordersData = await ordersRes.json();
-        const orders = ordersData.orders || [];
+        const res = await fetch('/api/admin/stats');
+        const data = await res.json();
 
-        // Charger clients
-        const usersRes = await apiFetch('/api/users?isAdmin=false');
-        const usersData = await usersRes.json();
-        const users = usersData.users || [];
-
-        const totalRevenue = orders.reduce((sum: number, o: { total_amount: string }) => sum + parseFloat(o.total_amount), 0);
-        const pendingCount = orders.filter((o: { status: string }) => o.status === 'pending').length;
-        const avgBasket = orders.length > 0 ? totalRevenue / orders.length : 0;
+        const totalRevenue = data.totalRevenue ?? 0;
+        const ordersCount = data.ordersCount ?? 0;
 
         setStats({
           totalRevenue,
-          ordersCount: orders.length,
-          pendingCount,
-          clientsCount: users.length,
-          avgBasket,
+          ordersCount,
+          pendingCount: data.pendingOrders ?? 0,
+          clientsCount: data.clientsCount ?? 0,
+          avgBasket: ordersCount > 0 ? totalRevenue / ordersCount : 0,
         });
       } catch (error) {
         console.error('Erreur chargement stats:', error);
@@ -51,7 +42,7 @@ export default function DashboardStats({ onNavigate }: DashboardStatsProps = {})
     };
 
     loadStats();
-  }, []);
+  }, [onNavigate]);
 
   if (isLoading) {
     return (

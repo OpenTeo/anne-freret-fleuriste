@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function BrandIdentity() {
   return (
     <section className="relative py-24 md:py-36 overflow-hidden">
@@ -31,14 +33,18 @@ export default function BrandIdentity() {
           <div className="w-12 h-px bg-[#b8935a]/30" />
         </div>
 
-        <p className="text-[#b8935a] text-[10px] tracking-[0.4em] uppercase mb-8 font-light text-center">
-          Notre Signature
+        <p className="text-[#b8935a] text-[10px] tracking-[0.4em] uppercase mb-4 font-light text-center">
+          Qui sommes-nous
+        </p>
+
+        <p className="text-[#2d2a26]/52 text-sm md:text-base mb-8 font-light text-center max-w-xl mx-auto leading-relaxed">
+          Une maison florale normande portée par le geste artisanal, la proximité et le goût des compositions qui ont du sens.
         </p>
 
         <h2 className="font-serif text-3xl md:text-5xl lg:text-[3.5rem] text-[#2d2a26] mb-8 font-light leading-tight text-center">
-          L'art de l'emballage,{' '}
+          L&apos;univers Anne Freret,{' '}
           <br className="hidden md:block" />
-          <span className="italic text-[#b8935a]">signé Anne Freret</span>
+          <span className="italic text-[#b8935a]">entre atelier, fleurs et attention</span>
         </h2>
 
         {/* Séparateur doré élégant */}
@@ -49,9 +55,7 @@ export default function BrandIdentity() {
         </div>
 
         <p className="text-[#6b6560] text-base md:text-lg leading-relaxed mb-14 font-light max-w-xl mx-auto text-center">
-          Chaque bouquet est enveloppé dans notre papier au dessin exclusif, 
-          une illustration originale qui raconte l'univers Anne Freret. 
-          Parce que la beauté commence avant même de découvrir les fleurs.
+          Depuis Saint-Pair-sur-Mer, Anne Freret compose des créations florales pensées pour le quotidien comme pour les instants marquants, avec une sélection de fleurs françaises, belges ou hollandaises privilégiant le circuit court pour une fraîcheur maximale.
         </p>
 
         {/* 3 points avec icônes */}
@@ -67,7 +71,7 @@ export default function BrandIdentity() {
                 </svg>
               ),
               title: 'Composé à la main', 
-              desc: 'Chaque bouquet est unique' 
+              desc: 'Chaque bouquet est réalisé à l’atelier' 
             },
             { 
               icon: (
@@ -78,8 +82,8 @@ export default function BrandIdentity() {
                   <path d="M8 18h8"/>
                 </svg>
               ),
-              title: 'Fleurs responsables', 
-              desc: 'Circuit court, fraîcheur garantie' 
+              title: 'Ancrage local', 
+              desc: 'Saint-Pair-sur-Mer, Normandie et littoral' 
             },
             { 
               icon: (
@@ -92,8 +96,8 @@ export default function BrandIdentity() {
                   <path d="M7 12v2"/><path d="M17 12v2"/>
                 </svg>
               ),
-              title: 'Expérience cadeau', 
-              desc: 'Chaque colis est une surprise' 
+              title: 'Savoir-faire maison', 
+              desc: 'Une signature florale reconnue depuis 2001' 
             },
           ].map((item, i) => (
             <div key={i} className="text-center group">
@@ -107,16 +111,22 @@ export default function BrandIdentity() {
         </div>
 
         {/* Bouton élégant */}
-        <div className="text-center">
-          <a
-            href="/boutique"
-            className="inline-flex items-center gap-2 px-8 py-3.5 border border-[#b8935a]/40 text-[#2d2a26] text-sm tracking-wider uppercase rounded-full hover:bg-[#b8935a] hover:text-white hover:border-[#b8935a] transition-all duration-300 font-light"
+        <div className="text-center flex flex-col sm:flex-row items-center justify-center gap-3">
+          <Link
+            href="/la-marque"
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#2d2a26] text-white text-sm tracking-wider uppercase rounded-full hover:bg-[#b8935a] transition-all duration-300 font-light"
           >
-            Découvrir nos créations
+            Découvrir notre histoire
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
             </svg>
-          </a>
+          </Link>
+          <Link
+            href="/boutique"
+            className="inline-flex items-center gap-2 px-8 py-3.5 border border-[#b8935a]/40 text-[#2d2a26] text-sm tracking-wider uppercase rounded-full hover:bg-[#b8935a] hover:text-white hover:border-[#b8935a] transition-all duration-300 font-light"
+          >
+            Explorer la collection
+          </Link>
         </div>
 
         {/* Ornement bas */}

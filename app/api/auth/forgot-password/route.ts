@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql } from '@vercel/postgres';
+import { sql } from '@/lib/db';
 import { SignJWT } from 'jose';
 import { resend, FROM_EMAIL } from '@/lib/resend';
 
-const SECRET = new TextEncoder().encode(process.env.ADMIN_JWT_SECRET || 'fallback');
+function getPasswordResetSecret(): Uint8Array {
+  const s = process.env.PASSWORD_RESET_SECRET || process.env.ADMIN_JWT_SECRET;
+  if (!s) throw new Error('PASSWORD_RESET_SECRET non configuré');
+  return new TextEncoder().encode(s);
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,7 +17,7 @@ export async function POST(req: NextRequest) {
     }
 
     const result = await sql`
-      SELECT id, email, first_name FROM users WHERE email = ${email.toLowerCase()}
+      SELECT id, email, first_name, password_hash FROM users WHERE email = ${email.toLowerCase()}
     `;
 
     // Toujours retourner succès (ne pas révéler si l'email existe)
@@ -24,10 +28,15 @@ export async function POST(req: NextRequest) {
     const user = result.rows[0];
 
     // Créer un token de reset (expire en 1h)
-    const token = await new SignJWT({ userId: user.id, type: 'password-reset' })
+    // hash inclus comme binding — token invalide dès que le mot de passe change
+    const token = await new SignJWT({
+      userId: user.id,
+      type: 'password-reset',
+      hash: (user.password_hash as string).substring(0, 8),
+    })
       .setProtectedHeader({ alg: 'HS256' })
       .setExpirationTime('1h')
-      .sign(SECRET);
+      .sign(getPasswordResetSecret());
 
     const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://anne-freret-fleuriste.vercel.app').trim();
     const resetUrl = `${siteUrl}/compte/reset-password?token=${token}`;

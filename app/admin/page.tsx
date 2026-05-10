@@ -9,8 +9,9 @@ import ProductsList from './components/ProductsList';
 import SubscriptionsList from './components/SubscriptionsList';
 import ReviewsList from './components/ReviewsList';
 import PromoCodesList from './components/PromoCodesList';
+import DevisList from './components/DevisList';
 
-type Tab = 'dashboard' | 'orders' | 'clients' | 'products' | 'subscriptions' | 'reviews' | 'promos';
+type Tab = 'dashboard' | 'orders' | 'clients' | 'products' | 'subscriptions' | 'reviews' | 'promos' | 'devis';
 
 const tabs: { key: Tab; label: string; icon: string }[] = [
   { key: 'dashboard', label: 'Dashboard', icon: '📊' },
@@ -20,6 +21,7 @@ const tabs: { key: Tab; label: string; icon: string }[] = [
   { key: 'subscriptions', label: 'Abonnements', icon: '🔄' },
   { key: 'reviews', label: 'Avis', icon: '⭐' },
   { key: 'promos', label: 'Promos', icon: '🏷️' },
+  { key: 'devis', label: 'Devis mariage', icon: '💍' },
 ];
 
 export default function AdminPage() {
@@ -35,7 +37,7 @@ export default function AdminPage() {
         if (data.pendingOrders !== undefined) setPendingCount(data.pendingOrders);
       })
       .catch(() => {});
-  }, [activeTab]);
+  }, []);
 
   const handleLogout = async () => {
     await fetch('/api/admin/auth/logout', { method: 'POST' });
@@ -58,6 +60,8 @@ export default function AdminPage() {
         return <ReviewsList />;
       case 'promos':
         return <PromoCodesList />;
+      case 'devis':
+        return <DevisList />;
     }
   };
 

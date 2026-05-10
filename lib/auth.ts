@@ -1,25 +1,40 @@
 import bcrypt from 'bcryptjs';
+import { SignJWT, jwtVerify } from 'jose';
 
 const SALT_ROUNDS = 10;
 
-/**
- * Hash un mot de passe avec bcrypt
- */
+function getUserSecret(): Uint8Array {
+  const secret = process.env.USER_JWT_SECRET || process.env.ADMIN_JWT_SECRET;
+  if (!secret) throw new Error('USER_JWT_SECRET non configuré');
+  return new TextEncoder().encode(secret);
+}
+
+export async function createUserToken(userId: string): Promise<string> {
+  return new SignJWT({ userId, type: 'user-session' })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setExpirationTime('7d')
+    .sign(getUserSecret());
+}
+
+export async function verifyUserToken(token: string): Promise<{ userId: string } | null> {
+  try {
+    const { payload } = await jwtVerify(token, getUserSecret());
+    if (payload.type !== 'user-session' || !payload.userId) return null;
+    return { userId: payload.userId as string };
+  } catch {
+    return null;
+  }
+}
+
 export async function hashPassword(password: string): Promise<string> {
   return bcrypt.hash(password, SALT_ROUNDS);
 }
 
-/**
- * Vérifie un mot de passe contre son hash
- */
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
   return bcrypt.compare(password, hash);
 }
 
-/**
- * Génère un token simple (pour session temporaire)
- * Note: Pour production, utiliser JWT avec secret
- */
 export function generateSessionToken(): string {
   return crypto.randomUUID();
 }

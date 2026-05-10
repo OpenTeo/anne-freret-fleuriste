@@ -1,7 +1,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { apiFetch } from '@/lib/api-client';
+import OrderDetail from './OrderDetail';
+
+interface OrderItem {
+  id: string;
+  product_name: string;
+  product_image?: string;
+  quantity: number;
+  unit_price: number;
+  total_price: number;
+  size?: string;
+  variant?: string;
+}
 
 interface Order {
   id: string;
@@ -10,11 +21,24 @@ interface Order {
   customer_siren: string | null;
   customer_name: string;
   customer_email: string;
+  customer_phone: string;
   total_amount: string;
   status: string;
+  delivery_address: string;
+  delivery_city: string;
+  delivery_postal_code: string;
   delivery_mode: string;
-  tracking_number?: string;
+  delivery_date: string;
+  card_message: string;
+  tracking_number: string;
+  tracking_url: string;
+  label_url: string;
+  sendcloud_parcel_id: number | null;
+  shipped_at: string;
+  delivered_at: string;
   created_at: string;
+  items: OrderItem[] | null;
+  shipping_address: Record<string, string> | null;
 }
 
 const statusLabels: Record<string, { label: string; color: string }> = {
@@ -23,6 +47,7 @@ const statusLabels: Record<string, { label: string; color: string }> = {
   preparing: { label: 'En préparation', color: 'bg-purple-100 text-purple-800' },
   shipped: { label: 'Expédiée', color: 'bg-indigo-100 text-indigo-800' },
   delivered: { label: 'Livrée', color: 'bg-green-100 text-green-800' },
+  cancelled: { label: 'Annulée', color: 'bg-red-100 text-red-800' },
 };
 
 const orderStatusFlow: string[] = ['pending', 'confirmed', 'preparing', 'shipped', 'delivered'];
@@ -31,10 +56,11 @@ export default function OrdersList() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState('all');
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
   const loadOrders = async () => {
     try {
-      const res = await apiFetch('/api/orders');
+      const res = await fetch('/api/admin/orders');
       const data = await res.json();
       setOrders(data.orders || []);
     } catch (error) {
@@ -55,7 +81,7 @@ export default function OrdersList() {
     const nextStatus = orderStatusFlow[idx + 1];
 
     try {
-      const res = await apiFetch(`/api/orders/${orderId}`, {
+      const res = await fetch(`/api/admin/orders/${orderId}/status`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: nextStatus }),
@@ -66,22 +92,6 @@ export default function OrdersList() {
       }
     } catch (error) {
       console.error('Erreur mise à jour statut:', error);
-    }
-  };
-
-  const updateTracking = async (orderId: string, trackingNumber: string) => {
-    try {
-      const res = await apiFetch(`/api/orders/${orderId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tracking_number: trackingNumber }),
-      });
-
-      if (res.ok) {
-        loadOrders();
-      }
-    } catch (error) {
-      console.error('Erreur mise à jour tracking:', error);
     }
   };
 
@@ -156,13 +166,21 @@ export default function OrdersList() {
                     {new Date(order.created_at).toLocaleDateString('fr-FR')}
                   </td>
                   <td className="p-3">
-                    <button
-                      onClick={() => advanceStatus(order.id, order.status)}
-                      disabled={order.status === 'delivered'}
-                      className="text-[#b8935a] hover:text-[#b8956a] text-xs disabled:opacity-40 disabled:cursor-not-allowed"
-                    >
-                      {order.status === 'delivered' ? '✓ Terminée' : '→ Avancer'}
-                    </button>
+                    <div className="flex items-center gap-3">
+                      <button
+                        onClick={() => setSelectedOrder(order)}
+                        className="text-[#b8935a] hover:underline text-xs"
+                      >
+                        Voir
+                      </button>
+                      <button
+                        onClick={() => advanceStatus(order.id, order.status)}
+                        disabled={order.status === 'delivered'}
+                        className="text-[#2d2a26]/60 hover:text-[#2d2a26] text-xs disabled:opacity-40 disabled:cursor-not-allowed"
+                      >
+                        {order.status === 'delivered' ? '✓ Terminée' : '→ Avancer'}
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))
@@ -170,6 +188,18 @@ export default function OrdersList() {
           </tbody>
         </table>
       </div>
+
+      {selectedOrder && (
+        <OrderDetail
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          order={selectedOrder as any}
+          orderItems={selectedOrder.items || []}
+          onClose={() => {
+            setSelectedOrder(null);
+            loadOrders();
+          }}
+        />
+      )}
     </div>
   );
 }

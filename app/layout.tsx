@@ -1,24 +1,9 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Lato } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
 import TopBanner from "@/components/ui/TopBanner";
 import NewsletterPopup from "@/components/ui/NewsletterPopup";
 import JsonLd from "@/components/seo/JsonLd";
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
-
-const lato = Lato({
-  variable: "--font-lato",
-  subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
-  display: "swap",
-});
 
 export const viewport = {
   width: 'device-width',
@@ -80,9 +65,7 @@ export default function RootLayout({
         <JsonLd type="LocalBusiness" />
         <JsonLd type="Organization" />
       </head>
-      <body
-        className={`${playfair.variable} ${lato.variable} antialiased overflow-x-hidden`}
-      >
+      <body className="antialiased overflow-x-hidden">
         <Providers>
           <TopBanner />
           {children}

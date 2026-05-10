@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { getDeliveryInfo } from '@/lib/delivery-zones';
+import { DeliveryMode, getDeliveryModeDetails, isSelectableDeliveryDate } from '@/lib/delivery-rules';
 import { rateLimit } from '@/lib/rate-limit';
 
 interface CartItem {
@@ -9,12 +11,14 @@ interface CartItem {
   quantity: number;
   image: string;
   category: string;
+  message?: string;
+  cardId?: string;
 }
 
 interface CheckoutBody {
   items: CartItem[];
   delivery: {
-    mode: string;
+    mode: DeliveryMode;
     date: string;
     fee: number;
     discount: number;
@@ -33,21 +37,32 @@ interface CheckoutBody {
     city: string;
   };
   cardMessage?: string;
-  cardSupplement?: number;
+  cardType?: 'none' | 'standard' | 'artisanal';
 }
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
-  if (!rateLimit(`checkout:${ip}`, 10, 15 * 60 * 1000)) {
+  if (!(await rateLimit(`checkout:${ip}`, 10, 15 * 60 * 1000))) {
     return NextResponse.json({ error: 'Trop de tentatives. Réessayez dans quelques minutes.' }, { status: 429 });
   }
 
   try {
     const body: CheckoutBody = await req.json();
-    const { items, delivery, customer, cardMessage, cardSupplement } = body;
+    const { items, delivery, customer, cardMessage, cardType } = body;
+    const cartCardItem = items.find((item) => item.category === 'Cartes message');
+    const resolvedCardType = cartCardItem?.cardId ? 'artisanal' : cartCardItem ? 'standard' : cardType || 'none';
+    const resolvedCardMessage = cartCardItem?.message || cardMessage || '';
 
-    if (!items?.length || !customer?.email) {
+    if (!items?.length || !customer?.email || !delivery?.mode || !delivery?.date) {
       return NextResponse.json({ error: 'Données manquantes' }, { status: 400 });
+    }
+
+    if (!['local', 'chronopost'].includes(delivery.mode)) {
+      return NextResponse.json({ error: 'Mode de livraison invalide' }, { status: 400 });
+    }
+
+    if (!isSelectableDeliveryDate(delivery.mode, delivery.date)) {
+      return NextResponse.json({ error: 'Date de livraison invalide pour le mode choisi' }, { status: 400 });
     }
 
     const customerType = customer.customerType === 'professionnel' ? 'professionnel' : 'particulier';
@@ -55,6 +70,13 @@ export async function POST(req: NextRequest) {
 
     if (customerType === 'professionnel' && !/^\d{9}$/.test(customerSiren)) {
       return NextResponse.json({ error: 'SIREN invalide' }, { status: 400 });
+    }
+
+    if (delivery.mode === 'local') {
+      const deliveryInfo = getDeliveryInfo(customer.postalCode || customer.city || '');
+      if (deliveryInfo.type === 'national') {
+        return NextResponse.json({ error: 'Adresse hors zone de livraison locale' }, { status: 400 });
+      }
     }
 
     const key = process.env.STRIPE_SECRET_KEY;
@@ -92,21 +114,11 @@ export async function POST(req: NextRequest) {
     if (delivery.fee > 0) {
       const modeLabel =
         delivery.mode === 'local' ? 'Livraison locale' :
-        delivery.mode === 'colissimo' ? 'Colissimo (48h)' :
-        delivery.mode === 'chronopost' ? 'Chronopost Express (24h ouvrées, hors week-end)' :
+        delivery.mode === 'chronopost' ? 'Chronopost (expédition du lundi au jeudi)' :
         'Livraison';
       params.append(`line_items[${idx}][price_data][currency]`, 'eur');
       params.append(`line_items[${idx}][price_data][product_data][name]`, modeLabel);
       params.append(`line_items[${idx}][price_data][unit_amount]`, Math.round(delivery.fee * 100).toString());
-      params.append(`line_items[${idx}][quantity]`, '1');
-      idx++;
-    }
-
-    // Card supplement
-    if (cardSupplement && cardSupplement > 0) {
-      params.append(`line_items[${idx}][price_data][currency]`, 'eur');
-      params.append(`line_items[${idx}][price_data][product_data][name]`, 'Carte message artisanale');
-      params.append(`line_items[${idx}][price_data][unit_amount]`, Math.round(cardSupplement * 100).toString());
       params.append(`line_items[${idx}][quantity]`, '1');
       idx++;
     }
@@ -118,15 +130,25 @@ export async function POST(req: NextRequest) {
     params.append('metadata[customer_siren]', customerType === 'professionnel' ? customerSiren : '');
     params.append('metadata[delivery_mode]', delivery.mode);
     params.append('metadata[delivery_date]', delivery.date);
+    params.append('metadata[delivery_fee]', String(delivery.fee || 0));
+    params.append('metadata[delivery_discount]', String(delivery.discount || 0));
+    params.append('metadata[delivery_subtotal]', String(delivery.subtotal || 0));
+    params.append('metadata[delivery_total]', String(delivery.total || 0));
+    params.append('metadata[delivery_details]', getDeliveryModeDetails(delivery.mode));
     params.append('metadata[delivery_address]', `${customer.address}, ${customer.postalCode} ${customer.city}`);
-    params.append('metadata[card_message]', cardMessage || '');
+    params.append('metadata[card_type]', resolvedCardType);
+    params.append('metadata[card_message]', resolvedCardMessage);
     params.append('metadata[order_items]', items.map(i => `${i.quantity}x ${i.name} (${i.size})`).join(' | '));
     params.append('metadata[order_items_json]', JSON.stringify(items.map(i => ({
+      id: i.id,
       name: i.name,
       size: i.size,
       price: i.price,
       quantity: i.quantity,
       image: i.image,
+      category: i.category,
+      message: i.message,
+      cardId: i.cardId,
     }))));
 
     // Direct fetch to Stripe API

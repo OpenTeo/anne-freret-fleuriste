@@ -14,6 +14,7 @@
 Crédit obligatoire : "© Bastien Norrington"
 
 ## Photos Anne Freret (sans crédit requis)
+- ambiance-mariage-client.jpg
 - table-vue-mer.jpg
 - salle-reception.jpg
 - centre-table-rose.jpg
